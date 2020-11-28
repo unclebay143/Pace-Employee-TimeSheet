@@ -1,0 +1,134 @@
+
+#logo{
+  color: rgb(51,94,234);
+  font-size: 40px;
+  font-weight: 700;
+}
+
+button.navbar-toggler{
+  outline: none;
+  border: none;
+}
+
+button.navbar-toggler:hover{
+  transform: scale(1.2);
+}
+
+#this_nav .navbar-nav .nav-link{
+  backface-visibility: hidden;
+  color: #506690;
+}
+
+#this_nav .navbar-nav .nav-link:hover{
+  color: #131e3f;
+}
+
+
+/* MEDIA QUERY FOR BIG SCREEN */
+@media (min-width: 992px){
+  
+  .navbar-nav{
+    margin:  0 auto;
+  }
+  
+  a.nav-link{
+    margin: 0rem .9rem;
+    padding: 3rem ;
+    font-size: 1.21rem;
+  }
+
+  a#get-started-btn{
+    background: transparent;
+    color: #335eea;
+    transition: 1s;
+  }
+  a#get-started-btn:hover{
+    background: #335eea;
+    color: #ffffff;
+    outline: none;
+    border: 1px solid #ffffff;
+  }
+
+  .home-intro{
+    margin-top: 80px;
+    flex-direction: row !important;
+  }
+
+  .home-intro-text p{
+    width: 600px;
+  }
+
+  .block{
+    margin-bottom: 7rem;
+  }
+
+  
+  .block-1 blockquote{
+    margin-top: 0rem;
+  }
+
+  .block-2 blockquote{
+    margin-left: 4rem;
+    margin-top: 0rem;
+  }
+
+  .block img{
+    max-width: 60%;
+    height: auto;
+    /* backface-visibility: hidden; */
+    border-radius: .625rem;
+    box-shadow: 25px 60px 125px -25px rgba(80,102,144,.1), 16px 40px 75px -40px rgba(0,0,0,.2);
+    cursor: pointer;
+  }
+  
+  .block-1 img{
+    /* animation: dance-1 15s linear; */
+    animation-iteration-count: infinite;
+    margin-left: 2rem;
+  }
+  
+  #dashboard-display{
+    flex-direction: row !important;
+  }
+  
+  @keyframes dance-1 {
+    /* 0%{transform: rotateY(-25deg) rotateX(25deg);} */
+    /* 100%{transform: rotateY(20deg) rotateX(20deg);} */
+  }
+  
+
+  .block-2 img{
+    /* transform: rotateY(25deg) rotateX(25deg); */
+    /* animation: dance-2 15s linear; */
+    /* animation-iteration-count: infinite; */
+  }
+
+  @keyframes dance-2 {
+    /* 100%{transform: rotateY(-25deg) rotateX(25deg);} */
+    /* 0%{transform: rotateY(20deg) rotateX(20deg)} */
+  }
+
+  .testimonial h4{
+    font-size: 3rem;
+    font-weight: 350;
+    color: #161c2d;
+    text-align: center;
+  }
+  
+  #carouselControls{
+    height: 400px;
+  }
+  /* for image */
+  .carousel-item img{ 
+    width: 200px;
+    height: 400px;
+    display: none;
+  }
+  
+  .twitter-tweet{
+    position: relative;
+    left: 284px;
+    /* height: 300px; */
+  }
+
+}

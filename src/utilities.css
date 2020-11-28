@@ -1,0 +1,48 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.pace-primary-color{
+  color: #335eea !important;
+}
+
+.pace-accent-color{
+  color: #FF6584;
+}
+
+.pace-bg-primary{
+  background: #335eea;
+  color: #ffffff;
+}
+.pace-thead{
+  background: #335eea;
+  color: #fff;
+}
+.pace-bg-accent{
+  background: #FF6584;
+  color: #ffffff;
+}
+
+.form-control {
+  border-radius: .25rem;
+}
+.form-control:focus {
+  border: 1px solid #335eea;
+  box-shadow: none;
+}
+.pace-btn{
+  padding: .5625rem 1rem !important;
+  font-size: 1.0625rem !important;
+}
+
+
+@media print {
+  * {
+    display: none;
+  }
+  #printArea {
+    display: block;
+  }
+}
