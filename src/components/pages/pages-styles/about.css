@@ -1,0 +1,58 @@
+.row{
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.about {
+    margin-top: 2rem;
+    margin-bottom: 4rem;
+}
+
+.about summary.team {
+    margin-top: 5.8rem;
+}
+
+.about .clock-image {
+    -webkit-box-shadow: -2px -1px 15px 7px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: -3px -2px 30px 14px rgba(0, 0, 0, 0.1);
+    box-shadow: -4px -3px 45px 21px rgba(0, 0, 0, 0.08);
+}
+
+.about .pace-team {
+    margin-top: 4rem;
+    margin-bottom: 1rem;
+}
+
+.about .pace-team article {
+    margin-bottom: 1rem;
+}
+
+.pace-team img {
+    -webkit-box-shadow: -2px -1px 15px 7px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: -3px -2px 30px 14px rgba(0, 0, 0, 0.1);
+    box-shadow: -4px -3px 45px 21px rgba(0, 0, 0, 0.08);
+    width: 30%;
+    height: auto;
+    margin-bottom: 0.43rem;
+}
+
+.pace-team p {
+    /* color: #FF6584; */
+}
+
+.team h3 {
+    border-left: 3px solid #FF6584;
+    padding: 12px;
+    background-color: #333555;
+    color: #ffffff;
+}
+
+@media (min-width: 576px) {
+    section.pace-team {
+        display: flex;
+        flex-direction: row !important;
+    }
+    .about .pace-big-screen {
+        /* flex-direction: column-reverse !important; */
+    }
+}

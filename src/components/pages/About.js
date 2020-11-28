@@ -1,8 +1,69 @@
-import React from 'react'
-
+import React from 'react';
+import Navbar from '../layouts/Navbar';
+import Footer from '../layouts/Footer';
+import './pages-styles/about.css';
+import peter from './pages-images/adeyemon_peter.jpg';
+import akan from './pages-images/akan_asanga.jpg';
+import baseet from './pages-images/ariyibi_baseet_.jpg';
+import tolu from './pages-images/toluwanimi_ayoola.jpg';
+import unclebay from './pages-images/ayodele_samuel_adebayo.jpg'
+import aisha from './pages-images/opaluwa_aisha.jpg';
+import aboutImage from './pages-images/v.jpg'
 function About() {
   return (
     <React.Fragment>
+      <AboutContent />
+      <Footer />
+    </React.Fragment>
+  )
+}
+
+
+const AboutContent = () => {
+  const paceEngineersProfile = [
+    {
+      id: 1,
+      name: "Ayodele Samuel Adebayo",
+      img: unclebay,
+      stack: "Frontend Developer",
+    },
+    {
+      id: 2,
+      name: "Opaluwa Aisha",
+      img: aisha,
+      stack: "Frontend Developer",    
+    },
+    {
+      id: 3,
+      name: "Ariyibi Baseet",
+      img: baseet,
+      stack: "Frontend Developer",    
+    },
+    {
+      id: 4,
+      name: "Adeyemo Peter",
+      img: peter,
+      stack: "Backend Developer",
+    },
+    {
+      id: 5,
+      name: "Toluwanimi Ayoola",
+      img: tolu,
+      stack: "Backend Developer",
+    },
+    {
+      id: 6,
+      name: "Akan Asanga",
+      img: akan,
+      stack: "Backend Developer",
+    }
+
+  ]
+  return(
+    <React.Fragment>
+      <div className="container">
+        <Navbar />    
+      </div>
       <section className="container about">
         <section className="row pace-big-screen flex-column-reverse flex-lg-row">
           {/* 
@@ -24,49 +85,45 @@ function About() {
             </section>
           </article>
           <article className="col-12 col-lg-6">
-            <img src="/assets/img/about/v.jpg" alt="pace developer " className="img-fluid mb-5 clock-image" />
+            <img src={aboutImage} alt="pace developer " className="img-fluid mb-5 clock-image" />
           </article>
         </section>
         <summary className="team">
           <h3>Pace Team </h3>
         </summary>
         <section className="row text-center pace-team">
-          <article className="col-sm">
-            <img src="../assets/img/about/ayodele_samuel_adebayo.jpg" alt="pace developer " className="rounded-circle mx-auto d-block" />
-            <h4>Ayodele Samuel Adebayo</h4>
-            <p className="pace-accent">Frontend Developer</p>
-          </article>
-          <article className="col-sm">
-            <img src="../assets/img/about/opaluwa_aisha.jpg" alt="pace developer " className="rounded-circle mx-auto d-block" />
-            <h4>Opaluwa Aisha</h4>
-            <p>Frontend Developer</p>
-          </article>
-          <article className="col-sm">
-            <img src="../assets/img/about/ariyibi_baseet_.jpg" alt="pace developer " className="rounded-circle mx-auto d-block" />
-            <h4>Ariyibi Baseet</h4>
-            <p>Frontend Developer</p>
-          </article>
+         {
+
+          paceEngineersProfile.filter((paceEngineer) => paceEngineer.stack === "Frontend Developer").map(function (paceEngineerProfile){ 
+              return (
+                <article className="col-sm" key={paceEngineerProfile.id}>
+                  <img src={paceEngineerProfile.img} alt="pace developer " className="rounded-circle mx-auto d-block" />
+                  <h4>{paceEngineerProfile.name}</h4>
+                  <p className="pace-accent">{paceEngineerProfile.stack}</p>
+                </article>
+              )
+            })
+         }         
         </section>
         <section className="row text-center pace-team">
-          <article className="col-sm">
-            <img src="../assets/img/about/adeyemon_peter.jpg" alt="pace developer " className="rounded-circle mx-auto d-block" />
-            <h4>Adeyemo Peter</h4>
-            <p>Backend Developer</p>
-          </article>
-          <article className="col-sm">
-            <img src="../assets/img/about/toluwanimi_ayoola.jpg" alt="pace developer " className="rounded-circle mx-auto d-block" />
-            <h4>Toluwanimi Ayoola</h4>
-            <p>Backend Developer</p>
-          </article>
-          <article className="col-sm">
-            <img src="../assets/img/about/akan_asanga.jpg" alt="pace developer " className="rounded-circle mx-auto d-block" />
-            <h4>Akan Asanga</h4>
-            <p>Backend Developer</p>
-          </article>
+         {
+
+          paceEngineersProfile.filter((paceEngineer) => paceEngineer.stack === "Backend Developer").map(function (paceEngineerProfile){ 
+              return (
+                <article className="col-sm" key={paceEngineerProfile.id}>
+                  <img src={paceEngineerProfile.img} alt="pace developer " className="rounded-circle mx-auto d-block" />
+                  <h4>{paceEngineerProfile.name}</h4>
+                  <p className="pace-accent">{paceEngineerProfile.stack}</p>
+                </article>
+              )
+            })
+         }         
         </section>
       </section>
     </React.Fragment>
-  )
-}
+  );
+};
+
+
 
 export default About
