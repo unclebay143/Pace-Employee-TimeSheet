@@ -7,6 +7,7 @@ import './utilities.css';
 import Home from './components/Home';
 import About from './components/pages/About';
 import {HashRouter as Router, Route, Switch } from "react-router-dom";
+import LoginFormTest from './components/LoginFormTest';
 
 
 ReactDOM.render(
@@ -14,6 +15,7 @@ ReactDOM.render(
     <Router>
       <Switch>
         <Route exact path="/about" component = {About} />
+        <Route exact path="/login" component = {LoginFormTest} />
         <Route exact path="/" component = {Home} />
       </Switch>
     </Router>
