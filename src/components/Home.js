@@ -7,7 +7,7 @@ import Footer from './layouts/Footer';
 function Home() {
   return (
     <React.Fragment>
-      <main class="container">
+      <main className="container">
         <Navbar />
         <HomeBody />
       </main>
