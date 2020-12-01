@@ -11,13 +11,14 @@ const FormInput = ({
     value,
     error,
     children,
+    labelClassName,
     label,
     ...props
 }) => {
 
     return (
         <React.Fragment>
-            <label htmlFor={name}>{label}</label>
+            <label className={labelClassName} htmlFor={name}>{label}</label>
             <input
                 id={name}
                 name={name}
@@ -43,7 +44,7 @@ FormInput.propTypes = {
     placeholder: PropTypes.string.isRequired,
     className: PropTypes.string,
     value: PropTypes.any,
-    onChange: PropTypes.func.isRequired
+    onChange: PropTypes.func
 };
 
 
