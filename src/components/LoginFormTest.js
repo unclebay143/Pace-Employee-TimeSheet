@@ -1,7 +1,7 @@
 import { React, Component} from 'react';
 import FormInput from './layouts/FormInputTestWithValidation';
-import Button from './layouts/Button'
-
+import Button from './layouts/Button';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class LoginFormTest extends Component {
     state = {
@@ -22,9 +22,7 @@ class LoginFormTest extends Component {
     };
   
     onSubmit = () => {
-      const {
-        user: { username, password }
-      } = this.state;
+      const { user: { username, password } } = this.state;
       let err = {};
   
       if (!username) {
@@ -51,42 +49,51 @@ class LoginFormTest extends Component {
       return (
         <>
           {submitted ? (
-            <p>Welcome onboard, {username}!</p>
+            <p className="text-center mt-5 lead">Welcome onboard, {username}!</p>
           ) : (
             <>
-              <h3>Login!</h3>
-              <FormInput
-                label="Username"
-                name="username"
-                type="text"
-                value={username}
-                onChange={this.handleChange}
-                placeholder="Enter username..."
-                error={errors.username}
-                required
-                className="input"
-              />
-  
-              <FormInput
-                label="Password"
-                name="password"
-                type="password"
-                value={password}
-                onChange={this.handleChange}
-                placeholder="Enter password..."
-                error={errors.password}
-                className="input"
-                required
-              />
-  
-              <Button
-                type="submit"
-                label="Submit"
-                className="button"
-                handleClick={this.onSubmit}
-              />
-            </>
-          )}
+                <div className="container m-5 ">
+                    <h3 className="h3 mb-5 text-success b-5">Login!</h3>
+                        <div className="row d-flex justify-content-center">
+                            <form className="form-group">
+                                <FormInput
+                                    label="Username"
+                                    labelClassName="text-success"
+                                    name="username"
+                                    type="text"
+                                    value={username}
+                                    onChange={this.handleChange}
+                                    placeholder="Enter username..."
+                                    error={errors.username}
+                                    required
+                                    className="form-control mt-3 mb-3"
+                                />
+                    
+                                <FormInput
+                                    label="Password"
+                                    labelClassName="text-success"
+                                    name="password"
+                                    type="password"
+                                    value={password}
+                                    onChange={this.handleChange}
+                                    placeholder="Enter password..."
+                                    error={errors.password}
+                                    className="form-control mt-3 mb-3"
+                                    required
+                                />
+                    
+                                <Button
+                                    type="submit"
+                                    label="Submit"
+                                    className="btn btn-success form-control"
+                                    handleClick={this.onSubmit}
+                                />
+
+                            </form>
+                        </div>
+                    </div>
+                </>
+            )}
         </>
       );
     }

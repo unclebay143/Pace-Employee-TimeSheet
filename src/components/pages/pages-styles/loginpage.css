@@ -1,0 +1,83 @@
+/* 
+==================================
+*********   RESET ****************
+==================================
+ */
+ *,
+ *::before,
+ *::after {
+     box-sizing: border-box;
+ }
+ html, body {
+     padding: 0;
+     margin: 0;
+     line-height: 1.6;
+     font-family: 'Roboto', sans-serif;
+ }
+ h3 {
+     color:#335eea;
+ }
+ h4 {
+     color:#FF6584;
+ }
+ form a {
+     color: #FF6584;
+ }
+ form a:hover {
+     color: #335eea;
+     text-decoration: none;
+ }
+ 
+.form-heading h4 {
+    /* font-style: italic; */
+}
+
+.img-con img{
+    height: auto;
+    max-width: 100%;
+}
+
+.home-intro-img{
+    -webkit-transform: scale(0.8);
+    -ms-transform: scale(0.8);
+    transform: scale(0.8);
+    transition: 3s;
+  }
+
+ @media(max-width:768px) {
+     /* modifying the bootstrap 'row' class for smaller screen */
+    .row{
+        flex-direction: column-reverse;
+    }
+    .form-con, .img-con{
+        width: 100%;
+    }
+ }
+ @media(max-width:768px) {
+     h4 {
+         font-size: 1.2rem;
+     }
+ }
+ form p {
+     margin: .5rem 0;
+ }
+ .form-heading {
+     margin: 0 0 1rem;
+ }
+ .form-control:focus {
+    box-shadow: none;
+    border: 1px solid#335eea;
+    outline: none;
+}
+
+ .form-con form .btn-primary {
+     background:#335eea;
+     width: 100%;
+     color: #fff;
+     opacity: .9;
+}
+.form-con form .btn-primary:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+

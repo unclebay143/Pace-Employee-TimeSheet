@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
 import './pages-styles/homebody.css';
-import landingPageImg from './landingPage.svg';
-import dashboard from './dashboard.png';
-import manageEmployee from './manage-employee.png';
+import landingPageImg from './pages-images/landingPage.svg';
+import dashboard from './pages-images/dashboard.png';
+import manageEmployee from './pages-images/manage-employee.png';
 import { Link } from 'react-router-dom';
 import Button from '../layouts/Button';
 import TypeWriter from './pages-js/TypeWriter';
