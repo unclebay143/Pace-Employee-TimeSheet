@@ -14,44 +14,43 @@ class LoginPage extends Component{
             user: {
                 workSpaceEmail: '',
             },
-            companyValidated: false
+            isUserAuthenticated: false
         }
     }
 
     Database = {
         db_username: "unclebay",
-        db_company: "tiidelab.com"
+        db_company: "tiidelab.com",
+        db_password: "samuel",
+        user_profile: {
+            fullName: "Ayodele Samuel Adebayo",
+            role: "Admin",
+            department: "Web Development",
+            salary: 2300000,
+        }
     }
 
-
-
-
+    // 2:46AM working on password auth.... make sure you push username and password to the state and also init the password
 
 
     handleChange = event => {
-        console.log(this.state.user.workSpaceEmail)
         const { user } = this.state;    
         user[event.target.name] = event.target.value;
         this.setState({ user });
     };
 
-    emailSplitter = () =>{
-        // e.preventDefault();
+    handleEmailSplit = () =>{
         console.log(this.state)
         const {user: { workSpaceEmail } } = this.state;
         const getUserName = workSpaceEmail.split('@')[0]
         const getCompanyName = workSpaceEmail.split('@')[1]
-        // console.log("workspace",workSpaceEmail)
-        // console.log("getusername",getUserName)
-        // console.log("getcompany",getCompanyName)
-        this.handleSubmit(getUserName, getCompanyName)
+        this.handleWorkSpaceSubmit(getUserName, getCompanyName)
     };
 
-    handleSubmit = (splittedUserName, splittedCompanyName) => {
-        // const {user: {username} } = this.state;
-        console.log("in handsubmit")
+    handleWorkSpaceSubmit = (splittedUserName, splittedCompanyName) => {
         const {db_username, db_company} = this.Database;
-
+       
+        // control err from here/consider using bootstrap err handler
         if (splittedUserName !== db_username){
             console.log("err from username")
         }
@@ -61,9 +60,7 @@ class LoginPage extends Component{
         } 
         
         else{
-            this.setState({companyValidated: true})
-            console.log("final")
-            console.log(this.state)
+            this.setState({isUserAuthenticated: true})
         }
 
     }
@@ -74,7 +71,7 @@ class LoginPage extends Component{
         images[1] = 'https://fylodarklanding.netlify.app/images/illustration-intro.png'
         images[2] = 'https://fylodarklanding.netlify.app/images/illustration-intro.png'
         index = Math.floor(Math.random() * images.length);
-        const {companyValidated} = this.state;
+        const {isUserAuthenticated} = this.state;
         return(
             <div className="container">
                 <main className="container d-flex justify-content-center align-items-center mt-5">
@@ -86,7 +83,7 @@ class LoginPage extends Component{
                             </div>
                             <form className="mt-5" name="form">
                             {
-                                companyValidated ? (
+                                isUserAuthenticated ? (
                                     <>
                                         <div className="form-group mt-b">
                                             <FormInput 
@@ -106,7 +103,7 @@ class LoginPage extends Component{
                                             className="btn btn-primary"
                                             id="loginBtn"
                                             label="Login"
-                                            handleClick={this.emailSplitter}
+                                            handleClick={this.handlePasswordAuth}
                                         />
                                     </>
                                 ) : (
@@ -130,7 +127,7 @@ class LoginPage extends Component{
                                             className="btn btn-primary"
                                             id="loginBtn"
                                             label="Next"
-                                            handleClick={this.emailSplitter}
+                                            handleClick={this.handleEmailSplit}
                                         
                                         />
                                     </>
