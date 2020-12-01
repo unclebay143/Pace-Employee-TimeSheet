@@ -18,23 +18,23 @@ const Footer = () => {
               {/* Grid column */}
               <div className="col-md-6 col-lg-7 text-center text-md-right">
                 {/* Facebook */}
-                <a className="fb-ic" href="#">
+                <a className="fb-ic" href="https://facebook.com">
                   <i className="fab fa-facebook-f white-text mr-4"> </i>
                 </a>
                 {/* Twitter */}
-                <a className="tw-ic" href="#">
+                <a className="tw-ic" href="https://twitter.com">
                   <i className="fab fa-twitter white-text mr-4"> </i>
                 </a>
                 {/* Google +*/}
-                <a className="gplus-ic" href="#">
+                <a className="gplus-ic" href="https://gmail.com">
                   <i className="fab fa-google-plus-g white-text mr-4"> </i>
                 </a>
                 {/*Linkedin */}
-                <a className="li-ic" href="#">
+                <a className="li-ic" href="https://linkedin.com">
                   <i className="fab fa-linkedin-in white-text mr-4"> </i>
                 </a>
                 {/*Instagram*/}
-                <a className="ins-ic" href="#">
+                <a className="ins-ic" href="https://instagram.com">
                   <i className="fab fa-instagram white-text"> </i>
                 </a>
               </div>
@@ -61,16 +61,16 @@ const Footer = () => {
               <h6 className="text-uppercase font-weight-bold">Services</h6>
               <hr className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style={{width: '60px'}} />
               <p>
-                <a href="#!">Business Management</a>
+                <a href="https://google.com">Business Management</a>
               </p>
               <p>
-                <a href="#!">Employee Timer</a>
+                <a href="https://google.com">Employee Timer</a>
               </p>
               <p>
-                <a href="#!">Timeline</a>
+                <a href="https://google.com">Timeline</a>
               </p>
               <p>
-                <a href="#!">Report</a>
+                <a href="https://google.com">Report</a>
               </p>
             </div>
             {/* Grid column */}
@@ -114,7 +114,7 @@ const Footer = () => {
         {/* Footer Links */}
         {/* Copyright */}
         <div className="footer-copyright text-center py-3">© 2020 Copyright:
-          <a href="#"> Tiidelab circuit</a>
+          <a href="https://tiidelab.com"> Tiidelab circuit</a>
         </div>
         {/* Copyright */}
       </footer>

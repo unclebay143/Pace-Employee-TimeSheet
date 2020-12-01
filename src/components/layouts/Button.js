@@ -1,10 +1,10 @@
 import React from 'react'
 
 function Button(props) {
-  const {text, func } = this.props
+  const {text, func } = props
   return (
     <React.Fragment>
-      <button func={func}>{text}</button>
+      <button onClick={func}>{text}</button>
     </React.Fragment>
   )
 }
