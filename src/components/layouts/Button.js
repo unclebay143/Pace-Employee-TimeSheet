@@ -4,7 +4,7 @@ const Button = props => {
   const { type, label, className, handleClick } = props;
     return (
       <button 
-        onClick = {handleClick}
+        onClick={handleClick}
         type={type}
         className={className}
       >
