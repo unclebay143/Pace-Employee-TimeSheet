@@ -29,6 +29,7 @@ const IndexArea = () => {
               <Link
                 className="btn btn-primary to-btn" 
                 id="login-btn"
+                to="login"
               >
                 Login
                 <svg width="2em" height="1.3em" viewBox="0 0 16 16" className="bi bi-arrow-right" id="login-arrow" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

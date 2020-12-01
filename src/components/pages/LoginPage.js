@@ -25,17 +25,7 @@ class LoginPage extends Component{
 
 
 
-    emailSplitter = () =>{
-        // e.preventDefault();
-        console.log(this.state)
-        const {user: { workSpaceEmail } } = this.state;
-        const getUserName = workSpaceEmail.split('@')[0]
-        const getCompanyName = workSpaceEmail.split('@')[1]
-        console.log("workspace",workSpaceEmail)
-        console.log("getusername",getUserName)
-        console.log("getcompany",getCompanyName)
-        this.handleSubmit(getUserName, getCompanyName)
-    };
+
 
 
     handleChange = event => {
@@ -44,9 +34,22 @@ class LoginPage extends Component{
         user[event.target.name] = event.target.value;
         this.setState({ user });
     };
-    
+
+    emailSplitter = () =>{
+        // e.preventDefault();
+        console.log(this.state)
+        const {user: { workSpaceEmail } } = this.state;
+        const getUserName = workSpaceEmail.split('@')[0]
+        const getCompanyName = workSpaceEmail.split('@')[1]
+        // console.log("workspace",workSpaceEmail)
+        // console.log("getusername",getUserName)
+        // console.log("getcompany",getCompanyName)
+        this.handleSubmit(getUserName, getCompanyName)
+    };
+
     handleSubmit = (splittedUserName, splittedCompanyName) => {
         // const {user: {username} } = this.state;
+        console.log("in handsubmit")
         const {db_username, db_company} = this.Database;
 
         if (splittedUserName !== db_username){
@@ -59,18 +62,19 @@ class LoginPage extends Component{
         
         else{
             this.setState({companyValidated: true})
+            console.log("final")
+            console.log(this.state)
         }
 
     }
     render(){
-        this.emailSplitter("unclebigbay@tiidelab.com")
-        this.emailSplitter("unclebay@tiidelab.com")
         var images = [],
         index = 0;
         images[0] = 'https://fylodarklanding.netlify.app/images/illustration-intro.png'
         images[1] = 'https://fylodarklanding.netlify.app/images/illustration-intro.png'
         images[2] = 'https://fylodarklanding.netlify.app/images/illustration-intro.png'
         index = Math.floor(Math.random() * images.length);
+        const {companyValidated} = this.state;
         return(
             <div className="container">
                 <main className="container d-flex justify-content-center align-items-center mt-5">
@@ -82,10 +86,9 @@ class LoginPage extends Component{
                             </div>
                             <form className="mt-5" name="form">
                             {
-                                this.companyValidated ? (
+                                companyValidated ? (
                                     <>
-                                        <p id="errorMessage">not allowed</p>
-                                        {/* <div className="form-group mt-b">
+                                        <div className="form-group mt-b">
                                             <FormInput 
                                                 type="password"
                                                 name="password"
@@ -93,7 +96,7 @@ class LoginPage extends Component{
                                                 id="password"
                                                 label="Enter your password"
                                                 labelClassName="lea"
-                                                placeholder="Example@company.com"
+                                                placeholder="password"
                                                 onChange={this.handleChange}
                                                 required
                                             />
@@ -102,9 +105,9 @@ class LoginPage extends Component{
                                             type="button"
                                             className="btn btn-primary"
                                             id="loginBtn"
-                                            label="Next"
+                                            label="Login"
                                             handleClick={this.emailSplitter}
-                                        /> */}
+                                        />
                                     </>
                                 ) : (
                                     <>
