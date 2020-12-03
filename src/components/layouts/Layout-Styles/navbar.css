@@ -27,11 +27,11 @@ button.navbar-toggler:hover{
 /* MEDIA QUERY FOR BIG SCREEN */
 @media (min-width: 992px){
   
-  .navbar-nav{
+  #this_nav .navbar-nav{
     margin:  0 auto;
   }
   
-  a.nav-link{
+  #this_nav a.nav-link{
     margin: 0rem .9rem;
     padding: 3rem ;
     font-size: 1.21rem;

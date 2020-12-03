@@ -9,6 +9,8 @@
 }
 .form-con label {
     /* color:#335eea; */
+    font-size: .9rem;
+    color: #6c757d;
  }
  .form-con a {
      color: #FF6584;
