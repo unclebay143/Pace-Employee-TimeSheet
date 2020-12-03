@@ -1,4 +1,6 @@
 import Cards from './Cards';
+import TodoCard from './TodoCard'
+
 const DashBody = () => {
     return(
         <>
@@ -25,6 +27,7 @@ const DashBody = () => {
                                 </div>
                                 <div class="col-lg-5 mb-4 mb-lg-0 pl-lg-0">
                                     {/* <!-- <div class="col-lg-4"> --> */}
+                                    <TodoCard />
                                     <div class="bg-white shadow pace-roundy px-4 py-3 d-flex align-items-center justify-content-between mb-4">
                                         <div class="flex-grow-1 d-flex align-items-center">
                                             <div class="dot mr-3 pace-bg-accent"></div>
@@ -35,12 +38,7 @@ const DashBody = () => {
                                         <div class="icon pace-bg-accent text-white"><i class="fas fa-clipboard-check"></i></div>
                                     </div>
                                     <div class="bg-white shadow pace-roundy px-4 py-3 d-flex align-items-center justify-content-between mb-4">
-                                        <div class="flex-grow-1 d-flex align-items-center">
-                                            <div class="dot mr-3 bg-green"></div>
-                                            <div class="text">
-                                                <h6 class="mb-0">Project Final Demo</h6><span class="text-gray">18th Dec 2020</span>
-                                            </div>
-                                        </div>
+                                       
                                         <div class="icon bg-green text-white"><i class="fas fa-user-friends"></i></div>
                                     </div>
                                     <div class="bg-white shadow pace-roundy px-4 py-3 d-flex align-items-center justify-content-between mb-4">

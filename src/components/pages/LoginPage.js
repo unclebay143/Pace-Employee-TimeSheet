@@ -140,6 +140,7 @@ class LoginPage extends Component{
                                                 
                                             />
                                         </Link>
+                                        <p>Create your workspace register <Link to="/signup">Here</Link></p>
                                     </>
                                 )
                                 
