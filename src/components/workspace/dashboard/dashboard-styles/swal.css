@@ -1,0 +1,21 @@
+.pace-roundy {
+    border-radius: 10px;
+}
+
+.assignTaskCard {
+    cursor: pointer;
+}
+
+.swal-overlay--show-modal .swal-modal {
+    will-change: unset;
+}
+
+.swal-button {
+    background: #335eea;
+    color: white;   
+}
+
+.swal-button:not([disabled]):hover {
+    background: #335eea;
+    color: white;   
+}

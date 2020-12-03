@@ -1,0 +1,55 @@
+.timer-blink {
+  animation: blinker 1.5s cubic-bezier(.5, 0, 1, 1) infinite alternate;  
+}
+
+@keyframes blinker {  
+from { opacity: 1; }
+to { opacity: 0; }
+}
+
+
+/* div containing everything after the search bar */
+#right-i{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 15px 15px 0;
+}
+
+#right-in {
+  display: flex;
+  width: 60%;
+}
+
+button#start-time,
+button#stop-time {
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  padding: 0 6px;
+  height: 30px;
+  color: white;
+  cursor: pointer;
+}
+
+
+/* Start timer button */
+
+button#start-time {
+  background-color: #FF6584;
+  margin-right: 15px;
+  display: block;
+}
+
+#right-in #time {
+  margin: auto 10px;
+}
+
+
+/* Stop timer button */
+
+#stop-time {
+  background-color: #FF6584;
+  margin-left: 15px;
+  display: none;
+}
