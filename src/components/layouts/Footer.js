@@ -15,7 +15,6 @@ const Footer = () => {
                 <h6 className="mb-0 text-light footer-lead">Get connected with us on social networks!</h6>
               </div>
               {/* Grid column */}
-              {/* Grid column */}
               <div className="col-md-6 col-lg-7 text-center text-md-right">
                 {/* Facebook */}
                 <a className="fb-ic" href="https://facebook.com">
