@@ -8,7 +8,9 @@ import baseet from './pages-images/ariyibi_baseet_.jpg';
 import tolu from './pages-images/toluwanimi_ayoola.jpg';
 import unclebay from './pages-images/ayodele_samuel_adebayo.jpg'
 import aisha from './pages-images/opaluwa_aisha.jpg';
-import aboutImage from './pages-images/v.jpg'
+import aboutImage from './pages-images/v.jpg';
+
+
 function About() {
   return (
     <React.Fragment>
@@ -59,6 +61,7 @@ const AboutContent = () => {
     }
 
   ]
+
   return(
     <React.Fragment>
       <div className="container">
@@ -67,8 +70,8 @@ const AboutContent = () => {
       <section className="container about">
         <section className="row pace-big-screen flex-column-reverse flex-lg-row">
           {/* 
-        <article class="col-6">
-          <img src="/assets/img/about/v.jpg" alt="pace developer "="" class="img-fluid">
+        <article className="col-6">
+          <img src="/assets/img/about/v.jpg" alt="pace developer "="" className="img-fluid">
         </article> */}
           <article className="col-12 col-lg-6">
             <section>

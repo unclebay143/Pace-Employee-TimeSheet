@@ -1,0 +1,18 @@
+input[type=datetime-local] {
+    width: 28% !important;
+    padding: 5px;
+}
+
+input[type=text] {
+    width: 100% !important;
+}
+
+textarea {
+    /* width: 380px !important;  half*/
+    width: 766px !important;
+    /*full*/
+}
+
+a.task-duration{
+    color: #333333;
+}

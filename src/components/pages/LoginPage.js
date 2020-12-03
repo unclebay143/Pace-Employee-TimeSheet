@@ -3,7 +3,8 @@ import Button from '../layouts/Button';
 import FormInput from '../layouts/FormInput';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './pages-styles/loginpage.css';
-// import loginPageIMAGE from './pages-images/loginPageIMAGE.svg';
+import loginImage from './pages-images/login-img.png';
+import { Link } from 'react-router-dom';
 
 
 
@@ -65,12 +66,7 @@ class LoginPage extends Component{
 
     }
     render(){
-        var images = [],
-        index = 0;
-        images[0] = 'https://fylodarklanding.netlify.app/images/illustration-intro.png'
-        images[1] = 'https://fylodarklanding.netlify.app/images/illustration-intro.png'
-        images[2] = 'https://fylodarklanding.netlify.app/images/illustration-intro.png'
-        index = Math.floor(Math.random() * images.length);
+       
         const {isUserAuthenticated} = this.state;
         return(
             <div className="container">
@@ -79,7 +75,7 @@ class LoginPage extends Component{
                         <div className="form-con col-lg-5 mb-5">
                             <div className="form-heading mt-5">
                             <h3 className="mb-3">Login</h3>
-                            <h4 className="mb-5">Track every second!</h4>
+                            <h4 className="mb-5">Welcome back!</h4>
                             </div>
                             <form className="mt-5" name="form">
                             {
@@ -91,7 +87,7 @@ class LoginPage extends Component{
                                                 name="password"
                                                 className="form-control lead"
                                                 id="password"
-                                                label="Enter your password"
+                                                label="Enter your password"                      
                                                 labelClassName="lea"
                                                 placeholder="password"
                                                 onChange={this.handleChange}
@@ -115,21 +111,36 @@ class LoginPage extends Component{
                                                 name="workSpaceEmail"
                                                 className="form-control lead"
                                                 id="email"
-                                                label="Enter your work email address"
+                                                label="Enter your workspace address"
                                                 labelClassName="lea"
-                                                placeholder="Example@company.com"
+                                                placeholder="example@company.com"
+                                                onChange={this.handleChange}
+                                                required
+                                                />
+                                            <FormInput 
+                                                type="password"
+                                                name="password"
+                                                className="form-control lead"
+                                                id="passwords"
+                                                label="Password"
+                                                labelClassName="lea mt-3"
+                                                placeholder="password"
                                                 onChange={this.handleChange}
                                                 required
                                                 />
                                         </div>
-                                        <Button 
-                                            type="button"
-                                            className="btn btn-primary"
-                                            id="loginBtn"
-                                            label="Next"
-                                            handleClick={this.handleEmailSplit}
                                         
-                                        />
+                                        <Link to="/dashboard">
+                                            <Button 
+                                                type="button"
+                                                className="btn btn-primary"
+                                                id="loginBtn"
+                                                label="Login"
+                                                // handleClick={this.handleEmailSplit}
+                                                
+                                            />
+                                        </Link>
+                                        <p>Create your workspace register <Link to="/signup">Here</Link></p>
                                     </>
                                 )
                                 
@@ -143,8 +154,9 @@ class LoginPage extends Component{
                         {/* form container end */}
 
                         <div className="img-con col-lg-7">
-                            <div className="login-intro-img">
-                            <img src={images[index]} alt="office timing" className="img-fluid" />
+                            <div className="login-intro-img mt-3">
+                            {/* <img src={images[index]} alt="office timing" className="img-fluid" /> */}
+                            <img src={loginImage} alt="office timing" className="img-fluid" />
                             </div>
                         </div>
                         

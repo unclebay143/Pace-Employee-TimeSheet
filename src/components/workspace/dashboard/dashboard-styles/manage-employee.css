@@ -1,0 +1,96 @@
+/* make the navbar full on small device bcos of the employee form list */
+
+.pace-navbar-full {
+    /* width: 700px; */
+}
+
+.search-form {
+    flex-flow: nowrap;
+}
+
+input.search-input {
+    padding: 1.1rem;
+    border-radius: 12px;
+}
+
+.title {
+    font-weight: 700;
+}
+
+.form-control {
+    border-radius: 0px;
+}
+
+.profile-left-section {
+    border-right: 2px dashed #dddddd;
+    height: 185px;
+}
+
+.profile img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+
+.user-name {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.profile-info {
+    list-style-type: none;
+}
+
+.profile-info li {
+    margin-bottom: 10px;
+}
+
+.profile-info .title {
+    float: left;
+    width: 25%;
+    margin-right: 30px;
+}
+
+.profile-links ul {
+    list-style-type: none;
+    padding: 12px auto;
+}
+
+.profile-links ul>li {
+    margin-bottom: 10px;
+}
+
+.profile-links ul>li .title {
+    float: left;
+    width: 25%;
+    margin-right: 20;
+}
+
+.profile-stat ul {
+    list-style-type: none;
+    /* background: red; */
+}
+
+.profile-stat li {
+    margin-bottom: 10px;
+}
+
+.profile-stat ul>li .title {
+    float: left;
+    margin-right: 25%;
+}
+
+.profile-stat .text {
+    width: px;
+}
+
+.edit-btn{
+    /* color: red; */
+    cursor: pointer;
+}
+
+.view-profile{
+    cursor: pointer;
+    font-weight: 500;
+}
+
