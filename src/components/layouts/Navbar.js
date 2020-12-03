@@ -25,13 +25,13 @@ function Navbar() {
         <div className="collapse navbar-collapse" id="this_nav">
           <div className="navbar-nav">
             <Link to="/" className="nav-link active">Home</Link>
-            <Link to="#pace-features" className="nav-link">Features</Link>
+            <Link to="/#pace-features" className="nav-link">Features</Link>
             <Link to="/about/#pacepricing" className="nav-link">Pricing</Link>
             <Link to='/about' className="nav-link">About</Link>
             <Link to="/contact" className="nav-link">Contact</Link>
           </div>
           {/* <a href="../../new_ui_env/contents/signup.html" className="navbar-btn btn btn-sm btn-primary ml-auto to-btn" id="get-started-btn">Get Started</a> */}
-          <Link to="../../new_ui_env/contents/signup.html" label="samuel" type="submit" className="navbar-btn btn btn-sm btn-primary ml-auto to-btn" id="get-started-btn">Get Started</Link>
+          <Link to="/signup" label="samuel" type="submit" className="navbar-btn btn btn-sm btn-primary ml-auto to-btn" id="get-started-btn">Get Started</Link>
         </div>
       </nav>
     {/* </div> */}

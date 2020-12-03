@@ -32,7 +32,7 @@ class LoginPage extends Component{
 
     // 2:46AM working on password auth.... make sure you push username and password to the state and also init the password
 
-
+    
     handleChange = event => {
         const { user } = this.state;    
         user[event.target.name] = event.target.value;
@@ -65,6 +65,13 @@ class LoginPage extends Component{
 
     }
     render(){
+        var images = [],
+index = 0;
+images[0] = 'https://fylodarklanding.netlify.app/images/illustration-intro.png'
+images[1] = 'https://fylodarklanding.netlify.app/images/illustration-intro.png'
+images[2] = 'https://fylodarklanding.netlify.app/images/illustration-intro.png'
+index = Math.floor(Math.random() * images.length);
+
        
         const {isUserAuthenticated} = this.state;
         return(
@@ -74,7 +81,7 @@ class LoginPage extends Component{
                         <div className="form-con col-lg-5 mb-5">
                             <div className="form-heading mt-5">
                             <h3 className="mb-3">Login</h3>
-                            <h4 className="mb-5">Welcome back!</h4>
+                            <h4 className="mb-5">Track every second!</h4>
                             </div>
                             <form className="mt-5" name="form">
                             {
@@ -110,9 +117,9 @@ class LoginPage extends Component{
                                                 name="workSpaceEmail"
                                                 className="form-control lead"
                                                 id="email"
-                                                label="Enter your workspace address"
+                                                label="Enter your work email address"
                                                 labelClassName="lea"
-                                                placeholder="example@company.com"
+                                                placeholder="Example@company.com"
                                                 onChange={this.handleChange}
                                                 required
                                                 />
@@ -132,7 +139,7 @@ class LoginPage extends Component{
                                             type="button"
                                             className="btn btn-primary"
                                             id="loginBtn"
-                                            label="Login"
+                                            label="Next"
                                             handleClick={this.handleEmailSplit}
                                         
                                         />
@@ -149,7 +156,7 @@ class LoginPage extends Component{
                         {/* form container end */}
 
                         <div className="img-con col-lg-7">
-                            <div className="login-intro-img mt-3">
+                            <div className="login-intro-img">
                             {/* <img src={images[index]} alt="office timing" className="img-fluid" /> */}
                             <img src={loginImage} alt="office timing" className="img-fluid" />
                             </div>
