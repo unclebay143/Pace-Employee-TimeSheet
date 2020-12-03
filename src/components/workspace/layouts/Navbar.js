@@ -2,8 +2,8 @@ import { React, Component } from 'react';
 import Timer from '../dashboard/Timer';
 // import '../vendor/bootstrap/css/bootstrap.min.css';
 // import '../vendor/bootstrap/js/bootstrap.min.js';
-// import '../vendor/popper.js/popper.js';
-// import '../vendor/jquery/jquery.js';
+import '../vendor/popper.js/popper.js';
+// import '../vendor/jquery/jquery.min.js';
 import u from '../../pages/pages-images/ayodele_samuel_adebayo.jpg'
 
 class Navbar extends Component{

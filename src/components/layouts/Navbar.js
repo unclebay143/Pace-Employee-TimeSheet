@@ -7,7 +7,7 @@ function Navbar() {
   return (
     <React.Fragment>
     {/* <div className="container"> */}
-      <nav className="navbar navbar-expand-lg navbar-light">
+      <nav className="navbar navbar-expand-lg navbar-light home-nav">
         <a href="../index.html" className="navbar-brand" id="logo">Pace</a>
         {/* <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#this_nav" aria-controls="this_nav" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"/>

@@ -3019,14 +3019,15 @@ header.header .navbar {
  * 3. TYPE
  */
 
-/* body {
-    font-family: "Poppins", sans-serif;
-    font-size: 0.9rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #212529;
-    background-color: #F8F9FB;
-}
+ body {
+     /* font-family: "Poppins", sans-serif; */
+     font-size: 0.9rem;
+     /* font-weight: 400; */
+     line-height: 1.5;
+     color: #212529;
+     background-color: #F8F9FB;
+    }
+/*
 
 a {
     color: #4680ff;

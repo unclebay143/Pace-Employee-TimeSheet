@@ -1,5 +1,5 @@
 import { React, Component } from 'react';
-
+import './dashboard-styles/card.css'
 class Card extends Component {
     constructor(props){
         super(props)
@@ -19,7 +19,7 @@ class Card extends Component {
 
                 <div className={`col-xl-3 col-lg-6 mb-4 mb-xl-0 ${style}`}>
                     <div className="bg-white shadow pace-roundy p-4 h-100 d-flex align-items-center justify-content-between">
-                        <div className="flex-grow-1 d-flex align-items-center">
+                        <div className="flex-grow-1 d-flex align-items-center dashcard">
                             <div className={`dot mr-3 ${cardColor}`}></div>
                             <div className="text">
                                 <h6 className="mb-0">{title}</h6><span className="text-gray">{count}</span>

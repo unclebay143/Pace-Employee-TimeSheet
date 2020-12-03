@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {HashRouter as Router, Route, Switch } from "react-router-dom";
-// import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import 'popper.js';
 // import './jquery.js';
 import './utilities.css';
