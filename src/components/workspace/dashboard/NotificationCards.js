@@ -1,6 +1,6 @@
 import { React, Component } from 'react';
 import TodoCard from './TodoCard';
-import EventCard from './eventCard';
+import EventCard from './EventCard';
 import EscheduleCard from './EscheduleCard';
 
 
@@ -21,3 +21,6 @@ class NotificationCards extends Component{
         )
     }
 }
+
+
+export default NotificationCards;

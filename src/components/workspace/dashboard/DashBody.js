@@ -1,5 +1,6 @@
 import Cards from './Cards';
-import TodoCard from './TodoCard'
+import NotificationCards from './NotificationCards';
+
 
 const DashBody = () => {
     return(
@@ -27,29 +28,8 @@ const DashBody = () => {
                                 </div>
                                 <div class="col-lg-5 mb-4 mb-lg-0 pl-lg-0">
                                     {/* <!-- <div class="col-lg-4"> --> */}
-                                    <TodoCard />
-                                    <div class="bg-white shadow pace-roundy px-4 py-3 d-flex align-items-center justify-content-between mb-4">
-                                        <div class="flex-grow-1 d-flex align-items-center">
-                                            <div class="dot mr-3 pace-bg-accent"></div>
-                                            <div class="text">
-                                                <h6 class="mb-0">Meeting with HR department</h6><span class="text-gray">1:23pm</span>
-                                            </div>
-                                        </div>
-                                        <div class="icon pace-bg-accent text-white"><i class="fas fa-clipboard-check"></i></div>
-                                    </div>
-                                    <div class="bg-white shadow pace-roundy px-4 py-3 d-flex align-items-center justify-content-between mb-4">
-                                       
-                                        <div class="icon bg-green text-white"><i class="fas fa-user-friends"></i></div>
-                                    </div>
-                                    <div class="bg-white shadow pace-roundy px-4 py-3 d-flex align-items-center justify-content-between mb-4">
-                                        <div class="flex-grow-1 d-flex align-items-center">
-                                            <div class="dot mr-3 bg-blue"></div>
-                                            <div class="text">
-                                                <h6 class="mb-0">Build landing page</h6><span class="text-gray">Due date sept 2</span>
-                                            </div>
-                                        </div>
-                                        <div class="icon bg-blue text-white"><i class="fas fa-dollar-sign"></i></div>
-                                    </div>
+                                    <NotificationCards />
+                                    
                                     <div class="card px-5 py-4">
                                         <h2 class="mb-0 d-flex align-items-center"><span>0 hours</span>
                                         {/* <!-- <div><i class="fa fa-circle text-danger timer-blink"></i>&nbsp;</div> --> */}
