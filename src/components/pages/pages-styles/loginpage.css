@@ -3,27 +3,17 @@
 *********   RESET ****************
 ==================================
  */
- *,
- *::before,
- *::after {
-     box-sizing: border-box;
+
+.form-con h3 {
+     color  :#FF6584;
+}
+.form-con label {
+    color:#335eea;
  }
- html, body {
-     padding: 0;
-     margin: 0;
-     line-height: 1.6;
-     font-family: 'Roboto', sans-serif;
- }
- h3 {
-     color:#335eea;
- }
- h4 {
-     color:#FF6584;
- }
- form a {
+ .form-con a {
      color: #FF6584;
  }
- form a:hover {
+ .form-con a:hover {
      color: #335eea;
      text-decoration: none;
  }

@@ -25,7 +25,7 @@ function Navbar() {
         <div className="collapse navbar-collapse" id="this_nav">
           <div className="navbar-nav">
             <Link to="/" className="nav-link active">Home</Link>
-            <Link to="/about#pace-features" className="nav-link">Features</Link>
+            <Link to="#pace-features" className="nav-link">Features</Link>
             <Link to="/about/#pacepricing" className="nav-link">Pricing</Link>
             <Link to='/about' className="nav-link">About</Link>
             <Link to="/contact" className="nav-link">Contact</Link>

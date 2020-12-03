@@ -71,7 +71,6 @@ const FeaturesCard = props =>{
 const Features = () =>{
   return(
     <React.Fragment>
-
       <section className="row m-t5 d-flex flex-column flex-sm-row align-items-center" id="pace-summary">
 
         <FeaturesCard
