@@ -4,6 +4,7 @@ import FormInput from '../layouts/FormInput';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './pages-styles/loginpage.css';
 import loginImage from './pages-images/login-img.png';
+import { Link } from 'react-router-dom';
 
 
 
@@ -128,14 +129,17 @@ class LoginPage extends Component{
                                                 required
                                                 />
                                         </div>
-                                        <Button 
-                                            type="button"
-                                            className="btn btn-primary"
-                                            id="loginBtn"
-                                            label="Login"
-                                            handleClick={this.handleEmailSplit}
                                         
-                                        />
+                                        <Link to="/dashboard">
+                                            <Button 
+                                                type="button"
+                                                className="btn btn-primary"
+                                                id="loginBtn"
+                                                label="Login"
+                                                // handleClick={this.handleEmailSplit}
+                                                
+                                            />
+                                        </Link>
                                     </>
                                 )
                                 
