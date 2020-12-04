@@ -73,6 +73,9 @@ class LoginPage extends Component{
                 <main className="container d-flex justify-content-center align-items-center mt-5">
                     <div className="row">
                         <div className="form-con col-lg-5 mb-5">
+                            <Link to="/">
+                                <i class="fas fa-long-arrow-alt-left"></i>
+                            </Link>
                             <div className="form-heading mt-5">
                             <h3 className="mb-3">Login</h3>
                             <h4 className="mb-5">Welcome back!</h4>
@@ -153,7 +156,7 @@ class LoginPage extends Component{
 
                         {/* form container end */}
 
-                        <div className="img-con col-lg-7">
+                        <div className="img-con col-lg-7 d-none d-lg-block">
                             <div className="login-intro-img mt-3">
                             {/* <img src={images[index]} alt="office timing" className="img-fluid" /> */}
                             <img src={loginImage} alt="office timing" className="img-fluid" />
