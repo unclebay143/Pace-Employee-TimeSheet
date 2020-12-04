@@ -29,7 +29,7 @@ const DashBody = () => {
                                 <div class="col-lg-5 mb-4 mb-lg-0 pl-lg-0">
                                     {/* <!-- <div class="col-lg-4"> --> */}
                                     <NotificationCards />
-                                    
+            
                                     <div class="card px-5 py-4">
                                         <h2 class="mb-0 d-flex align-items-center"><span>0 hours</span>
                                         {/* <!-- <div><i class="fa fa-circle text-danger timer-blink"></i>&nbsp;</div> --> */}
@@ -38,7 +38,6 @@ const DashBody = () => {
                                             <canvas id="lineChart3" style={{maxHeight: "7rem !important;"}} class="w-100">      </canvas>
                                         </div>
                                     </div>
-                                    {/* <!-- </div> --> */}
                                 </div>
                             </div>
                             </section>
