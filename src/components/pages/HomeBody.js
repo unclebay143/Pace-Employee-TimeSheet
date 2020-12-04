@@ -59,7 +59,7 @@ const FeaturesCard = props =>{
   const {animation, duration, svg, heading, paragraph} = props
   return(
     <React.Fragment>
-      <article className="col" data-aos={animation} data-aos-duration={duration} {...props}>
+      <article className="col col-sm-4" data-aos={animation} data-aos-duration={duration} {...props}>
         {svg}
         <h3>{heading}</h3>
         <p>{paragraph} </p>
@@ -71,8 +71,7 @@ const FeaturesCard = props =>{
 const Features = () =>{
   return(
     <React.Fragment>
-      <section className="row m-t5 d-flex flex-column flex-sm-row align-items-center" id="pace-summary">
-
+      <section className="row d-flex flex-column flex-sm-row align-items-center" id="pace-summary">
         <FeaturesCard
           svg = 
             {
