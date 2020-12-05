@@ -38,7 +38,7 @@ class ContactUs extends Component{
             <div className="container">
                 <main className="container d-flex justify-content-center align-items-center mt-5">
                     <div className="row">
-                        <div className="form-con col-lg-5 mb-5">
+                        <div className="form-con col-lg-12 mb-5">
                             <Link to="/">
                                 <i className="fas fa-long-arrow-alt-left" />
                             </Link>
@@ -108,11 +108,11 @@ class ContactUs extends Component{
 
                         {/* form container end */}
 
-                        <div className="img-con col-lg-7 d-none d-lg-block">
+                        {/* <div className="img-con col-lg-7 d-none d-lg-block">
                             <div className="login-intro-img mt-3">
                                 <img src={landingPageImg} alt="office timing" className="img-fluid" />
                             </div>
-                        </div>
+                        </div> */}
                         
                     </div>
                 </main>
