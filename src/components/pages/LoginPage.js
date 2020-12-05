@@ -24,16 +24,9 @@ class LoginPage extends Component{
         document.title = 'Login | Pace'
     }
 
-    SignupSchema = Yup.object().shape({
-        firstName: Yup.string()
-          .min(2, 'Too Short!')
-          .max(50, 'Too Long!')
-          .required('Required'),
-        lastName: Yup.string()
-          .min(2, 'Too Short!')
-          .max(50, 'Too Long!')
-          .required('Required'),
-        email: Yup.string().email('Invalid email').required('Required'),
+    loginSchema = Yup.object().shape({
+        email: Yup.string().email('Invalid email format').required('Required'),
+        password: Yup.string().required('Required'),
       });
 
 
@@ -49,40 +42,8 @@ class LoginPage extends Component{
         }
     }
 
-    // 2:46AM working on password auth.... make sure you push username and password to the state and also init the password
 
 
-    // handleChange = event => {
-    //     const { user } = this.state;    
-    //     user[event.target.name] = event.target.value;
-    //     this.setState({ user });
-    // };
-
-    // handleEmailSplit = () =>{
-    //     console.log(this.state)
-    //     const {user: { workSpaceEmail } } = this.state;
-    //     const getUserName = workSpaceEmail.split('@')[0]
-    //     const getCompanyName = workSpaceEmail.split('@')[1]
-    //     this.handleWorkSpaceSubmit(getUserName, getCompanyName)
-    // };
-
-    // handleWorkSpaceSubmit = (splittedUserName, splittedCompanyName) => {
-    //     const {db_username, db_company} = this.Database;
-       
-    //     // control err from here/consider using bootstrap err handler
-    //     if (splittedUserName !== db_username){
-    //         console.log("err from username")
-    //     }
-
-    //     else if (splittedCompanyName !== db_company){
-    //         console.log("err from company")
-    //     } 
-        
-    //     else{
-    //         this.setState({isUserAuthenticated: true})
-    //     }
-
-    // }
 
     render(){
         const {isUserAuthenticated} = this.state;
@@ -98,7 +59,7 @@ class LoginPage extends Component{
                             <h3 className="mb-3">Login</h3>
                             <h4 className="mb-5">Welcome back!</h4>
                             </div>
-                            <form className="mt-5" name="form">
+                            <div className="mt-5" name="form">
                                 <p id="errorMessage" />
                                 <div className="form-group mt-b">
                                     <Formik
@@ -106,26 +67,59 @@ class LoginPage extends Component{
                                             email: '',
                                             password: ''
                                         }}
-                                    >{({values, errors, touch}) => (
+                                        validationSchema = {this.loginSchema}
+                                            onSubmit={({setSubmitting})=>{
+                                            setSubmitting(false)
+                                        }}
+                                    >{({touched, errors, isSubmitting}) => (
                                         <Form>
-                                            <label className="">Enter your workspace address</label>
-                                            <Field 
-                                                name="email"
-                                                type="email"
-                                                className="form-control lead"
-                                                id="email"
-                                                placeholder="example@company.com"
-                                            />
-                                            <label className="mt-3">Password</label>
-                                            <Field 
-                                                name="password"
-                                                type="password"
-                                                className="form-control lead"
-                                                id="passwords"
-                                                label="Password"
-                                                placeholder="password"
-                                                
+                                            <div className="email-wrapper pb-3">
+                                                <label className="">Enter your workspace address</label>
+                                                <Field 
+                                                    name="email"
+                                                    type="email"
+                                                    className={`form-control p-2 ${
+                                                        touched.email && errors.email ? "is-invalid" : ""
+                                                    }`}
+                                                    id="email"
+                                                    placeholder="example@company.com"
                                                 />
+                                                <ErrorMessage
+                                                    component="div"
+                                                    name="email"
+                                                    className="invalid-feedback p-0"
+                                                />
+                                            </div>
+                                            <div className="password-wrapper">
+                                                <label className="mt-3">Password</label>
+                                                <Field 
+                                                    name="password"
+                                                    type="password"
+                                                    className={`form-control p-2 ${
+                                                        touched.password && errors.password ? "is-invalid" : ""
+                                                    }`}
+                                                    id="passwords"
+                                                    placeholder="Password"
+                                                />
+                                                <ErrorMessage
+                                                    component="div"
+                                                    name="password"
+                                                    className="invalid-feedback"
+                                                />
+                                                </div>
+                                                <div className="mt-3">
+                                                {/* <Link to="/dashboard"> */}
+                                                    <Button 
+                                                        type="submit"
+                                                        className="btn btn-primary"
+                                                        id="loginBtn"
+                                                        disabled={isSubmitting}
+                                                        label={isSubmitting ? "Loading...." : "Login"}
+                                                    />
+                                                {/* </Link> */}
+                                                <p>Create your workspace register <Link to="/signup">Here</Link></p>
+
+                                                </div>
                                         </Form>
                                     )}
 
@@ -133,25 +127,12 @@ class LoginPage extends Component{
                                     </Formik>
                                 </div>
                                         
-                                        <Link to="/dashboard">
-                                            <Button 
-                                                type="button"
-                                                className="btn btn-primary"
-                                                id="loginBtn"
-                                                label="Login"
-                                                // handleClick={this.handleEmailSplit}
-                                                
-                                            />
-                                        </Link>
-                                    <p>Create your workspace register <Link to="/signup">Here</Link></p>
-                            </form>
-                        </div>
-
-                        {/* form container end */}
+                                      
+                                </div>
+                            </div>
 
                         <div className="img-con col-lg-7 d-none d-lg-block">
                             <div className="login-intro-img mt-3">
-                            {/* <img src={images[index]} alt="office timing" className="img-fluid" /> */}
                             <img src={loginImage} alt="office timing" className="img-fluid" />
                             </div>
                         </div>
