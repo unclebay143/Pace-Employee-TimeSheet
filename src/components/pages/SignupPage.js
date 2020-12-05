@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom'
 import Button from '../layouts/Button';
 import FormInput from '../layouts/FormInput';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './pages-styles/loginpage.css';
+import './pages-styles/form.css';
+import './pages-styles/util.css';
 import loginImage from './pages-images/login-img.png';
 
 
