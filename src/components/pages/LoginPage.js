@@ -19,6 +19,12 @@ class LoginPage extends Component{
         }
     }
 
+    componentDidMount(){
+        document.title = 'Login | Pace'
+    }
+
+
+
     Database = {
         db_username: "unclebay",
         db_company: "tiidelab.com",
@@ -65,8 +71,8 @@ class LoginPage extends Component{
         }
 
     }
+
     render(){
-       
         const {isUserAuthenticated} = this.state;
         return(
             <div className="container">
@@ -74,7 +80,7 @@ class LoginPage extends Component{
                     <div className="row">
                         <div className="form-con col-lg-5 mb-5">
                             <Link to="/">
-                                <i class="fas fa-long-arrow-alt-left"></i>
+                                <i className="fas fa-long-arrow-alt-left"></i>
                             </Link>
                             <div className="form-heading mt-5">
                             <h3 className="mb-3">Login</h3>

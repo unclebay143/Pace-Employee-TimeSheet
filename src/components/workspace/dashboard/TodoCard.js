@@ -13,11 +13,11 @@ class TodoCard extends Component{
         const { title, dueDate, cardColor } = this.state;
         return(
             <>
-                <div class="bg-white shadow pace-roundy px-4 py-3 d-flex align-items-center justify-content-between mb-4">
-                    <div class="flex-grow-1 d-flex align-items-center">
-                        <div class="pace-bg-accent dot mr-3"></div>
-                        <div class="text">
-                            <h6 class="mb-0">{title}</h6><span class="text-gray">{dueDate}</span>
+                <div className="bg-white shadow pace-roundy px-4 py-3 d-flex align-items-center justify-content-between mb-4">
+                    <div className="flex-grow-1 d-flex align-items-center">
+                        <div className="pace-bg-accent dot mr-3"></div>
+                        <div className="text">
+                            <h6 className="mb-0">{title}</h6><span className="text-gray">{dueDate}</span>
                         </div>
                     </div>
                 </div>

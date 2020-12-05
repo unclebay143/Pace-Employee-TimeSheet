@@ -13,11 +13,11 @@ class EscheduleCard extends Component{
         const { scheduleTitle, scheduleTime } = this.state;
         return(
             <>
-                 <div class="bg-white shadow pace-roundy px-4 py-3 d-flex align-items-center justify-content-between mb-4">
-                    <div class="flex-grow-1 d-flex align-items-center">
-                        <div class="dot mr-3 bg-green"></div>
-                        <div class="text">
-                            <h6 class="mb-0">{scheduleTitle}</h6><span class="text-gray">{scheduleTime}</span>
+                 <div className="bg-white shadow pace-roundy px-4 py-3 d-flex align-items-center justify-content-between mb-4">
+                    <div className="flex-grow-1 d-flex align-items-center">
+                        <div className="dot mr-3 bg-green"></div>
+                        <div className="text">
+                            <h6 className="mb-0">{scheduleTitle}</h6><span className="text-gray">{scheduleTime}</span>
                         </div>
                     </div>
                 </div>

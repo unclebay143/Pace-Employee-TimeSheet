@@ -19,6 +19,10 @@ class SignupPage extends Component{
         }
     }
 
+    componentDidMount(){
+        document.title = "Signup | Pace "
+    }
+
     Database = {
         db_username: "unclebay",
         db_company: "tiidelab.com",
@@ -74,7 +78,7 @@ class SignupPage extends Component{
                     <div className="row">
                         <div className="form-con col-lg-5 mb-5">
                             <Link to="/">
-                                <i class="fas fa-long-arrow-alt-left"></i>
+                                <i className="fas fa-long-arrow-alt-left"></i>
                             </Link>
                             <div className="form-heading mt-2">
                             <h3 className="mb-3">Signup</h3>

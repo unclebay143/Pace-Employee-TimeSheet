@@ -9,8 +9,8 @@ class Cards extends Component{
     render(){
         return(
             <>
-                <section class="py-5">
-                    <div class="row">
+                <section className="py-5">
+                    <div className="row">
                         <Card
                             
                                 title="Complete Task"

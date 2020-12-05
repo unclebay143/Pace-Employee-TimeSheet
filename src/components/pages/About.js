@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navbar from '../layouts/Navbar';
 import Footer from '../layouts/Footer';
 import './pages-styles/about.css';
@@ -11,7 +11,12 @@ import aisha from './pages-images/opaluwa_aisha.jpg';
 import aboutImage from './pages-images/v.jpg';
 
 
-function About() {
+const About = () => {
+
+  useEffect(()=>{
+    document.title = 'About | Pace'
+  })
+  
   return (
     <React.Fragment>
       <AboutContent />

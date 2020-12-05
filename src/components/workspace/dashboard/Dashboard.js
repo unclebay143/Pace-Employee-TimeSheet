@@ -18,7 +18,7 @@ class Dashboard extends Component{
 
                 <div>
                     <Navbar  />
-                    <div class="d-flex align-items-stretch">
+                    <div className="d-flex align-items-stretch">
                         <Sidebar />
                         <DashBody />
                     </div>
