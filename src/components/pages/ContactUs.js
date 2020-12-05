@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+import FormInput from '../layouts/FormInput';
+import Textarea from '../layouts/Textarea'
 import landingPageImg from './pages-images/landingPage.svg';
 import Button from '../layouts/Button';
-import FormInput from '../layouts/FormInput';
+
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './pages-styles/form.css';
@@ -12,18 +14,25 @@ import './pages-styles/util.css'
 
 
 class ContactUs extends Component{
+    state = {
+        name: '',
+        email: '',
+        message: '',
+        errors: {},
+      };
    
     componentDidMount(){
         document.title = 'Contact Us | Pace'
     }
-
-    handleChange = event => {
-        const { user } = this.state;    
-        user[event.target.name] = event.target.value;
-        this.setState({ user });
-    };
+    handleChange =(e) => this.setState({[e.target.name]: e.target.value});
+    // handleChange = event => {
+    //     const { user } = this.state;    
+    //     user[event.target.name] = event.target.value;
+    //     this.setState({ user });
+    // };
 
     render(){
+        const {name, email, message, errors} = this.state;
        
         return(
             <div className="container">
@@ -38,31 +47,56 @@ class ContactUs extends Component{
                             </div>
                             <form className="mt-5" name="form">
                                        
-                                <div className="form-group mt-b">
+                                <div className="form-group">
                                     <FormInput 
                                         label = "Name"
-                                        name = "contact"
-                                        type = "text"
-                                        id = "contact-name"
+                                        name = "name"
+                                        id = "name"
                                         className="form-control lead"
-                                        labelClassName="lea mt-3"
+                                        value = {name}
+                                        labelClassName="lead"
                                         placeholder = "John Doe"
                                         onChange={this.handleChange}
                                         required 
                                     />
+                                </div>
+                                <div className="form-group">    
                                     <FormInput 
                                         label = "Email"
                                         name = "email"
                                         type = "email"
-                                        id = "contact-email"
+                                        id = "email"
                                         className="form-control lead"
-                                        labelClassName="lea mt-3"
+                                        value = {email}
+                                        labelClassName="lead"
                                         placeholder = "johndoe@gmail.com"
                                         onChange={this.handleChange}
                                         required 
                                     />
+                                </div>
+                                <div className="form-group">
+                                    <Textarea 
+                                        label = "Message"
+                                        name = "message"
+                                        id = "message"
+                                        className="form-control lead"
+                                        rows = "5"
+                                        cols = "57"
+                                        value = {message}
+                                        labelClassName="lead"
+                                        placeholder = "please leave your message here"
+                                        onChange={this.handleChange}
+                                    />
                             
                                 </div>
+                                {/* <FormInput 
+                                        name = "submit"
+                                        type = "submit"
+                                        value = "contact-us"
+                                        className = "btn btn-primary"
+                                        id = "submit"
+                                    /> */}
+                            
                                 <Button 
                                     label="Contact Us"
                                     type = "button"

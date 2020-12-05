@@ -72,3 +72,7 @@
     cursor: pointer;
 }
 
+textarea {
+    outline: none;
+    resize: none;
+}
