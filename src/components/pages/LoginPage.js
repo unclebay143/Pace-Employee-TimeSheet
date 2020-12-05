@@ -108,23 +108,21 @@ class LoginPage extends Component{
                                         }}
                                     >{({values, errors, touch}) => (
                                         <Form>
-                                            <label>Enter your workspace address</label>
+                                            <label className="">Enter your workspace address</label>
                                             <Field 
                                                 name="email"
                                                 type="email"
                                                 className="form-control lead"
                                                 id="email"
-                                                labelClassName="lea"
                                                 placeholder="example@company.com"
                                             />
-                                            <label>Password</label>
+                                            <label className="mt-3">Password</label>
                                             <Field 
                                                 name="password"
                                                 type="password"
                                                 className="form-control lead"
                                                 id="passwords"
                                                 label="Password"
-                                                labelClassName="lea mt-3"
                                                 placeholder="password"
                                                 
                                                 />
