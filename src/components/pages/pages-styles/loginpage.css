@@ -3,27 +3,19 @@
 *********   RESET ****************
 ==================================
  */
- *,
- *::before,
- *::after {
-     box-sizing: border-box;
+
+.form-con h3 {
+     color  :#FF6584;
+}
+.form-con label {
+    /* color:#335eea; */
+    font-size: .9rem;
+    color: #6c757d;
  }
- html, body {
-     padding: 0;
-     margin: 0;
-     line-height: 1.6;
-     font-family: 'Roboto', sans-serif;
- }
- h3 {
-     color:#335eea;
- }
- h4 {
-     color:#FF6584;
- }
- form a {
+ .form-con a {
      color: #FF6584;
  }
- form a:hover {
+ .form-con a:hover {
      color: #335eea;
      text-decoration: none;
  }
@@ -31,8 +23,7 @@
 .form-heading h4 {
     /* font-style: italic; */
 }
-
-.img-con img{
+/* .img-con img{
     height: auto;
     max-width: 100%;
 }
@@ -42,12 +33,12 @@
     -ms-transform: scale(0.8);
     transform: scale(0.8);
     transition: 3s;
-  }
+  } */
 
  @media(max-width:768px) {
      /* modifying the bootstrap 'row' class for smaller screen */
     .row{
-        flex-direction: column-reverse;
+        /* flex-direction: column-reverse; */
     }
     .form-con, .img-con{
         width: 100%;
