@@ -80,7 +80,7 @@ class ContactUs extends Component{
                                         name = "message"
                                         id = "message"
                                         className="form-control lead"
-                                        rows = "5"
+                                        rows = "8"
                                         cols = "57"
                                         value = {message}
                                         labelClassName="lead"
