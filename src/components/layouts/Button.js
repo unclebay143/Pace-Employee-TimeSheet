@@ -7,6 +7,7 @@ const Button = props => {
         onClick={handleClick}
         type={type}
         className={className}
+        {...props}
       >
         {label}
       </button>  

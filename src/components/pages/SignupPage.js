@@ -19,6 +19,10 @@ class SignupPage extends Component{
         }
     }
 
+    componentDidMount(){
+        document.title = "Signup | Pace "
+    }
+
     Database = {
         db_username: "unclebay",
         db_company: "tiidelab.com",
@@ -73,6 +77,9 @@ class SignupPage extends Component{
                 <main className="container d-flex justify-content-center align-items-center mt-5">
                     <div className="row">
                         <div className="form-con col-lg-5 mb-5">
+                            <Link to="/">
+                                <i className="fas fa-long-arrow-alt-left"></i>
+                            </Link>
                             <div className="form-heading mt-2">
                             <h3 className="mb-3">Signup</h3>
                             <h4 className="mb-4">Track every second!</h4>
@@ -154,7 +161,7 @@ class SignupPage extends Component{
 
                         <div className="img-con col-lg-7">
                             {/* <img src={images[index]} alt="office timing" className="img-fluid" /> */}
-                            <div className="login-intro-img mt-5 ml-5">
+                            <div className="login-intro-img mt-5 ml-5 d-none d-md-block">
                             <img src={loginImage} alt="office timing" className="img-fluid" />
                             </div>
                         </div>

@@ -22,11 +22,11 @@ class EventCard extends Component{
         const { event } = this.state;
         return(
             <>
-                <div class="bg-white shadow pace-roundy px-4 py-3 d-flex align-items-center justify-content-between mb-4">
-                    <div class="flex-grow-1 d-flex align-items-center">
-                        <div class="dot mr-3 bg-green"></div>
-                        <div class="text">
-                            <h6 class="mb-0">{event[0].title}</h6><span class="text-gray">{event[0].eventDate}</span>
+                <div className="bg-white shadow pace-roundy px-4 py-3 d-flex align-items-center justify-content-between mb-4">
+                    <div className="flex-grow-1 d-flex align-items-center">
+                        <div className="dot mr-3 bg-green"></div>
+                        <div className="text">
+                            <h6 className="mb-0">{event[0].title}</h6><span className="text-gray">{event[0].eventDate}</span>
                         </div>
                     </div>
                 </div>

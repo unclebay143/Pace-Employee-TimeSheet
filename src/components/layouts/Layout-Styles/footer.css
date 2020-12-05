@@ -1,3 +1,23 @@
-.footer-lead{
-  margin-left: 20px;
+.social-links a{
+  color: #ffffff;
+}
+
+@media (min-width: 800px){
+  .social-links{
+    position: relative;
+    left: 350px;
+  }
+}
+
+@media (min-width: 900px){
+  .footer-lead{
+    margin-left: 10px;
+  }
+}
+
+@media (min-width: 1000px){
+  .footer-lead{
+    margin-left: 20px;
+    white-space: nowrap;
+  }
 }

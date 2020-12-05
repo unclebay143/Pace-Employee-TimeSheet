@@ -2,6 +2,7 @@ import React from 'react';
 import './Layout-Styles/navbar.css';
 import {Link} from "react-router-dom";
 import Button from './Button';
+import $ from 'jquery';
 
 function Navbar() {
   return (
@@ -19,9 +20,12 @@ function Navbar() {
           data-target="#this_nav" 
           aria-controls="this_nav" 
           aria-expanded="false" 
+          aria-label="Toggle navigation"
+          aria-expanded="false"
           aria-label="Toggle navigation" 
           label={ <span className="navbar-toggler-icon"/> }
         />
+
         <div className="collapse navbar-collapse" id="this_nav">
           <div className="navbar-nav">
             <Link to="/" className="nav-link active">Home</Link>

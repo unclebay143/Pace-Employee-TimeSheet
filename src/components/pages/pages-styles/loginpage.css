@@ -23,7 +23,6 @@
 .form-heading h4 {
     /* font-style: italic; */
 }
-
 /* .img-con img{
     height: auto;
     max-width: 100%;
@@ -39,7 +38,7 @@
  @media(max-width:768px) {
      /* modifying the bootstrap 'row' class for smaller screen */
     .row{
-        flex-direction: column-reverse;
+        /* flex-direction: column-reverse; */
     }
     .form-con, .img-con{
         width: 100%;

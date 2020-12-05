@@ -12,7 +12,6 @@ class NotificationCards extends Component{
     render(){
         return(
             <>
-
                 <TodoCard />
                 <EventCard />
                 <EscheduleCard />
