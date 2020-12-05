@@ -5,7 +5,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './pages-styles/loginpage.css';
 import loginImage from './pages-images/login-img.png';
 import { Link } from 'react-router-dom';
-
+import {Formik, Form, Field, ErrorMessage} from 'formik';
+import * as Yup from 'yup';
 
 
 class LoginPage extends Component{
@@ -23,6 +24,17 @@ class LoginPage extends Component{
         document.title = 'Login | Pace'
     }
 
+    SignupSchema = Yup.object().shape({
+        firstName: Yup.string()
+          .min(2, 'Too Short!')
+          .max(50, 'Too Long!')
+          .required('Required'),
+        lastName: Yup.string()
+          .min(2, 'Too Short!')
+          .max(50, 'Too Long!')
+          .required('Required'),
+        email: Yup.string().email('Invalid email').required('Required'),
+      });
 
 
     Database = {
@@ -40,37 +52,37 @@ class LoginPage extends Component{
     // 2:46AM working on password auth.... make sure you push username and password to the state and also init the password
 
 
-    handleChange = event => {
-        const { user } = this.state;    
-        user[event.target.name] = event.target.value;
-        this.setState({ user });
-    };
+    // handleChange = event => {
+    //     const { user } = this.state;    
+    //     user[event.target.name] = event.target.value;
+    //     this.setState({ user });
+    // };
 
-    handleEmailSplit = () =>{
-        console.log(this.state)
-        const {user: { workSpaceEmail } } = this.state;
-        const getUserName = workSpaceEmail.split('@')[0]
-        const getCompanyName = workSpaceEmail.split('@')[1]
-        this.handleWorkSpaceSubmit(getUserName, getCompanyName)
-    };
+    // handleEmailSplit = () =>{
+    //     console.log(this.state)
+    //     const {user: { workSpaceEmail } } = this.state;
+    //     const getUserName = workSpaceEmail.split('@')[0]
+    //     const getCompanyName = workSpaceEmail.split('@')[1]
+    //     this.handleWorkSpaceSubmit(getUserName, getCompanyName)
+    // };
 
-    handleWorkSpaceSubmit = (splittedUserName, splittedCompanyName) => {
-        const {db_username, db_company} = this.Database;
+    // handleWorkSpaceSubmit = (splittedUserName, splittedCompanyName) => {
+    //     const {db_username, db_company} = this.Database;
        
-        // control err from here/consider using bootstrap err handler
-        if (splittedUserName !== db_username){
-            console.log("err from username")
-        }
+    //     // control err from here/consider using bootstrap err handler
+    //     if (splittedUserName !== db_username){
+    //         console.log("err from username")
+    //     }
 
-        else if (splittedCompanyName !== db_company){
-            console.log("err from company")
-        } 
+    //     else if (splittedCompanyName !== db_company){
+    //         console.log("err from company")
+    //     } 
         
-        else{
-            this.setState({isUserAuthenticated: true})
-        }
+    //     else{
+    //         this.setState({isUserAuthenticated: true})
+    //     }
 
-    }
+    // }
 
     render(){
         const {isUserAuthenticated} = this.state;
@@ -87,57 +99,41 @@ class LoginPage extends Component{
                             <h4 className="mb-5">Welcome back!</h4>
                             </div>
                             <form className="mt-5" name="form">
-                            {
-                                isUserAuthenticated ? (
-                                    <>
-                                        <div className="form-group mt-b">
-                                            <FormInput 
-                                                type="password"
-                                                name="password"
-                                                className="form-control lead"
-                                                id="password"
-                                                label="Enter your password"                      
-                                                labelClassName="lea"
-                                                placeholder="password"
-                                                onChange={this.handleChange}
-                                                required
-                                            />
-                                        </div>
-                                        <Button 
-                                            type="button"
-                                            className="btn btn-primary"
-                                            id="loginBtn"
-                                            label="Login"
-                                            handleClick={this.handlePasswordAuth}
-                                        />
-                                    </>
-                                ) : (
-                                    <>
-                                        <p id="errorMessage" />
-                                        <div className="form-group mt-b">
-                                            <FormInput 
+                                <p id="errorMessage" />
+                                <div className="form-group mt-b">
+                                    <Formik
+                                        initialValues={{
+                                            email: '',
+                                            password: ''
+                                        }}
+                                    >{({values, errors, touch}) => (
+                                        <Form>
+                                            <label>Enter your workspace address</label>
+                                            <Field 
+                                                name="email"
                                                 type="email"
-                                                name="workSpaceEmail"
                                                 className="form-control lead"
                                                 id="email"
-                                                label="Enter your workspace address"
                                                 labelClassName="lea"
                                                 placeholder="example@company.com"
-                                                onChange={this.handleChange}
-                                                required
-                                                />
-                                            <FormInput 
-                                                type="password"
+                                            />
+                                            <label>Password</label>
+                                            <Field 
                                                 name="password"
+                                                type="password"
                                                 className="form-control lead"
                                                 id="passwords"
                                                 label="Password"
                                                 labelClassName="lea mt-3"
                                                 placeholder="password"
-                                                onChange={this.handleChange}
-                                                required
+                                                
                                                 />
-                                        </div>
+                                        </Form>
+                                    )}
+
+                                        
+                                    </Formik>
+                                </div>
                                         
                                         <Link to="/dashboard">
                                             <Button 
@@ -149,14 +145,7 @@ class LoginPage extends Component{
                                                 
                                             />
                                         </Link>
-                                        <p>Create your workspace register <Link to="/signup">Here</Link></p>
-                                    </>
-                                )
-                                
-                                
-                            }
-                            
-                                
+                                    <p>Create your workspace register <Link to="/signup">Here</Link></p>
                             </form>
                         </div>
 
