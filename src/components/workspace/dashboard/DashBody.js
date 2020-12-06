@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import Cards from './Cards';
 import EmpCards from './EmpCards';
 import NotificationCards from './NotificationCards';
 import MostActiveEmployee from './MostActiveEmployee';
@@ -26,7 +25,7 @@ const DashBody = () => {
                                         <h2 className="mb-0 d-flex align-items-center"><span>0 hours</span>
                                         <span className="dot pace-bg-accent d-inline-block ml-3 timer-blink"></span></h2><span className="text-muted">Worked Hours</span>
                                         <div className="chart-holder">
-                                            <canvas id="lineChart3" style={{maxHeight: "7rem !important;"}} className="w-100"></canvas>
+                                            <canvas id="lineChart3" style={{maxHeight: "7rem !important"}} className="w-100"></canvas>
                                         </div>
                                     </div>
                                 </div>
