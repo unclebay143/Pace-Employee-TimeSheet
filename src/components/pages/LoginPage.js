@@ -1,14 +1,13 @@
 import {React, Component} from 'react';
 import Button from '../layouts/Button';
-import FormInput from '../layouts/FormInput';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './pages-styles/form.css';
 import './pages-styles/util.css';
 import loginImage from './pages-images/login-img.png';
 import { Link } from 'react-router-dom';
-import {Formik, Form, Field, ErrorMessage} from 'formik';
-import * as Yup from 'yup';
-
+import {Formik, Form, ErrorMessage} from 'formik';
+import { TextInput } from '../layouts/Input';
+import { validationSchema } from '../Validation/validateForms';
 
 class LoginPage extends Component{
     constructor(props){
@@ -24,12 +23,6 @@ class LoginPage extends Component{
     componentDidMount(){
         document.title = 'Login | Pace'
     }
-
-    loginSchema = Yup.object().shape({
-        email: Yup.string().email('Invalid email format').required('Required'),
-        password: Yup.string().required('Required'),
-      });
-
 
     Database = {
         db_username: "unclebay",
@@ -68,16 +61,16 @@ class LoginPage extends Component{
                                             email: '',
                                             password: ''
                                         }}
-                                        validationSchema = {this.loginSchema}
+                                        validationSchema = {validationSchema}
                                         onSubmit={(values, {setSubmitting})=>{
                                             console.log(values)
-                                        setSubmitting(false)
-                                    }}
+                                            setSubmitting(false)
+                                        }}
                                     >{({touched, errors, isSubmitting}) => (
                                         <Form>
                                             <div className="email-wrapper pb-3">
-                                                <label className="">Enter your workspace address</label>
-                                                <Field 
+                                                <TextInput 
+                                                    label="Enter your workspace address"
                                                     name="email"
                                                     type="email"
                                                     className={`form-control p-2 ${
@@ -93,10 +86,11 @@ class LoginPage extends Component{
                                                 />
                                             </div>
                                             <div className="password-wrapper">
-                                                <label className="mt-3">Password</label>
-                                                <Field 
+                                                <TextInput 
                                                     name="password"
                                                     type="password"
+                                                    label="Password"
+                                                    labelClassName="mt-3"
                                                     className={`form-control p-2 ${
                                                         touched.password && errors.password ? "is-invalid" : ""
                                                     }`}
@@ -108,41 +102,33 @@ class LoginPage extends Component{
                                                     name="password"
                                                     className="invalid-feedback"
                                                 />
-                                                </div>
-                                                <div className="mt-3">
-                                                {/* <Link to="/dashboard"> */}
-                                                    <Button 
-                                                        type="submit"
-                                                        className="btn btn-primary"
-                                                        id="loginBtn"
-                                                        disabled={isSubmitting}
-                                                        label={isSubmitting ? "Loading...." : "Login"}
-                                                    />
-                                                {/* </Link> */}
+                                            </div>
+                                            <div className="mt-3">
+                                                <Link to="/dashboard">
+                                                <Button 
+                                                    type="submit"
+                                                    className="btn btn-primary"
+                                                    id="loginBtn"
+                                                    disabled={isSubmitting}
+                                                    label={isSubmitting ? "Loading...." : "Login"}
+                                                />
+                                                </Link>
                                                 <p>Create your workspace register <Link to="/signup">Here</Link></p>
-
-                                                </div>
+                                            </div>
                                         </Form>
                                     )}
-
-                                        
-                                    </Formik>
-                                </div>
-                                        
-                                      
-                                </div>
-                            </div>
-
-                        <div className="img-con col-lg-7 d-none d-lg-block">
-                            <div className="login-intro-img mt-3">
-                            <img src={loginImage} alt="office timing" className="img-fluid" />
+                                </Formik>
                             </div>
                         </div>
-                        
                     </div>
-                </main>
-            </div>
-
+                    <div className="img-con col-lg-7 d-none d-lg-block">
+                        <div className="login-intro-img mt-3">
+                        <img src={loginImage} alt="office timing" className="img-fluid" />
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
         )
     }
 }

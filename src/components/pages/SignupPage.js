@@ -7,7 +7,7 @@ import Button from '../layouts/Button';
 import loginImage from './pages-images/login-img.png';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { validationSchema } from '../Validation/validateForms'
-
+import { TextInput } from '../layouts/FormInput';
 
 class SignupPage extends Component{
     constructor(props){
@@ -56,100 +56,95 @@ class SignupPage extends Component{
                                             <pre>{JSON.stringify(values, null, 2)}</pre>
                                             <div className="form-group signupForm">
                                                 <div className="workSpaceName-wrapper">
-                                                    <label className="mt-3">Workspace Name</label>
-                                                    <Field 
+                                                    {/* <label className="mt-3">Workspace Name """validate workspace name here onChange"""</label> */}
+                                                    <TextInput 
                                                         name="workSpaceName"
                                                         id="workSpaceName"
                                                         type="text"
+                                                        label="Workspace Name"
+                                                        labelClassName="mt-3"
                                                         placeholder="Bascom Limited"
                                                         className={`form-control lead p-2 ${
                                                             touched.workSpaceName && errors.workSpaceName ? "is-invalid" : ""
                                                         }`}                                                        
                                                         title = {touched.workSpaceName && errors.workSpaceName ? "Tooltip Text" : "Tooltip Text"}
                                                         data-placement = "bottom"
-                                                        
                                                     />
                                                     <ErrorMessage
-                                                            component="span"
-                                                            name="workSpaceName"
-                                                            className="invalid-feedback p-0"
+                                                        component="span"
+                                                        name="workSpaceName"
+                                                        className="invalid-feedback p-0"
                                                     />
                                                 </div>
-
                                                 <div className="email-wrapper">
-                                                    <label className="mt-3">Email</label>
-
-                                                    <Field 
+                                                    <TextInput 
                                                         name="workSpaceEmail"
                                                         id="workSpaceEmail"
                                                         type="email"
+                                                        label="Email"
+                                                        labelClassName="mt-3"
                                                         className={`form-control lead p-2 ${
                                                             touched.workSpaceEmail && errors.workSpaceEmail ? "is-invalid" : ""
                                                         }`}
                                                         placeholder="Email" 
-                                                        />
+                                                    />
                                                     <ErrorMessage
-                                                            component="div"
-                                                            name="workSpaceEmail"
-                                                            className="invalid-feedback p-0"
-                                                        />
+                                                        component="div"
+                                                        name="workSpaceEmail"
+                                                        className="invalid-feedback p-0"
+                                                    />
                                                 </div>
                                                 <div className="password-wrapper">
-
-                                                    <label className="mt-3">Password</label>
-
-                                                    <Field 
+                                                    <TextInput 
                                                         name="password"
                                                         id="password"
                                                         type="password"
+                                                        label="Password"
+                                                        labelClassName="mt-3"
                                                         className={`form-control lead p-2 ${
                                                             touched.password && errors.password ? "is-invalid" : ""
                                                         }`}
                                                         placeholder="Password" 
-                                                        />
-                                                        <ErrorMessage
-                                                            component="div"
-                                                            name="password"
-                                                            className="invalid-feedback p-0"
-                                                        />
+                                                    />
+                                                    <ErrorMessage
+                                                        component="div"
+                                                        name="password"
+                                                        className="invalid-feedback p-0"
+                                                    />
                                                 </div>
                                                 <div className="confirmPassword-wrapper">
-
-                                                <label className="mt-3"> Confirm Password</label>
-
-                                                <Field 
-                                                    name="confirmPassword"
-                                                    id="confirmPassword"
-                                                    type="password"
-                                                    className={`form-control lead p-2 ${
-                                                        touched.confirmPassword && errors.confirmPassword ? "is-invalid" : ""
-                                                    }`}
-                                                    placeholder="Confirm Password" 
+                                                    <TextInput 
+                                                        name="confirmPassword"
+                                                        id="confirmPassword"
+                                                        type="password"
+                                                        label="Confirm Password"
+                                                        labelClassName="mt-3"
+                                                        className={`form-control lead p-2 ${
+                                                            touched.confirmPassword && errors.confirmPassword ? "is-invalid" : ""
+                                                        }`}
+                                                        placeholder="Confirm Password" 
                                                     />
                                                     <ErrorMessage
                                                         component="div"
                                                         name="confirmPassword"
                                                         className="invalid-feedback p-0"
-                                                        />
-                                                    </div>
+                                                    />
+                                                </div>
                                                 <Button 
                                                     type="submit"
                                                     className="btn btn-primary mt-3"
                                                     id="signUp"
                                                     label="Signup"
-                                                    />
-                                                    <button type="submit">submit</button>
+                                                />
+                                                <button type="submit">submit</button>
                                                 <p>Already have an account? <Link to="./login">Login</Link></p>
-                                </div>
+                                            </div>
                                         </Form>
                                     )
                                 }
 
                             </Formik>
                         </div>
-
-                        {/* form container end */}
-
                         <div className="img-con col-lg-7">
                             {/* <img src={images[index]} alt="office timing" className="img-fluid" /> */}
                             <div className="login-intro-img mt-5 ml-5 d-none d-md-block">
