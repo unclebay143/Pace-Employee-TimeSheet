@@ -1,13 +1,19 @@
+// react
 import {React, Component} from 'react';
 import Button from '../layouts/Button';
+// styles
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './pages-styles/form.css';
 import './pages-styles/util.css';
+// layouts , formik
 import loginImage from './pages-images/login-img.png';
 import { Link } from 'react-router-dom';
 import {Formik, Form, ErrorMessage} from 'formik';
-import { TextInput } from '../layouts/Input';
+import { TextInput } from '../layouts/FormInput';
 import { validationSchema } from '../Validation/validateForms';
+import PropTypes from 'prop-types';
+import LoginAuth from '../Authentication/LoginAuth';
+
 
 class LoginPage extends Component{
     constructor(props){
@@ -15,6 +21,7 @@ class LoginPage extends Component{
         this.state = {
             user: {
                 workSpaceEmail: '',
+                workSpacePassword: ''
             },
             isUserAuthenticated: false
         }
@@ -63,7 +70,8 @@ class LoginPage extends Component{
                                         }}
                                         validationSchema = {validationSchema}
                                         onSubmit={(values, {setSubmitting})=>{
-                                            console.log(values)
+                                            console.log(values);
+                                            <LoginAuth email={email} password={password}/>
                                             setSubmitting(false)
                                         }}
                                     >{({touched, errors, isSubmitting}) => (
@@ -132,6 +140,11 @@ class LoginPage extends Component{
         )
     }
 }
+
+LoginPage.propTypes = {
+    workSpaceEmail: PropTypes.string.isRequired,
+    password: PropTypes.any.isRequired
+};
 
 
 export default LoginPage;

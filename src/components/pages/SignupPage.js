@@ -1,13 +1,17 @@
+// react 
 import {React, Component} from 'react';
+import { Link } from 'react-router-dom'
+// styles
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './pages-styles/form.css';
 import './pages-styles/util.css';
-import { Link } from 'react-router-dom'
+// layouts
 import Button from '../layouts/Button';
 import loginImage from './pages-images/login-img.png';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { validationSchema } from '../Validation/validateForms'
 import { TextInput } from '../layouts/FormInput';
+// import PropTypes from 'prop-types';
 
 class SignupPage extends Component{
     constructor(props){
@@ -53,7 +57,6 @@ class SignupPage extends Component{
                                 {
                                     ({values, errors, touched})=>(
                                         <Form>
-                                            <pre>{JSON.stringify(values, null, 2)}</pre>
                                             <div className="form-group signupForm">
                                                 <div className="workSpaceName-wrapper">
                                                     {/* <label className="mt-3">Workspace Name """validate workspace name here onChange"""</label> */}
@@ -160,5 +163,11 @@ class SignupPage extends Component{
     }
 }
 
+// SignupPage.propTypes = {
+//     workSpaceName : PropTypes.string.isRequired(),
+//     workSpaceEmail : PropTypes.string.isRequired(),
+//     password : PropTypes.string.isRequired(),
+//     confirmPassword : PropTypes.string.isRequired(),
+// }
 
 export default SignupPage;

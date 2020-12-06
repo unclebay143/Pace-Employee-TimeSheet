@@ -1,11 +1,13 @@
+// react
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {HashRouter as Router, Route, Switch } from "react-router-dom";
+//styles
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'popper.js';
-// import './jquery.js';
 import './utilities.css';
-import Home from './components/Home';
+// components
+import Home from './components/Index';
 import About from './components/pages/About';
 import PageNotFound from './components/pages/404';
 import LoginPage from './components/pages/LoginPage';

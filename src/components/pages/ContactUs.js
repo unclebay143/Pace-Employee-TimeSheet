@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import landingPageImg from './pages-images/landingPage.svg';
 import Button from '../layouts/Button';
-import FormInput from '../layouts/FormInput';
+import FormInput from '../../rough/FormInput';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './pages-styles/form.css';
