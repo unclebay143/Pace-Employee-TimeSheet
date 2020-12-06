@@ -69,9 +69,10 @@ class LoginPage extends Component{
                                             password: ''
                                         }}
                                         validationSchema = {this.loginSchema}
-                                            onSubmit={({setSubmitting})=>{
-                                            setSubmitting(false)
-                                        }}
+                                        onSubmit={(values, {setSubmitting})=>{
+                                            console.log(values)
+                                        setSubmitting(false)
+                                    }}
                                     >{({touched, errors, isSubmitting}) => (
                                         <Form>
                                             <div className="email-wrapper pb-3">
