@@ -18,7 +18,7 @@ class Cards extends Component{
                                 count="123"
                                 icon="fa-server"
                                 cardColor="pace-bg-accent"
-                                style=""
+                                style= {{ }}
                         
                         />
                         <Card
@@ -28,7 +28,7 @@ class Cards extends Component{
                                 count="123"
                                 icon="fa-server"
                                 cardColor="bg-green"
-                                style=""
+                                style= {{ }}
                         
                         />
                         <Card
@@ -38,7 +38,7 @@ class Cards extends Component{
                                 count="123"
                                 icon="fa-server"
                                 cardColor="bg-red"
-                                style=""
+                                style= {{ }}
                         
                         />
                         <Card
@@ -48,7 +48,7 @@ class Cards extends Component{
                                 count="Click here"
                                 icon="fa-server"
                                 cardColor="pace-bg-primary"
-                                style=""
+                                style= {{ }}
                         
                         />
                     </div>

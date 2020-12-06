@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import Cards from './Cards';
+import EmpCards from './EmpCards';
 import NotificationCards from './NotificationCards';
 import MostActiveEmployee from './MostActiveEmployee';
 import Footer from '../layouts/Footer'
@@ -14,7 +15,8 @@ const DashBody = () => {
             <div className="d-flex align-items-stretch">
                 <div className="page-holder w-100 d-flex flex-wrap">
                     <div className="container-fluid px-xl-5">
-                        <Cards />
+                        {/* <Cards /> */}
+                        <EmpCards />
                         <section>
                             <div className="row mb-4">
                                 <MostActiveEmployee />
