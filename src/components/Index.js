@@ -1,4 +1,6 @@
+// react 
 import React from 'react';
+// layout component
 import Navbar from './layouts/Navbar';
 import HomeBody from './pages/HomeBody';
 import Footer from './layouts/Footer';
