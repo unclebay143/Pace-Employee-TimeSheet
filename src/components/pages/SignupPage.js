@@ -9,7 +9,7 @@ import './pages-styles/util.css';
 import Button from '../layouts/Button';
 import loginImage from './pages-images/login-img.png';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { validationSchema } from '../Validation/validateForms'
+import { signUpSchema } from '../Validation/validateForms'
 import { TextInput } from '../layouts/FormInput';
 // import PropTypes from 'prop-types';
 
@@ -51,7 +51,7 @@ class SignupPage extends Component{
                                     password: '',
                                     confirmPassword: ''
                                 }}
-                                validationSchema = {validationSchema}
+                                validationSchema = {signUpSchema}
                                 onSubmit={(values)=>alert("done!!!", values)}
                             >
                                 {
@@ -139,7 +139,6 @@ class SignupPage extends Component{
                                                     id="signUp"
                                                     label="Signup"
                                                 />
-                                                <button type="submit">submit</button>
                                                 <p>Already have an account? <Link to="./login">Login</Link></p>
                                             </div>
                                         </Form>
