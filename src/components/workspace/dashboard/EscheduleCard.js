@@ -15,7 +15,7 @@ class EscheduleCard extends Component{
             <>
                  <div className="bg-white shadow pace-roundy px-4 py-3 d-flex align-items-center justify-content-between mb-4">
                     <div className="flex-grow-1 d-flex align-items-center">
-                        <div className="dot mr-3 bg-green"></div>
+                        <div className="dot mr-3 pace-bg-primary"></div>
                         <div className="text">
                             <h6 className="mb-0">{scheduleTitle}</h6><span className="text-gray">{scheduleTime}</span>
                         </div>
