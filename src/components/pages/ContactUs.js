@@ -14,11 +14,20 @@ import './pages-styles/util.css'
 
 
 class ContactUs extends Component{
+    // constructor(props){
+    //     super(props)
+    //     this.state = {
+    //         name: '',
+    //         email: '',
+    //         message: '',
+    //         errors: {},
+    //       };
+    // }
     state = {
         name: '',
         email: '',
         message: '',
-        errors: {},
+        // errors: {},
       };
    
     componentDidMount(){
@@ -32,7 +41,7 @@ class ContactUs extends Component{
     // };
 
     render(){
-        const {name, email, message, errors} = this.state;
+        const {name, email, message} = this.state;
        
         return(
             <div className="container">
