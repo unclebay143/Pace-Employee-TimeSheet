@@ -31,8 +31,8 @@ const DashBody = () => {
                                 </div>
                             </div>
                         </section>
-                    </div>
                    <Footer />
+                    </div>
                 </div>
             </div>
         </>

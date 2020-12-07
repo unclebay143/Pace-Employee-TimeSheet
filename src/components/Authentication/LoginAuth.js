@@ -1,5 +1,5 @@
 import { React, Component } from 'react';
-
+import { Redirect } from 'react-router-dom';
 const Database = {
     db_username: "unclebay",
     db_company: "tiidelab.com",
@@ -29,7 +29,9 @@ const auth = (props) =>{
         const isPasswordValid = password === db_password
         // control err from here/consider using bootstrap err handler
 
-        if(!isCompanyValid){
+        if(isCompanyValid && isPasswordValid && isUserExist){
+            console.log("logged in");
+        }else if(!isCompanyValid){
             console.log("in valid company")
             return {isSumitting: false}
         }
