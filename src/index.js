@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'popper.js';
 import './utilities.css';
 // components
-import Home from './components/Index';
+import Home from './components/App';
 import About from './components/pages/About';
 import PageNotFound from './components/pages/404';
 import LoginPage from './components/pages/LoginPage';

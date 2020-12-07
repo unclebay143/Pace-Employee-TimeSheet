@@ -10,9 +10,26 @@ import loginImage from './pages-images/login-img.png';
 import { Link } from 'react-router-dom';
 import {Formik, Form, ErrorMessage} from 'formik';
 import { TextInput } from '../layouts/FormInput';
-import { validationSchema } from '../Validation/validateForms';
+import { loginSchema } from '../Validation/validateForms';
 import PropTypes from 'prop-types';
-import LoginAuth from '../Authentication/LoginAuth';
+import auth from '../Authentication/LoginAuth';
+
+
+
+
+const Database = {
+    db_username: "unclebay",
+    db_company: "tiidelab.com",
+    db_password: "samuel",
+    email: ["unclebay@tiidelab.com", "bay@walk.com"],
+    user_profile: {
+        fullName: "Ayodele Samuel Adebayo",
+        role: "Admin",
+        department: "Web Development",
+        salary: 2300000,
+    }
+}
+
 
 
 class LoginPage extends Component{
@@ -30,24 +47,10 @@ class LoginPage extends Component{
     componentDidMount(){
         document.title = 'Login | Pace'
     }
-
-    Database = {
-        db_username: "unclebay",
-        db_company: "tiidelab.com",
-        db_password: "samuel",
-        user_profile: {
-            fullName: "Ayodele Samuel Adebayo",
-            role: "Admin",
-            department: "Web Development",
-            salary: 2300000,
-        }
-    }
-
-
-
-
+   
+    
+    
     render(){
-        const {isUserAuthenticated} = this.state;
         return(
             <div className="container">
                 <main className="container d-flex justify-content-center align-items-center mt-5">
@@ -68,14 +71,11 @@ class LoginPage extends Component{
                                             email: '',
                                             password: ''
                                         }}
-                                        validationSchema = {validationSchema}
-                                        onSubmit={(values, {setSubmitting})=>{
-                                            console.log(values);
-                                            <LoginAuth email={email} password={password}/>
-                                            setSubmitting(false)
-                                        }}
-                                    >{({touched, errors, isSubmitting}) => (
-                                        <Form>
+                                        validationSchema = {loginSchema}
+                                        onSubmit={(values)=>auth(values)}
+                                        
+                                    >{({touched, errors, isSubmitting, handleSubmit, handleChange}) => (
+                                        <Form onSubmit={handleSubmit}>
                                             <div className="email-wrapper pb-3">
                                                 <TextInput 
                                                     label="Enter your workspace address"
@@ -86,6 +86,7 @@ class LoginPage extends Component{
                                                     }`}
                                                     id="email"
                                                     placeholder="example@company.com"
+                                                    onBlur = {this.handleChange}
                                                 />
                                                 <ErrorMessage
                                                     component="div"
@@ -112,15 +113,13 @@ class LoginPage extends Component{
                                                 />
                                             </div>
                                             <div className="mt-3">
-                                                <Link to="/dashboard">
                                                 <Button 
                                                     type="submit"
                                                     className="btn btn-primary"
                                                     id="loginBtn"
-                                                    disabled={isSubmitting}
-                                                    label={isSubmitting ? "Loading...." : "Login"}
+                                                    // disabled={isSubmitting}
+                                                    label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Loading...</span>) : "Login"}
                                                 />
-                                                </Link>
                                                 <p>Create your workspace register <Link to="/signup">Here</Link></p>
                                             </div>
                                         </Form>
