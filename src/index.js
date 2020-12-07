@@ -13,6 +13,7 @@ import PageNotFound from './components/pages/404';
 import LoginPage from './components/pages/LoginPage';
 import SignupPage from './components/pages/SignupPage';
 import ContactUs from './components/pages/ContactUs';
+// import ContactUsPage from './components/pages/ContactUs';
 import Dashboard from './components/workspace/dashboard/Dashboard';
 
 ReactDOM.render(
@@ -25,6 +26,7 @@ ReactDOM.render(
         <Route exact path="/about" component = {About} />
         <Route exact path="/" component = {Home} />
         <Route exact path="/contact" component = {ContactUs} />
+        {/* <Route exact path="/contact" component = {ContactUsPage} /> */}
         <Route component = {PageNotFound} />
       </Switch>
     </Router>

@@ -19,5 +19,9 @@ export const signUpSchema = Yup.object().shape({
     phoneNumber: Yup.string().matches(phoneRegExp, 'Phone number is not valid') 
 })
 
-
+// ContactUs form input validation
+export const contactUsSchema = Yup.object().shape({
+    name: Yup.string().required('name is Required'),
+    email: Yup.string().email('Invalid email format').required('Email is Required'),
+});
 
