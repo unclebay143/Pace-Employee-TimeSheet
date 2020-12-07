@@ -1,4 +1,3 @@
-import { FastField } from 'formik';
 import { React, Component } from 'react';
 
 const Database = {
