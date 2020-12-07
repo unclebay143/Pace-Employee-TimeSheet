@@ -16,22 +16,6 @@ import auth from '../Authentication/LoginAuth';
 
 
 
-
-const Database = {
-    db_username: "unclebay",
-    db_company: "tiidelab.com",
-    db_password: "samuel",
-    email: ["unclebay@tiidelab.com", "bay@walk.com"],
-    user_profile: {
-        fullName: "Ayodele Samuel Adebayo",
-        role: "Admin",
-        department: "Web Development",
-        salary: 2300000,
-    }
-}
-
-
-
 class LoginPage extends Component{
     constructor(props){
         super(props)
@@ -113,13 +97,16 @@ class LoginPage extends Component{
                                                 />
                                             </div>
                                             <div className="mt-3">
+                                            <Link to="/dashboard">
+
                                                 <Button 
                                                     type="submit"
                                                     className="btn btn-primary"
                                                     id="loginBtn"
-                                                    // disabled={isSubmitting}
+                                                    disabled={isSubmitting}
                                                     label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Loading...</span>) : "Login"}
-                                                />
+                                                    />
+                                            </Link>
                                                 <p>Create your workspace register <Link to="/signup">Here</Link></p>
                                             </div>
                                         </Form>
