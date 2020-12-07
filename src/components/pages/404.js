@@ -7,9 +7,9 @@ import * as Yup from 'yup';
 
 const formSchema = Yup.object().shape({
     surname: Yup.string()
-        .min(2, 'Must')
+        .min(2, 'Must be great than 2')
         .max(50, "Name Long")
-        .required("required"),
+        .required(" is required"),
     secondName: Yup.string()
         .min(0, "greater than 2")
         .max(50, "rocess")
