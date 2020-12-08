@@ -108,6 +108,7 @@ class InviteForm extends Component {
                                             </label>
                                             <select
                                                 name="color"
+
                                                 value={values.department}
                                                 onChange={handleChange}
                                                 onBlur={handleBlur}
