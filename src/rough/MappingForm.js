@@ -1,21 +1,22 @@
-import React from 'react';
-import Select from 'react-select';
+// Profile Component
 
-export default ({ onChange, options, value, className }) => {
+export default function Profile ({ ...props }){
 
-    const defaultValue = (options, value) => {
-        return options ? options.find(option => option.value === value) : "";
-    };
+  const {name, rank, stack} = props
+
+  // display profile
+
 
     return (
-        <div className={className}>
-            <Select
-                value={defaultValue(options, value)}
-                onChange={value => {
-                    onChange(value)
-
-                }} options={options} />
+        <div>
+          
+          <h1>{name}</h1>
+            <h3>{rank}</h3>
+          <pre>{stack}</pre>
+          
         </div>
 
     )
 }
+
+
