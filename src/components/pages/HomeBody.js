@@ -5,7 +5,6 @@ import dashboard from './pages-images/dashboard.png';
 import manageEmployee from './pages-images/manage-employee.png';
 import { Link } from 'react-router-dom';
 import TypeWriter from './pages-js/TypeWriter';
-import { Element } from 'react-scroll';
 
 const IndexArea = () => {
   return(
@@ -66,8 +65,8 @@ const FeaturesCard = props =>{
 const Features = () =>{
   return(
     <React.Fragment>
-    <Element id="pace-features">
-
+      <section id="pace-features">
+      </section>
       <section className="row d-flex flex-column flex-sm-row align-items-center" id="pace-summary">
         <FeaturesCard
           svg = 
@@ -157,7 +156,6 @@ const Features = () =>{
             paragraph="Breaking down task into smaller bits to increase work efficiency."
           />
       </section>
-    </Element>
     </React.Fragment>
   )
 }

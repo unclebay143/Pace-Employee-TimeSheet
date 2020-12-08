@@ -1,10 +1,12 @@
 import { Formik, Form, ErrorMessage } from 'formik';
 import React, { Component } from 'react';
 import Invite from './ManageEmployee';
-import { TextInput } from '../../layouts/FormInput';
+import { TextInput, SelectOption } from '../../layouts/FormInput';
 
 class InviteForm extends Component {
+
     render() {
+        const department = ["computer", "art", "commercial"]
         return (
             <div>
                  <div className="modal fade" id="addEmployeeForm" tabIndex={-1} role="dialog" aria-labelledby="addEmployeeFormLabel" aria-hidden="true">
@@ -18,8 +20,14 @@ class InviteForm extends Component {
                             </div>
                             <div className="modal-body">
 
-                                <Formik >
-                                    {()=>{
+                                <Formik 
+
+                                    initialValues = {{
+                                        department: ""
+                                    }}
+                                
+                                >
+                                    {({values, handleChange, handleBlur})=>{
                                         return <Form>
 
                                             <div className="firstname-wrapper">
@@ -84,15 +92,35 @@ class InviteForm extends Component {
                                                     id="password2"
                                                 />
                                             </div>
+                                            <div className="form-group col-md-6">
+                                    <label htmlFor="department">Department</label>
+                                    <select id="employee_department" className="form-control">
+                                    <option value="blank" selected>Choose...</option>
+                                    <option value="Web development">Web Development</option>
+                                    <option value="Web design">Web Design</option>
+                                    <option value="Product Management">Product Management</option>
+                                    </select>
+                                </div>
 
-                                            <div>
-                                            <TextInput
-                                                    name="secondname"
-                                                    placeholder="Enter Secondname"
-                                                    type="text" 
-                                                    className="form-control" 
-                                                    id="secondName"
-                                                />
+                                            <div className="form-group col-md-6">
+                                            <label htmlFor="department" style={{ display: 'block' }}>
+                                                Department
+                                            </label>
+                                            <select
+                                                name="color"
+                                                value={values.department}
+                                                onChange={handleChange}
+                                                onBlur={handleBlur}
+                                                style={{ display: 'block' }}
+                                            >
+                                                <option value="Select" label="Select a color" />
+                                                {department.map((d)=>{
+                                                    return <option value={d} label={d} />
+
+                                                })}
+                                                {/* <option value="blue" label="blue" />
+                                                <option value="green" label="green" /> */}
+                                            </select>
                                             </div>
                                         </Form>
                                     }}
