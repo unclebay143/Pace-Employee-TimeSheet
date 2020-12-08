@@ -29,18 +29,17 @@ export const CheckbBox = ({ children, ...props }) => {
   );
 };
 
-export const SelectOption = ({label, labelClassName, ...props})=>{
+export const SelectOption = ({children, name, labelClassName, ...props})=>{
   return(
   <>
       <div>
-        <label htmlfor={ props.name || props.name } style={{}} display='block' >color</label>
-          <select name="color" value="{values.color}" onchange="{handleChange}" onblur="{handleBlur}" style={{}} display='block'>
-            <option value label="Select a color"></option>
-            <option value="red" label="red"></option>
-            <option value="blue" label="blue"></option>
-            <option value="green" label="green"></option>
+        <label htmlfor={ props.name || props.id } style={{}} display='block' >color</label>
+          <select name={props.name} value={props.value} display='block'>
+            {children}
           </select>
       </div>
     </>    
       )
 }
+
+

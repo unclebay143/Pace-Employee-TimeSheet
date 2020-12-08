@@ -1,10 +1,11 @@
-import { Formik, Form, ErrorMessage } from 'formik';
+import { Formik, Form, ErrorMessage, Field } from 'formik';
 import React, { Component } from 'react';
 import Invite from './ManageEmployee';
-import { TextInput } from '../../layouts/FormInput';
+import { TextInput, SelectOption } from '../../layouts/FormInput';
 
 class InviteForm extends Component {
     render() {
+        const departments = ["computer", "art", "commercial"]
         return (
             <div>
                  <div className="modal fade" id="addEmployeeForm" tabIndex={-1} role="dialog" aria-labelledby="addEmployeeFormLabel" aria-hidden="true">
@@ -101,6 +102,31 @@ class InviteForm extends Component {
                                                     id="password2"
                                                 />
                                             </div>
+
+                                            <input name="department" placeholder={values.firstname}/>
+                                            <div className="form-group col-md-6">
+                                                <label htmlFor="department">Department</label>
+                                                <select name="department" id="employee_department" className="form-control">
+                                                <option value="blank" selected>Choose...</option>
+                                                <option value="Web development">Web Development</option>
+                                                <option value="Web design">Web Design</option>
+                                                <option value="Product Management">Product Management</option>
+                                                </select>
+                                            </div>
+
+                                            <div>
+
+                                                    {
+                                                        departments.map((department)=>{
+                                                            <i value={department}>{department}</i>
+                                                        })
+                                                    }
+                                                <Field Component="select" name="department">
+                                                    <option selected>Select Department.....</option>
+                                                </Field>
+
+                                            </div>
+
 
                                             {/* <div>
                                             <TextInput

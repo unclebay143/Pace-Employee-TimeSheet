@@ -13,10 +13,11 @@ import PageNotFound from './components/pages/404';
 import LoginPage from './components/pages/LoginPage';
 import SignupPage from './components/pages/SignupPage';
 import ContactUs from './components/pages/ContactUs';
+// import ContactUsPage from './components/pages/ContactUs';
 import Dashboard from './components/workspace/dashboard/Dashboard';
 import store from "./Store";
 import { Provider } from 'react-redux';
-
+import Test from './rough/Test'
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
@@ -26,6 +27,7 @@ ReactDOM.render(
           <Route exact path="/login" component = {LoginPage} />
           <Route exact path="/signup" component = {SignupPage} />
           <Route exact path="/about" component = {About} />
+          <Route exact path="/test" component = {Test} />
           <Route exact path="/" component = {Home} />
           <Route exact path="/contact" component = {ContactUs} />
           <Route component = {PageNotFound} />

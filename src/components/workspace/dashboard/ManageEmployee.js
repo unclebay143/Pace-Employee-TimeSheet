@@ -3,6 +3,7 @@ import Footer from '../layouts/Footer';
 import EmployeeList from './EmployeeList';
 
 import InviteForm from './InviteForm';
+
 class Invite extends Component{
     render(){
         return(
