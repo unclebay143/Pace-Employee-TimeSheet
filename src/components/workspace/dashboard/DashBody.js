@@ -39,8 +39,8 @@ const DashBody = () => {
                         {/* tasks component */}
                         {/* <AssignedTasks /> */}
                         {/* <AcceptedTasks /> */}
-                    </div>
                    <Footer />
+                    </div>
                 </div>
             </div>
         </>

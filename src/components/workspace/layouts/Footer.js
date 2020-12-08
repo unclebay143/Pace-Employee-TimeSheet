@@ -1,7 +1,6 @@
 const Footer = () => {
     return(
         <>
-
             <footer className="footer bg-white shadow align-self-end py-3 px-xl-5 w-100">
                 <div className="container-fluid">
                     <div className="row">
@@ -13,7 +12,6 @@ const Footer = () => {
                     </div>
                 </div>
             </footer>
-
         </>
     )
 }
