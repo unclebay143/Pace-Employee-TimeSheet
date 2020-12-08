@@ -18,10 +18,27 @@ class InviteForm extends Component {
                             </div>
                             <div className="modal-body">
 
-                                <Formik >
-                                    {()=>{
+                                <Formik 
+                                
+                                
+                                    initialValues = {{
+                                        firstname: "",
+                                        secondName: "",
+                                        email: "",
+                                        phone:"",
+                                        role: "",
+                                        department: "",
+                                        type: "",
+                                        salary: "",
+                                        password: "",
+                                        password2: ""
+                                    }}
+                                
+                                >
+                                    {(values)=>{
                                         return <Form>
 
+                                        <pre>{JSON.stringify(values.values, null, 2)}</pre>
                                             <div className="firstname-wrapper">
 
                                                 <TextInput 
@@ -85,7 +102,7 @@ class InviteForm extends Component {
                                                 />
                                             </div>
 
-                                            <div>
+                                            {/* <div>
                                             <TextInput
                                                     name="secondname"
                                                     placeholder="Enter Secondname"
@@ -93,7 +110,7 @@ class InviteForm extends Component {
                                                     className="form-control" 
                                                     id="secondName"
                                                 />
-                                            </div>
+                                            </div> */}
                                         </Form>
                                     }}
                                 </Formik>
