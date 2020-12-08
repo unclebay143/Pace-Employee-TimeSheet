@@ -4,6 +4,12 @@ import {Link} from "react-router-dom";
 import Button from './Button';
 import $ from 'jquery';
 
+import Scroll from 'react-scroll';
+
+
+const ScrollLink = Scroll.ScrollLink;
+
+
 function Navbar() {
   return (
     <React.Fragment>
@@ -21,15 +27,22 @@ function Navbar() {
           aria-controls="this_nav" 
           aria-expanded="false" 
           aria-label="Toggle navigation"
-          aria-expanded="false"
-          aria-label="Toggle navigation" 
           label={ <span className="navbar-toggler-icon"/> }
         />
 
         <div className="collapse navbar-collapse" id="this_nav">
           <div className="navbar-nav">
             <Link to="/" className="nav-link active">Home</Link>
-            <Link to="/#pace-features" className="nav-link">Features</Link>
+            <ScrollLink 
+              to="pace-features"         
+              spy={true} 
+              smooth={true} 
+              duration={500} 
+              activeClass='active'
+              className="nav-link"
+            >Features
+            </ScrollLink>
+            <Link to="/about/#pacepricing" className="nav-link">Pricing</Link>
             <Link to="/about/#pacepricing" className="nav-link">Pricing</Link>
             <Link to='/about' className="nav-link">About</Link>
             <Link to="/contact" className="nav-link">Contact</Link>
