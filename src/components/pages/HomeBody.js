@@ -237,12 +237,11 @@ const ShowDashboard = () => {
 function HomeBody() {
   return (
     <React.Fragment>
-    <header className="container">
-      <IndexArea />
-      <Features />
-      <ShowDashboard />
-    </header>
-
+      <header className="container">
+        <IndexArea />
+        <Features />
+        <ShowDashboard />
+      </header>
     </React.Fragment>
   )
 }

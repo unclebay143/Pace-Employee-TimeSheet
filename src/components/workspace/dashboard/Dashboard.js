@@ -2,6 +2,8 @@ import { React, Component } from 'react';
 import Navbar from '../layouts/Navbar';
 import Sidebar from '../layouts/Sidebar'
 import DashBody from './DashBody';
+import Invite from './ManageEmployee';
+import Footer from '../layouts/Footer';
 import './dashboard-styles/style.default.css';
 import './dashboard-styles/utilities.css';
 import './dashboard-styles/custom.css';
@@ -20,7 +22,12 @@ class Dashboard extends Component{
                     <Navbar  />
                     <div className="d-flex align-items-stretch">
                         <Sidebar />
-                        <DashBody />
+                            <div className="page-holder w-100 d-flex flex-wrap">
+
+                                {/* <DashBody /> */}
+                                <Invite />
+                            {/* <Footer /> */}
+                            </div>
                     </div>
                 </div>
 

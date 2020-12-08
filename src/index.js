@@ -14,53 +14,24 @@ import LoginPage from './components/pages/LoginPage';
 import SignupPage from './components/pages/SignupPage';
 import ContactUs from './components/pages/ContactUs';
 import Dashboard from './components/workspace/dashboard/Dashboard';
-
-import { createStore } from 'redux'
-
-
-//Action
-const increment = () => {
-  return {
-    type: "INCREMENT"
-  }
-}
-
-// reducer
-
-const counter = (state=2, action) => {
-  switch(action.type){
-    case "INCREMENT":
-      return state + 1;
-      
-    default: 
-      return state;
-    }
-  }
-  // store
-  
-  const store = createStore(counter)
-
-  
-  // print to console
-  store.subscribe(()=>console.log(store.getState()))
-  
-  // dispatch
-  store.dispatch(increment())
-
+import store from "./Store";
+import { Provider } from 'react-redux';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
-      <Switch>
-        <Route exact path="/dashboard" component = {Dashboard} />
-        <Route exact path="/login" component = {LoginPage} />
-        <Route exact path="/signup" component = {SignupPage} />
-        <Route exact path="/about" component = {About} />
-        <Route exact path="/" component = {Home} />
-        <Route exact path="/contact" component = {ContactUs} />
-        <Route component = {PageNotFound} />
-      </Switch>
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <Switch>
+          <Route exact path="/dashboard" component = {Dashboard} />
+          <Route exact path="/login" component = {LoginPage} />
+          <Route exact path="/signup" component = {SignupPage} />
+          <Route exact path="/about" component = {About} />
+          <Route exact path="/" component = {Home} />
+          <Route exact path="/contact" component = {ContactUs} />
+          <Route component = {PageNotFound} />
+        </Switch>
+      </Router>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
