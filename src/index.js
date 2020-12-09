@@ -32,15 +32,11 @@ import About from './components/pages/About';
 import ContactUs from './components/pages/ContactUs';
 import LoginPage from './components/pages/LoginPage';
 import SignupPage from './components/pages/SignupPage';
-<<<<<<< HEAD
-import ContactUs from './components/pages/ContactUs';
-=======
 import PageNotFound from './components/pages/404';
 import ForgotPassword from './components/pages/ForgotPassword';
 import Confirmation from './components/pages/Confirmation';
 import ResetPassword from './components/pages/ResetPassword';
 
->>>>>>> 7f08e61ceef66f4644609321f34bec668aa4ab44
 import Dashboard from './components/workspace/dashboard/Dashboard';
 
 

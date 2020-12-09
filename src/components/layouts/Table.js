@@ -1,16 +1,7 @@
 import React, { Component } from 'react';
 
 
-<<<<<<< HEAD
-// styles
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '../pages/pages-styles/util.css';
-
-
-export const TableHeader = (props) => {
-=======
 const TableHeader = (props) => {
->>>>>>> 7f08e61ceef66f4644609321f34bec668aa4ab44
  return(
    <thead className = "pace-bg-primary">
      <tr>
@@ -33,12 +24,16 @@ export const TableData = ({children, label}) => {
 }
 
 export const TableBody = (props) => {
-  const {label, tableData} = this.props;
-  const rows = tableData.map((row, index) => {
+  // const {label, tableData} = this.props;
+  const rows = props.tableData.map((row, index) => {
     return (
       <tr Key = {index}>
-        {/* <td> {row.index} </td> */}
-        <TableData label = {label}/>
+        <td> {row.index} </td>
+        <td> {row.task} </td>
+         <td> {row.dueDate} </td>
+        <td> {row.status} </td>
+         <td> {row.requests} </td>
+        {/* <TableData label = {label}/> */}
         
       </tr>
     )

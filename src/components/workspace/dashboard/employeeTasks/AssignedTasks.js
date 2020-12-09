@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Table from '../../../layouts/Table';
+import {Table} from '../../../layouts/Table';
 
 
 class AssignedTasks extends Component {
