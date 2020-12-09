@@ -1,8 +1,9 @@
 import { React, Component } from 'react';
 import Footer from '../layouts/Footer';
 import EmployeeList from './EmployeeList';
+import Button from '../../layouts/Button'
+import InviteForm from './AddEmployee';
 
-import InviteForm from './InviteForm';
 class Invite extends Component{
     render(){
         return(
@@ -16,18 +17,24 @@ class Invite extends Component{
                             <button type="button" className="btn pace-bg-primary d-block" data-toggle="modal" data-target="#addEmployeeForm">
                                 Add Employee
                             </button>
-                            <span className="lead m-2">or</span>
+                            {/* <span className="lead m-2">or</span>
                             <button type="button" className="btn bg-green d-block ml-2" data-toggle="modal" data-target="#addEmployeeForm">
                                 Invite Employee
-                            </button>
+                            </button> */}
                             </div>
                             <div className="col">
                             <form className="form-inline d-flex search-form md-form form-sm mt-0">
                                 <input className="form-control search-input form-control-sm w-75" type="text" placeholder="Search" aria-label="Search" id="searchParam" />
-                                <button className="btn pace-bg-primary ml-3" id="searchEmployeeBtn">
+                                {/* <button className="btn pace-bg-primary ml-3" id="searchEmployeeBtn">
                                 <i className="fas fa-search" aria-hidden="true" />
                                 Search
-                                </button>
+                                </button> */}
+                                <Button 
+                                    className="btn pace-bg-primary ml-3" 
+                                    id="searchEmployeeBtn"
+                                    icon="fas fa-search"
+                                    label="Search"
+                                />
                             </form>
                             {/* <input type="text"class="form-control"> */}
                             </div>

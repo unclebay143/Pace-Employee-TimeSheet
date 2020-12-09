@@ -5,7 +5,7 @@ import React from 'react';
 import { useField } from 'formik';
 
 export const TextInput = ({ label, labelClassName, ...props }) => {
-  const [field, meta] = useField(props);
+  const [field] = useField(props);
   return (
     <>
       <label htmlFor={props.id || props.name} className={labelClassName}>{label}</label>
@@ -15,32 +15,29 @@ export const TextInput = ({ label, labelClassName, ...props }) => {
 };
 
 export const CheckbBox = ({ children, ...props }) => {
-  const [field, meta] = useField({ ...props, type: 'checkbox' });
+  const [field] = useField({ ...props});
   return (
     <div>
       <label className="checkbox">
         <input type="checkbox" {...field} {...props} />
+        <label className={` form-check-label ${props.titleClassName}`} for={props.id}>{props.title}</label>
         {children}
       </label>
-      {meta.touched && meta.error ? (
-        <div className="error">{meta.error}</div>
-      ) : null}
     </div>
   );
 };
 
-export const SelectOption = ({label, labelClassName, ...props})=>{
+export const SelectOption = ({children, name, labelClassName, ...props})=>{
   return(
   <>
       <div>
-        <label htmlfor={ props.name || props.name } style={{}} display='block' >color</label>
-          <select name="color" value="{values.color}" onchange="{handleChange}" onblur="{handleBlur}" style={{}} display='block'>
-            <option value label="Select a color"></option>
-            <option value="red" label="red"></option>
-            <option value="blue" label="blue"></option>
-            <option value="green" label="green"></option>
+        <label htmlfor={ props.name || props.id } style={{}} display='block' >color</label>
+          <select name={props.name} value={props.value} display='block'>
+            {children}
           </select>
       </div>
     </>    
       )
 }
+
+

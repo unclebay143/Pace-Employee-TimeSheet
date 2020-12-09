@@ -8,6 +8,7 @@ const Button = props => {
         className={className}
         {...props}
       >
+        <i className={props.icon}></i> 
         {label}
       </button>  
     )

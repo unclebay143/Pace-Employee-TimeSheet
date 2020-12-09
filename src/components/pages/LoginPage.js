@@ -97,7 +97,7 @@ class LoginPage extends Component{
                                                 />
                                             </div>
                                             <div className="mt-3">
-                                            <Link to="/dashboard">
+                                            {/* <Link to="/dashboard"> */}
 
                                                 <Button 
                                                     type="submit"
@@ -106,8 +106,9 @@ class LoginPage extends Component{
                                                     disabled={isSubmitting}
                                                     label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Loading...</span>) : "Login"}
                                                     />
-                                            </Link>
+                                            {/* </Link> */}
                                                 <p>Create your workspace register <Link to="/signup">Here</Link></p>
+                                                <span><Link to="/forgot">Forgot Passwords</Link></span>
                                             </div>
                                         </Form>
                                     )}
