@@ -13,7 +13,6 @@ import PageNotFound from './components/pages/404';
 import LoginPage from './components/pages/LoginPage';
 import SignupPage from './components/pages/SignupPage';
 import ContactUs from './components/pages/ContactUs';
-// import ContactUsPage from './components/pages/ContactUs';
 import Dashboard from './components/workspace/dashboard/Dashboard';
 import store from "./Store";
 import { Provider } from 'react-redux';
