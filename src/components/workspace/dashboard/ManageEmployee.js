@@ -2,7 +2,8 @@ import { React, Component } from 'react';
 import Footer from '../layouts/Footer';
 import EmployeeList from './EmployeeList';
 
-import InviteForm from './InviteForm';
+import InviteForm from './AddEmployee';
+
 class Invite extends Component{
     render(){
         return(
