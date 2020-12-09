@@ -2,33 +2,73 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {HashRouter as Router, Route, Switch } from "react-router-dom";
-//styles
+
+//  >>>>>>>> APPLICATION STYLES  <<<<<<<<<<
+
+// utilities
+import './components/pages/pages-styles/util.css';
+import './components/pages/pages-styles/form.css';
+//
+import './components/layouts/Layout-Styles/navbar.css'
+import './components/pages/pages-styles/forgotpassword.css'
+import './components/pages/pages-styles/confirmation.css'
+
+// bootsrap
+import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'popper.js';
-import './utilities.css';
+import 'bootstrap/dist/js/bootstrap.bundle.js'
+
+
+// dashboard
+import './components/workspace/dashboard/dashboard-styles/style.default.css'
+import './components/workspace/dashboard/dashboard-styles/utilities.css'
+import './components/workspace/dashboard/dashboard-styles/custom.css'
+import './components/workspace/dashboard/dashboard-styles/orionicons.css'
+
+
 // components
 import Home from './components/App';
 import About from './components/pages/About';
-import PageNotFound from './components/pages/404';
+import ContactUs from './components/pages/ContactUs';
 import LoginPage from './components/pages/LoginPage';
 import SignupPage from './components/pages/SignupPage';
+<<<<<<< HEAD
 import ContactUs from './components/pages/ContactUs';
+=======
+import PageNotFound from './components/pages/404';
+import ForgotPassword from './components/pages/ForgotPassword';
+import Confirmation from './components/pages/Confirmation';
+import ResetPassword from './components/pages/ResetPassword';
+
+>>>>>>> 7f08e61ceef66f4644609321f34bec668aa4ab44
 import Dashboard from './components/workspace/dashboard/Dashboard';
+
+
+// Redux 
+
 import store from "./Store";
 import { Provider } from 'react-redux';
+
+// test DEVcomponent
 import Test from './rough/Test'
+
+
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <Router>
         <Switch>
           <Route exact path="/dashboard" component = {Dashboard} />
+          <Route exact path="/forgot" component = {ForgotPassword} />
+          <Route exact path="/confirmation" component = {Confirmation} />
+          <Route exact path="/ResetPassword" component = {ResetPassword} />
           <Route exact path="/login" component = {LoginPage} />
           <Route exact path="/signup" component = {SignupPage} />
+          <Route exact path="/contact" component = {ContactUs} />
           <Route exact path="/about" component = {About} />
           <Route exact path="/test" component = {Test} />
           <Route exact path="/" component = {Home} />
-          <Route exact path="/contact" component = {ContactUs} />
           <Route component = {PageNotFound} />
         </Switch>
       </Router>

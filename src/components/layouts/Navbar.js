@@ -1,8 +1,6 @@
 import React from 'react';
-import './Layout-Styles/navbar.css';
 import {Link} from "react-router-dom";
 import Button from './Button';
-import $ from 'jquery';
 import {HashLink as ScrollLink} from 'react-router-hash-link';
 
 

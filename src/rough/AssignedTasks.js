@@ -1,12 +1,5 @@
 import React, { Component } from 'react';
 
-// styles
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '../../../pages/pages-styles/util.css'
-import '../dashboard-styles/style.default.css';
-import '../dashboard-styles/utilities.css';
-import '../dashboard-styles/custom.css';
-import '../dashboard-styles/orionicons.css';
 
 
 class AssignedTasks extends Component {

@@ -3,11 +3,6 @@
 import React, { Component } from 'react';
 import Button from '../layouts/Button';
 
-// styles
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './pages-styles/form.css';
-import './pages-styles/util.css';
-
 // layouts , formik
 import { Link } from 'react-router-dom';
 import {Formik, Form, ErrorMessage} from 'formik';

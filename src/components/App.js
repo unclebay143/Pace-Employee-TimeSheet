@@ -4,8 +4,8 @@ import React, {useEffect} from 'react';
 import Navbar from './layouts/Navbar';
 import HomeBody from './pages/HomeBody';
 import Footer from './layouts/Footer';
-import { Route } from 'react-router-dom';
-import AOS from 'aos'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 
 function Home() {
