@@ -15,7 +15,7 @@ export const TextInput = ({ label, labelClassName, ...props }) => {
 };
 
 export const CheckbBox = ({ children, ...props }) => {
-  const [field, meta] = useField({ ...props, type: 'checkbox' });
+  const [field, meta] = useField({ ...props});
   return (
     <div>
       <label className="checkbox">
@@ -41,3 +41,5 @@ export const SelectOption = ({children, name, labelClassName, ...props})=>{
     </>    
       )
 }
+
+
