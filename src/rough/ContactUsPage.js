@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import Button from '../layouts/Button';
 
 // styles
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import './pages-styles/form.css';
 import './pages-styles/util.css';
 

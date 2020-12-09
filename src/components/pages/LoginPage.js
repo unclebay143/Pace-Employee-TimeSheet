@@ -1,16 +1,13 @@
 // react
 import {React, Component} from 'react';
 import Button from '../layouts/Button';
-// styles
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './pages-styles/form.css';
-import './pages-styles/util.css';
+
 // layouts , formik
 import loginImage from './pages-images/login-img.png';
 import { Link } from 'react-router-dom';
 import {Formik, Form, ErrorMessage} from 'formik';
 import { TextInput } from '../layouts/FormInput';
-import { loginSchema } from '../Validation/validateForms';
+import { loginSchema } from '../Validation/Schema';
 import PropTypes from 'prop-types';
 import auth from '../Authentication/LoginAuth';
 
@@ -111,11 +108,13 @@ class LoginPage extends Component{
                                                 <span><Link to="/forgot">Forgot Passwords</Link></span>
                                             </div>
                                         </Form>
+                                        
                                     )}
                                 </Formik>
                             </div>
                         </div>
                     </div>
+                    
                     <div className="img-con col-lg-7 d-none d-lg-block">
                         <div className="login-intro-img mt-3">
                         <img src={loginImage} alt="office timing" className="img-fluid" />

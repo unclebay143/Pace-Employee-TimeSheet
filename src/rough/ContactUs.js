@@ -8,12 +8,6 @@ import Button from '../layouts/Button';
 import FormInput from '../../rough/FormInput';
 
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './pages-styles/form.css';
-import './pages-styles/util.css'
-
-
-
 class ContactUs extends Component{
     // constructor(props){
     //     super(props)

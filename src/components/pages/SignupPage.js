@@ -1,15 +1,12 @@
 // react 
 import {React, Component} from 'react';
 import { Link } from 'react-router-dom'
-// styles
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './pages-styles/form.css';
-import './pages-styles/util.css';
+
 // layouts
 import Button from '../layouts/Button';
 import loginImage from './pages-images/login-img.png';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { signUpSchema } from '../Validation/validateForms'
+import { signUpSchema } from '../Validation/Schema'
 import { TextInput, CheckbBox } from '../layouts/FormInput';
 // import PropTypes from 'prop-types';
 
