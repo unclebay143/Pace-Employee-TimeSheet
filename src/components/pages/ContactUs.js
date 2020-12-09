@@ -7,7 +7,7 @@ import Button from '../layouts/Button';
 import { Link } from 'react-router-dom';
 import {Formik, Form, ErrorMessage} from 'formik';
 import { TextInput, TextArea } from '../layouts/FormInput';
-import { contactUsSchema } from '../Validation/validateForms';
+import { contactUsSchema } from '../Validation/Schema';
 import PropTypes from 'prop-types';
 // import LoginAuth from '../Authentication/LoginAuth';
 
