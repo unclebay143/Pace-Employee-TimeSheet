@@ -3,6 +3,9 @@ import Navbar from '../layouts/Navbar';
 import Sidebar from '../layouts/Sidebar'
 import DashBody from './DashBody';
 import Invite from './ManageEmployee';
+
+import AcceptedTasks from './employeeTasks/AcceptedTasks';
+
 import Footer from '../layouts/Footer';
 import './dashboard-styles/style.default.css';
 import './dashboard-styles/utilities.css';
@@ -26,6 +29,7 @@ class Dashboard extends Component{
 
                                 {/* <DashBody /> */}
                                 <Invite />
+                                {/* <AcceptedTasks /> */}
                             {/* <Footer /> */}
                             </div>
                     </div>

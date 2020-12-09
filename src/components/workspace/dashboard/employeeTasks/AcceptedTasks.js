@@ -43,7 +43,10 @@ class AcceptedTasks extends Component {
                 <div className="card-header">
                   <h6 className="text-uppercase mb-0 pace-accent-color">Accepted Tasks</h6>
                 </div>
-                <Table taskData = {acceptedTasks} />             
+                <div className="card-body">
+                  <Table className="table card-text" taskData = {acceptedTasks} />    
+                </div>
+                        
               </div>
             </div>
           </div>

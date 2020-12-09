@@ -38,12 +38,13 @@ class Table extends Component {
   render() {
     const { taskData } = this.props;
     return (
-      <div className="card-body">
-        <table className="table card-text">
+      // <div className="card-body">
+        // <table className="table card-text">
+        <table >
           <TableHeader />
           <TableBody taskData = {taskData} />
         </table>
-      </div>
+      // </div>
     )
   }
 }
