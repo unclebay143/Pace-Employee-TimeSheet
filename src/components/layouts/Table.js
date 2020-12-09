@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 
 
-// styles
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '../pages/pages-styles/util.css';
-
 const TableHeader = (props) => {
  return(
    <thead className = "pace-bg-primary">

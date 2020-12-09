@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Invite from './ManageEmployee';
 import { TextInput } from '../../layouts/FormInput';
 import Button from '../../layouts/Button';
-import { AddEmployeeSchema } from '../../Validation/validateForms';
+import { AddEmployeeSchema } from '../../Validation/Schema';
 
 class InviteForm extends Component {
     render() {

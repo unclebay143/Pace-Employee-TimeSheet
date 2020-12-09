@@ -4,7 +4,7 @@ import './Layout-Styles/footer.css'
 const Footer = () => {
   return (
     <React.Fragment>
-      <footer className="page-footer font-small unique-color-dark">
+      <footer className=" container-fluid page-footer font-small unique-color-dark">
           <div style={{backgroundColor: 'rgb(51,94,234)'}}>
             <div className="container">
               <div className="row py-4 d-flex flex-column flex-md-row align-items-center">

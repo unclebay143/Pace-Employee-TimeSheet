@@ -1,16 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-// import FormInput from '../layouts/FormInput';
 import Textarea from '../layouts/Textarea'
-import landingPageImg from './pages-images/landingPage.svg';
 import Button from '../layouts/Button';
 import FormInput from '../../rough/FormInput';
 
-
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './pages-styles/form.css';
-import './pages-styles/util.css'
 
 
 

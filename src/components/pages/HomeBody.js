@@ -9,7 +9,7 @@ import TypeWriter from './pages-js/TypeWriter';
 const IndexArea = () => {
   return(
     <React.Fragment>
-      <section className="row d-flex flex-column-reverse home-intro" onLoad={TypeWriter}>
+      <section className="row d-flex flex-column-reverse home-intro flex-lg-row" onLoad={TypeWriter}>
         <div className="col d-flex flex-row">
           <section className="home-intro-text">
             {/* type-writing effect */}
@@ -35,6 +35,7 @@ const IndexArea = () => {
                 type="submit" 
                 className="btn to-btn" 
                 id="learn-btn"
+                to="/about"
                 >
                   Learn More
               </Link>

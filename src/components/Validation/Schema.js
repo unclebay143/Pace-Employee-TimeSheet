@@ -7,6 +7,16 @@ import * as Yup from 'yup';
 // regex for email
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
+// Forgot Password
+export const forgotPasswordSchema = Yup.object().shape({
+    email: Yup.string().email("Invalide email format").required('Email is required')
+})
+
+// Reset Password
+export const resetPasswordSchema = Yup.object().shape({
+    password: Yup.string().min(5, "Password must be more than 7").required("Password is required"),
+    confirmPassword: Yup.string().required("Please confirm password").oneOf([Yup.ref('password')], 'Password Mismatch')
+})
 
 // Login Schema
 export const loginSchema = Yup.object().shape({
