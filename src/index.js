@@ -37,7 +37,6 @@ import PageNotFound from './components/pages/404';
 import ForgotPassword from './components/pages/ForgotPassword';
 import Confirmation from './components/pages/Confirmation';
 import ResetPassword from './components/pages/ResetPassword';
-
 import Dashboard from './components/workspace/dashboard/Dashboard';
 
 
