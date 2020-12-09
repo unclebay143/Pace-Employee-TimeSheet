@@ -5,7 +5,7 @@ import React from 'react';
 import { useField } from 'formik';
 
 export const TextInput = ({ label, labelClassName, ...props }) => {
-  const [field, meta] = useField(props);
+  const [field] = useField(props);
   return (
     <>
       <label htmlFor={props.id || props.name} className={labelClassName}>{label}</label>
@@ -15,16 +15,14 @@ export const TextInput = ({ label, labelClassName, ...props }) => {
 };
 
 export const CheckbBox = ({ children, ...props }) => {
-  const [field, meta] = useField({ ...props});
+  const [field] = useField({ ...props});
   return (
     <div>
       <label className="checkbox">
         <input type="checkbox" {...field} {...props} />
+        <label className={` form-check-label ${props.titleClassName}`} for={props.id}>{props.title}</label>
         {children}
       </label>
-      {meta.touched && meta.error ? (
-        <div className="error">{meta.error}</div>
-      ) : null}
     </div>
   );
 };

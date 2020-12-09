@@ -10,7 +10,7 @@ import Button from '../layouts/Button';
 import loginImage from './pages-images/login-img.png';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { signUpSchema } from '../Validation/validateForms'
-import { TextInput } from '../layouts/FormInput';
+import { TextInput, CheckbBox } from '../layouts/FormInput';
 // import PropTypes from 'prop-types';
 
 class SignupPage extends Component{
@@ -49,7 +49,8 @@ class SignupPage extends Component{
                                     workSpaceEmail : '',
                                     workSpacePhone : '',
                                     password: '',
-                                    confirmPassword: ''
+                                    confirmPassword: '',
+                                    termsOfService: false
                                 }}
                                 validationSchema = {signUpSchema}
                                 onSubmit={(values)=>alert("done!!!", values)}
@@ -97,7 +98,9 @@ class SignupPage extends Component{
                                                         className="invalid-feedback p-0"
                                                     />
                                                 </div>
-                                                <div className="password-wrapper">
+                                            <div className="d-flex">
+
+                                                <div className="form-group password-wrapper mr-2">
                                                     <TextInput 
                                                         name="password"
                                                         id="password"
@@ -115,7 +118,7 @@ class SignupPage extends Component{
                                                         className="invalid-feedback p-0"
                                                     />
                                                 </div>
-                                                <div className="confirmPassword-wrapper">
+                                                <div className="form-group confirmPassword-wrapper">
                                                     <TextInput 
                                                         name="confirmPassword"
                                                         id="confirmPassword"
@@ -133,18 +136,34 @@ class SignupPage extends Component{
                                                         className="invalid-feedback p-0"
                                                     />
                                                 </div>
+                                            </div>
+                                            <div className="form-check">
+                                                <CheckbBox 
+                                                    name="termsOfService"
+                                                    id="termsOfService"
+                                                    title="Accept Terms and condition"
+                                                    titleClassName="text-blue"
+                                                    className={`form-check-input ${touched.termsOfService && errors.termsOfService ? "is-invalid" : ""}`}
+                                                />
+                                                 <ErrorMessage
+                                                        name="termsOfService"
+                                                        component="div"
+                                                        className="invalid-feedback p-0"
+                                                />
+                                            </div>
                                                 <Button 
                                                     type="submit"
                                                     className="btn btn-primary mt-3"
                                                     id="signUp"
                                                     label="Signup"
+                                                    disabled={!values.termsOfService}
                                                 />
                                                 <p>Already have an account? <Link to="./login">Login</Link></p>
                                             </div>
+                                            <pre>{JSON.stringify(values, null, 2)}</pre>
                                         </Form>
                                     )
                                 }
-
                             </Formik>
                         </div>
                         <div className="img-con col-lg-7">
