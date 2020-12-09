@@ -2,7 +2,7 @@
 import React from 'react';
 
 // layout, formik
-import { useField } from 'formik';
+import { useField, Field } from 'formik';
 
 export const TextInput = ({ label, labelClassName, ...props }) => {
   const [field] = useField(props);
@@ -39,5 +39,21 @@ export const SelectOption = ({children, name, labelClassName, ...props})=>{
     </>    
       )
 }
+
+ // Textarea component
+export const TextArea = ({ label, labelClassName, ...props }) => {
+  const [field] = useField(props);
+  return (
+    <>
+      <label htmlFor={props.id} className={labelClassName}>{label}</label>
+      <textarea 
+          className="text-input" 
+          {...field} 
+          {...props}
+        />
+    </>
+  );
+};
+
 
 

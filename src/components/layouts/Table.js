@@ -1,7 +1,16 @@
 import React, { Component } from 'react';
 
 
+<<<<<<< HEAD
+// styles
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../pages/pages-styles/util.css';
+
+
+export const TableHeader = (props) => {
+=======
 const TableHeader = (props) => {
+>>>>>>> 7f08e61ceef66f4644609321f34bec668aa4ab44
  return(
    <thead className = "pace-bg-primary">
      <tr>
@@ -14,34 +23,61 @@ const TableHeader = (props) => {
    </thead>
  )
 }
+export const TableData = ({children, label}) => {
+  return(
+    <div>
+      <td> {label } </td>
+      {children}
+    </div>
+  )
+}
 
-const TableBody = (props) => {
-  const rows = props.taskData.map((row, index) => {
+export const TableBody = (props) => {
+  const {label, tableData} = this.props;
+  const rows = tableData.map((row, index) => {
     return (
       <tr Key = {index}>
-        <td> {row.index} </td>
-        <td> {row.task} </td>
-        <td> {row.dueDate} </td>
-        <td> {row.status} </td>
-        <td> {row.requests} </td>
+        {/* <td> {row.index} </td> */}
+        <TableData label = {label}/>
+        
       </tr>
     )
   })
   return <tbody> {rows} </tbody>
 }
 
-class Table extends Component {
+export class Table extends Component {
   render() {
-    const { taskData } = this.props;
+    const { tableData } = this.props;
     return (
-      <div className="card-body">
-        <table className="table card-text">
+      <div >
+      {/* <div className="card-body"> */}
+        {/* <table className="table card-text"> */}
+          <table >
           <TableHeader />
-          <TableBody taskData = {taskData} />
+          <TableBody tableData = {tableData} />
         </table>
       </div>
     )
   }
 }
 
-export default Table;
+// export default Table;
+
+
+// const TableBody = ({children, , label}) => {
+//   const rows = tableData.map((row, index) => {
+//     return (
+//       <tr Key = {index}>
+//         {/* <td> {row.index} </td> */}
+//         <TableData label = {label}/>
+//         {/* <td> {row.task} </td>
+//         <td> {row.dueDate} </td>
+//         <td> {row.status} </td>
+//         <td> {row.requests} </td> */}
+//         {children}
+//       </tr>
+//     )
+//   })
+//   return <tbody> {rows} </tbody>
+// }
