@@ -108,6 +108,7 @@ class LoginPage extends Component{
                                                     />
                                             {/* </Link> */}
                                                 <p>Create your workspace register <Link to="/signup">Here</Link></p>
+                                                <span><Link to="/forgot">Forgot Passwords</Link></span>
                                             </div>
                                         </Form>
                                     )}
