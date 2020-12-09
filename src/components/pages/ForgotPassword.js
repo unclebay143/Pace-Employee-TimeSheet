@@ -15,7 +15,7 @@ export default function ForgotPassword() {
         }
     }, [])
     return (
-        <React.Fragment>
+        <>
 
             <div className="container d-flex justify-content-center pl-5 align-items-center mt-5">
                 <div className="row mt-5 d-flex justify-content-center">
@@ -76,6 +76,6 @@ export default function ForgotPassword() {
                     <img src={forgotIllustration} alt="human forgot password" className="img-fluid mt-4" />
                 </div>
             </div>
-        </React.Fragment>
+        </>
     )
 }

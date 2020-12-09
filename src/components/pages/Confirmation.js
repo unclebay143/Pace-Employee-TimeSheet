@@ -13,7 +13,7 @@ export default function Confirmation() {
         }
     }, [])
     return (
-        <React.Fragment>
+        <>
             <div className="container d-flex justify-content-center mt-5">
                 <div className="row confirmation-wrapper">
                     <div className="col-12 text-center">
@@ -27,6 +27,6 @@ export default function Confirmation() {
                     </div>
                 </div>
             </div>
-        </React.Fragment>
+        </>
     )
 }
