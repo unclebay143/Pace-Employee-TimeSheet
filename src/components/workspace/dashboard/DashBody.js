@@ -17,11 +17,12 @@ const DashBody = () => {
             <div className="d-flex align-items-stretch">
                 <div className="page-holder w-100 d-flex flex-wrap">
                     <div className="container-fluid px-xl-5">
-                        <Cards />
                         {/* employee card component */}
                         {/* <EmpCards /> */}
                         <section>
                             <div className="row mb-4">
+                                <Cards />
+                                
                                 <MostActiveEmployee />
                                 <div className="col-lg-5 mb-4 mb-lg-0 pl-lg-0">
                                     <NotificationCards />
@@ -39,7 +40,18 @@ const DashBody = () => {
                         {/* tasks component */}
                         {/* <AssignedTasks /> */}
                         {/* <AcceptedTasks /> */}
-                   <Footer />
+                        <footer className="footer bg-white shadow align-self-end py-3 px-xl-5 w-100">
+                <div className="container-fluid">
+                    <div className="row">
+                        <div className="col-md-6 text-center text-md-left text-primary">
+                            <p className="mb-2 mb-md-0 pace-accent-color">Pace Timesheet &copy; 2018-2020</p>
+                        </div>
+                        <div className="col-md-6 text-center text-md-right text-gray-400">
+                        </div>
+                    </div>
+                </div>
+            </footer>
+                   {/* <Footer /> */}
                     </div>
                 </div>
             </div>
