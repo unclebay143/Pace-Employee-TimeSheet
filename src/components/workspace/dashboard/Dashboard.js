@@ -3,6 +3,10 @@ import Navbar from '../layouts/Navbar';
 import Sidebar from '../layouts/Sidebar'
 import DashBody from './DashBody';
 import Invite from './ManageEmployee';
+
+import AcceptedTasks from './employeeTasks/AcceptedTasks';
+import EmployeeTasks from './employeeTasks/EmployeeTasks';
+
 import Footer from '../layouts/Footer';
 
 class Dashboard extends Component{
@@ -21,10 +25,13 @@ class Dashboard extends Component{
                             <div className="page-holder w-100 d-flex flex-wrap">
 
                                 {/* <DashBody /> */}
-                                <Invite />
+                                {/* <Invite /> */}
+                                {/* <AcceptedTasks /> */}
+                                <EmployeeTasks />
                             {/* <Footer /> */}
                             </div>
                     </div>
+                    
                 </div>
 
             </>
