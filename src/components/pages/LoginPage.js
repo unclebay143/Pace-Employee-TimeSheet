@@ -44,7 +44,6 @@ class LoginPage extends Component{
                             <h4 className="mb-5">Welcome back!</h4>
                             </div>
                             <div className="mt-5" name="form">
-                                <p id="errorMessage" />
                                 <div className="form-group mt-b">
                                     <Formik
                                         initialValues={{
@@ -98,7 +97,6 @@ class LoginPage extends Component{
                                                 <Button 
                                                     type="submit"
                                                     className="btn btn-primary"
-                                                    id="loginBtn"
                                                     disabled={isSubmitting}
                                                     label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Loading...</span>) : "Login"}
                                                     />

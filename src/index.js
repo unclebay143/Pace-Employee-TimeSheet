@@ -9,10 +9,10 @@ import {HashRouter as Router, Route, Switch } from "react-router-dom";
 import './components/pages/pages-styles/util.css';
 import './components/pages/pages-styles/form.css';
 
-//
-import './components/layouts/Layout-Styles/navbar.css';
-import './components/pages/pages-styles/forgotpassword.css';
-import './components/pages/pages-styles/confirmation.css';
+// custom
+import './components/layouts/Layout-Styles/navbar.css'
+import './components/pages/pages-styles/forgotpassword.css'
+import './components/pages/pages-styles/confirmation.css'
 
 // bootstrap
 import 'bootstrap/dist/css/bootstrap.css';
@@ -37,7 +37,6 @@ import PageNotFound from './components/pages/404';
 import ForgotPassword from './components/pages/ForgotPassword';
 import Confirmation from './components/pages/Confirmation';
 import ResetPassword from './components/pages/ResetPassword';
-
 import Dashboard from './components/workspace/dashboard/Dashboard';
 
 
