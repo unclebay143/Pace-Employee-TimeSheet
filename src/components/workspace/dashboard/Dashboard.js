@@ -6,10 +6,6 @@ import Invite from './ManageEmployee';
 import Footer from '../layouts/Footer';
 
 class Dashboard extends Component{
-    constructor(props){
-        super(props)
-    }
-
     render(){
         return(
             <>
@@ -20,8 +16,7 @@ class Dashboard extends Component{
                         <Sidebar />
                             <div className="page-holder w-100 d-flex flex-wrap">
 
-                                {/* <DashBody /> */}
-                                <Invite />
+                                <DashBody />
                             {/* <Footer /> */}
                             </div>
                     </div>
