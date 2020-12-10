@@ -10,10 +10,6 @@ import EmployeeTasks from './employeeTasks/EmployeeTasks';
 import Footer from '../layouts/Footer';
 
 class Dashboard extends Component{
-    constructor(props){
-        super(props)
-    }
-
     render(){
         return(
             <>
@@ -24,10 +20,14 @@ class Dashboard extends Component{
                         <Sidebar />
                             <div className="page-holder w-100 d-flex flex-wrap">
 
+<<<<<<< HEAD
+                                <DashBody />
+=======
                                 {/* <DashBody /> */}
                                 {/* <Invite /> */}
                                 {/* <AcceptedTasks /> */}
                                 <EmployeeTasks />
+>>>>>>> 8ec18cd55b60abbf8482b26ff35fbb10f3ae3bbf
                             {/* <Footer /> */}
                             </div>
                     </div>
