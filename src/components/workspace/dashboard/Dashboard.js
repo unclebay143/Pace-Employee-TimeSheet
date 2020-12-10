@@ -1,13 +1,11 @@
 import { React, Component } from 'react';
 import Navbar from '../layouts/Navbar';
 import Sidebar from '../layouts/Sidebar'
-import DashBody from './Index';
 import Invite from './ManageEmployee';
-
 import AcceptedTasks from './employeeTasks/AcceptedTasks';
 import EmployeeTasks from './employeeTasks/EmployeeTasks';
-
 import Footer from '../layouts/Footer';
+import Index from './Index';
 
 {/* <div>
     <Navbar  />
@@ -37,7 +35,7 @@ class Dashboard extends Component{
                             <div className="page-holder w-100 d-flex flex-wrap">
                                 <div className="container-fluid px-xl-5">
                   {/* >>>>>>>>>>>>>>> BODIES COMPONENTS SECTION <<<<<<<<<<<<<< */}
-                                    <DashBody />
+                                    <Index />
                                     {/* <AcceptedTasks /> */}
                                     {/* <EmployeeTasks /> */}
                                 </div>

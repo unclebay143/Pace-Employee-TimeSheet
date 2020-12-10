@@ -1,5 +1,5 @@
 import { React, Component } from 'react';
-import Timer from '../dashboard/Timer';
+import Timer from './Timer';
 import u from '../../pages/pages-images/ayodele_samuel_adebayo.jpg'
 
 class Navbar extends Component{

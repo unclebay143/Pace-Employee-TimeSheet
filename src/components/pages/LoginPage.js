@@ -13,7 +13,6 @@ import { loginSchema } from '../Validation/Schema';
 import { HomeButton } from './HomeButton';
 
 
-
 class LoginPage extends Component{
     constructor(props){
         super(props)
@@ -53,7 +52,7 @@ class LoginPage extends Component{
                                         validationSchema = {loginSchema}
                                         onSubmit={(values)=>auth(values)}
                                         
-                                    >{({touched, errors, isSubmitting, handleSubmit, handleChange}) => (
+                                    >{({values, touched, errors, isSubmitting, handleSubmit, handleChange}) => (
                                         <Form onSubmit={handleSubmit}>
                                             <div className="email-wrapper pb-3">
                                                 <TextInput 
