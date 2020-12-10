@@ -1,7 +1,7 @@
 import { React, Component } from 'react';
 import Navbar from '../layouts/Navbar';
 import Sidebar from '../layouts/Sidebar'
-import DashBody from './DashBody';
+import DashBody from './Index';
 import Invite from './ManageEmployee';
 
 import Table from '../../pages/Table';
@@ -11,20 +11,33 @@ import EmployeeTasks from './employeeTasks/EmployeeTasks';
 
 import Footer from '../layouts/Footer';
 
-class Dashboard extends Component{
-    constructor(props){
-        super(props)
-    }
+{/* <div>
+    <Navbar  />
+    <div className="d-flex align-items-stretch">
+        <Sidebar />
+            <div className="page-holder w-100 d-flex flex-wrap">
 
+                <DashBody />
+                <Invite />
+                <AcceptedTasks />
+                <EmployeeTasks />
+            <Footer />
+            </div>
+    </div>
+    
+</div> */}
+class Dashboard extends Component{
     render(){
         return(
             <>
-
                 <div>
+                  {/* >>>>>>>>>>>>>>> NAVBAR COMPONENT SECTION <<<<<<<<<<<<<< */}
                     <Navbar  />
-                    <div className="d-flex align-items-stretch">
-                        <Sidebar />
+                        <div className="d-flex align-items-stretch">
+                  {/* >>>>>>>>>>>>>>> SIDEBAR COMPONENT SECTION <<<<<<<<<<<<<< */}
+                            <Sidebar />
                             <div className="page-holder w-100 d-flex flex-wrap">
+
 
                                 {/* <DashBody /> */}
                                 {/* <Invite /> */}
@@ -35,8 +48,8 @@ class Dashboard extends Component{
                             </div>
                     </div>
                     
+                               
                 </div>
-
             </>
         )
     }

@@ -13,7 +13,7 @@ const PageNotFound = () => {
 
     const tasks = useSelector(state => state.task)
 
-
+    console.log(tasks)
     return(
         <>
             <div className="pageNotFound-wrapper">

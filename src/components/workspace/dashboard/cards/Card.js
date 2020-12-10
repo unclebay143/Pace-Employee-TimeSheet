@@ -1,5 +1,4 @@
 import { React, Component } from 'react';
-import './dashboard-styles/card.css'
 class Card extends Component {
     constructor(props){
         super(props)
