@@ -4,6 +4,8 @@ import Sidebar from '../layouts/Sidebar'
 import DashBody from './Index';
 import Invite from './ManageEmployee';
 
+import Table from '../../pages/Table';
+
 import AcceptedTasks from './employeeTasks/AcceptedTasks';
 import EmployeeTasks from './employeeTasks/EmployeeTasks';
 
@@ -35,16 +37,18 @@ class Dashboard extends Component{
                   {/* >>>>>>>>>>>>>>> SIDEBAR COMPONENT SECTION <<<<<<<<<<<<<< */}
                             <Sidebar />
                             <div className="page-holder w-100 d-flex flex-wrap">
-                                <div className="container-fluid px-xl-5">
-                  {/* >>>>>>>>>>>>>>> BODIES COMPONENTS SECTION <<<<<<<<<<<<<< */}
-                                    <DashBody />
-                                    {/* <AcceptedTasks /> */}
-                                    {/* <EmployeeTasks /> */}
-                                </div>
-                  {/* >>>>>>>>>>>>>>> FOOTER COMPONENT SECTION <<<<<<<<<<<<<< */}
-                            <Footer />
-                        </div>
-                        </div>
+
+
+                                {/* <DashBody /> */}
+                                {/* <Invite /> */}
+                                {/* <AcceptedTasks /> */}
+                                <EmployeeTasks />
+                                {/* <Table /> */}
+                            {/* <Footer /> */}
+                            </div>
+                    </div>
+                    
+                               
                 </div>
             </>
         )
