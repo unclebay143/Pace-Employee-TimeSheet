@@ -4,6 +4,8 @@ import Sidebar from '../layouts/Sidebar'
 import DashBody from './DashBody';
 import Invite from './ManageEmployee';
 
+import Table from '../../pages/Table';
+
 import AcceptedTasks from './employeeTasks/AcceptedTasks';
 import EmployeeTasks from './employeeTasks/EmployeeTasks';
 
@@ -28,6 +30,7 @@ class Dashboard extends Component{
                                 {/* <Invite /> */}
                                 {/* <AcceptedTasks /> */}
                                 <EmployeeTasks />
+                                {/* <Table /> */}
                             {/* <Footer /> */}
                             </div>
                     </div>
