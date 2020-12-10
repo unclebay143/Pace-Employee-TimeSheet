@@ -1,12 +1,15 @@
+// react 
 import {React, Component} from 'react';
 import { Link } from 'react-router-dom'
+
+// layouts
 import Button from '../layouts/Button';
-import FormInput from '../layouts/FormInput';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './pages-styles/loginpage.css';
 import loginImage from './pages-images/login-img.png';
-
-
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { signUpSchema } from '../Validation/Schema'
+import { TextInput, CheckbBox } from '../layouts/FormInput';
+// import PropTypes from 'prop-types';
+import { HomeButton } from './HomeButton'
 
 class SignupPage extends Component{
     constructor(props){
@@ -19,142 +22,148 @@ class SignupPage extends Component{
         }
     }
 
-    Database = {
-        db_username: "unclebay",
-        db_company: "tiidelab.com",
-        db_password: "samuel",
-        user_profile: {
-            fullName: "Ayodele Samuel Adebayo",
-            role: "Admin",
-            department: "Web Development",
-            salary: 2300000,
-        }
+    componentDidMount(){
+        document.title = "Signup | Pace "
     }
 
-    // 2:46AM working on password auth.... make sure you push username and password to the state and also init the password
-
-
-    handleChange = event => {
-        const { user } = this.state;    
-        user[event.target.name] = event.target.value;
-        this.setState({ user });
-    };
-
-    handleEmailSplit = () =>{
-        console.log(this.state)
-        const {user: { workSpaceEmail } } = this.state;
-        const getUserName = workSpaceEmail.split('@')[0]
-        const getCompanyName = workSpaceEmail.split('@')[1]
-        this.handleWorkSpaceSubmit(getUserName, getCompanyName)
-    };
-
-    handleWorkSpaceSubmit = (splittedUserName, splittedCompanyName) => {
-        const {db_username, db_company} = this.Database;
-       
-        // control err from here/consider using bootstrap err handler
-        if (splittedUserName !== db_username){
-            console.log("err from username")
-        }
-
-        else if (splittedCompanyName !== db_company){
-            console.log("err from company")
-        } 
-        
-        else{
-            this.setState({isUserAuthenticated: true})
-        }
-
-    }
     render(){
        
-        const {isUserAuthenticated} = this.state;
         return(
             <div className="container">
                 <main className="container d-flex justify-content-center align-items-center mt-5">
                     <div className="row">
                         <div className="form-con col-lg-5 mb-5">
+                            <HomeButton />
                             <div className="form-heading mt-2">
                             <h3 className="mb-3">Signup</h3>
                             <h4 className="mb-4">Track every second!</h4>
                             </div>
-                            <form className="" name="form">
-                                <p id="errorMessage" />
-                                <div className="row form-group signupForm">
-                                    <FormInput 
-                                        type="text"
-                                        name="companyName"
-                                        className="form-control lead"
-                                        id="companyName"
-                                        label="Workspace Name"
-                                        labelClassName="lea"
-                                        placeholder="Bascom Limited"
-                                        onChange={this.handleChange}
-                                        required
-                                        />
-                                    <FormInput 
-                                        type="email"
-                                        name="email"
-                                        className="form-control lead"
-                                        id="email"
-                                        label="Email"
-                                        labelClassName="lea mt-3"
-                                        placeholder="Email"
-                                        onChange={this.handleChange}
-                                        required
-                                        />
+                            <Formik 
+                            
+                                initialValues={{
+                                    workSpaceName : '',
+                                    workSpaceEmail : '',
+                                    workSpacePhone : '',
+                                    password: '',
+                                    confirmPassword: '',
+                                    termsOfService: false
+                                }}
+                                validationSchema = {signUpSchema}
+                                onSubmit={(values)=>alert("done!!!", values)}
+                            >
+                                {
+                                    ({values, errors, touched})=>(
+                                        <Form>
+                                            <div className="form-group signupForm">
+                                                <div className="workSpaceName-wrapper">
+                                                    {/* <label className="mt-3">Workspace Name """validate workspace name here onChange"""</label> */}
+                                                    <TextInput 
+                                                        name="workSpaceName"
+                                                        id="workSpaceName"
+                                                        type="text"
+                                                        label="Workspace Name"
+                                                        labelClassName="mt-3"
+                                                        placeholder="Bascom Limited"
+                                                        className={`form-control lead p-2 ${
+                                                            touched.workSpaceName && errors.workSpaceName ? "is-invalid" : ""
+                                                        }`}                                                        
+                                                        title = {touched.workSpaceName && errors.workSpaceName ? "Tooltip Text" : "Tooltip Text"}
+                                                        data-placement = "bottom"
+                                                    />
+                                                    <ErrorMessage
+                                                        component="span"
+                                                        name="workSpaceName"
+                                                        className="invalid-feedback p-0"
+                                                    />
+                                                </div>
+                                                <div className="email-wrapper">
+                                                    <TextInput 
+                                                        name="workSpaceEmail"
+                                                        id="workSpaceEmail"
+                                                        type="email"
+                                                        label="Email"
+                                                        labelClassName="mt-3"
+                                                        className={`form-control lead p-2 ${
+                                                            touched.workSpaceEmail && errors.workSpaceEmail ? "is-invalid" : ""
+                                                        }`}
+                                                        placeholder="Email" 
+                                                    />
+                                                    <ErrorMessage
+                                                        component="div"
+                                                        name="workSpaceEmail"
+                                                        className="invalid-feedback p-0"
+                                                    />
+                                                </div>
+                                            <div className="d-flex">
 
-                                    <FormInput 
-                                        type="password"
-                                        name="password"
-                                        className="form-control lead"
-                                        id="password"
-                                        label="Password"
-                                        labelClassName="lea mt-3"
-                                        placeholder="Password"
-                                        onChange={this.handleChange}
-                                        required
-                                        />
-                                    <FormInput 
-                                        type="password"
-                                        name="cpassword"
-                                        className="form-control lead"
-                                        id="cpassword"
-                                        label="Confirm Password"
-                                        labelClassName="lea mt-3"
-                                        placeholder="Confirm Password"
-                                        onChange={this.handleChange}
-                                        required
-                                        />
-                                    {/* <FormInput 
-                                        type="password"
-                                        name="password"
-                                        className="form-control lead"
-                                        id="passwords"
-                                        label="Password"
-                                        labelClassName="lea mt-3"
-                                        placeholder="password"
-                                        onChange={this.handleChange}
-                                        required
-                                        /> */}
-                                </div>
-                                <Button 
-                                    type="button"
-                                    className="btn btn-primary"
-                                    id="signUp"
-                                    label="Signup"
-                                    handleClick={this.handleEmailSplit}
-                                
-                                />
-                                <p>Already have an account? <Link to="./login">Login</Link></p>
-                        
-                            </form>
+                                                <div className="form-group password-wrapper mr-2">
+                                                    <TextInput 
+                                                        name="password"
+                                                        id="password"
+                                                        type="password"
+                                                        label="Password"
+                                                        labelClassName="mt-3"
+                                                        className={`form-control lead p-2 ${
+                                                            touched.password && errors.password ? "is-invalid" : ""
+                                                        }`}
+                                                        placeholder="Password" 
+                                                    />
+                                                    <ErrorMessage
+                                                        component="div"
+                                                        name="password"
+                                                        className="invalid-feedback p-0"
+                                                    />
+                                                </div>
+                                                <div className="form-group confirmPassword-wrapper">
+                                                    <TextInput 
+                                                        name="confirmPassword"
+                                                        id="confirmPassword"
+                                                        type="password"
+                                                        label="Confirm Password"
+                                                        labelClassName="mt-3"
+                                                        className={`form-control lead p-2 ${
+                                                            touched.confirmPassword && errors.confirmPassword ? "is-invalid" : ""
+                                                        }`}
+                                                        placeholder="Confirm Password" 
+                                                    />
+                                                    <ErrorMessage
+                                                        component="div"
+                                                        name="confirmPassword"
+                                                        className="invalid-feedback p-0"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className="form-check">
+                                                <CheckbBox 
+                                                    name="termsOfService"
+                                                    id="termsOfService"
+                                                    title="Accept Terms and condition"
+                                                    titleClassName="text-blue"
+                                                    className={`form-check-input ${touched.termsOfService && errors.termsOfService ? "is-invalid" : ""}`}
+                                                />
+                                                 <ErrorMessage
+                                                        name="termsOfService"
+                                                        component="div"
+                                                        className="invalid-feedback p-0"
+                                                />
+                                            </div>
+                                                <Button 
+                                                    type="submit"
+                                                    className="btn btn-primary mt-3"
+                                                    id="signUp"
+                                                    label="Signup"
+                                                    disabled={!values.termsOfService}
+                                                />
+                                                <p>Already have an account? <Link to="./login">Login</Link></p>
+                                            </div>
+                                        </Form>
+                                    )
+                                }
+                            </Formik>
                         </div>
-
-                        {/* form container end */}
-
                         <div className="img-con col-lg-7">
                             {/* <img src={images[index]} alt="office timing" className="img-fluid" /> */}
-                            <div className="login-intro-img mt-5 ml-5">
+                            <div className="login-intro-img mt-5 ml-5 d-none d-md-block">
                             <img src={loginImage} alt="office timing" className="img-fluid" />
                             </div>
                         </div>
@@ -167,5 +176,11 @@ class SignupPage extends Component{
     }
 }
 
+// SignupPage.propTypes = {
+//     workSpaceName : PropTypes.string.isRequired(),
+//     workSpaceEmail : PropTypes.string.isRequired(),
+//     password : PropTypes.string.isRequired(),
+//     confirmPassword : PropTypes.string.isRequired(),
+// }
 
 export default SignupPage;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navbar from '../layouts/Navbar';
 import Footer from '../layouts/Footer';
 import './pages-styles/about.css';
@@ -11,7 +11,12 @@ import aisha from './pages-images/opaluwa_aisha.jpg';
 import aboutImage from './pages-images/v.jpg';
 
 
-function About() {
+const About = () => {
+
+  useEffect(()=>{
+    document.title = 'About | Pace'
+  })
+  
   return (
     <React.Fragment>
       <AboutContent />
@@ -69,10 +74,6 @@ const AboutContent = () => {
       </div>
       <section className="container about">
         <section className="row pace-big-screen flex-column-reverse flex-lg-row">
-          {/* 
-        <article className="col-6">
-          <img src="/assets/img/about/v.jpg" alt="pace developer "="" className="img-fluid">
-        </article> */}
           <article className="col-12 col-lg-6">
             <section>
               <h3 className="mb-3">Our Vision</h3>

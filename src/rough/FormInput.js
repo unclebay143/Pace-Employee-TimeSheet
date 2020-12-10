@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
 const FormInput = ({
     name,
     type,
@@ -11,14 +10,14 @@ const FormInput = ({
     value,
     error,
     children,
-    label,
     labelClassName,
+    label,
     ...props
 }) => {
 
     return (
         <React.Fragment>
-            <label htmlFor={name} className={labelClassName}>{label}</label>
+            <label className={labelClassName} htmlFor={name}>{label}</label>
             <input
                 id={name}
                 name={name}
@@ -27,9 +26,7 @@ const FormInput = ({
                 onChange={onChange}
                 value={value}
                 className={className}
-                style={error && {border: 'solid 1px red'}}
-            />
-            { error && <p>{ error }</p>}
+            />    
         </React.Fragment>
     )
 };
@@ -46,7 +43,7 @@ FormInput.propTypes = {
     placeholder: PropTypes.string.isRequired,
     className: PropTypes.string,
     value: PropTypes.any,
-    onChange: PropTypes.func.isRequired
+    onChange: PropTypes.func
 };
 
 

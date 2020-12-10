@@ -1,52 +1,59 @@
+// react
 import React from 'react';
-import PropTypes from 'prop-types';
 
+// layout, formik
+import { useField, Field } from 'formik';
 
-const FormInput = ({
-    name,
-    type,
-    placeholder,
-    onChange,
-    className,
-    value,
-    error,
-    children,
-    labelClassName,
-    label,
-    ...props
-}) => {
+export const TextInput = ({ label, labelClassName, ...props }) => {
+  const [field] = useField(props);
+  return (
+    <>
+      <label htmlFor={props.id || props.name} className={labelClassName}>{label}</label>
+      <input className="text-input" {...field} {...props}/>
+    </>
+  );
+};
 
-    return (
-        <React.Fragment>
-            <label className={labelClassName} htmlFor={name}>{label}</label>
-            <input
-                id={name}
-                name={name}
-                type={type}
-                placeholder={placeholder}
-                onChange={onChange}
-                value={value}
-                className={className}
-            />    
-        </React.Fragment>
-    )
+export const CheckbBox = ({ children, ...props }) => {
+  const [field] = useField({ ...props});
+  return (
+    <div>
+      <label className="checkbox">
+        <input type="checkbox" {...field} {...props} />
+        <label className={` form-check-label ${props.titleClassName}`} for={props.id}>{props.title}</label>
+        {children}
+      </label>
+    </div>
+  );
+};
+
+export const SelectOption = ({children, name, labelClassName, ...props})=>{
+  return(
+  <>
+      <div>
+        <label htmlfor={ props.name || props.id } style={{}} display='block' >color</label>
+          <select name={props.name} value={props.value} display='block'>
+            {children}
+          </select>
+      </div>
+    </>    
+      )
+}
+
+ // Textarea component
+export const TextArea = ({ label, labelClassName, ...props }) => {
+  const [field] = useField(props);
+  return (
+    <>
+      <label htmlFor={props.id} className={labelClassName}>{label}</label>
+      <textarea 
+          className="text-input" 
+          {...field} 
+          {...props}
+        />
+    </>
+  );
 };
 
 
-FormInput.defaultProps = {
-    type: "text",
-    className: ""
-};
 
-FormInput.propTypes = {
-    name: PropTypes.string.isRequired,
-    type: PropTypes.string,
-    placeholder: PropTypes.string.isRequired,
-    className: PropTypes.string,
-    value: PropTypes.any,
-    onChange: PropTypes.func
-};
-
-
-
-export default FormInput;

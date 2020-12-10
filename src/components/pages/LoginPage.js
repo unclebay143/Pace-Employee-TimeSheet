@@ -1,12 +1,17 @@
+// react
 import {React, Component} from 'react';
-import Button from '../layouts/Button';
-import FormInput from '../layouts/FormInput';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './pages-styles/loginpage.css';
-import loginImage from './pages-images/login-img.png';
+import { Formik, Form, ErrorMessage} from 'formik';
 import { Link } from 'react-router-dom';
-import {Formik, Form, Field, ErrorMessage} from 'formik';
-import * as Yup from 'yup';
+import PropTypes from 'prop-types';
+
+// layouts, customs
+import auth from '../Authentication/LoginAuth';
+import Button from '../layouts/Button';
+import loginImage from './pages-images/login-img.png';
+import { TextInput } from '../layouts/FormInput';
+import { loginSchema } from '../Validation/Schema';
+import { HomeButton } from './HomeButton';
+
 
 
 class LoginPage extends Component{
@@ -15,6 +20,7 @@ class LoginPage extends Component{
         this.state = {
             user: {
                 workSpaceEmail: '',
+                workSpacePassword: ''
             },
             isUserAuthenticated: false
         }
@@ -23,150 +29,105 @@ class LoginPage extends Component{
     componentDidMount(){
         document.title = 'Login | Pace'
     }
-
-    SignupSchema = Yup.object().shape({
-        firstName: Yup.string()
-          .min(2, 'Too Short!')
-          .max(50, 'Too Long!')
-          .required('Required'),
-        lastName: Yup.string()
-          .min(2, 'Too Short!')
-          .max(50, 'Too Long!')
-          .required('Required'),
-        email: Yup.string().email('Invalid email').required('Required'),
-      });
-
-
-    Database = {
-        db_username: "unclebay",
-        db_company: "tiidelab.com",
-        db_password: "samuel",
-        user_profile: {
-            fullName: "Ayodele Samuel Adebayo",
-            role: "Admin",
-            department: "Web Development",
-            salary: 2300000,
-        }
-    }
-
-    // 2:46AM working on password auth.... make sure you push username and password to the state and also init the password
-
-
-    // handleChange = event => {
-    //     const { user } = this.state;    
-    //     user[event.target.name] = event.target.value;
-    //     this.setState({ user });
-    // };
-
-    // handleEmailSplit = () =>{
-    //     console.log(this.state)
-    //     const {user: { workSpaceEmail } } = this.state;
-    //     const getUserName = workSpaceEmail.split('@')[0]
-    //     const getCompanyName = workSpaceEmail.split('@')[1]
-    //     this.handleWorkSpaceSubmit(getUserName, getCompanyName)
-    // };
-
-    // handleWorkSpaceSubmit = (splittedUserName, splittedCompanyName) => {
-    //     const {db_username, db_company} = this.Database;
-       
-    //     // control err from here/consider using bootstrap err handler
-    //     if (splittedUserName !== db_username){
-    //         console.log("err from username")
-    //     }
-
-    //     else if (splittedCompanyName !== db_company){
-    //         console.log("err from company")
-    //     } 
-        
-    //     else{
-    //         this.setState({isUserAuthenticated: true})
-    //     }
-
-    // }
-
+   
+    
+    
     render(){
-        const {isUserAuthenticated} = this.state;
         return(
             <div className="container">
                 <main className="container d-flex justify-content-center align-items-center mt-5">
                     <div className="row">
                         <div className="form-con col-lg-5 mb-5">
-                            <Link to="/">
-                                <i className="fas fa-long-arrow-alt-left"></i>
-                            </Link>
+                            <HomeButton />
                             <div className="form-heading mt-5">
                             <h3 className="mb-3">Login</h3>
                             <h4 className="mb-5">Welcome back!</h4>
                             </div>
-                            <form className="mt-5" name="form">
-                                <p id="errorMessage" />
+                            <div className="mt-5" name="form">
                                 <div className="form-group mt-b">
                                     <Formik
-
                                         initialValues={{
                                             email: '',
                                             password: ''
                                         }}
-
-                                    >{({values, errors, touch}) => (
-                                        <Form>
-                                            <label>Enter your workspace address</label>
-                                            <Field 
-                                                name="email"
-                                                type="email"
-                                                className="form-control lead"
-                                                id="email"
-                                                labelClassName="lea"
-                                                placeholder="example@company.com"
-                                            />
-                                            <label>Password</label>
-                                            <Field 
-                                                name="password"
-                                                type="password"
-                                                className="form-control lead"
-                                                id="passwords"
-                                                label="Password"
-                                                labelClassName="lea mt-3"
-                                                placeholder="password"
-                                                
+                                        validationSchema = {loginSchema}
+                                        onSubmit={(values)=>auth(values)}
+                                        
+                                    >{({touched, errors, isSubmitting, handleSubmit, handleChange}) => (
+                                        <Form onSubmit={handleSubmit}>
+                                            <div className="email-wrapper pb-3">
+                                                <TextInput 
+                                                    label="Enter your workspace address"
+                                                    name="email"
+                                                    type="email"
+                                                    className={`form-control p-2 ${
+                                                        touched.email && errors.email ? "is-invalid" : ""
+                                                    }`}
+                                                    id="email"
+                                                    placeholder="example@company.com"
+                                                    onBlur = {this.handleChange}
                                                 />
+                                                <ErrorMessage
+                                                    component="div"
+                                                    name="email"
+                                                    className="invalid-feedback p-0"
+                                                />
+                                            </div>
+                                            <div className="password-wrapper">
+                                                <TextInput 
+                                                    name="password"
+                                                    type="password"
+                                                    label="Password"
+                                                    labelClassName="mt-3"
+                                                    className={`form-control p-2 ${
+                                                        touched.password && errors.password ? "is-invalid" : ""
+                                                    }`}
+                                                    id="passwords"
+                                                    placeholder="Password"
+                                                />
+                                                <ErrorMessage
+                                                    component="div"
+                                                    name="password"
+                                                    className="invalid-feedback"
+                                                />
+                                            </div>
+                                            <div className="mt-3">
+                                            {/* <Link to="/dashboard"> */}
+
+                                                <Button 
+                                                    type="submit"
+                                                    className="btn btn-primary"
+                                                    disabled={isSubmitting}
+                                                    label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Loading...</span>) : "Login"}
+                                                    />
+                                            {/* </Link> */}
+                                                <p>Create your workspace register <Link to="/signup">Here</Link></p>
+                                                <span><Link to="/forgot">Forgot Passwords</Link></span>
+                                            </div>
                                         </Form>
+                                        
                                     )}
-
-                                        
-                                    </Formik>
-                                </div>
-                                        
-                                        <Link to="/dashboard">
-                                            <Button 
-                                                type="button"
-                                                className="btn btn-primary"
-                                                id="loginBtn"
-                                                label="Login"
-                                                // handleClick={this.handleEmailSplit}
-                                                
-                                            />
-                                        </Link>
-                                    <p>Create your workspace register <Link to="/signup">Here</Link></p>
-                            </form>
-                        </div>
-
-                        {/* form container end */}
-
-                        <div className="img-con col-lg-7 d-none d-lg-block">
-                            <div className="login-intro-img mt-3">
-                            {/* <img src={images[index]} alt="office timing" className="img-fluid" /> */}
-                            <img src={loginImage} alt="office timing" className="img-fluid" />
+                                </Formik>
                             </div>
                         </div>
-                        
                     </div>
-                </main>
-            </div>
-
+                    
+                    <div className="img-con col-lg-7 d-none d-lg-block">
+                        <div className="login-intro-img mt-3">
+                        <img src={loginImage} alt="office timing" className="img-fluid" />
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
         )
     }
 }
+
+LoginPage.propTypes = {
+    workSpaceEmail: PropTypes.string.isRequired,
+    password: PropTypes.any.isRequired
+};
 
 
 export default LoginPage;

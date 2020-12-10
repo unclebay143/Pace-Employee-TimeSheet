@@ -16,10 +16,7 @@
     background: #335eea;
     color: #ffffff;
   }
-  .pace-thead{
-    background: #335eea;
-    color: #fff;
-  }
+  
   .pace-bg-accent{
     background: #FF6584;
     color: #ffffff;
@@ -29,8 +26,8 @@
     border-radius: .25rem;
   }
   .form-control:focus {
-    border: 1px solid #335eea;
-    box-shadow: none;
+    border: 1px solid #335eea !important;
+    box-shadow: none !important;
   }
   .pace-btn{
     padding: .5625rem 1rem !important;

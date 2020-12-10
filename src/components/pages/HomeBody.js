@@ -9,7 +9,7 @@ import TypeWriter from './pages-js/TypeWriter';
 const IndexArea = () => {
   return(
     <React.Fragment>
-      <section className="row d-flex flex-column-reverse home-intro" onLoad={TypeWriter}>
+      <section className="row d-flex flex-column-reverse home-intro flex-lg-row" onLoad={TypeWriter}>
         <div className="col d-flex flex-row">
           <section className="home-intro-text">
             {/* type-writing effect */}
@@ -20,12 +20,6 @@ const IndexArea = () => {
             </h2>
             <p>Spend less time making the right and informed decisions</p>
             <section className="home-intro-btn">
-              {/* <button type="submit" className="btn btn-primary to-btn" id="login-btn" onclick="window.location.href='contents/login.html'">Login
-                <svg width="2em" height="1.3em" viewBox="0 0 16 16" className="bi bi-arrow-right" id="login-arrow" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
-                </svg>
-              </button> */}
-
               <Link
                 className="btn btn-primary to-btn" 
                 id="login-btn"
@@ -41,6 +35,7 @@ const IndexArea = () => {
                 type="submit" 
                 className="btn to-btn" 
                 id="learn-btn"
+                to="/about"
                 >
                   Learn More
               </Link>
@@ -59,7 +54,7 @@ const FeaturesCard = props =>{
   const {animation, duration, svg, heading, paragraph} = props
   return(
     <React.Fragment>
-      <article className="col" data-aos={animation} data-aos-duration={duration} {...props}>
+      <article className="col col-sm-4" data-aos={animation} data-aos-duration={duration} {...props}>
         {svg}
         <h3>{heading}</h3>
         <p>{paragraph} </p>
@@ -71,8 +66,9 @@ const FeaturesCard = props =>{
 const Features = () =>{
   return(
     <React.Fragment>
-      <section className="row m-t5 d-flex flex-column flex-sm-row align-items-center" id="pace-summary">
-
+      <section id="pace-features">
+      </section>
+      <section className="row d-flex flex-column flex-sm-row align-items-center" id="pace-summary">
         <FeaturesCard
           svg = 
             {
@@ -240,12 +236,11 @@ const ShowDashboard = () => {
 function HomeBody() {
   return (
     <React.Fragment>
-    <header className="container">
-      <IndexArea />
-      <Features />
-      <ShowDashboard />
-    </header>
-
+      <header className="container">
+        <IndexArea />
+        <Features />
+        <ShowDashboard />
+      </header>
     </React.Fragment>
   )
 }
