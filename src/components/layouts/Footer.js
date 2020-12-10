@@ -4,14 +4,14 @@ import './Layout-Styles/footer.css'
 const Footer = () => {
   return (
     <React.Fragment>
-      <footer className=" container-fluid page-footer font-small unique-color-dark">
+      <footer className="page-footer font-small unique-color-dark">
           <div style={{backgroundColor: 'rgb(51,94,234)'}}>
             <div className="container">
               <div className="row py-4 d-flex flex-column flex-md-row align-items-center">
                 <div className="col-md-6 col-lg-5 text-cener text-md-left mb-4 mb-md-0">
                   <h6 className="mb-0 text-light footer-lead">Get connected with us on social networks!</h6>
                 </div>
-                <div className="col-md-6 col-lg-7 text-ceter social-links">
+                <div className="col-md-6 col-lg-4 text-ceter social-links">
                   <a className="fb-ic" href="https://facebook.com">
                     <i className="fab fa-facebook-f white-text mr-4"> </i>
                   </a>

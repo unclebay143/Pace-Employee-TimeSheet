@@ -20,7 +20,7 @@ function Home() {
     <React.Fragment>
         <main className="container">
           <Navbar />
-            <HomeBody />
+          <HomeBody />
         </main>
           <Footer />
       
