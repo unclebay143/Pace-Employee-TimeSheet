@@ -13,20 +13,20 @@ export default function Confirmation() {
         }
     }, [])
     return (
-        <React.Fragment>
+        <>
             <div className="container d-flex justify-content-center mt-5">
                 <div className="row confirmation-wrapper">
                     <div className="col-12 text-center">
-                        {/* <img src={sendImage} /> */}
-                        <img src={mailAnimation} />
+                        {/* <img src={sendImage} alt="message sent successfully" /> */}
+                        <img src={mailAnimation} alt="message sent successfully" />
                     </div>
                     <div className="col-12 text-center">
                         <h2 className="mt-3 text-center">Message Sent</h2>
                         <p>A mail containing a link to reset your password has been sent to your registered email</p>
-                        <p>return <Link to="/">Home</Link></p>
+                        <p>Return <Link to="/">Home</Link></p>
                     </div>
                 </div>
             </div>
-        </React.Fragment>
+        </>
     )
 }

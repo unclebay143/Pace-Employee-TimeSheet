@@ -154,7 +154,7 @@ const Features = () =>{
             animation="fade-left"
             duration="2000"
             heading="Todo-List"
-            paragraph="Breaking down task into smaller bits to increase work efficiency."
+            paragraph="Break down task into smaller bits to increase work efficiency."
           />
       </section>
     </React.Fragment>
@@ -239,8 +239,8 @@ function HomeBody() {
       <header className="container">
         <IndexArea />
         <Features />
-        <ShowDashboard />
       </header>
+        <ShowDashboard />
     </React.Fragment>
   )
 }

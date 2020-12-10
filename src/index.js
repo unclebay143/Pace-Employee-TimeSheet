@@ -8,22 +8,25 @@ import {HashRouter as Router, Route, Switch } from "react-router-dom";
 // utilities
 import './components/pages/pages-styles/util.css';
 import './components/pages/pages-styles/form.css';
-//
+
+// custom
 import './components/layouts/Layout-Styles/navbar.css'
 import './components/pages/pages-styles/forgotpassword.css'
 import './components/pages/pages-styles/confirmation.css'
 
-// bootsrap
+// bootstrap
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.js'
+import 'bootstrap/dist/js/bootstrap.bundle.js';
 
 
 // dashboard
-import './components/workspace/dashboard/dashboard-styles/style.default.css'
-import './components/workspace/dashboard/dashboard-styles/utilities.css'
-import './components/workspace/dashboard/dashboard-styles/custom.css'
-import './components/workspace/dashboard/dashboard-styles/orionicons.css'
+import './components/workspace/dashboard/dashboard-styles/style.default.css';
+import './components/workspace/dashboard/dashboard-styles/utilities.css';
+import './components/workspace/dashboard/dashboard-styles/custom.css';
+import './components/workspace/dashboard/dashboard-styles/orionicons.css';
+import './components/workspace/dashboard/dashboard-styles/card.css'
+
 
 
 // components
@@ -36,7 +39,6 @@ import PageNotFound from './components/pages/404';
 import ForgotPassword from './components/pages/ForgotPassword';
 import Confirmation from './components/pages/Confirmation';
 import ResetPassword from './components/pages/ResetPassword';
-
 import Dashboard from './components/workspace/dashboard/Dashboard';
 
 
