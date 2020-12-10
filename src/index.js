@@ -25,6 +25,8 @@ import './components/workspace/dashboard/dashboard-styles/style.default.css';
 import './components/workspace/dashboard/dashboard-styles/utilities.css';
 import './components/workspace/dashboard/dashboard-styles/custom.css';
 import './components/workspace/dashboard/dashboard-styles/orionicons.css';
+import './components/workspace/dashboard/dashboard-styles/card.css'
+
 
 
 // components
