@@ -8,9 +8,11 @@ import {HashRouter as Router, Route, Switch } from "react-router-dom";
 // UTILITIES
 import './components/pages/pages-styles/util.css';
 import './components/pages/pages-styles/form.css';
+import './components/layouts/layout-styles/button.css'
 
 // CUSTOM
-import './components/layouts/Layout-Styles/navbar.css'
+import './components/layouts/layout-styles/navbar.css'
+import './components/pages/pages-styles/homebody.css';
 import './components/pages/pages-styles/forgotpassword.css'
 import './components/pages/pages-styles/confirmation.css'
 
@@ -34,6 +36,7 @@ import './components/workspace/dashboard/dashboard-styles/card.css'
 import Home from './components/App';
 import About from './components/pages/About';
 import ContactUs from './components/pages/ContactUs';
+import Pricing from './components/pages/Pricing';
 import LoginPage from './components/pages/LoginPage';
 import SignupPage from './components/pages/SignupPage';
 import PageNotFound from './components/pages/404';
@@ -64,6 +67,7 @@ ReactDOM.render(
           <Route exact path="/signup" component = {SignupPage} />
           <Route exact path="/contact" component = {ContactUs} />
           <Route exact path="/about" component = {About} />
+          <Route exact path="/pricing" component = {Pricing} />
           <Route exact path="/test" component = {Test} />
           <Route exact path="/" component = {Home} />
           <Route component = {PageNotFound} />

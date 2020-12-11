@@ -10,7 +10,7 @@ import Button from '../layouts/Button';
 import loginImage from './pages-images/login-img.png';
 import { TextInput } from '../layouts/FormInput';
 import { loginSchema } from '../Validation/Schema';
-import { HomeButton } from './HomeButton';
+import { HomeButton } from '../layouts/HomeButton';
 
 
 class LoginPage extends Component{
@@ -124,8 +124,8 @@ class LoginPage extends Component{
 }
 
 LoginPage.propTypes = {
-    workSpaceEmail: PropTypes.string.isRequired,
-    password: PropTypes.any.isRequired
+    // workSpaceEmail: PropTypes.string.isRequired,
+    // password: PropTypes.any.isRequired
 };
 
 

@@ -25,18 +25,18 @@ function Navbar() {
             <Link to="/" className="nav-link active">Home</Link>
             <ScrollLink 
               to="/#pace-features"         
-              spy={true} 
-              smooth={true} 
+              spy="true"
+              smooth="true"
               duration={500} 
-              activeClass='active'
+              activeclass='active'
               className="nav-link"
             >Features
             </ScrollLink>
-            <Link to="/about/#pacepricing" className="nav-link">Pricing</Link>
+            <Link to="/pricing" className="nav-link">Pricing</Link>
             <Link to='/about' className="nav-link">About</Link>
             <Link to="/contact" className="nav-link">Contact</Link>
           </div>
-          <Link to="/signup" label="samuel" type="submit" className="navbar-btn btn btn-sm btn-primary ml-auto to-btn" id="get-started-btn">Get Started</Link>
+          <Link to="/signup" label="samuel" type="submit" className="navbar-btn btn btn-sm pace-btn pace-btn-outline-primary ml-auto">Get Started</Link>
         </div>
       </nav>
     </React.Fragment>

@@ -3,7 +3,7 @@ import { Formik, Form, ErrorMessage } from 'formik';
 import {TextInput} from '../layouts/FormInput';
 import Button from '../layouts/Button';
 import { resetPasswordSchema } from '../Validation/Schema';
-import { HomeButton } from './HomeButton'
+import { HomeButton } from '../layouts/HomeButton'
 
 const ResetPassword = () =>{
 

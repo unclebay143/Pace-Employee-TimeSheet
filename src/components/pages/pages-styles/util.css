@@ -29,10 +29,7 @@
     border: 1px solid #335eea !important;
     box-shadow: none !important;
   }
-  .pace-btn{
-    padding: .5625rem 1rem !important;
-    font-size: 1.0625rem !important;
-  }
+
   
   
   @media print {

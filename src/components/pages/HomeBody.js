@@ -1,5 +1,4 @@
-import React from 'react';
-import './pages-styles/homebody.css';
+import { React } from 'react';
 import landingPageImg from './pages-images/landingPage.svg';
 import dashboard from './pages-images/dashboard.png';
 import manageEmployee from './pages-images/manage-employee.png';
@@ -8,8 +7,8 @@ import TypeWriter from './pages-js/TypeWriter';
 
 const IndexArea = () => {
   return(
-    <React.Fragment>
-      <section className="row d-flex flex-column-reverse home-intro flex-lg-row" onLoad={TypeWriter}>
+    <>
+      <section className="row d-flex flex-column-reverse home-intro flex-lg-row">
         <div className="col d-flex flex-row">
           <section className="home-intro-text">
             {/* type-writing effect */}
@@ -21,7 +20,7 @@ const IndexArea = () => {
             <p>Spend less time making the right and informed decisions</p>
             <section className="home-intro-btn">
               <Link
-                className="btn btn-primary to-btn" 
+                className="btn pace-btn pace-btn-primary" 
                 id="login-btn"
                 to="/login"
               >
@@ -33,7 +32,7 @@ const IndexArea = () => {
               {/* <button type="submit" className="btn to-btn" id="learn-btn" onclick="window.location.href='contents/about.html'">Learn more</button> */}
               <Link
                 type="submit" 
-                className="btn to-btn" 
+                className="btn pace-btn pace-btn-accent" 
                 id="learn-btn"
                 to="/about"
                 >
@@ -46,26 +45,26 @@ const IndexArea = () => {
           <img src={landingPageImg} alt="office timing" className="img-fluid" />
         </div>
       </section>
-    </React.Fragment>
+    </>
   )
 }
 
 const FeaturesCard = props =>{
   const {animation, duration, svg, heading, paragraph} = props
   return(
-    <React.Fragment>
+    <>
       <article className="col col-sm-4" data-aos={animation} data-aos-duration={duration} {...props}>
         {svg}
         <h3>{heading}</h3>
         <p>{paragraph} </p>
       </article>
-    </React.Fragment>
+    </>
   )
 }
 
 const Features = () =>{
   return(
-    <React.Fragment>
+    <>
       <section id="pace-features">
       </section>
       <section className="row d-flex flex-column flex-sm-row align-items-center" id="pace-summary">
@@ -157,13 +156,13 @@ const Features = () =>{
             paragraph="Break down task into smaller bits to increase work efficiency."
           />
       </section>
-    </React.Fragment>
+    </>
   )
 }
 
 const ShowDashboard = () => {
   return (
-    <React.Fragment>
+    <>
   
       {/* SAMPLES OF DASHBOARD SECTION*/}
       <section className="container">
@@ -229,19 +228,19 @@ const ShowDashboard = () => {
           </article>
         </div>
       </section>
-    </React.Fragment>
+    </>
   )
 };
 
 function HomeBody() {
   return (
-    <React.Fragment>
+    <>
       <header className="container">
         <IndexArea />
         <Features />
       </header>
         <ShowDashboard />
-    </React.Fragment>
+    </>
   )
 }
 

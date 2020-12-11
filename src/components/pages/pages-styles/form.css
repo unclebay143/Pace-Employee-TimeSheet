@@ -13,11 +13,12 @@
     color: #6c757d;
  }
  .form-con a,
- .home-btn {
+ .home-icon {
      color: #FF6584;
  }
+
  .form-con a:hover,
- .home-btn:hover {
+ .home-icon:hover {
      color: #335eea;
      text-decoration: none;
  }

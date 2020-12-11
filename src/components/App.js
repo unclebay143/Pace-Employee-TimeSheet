@@ -22,7 +22,6 @@ function Home() {
           <HomeBody />
         </main>
           <Footer />
-      
     </React.Fragment>
   )
 }
