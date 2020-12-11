@@ -47,6 +47,13 @@ header.container{
   transition: 3s;
 }
 
+.home-intro-btn #learn-btn:hover{
+  position: relative;
+  animation-name: shake;
+  animation-duration: 5s;
+  animation-timing-function: ease-in;
+}
+
 .home-intro-btn{
   margin-top: 70px;
 }
@@ -64,18 +71,6 @@ header.container{
   transition: 0.25s;
 }
 
-.home-intro-btn #learn-btn{
-  background: #FF6584;
-}
-.home-intro-btn #learn-btn:hover{
-  background: #FF6584;
-  color: #ffffff;
-  position: relative;
-  animation-name: shake;
-  animation-duration: 5s;
-  animation-timing-function: ease-in;
-}
-
 @keyframes shake {
 0% {left: 0}
 1% {left: -3px}
@@ -87,12 +82,7 @@ header.container{
 7% {left: 0}
 }
 
-.to-btn{
-  background: rgb(51,94,234);
-  color: #ffffff;
-  padding: .5625rem 1rem !important;
-  font-size: 1.0625rem !important;
-}
+
 
 /* landing page section 0 */
 

@@ -5,7 +5,6 @@ import Navbar from './layouts/Navbar';
 import HomeBody from './pages/HomeBody';
 import Footer from './layouts/Footer';
 import AOS from 'aos';
-import 'aos/dist/aos.css';
 
 
 function Home() {
@@ -23,7 +22,6 @@ function Home() {
           <HomeBody />
         </main>
           <Footer />
-      
     </React.Fragment>
   )
 }

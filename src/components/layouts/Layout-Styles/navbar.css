@@ -37,18 +37,6 @@ button.navbar-toggler:hover{
     font-size: 1.21rem;
   }
 
-  a#get-started-btn{
-    background: transparent;
-    color: #335eea;
-    transition: 1s;
-  }
-  a#get-started-btn:hover{
-    background: #335eea;
-    color: #ffffff;
-    outline: none;
-    border: 1px solid #ffffff;
-  }
-
   .home-intro{
     margin-top: 80px;
     flex-direction: row !important;

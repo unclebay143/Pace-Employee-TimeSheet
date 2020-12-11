@@ -1,15 +1,15 @@
 import { useEffect } from 'react';
 import Cards from './cards/Cards';
 import EmpCards from './cards/EmpCards';
-import NotificationCards from './NotificationCards';
-import MostActiveEmployee from './MostActiveEmployee';
+import NotificationCards from './cards/NotificationCards';
+import MostActiveEmployee from './cards/MostActiveEmployee';
 import Footer from '../layouts/Footer';
 import AssignedTasks from './employeeTasks/AssignedTasks';
 import AcceptedTasks from './employeeTasks/AcceptedTasks';
-import HourTimerScreen from './HourTimerScreen';
+import HourTimerScreen from './cards/HourTimerScreen';
 
 
-const DashBody = () => {
+const Index = () => {
     useEffect(()=>{
         document.title = 'Company name | dashboard'
     })
@@ -17,7 +17,7 @@ const DashBody = () => {
     return(
         <>
             <section>
-            {/* >>>>>>>>>>>>>>> CARDS COMPONENNT SECTION <<<<<<<<<<<<<< */}
+            {/* >>>>>>>>>>>>>>> CARDS COMPONENT SECTION <<<<<<<<<<<<<< */}
                 {/* <EmpCards /> */}
                 <Cards />
                 <div className="row mb-4">
@@ -38,4 +38,4 @@ const DashBody = () => {
 }
 
 
-export default DashBody;
+export default Index;
