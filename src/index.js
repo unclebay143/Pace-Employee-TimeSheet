@@ -8,13 +8,14 @@ import {HashRouter as Router, Route, Switch } from "react-router-dom";
 // UTILITIES
 import './components/pages/pages-styles/util.css';
 import './components/pages/pages-styles/form.css';
-import './components/layouts/layout-styles/button.css'
+import './components/layouts/layout-styles/button.css';
 
 // CUSTOM
-import './components/layouts/layout-styles/navbar.css'
+import './components/layouts/layout-styles/navbar.css';
+import './components/layouts/layout-styles/footer.css';
 import './components/pages/pages-styles/homebody.css';
-import './components/pages/pages-styles/forgotpassword.css'
-import './components/pages/pages-styles/confirmation.css'
+import './components/pages/pages-styles/forgotpassword.css';
+import './components/pages/pages-styles/confirmation.css';
 
 // BOOTSTRAP
 import 'bootstrap/dist/css/bootstrap.css';
@@ -30,7 +31,7 @@ import './components/workspace/dashboard/dashboard-styles/style.default.css';
 import './components/workspace/dashboard/dashboard-styles/utilities.css';
 import './components/workspace/dashboard/dashboard-styles/custom.css';
 import './components/workspace/dashboard/dashboard-styles/orionicons.css';
-import './components/workspace/dashboard/dashboard-styles/card.css'
+import './components/workspace/dashboard/dashboard-styles/card.css';
 
 // COMPONENTS
 import Home from './components/App';
@@ -44,7 +45,7 @@ import ForgotPassword from './components/pages/ForgotPassword';
 import Confirmation from './components/pages/Confirmation';
 import ResetPassword from './components/pages/ResetPassword';
 import Dashboard from './components/workspace/dashboard/Dashboard';
-
+import App from './components/App'
 // Redux 
 import store from "./Store";
 import { Provider } from 'react-redux';
