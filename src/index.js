@@ -61,17 +61,15 @@ ReactDOM.render(
     <Provider store={store}>
       <Router>
         <Switch>
-          <Route exact path="/dashboard" component = {Dashboard} />
+          <Route path="/dashboard" component = {Dashboard} />
           <Route exact path="/forgot" component = {ForgotPassword} />
           <Route exact path="/confirmation" component = {Confirmation} />
           <Route exact path="/ResetPassword" component = {ResetPassword} />
           <Route exact path="/login" component = {LoginPage} />
           <Route exact path="/signup" component = {SignupPage} />
           <Route exact path="/contact" component = {ContactUs} />
-          <Route exact path="/about" component = {About} />
-          <Route exact path="/pricing" component = {Pricing} />
           <Route exact path="/test" component = {Test} />
-          <Route exact path="/" component = {Home} />
+          <Route path="/" component = {Home} />
           <Route component = {PageNotFound} />
         </Switch>
       </Router>
