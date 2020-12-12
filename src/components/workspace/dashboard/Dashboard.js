@@ -10,6 +10,9 @@ import AcceptedTasks from './employeeTasks/AcceptedTasks';
 import EmployeeTasks from './employeeTasks/EmployeeTasks';
 import Footer from '../layouts/Footer';
 import Index from './Index';
+import InviteForm from './AddEmployee';
+import AddComponent from './AddComponent';
+
 
 {/* <div>
     <Navbar  />
@@ -40,9 +43,11 @@ class Dashboard extends Component{
 
                                 <div className="container-fluid px-xl-5">
                   {/* >>>>>>>>>>>>>>> BODIES COMPONENTS SECTION <<<<<<<<<<<<<< */}
-                                    <Index />
+                                    {/* <Index /> */}
                                     {/* <AcceptedTasks /> */}
                                     {/* <EmployeeTasks /> */}
+                                    {/* <Invite /> */}
+                                    <AddComponent />
                                 </div>
                   {/* >>>>>>>>>>>>>>> FOOTER COMPONENT SECTION <<<<<<<<<<<<<< */}
                             <Footer />
