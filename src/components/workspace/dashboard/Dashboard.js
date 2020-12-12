@@ -35,8 +35,8 @@ class Dashboard extends Component{
                             <div className="page-holder w-100 d-flex flex-wrap">
                                 <div className="container-fluid px-xl-5">
                   {/* >>>>>>>>>>>>>>> BODIES COMPONENTS SECTION <<<<<<<<<<<<<< */}
-                                    <Index />
-                                    {/* <AcceptedTasks /> */}
+                                    {/* <Index /> */}
+                                    <AcceptedTasks />
                                     {/* <EmployeeTasks /> */}
                                 </div>
                   {/* >>>>>>>>>>>>>>> FOOTER COMPONENT SECTION <<<<<<<<<<<<<< */}
