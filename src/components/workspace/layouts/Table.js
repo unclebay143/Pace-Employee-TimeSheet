@@ -31,9 +31,43 @@ export default class Table extends Component {
                               {/* search name is removed */}
                               {/* <h3>Search {searchName} </h3> */}
                               <div className="d-flex align-items-center justify-content-center">
-                                <SearchBar { ...props.searchProps } />  
-                                <ClearSearchButton { ...props.searchProps } className="btn pace-btn-accent ml-2"/>
+                                <SearchBar { ...props.searchProps } className="search-box"/>  
+                                <ClearSearchButton { ...props.searchProps } className="btn form-control pace-btn-accent ml-"/>
                               </div>
+                              <style>
+                                {
+                                  `
+                                    .search-box{
+                                      font-size: 18px !important;
+                                      width: 202px !important;
+                                      height: 35px;
+                                      margin-top: 8px;
+                                      margin-right: 4px;
+                                    }
+                                    
+                                    .page-item.active .page-link {
+                                      border-radius: 2px;
+                                      margin-right: auto;
+                                    }
+
+                                    .react-bootstrap-table-pagination-list{
+                                      display: flex;
+                                      justify-content: flex-end;
+                                    }
+                                    
+                                    #pageDropDown{
+                                      background: #335eea;
+                                      border: none;
+                                    }
+
+                                    .fa-eye{
+                                      color: #335eea !important;
+                                      cursor: pointer;
+                                    }
+
+                                  `
+                                }
+                              </style>
                             </div>
                           </div>
                         </div>
