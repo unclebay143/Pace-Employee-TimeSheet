@@ -10,31 +10,36 @@ class Invite extends Component{
             <>
                 <div className="d-flex flex-wrap">
                     <div className="container-fluid px-xl-5">
-                        <div className="pt-5">
+                        <div className="mt-5">
                         {/* trigger button */}
                         <div className="row">
-                            <div className="col d-flex">
-                            <button type="button" className="btn pace-bg-primary d-block" data-toggle="modal" data-target="#addEmployeeForm">
+                            <div className="col-12 d-flex justify-content-start">
+                            {/* <button type="button" className="btn pace-btn pace-btn-outline-primary d-block" >
                                 Add Employee
-                            </button>
-                            {/* <span className="lead m-2">or</span>
-                            <button type="button" className="btn bg-green d-block ml-2" data-toggle="modal" data-target="#addEmployeeForm">
-                                Invite Employee
                             </button> */}
+                            <Button 
+                                type="button"
+                                data-toggle="modal" 
+                                data-target="#addEmployeeForm"
+                                className="btn pace-btn pace-btn-primary ml-3" 
+                                id="searchEmployeeBtn"
+                                label="New"
+                                icon = "fas fa-plus mr-2"
+                            />
                             </div>
                             <div className="col">
                             <form className="form-inline d-flex search-form md-form form-sm mt-0">
-                                <input className="form-control search-input form-control-sm w-75" type="text" placeholder="Search" aria-label="Search" id="searchParam" />
-                                {/* <button className="btn pace-bg-primary ml-3" id="searchEmployeeBtn">
+                                {/* <input className="form-control search-input form-control-sm w-75" type="text" placeholder="Search" aria-label="Search" id="searchParam" />
+                                <button className="btn pace-bg-primary ml-3" id="searchEmployeeBtn">
                                 <i className="fas fa-search" aria-hidden="true" />
                                 Search
-                                </button> */}
+                                </button>
                                 <Button 
-                                    className="btn pace-bg-primary ml-3" 
+                                    className="btn pace-btn pace-btn-primary ml-3" 
                                     id="searchEmployeeBtn"
                                     icon="fas fa-search"
                                     label="Search"
-                                />
+                                /> */}
                             </form>
                             {/* <input type="text"class="form-control"> */}
                             </div>
@@ -152,18 +157,7 @@ class Invite extends Component{
                             </div> */}
                         </div>
                     </div>
-                    {/* <footer className="footer bg-white shadow align-self-end py-3 px-xl-5 w-100">
-                        <div className="container-fluid">
-                        <div className="row">
-                            <div className="col-md-6 text-center text-md-left text-primary">
-                            <p className="mb-2 mb-md-0">Pace Timesheet © 2018-2020</p>
-                            </div>
-                            <div className="col-md-6 text-center text-md-right text-gray-400">
-                            </div>
-                        </div>
-                        </div>
-                    </footer> */}
-                    <Footer />
+                    
                 </div>
             </>
         )
