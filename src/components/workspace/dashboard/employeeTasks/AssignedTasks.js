@@ -4,7 +4,7 @@ import Table from '../../../pages/Table';
 
 const taskHeader = [
       {
-        dataField: 'index',
+        dataField: 'id',
         text: 'S/N'
       },
       {
@@ -31,21 +31,21 @@ class AssignedTasks extends Component {
     this.state = {
       AssignedTasks : [
         {
-          index: '1',
+          id: '1',
           task: 'testing',
           dueDate: '12/06/21',
           status: 'accepted',
           requests: 'requested'
         },
         {
-          index: '2',
+          id: '2',
           task: 'testing2',
           dueDate: '14/06/21',
           status: 'accepted',
           requests: 'requested'
         },
         {
-          index: '3',
+          id: '3',
           task: 'testing3',
           dueDate: '16/06/21',
           status: 'accepted',
@@ -64,6 +64,7 @@ class AssignedTasks extends Component {
           keyField='id'
           data={ AssignedTasks }
           columns={ taskHeader } 
+          searchName = 'for a task here'
           bordered= { false }
         />
       </div>
