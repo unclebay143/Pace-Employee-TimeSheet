@@ -10,12 +10,10 @@ import AOS from 'aos';
 
 // Components
 import About from './pages/About';
-import Pricing from './pages/Pricing';
 import HomeBody from './pages/HomeBody';
 
 
 function Home() {
-
   useEffect(() => {
     AOS.init({
       duration : 2000
@@ -28,7 +26,6 @@ function Home() {
         <Navbar />
           <Switch>
             <Route exact path="/about" component = {About} />
-            <Route exact path="/pricing" component = {Pricing} />
             <Route exact path="/" component = {HomeBody} />
           </Switch>
       </main>

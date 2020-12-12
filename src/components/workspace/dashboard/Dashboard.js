@@ -12,6 +12,7 @@ import Index from './Index';
 import AddEmployee from './AddEmployee';
 import EditEmployee from './EditEmployee';
 import EmployeeTasks from './employeeTasks/EmployeeTasks';
+import EmployeeList from './EmployeeList';
 
 
 class Dashboard extends Component{
@@ -30,8 +31,9 @@ class Dashboard extends Component{
                    {/* >>>>> BODIES COMPONENTS SECTION <<<<< */}
                                     <Switch>
                                         <Route exact path="/dashboard/task" component={EmployeeTasks} />
-                                        <Route exact path="/dashboard/employ" component={AddEmployee} />
                                         <Route exact path="/dashboard/edit" component={EditEmployee} />
+                                        <Route exact path="/dashboard/employ" component={AddEmployee} />
+                                        <Route exact path="/dashboard/employee-list" component={EmployeeList} />
                                         <Route exact path="/dashboard" component={Index} />
                                     </Switch>
                                 </div>
