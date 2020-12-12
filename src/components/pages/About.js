@@ -20,7 +20,6 @@ const About = () => {
   return (
     <React.Fragment>
       <AboutContent />
-      <Footer />
     </React.Fragment>
   )
 }
@@ -69,9 +68,6 @@ const AboutContent = () => {
 
   return(
     <React.Fragment>
-      <div className="container">
-        <Navbar />    
-      </div>
       <section className="container about">
         <section className="row pace-big-screen flex-column-reverse flex-lg-row">
           <article className="col-12 col-lg-6">

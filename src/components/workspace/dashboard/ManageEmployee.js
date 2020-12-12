@@ -2,7 +2,6 @@ import { React, Component } from 'react';
 import Footer from '../layouts/Footer';
 import EmployeeList from './EmployeeList';
 import Button from '../../layouts/Button'
-import InviteForm from './AddEmployee';
 
 class Invite extends Component{
     render(){
@@ -11,43 +10,21 @@ class Invite extends Component{
                 <div className="d-flex flex-wrap">
                     <div className="container-fluid px-xl-5">
                         <div className="mt-5">
-                        {/* trigger button */}
-                        <div className="row">
-                            <div className="col-12 d-flex justify-content-start">
-                            {/* <button type="button" className="btn pace-btn pace-btn-outline-primary d-block" >
-                                Add Employee
-                            </button> */}
-                            <Button 
-                                type="button"
-                                data-toggle="modal" 
-                                data-target="#addEmployeeForm"
-                                className="btn pace-btn pace-btn-primary ml-3" 
-                                id="searchEmployeeBtn"
-                                label="New"
-                                icon = "fas fa-plus mr-2"
-                            />
+                            <div className="row">
+                                <div className="col-12 d-flex justify-content-start">
+                                    <Button 
+                                        type="button"
+                                        data-toggle="modal" 
+                                        data-target="#addEmployeeForm"
+                                        className="btn pace-btn pace-btn-primary" 
+                                        id="searchEmployeeBtn"
+                                        label="New"
+                                        icon = "fas fa-plus mr-2"
+                                    />
+                                </div>
                             </div>
-                            <div className="col">
-                            <form className="form-inline d-flex search-form md-form form-sm mt-0">
-                                {/* <input className="form-control search-input form-control-sm w-75" type="text" placeholder="Search" aria-label="Search" id="searchParam" />
-                                <button className="btn pace-bg-primary ml-3" id="searchEmployeeBtn">
-                                <i className="fas fa-search" aria-hidden="true" />
-                                Search
-                                </button>
-                                <Button 
-                                    className="btn pace-btn pace-btn-primary ml-3" 
-                                    id="searchEmployeeBtn"
-                                    icon="fas fa-search"
-                                    label="Search"
-                                /> */}
-                            </form>
-                            {/* <input type="text"class="form-control"> */}
-                            </div>
-                            {/* Add Employee Modal Form Section*/}
-                            <InviteForm />
                         </div>
-                        </div>
-                        <section className="py-5">
+                        <section>
                         <EmployeeList />
                         </section>
                     </div>
@@ -85,18 +62,6 @@ class Invite extends Component{
                                         <div className="title">Email:</div>
                                         <div className="text" id="displayEmail">unclebigbay@gmail.com</div>
                                     </li>
-                                    {/* <li>
-                                                            <div class="title">Birthday:</div>
-                                                            <div class="text">24th May</div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="title">Address:</div>
-                                                            <div class="text">TIIDELab cohort 2</div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="title">Report to:</div>
-                                                            <div class="text">Solomon Chokor</div>
-                                                        </li> */}
                                     <li>
                                         <div className="title">Completed Task : </div>
                                         <div className="text">5</div>

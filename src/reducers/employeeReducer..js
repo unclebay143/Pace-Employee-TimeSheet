@@ -9,7 +9,8 @@ const initialState = [
         department: "web development",
         phone: "09087665253",
         role: "Frontend",
-        employeed_date: "12/23/34"
+        employeed_date: "12/23/34",
+        salary: 130000
     },
     {
         id: uuidv4(),
