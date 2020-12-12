@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import Table from '../../../pages/Table';
+import paginationFactory from 'react-bootstrap-table2-paginator';
 
 
 const taskHeader = [
       {
-        dataField: 'index',
+        dataField: 'id',
         text: 'S/N'
       },
       {
@@ -30,22 +31,78 @@ class AcceptedTasks extends Component {
     this.state = {
       acceptedTasks : [
         {
-          index: '1',
+          id: '1',
           task: 'testing',
           dueDate: '12/06/21',
           status: 'accept',
           requests: 'requested'
         },
         {
-          index: '2',
+          id: '2',
           task: 'testing2',
           dueDate: '14/06/21',
           status: 'accept',
           requests: 'requested'
         },
         {
-          index: '3',
+          id: '3',
           task: 'testing3',
+          dueDate: '16/06/21',
+          status: 'accept',
+          requests: 'requested'
+        },
+        {
+          id: '4',
+          task: 'testing3',
+          dueDate: '16/06/21',
+          status: 'accept',
+          requests: 'requested'
+        },
+        {
+          id: '5',
+          task: 'testing3',
+          dueDate: '16/06/21',
+          status: 'accept',
+          requests: 'requested'
+        },
+        {
+          id: '6',
+          task: 'testing3',
+          dueDate: '16/06/21',
+          status: 'accept',
+          requests: 'requested'
+        },
+        {
+          id: '7',
+          task: 'testing3',
+          dueDate: '16/06/21',
+          status: 'accept',
+          requests: 'requested'
+        },
+        {
+          id: '8',
+          task: 'testing3',
+          dueDate: '16/06/21',
+          status: 'accept',
+          requests: 'requested'
+        },
+        {
+          id: '9',
+          task: 'testing3',
+          dueDate: '16/06/21',
+          status: 'accept',
+          requests: 'requested'
+        },
+        {
+          id: '10',
+          task: 'testing3',
+          dueDate: '16/06/21',
+          status: 'accept',
+          requests: 'requested'
+        },
+        {
+          id: '11',
+          task: 'testing111',
           dueDate: '16/06/21',
           status: 'accept',
           requests: 'requested'
@@ -63,7 +120,9 @@ class AcceptedTasks extends Component {
           keyField='id'
           data={ acceptedTasks }
           columns={ taskHeader } 
+          searchName = 'for a task here'
           bordered= { false }
+          pagination = { paginationFactory()}
         />
       </div>
     )

@@ -2,9 +2,9 @@ import { React, useEffect} from 'react';
 import { Formik, Form, ErrorMessage } from 'formik';
 import { TextInput } from '../layouts/FormInput';
 import Button from '../layouts/Button';
-import { Link } from 'react-router-dom';
 import forgotIllustration from '../pages/pages-images/forgotpassword.svg';
 import { forgotPasswordSchema } from '../Validation/Schema';
+import { HomeButton } from '../layouts/HomeButton';
 
 
 export default function ForgotPassword() {
@@ -15,14 +15,12 @@ export default function ForgotPassword() {
         }
     }, [])
     return (
-        <React.Fragment>
+        <>
 
             <div className="container d-flex justify-content-center pl-5 align-items-center mt-5">
                 <div className="row mt-5 d-flex justify-content-center">
                     <div className="col mt-5">
-                        <Link to="/">
-                            <i className="fas fa-long-arrow-alt-left mt5 mb-5"></i>
-                        </Link>
+                        <HomeButton className="mb-4" />
                         <div>
                             <h3 className="lad">Forgot Password</h3>
                             <p className="w-3 pace-accent-color">Looks like you forgot your password, let's help you out</p>
@@ -30,7 +28,6 @@ export default function ForgotPassword() {
                         
                         <div className="form-wrapper">
                             <Formik 
-                            
                                 initialValues = {{
                                     email:"",
                                     isSubmitting:false
@@ -76,6 +73,6 @@ export default function ForgotPassword() {
                     <img src={forgotIllustration} alt="human forgot password" className="img-fluid mt-4" />
                 </div>
             </div>
-        </React.Fragment>
+        </>
     )
 }

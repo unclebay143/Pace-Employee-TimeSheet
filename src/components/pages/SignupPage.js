@@ -9,6 +9,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { signUpSchema } from '../Validation/Schema'
 import { TextInput, CheckbBox } from '../layouts/FormInput';
 // import PropTypes from 'prop-types';
+import { HomeButton } from '../layouts/HomeButton'
 
 class SignupPage extends Component{
     constructor(props){
@@ -32,9 +33,7 @@ class SignupPage extends Component{
                 <main className="container d-flex justify-content-center align-items-center mt-5">
                     <div className="row">
                         <div className="form-con col-lg-5 mb-5">
-                            <Link to="/">
-                                <i className="fas fa-long-arrow-alt-left"></i>
-                            </Link>
+                            <HomeButton />
                             <div className="form-heading mt-2">
                             <h3 className="mb-3">Signup</h3>
                             <h4 className="mb-4">Track every second!</h4>
@@ -157,7 +156,6 @@ class SignupPage extends Component{
                                                 />
                                                 <p>Already have an account? <Link to="./login">Login</Link></p>
                                             </div>
-                                            <pre>{JSON.stringify(values, null, 2)}</pre>
                                         </Form>
                                     )
                                 }

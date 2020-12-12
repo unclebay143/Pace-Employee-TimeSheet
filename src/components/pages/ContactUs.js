@@ -20,7 +20,8 @@ class ContactUs extends Component {
             <div className="form-con col-lg-12 mb-5">
               {/* link to go back to the home page */}
               <Link to="/">
-                <i className="fas fa-long-arrow-alt-left" />
+                {/* <i className="fas fa-long-arrow-alt-left" /> */}
+                <i className="fas fa-home" />
               </Link>
               <div className="form-heading mt-2">
                 <h1>Contact Us</h1>
@@ -91,19 +92,19 @@ class ContactUs extends Component {
                         placeholder = "please drop your message here"
                         onChange={handleChange} 
                       />
-                      {/* <ErrorMessage
+                      <ErrorMessage
                         component="div"
                         name="message"
                         className="invalid-feedback p-0"
-                     /> */}    
+                     />    
                     </div>
                    
                     <Button 
                       label="Contact Us"
-                      type = "button"
+                      type="submit"
                       className = "btn btn-primary"
                       id = "contact-us"
-                      // disabled={isSubmitting}
+                      disabled={isSubmitting}
                       // label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Loading...</span>) : "Login"}
                     />
                   </Form>

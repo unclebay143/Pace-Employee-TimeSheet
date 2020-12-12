@@ -1,7 +1,10 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import {useSelector} from 'react-redux';
 
-export default class EmployeeList extends Component {
-    render() {
+export default function EmployeeList(){
+        // const { firstname, lastname, department, phone, role, employeed_date } = employees
+        const employees = useSelector(state => state.employee)
+        // console.log(employees)
         return (
             <>
               <div className="card">
@@ -29,11 +32,21 @@ export default class EmployeeList extends Component {
                             </tr>
                             </thead>
                             <tbody id="employeeList">
-
-
-
-
-                                
+                                {
+                                    employees.map(({ firstname, lastname, department, phone, role, employeed_date }, index)=>(
+                                        <tr key={`${firstname}_${phone}`}>
+                                            <td>{index+1}</td>
+                                            <td>{firstname}</td>
+                                            <td>{lastname}</td>
+                                            <td>{phone}</td>
+                                            <td>{department}</td>
+                                            <td>{role}</td>
+                                            <td>{employeed_date}
+                                            <i className="fas fa-edit ml-5 text-blue"></i>
+                                            </td>
+                                        </tr>                                
+                                    ))
+                                }
                             </tbody>
                         </table>
                         </div>
@@ -41,4 +54,3 @@ export default class EmployeeList extends Component {
             </>
         )
     }
-}

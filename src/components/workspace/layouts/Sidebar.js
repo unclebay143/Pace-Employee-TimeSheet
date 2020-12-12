@@ -6,7 +6,7 @@ const Sidebar = () => {
         <>
             <div id="sidebar" className="sidebar py-3">
                     <div className="text-gray-400 text-uppercase px-3 px-lg-4 py-4 font-weight-bold small headings-font-family" id="role_display">Admin</div>
-                    <Link to="invite">LINK</Link>
+                    {/* <Link to="invite">LINK</Link> */}
                         <ul className="sidebar-menu list-unstyled">
                             <li className="sidebar-list-item"><a href="#" className="sidebar-link text-muted active"><i className="o-home-1 mr-3 text-gray"></i><span>Dashboard</span></a></li>
                             <li className="sidebar-list-item"><a href="manage-employee.html" className="sidebar-link text-muted"><i className="o-user-details-1 mr-3 text-gray"></i><span>Employee</span></a></li>
