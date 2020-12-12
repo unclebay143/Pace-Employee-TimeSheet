@@ -75,10 +75,7 @@ button.navbar-toggler:hover{
     margin-left: 2rem;
   }
   
-  #dashboard-display{
-    flex-direction: row !important;
-  }
-  
+ 
   @keyframes dance-1 {
     /* 0%{transform: rotateY(-25deg) rotateX(25deg);} */
     /* 100%{transform: rotateY(20deg) rotateX(20deg);} */

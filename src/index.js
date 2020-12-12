@@ -10,7 +10,6 @@ import './components/pages/pages-styles/util.css';
 import './components/pages/pages-styles/form.css';
 import './components/layouts/layout-styles/button.css'
 
-
 // CUSTOM
 import './components/layouts/layout-styles/navbar.css';
 import './components/layouts/layout-styles/footer.css';
@@ -24,6 +23,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.js';
 
 // AOS
+
 import 'aos/dist/aos.css';
 
 // DASHBOARD
@@ -32,6 +32,13 @@ import './components/workspace/dashboard/dashboard-styles/utilities.css';
 import './components/workspace/dashboard/dashboard-styles/custom.css';
 import './components/workspace/dashboard/dashboard-styles/orionicons.css';
 import './components/workspace/dashboard/dashboard-styles/card.css';
+
+// Redux 
+import store from "./Store";
+import { Provider } from 'react-redux';
+
+// test DEVcomponent
+import Test from './rough/Test'
 
 // COMPONENTS
 import Home from './components/App';
@@ -43,13 +50,6 @@ import ForgotPassword from './components/pages/ForgotPassword';
 import Confirmation from './components/pages/Confirmation';
 import ResetPassword from './components/pages/ResetPassword';
 import Dashboard from './components/workspace/dashboard/Dashboard';
-
-// Redux 
-import store from "./Store";
-import { Provider } from 'react-redux';
-
-// test DEVcomponent
-import Test from './rough/Test'
 
 
 
@@ -64,12 +64,12 @@ ReactDOM.render(
           <Route exact path="/forgot" component = {ForgotPassword} />
           <Route exact path="/signup" component = {SignupPage} />
           <Route exact path="/login" component = {LoginPage} />
-          <Route component = {PageNotFound} />
           {/* Development Component for testing */}
           <Route exact path="/test" component = {Test} />
           {/* Top Level Components */}
           <Route path="/dashboard" component = {Dashboard} />
           <Route path="/" component = {Home} />
+          <Route component = {PageNotFound} />
         </Switch>
       </Router>
     </Provider>

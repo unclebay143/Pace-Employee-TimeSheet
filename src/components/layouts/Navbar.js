@@ -24,7 +24,7 @@ function Navbar() {
           <div className="navbar-nav">
             <Link to="/" className="nav-link active">Home</Link>
             <ScrollLink 
-              to="/#pace-features"         
+              to="/#features"         
               spy="true"
               smooth="true"
               duration={500} 
@@ -32,7 +32,15 @@ function Navbar() {
               className="nav-link"
             >Features
             </ScrollLink>
-            <Link to="/pricing" className="nav-link">Pricing</Link>
+            <ScrollLink 
+              to="/#pricing"         
+              spy="true"
+              smooth="true"
+              duration={500} 
+              activeclass='active'
+              className="nav-link"
+            >Pricing
+            </ScrollLink>
             <Link to='/about' className="nav-link">About</Link>
             <Link to="/contact" className="nav-link">Contact</Link>
           </div>
