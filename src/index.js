@@ -24,7 +24,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.js';
 
 // AOS
-
 import 'aos/dist/aos.css';
 
 // DASHBOARD
@@ -36,9 +35,7 @@ import './components/workspace/dashboard/dashboard-styles/card.css';
 
 // COMPONENTS
 import Home from './components/App';
-import About from './components/pages/About';
 import ContactUs from './components/pages/ContactUs';
-import Pricing from './components/pages/Pricing';
 import LoginPage from './components/pages/LoginPage';
 import SignupPage from './components/pages/SignupPage';
 import PageNotFound from './components/pages/404';
@@ -46,7 +43,7 @@ import ForgotPassword from './components/pages/ForgotPassword';
 import Confirmation from './components/pages/Confirmation';
 import ResetPassword from './components/pages/ResetPassword';
 import Dashboard from './components/workspace/dashboard/Dashboard';
-import App from './components/App'
+
 // Redux 
 import store from "./Store";
 import { Provider } from 'react-redux';
@@ -61,16 +58,18 @@ ReactDOM.render(
     <Provider store={store}>
       <Router>
         <Switch>
-          <Route path="/dashboard" component = {Dashboard} />
-          <Route exact path="/forgot" component = {ForgotPassword} />
-          <Route exact path="/confirmation" component = {Confirmation} />
-          <Route exact path="/ResetPassword" component = {ResetPassword} />
-          <Route exact path="/login" component = {LoginPage} />
-          <Route exact path="/signup" component = {SignupPage} />
           <Route exact path="/contact" component = {ContactUs} />
-          <Route exact path="/test" component = {Test} />
-          <Route path="/" component = {Home} />
+          <Route exact path="/ResetPassword" component = {ResetPassword} />
+          <Route exact path="/confirmation" component = {Confirmation} />
+          <Route exact path="/forgot" component = {ForgotPassword} />
+          <Route exact path="/signup" component = {SignupPage} />
+          <Route exact path="/login" component = {LoginPage} />
           <Route component = {PageNotFound} />
+          {/* Development Component for testing */}
+          <Route exact path="/test" component = {Test} />
+          {/* Top Level Components */}
+          <Route path="/dashboard" component = {Dashboard} />
+          <Route path="/" component = {Home} />
         </Switch>
       </Router>
     </Provider>

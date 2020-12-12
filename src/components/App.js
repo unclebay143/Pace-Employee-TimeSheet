@@ -1,10 +1,14 @@
-// react 
+// React 
 import React, {useEffect} from 'react';
-// layout component
+import { Route, Switch } from 'react-router-dom/cjs/react-router-dom.min';
+// Layouts
 import Navbar from './layouts/Navbar';
 import Footer from './layouts/Footer';
+
+// Others
 import AOS from 'aos';
-import { Route, Switch } from 'react-router-dom/cjs/react-router-dom.min';
+
+// Components
 import About from './pages/About';
 import Pricing from './pages/Pricing';
 import HomeBody from './pages/HomeBody';
@@ -19,17 +23,17 @@ function Home() {
   }, []);
 
   return (
-    <React.Fragment>
-        <main className="container">
-          <Navbar />
+    <>
+      <main className="container">
+        <Navbar />
           <Switch>
             <Route exact path="/about" component = {About} />
             <Route exact path="/pricing" component = {Pricing} />
             <Route exact path="/" component = {HomeBody} />
           </Switch>
-        </main>
-          <Footer />
-    </React.Fragment>
+      </main>
+        <Footer />
+    </>
   )
 }
 
