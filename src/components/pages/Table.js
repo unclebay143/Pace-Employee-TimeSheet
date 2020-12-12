@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import ToolkitProvider, {search} from 'react-bootstrap-table2-toolkit';
+import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
+// import paginationFactory from 'react-bootstrap-table2-paginator';
 import BootstrapTable from 'react-bootstrap-table-next';
 
 
 class Table extends Component {
   render() {
-    const { keyField, data, columns, bordered} = this.props;
+    const { keyField, data, columns, bordered, searchName, pagination} = this.props;
+    const { SearchBar, ClearSearchButton } = Search;
     return (
       <div>
         <ToolkitProvider
@@ -14,13 +16,22 @@ class Table extends Component {
           columns={ columns }
           search
         >
+         
           {
-            props =>
-              <BootstrapTable 
-                { ...props.baseProps }
-                bordered={ bordered }
-                hover
-              />
+            props =>(
+              <div>
+                <h3>Search {searchName} </h3>
+                <SearchBar { ...props.searchProps } />
+                <ClearSearchButton { ...props.searchProps } />
+                <hr />
+                <BootstrapTable
+                  { ...props.baseProps }
+                  bordered={ bordered }
+                  pagination={ pagination }
+                  hover
+                />
+              </div>
+            )
           }
         </ToolkitProvider>
       </div>
@@ -32,13 +43,3 @@ class Table extends Component {
 export default Table;
 
 
-// props =>(
-//   <div>
-//     <h3>Search here </h3>
-//     <SearchBar { ...props.searchProps } />
-//     <hr />
-//     <BootstrapTable
-//       { ...props.baseProps }
-//     />
-//   </div>
-// )
