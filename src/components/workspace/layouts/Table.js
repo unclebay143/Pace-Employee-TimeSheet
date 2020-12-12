@@ -3,7 +3,7 @@ import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
 import BootstrapTable from 'react-bootstrap-table-next';
 
 
-export default class Tablee extends Component {
+export default class Table extends Component {
 
   render() {
     const { keyField, data, columns, bordered, searchName, pagination} = this.props;
@@ -37,8 +37,8 @@ export default class Tablee extends Component {
                             </div>
                           </div>
                         </div>
-                        <div className="card-body">
-                          {body}
+                        <div className="card-body py-1">
+                          {/* {body} */}
                           <hr />
                           <BootstrapTable
                             { ...props.baseProps }

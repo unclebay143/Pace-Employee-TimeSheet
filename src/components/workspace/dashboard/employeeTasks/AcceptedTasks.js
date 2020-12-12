@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Table from '../../../layouts/Table';
+import Table from '../../layouts/Table';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 
 

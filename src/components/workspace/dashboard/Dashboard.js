@@ -47,8 +47,8 @@ class Dashboard extends Component{
                   {/* >>>>>>>>>>>>>>> BODIES COMPONENTS SECTION <<<<<<<<<<<<<< */}
                                     {/* <Index /> */}
                                     {/* <AcceptedTasks /> */}
-                                    <EmployeeTasks />
-                                    {/* <Invite /> */}
+                                    {/* <EmployeeTasks /> */}
+                                    <Invite />
                                     {/* <AddEmployee /> */}
                                     {/* <EditEmployee /> */}
                                 </div>

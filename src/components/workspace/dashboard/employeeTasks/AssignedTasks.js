@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Table from '../../../layouts/Table';
+import Table from '../../layouts/Table';
 
 
 
@@ -67,7 +67,6 @@ class AssignedTasks extends Component {
           keyField='id'
           data={ AssignedTasks }
           columns={ taskHeader } 
-          searchName = 'for a task here'
           bordered= { false }
         />
       </div>
