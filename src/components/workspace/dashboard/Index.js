@@ -1,11 +1,7 @@
 import { useEffect } from 'react';
 import Cards from './cards/Cards';
-import EmpCards from './cards/EmpCards';
 import NotificationCards from './cards/NotificationCards';
 import MostActiveEmployee from './cards/MostActiveEmployee';
-import Footer from '../layouts/Footer';
-import AssignedTasks from './employeeTasks/AssignedTasks';
-import AcceptedTasks from './employeeTasks/AcceptedTasks';
 import HourTimerScreen from './cards/HourTimerScreen';
 
 
