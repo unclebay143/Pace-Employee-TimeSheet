@@ -8,7 +8,8 @@ import {HashRouter as Router, Route, Switch } from "react-router-dom";
 // UTILITIES
 import './components/pages/pages-styles/util.css';
 import './components/pages/pages-styles/form.css';
-import './components/layouts/layout-styles/button.css';
+import './components/layouts/layout-styles/button.css'
+
 
 // CUSTOM
 import './components/layouts/layout-styles/navbar.css';
