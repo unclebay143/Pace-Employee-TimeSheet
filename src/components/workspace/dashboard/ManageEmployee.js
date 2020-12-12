@@ -2,7 +2,6 @@ import { React, Component } from 'react';
 import Footer from '../layouts/Footer';
 import EmployeeList from './EmployeeList';
 import Button from '../../layouts/Button'
-import InviteForm from './AddEmployee';
 
 class Invite extends Component{
     render(){
@@ -44,7 +43,7 @@ class Invite extends Component{
                             {/* <input type="text"class="form-control"> */}
                             </div>
                             {/* Add Employee Modal Form Section*/}
-                            <InviteForm />
+                            {/* <InviteForm /> */}
                         </div>
                         </div>
                         <section className="py-5">

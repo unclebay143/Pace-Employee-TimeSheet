@@ -1,78 +1,61 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
+import BootstrapTable from 'react-bootstrap-table-next';
 
 
-const TableHeader = (props) => {
- return(
-   <thead className = "pace-bg-primary">
-     <tr>
-       <th>S/N</th>
-       <th>Task</th>
-       <th>Due Date</th>
-       <th>Status</th>
-       <th>Requests</th>
-     </tr>
-   </thead>
- )
-}
-export const TableData = ({children, label}) => {
-  return(
-    <div>
-      <td> {label } </td>
-      {children}
-    </div>
-  )
-}
+export default class Tablee extends Component {
 
-export const TableBody = (props) => {
-  // const {label, tableData} = this.props;
-  const rows = props.tableData.map((row, index) => {
-    return (
-      <tr Key = {index}>
-        <td> {row.index} </td>
-        <td> {row.task} </td>
-         <td> {row.dueDate} </td>
-        <td> {row.status} </td>
-         <td> {row.requests} </td>
-        {/* <TableData label = {label}/> */}
-        
-      </tr>
-    )
-  })
-  return <tbody> {rows} </tbody>
-}
-
-export class Table extends Component {
   render() {
-    const { tableData } = this.props;
+    const { keyField, data, columns, bordered, searchName, pagination} = this.props;
+    const { SearchBar, ClearSearchButton } = Search;
+    const {title, body} = this.props
     return (
-      <div >
-      {/* <div className="card-body"> */}
-        {/* <table className="table card-text"> */}
-          <table >
-          <TableHeader />
-          <TableBody tableData = {tableData} />
-        </table>
-      </div>
+      <>
+        <ToolkitProvider
+          keyField={keyField}
+          data={ data }
+          columns={ columns }
+          search
+        >
+          {
+            props =>(
+              <>
+                <section className="py-5">
+                  <div className="row mb-4">
+                    <div className="col-lg-12 mb-1">
+                      <div className="card">
+                        <div className="card-header">
+                          <div className="row">
+                            <div className="col-12 d-flex justify-content-between">
+                              <h6 className="text-uppercase mb-0 pace-accent-color">{title}</h6>
+                              {/* search name is removed */}
+                              {/* <h3>Search {searchName} </h3> */}
+                              <div className="d-flex align-items-center justify-content-center">
+                                <SearchBar { ...props.searchProps } />  
+                                <ClearSearchButton { ...props.searchProps } className="btn pace-btn-accent ml-2"/>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="card-body">
+                          {body}
+                          <hr />
+                          <BootstrapTable
+                            { ...props.baseProps }
+                            bordered={ bordered }
+                            pagination={ pagination }
+                            hover
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </>
+            )
+          }
+        </ToolkitProvider>
+      </>
     )
   }
 }
-
-// export default Table;
-
-
-// const TableBody = ({children, , label}) => {
-//   const rows = tableData.map((row, index) => {
-//     return (
-//       <tr Key = {index}>
-//         {/* <td> {row.index} </td> */}
-//         <TableData label = {label}/>
-//         {/* <td> {row.task} </td>
-//         <td> {row.dueDate} </td>
-//         <td> {row.status} </td>
-//         <td> {row.requests} </td> */}
-//         {children}
-//       </tr>
-//     )
-//   })
-//   return <tbody> {rows} </tbody>
-// }

@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import Table from '../../../pages/Table';
+import Table from '../../../layouts/Table';
+
+
+
 
 
 const taskHeader = [

@@ -4,14 +4,16 @@ import Sidebar from '../layouts/Sidebar'
 import Invite from './ManageEmployee';
 
 
-import Table from '../../pages/Table';
+import Table from '../../../rough/Table-Disacard';
 
 import AcceptedTasks from './employeeTasks/AcceptedTasks';
 import EmployeeTasks from './employeeTasks/EmployeeTasks';
 import Footer from '../layouts/Footer';
 import Index from './Index';
-import InviteForm from './AddEmployee';
-import AddComponent from './AddComponent';
+import InviteForm from '../../../rough/AddEmployee';
+import AddComponent from './AddEmployee';
+import AddEmployee from './AddEmployee';
+import EditEmployee from './EditEmployee';
 
 
 {/* <div>
@@ -41,13 +43,14 @@ class Dashboard extends Component{
                             <Sidebar />
                             <div className="page-holder w-100 d-flex flex-wrap">
 
-                                <div className="container-fluid px-xl-5">
+                                <div className="container-fluid px-xl-1">
                   {/* >>>>>>>>>>>>>>> BODIES COMPONENTS SECTION <<<<<<<<<<<<<< */}
                                     {/* <Index /> */}
                                     {/* <AcceptedTasks /> */}
-                                    {/* <EmployeeTasks /> */}
+                                    <EmployeeTasks />
                                     {/* <Invite /> */}
-                                    <AddComponent />
+                                    {/* <AddEmployee /> */}
+                                    {/* <EditEmployee /> */}
                                 </div>
                   {/* >>>>>>>>>>>>>>> FOOTER COMPONENT SECTION <<<<<<<<<<<<<< */}
                             <Footer />
