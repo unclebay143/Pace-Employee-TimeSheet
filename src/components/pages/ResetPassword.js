@@ -2,8 +2,8 @@ import { React, Fragment, useEffect } from 'react';
 import { Formik, Form, ErrorMessage } from 'formik';
 import {TextInput} from '../layouts/FormInput';
 import Button from '../layouts/Button';
-import { Link } from 'react-router-dom';
 import { resetPasswordSchema } from '../Validation/Schema';
+import { HomeButton } from '../layouts/HomeButton'
 
 const ResetPassword = () =>{
 
@@ -18,9 +18,7 @@ const ResetPassword = () =>{
             <main className="container mt-5">
                 <div className="row d-flex justify-content-center align-items-center">
                     <div className="form-con col-lg-5 mb-5">
-                        <Link to="/">
-                            <i className="fas fa-long-arrow-alt-left"></i>
-                        </Link>
+                        <HomeButton />
                         <div className="form-heading mt-5">
                         <h4 className="mb-5">Reset Password</h4>
                         </div>
@@ -35,7 +33,6 @@ const ResetPassword = () =>{
                                     validationSchema = {resetPasswordSchema}
                                 >{({values, touched, errors, isSubmitting, handleSubmit, handleChange}) => (
                                     <Form onSubmit={handleSubmit}>
-                                        <pre>{JSON.stringify(values, null, 2)}</pre>
                                         <div className="password-wrapper pb-3">
                                             <TextInput 
                                                 label="Enter New Password"

@@ -1,47 +1,52 @@
-// react
+// REACT
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {HashRouter as Router, Route, Switch } from "react-router-dom";
 
 //  >>>>>>>> APPLICATION STYLES  <<<<<<<<<<
 
-// utilities
+// UTILITIES
 import './components/pages/pages-styles/util.css';
 import './components/pages/pages-styles/form.css';
-//
-import './components/layouts/Layout-Styles/navbar.css'
-import './components/pages/pages-styles/forgotpassword.css'
-import './components/pages/pages-styles/confirmation.css'
+import './components/layouts/layout-styles/button.css';
 
-// bootsrap
+// CUSTOM
+import './components/layouts/layout-styles/navbar.css';
+import './components/layouts/layout-styles/footer.css';
+import './components/pages/pages-styles/homebody.css';
+import './components/pages/pages-styles/forgotpassword.css';
+import './components/pages/pages-styles/confirmation.css';
+
+// BOOTSTRAP
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.js'
+import 'bootstrap/dist/js/bootstrap.bundle.js';
 
+// AOS
 
-// dashboard
-import './components/workspace/dashboard/dashboard-styles/style.default.css'
-import './components/workspace/dashboard/dashboard-styles/utilities.css'
-import './components/workspace/dashboard/dashboard-styles/custom.css'
-import './components/workspace/dashboard/dashboard-styles/orionicons.css'
+import 'aos/dist/aos.css';
 
+// DASHBOARD
+import './components/workspace/dashboard/dashboard-styles/style.default.css';
+import './components/workspace/dashboard/dashboard-styles/utilities.css';
+import './components/workspace/dashboard/dashboard-styles/custom.css';
+import './components/workspace/dashboard/dashboard-styles/orionicons.css';
+import './components/workspace/dashboard/dashboard-styles/card.css';
 
-// components
+// COMPONENTS
 import Home from './components/App';
 import About from './components/pages/About';
 import ContactUs from './components/pages/ContactUs';
+import Pricing from './components/pages/Pricing';
 import LoginPage from './components/pages/LoginPage';
 import SignupPage from './components/pages/SignupPage';
 import PageNotFound from './components/pages/404';
 import ForgotPassword from './components/pages/ForgotPassword';
 import Confirmation from './components/pages/Confirmation';
 import ResetPassword from './components/pages/ResetPassword';
-
 import Dashboard from './components/workspace/dashboard/Dashboard';
-
-
+import App from './components/App'
 // Redux 
-
 import store from "./Store";
 import { Provider } from 'react-redux';
 
@@ -63,6 +68,7 @@ ReactDOM.render(
           <Route exact path="/signup" component = {SignupPage} />
           <Route exact path="/contact" component = {ContactUs} />
           <Route exact path="/about" component = {About} />
+          <Route exact path="/pricing" component = {Pricing} />
           <Route exact path="/test" component = {Test} />
           <Route exact path="/" component = {Home} />
           <Route component = {PageNotFound} />

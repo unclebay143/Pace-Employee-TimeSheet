@@ -1,16 +1,16 @@
 // react
 import {React, Component} from 'react';
-import Button from '../layouts/Button';
-
-// layouts , formik
-import loginImage from './pages-images/login-img.png';
+import { Formik, Form, ErrorMessage} from 'formik';
 import { Link } from 'react-router-dom';
-import {Formik, Form, ErrorMessage} from 'formik';
+import PropTypes from 'prop-types';
+
+// layouts, customs
+import auth from '../Authentication/LoginAuth';
+import Button from '../layouts/Button';
+import loginImage from './pages-images/login-img.png';
 import { TextInput } from '../layouts/FormInput';
 import { loginSchema } from '../Validation/Schema';
-import PropTypes from 'prop-types';
-import auth from '../Authentication/LoginAuth';
-
+import { HomeButton } from '../layouts/HomeButton';
 
 
 class LoginPage extends Component{
@@ -37,15 +37,12 @@ class LoginPage extends Component{
                 <main className="container d-flex justify-content-center align-items-center mt-5">
                     <div className="row">
                         <div className="form-con col-lg-5 mb-5">
-                            <Link to="/">
-                                <i className="fas fa-long-arrow-alt-left"></i>
-                            </Link>
+                            <HomeButton />
                             <div className="form-heading mt-5">
                             <h3 className="mb-3">Login</h3>
                             <h4 className="mb-5">Welcome back!</h4>
                             </div>
                             <div className="mt-5" name="form">
-                                <p id="errorMessage" />
                                 <div className="form-group mt-b">
                                     <Formik
                                         initialValues={{
@@ -55,7 +52,7 @@ class LoginPage extends Component{
                                         validationSchema = {loginSchema}
                                         onSubmit={(values)=>auth(values)}
                                         
-                                    >{({touched, errors, isSubmitting, handleSubmit, handleChange}) => (
+                                    >{({values, touched, errors, isSubmitting, handleSubmit, handleChange}) => (
                                         <Form onSubmit={handleSubmit}>
                                             <div className="email-wrapper pb-3">
                                                 <TextInput 
@@ -99,7 +96,6 @@ class LoginPage extends Component{
                                                 <Button 
                                                     type="submit"
                                                     className="btn btn-primary"
-                                                    id="loginBtn"
                                                     disabled={isSubmitting}
                                                     label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Loading...</span>) : "Login"}
                                                     />
@@ -128,8 +124,8 @@ class LoginPage extends Component{
 }
 
 LoginPage.propTypes = {
-    workSpaceEmail: PropTypes.string.isRequired,
-    password: PropTypes.any.isRequired
+    // workSpaceEmail: PropTypes.string.isRequired,
+    // password: PropTypes.any.isRequired
 };
 
 
