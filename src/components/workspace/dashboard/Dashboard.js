@@ -2,6 +2,10 @@ import { React, Component } from 'react';
 import Navbar from '../layouts/Navbar';
 import Sidebar from '../layouts/Sidebar'
 import Invite from './ManageEmployee';
+
+
+import Table from '../../pages/Table';
+
 import AcceptedTasks from './employeeTasks/AcceptedTasks';
 import EmployeeTasks from './employeeTasks/EmployeeTasks';
 import Footer from '../layouts/Footer';
@@ -33,6 +37,7 @@ class Dashboard extends Component{
                   {/* >>>>>>>>>>>>>>> SIDEBAR COMPONENT SECTION <<<<<<<<<<<<<< */}
                             <Sidebar />
                             <div className="page-holder w-100 d-flex flex-wrap">
+
                                 <div className="container-fluid px-xl-5">
                   {/* >>>>>>>>>>>>>>> BODIES COMPONENTS SECTION <<<<<<<<<<<<<< */}
                                     {/* <Index /> */}
@@ -43,7 +48,8 @@ class Dashboard extends Component{
                             <Footer />
                         </div>
                         </div>
-                </div>
+                           </div>
+
             </>
         )
     }
