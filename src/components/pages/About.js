@@ -1,7 +1,7 @@
+// React
 import React, { useEffect } from 'react';
-import Navbar from '../layouts/Navbar';
-import Footer from '../layouts/Footer';
-import './pages-styles/about.css';
+
+// Images
 import peter from './pages-images/adeyemon_peter.jpg';
 import akan from './pages-images/akan_asanga.jpg';
 import baseet from './pages-images/ariyibi_baseet_.jpg';

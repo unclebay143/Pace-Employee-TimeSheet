@@ -1,9 +1,9 @@
 import { useEffect } from "react";
-import { Link, Redirect }  from "react-router-dom";
-import './pages-styles/404.css';
-import { useSelector } from 'react-redux';
-import { object } from "yup";
+import { Link }  from "react-router-dom";
 
+
+// Images
+import deadEnd from '../pages/pages-images/4oh4.png';
 
 const PageNotFound = () => {
     
@@ -11,32 +11,29 @@ const PageNotFound = () => {
         document.title = 'Page not found | 404'
     })
 
-    const tasks = useSelector(state => state.task)
 
-    console.log(tasks)
     return(
         <>
+        <style jsx>
+            {
+                `
+                nav.navbar,
+                footer{
+                    display: none;
+                }
+                `
+            }
+        </style>
             <div className="pageNotFound-wrapper">
                 <div className="errorWrapper">
-                    <h4 className="error404">404</h4> 
+                    <h4 className="error404">404
+                    </h4> 
+                    <img src={deadEnd} alt="lost within the app" className="img-fluid error-img" />
+                </div>
+                <div>
                     <p className="errorText">
                         You've clicked a broken link....let's get you back on track <Link to="/">Go Home</Link>
                     </p>
-
-                   <pre>
-                        {
-                        
-                        
-                        /* {
-                            
-                            tasks.map((task)=>{
-                            return <pre>{task.taskName} {task.duedate}</pre>
-                            })
-                            
-
-
-                        } */}
-                    </pre> 
                 </div>
             </div>
 

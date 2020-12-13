@@ -20,7 +20,7 @@ export default function AddEmployee() {
 
         <div  className="container py-4">
             <div className="p-2">
-                <div className="row ml-4 pl-2">
+                <div className="row ml-3">
                     <h3>Add New Employee</h3>
                 </div>
 
@@ -48,7 +48,7 @@ export default function AddEmployee() {
                             <Form onSubmit={handleSubmit} className="container">
 
                                 {/* <pre>{JSON.stringify(values, null, 2)}</pre> */}
-                                <h4 className="lead ml-3 mt-5">Personal Information</h4>
+                                <h4 className="lead mt-5">Personal Information</h4>
                                 <hr />
                                 <div className="row mb-3">
                                     <div className="firstname-wrapper form-group col-md-4 ">
@@ -100,7 +100,7 @@ export default function AddEmployee() {
                                 </div>
 
                                 {/* Row TWO */}
-                                <h4 className="lead ml-3 mt-5">Job Description</h4>
+                                <h4 className="lead mt-5">Job Description</h4>
                                 <hr />
                                 <div className="row mb-3">
                                     <div className="type-wrapper form-group col-md-4">
@@ -214,7 +214,7 @@ export default function AddEmployee() {
                                 </div>
                                 
                                 {/*Row FOUR  */}
-                                <h4 className="lead ml-3 mt-5">Contact Information</h4>
+                                <h4 className="lead mt-5">Contact Information</h4>
                                 <hr />
                                 <div className="row mb-4">
                                     <div className="address1-wrapper col-md-12 mb-3">

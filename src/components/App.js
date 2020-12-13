@@ -11,6 +11,7 @@ import AOS from 'aos';
 // Components
 import About from './pages/About';
 import HomeBody from './pages/HomeBody';
+import PageNotFound from './pages/404';
 
 
 function Home() {
@@ -27,6 +28,7 @@ function Home() {
           <Switch>
             <Route exact path="/about" component = {About} />
             <Route exact path="/" component = {HomeBody} />
+            <Route component = {PageNotFound} />
           </Switch>
       </main>
         <Footer />
