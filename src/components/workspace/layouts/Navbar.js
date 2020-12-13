@@ -1,6 +1,7 @@
 import { React, Component } from 'react';
 import Timer from './Timer';
-import u from '../../pages/pages-images/ayodele_samuel_adebayo.jpg'
+import u from '../../pages/pages-images/ayodele_samuel_adebayo.jpg';
+import { Link } from 'react-router-dom';
 
 class Navbar extends Component{
     constructor(props){
@@ -58,7 +59,7 @@ class Navbar extends Component{
                             <li className="nav-item dropdown ml-auto">
                                 <a id="userInfo" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" className="nav-link dropdown-toggle"><img src={u} alt="Ayodele Samuel Adebayo" style={{maxWidth:"2.5rem"}} className="img-fluid rounded-circle shadow" /></a>
                                 <div aria-labelledby="userInfo" className="dropdown-menu"><a href="/" className="dropdown-item"><strong className="d-block text-uppercase headings-font-family companyDisplay">Ayodele Samuel Adebayo</strong><small id="role_display">Web Developer</small></a>
-                                    <div className="dropdown-divider"></div><a href="/" className="dropdown-item">Settings</a><a href="/" className="dropdown-item">Activity log</a>
+                                    <div className="dropdown-divider"></div><Link to="/dashboard/profile" className="dropdown-item">Profile</Link><a href="/" className="dropdown-item">Settings</a>
                                     <div className="dropdown-divider"></div><a href="/" className="dropdown-item" onClick="logOut()">Logout</a>
                                 </div>
                             </li>
