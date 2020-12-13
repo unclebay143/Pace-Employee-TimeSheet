@@ -29,12 +29,15 @@ import 'bootstrap/dist/js/bootstrap.bundle.js';
 
 import 'aos/dist/aos.css';
 
-// DASHBOARD
+// DASHBOARD STYLES
 import './components/workspace/dashboard/dashboard-styles/style.default.css';
 import './components/workspace/dashboard/dashboard-styles/utilities.css';
 import './components/workspace/dashboard/dashboard-styles/custom.css';
 import './components/workspace/dashboard/dashboard-styles/orionicons.css';
 import './components/workspace/dashboard/dashboard-styles/card.css';
+
+// DASHBOARD SCRIPT
+import './components/workspace/layouts/SibarToggle';
 
 // Redux 
 import store from "./Store";

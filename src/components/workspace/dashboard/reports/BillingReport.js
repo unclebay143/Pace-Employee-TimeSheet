@@ -4,6 +4,7 @@ import paginationFactory from 'react-bootstrap-table2-paginator';
 import { useSelector } from 'react-redux';
 import { TextInput } from '../../../layouts/FormInput';
 
+const calc = 2;
 
 const Header = [
   {
@@ -31,19 +32,19 @@ const Header = [
     text: 'Worked Hour',
   },
   {
-    dataField: 'completedTask',
-    text: 'Completed Task',
+    dataField: 'workedHour',
+    text: 'Receivable',
   },
     
   {
   
-    // formatter: (cellContent, row) => {
-    //   return (
-    //     <>
-    //         <TextInput placeHolder="receivable"/>
-    //     </>
-    //   );
-    // },
+    formatter: (cellContent, row) => {
+      return (
+        <>
+            <tr></tr>
+        </>
+      );
+    },
   },
 
 ];
