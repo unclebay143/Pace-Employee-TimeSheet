@@ -40,9 +40,9 @@ class Dashboard extends Component{
 
                                 <div className="container-fluid px-xl-5">
                   {/* >>>>>>>>>>>>>>> BODIES COMPONENTS SECTION <<<<<<<<<<<<<< */}
-                                    <Index />
+                                    {/* <Index /> */}
                                     {/* <AcceptedTasks /> */}
-                                    {/* <EmployeeTasks /> */}
+                                    <EmployeeTasks />
                                 </div>
                   {/* >>>>>>>>>>>>>>> FOOTER COMPONENT SECTION <<<<<<<<<<<<<< */}
                             <Footer />
