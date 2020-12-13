@@ -1,54 +1,47 @@
+// React
 import { React, Component } from 'react';
+import { Route, Switch } from 'react-router-dom/cjs/react-router-dom.min';
+
+// Layouts
 import Navbar from '../layouts/Navbar';
 import Sidebar from '../layouts/Sidebar'
-import Invite from './ManageEmployee';
-
-
-import Table from '../../pages/Table';
-
-import AcceptedTasks from './employeeTasks/AcceptedTasks';
-import EmployeeTasks from './employeeTasks/EmployeeTasks';
 import Footer from '../layouts/Footer';
+
+// Components
 import Index from './Index';
+import AddEmployee from './AddEmployee';
+import EditEmployee from './EditEmployee';
+import EmployeeTasks from './employeeTasks/EmployeeTasks';
+import EmployeeList from './EmployeeList';
 
-{/* <div>
-    <Navbar  />
-    <div className="d-flex align-items-stretch">
-        <Sidebar />
-            <div className="page-holder w-100 d-flex flex-wrap">
 
-                <DashBody />
-                <Invite />
-                <AcceptedTasks />
-                <EmployeeTasks />
-            <Footer />
-            </div>
-    </div>
-    
-</div> */}
 class Dashboard extends Component{
     render(){
         return(
             <>
                 <div>
-                  {/* >>>>>>>>>>>>>>> NAVBAR COMPONENT SECTION <<<<<<<<<<<<<< */}
+                   {/* >>>>> NAVBAR COMPONENT SECTION <<<<< */}
                     <Navbar  />
                         <div className="d-flex align-items-stretch">
-                  {/* >>>>>>>>>>>>>>> SIDEBAR COMPONENT SECTION <<<<<<<<<<<<<< */}
+                   {/* >>>>> SIDEBAR COMPONENT SECTION <<<<< */}
                             <Sidebar />
                             <div className="page-holder w-100 d-flex flex-wrap">
 
-                                <div className="container-fluid px-xl-5">
-                  {/* >>>>>>>>>>>>>>> BODIES COMPONENTS SECTION <<<<<<<<<<<<<< */}
-                                    <Index />
-                                    {/* <AcceptedTasks /> */}
-                                    {/* <EmployeeTasks /> */}
+                                <div className="container-fluid px-xl-1">
+                   {/* >>>>> BODIES COMPONENTS SECTION <<<<< */}
+                                    <Switch>
+                                        <Route exact path="/dashboard/task" component={EmployeeTasks} />
+                                        <Route exact path="/dashboard/edit" component={EditEmployee} />
+                                        <Route exact path="/dashboard/employ" component={AddEmployee} />
+                                        <Route exact path="/dashboard/employee-list" component={EmployeeList} />
+                                        <Route exact path="/dashboard" component={Index} />
+                                    </Switch>
                                 </div>
-                  {/* >>>>>>>>>>>>>>> FOOTER COMPONENT SECTION <<<<<<<<<<<<<< */}
+                   {/* >>>>> FOOTER COMPONENT SECTION <<<<< */}
                             <Footer />
                         </div>
-                        </div>
-                           </div>
+                    </div>
+                </div>
 
             </>
         )

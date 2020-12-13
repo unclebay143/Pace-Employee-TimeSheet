@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import Table from '../../../pages/Table';
+import Table from '../../layouts/Table';
 import paginationFactory from 'react-bootstrap-table2-paginator';
+
 
 
 const taskHeader = [
@@ -24,7 +25,34 @@ const taskHeader = [
         dataField: 'requests',
         text: 'Requests',
       },
-    ];
+        
+      {
+      
+        formatter: (cellContent, row) => {
+          return (
+            <>
+            <button
+              className="btn btn-danger btn-xs mr-3"
+              onClick={(e) => handleDelete(row)} 
+            >
+              Delete
+            </button>
+            <button
+              className="btn btn-danger btn-xs"
+              onClick={(e) => handleDelete(row)} 
+            >
+              Delete
+            </button>
+            </>
+          );
+        },
+      },
+    
+];
+
+function handleDelete(rowId){
+  console.log(rowId);
+};
 class AcceptedTasks extends Component {
   constructor(props){
     super(props)
@@ -123,7 +151,7 @@ class AcceptedTasks extends Component {
           searchName = 'for a task here'
           bordered= { false }
           pagination = { paginationFactory()}
-        />
+          />
       </div>
     )
   }
