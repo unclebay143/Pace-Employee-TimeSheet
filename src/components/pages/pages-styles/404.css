@@ -1,3 +1,5 @@
+
+
 .pageNotFound-wrapper{
     display: flex;
     justify-content: center;
@@ -10,15 +12,22 @@
 
 .errorWrapper{
     padding: 12px;
+    display: flex;
+    align-items: flex-end;
 }
 
 .pageNotFound-wrapper .error404{
-    margin-right: 200px;
-    font-size: 90px;
+    font-size: 7rem;
 }
 
 
 .pageNotFound-wrapper .errorText{
     font-size: 19px;
     color: #333333;
+}
+
+
+.error-img{
+    width: 300px;
+    height: 300px;
 }

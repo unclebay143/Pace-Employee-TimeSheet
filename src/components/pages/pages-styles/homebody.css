@@ -153,6 +153,11 @@ header.container{
 }
 
 /* Pricing */
+.pricing-tags .dark-1{
+  margin-right: 30px !important;
+  margin-left: 20px !important;
+}
+
 .pricing-tags .bg-dark h4{
   color: #cccccc;
 }

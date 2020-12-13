@@ -1,7 +1,7 @@
 import { AUTH_USER } from '../actions/types';
 import { v4 as uuidv4 } from 'uuid';
 
-const initialValues = [
+const initialState = [
     {
         isLogged: false,
         id: uuidv4(),
@@ -21,7 +21,7 @@ const initialValues = [
 ]
 
 
-const userReducer = (state=initialValues, action)=>{
+const userReducer = (state=initialState, action)=>{
     switch(action.type){
         case AUTH_USER:
             return state;

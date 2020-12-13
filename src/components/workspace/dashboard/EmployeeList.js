@@ -1,6 +1,9 @@
-import React, { Component } from 'react';
-import paginationFactory from 'react-bootstrap-table2-paginator';
+// React
+import React from 'react';
 import {useSelector} from 'react-redux';
+import paginationFactory from 'react-bootstrap-table2-paginator';
+
+// Components
 import Table from '../layouts/Table';
   
 
@@ -68,6 +71,7 @@ export default function EmployeeList(){
                     columns={Header}
                     bordered= { false }
                     pagination = { paginationFactory() }
+                    enableSearch = { true }
                 />
             </>
         )
