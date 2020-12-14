@@ -6,38 +6,60 @@ const initialState = [
         id: uuidv4(),
         firstname: "Ayodele",
         lastname: "Samuel Adebayo",
-        department: "web development",
+        email: "unclebigbay@gmail.com",
+        password: "1234Testing",
+        password2: "1234Testing",
+        department: "Web Development",
         phone: "09087665253",
         role: "Frontend",
         employeed_date: "12/23/34",
-        salary: 130000
+        salary: 130000,
+        type: "Admin"
     },
     {
         id: uuidv4(),
         firstname: "Ayodele",
         lastname: "Samuel Adebayo",
-        department: "web development",
+        email: "unclebigbay@gmail.com",
+        password: "1234Testing",
+        password2: "1234Testing",
+        department: "Web Development",
         phone: "09087665253",
         role: "Frontend",
-        employeed_date: "12/23/34"
+        employeed_date: "12/23/34",
+        salary: 130000,
+        type: "Internal"
+
     },
     {
         id: uuidv4(),
         firstname: "Ayodele",
         lastname: "Samuel Adebayo",
-        department: "web development",
+        email: "unclebigbay@gmail.com",
+        password: "1234Testing",
+        password2: "1234Testing",
+        department: "Web Development",
         phone: "09087665253",
         role: "Frontend",
-        employeed_date: "12/23/34"
+        employeed_date: "12/23/34",
+        salary: 130000,
+        type: "Employee"
+
     },
     {
         id: uuidv4(),
         firstname: "Ayodele",
         lastname: "Samuel Adebayo",
-        department: "web development",
+        email: "unclebigbay@gmail.com",
+        password: "1234Testing",
+        password2: "1234Testing",
+        department: "Web Development",
         phone: "09087665253",
         role: "Frontend",
-        employeed_date: "12/23/34"
+        employeed_date: "12/23/34",
+        salary: 130000,
+        type: "Internal"
+
     },
 ]
 

@@ -6,9 +6,9 @@ import Button from '../../layouts/Button';
 import { AddEmployeeSchema } from '../../Validation/Schema';
 
 const sampleCompany = {
-    departments: [ 'web development', 'quality assurance', 'web design' ],
-    employeeRoles: ['backend', 'frontend', 'database manager'],
-    employeeType: ['admin', 'internal', 'staff'],
+    departments: [ 'Web Development', 'Quality Assurance', 'Web Design' ],
+    employeeRoles: ['Backend', 'Frontend', 'Database Manager'],
+    employeeType: ['Admin', 'Internal', 'Staff'],
 }
 
 const existingDepartment = sampleCompany.departments.map((department)=><option defaultValue={department}>{department}</option>)
@@ -19,13 +19,13 @@ class EditEmployee extends Component{
     constructor(props){
         super(props)
         this.state = {
-            user: this.props.employee[0],
-            showPassword: true
+            showPassword: true,
+            user : this.props.employee[0]
         }
     }
 
     render(){
-        const { user } = this.state
+        const { firstname, lastname, email, phone, role, department, type, salary, password, password2 } = this.state.user
         return (
             
             <div  className="container py-4">
@@ -35,19 +35,19 @@ class EditEmployee extends Component{
                     </div>
 
                     <Formik 
-                        initialValues = {{ user
-                            // firstname: "",
-                            // lastname: "",
-                            // email: "",
-                            // phone: "",
-                            // role: "",
-                            // department: "",
-                            // type: "",
-                            // salary: "",
-                            // password: "",
-                            // password2: ""
+                        initialValues = {{ 
+                            firstname,
+                            lastname,
+                            email,
+                            phone,
+                            role,
+                            department,
+                            type,
+                            salary,
+                            password,
+                            password2
                         }}
-                        enableReinitialize? = {true}
+                        enableReinitialize = {true}
                         
                         
                         validationSchema = { AddEmployeeSchema }
@@ -59,7 +59,7 @@ class EditEmployee extends Component{
                             return(
                                 <Form onSubmit={handleSubmit} className="container">
 
-                                    <pre>{JSON.stringify(values, null, 2)}</pre>
+                                    {/* <pre>{JSON.stringify(values, null, 2)}</pre> */}
                                     <h4 className="lead ml-3 mt-5">Personal Information</h4>
                                     <hr />
                                     <div className="row mb-3">
@@ -68,7 +68,7 @@ class EditEmployee extends Component{
                                             <TextInput 
                                                 name="firstname"
                                                 type="text" 
-                                                value={user.firstname}
+                                                defaultValue={values.firstname}
                                                 placeholder="Enter Firstname"
                                                 className={`form-control ${touched.firstname && errors.firstname ? "is-invalid" : ""}`} 
                                                 id="employee_name"
@@ -85,7 +85,7 @@ class EditEmployee extends Component{
                                                 name="lastname"
                                                 placeholder="Enter lastname"
                                                 type="text" 
-                                                value={user.lastname}
+                                                // value={user.lastname}
                                                 className={`form-control ${touched.lastname && errors.lastname ? "is-invalid" : ""}`} 
                                                 id="lastname"
                                                 label="Lastname"
@@ -104,7 +104,7 @@ class EditEmployee extends Component{
                                                 className={`form-control ${touched.phone && errors.phone ? "is-invalid" : ""}`} 
                                                 id="phone"
                                                 label="Phone"
-                                                value={user.phone}
+                                                // value={user.phone}
                                                 />
                                             <ErrorMessage
                                                 component="div"
@@ -169,7 +169,7 @@ class EditEmployee extends Component{
                                                 className={`form-control ${touched.email && errors.email ? "is-invalid" : ""}`} 
                                                 id="email"
                                                 label="Email"
-                                                value={user.email}
+                                                // value={user.email}
                                                 />
                                             <ErrorMessage
                                                 component="div"
@@ -244,7 +244,7 @@ class EditEmployee extends Component{
                                                 placeholder="143 work and connect"
                                                 className={`form-control ${touched.address1 && errors.address1 ? "is-invalid" : ""}`}
                                                 label="Address 1" 
-                                                value={user.address}
+                                                // value={user.address}
                                                 />
                                             <ErrorMessage
                                                 component="div"
@@ -325,7 +325,6 @@ class EditEmployee extends Component{
 }
 
 function mapStateToProps(state) {
-    console.log(state)
     const { employee } = state
     return { employee }
   }
