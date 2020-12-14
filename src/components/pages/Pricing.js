@@ -16,7 +16,7 @@ const Pricing = () => {
                         <h2 className="mb-3">Free</h2>
                         <h5 className="mb-4">#0 / month</h5>
                         <Link to="/pricing">
-                            <Button label="Get Started" className="btn pace-btn pace-btn-primary pricing-btn" />
+                            <Button label="Get Started" className="btn pace-btn pace-btn-outline-primary pricing-btn" />
                         </Link>
                         <h4 className="mt-3">What's included</h4>
                         <ul className="px-4">
@@ -27,7 +27,7 @@ const Pricing = () => {
                         </ul>
                     </div>
                     <div className="row p-3 ml-lg-2 border bg-dark">
-                        <div className="mr-2" data-aos="fade-up-left">
+                        <div className="mr-2 dark-1" data-aos="fade-up-left">
                             <h2 className="mb-3 pace-accent-color">Basic</h2>
                             <h5 className="mb-4 text-white">#12, 000 / month</h5>
                             <Link to="/pricing">

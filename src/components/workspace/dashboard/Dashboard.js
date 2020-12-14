@@ -11,8 +11,11 @@ import Footer from '../layouts/Footer';
 import Index from './Index';
 import AddEmployee from './AddEmployee';
 import EditEmployee from './EditEmployee';
-import EmployeeTasks from './employeeTasks/EmployeeTasks';
 import EmployeeList from './EmployeeList';
+import EmployeeTasks from './employeeTasks/EmployeeTasks';
+import TimerReport from './reports/TimerReport';
+import BillingReport from './reports/BillingReport';
+import Profile from './Profile';
 
 
 class Dashboard extends Component{
@@ -27,9 +30,12 @@ class Dashboard extends Component{
                             <Sidebar />
                             <div className="page-holder w-100 d-flex flex-wrap">
 
-                                <div className="container-fluid px-xl-1">
+                                <div className="container-fluid dashboard-body-wrapper">
                    {/* >>>>> BODIES COMPONENTS SECTION <<<<< */}
                                     <Switch>
+                                        <Route exact path="/dashboard/profile" component={Profile} />
+                                        <Route exact path="/dashboard/billing-report" component={BillingReport} />
+                                        <Route exact path="/dashboard/timer-report" component={TimerReport} />
                                         <Route exact path="/dashboard/task" component={EmployeeTasks} />
                                         <Route exact path="/dashboard/edit" component={EditEmployee} />
                                         <Route exact path="/dashboard/employ" component={AddEmployee} />

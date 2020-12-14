@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
 import BootstrapTable from 'react-bootstrap-table-next';
+import { TextInput } from '../../layouts/FormInput';
+import { Form, Formik } from 'formik';
+import Button from '../../layouts/Button';
 
 
 export default class Table extends Component {
 
   render() {
-    const { keyField, data, columns, bordered, pagination} = this.props;
+    const { keyField, data, columns, bordered, enableSearch, pagination, customInput, customInputName, customInputPlaceHolder, customButtonType, customButtonLabel, customButtonFunction} = this.props;
     const { SearchBar, ClearSearchButton } = Search;
     const {title} = this.props;
     return (
@@ -29,8 +32,30 @@ export default class Table extends Component {
                             <div className="col-12 d-flex justify-content-between">
                               <h6 className="text-uppercase mb-0 pace-accent-color">{title}</h6>
                               <div className="d-flex align-items-center justify-content-center">
-                                <SearchBar { ...props.searchProps } className="search-box"/>  
-                                <ClearSearchButton { ...props.searchProps } className="btn form-control pace-btn-accent ml-"/>
+                                {
+                                  enableSearch ?
+                                   (
+                                    <>
+                                     <SearchBar { ...props.searchProps } className="search-box"/>
+                                      <ClearSearchButton { ...props.searchProps } className="btn form-control pace-btn-accent"/>
+                                    </>
+                                  )
+                                  : ""
+                                }
+
+                                {
+
+                                  customInput ? (
+                                    <>
+                                      <Formik initialValues={{}}>
+                                        {(()=>(
+                                          <Form className="d-flex">
+                                            <TextInput id={customInputName} name={customInputName} placeholder = {customInputPlaceHolder} className="form-control custom-box" />
+                                            <Button type={customButtonType} label={customButtonLabel} onClick={customButtonFunction} className="btn form-control pace-btn-accent" />
+
+                                          </Form>))}
+                                      </Formik></>) : ""
+                                }
                               </div>
                               <style>
                                 {
@@ -41,6 +66,18 @@ export default class Table extends Component {
                                       height: 35px;
                                       margin-top: 8px;
                                       margin-right: 4px;
+                                    }
+
+                                    .custom-box{
+                                      font-size: 18px !important;
+                                      width: 202px !important;
+                                      height: 35px;
+                                      margin-right: 4px;
+                                    }
+
+                                    .btn{
+                                      outline:none;
+                                      border:none;
                                     }
                                     
                                     .page-item.active .page-link {

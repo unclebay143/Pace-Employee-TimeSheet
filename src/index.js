@@ -16,6 +16,9 @@ import './components/layouts/layout-styles/footer.css';
 import './components/pages/pages-styles/homebody.css';
 import './components/pages/pages-styles/forgotpassword.css';
 import './components/pages/pages-styles/confirmation.css';
+import './components/pages/pages-styles/404.css';
+import './components/pages/pages-styles/about.css';
+
 
 // BOOTSTRAP
 import 'bootstrap/dist/css/bootstrap.css';
@@ -26,12 +29,15 @@ import 'bootstrap/dist/js/bootstrap.bundle.js';
 
 import 'aos/dist/aos.css';
 
-// DASHBOARD
+// DASHBOARD STYLES
 import './components/workspace/dashboard/dashboard-styles/style.default.css';
 import './components/workspace/dashboard/dashboard-styles/utilities.css';
 import './components/workspace/dashboard/dashboard-styles/custom.css';
 import './components/workspace/dashboard/dashboard-styles/orionicons.css';
 import './components/workspace/dashboard/dashboard-styles/card.css';
+
+// DASHBOARD SCRIPT
+import './components/workspace/layouts/SibarToggle';
 
 // Redux 
 import store from "./Store";
@@ -45,7 +51,6 @@ import Home from './components/App';
 import ContactUs from './components/pages/ContactUs';
 import LoginPage from './components/pages/LoginPage';
 import SignupPage from './components/pages/SignupPage';
-import PageNotFound from './components/pages/404';
 import ForgotPassword from './components/pages/ForgotPassword';
 import Confirmation from './components/pages/Confirmation';
 import ResetPassword from './components/pages/ResetPassword';
@@ -69,7 +74,7 @@ ReactDOM.render(
           {/* Top Level Components */}
           <Route path="/dashboard" component = {Dashboard} />
           <Route path="/" component = {Home} />
-          <Route component = {PageNotFound} />
+
         </Switch>
       </Router>
     </Provider>
