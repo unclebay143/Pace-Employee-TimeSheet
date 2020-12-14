@@ -21,7 +21,7 @@ const Pricing = () => {
                         <h4 className="mt-3">What's included</h4>
                         <ul className="px-4">
                             <li>Timer Reminder</li>
-                            <li>Workspace for 3 staffs</li>
+                            <li>Workspace for 3 staff</li>
                             <li>Limited Todo List</li>
                             <li>Limited Request</li>
                         </ul>
@@ -36,7 +36,7 @@ const Pricing = () => {
                             <h4 className="mt-3">What's included</h4>
                             <ul className="px-4">
                                 <li>Timer Reminder</li>
-                                <li>Workspace for 7 staffs</li>
+                                <li>Workspace for 7 staff</li>
                                 <li>Todo List</li>
                                 <li>Request</li>
                             </ul>
@@ -50,7 +50,7 @@ const Pricing = () => {
                             <h4 className="mt-3">What's included</h4>
                             <ul className="px-4">
                                 <li>Timer Reminder</li>
-                                <li>Unlimited staffs</li>
+                                <li>Unlimited staff</li>
                                 <li>Unlimited Todo List</li>
                                 <li>Request</li>
                             </ul>

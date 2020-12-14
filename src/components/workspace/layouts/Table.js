@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
 import BootstrapTable from 'react-bootstrap-table-next';
 
@@ -6,9 +6,9 @@ import BootstrapTable from 'react-bootstrap-table-next';
 export default class Table extends Component {
 
   render() {
-    const { keyField, data, columns, bordered, searchName, pagination} = this.props;
+    const { keyField, data, columns, bordered, pagination} = this.props;
     const { SearchBar, ClearSearchButton } = Search;
-    const {title, body} = this.props
+    const {title} = this.props;
     return (
       <>
         <ToolkitProvider
@@ -28,8 +28,6 @@ export default class Table extends Component {
                           <div className="row">
                             <div className="col-12 d-flex justify-content-between">
                               <h6 className="text-uppercase mb-0 pace-accent-color">{title}</h6>
-                              {/* search name is removed */}
-                              {/* <h3>Search {searchName} </h3> */}
                               <div className="d-flex align-items-center justify-content-center">
                                 <SearchBar { ...props.searchProps } className="search-box"/>  
                                 <ClearSearchButton { ...props.searchProps } className="btn form-control pace-btn-accent ml-"/>
@@ -72,7 +70,6 @@ export default class Table extends Component {
                           </div>
                         </div>
                         <div className="card-body py-1">
-                          {/* {body} */}
                           <hr />
                           <BootstrapTable
                             { ...props.baseProps }
