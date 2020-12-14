@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Button from '../../layouts/Button';
 import u from '../../pages/pages-images/ayodele_samuel_adebayo.jpg';
 
@@ -56,7 +57,7 @@ export default class Profile extends Component {
                                                 <h4>Ayodele S. Adebayo</h4>
                                                 <p className="text-secondary mb-1">Frontend Engineer</p>
                                                 <p className="text-muted font-size-sm">Forestry Area, Bako, Gwagwalada, Abuja</p>
-                                                <Button className="btn btn-primary mr-2" label="Edit"/>
+                                               <Link to="/dashboard/edit"><Button className="btn btn-primary mr-2" label="Edit"/></Link>
                                                 <Button className="btn btn-danger" label="Delete" />
                                             </div>
                                         </div>
@@ -69,7 +70,6 @@ export default class Profile extends Component {
                                     <div className="card-body">
                                         <ProfileRow title="Full Name" label="Ayodele Samuel Adebayo" />
                                         <ProfileRow title="Email" label="unclebigbay@gmail.com" />
-                                        <ProfileRow title="Full Name" label="Ayodele Samuel Adebayo" />
                                         <ProfileRow title="Department" label="Web development" />
                                         <ProfileRow title="Role" label="Frontend Engineer" />
                                         <ProfileRow title="Salary" label="# 203, 900" />
