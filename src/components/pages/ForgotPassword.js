@@ -4,7 +4,7 @@ import { TextInput } from '../layouts/FormInput';
 import Button from '../layouts/Button';
 import forgotIllustration from '../pages/pages-images/forgotpassword.svg';
 import { forgotPasswordSchema } from '../Validation/Schema';
-import { HomeButton } from './HomeButton';
+import { HomeButton } from '../layouts/HomeButton';
 
 
 export default function ForgotPassword() {

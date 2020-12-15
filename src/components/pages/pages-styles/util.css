@@ -9,14 +9,17 @@
   }
   
   .pace-accent-color{
-    color: #FF6584;
+    color: #FF6584 !important;
   }
   
   .pace-bg-primary{
     background: #335eea;
     color: #ffffff;
   }
-  
+  .table th {
+    background: #335eea;
+    color: #ffffff;
+  }
   .pace-bg-accent{
     background: #FF6584;
     color: #ffffff;
@@ -29,10 +32,7 @@
     border: 1px solid #335eea !important;
     box-shadow: none !important;
   }
-  .pace-btn{
-    padding: .5625rem 1rem !important;
-    font-size: 1.0625rem !important;
-  }
+
   
   
   @media print {

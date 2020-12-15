@@ -1,0 +1,55 @@
+.pace-btn{
+    padding: .5625rem 1rem !important;
+    font-size: 1.0625rem !important;
+    border: none;
+}
+
+.pace-btn-primary{
+    background: rgb(51,94,234) !important;
+    color: #ffffff !important;
+}
+
+.pace-btn-accent{
+    background: #FF6584 !important;
+    color: #ffffff !important;
+}
+
+.pace-btn-outline-primary{
+    border-color: #335eea !important;
+    background: transparent !important;
+    color: #335eea !important;
+    transition: 1s !important;
+}
+
+.pace-btn-outline-primary:hover{
+    background: #335eea !important;
+    color: #ffffff !important;
+    outline: none !important;
+    border: 1px solid #ffffff !important;
+}
+
+.pace-btn-outline-accent{
+    border-color: #FF6584 !important;
+    background: transparent !important;
+    color: #FF6584 !important;
+    transition: 1s !important;
+}
+
+.pace-btn-outline-accent:hover{
+    background: #FF6584 !important;
+    color: #ffffff !important;
+    outline: none !important;
+    border: 1px solid #ffffff !important;
+}
+
+
+
+
+.pricing .pricing-btn{
+    font-size: 1.2625rem !important; 
+    padding: .5625rem 7rem !important;
+}
+
+.pricing .pricing-btn:hover{
+    opacity:  0.9 !important;
+}

@@ -92,11 +92,11 @@ class ContactUs extends Component {
                         placeholder = "please drop your message here"
                         onChange={handleChange} 
                       />
-                      {/* <ErrorMessage
+                      <ErrorMessage
                         component="div"
                         name="message"
                         className="invalid-feedback p-0"
-                     /> */}    
+                     />    
                     </div>
                    
                     <Button 

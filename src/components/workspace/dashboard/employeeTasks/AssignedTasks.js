@@ -1,55 +1,74 @@
 import React, { Component } from 'react';
-import {Table} from '../../../layouts/Table';
+import Table from '../../layouts/Table';
 
 
+
+
+
+const taskHeader = [
+      {
+        dataField: 'id',
+        text: 'S/N'
+      },
+      {
+        dataField: 'task',
+        text: 'Task',
+      },
+      {
+        dataField: 'dueDate',
+        text: 'Due Date',
+      },
+      {
+        dataField: 'status',
+        text: 'status',
+      },
+      {
+        dataField: 'requests',
+        text: 'Requests',
+      },
+      
+    ];
 class AssignedTasks extends Component {
   constructor(props){
     super(props)
     this.state = {
       AssignedTasks : [
         {
-          index: '1',
+          id: '1',
           task: 'testing',
           dueDate: '12/06/21',
-          status: 'pending',
+          status: 'accepted',
           requests: 'requested'
         },
         {
-          index: '2',
+          id: '2',
           task: 'testing2',
           dueDate: '14/06/21',
-          status: 'pending',
+          status: 'accepted',
           requests: 'requested'
         },
         {
-          index: '3',
+          id: '3',
           task: 'testing3',
           dueDate: '16/06/21',
-          status: 'pending',
+          status: 'accepted',
           requests: 'requested'
         },
       ]
     }
 }
 
-
   render() {
-    const { AssignedTasks } = this.state;
     
+    const { AssignedTasks} = this.state;
     return (
-      <div>
-        <section className="py-5">
-          <div className="row mb-4">
-            <div className="col-lg-12 mb-4">
-              <div className="card">
-                <div className="card-header">
-                  <h6 className="text-uppercase mb-0 pace-accent-color">Assigned Tasks</h6>
-                </div>
-                <Table tableData = {AssignedTasks} />             
-              </div>
-            </div>
-          </div>
-        </section>
+      <div >
+        <Table
+          keyField='id'
+          data={ AssignedTasks }
+          columns={ taskHeader } 
+          bordered= { false }
+        />
       </div>
     )
   }

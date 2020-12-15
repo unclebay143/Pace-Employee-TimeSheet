@@ -12,10 +12,13 @@
     font-size: .9rem;
     color: #6c757d;
  }
- .form-con a {
+ .form-con a,
+ .home-icon {
      color: #FF6584;
  }
- .form-con a:hover {
+
+ .form-con a:hover,
+ .home-icon:hover {
      color: #335eea;
      text-decoration: none;
  }

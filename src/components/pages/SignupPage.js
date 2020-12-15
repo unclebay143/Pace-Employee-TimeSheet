@@ -9,7 +9,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { signUpSchema } from '../Validation/Schema'
 import { TextInput, CheckbBox } from '../layouts/FormInput';
 // import PropTypes from 'prop-types';
-import { HomeButton } from './HomeButton'
+import { HomeButton } from '../layouts/HomeButton'
 
 class SignupPage extends Component{
     constructor(props){
@@ -138,7 +138,7 @@ class SignupPage extends Component{
                                                     name="termsOfService"
                                                     id="termsOfService"
                                                     title="Accept Terms and condition"
-                                                    titleClassName="text-blue"
+                                                    titleClassName={values.termsOfService ? "text-blue" : "pace-accent-color"}
                                                     className={`form-check-input ${touched.termsOfService && errors.termsOfService ? "is-invalid" : ""}`}
                                                 />
                                                  <ErrorMessage
