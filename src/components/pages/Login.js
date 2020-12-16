@@ -13,7 +13,7 @@ import { loginSchema } from '../Validation/Schema';
 import { HomeButton } from '../layouts/HomeButton';
 
 
-class LoginPage extends Component{
+class Login extends Component{
     constructor(props){
         super(props)
         this.state = {
@@ -123,10 +123,10 @@ class LoginPage extends Component{
     }
 }
 
-LoginPage.propTypes = {
+Login.propTypes = {
     // workSpaceEmail: PropTypes.string.isRequired,
     // password: PropTypes.any.isRequired
 };
 
 
-export default LoginPage;
+export default Login;

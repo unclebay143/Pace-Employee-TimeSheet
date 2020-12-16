@@ -35,7 +35,7 @@ export default function AddEmployee() {
                         type: "",
                         salary: "",
                         password: "",
-                        password2: ""
+                        password2: "",
                     }}
 
                     validationSchema = { AddEmployeeSchema }
@@ -265,14 +265,14 @@ export default function AddEmployee() {
                                         />
                                     </div>
 
-                                    <div className="zipcode-wrapper form-group col-md-4">
+                                    <div className="country-wrapper form-group col-md-4">
                                         <TextInput
-                                            name="zipcode"
-                                            id="zipcode"
+                                            name="country"
+                                            id="country"
                                             type="text" 
-                                            placeholder="234466"
+                                            placeholder="Nigeria"
                                             label="Zip Code"
-                                            className={`form-control ${touched.zipcode && errors.zipcode ? "is-invalid" : ""}`}
+                                            className={`form-control ${touched.country && errors.country ? "is-invalid" : ""}`}
                                         />
                                         <ErrorMessage
                                             component="div"
@@ -283,7 +283,7 @@ export default function AddEmployee() {
                                 </div>
 
                                 <hr />
-                                <div className="col-md-12 mt-5 mb-3">
+                                <div className="mt-5 mb-3">
                                     <Button 
                                         type="submit"
                                         label="Employee"

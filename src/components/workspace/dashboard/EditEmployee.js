@@ -25,12 +25,28 @@ class EditEmployee extends Component{
     }
 
     render(){
-        const { firstname, lastname, email, phone, role, department, type, salary, password, password2 } = this.state.user
+        const { 
+                firstname,
+                lastname,
+                email,
+                phone,
+                role,
+                department,
+                type,
+                salary,
+                password,
+                password2,
+                address,
+                city,
+                state,
+                country
+            } = this.state.user
+            
         return (
             
             <div  className="container py-4">
                 <div className="p-2">
-                    <div className="row ml-4 pl-2">
+                    <div className="row ml-3">
                         <h3>Edit Employee Record</h3>
                     </div>
 
@@ -45,7 +61,11 @@ class EditEmployee extends Component{
                             type,
                             salary,
                             password,
-                            password2
+                            password2,
+                            address,
+                            city,
+                            state,
+                            country
                         }}
                         enableReinitialize = {true}
                         
@@ -60,7 +80,7 @@ class EditEmployee extends Component{
                                 <Form onSubmit={handleSubmit} className="container">
 
                                     {/* <pre>{JSON.stringify(values, null, 2)}</pre> */}
-                                    <h4 className="lead ml-3 mt-5">Personal Information</h4>
+                                    <h4 className="lead mt-5">Personal Information</h4>
                                     <hr />
                                     <div className="row mb-3">
                                         <div className="firstname-wrapper form-group col-md-4 ">
@@ -115,7 +135,7 @@ class EditEmployee extends Component{
                                     </div>
 
                                     {/* Row TWO */}
-                                    <h4 className="lead ml-3 mt-5">Job Description</h4>
+                                    <h4 className="lead mt-5">Job Description</h4>
                                     <hr />
                                     <div className="row mb-3">
                                         <div className="type-wrapper form-group col-md-4">
@@ -233,13 +253,13 @@ class EditEmployee extends Component{
                                     </div>
                                     
                                     {/*Row FOUR  */}
-                                    <h4 className="lead ml-3 mt-5">Contact Information</h4>
+                                    <h4 className="lead mt-5">Contact Information</h4>
                                     <hr />
                                     <div className="row mb-4">
                                         <div className="address1-wrapper col-md-12 mb-3">
                                             <TextInput
-                                                name="address1"
-                                                id="address1"
+                                                name="address"
+                                                id="address"
                                                 type="text" 
                                                 placeholder="143 work and connect"
                                                 className={`form-control ${touched.address1 && errors.address1 ? "is-invalid" : ""}`}
@@ -285,14 +305,14 @@ class EditEmployee extends Component{
                                                 />
                                         </div>
 
-                                        <div className="zipcode-wrapper form-group col-md-4">
+                                        <div className="country-wrapper form-group col-md-4">
                                             <TextInput
-                                                name="zipcode"
-                                                id="zipcode"
+                                                name="country"
+                                                id="country"
                                                 type="text" 
-                                                placeholder="234466"
-                                                label="Zip Code"
-                                                className={`form-control ${touched.zipcode && errors.zipcode ? "is-invalid" : ""}`}
+                                                placeholder="Nigeria"
+                                                label="Country"
+                                                className={`form-control ${touched.country && errors.country ? "is-invalid" : ""}`}
                                                 />
                                             <ErrorMessage
                                                 component="div"
@@ -303,7 +323,7 @@ class EditEmployee extends Component{
                                     </div>
 
                                     <hr />
-                                    <div className="col-md-12 mt-5 mb-3">
+                                    <div className="mt-5 mb-3">
                                         <Button 
                                             type="submit"
                                             label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Updating...</span>) : "Update"}
