@@ -33,7 +33,7 @@ class Cards extends Component{
                         />
                         <Card
                             
-                                title="Draft Task"
+                                title="Drafted Task"
                                 type=""
                                 count="123"
                                 icon="fa-server"

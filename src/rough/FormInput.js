@@ -1,6 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+const names = [
+    {value: "Wale", label: "boy"},
+    {value: "Wale", label: "boy"},
+    {value: "Wale", label: "boy"},
+    {value: "Wale", label: "boy"}
+]
 const FormInput = ({
     name,
     type,
@@ -27,6 +33,8 @@ const FormInput = ({
                 value={value}
                 className={className}
             />    
+            {/* <Select option={names}/> testing react-select */}
+
         </React.Fragment>
     )
 };

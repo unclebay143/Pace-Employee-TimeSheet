@@ -1,7 +1,7 @@
+// React
 import React, { useEffect } from 'react';
-import Navbar from '../layouts/Navbar';
-import Footer from '../layouts/Footer';
-import './pages-styles/about.css';
+
+// Images
 import peter from './pages-images/adeyemon_peter.jpg';
 import akan from './pages-images/akan_asanga.jpg';
 import baseet from './pages-images/ariyibi_baseet_.jpg';
@@ -20,7 +20,6 @@ const About = () => {
   return (
     <React.Fragment>
       <AboutContent />
-      <Footer />
     </React.Fragment>
   )
 }
@@ -69,9 +68,6 @@ const AboutContent = () => {
 
   return(
     <React.Fragment>
-      <div className="container">
-        <Navbar />    
-      </div>
       <section className="container about">
         <section className="row pace-big-screen flex-column-reverse flex-lg-row">
           <article className="col-12 col-lg-6">

@@ -138,7 +138,7 @@ class SignupPage extends Component{
                                                     name="termsOfService"
                                                     id="termsOfService"
                                                     title="Accept Terms and condition"
-                                                    titleClassName="text-blue"
+                                                    titleClassName={values.termsOfService ? "text-blue" : "pace-accent-color"}
                                                     className={`form-check-input ${touched.termsOfService && errors.termsOfService ? "is-invalid" : ""}`}
                                                 />
                                                  <ErrorMessage

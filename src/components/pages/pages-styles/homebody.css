@@ -86,25 +86,25 @@ header.container{
 
 /* landing page section 0 */
 
-#pace-summary{
-  margin-top: 9rem;
+.pace-features-1{
+  margin-top: 3rem;
   margin-bottom: 9rem;
 }
 
-#pace-summary svg{
+#pace-features svg{
   color:#335eea;
   width: 2rem;
   height: 2rem;
   margin-top: 1rem;
 }
 
-#pace-summary h3{
+#pace-features h3{
   margin: 0.8rem 0rem;
   color: #161c2d;
   font-weight: 370;
 }
 
-#pace-summary p{
+#pace-features p{
   margin: 0.8rem 0rem;
   color: #869ab8;
 }
@@ -113,6 +113,16 @@ header.container{
   font-weight: 350;
   color: #161c2d;
 }
+
+.dashboard-display-wrapper{
+  margin-top: 200px !important;
+}
+
+#dashboard-display{
+  flex-direction: row !important;
+  margin-top: 30px !important;
+}
+
 
 .block blockquote{
   /* margin-top: 3rem; */
@@ -142,7 +152,31 @@ header.container{
   margin-right: .8rem;
 }
 
+/* Pricing */
+.pricing-tags .dark-1{
+  margin-right: 30px !important;
+  margin-left: 20px !important;
+}
+
+.pricing-tags .bg-dark h4{
+  color: #cccccc;
+}
+
+.pricing-tags ul li{
+  font-size: large;
+  padding: 6px;
+}
+
+.pricing-tags ul{
+
+  margin-right: 1px;
+}
  
+.pricing-tags .bg-dark ul li{
+  color: #a1a1a1;
+}
+
+
   /* TESTIMONIAL CAROUSEL SECTION */
 
   .testimonial h4{

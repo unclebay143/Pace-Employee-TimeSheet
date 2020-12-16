@@ -10,13 +10,15 @@ import './components/pages/pages-styles/util.css';
 import './components/pages/pages-styles/form.css';
 import './components/layouts/layout-styles/button.css'
 
-
 // CUSTOM
 import './components/layouts/layout-styles/navbar.css';
 import './components/layouts/layout-styles/footer.css';
 import './components/pages/pages-styles/homebody.css';
 import './components/pages/pages-styles/forgotpassword.css';
 import './components/pages/pages-styles/confirmation.css';
+import './components/pages/pages-styles/404.css';
+import './components/pages/pages-styles/about.css';
+
 
 // BOOTSTRAP
 import 'bootstrap/dist/css/bootstrap.css';
@@ -27,32 +29,32 @@ import 'bootstrap/dist/js/bootstrap.bundle.js';
 
 import 'aos/dist/aos.css';
 
-// DASHBOARD
+// DASHBOARD STYLES
 import './components/workspace/dashboard/dashboard-styles/style.default.css';
 import './components/workspace/dashboard/dashboard-styles/utilities.css';
 import './components/workspace/dashboard/dashboard-styles/custom.css';
 import './components/workspace/dashboard/dashboard-styles/orionicons.css';
 import './components/workspace/dashboard/dashboard-styles/card.css';
 
-// COMPONENTS
-import Home from './components/App';
-import About from './components/pages/About';
-import ContactUs from './components/pages/ContactUs';
-import Pricing from './components/pages/Pricing';
-import LoginPage from './components/pages/LoginPage';
-import SignupPage from './components/pages/SignupPage';
-import PageNotFound from './components/pages/404';
-import ForgotPassword from './components/pages/ForgotPassword';
-import Confirmation from './components/pages/Confirmation';
-import ResetPassword from './components/pages/ResetPassword';
-import Dashboard from './components/workspace/dashboard/Dashboard';
-import App from './components/App'
+// DASHBOARD SCRIPT
+import './components/workspace/layouts/SibarToggle';
+
 // Redux 
 import store from "./Store";
 import { Provider } from 'react-redux';
 
 // test DEVcomponent
 import Test from './rough/Test'
+
+// COMPONENTS
+import Home from './components/App';
+import ContactUs from './components/pages/ContactUs';
+import LoginPage from './components/pages/LoginPage';
+import SignupPage from './components/pages/SignupPage';
+import ForgotPassword from './components/pages/ForgotPassword';
+import Confirmation from './components/pages/Confirmation';
+import ResetPassword from './components/pages/ResetPassword';
+import Dashboard from './components/workspace/dashboard/Dashboard';
 
 
 
@@ -61,18 +63,18 @@ ReactDOM.render(
     <Provider store={store}>
       <Router>
         <Switch>
-          <Route exact path="/dashboard" component = {Dashboard} />
-          <Route exact path="/forgot" component = {ForgotPassword} />
-          <Route exact path="/confirmation" component = {Confirmation} />
-          <Route exact path="/ResetPassword" component = {ResetPassword} />
-          <Route exact path="/login" component = {LoginPage} />
-          <Route exact path="/signup" component = {SignupPage} />
           <Route exact path="/contact" component = {ContactUs} />
-          <Route exact path="/about" component = {About} />
-          <Route exact path="/pricing" component = {Pricing} />
+          <Route exact path="/ResetPassword" component = {ResetPassword} />
+          <Route exact path="/confirmation" component = {Confirmation} />
+          <Route exact path="/forgot" component = {ForgotPassword} />
+          <Route exact path="/signup" component = {SignupPage} />
+          <Route exact path="/login" component = {LoginPage} />
+          {/* Development Component for testing */}
           <Route exact path="/test" component = {Test} />
-          <Route exact path="/" component = {Home} />
-          <Route component = {PageNotFound} />
+          {/* Top Level Components */}
+          <Route path="/dashboard" component = {Dashboard} />
+          <Route path="/" component = {Home} />
+
         </Switch>
       </Router>
     </Provider>

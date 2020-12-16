@@ -1,53 +1,155 @@
 import React, { Component } from 'react';
-// import Table from '../../../layouts/Table';
-import AcceptedTasks from './AcceptedTasks';
-import AssignedTasks from './AssignedTasks';
-import Table from '../../../pages/Table'
+import Table from '../../layouts/Table';
+import paginationFactory from 'react-bootstrap-table2-paginator';
 
-// styles
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '../../../pages/pages-styles/util.css'
-import '../dashboard-styles/style.default.css';
-import '../dashboard-styles/utilities.css';
-import '../dashboard-styles/custom.css';
-import '../dashboard-styles/orionicons.css';
+
+
+const taskHeader = [
+  {
+    dataField: 'id',
+    text: 'S/N'
+  },
+  {
+    dataField: 'task',
+    text: 'Task',
+  },
+  {
+    dataField: 'dueDate',
+    text: 'Due Date',
+  },
+  {
+    dataField: 'status',
+    text: 'status',
+  },
+  {
+    dataField: 'requests',
+    text: 'Requests',
+  },
+    
+  {
+  
+    formatter: (cellContent, row) => {
+      return (
+        <>
+        <button
+          className="btn btn-danger btn-xs mr-3"
+          onClick={(e) => handleDelete(row)} 
+        >
+          Delete
+        </button>
+        <button
+          className="btn btn-danger btn-xs"
+          onClick={(e) => handleDelete(row)} 
+        >
+          Delete
+        </button>
+        </>
+      );
+    },
+  },
+
+];
+
+
+const acceptedTasks = [
+    {
+      id: '1',
+      task: 'testing',
+      dueDate: '12/06/21',
+      status: 'accept',
+      requests: 'requested'
+    },
+    {
+      id: '2',
+      task: 'testing2',
+      dueDate: '14/06/21',
+      status: 'accept',
+      requests: 'requested'
+    },
+    {
+      id: '3',
+      task: 'testing3',
+      dueDate: '16/06/21',
+      status: 'accept',
+      requests: 'requested'
+    },
+    {
+      id: '4',
+      task: 'testing3',
+      dueDate: '16/06/21',
+      status: 'accept',
+      requests: 'requested'
+    },
+    {
+      id: '5',
+      task: 'testing3',
+      dueDate: '16/06/21',
+      status: 'accept',
+      requests: 'requested'
+    },
+    {
+      id: '6',
+      task: 'testing3',
+      dueDate: '16/06/21',
+      status: 'accept',
+      requests: 'requested'
+    },
+    {
+      id: '7',
+      task: 'testing3',
+      dueDate: '16/06/21',
+      status: 'accept',
+      requests: 'requested'
+    },
+    {
+      id: '8',
+      task: 'testing3',
+      dueDate: '16/06/21',
+      status: 'accept',
+      requests: 'requested'
+    },
+    {
+      id: '9',
+      task: 'testing3',
+      dueDate: '16/06/21',
+      status: 'accept',
+      requests: 'requested'
+    },
+    {
+      id: '10',
+      task: 'testing3',
+      dueDate: '16/06/21',
+      status: 'accept',
+      requests: 'requested'
+    },
+    {
+      id: '11',
+      task: 'testing111',
+      dueDate: '16/06/21',
+      status: 'accept',
+      requests: 'requested'
+    },
+  ]
+
+
+function handleDelete(rowId){
+  console.log(rowId);
+};
+
 
 class EmployeeTasks extends Component {
   render() {
     return (
-        <div className="container-fluid px-xl-5">
-          <section className="py-5">
-            <div className="row mb-4">
-              <div className="col-lg-12 mb-1">
-                <div className="card">
-                  <div className="card-header">
-                    <h6 className="text-uppercase mb-0 pace-accent-color">Assigned Tasks</h6>
-                  </div>
-                  <div className="card-body">
-                   <AcceptedTasks className="table card-text" />
-                   {/* <Table className="table card-text pace-bg-primary" /> */}
-                    {/* <table id="view-tasks" class="table card-text"> */}
-                    {/* </table> */}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-          <section className="py-5">
-            <div className="row mb-2">
-              <div className="col-lg-12 mb-4">
-                <div className="card">
-                  <div className="card-header">
-                    <h6 className="text-uppercase mb-0 pace-accent-color">Accepted Tasks</h6>
-                  </div>
-                  <div className="card-body">
-                   <AssignedTasks />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-        </div>
+        // <div className="container-fluid px-xl-5">
+          <Table
+            keyField='id'
+            title="Assigned Task"
+            data={acceptedTasks}
+            columns={taskHeader}
+            bordered= { false }
+            pagination = { paginationFactory() }
+          />
+        // </div>
     )
   }
 }
