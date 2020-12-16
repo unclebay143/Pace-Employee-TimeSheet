@@ -17,13 +17,13 @@ import TimerReport from './reports/TimerReport';
 import BillingReport from './reports/BillingReport';
 import Profile from './Profile';
 import DraftTask from './DraftTask';
-import LoginPage from '../../pages/LoginPage';
+import Login from '../../pages/Login';
 
 
 const Dashboard = () =>{
     const [ auth, setAuth ] = useState()
     if(!auth){
-        return <LoginPage/>
+        return <Login/>
     }
     
     return(

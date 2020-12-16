@@ -49,8 +49,8 @@ import Test from './rough/Test'
 // COMPONENTS
 import Home from './components/App';
 import ContactUs from './components/pages/ContactUs';
-import LoginPage from './components/pages/LoginPage';
-import SignupPage from './components/pages/SignupPage';
+import Login from './components/pages/Login';
+import Signup from './components/pages/Signup';
 import ForgotPassword from './components/pages/ForgotPassword';
 import Confirmation from './components/pages/Confirmation';
 import ResetPassword from './components/pages/ResetPassword';
@@ -67,8 +67,8 @@ ReactDOM.render(
           <Route exact path="/ResetPassword" component = {ResetPassword} />
           <Route exact path="/confirmation" component = {Confirmation} />
           <Route exact path="/forgot" component = {ForgotPassword} />
-          <Route exact path="/signup" component = {SignupPage} />
-          <Route exact path="/login" component = {LoginPage} />
+          <Route exact path="/signup" component = {Signup} />
+          <Route exact path="/login" component = {Login} />
           {/* Development Component for testing */}
           <Route exact path="/test" component = {Test} />
           {/* Top Level Components */}

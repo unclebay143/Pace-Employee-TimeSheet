@@ -10,11 +10,11 @@ import AOS from 'aos';
 
 // Components
 import About from './pages/About';
-import HomeBody from './pages/HomeBody';
+import Home from './pages/Home';
 import PageNotFound from './pages/404';
 
 
-function Home() {
+function App() {
   useEffect(() => {
     AOS.init({
       duration : 2000
@@ -27,7 +27,7 @@ function Home() {
         <Navbar />
           <Switch>
             <Route exact path="/about" component = {About} />
-            <Route exact path="/" component = {HomeBody} />
+            <Route exact path="/" component = {Home} />
             <Route component = {PageNotFound} />
           </Switch>
       </main>
@@ -37,4 +37,4 @@ function Home() {
 }
 
 
-export default Home;
+export default App;

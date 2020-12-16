@@ -10,7 +10,7 @@ import landingPageImg from './pages-images/landingPage.svg';
 const IndexArea = () => {
     return(
       <>
-        <section className="row d-flex flex-column-reverse home-intro flex-lg-row">
+        <section className="container row d-flex flex-column-reverse home-intro flex-lg-row">
           <div className="col d-flex flex-row">
             <section className="home-intro-text">
               {/* type-writing effect */}
