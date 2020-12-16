@@ -1,5 +1,5 @@
 // React
-import { React, Component } from 'react';
+import { React, Component, useState } from 'react';
 import { Route, Switch } from 'react-router-dom/cjs/react-router-dom.min';
 
 // Layouts
@@ -16,6 +16,7 @@ import EmployeeTasks from './employeeTasks/EmployeeTasks';
 import TimerReport from './reports/TimerReport';
 import BillingReport from './reports/BillingReport';
 import Profile from './Profile';
+<<<<<<< HEAD
 import Task from './Task';
 
 
@@ -48,12 +49,50 @@ class Dashboard extends Component{
                    {/* >>>>> FOOTER COMPONENT SECTION <<<<< */}
                             <Footer />
                         </div>
+=======
+import DraftTask from './DraftTask';
+import Login from '../../pages/Login';
+
+
+const Dashboard = () =>{
+    const [ auth, setAuth ] = useState()
+    if(!auth){
+        return <Login/>
+    }
+    
+    return(
+        <>
+            <div>
+                {/* >>>>> NAVBAR COMPONENT SECTION <<<<< */}
+                <Navbar  />
+                    <div className="d-flex align-items-stretch">
+                {/* >>>>> SIDEBAR COMPONENT SECTION <<<<< */}
+                        <Sidebar />
+                        <div className="page-holder w-100 d-flex flex-wrap">
+
+                            <div className="container-fluid dashboard-body-wrapper">
+                {/* >>>>> BODIES COMPONENTS SECTION <<<<< */}
+                                <Switch>
+                                    <Route exact path="/dashboard/draft-task" component={DraftTask} />
+                                    <Route exact path="/dashboard/profile" component={Profile} />
+                                    <Route exact path="/dashboard/billing-report" component={BillingReport} />
+                                    <Route exact path="/dashboard/timer-report" component={TimerReport} />
+                                    <Route exact path="/dashboard/task" component={EmployeeTasks} />
+                                    <Route exact path="/dashboard/edit" component={EditEmployee} />
+                                    <Route exact path="/dashboard/employ" component={AddEmployee} />
+                                    <Route exact path="/dashboard/employee-list" component={EmployeeList} />
+                                    <Route exact path="/dashboard" component={Index} />
+                                </Switch>
+                            </div>
+                {/* >>>>> FOOTER COMPONENT SECTION <<<<< */}
+                        <Footer />
+>>>>>>> 1fbe99ac70003d72b25c7a5a1082308f74bd87f0
                     </div>
                 </div>
+            </div>
 
-            </>
-        )
-    }
+        </>
+    )
 }
 
 

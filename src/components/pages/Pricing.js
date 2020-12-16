@@ -5,18 +5,18 @@ const Pricing = () => {
     return(
         <>
             <div class="mb-1" id="pricing">&nbsp;</div>
-            <div className="container pricing mb-5 pricing-tags">
+            <div className="container pricing mb-5 pricing-tags ">
                 <div className="text-center">
                     <h4 className="w-2 mt-5 mg-lg-0 pace-accent-color p-2"  data-aos="zoom-out-down">Pricing</h4>
                     <h2 data-aos="fade-up-left">Optimized for businesses of all sizes.</h2>
                     <p className="pace-primary-color" data-aos="fade-up-right">Flexible monthly pricing for projects and teams of all sizes. Get billed in your local currency..</p>
                 </div>
                 <div className="row mt-5 p-lg-2">
-                    <div className="p-3" data-aos="fade-up">
-                        <h2 className="mb-3">Free</h2>
-                        <h5 className="mb-4">#0 / month</h5>
+                    <div className="p-3 bg-dark" data-aos="fade-down">
+                        <h2 className="mb-3 pace-accent-color">Free</h2>
+                        <h5 className="mb-4  text-white">#0 / month</h5>
                         <Link to="/pricing">
-                            <Button label="Get Started" className="btn pace-btn pace-btn-outline-primary pricing-btn" />
+                            <Button label="Get Started" className="btn pace-btn pace-btn-primary pricing-btn" />
                         </Link>
                         <h4 className="mt-3">What's included</h4>
                         <ul className="px-4">
@@ -26,10 +26,10 @@ const Pricing = () => {
                             <li>Limited Request</li>
                         </ul>
                     </div>
-                    <div className="row p-3 ml-lg-2 border bg-dark">
+                    <div className="row p-3 ml-lg-2 border ">
                         <div className="mr-2 dark-1" data-aos="fade-up-left">
                             <h2 className="mb-3 pace-accent-color">Basic</h2>
-                            <h5 className="mb-4 text-white">#12, 000 / month</h5>
+                            <h5 className="mb-4">#12, 000 / month</h5>
                             <Link to="/pricing">
                             <Button label="Get Started" className="btn pace-btn pace-btn-accent pricing-btn" />
                             </Link>
@@ -43,7 +43,7 @@ const Pricing = () => {
                         </div>
                         <div className="" data-aos="fade-up-right">
                             <h2 className="mb-3 pace-accent-color">Premium</h2>
-                            <h5 className="mb-4 text-white">#32, 000 / month</h5>
+                            <h5 className="mb-4 text-whie">#32, 000 / month</h5>
                             <Link to="/pricing">
                             <Button label="Get Started" className="btn pace-btn pace-btn-accent pricing-btn" />
                             </Link>

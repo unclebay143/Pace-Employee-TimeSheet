@@ -14,7 +14,11 @@ const initialState = [
         role: "Frontend",
         employeed_date: "12/23/34",
         salary: 130000,
-        type: "Admin"
+        type: "Admin",
+        address: "123 Forestry Bako",
+        city: "Gwagwalada",
+        state: "Abuja",
+        country: "Nigeria"
     },
     {
         id: uuidv4(),
@@ -28,7 +32,11 @@ const initialState = [
         role: "Frontend",
         employeed_date: "12/23/34",
         salary: 130000,
-        type: "Internal"
+        type: "Internal",
+        address: "123 Forestry Bako",
+        city: "Gwagwalada",
+        state: "Abuja",
+        country: "Nigeria"
 
     },
     {
@@ -43,7 +51,11 @@ const initialState = [
         role: "Frontend",
         employeed_date: "12/23/34",
         salary: 130000,
-        type: "Employee"
+        type: "Employee",
+        address: "123 Forestry Bako",
+        city: "Gwagwalada",
+        state: "Abuja",
+        country: "Nigeria"
 
     },
     {
@@ -58,7 +70,11 @@ const initialState = [
         role: "Frontend",
         employeed_date: "12/23/34",
         salary: 130000,
-        type: "Internal"
+        type: "Internal",
+        address: "123 Forestry Bako",
+        city: "Gwagwalada",
+        state: "Abuja",
+        country: "Nigeria"
 
     },
 ]
