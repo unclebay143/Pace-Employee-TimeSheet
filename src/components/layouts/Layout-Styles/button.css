@@ -13,6 +13,10 @@
     background: #FF6584 !important;
     color: #ffffff !important;
 }
+.pace-btn-grey{
+    background: #aaa !important;
+    color: #ffffff !important;
+}
 
 .pace-btn-outline-primary{
     border-color: #335eea !important;
