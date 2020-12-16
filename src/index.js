@@ -26,7 +26,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.js';
 
 // AOS
-
+import 'react-toastify/dist/ReactToastify.css'
 import 'aos/dist/aos.css';
 
 // DASHBOARD STYLES
