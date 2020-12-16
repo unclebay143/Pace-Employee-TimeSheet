@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+import { GET_TASKS } from '../../../../actions/types';
+
 import Table from '../../layouts/Table';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 
@@ -26,27 +30,27 @@ const taskHeader = [
         text: 'Requests',
       },
         
-      {
+      // {
       
-        formatter: (cellContent, row) => {
-          return (
-            <>
-            <button
-              className="btn btn-danger btn-xs mr-3"
-              onClick={(e) => handleDelete(row)} 
-            >
-              Delete
-            </button>
-            <button
-              className="btn btn-danger btn-xs"
-              onClick={(e) => handleDelete(row)} 
-            >
-              Delete
-            </button>
-            </>
-          );
-        },
-      },
+      //   formatter: (cellContent, row) => {
+      //     return (
+      //       <>
+      //       <button
+      //         className="btn btn-danger btn-xs mr-3"
+      //         onClick={(e) => handleDelete(row)} 
+      //       >
+      //         Delete
+      //       </button>
+      //       <button
+      //         className="btn btn-danger btn-xs"
+      //         onClick={(e) => handleDelete(row)} 
+      //       >
+      //         Delete
+      //       </button>
+      //       </>
+      //     );
+      //   },
+      // },
     
 ];
 
@@ -57,104 +61,39 @@ class AcceptedTasks extends Component {
   constructor(props){
     super(props)
     this.state = {
-      acceptedTasks : [
-        {
-          id: '1',
-          task: 'testing',
-          dueDate: '12/06/21',
-          status: 'accept',
-          requests: 'requested'
-        },
-        {
-          id: '2',
-          task: 'testing2',
-          dueDate: '14/06/21',
-          status: 'accept',
-          requests: 'requested'
-        },
-        {
-          id: '3',
-          task: 'testing3',
-          dueDate: '16/06/21',
-          status: 'accept',
-          requests: 'requested'
-        },
-        {
-          id: '4',
-          task: 'testing3',
-          dueDate: '16/06/21',
-          status: 'accept',
-          requests: 'requested'
-        },
-        {
-          id: '5',
-          task: 'testing3',
-          dueDate: '16/06/21',
-          status: 'accept',
-          requests: 'requested'
-        },
-        {
-          id: '6',
-          task: 'testing3',
-          dueDate: '16/06/21',
-          status: 'accept',
-          requests: 'requested'
-        },
-        {
-          id: '7',
-          task: 'testing3',
-          dueDate: '16/06/21',
-          status: 'accept',
-          requests: 'requested'
-        },
-        {
-          id: '8',
-          task: 'testing3',
-          dueDate: '16/06/21',
-          status: 'accept',
-          requests: 'requested'
-        },
-        {
-          id: '9',
-          task: 'testing3',
-          dueDate: '16/06/21',
-          status: 'accept',
-          requests: 'requested'
-        },
-        {
-          id: '10',
-          task: 'testing3',
-          dueDate: '16/06/21',
-          status: 'accept',
-          requests: 'requested'
-        },
-        {
-          id: '11',
-          task: 'testing111',
-          dueDate: '16/06/21',
-          status: 'accept',
-          requests: 'requested'
-        },
-      ]
+      ComponentDidMount() {
+        this.props.task();
+      }
     }
 }
 
   render() {
     
-    const { acceptedTasks} = this.state;
+    const { acceptedTasks} = this.props;
     return (
       <div >
         <Table
           keyField='id'
+          title="Accepted Task"
           data={ acceptedTasks }
-          columns={ taskHeader } 
-          searchName = 'for a task here'
+          columns={taskHeader}
           bordered= { false }
-          pagination = { paginationFactory()}
-          />
+          pagination = { paginationFactory() }
+        />
       </div>
     )
   }
 }
 
-export default AcceptedTasks;
+
+const mapStateToProps = state => ({
+  acceptedTasks: state.task
+})
+
+const mapDispatchToProps = dispatch => ({
+  task: () => dispatch({ type:GET_TASKS })
+});
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+  )(AcceptedTasks);

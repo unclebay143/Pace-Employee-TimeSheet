@@ -16,7 +16,7 @@ import EmployeeTasks from './employeeTasks/EmployeeTasks';
 import TimerReport from './reports/TimerReport';
 import BillingReport from './reports/BillingReport';
 import Profile from './Profile';
-import DraftTask from './DraftTask';
+import Task from './Task';
 
 
 class Dashboard extends Component{
@@ -34,11 +34,11 @@ class Dashboard extends Component{
                                 <div className="container-fluid dashboard-body-wrapper">
                    {/* >>>>> BODIES COMPONENTS SECTION <<<<< */}
                                     <Switch>
-                                        <Route exact path="/dashboard/draft-task" component={DraftTask} />
+                                        <Route exact path="/dashboard/task" component={Task} />
                                         <Route exact path="/dashboard/profile" component={Profile} />
                                         <Route exact path="/dashboard/billing-report" component={BillingReport} />
                                         <Route exact path="/dashboard/timer-report" component={TimerReport} />
-                                        <Route exact path="/dashboard/task" component={EmployeeTasks} />
+                                        {/* <Route exact path="/dashboard/task" component={EmployeeTasks} /> */}
                                         <Route exact path="/dashboard/edit" component={EditEmployee} />
                                         <Route exact path="/dashboard/employ" component={AddEmployee} />
                                         <Route exact path="/dashboard/employee-list" component={EmployeeList} />
