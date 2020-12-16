@@ -1,14 +1,31 @@
 import React, { Component } from 'react';
 import {Formik, Form, Field,  ErrorMessage} from 'formik';
-import { TextInput, TextArea, DataList, Datalist } from '../../layouts/FormInput';
+import { TextInput, TextArea, DataList, Datalist } from '../../../layouts/FormInput';
 
-import Button from '../../layouts/Button';
+
+// const department = [
+//   { key: 'Select an option', value: '' },
+//   { key: 'web development', value: 'web development' },
+//   { key: 'quality assurance', value: 'quality assurance' },
+//   { key: 'Option 3', value: 'option3' }
+// ]
+
+// const sampleCompany = {
+//   departments: [ 'web development', 'quality assurance', 'web design' ],
+//   employeeRoles: ['backend', 'frontend', 'database manager'],
+//   employeeType: ['admin', 'internal', 'staff'],
+// }
+
+// const existingDepartment = sampleCompany.departments.map((department)=><option value={department}>{department}</option>)
+// const availableRole = sampleCompany.employeeRoles.map((role)=><option value={role}>{role}</option>)
+// const availableType = sampleCompany.employeeType.map((type)=><option value={type}>{type}</option>)
+
 
 class DraftTask extends Component {
   render() {
     return (
       <div>
-        <section class="">
+        <section class="py-5">
           <div class="row mb-4">
             <div class="col-lg-12 mb-4">
               <div class="card">
@@ -27,39 +44,28 @@ class DraftTask extends Component {
                         onSubmit={ values=> console.log(values)}
                     >
                       {({touched, errors, values, handleSubmit, handleChange, isSubmitting}) => (
-                        <Form className="mt-0"  onSubmit={handleSubmit}>
+                        <Form className="mt-2"  onSubmit={handleSubmit}>
                           <div className="form-group">
                             <TextInput 
-                              name = "subject"
-                              id = "subject"
+                              label = "Title"
+                              name = "taskTitle"
+                              id = "task-title"
                               type = "text"
-                              value={values.subject}
+                              value={values.taskTitle}
                               className = "form-control lead"
                               labelClassName="lead"
-                              placeholder = "Subject:"
+                              placeholder = "Task Title"
                               onChange={handleChange}
                             />
                           </div>
-                          <div className="form-group">
-                          <TextInput 
-                                name = "department"
-                                id = "department"
-                                type = "text"
-                                value={values.department}
-                                className = "form-control lead"
-                                labelClassName="lead"
-                                placeholder = "To:"
-                                onChange={handleChange}
-                              />
-                          </div>
                           
-                          {/* <div className="form-group row">
+                          <div className="form-group row">
                             <div className="col-lg-6">
-                              <Field component="datalist" name="role"  onChange={handleChange} className="form-control">
+                              {/* <Field component="datalist" name="role"  onChange={handleChange} className="form-control">
                                             <option selected>Choose...</option>
                                             {availableRole}
-                              </Field>
-                              <DataList
+                              </Field> */}
+                              {/* <DataList
                                label = "Department"
                                name = "department"
                                id = "department"
@@ -73,12 +79,39 @@ class DraftTask extends Component {
                               <option selected>Choose...</option>
                                             {availableRole}
 
-                              </DataList>
+                              </DataList> */}
+                              <TextInput 
+                                label = "Departments"
+                                name = "department"
+                                id = "department"
+                                type = "text"
+                                value={values.department}
+                                // options={department}
+                                // key= {department.key}
+                                className = "form-control lead"
+                                labelClassName="lead"
+                                placeholder = "Department"
+                                onChange={handleChange}
+                              />
                             </div>
-                          </div> */}
+                            <div className="col-lg-6">
+                              <TextInput 
+                                label = "Name"
+                                name = "name"
+                                id = "name"
+                                type = "text"
+                                value={values.name}
+                                className = "form-control lead"
+                                labelClassName="lead"
+                                placeholder = "Name"
+                                onChange={handleChange}
+                              />
+                            </div>
+                          </div>
                             
-                          <div className="form-group">
+                          <div className="form-group row">
                               <TextArea 
+                                label = "Task Description"
                                 name = "taskDescription"
                                 id = "task-description"
                                 value = {values.taskDescription}
@@ -93,7 +126,7 @@ class DraftTask extends Component {
                           </div>
                             
                           <div className="form-group row">
-                            <div className="col-sm-6">
+                            <div className="col-lg-6">
                               <TextInput 
                                   label = "Attachment"
                                   name = "file"
@@ -105,40 +138,17 @@ class DraftTask extends Component {
                                   onChange={handleChange}
                               />
                             </div>
-                            <div className="col-sm-6">
+                            <div className="col-lg-6">
                               <TextInput 
                                   label = "Due Date"
                                   name = "dueDate"
                                   id = "due-date"
                                   type="datetime-local"
-                                  value={values.dueDate}
+                                  value={values.namedueDate}
                                   className = "form-control lead"
                                   labelClassName="lead"
                                   onChange={handleChange}
                               />
-                            </div>
-                          </div>
-                          <div className="form-group row">
-                            <div className="col-sm-1 px-3">
-                              <Button 
-                                type="submit"
-                                label="Send"
-                                className="btn pace-btn-primary" 
-                              />
-                            </div>
-                            <div className="col-sm-1">
-                              <Button 
-                                type="submit"
-                                label="Draft"
-                                className="btn pace-btn-grey" 
-                              />
-                            </div>
-                            <div className="col-sm-1">
-                            <Button 
-                                type="submit"
-                                label="Discard"
-                                className="btn pace-btn-accent" 
-                            />
                             </div>
                           </div>
                         </Form>

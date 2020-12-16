@@ -23,7 +23,8 @@ export default class Table extends Component {
           {
             props =>(
               <>
-                <section className="py-5">
+              {/* i had to comment this out, so when you need to use the table pls add a section tag with the classname of py3 */}
+                {/* <section className="py-5"> */}
                   <div className="row mb-4">
                     <div className="col-lg-12 mb-1">
                       <div className="card">
@@ -118,7 +119,7 @@ export default class Table extends Component {
                       </div>
                     </div>
                   </div>
-                </section>
+                {/* </section> */}
               </>
             )
           }
