@@ -30,6 +30,8 @@
     "redux-thunk": "^2.3.0",
     "styled-jsx": "^3.3.2",
     "sweetalert": "^2.1.2",
+    "sweetalert2": "^10.12.5",
+    "sweetalert2-react-content": "^3.2.2",
     "web-vitals": "^0.2.4",
     "yup": "^0.32.1"
   },

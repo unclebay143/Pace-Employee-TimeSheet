@@ -27,7 +27,7 @@ class Task extends Component {
                 <Route exact path="/dashboard/task/draft-task" component={DraftTask } />
                 <Route exact path="/dashboard/task/accepted-tasks" component={AcceptedTasks} />
               </Switch>
-                <DraftTask />
+                {/* <DraftTask /> */}
                 {/* <AcceptedTasks /> */}
                 {/* <EmployeeTasks /> */}
             </section>

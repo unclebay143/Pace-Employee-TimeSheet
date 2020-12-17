@@ -1,11 +1,9 @@
 import { Component } from "react";
 import'../dashboard/dashboard-styles/timer.css';
 import Timer from 'react-compound-timer';
-import { ToastContainer, toast } from 'react-toastify';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
-
-
-const reminder = () => toast("Did you forgot to start your time?")
 
 class TimerHolder extends Component{
     constructor(props){
@@ -17,7 +15,21 @@ class TimerHolder extends Component{
 
     componentDidMount() {
         setTimeout(() => {
-            if(this.state.timerOff) reminder()
+            if(this.state.timerOff){
+                const timerReminder = withReactContent(Swal)
+                timerReminder.fire({
+                    showCloseButton: true,
+                    showCancelButton: true,
+                    cancelButtonColor: '#FF6584',
+                    confirmButtonText: 'Yes, thanks',
+                    cancelButtonText: 'Snooze for 5 minutes',
+                    icon: 'question',
+                    title: 'Reminder!',
+                    text: 'Did you foget to start your time?.',
+                    footer: '<a href="">Why am I seeing this?</a>'
+                })
+            }
+
             
         }, 2000)
     }
@@ -35,20 +47,6 @@ class TimerHolder extends Component{
         return(
             <>
                 <li className="nav-item">
-                    <style>
-                        {
-                            `
-                                .Toastify__toast{
-                                    background: #FF6584;
-                                    color: #FFFFFF;
-                                }
-                            `
-                        }
-                    </style>
-                    <ToastContainer
-                        autoClose={9000}
-                        position="bottom-center"
-                    />
                     <div id="searchForm" className="ml-auto d-none d-lg-block">
                         <div className="position-relative mb-0">
                             <div id="right-i">
