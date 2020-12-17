@@ -16,7 +16,7 @@ const Features = () =>{
     return(
       <>
       <div id="features">&nbsp;</div>
-        <section class="features-wrapper">
+        <section class="container features-wrapper">
           <section className="row d-flex flex-column flex-sm-row align-items-center pace-features-1" id="pace-features">
             <FeaturesCard
               svg = 
