@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
 
+const timerReminder = withReactContent(Swal)
 class TimerHolder extends Component{
     constructor(props){
         super(props)
@@ -16,7 +17,6 @@ class TimerHolder extends Component{
     componentDidMount() {
         setTimeout(() => {
             if(this.state.timerOff){
-                const timerReminder = withReactContent(Swal)
                 timerReminder.fire({
                     showCloseButton: true,
                     showCancelButton: true,
@@ -25,13 +25,13 @@ class TimerHolder extends Component{
                     cancelButtonText: 'Snooze for 5 minutes',
                     icon: 'question',
                     title: 'Reminder!',
-                    text: 'Did you foget to start your time?.',
+                    text: 'Did you forget to start your time?.',
                     footer: '<a href="">Why am I seeing this?</a>'
                 })
             }
 
             
-        }, 2000)
+        }, 50000)
     }
 
     
@@ -39,7 +39,18 @@ class TimerHolder extends Component{
         console.log(this.state)
         console.log("end")
         this.setState((timerOff)=>({timerOff: timerOff = true}))
-        console.log(value)
+        const formatTimer = Math.floor(value / 3600000)
+        timerReminder.fire({
+            showCloseButton: true,
+            showCancelButton: true,
+            cancelButtonColor: '#FF6584',
+            confirmButtonText: 'Yes, thanks',
+            cancelButtonText: 'Resume',
+            icon: 'warning',
+            title: 'Stop Timer?',
+            text: `you worked ${(formatTimer <= 1 ? (`${formatTimer} hour`) : (`${formatTimer} hours`))} are you through?.`,
+            footer: '<a href="">Why am I seeing this?</a>'
+        })
     }
 
     render(){
@@ -80,6 +91,7 @@ class TimerHolder extends Component{
                                                                     reset()
                                                                 }} 
                                                                 id="start-time"
+                                                                className="bg-red"
                                                             >Stop Time</button>
                                                         )
                                                 }
