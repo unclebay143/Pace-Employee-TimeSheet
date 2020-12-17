@@ -31,7 +31,7 @@ class TimerHolder extends Component{
             }
 
             
-        }, 50000)
+        }, 300000)
     }
 
     
