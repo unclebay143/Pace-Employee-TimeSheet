@@ -21,10 +21,10 @@ import Login from '../../pages/Login';
 
 
 const Dashboard = () =>{
-    const [ auth, setAuth ] = useState()
-    if(!auth){
-        return <Login/>
-    }
+    // const [ auth, setAuth ] = useState()
+    // if(!auth){
+    //     return <Login/>
+    // }
     
     return(
         <>
