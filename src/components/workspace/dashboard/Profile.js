@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../../layouts/Button';
-import u from '../../pages/pages-images/ayodele_samuel_adebayo.jpg';
+import unclebay from '../../pages/pages-images/ayodele_samuel_adebayo.jpg';
 
 
 
@@ -52,7 +52,7 @@ export default class Profile extends Component {
                                     <div className="card-body">
                                         <div className="d-flex flex-column align-items-center text-center">
                                             {/* <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width={150} /> */}
-                                            <img src={u} alt="Admin" className="rounded-circle" width={150} />
+                                            <img src={unclebay} alt="Admin" className="rounded-circle" width={150} />
                                             <div className="mt-3">
                                                 <h4>Ayodele S. Adebayo</h4>
                                                 <p className="text-secondary mb-1">Frontend Engineer</p>

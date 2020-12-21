@@ -11,7 +11,7 @@ import { TextInput, CheckbBox } from '../layouts/FormInput';
 // import PropTypes from 'prop-types';
 import { HomeButton } from '../layouts/HomeButton'
 
-class SignupPage extends Component{
+class Signup extends Component{
     constructor(props){
         super(props)
         this.state = {
@@ -176,11 +176,11 @@ class SignupPage extends Component{
     }
 }
 
-// SignupPage.propTypes = {
+// Signup.propTypes = {
 //     workSpaceName : PropTypes.string.isRequired(),
 //     workSpaceEmail : PropTypes.string.isRequired(),
 //     password : PropTypes.string.isRequired(),
 //     confirmPassword : PropTypes.string.isRequired(),
 // }
 
-export default SignupPage;
+export default Signup;

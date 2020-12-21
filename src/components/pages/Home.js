@@ -7,7 +7,7 @@ import Features from './Features';
 import ShowDashboard from './ShowDashboard';
 import Pricing from './Pricing';
 
-function HomeBody() {
+function Home() {
   return (
     <>
       <header className="container">
@@ -20,4 +20,4 @@ function HomeBody() {
   )
 }
 
-export default HomeBody;
+export default Home;

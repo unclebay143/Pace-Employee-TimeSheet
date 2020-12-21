@@ -1,19 +1,20 @@
 // react
-import {React, Component} from 'react';
-import { Formik, Form, ErrorMessage} from 'formik';
+import { React, Component } from 'react';
+import { Formik, Form, ErrorMessage } from 'formik';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-
+import { ToastContainer, toast} from 'react-toastify'; 
 // layouts, customs
-import auth from '../Authentication/LoginAuth';
+// import auth from '../Authentication/LoginAuth';
 import Button from '../layouts/Button';
 import loginImage from './pages-images/login-img.png';
 import { TextInput } from '../layouts/FormInput';
 import { loginSchema } from '../Validation/Schema';
 import { HomeButton } from '../layouts/HomeButton';
 
+const invalidDetailsLogger = () => toast.warning("Invalid Login details")
 
-class LoginPage extends Component{
+class Login extends Component{
     constructor(props){
         super(props)
         this.state = {
@@ -28,6 +29,15 @@ class LoginPage extends Component{
     componentDidMount(){
         document.title = 'Login | Pace'
     }
+
+    auth(values){
+        if(values.email == this.state.workSpaceEmail || values.password == this.state.workSpacePassword){
+            alert("done")
+        }else{
+            invalidDetailsLogger()
+            // setSubmitting=(false)
+        }
+    }
    
     
     
@@ -37,6 +47,21 @@ class LoginPage extends Component{
                 <main className="container d-flex justify-content-center align-items-center mt-5">
                     <div className="row">
                         <div className="form-con col-lg-5 mb-5">
+                            <ToastContainer 
+                                position="bottom-right"
+                                className="loginErrorToast"
+                            />
+                            <style>
+                                {
+                                    `
+                                        .Toastify__toast{
+                                            background: rgb(255,112,150);
+                                            color: #FFFFFF;
+                                        }
+                                    `
+                                }
+                            </style>
+
                             <HomeButton />
                             <div className="form-heading mt-5">
                             <h3 className="mb-3">Login</h3>
@@ -50,7 +75,7 @@ class LoginPage extends Component{
                                             password: ''
                                         }}
                                         validationSchema = {loginSchema}
-                                        onSubmit={(values)=>auth(values)}
+                                        onSubmit={(values)=>this.auth(values)}
                                         
                                     >{({values, touched, errors, isSubmitting, handleSubmit, handleChange}) => (
                                         <Form onSubmit={handleSubmit}>
@@ -123,10 +148,10 @@ class LoginPage extends Component{
     }
 }
 
-LoginPage.propTypes = {
+Login.propTypes = {
     // workSpaceEmail: PropTypes.string.isRequired,
     // password: PropTypes.any.isRequired
 };
 
 
-export default LoginPage;
+export default Login;
