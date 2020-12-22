@@ -17,7 +17,7 @@ class Navbar extends Component{
                                         <div className="d-flex align-items-center">
                                             <div className="icon icon-sm pace-bg-accent text-white"><i className="fab fa-twitter"></i></div>
                                             <div className="text ml-2">
-                                                {/* <p className="mb-0">Lunch by 2pm</p> */}
+                                                <p className="mb-0">Lunch by 2pm</p>
                                             </div>
                                         </div>
                                     </a>
