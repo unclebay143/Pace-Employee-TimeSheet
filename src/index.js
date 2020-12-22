@@ -8,7 +8,7 @@ import {HashRouter as Router, Route, Switch } from "react-router-dom";
 // UTILITIES
 import './components/pages/pages-styles/util.css';
 import './components/pages/pages-styles/form.css';
-import './components/layouts/layout-styles/button.css'
+import './components/layouts/layout-styles/button.css';
 
 // CUSTOM
 import './components/layouts/layout-styles/navbar.css';
@@ -26,7 +26,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.js';
 
 // AOS
-import 'react-toastify/dist/ReactToastify.css'
+import 'react-toastify/dist/ReactToastify.css';
 import 'aos/dist/aos.css';
 
 // DASHBOARD STYLES
@@ -46,7 +46,7 @@ import store from "./Store";
 import { Provider } from 'react-redux';
 
 // test DEVcomponent
-import Test from './rough/Test'
+import Test from './rough/Test';
 
 // COMPONENTS
 import Home from './components/App';
