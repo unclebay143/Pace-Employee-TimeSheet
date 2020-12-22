@@ -45,6 +45,7 @@ export default class Profile extends Component {
                             <li className="breadcrumb-item active" aria-current="page">User Profile</li>
                             </ol>
                         </nav>
+                        
                         {/* /Breadcrumb */}
                         <div className="row gutters-sm">
                             <div className="col-md-4 mb-3">
