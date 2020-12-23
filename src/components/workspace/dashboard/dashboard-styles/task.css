@@ -9,10 +9,141 @@ input[type=text] {
 
 textarea {
     /* width: 380px !important;  half*/
-    width: 766px !important;
+    /* width: 766px !important; */
     /*full*/
 }
 
 a.task-duration{
     color: #333333;
+}
+
+
+
+/* VIEW TASK */
+
+.task-util {
+    color: #797979;
+    font-size: 13px;
+}
+
+.task-page-lead{
+    color: #a2a2a2;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.task-util .task-title{
+    color: #797979;
+    font-weight: 400;
+    font-size: 24px;
+}
+
+.task-util .card-header{
+    box-shadow: none;
+    margin-bottom: -30px;
+}
+
+.task-util input.search-box{
+    outline: none !important;
+    border: 1px solid #eaeaea !important;
+    width: 170px !important;
+    height: 34px;
+    font-size: 14px;
+    line-height: 1.4;
+}
+.task-util input.search-box:focus{
+    border: 1px solid #c4afaf !important;
+}
+
+.sender-image{
+    width: 30px;
+    border-radius: 10%;
+}
+
+.task-util .fa-trash,
+.task-util .fa-print{
+    font-size: 13px;
+    color: #797979;   
+    background: #EFEFEF;
+    padding: 5px;
+}
+
+/*  */
+ul.attachment-wrapper li{
+    list-style: none;
+}
+
+.attachment-thumb img{
+    width: 100px;
+}
+
+
+
+
+
+/* Compose Task */
+
+.compose-task .special{
+    font-size: 13px;
+    color: #797979;   
+    background: #EFEFEF;
+    padding: 5px;
+}
+
+.compose-btn-wrapper{
+    display: block;
+    margin-left: auto;
+    width: 235px;
+}
+
+
+
+
+::-webkit-file-upload-button {
+    /* background: #FF4B2B; */
+    background: #EFEFEF;
+    color: #797979;
+    padding: 8px 25px;
+    font-size: 13px;
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+    border-color: #EFEFEF;
+    transition: all 0.15s ease;
+    letter-spacing: 1px;
+    box-sizing: border-box;
+    outline: none;
+    cursor: pointer;
+    line-height: 1.5;
+    display: inline-block;
+    font-weight: bold;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+}
+
+
+/* Date Picker */
+input[type="datetime-local"] {
+    -webkit-align-items: center;
+    display: -webkit-inline-flex;
+    font-family: monospace;
+    overflow: hidden;
+    padding: 0;
+    -webkit-padding-start: 1px;
+}
+
+input::-webkit-datetime-edit {
+   -webkit-flex: 1;
+   -webkit-user-modify: read-only !important;
+   display: inline-block;
+   min-width: 0;
+   overflow: hidden;
+}
+
+input::-webkit-datetime-edit-fields-wrapper {
+   -webkit-user-modify: read-only !important;
+   display: inline-block;
+   padding: 1px 0;
+   white-space: pre;
 }

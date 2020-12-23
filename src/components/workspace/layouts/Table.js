@@ -9,9 +9,13 @@ import Button from '../../layouts/Button';
 export default class Table extends Component {
 
   render() {
-    const { keyField, data, columns, bordered, enableSearch, pagination, customInput, customInputName, customInputPlaceHolder, customButtonType, customButtonLabel, customButtonFunction} = this.props;
+    const { keyField, data, columns, bordered, enableSearch, 
+      selectRow, pagination, customInput, customInputName, 
+      customInputPlaceHolder, customButtonType, customButtonLabel, 
+      customButtonFunction, controlHeader} = this.props;
     const { SearchBar, ClearSearchButton } = Search;
     const {title} = this.props;
+   
     return (
       <>
         <ToolkitProvider
@@ -23,6 +27,7 @@ export default class Table extends Component {
           {
             props =>(
               <>
+                 
               {/* i had to comment this out, so when you need to use the table pls add a section tag with the classname of py3 */}
                 {/* <section className="py-5"> */}
                   <div className="row mb-4">
@@ -38,7 +43,7 @@ export default class Table extends Component {
                                    (
                                     <>
                                      <SearchBar { ...props.searchProps } className="search-box"/>
-                                      <ClearSearchButton { ...props.searchProps } className="btn form-control pace-btn-accent"/>
+                                      <ClearSearchButton { ...props.searchProps } className="btn form-control pace-btn-accent my-0"/>
                                     </>
                                   )
                                   : ""
@@ -108,11 +113,17 @@ export default class Table extends Component {
                           </div>
                         </div>
                         <div className="card-body py-1">
+                          <div>
+                            <div className="col-12 d-flex">
+                              {controlHeader}
+                            </div>
+                          </div>
                           <hr />
                           <BootstrapTable
                             { ...props.baseProps }
                             bordered={ bordered }
                             pagination={ pagination }
+                            selectRow = {selectRow}
                             hover
                           />
                         </div>
