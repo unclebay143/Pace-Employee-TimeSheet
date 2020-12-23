@@ -10,7 +10,7 @@ class TimerHolder extends Component{
     constructor(props){
         super(props)
         this.state = {
-            timerOff: false
+            timerOff: true
         }
     }
 
