@@ -12,7 +12,7 @@ import { loginSchema } from '../Validation/Schema';
 import { HomeButton } from '../layouts/HomeButton';
 
 const invalidDetailsLogger = () => toast.warning("Invalid Login details")
-const isUserAuthenticatedLogger = () => toast.success("Logging in")
+const isUserAuthenticatedLogger = () => toast.info("Logging in")
 
 class Login extends Component{
     constructor(props){
@@ -46,7 +46,7 @@ class Login extends Component{
                             <style>
                                 {
                                     `
-                                        .Toastify__toast{
+                                        .Toastiy__toast{
                                             background: rgb(255,112,150);
                                             color: #FFFFFF;
                                         }
