@@ -29,12 +29,12 @@ class Task extends Component {
             <section className="">
               <Switch>
                 {/* uncomment the routes to see the samples, sorry for the stress */}
-                {/* <Route exact path="/dashboard/task/draft-task" component={DraftTask } /> */}
-                <Route exact path="/dashboard/task/all-tasks" component={AllTasks} />
+                <Route exact path="/dashboard/task/draft-task" component={DraftTask } />
+                {/* <Route exact path="/dashboard/task/all-tasks" component={AllTasks} />
                 <Route exact path="/dashboard/task/accepted-tasks" component={AcceptedTasks} />
                 <Route exact path="/dashboard/task/draft-task" component={SampleCompose} />
                 <Route exact path="/dashboard/task/all-taskss" component={TaskInboxSample} />
-                <Route exact path="/dashboard/task/view-task" component={Sample} />
+                <Route exact path="/dashboard/task/view-task" component={Sample} /> */}
               </Switch>
                 {/* <Sample />
                 <DraftTask />

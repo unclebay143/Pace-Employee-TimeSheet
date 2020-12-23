@@ -1,11 +1,10 @@
 // react
 import { React, Component } from 'react';
 import { Formik, Form, ErrorMessage } from 'formik';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { ToastContainer, toast} from 'react-toastify'; 
 // layouts, customs
-// import auth from '../Authentication/LoginAuth';
 import Button from '../layouts/Button';
 import loginImage from './pages-images/login-img.png';
 import { TextInput } from '../layouts/FormInput';
@@ -13,14 +12,15 @@ import { loginSchema } from '../Validation/Schema';
 import { HomeButton } from '../layouts/HomeButton';
 
 const invalidDetailsLogger = () => toast.warning("Invalid Login details")
+const isUserAuthenticatedLogger = () => toast.success("Logging in")
 
 class Login extends Component{
     constructor(props){
         super(props)
         this.state = {
             user: {
-                workSpaceEmail: '',
-                workSpacePassword: ''
+                workSpaceEmail: 'unclebay@gmail.com',
+                workSpacePassword: 'samueliscoming'
             },
             isUserAuthenticated: false
         }
@@ -30,14 +30,7 @@ class Login extends Component{
         document.title = 'Login | Pace'
     }
 
-    auth(values){
-        if(values.email == this.state.workSpaceEmail || values.password == this.state.workSpacePassword){
-            alert("done")
-        }else{
-            invalidDetailsLogger()
-            // setSubmitting=(false)
-        }
-    }
+
    
     
     
@@ -49,7 +42,6 @@ class Login extends Component{
                         <div className="form-con col-lg-5 mb-5">
                             <ToastContainer 
                                 position="bottom-right"
-                                className="loginErrorToast"
                             />
                             <style>
                                 {
@@ -64,7 +56,7 @@ class Login extends Component{
 
                             <HomeButton />
                             <div className="form-heading mt-5">
-                            <h3 className="mb-3">Login</h3>
+                            <h3 className="mb-3">Login working</h3>
                             <h4 className="mb-5">Welcome back!</h4>
                             </div>
                             <div className="mt-5" name="form">
@@ -75,7 +67,17 @@ class Login extends Component{
                                             password: ''
                                         }}
                                         validationSchema = {loginSchema}
-                                        onSubmit={(values)=>this.auth(values)}
+                                        onSubmit={(values, setSubmitting)=>{
+                                                if(values.email === this.state.user.workSpaceEmail && values.password === this.state.user.workSpacePassword){
+                                                    isUserAuthenticatedLogger();
+                                                    setTimeout(() => {
+                                                        this.props.history.push('/dashboard');
+                                                    }, 2000);
+                                                }else{
+                                                    setSubmitting=(false)
+                                                    invalidDetailsLogger()
+                                                }
+                                            }}
                                         
                                     >{({values, touched, errors, isSubmitting, handleSubmit, handleChange}) => (
                                         <Form onSubmit={handleSubmit}>
@@ -149,9 +151,9 @@ class Login extends Component{
 }
 
 Login.propTypes = {
-    // workSpaceEmail: PropTypes.string.isRequired,
-    // password: PropTypes.any.isRequired
+    workSpaceEmail: PropTypes.string.isRequired,
+    password: PropTypes.any.isRequired
 };
 
 
-export default Login;
+export default withRouter(Login);
