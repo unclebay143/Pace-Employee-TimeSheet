@@ -1,40 +1,26 @@
-// react
-import { React, Component } from 'react';
+// React
+import { React, useEffect, useState } from 'react';
 import { Formik, Form, ErrorMessage } from 'formik';
-import { Link, withRouter } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { Link, useHistory, withRouter } from 'react-router-dom';
 import { ToastContainer, toast} from 'react-toastify'; 
-// layouts, customs
+// Layouts, Customs
 import Button from '../layouts/Button';
 import loginImage from './pages-images/login-img.png';
 import { TextInput } from '../layouts/FormInput';
 import { loginSchema } from '../Validation/Schema';
 import { HomeButton } from '../layouts/HomeButton';
+import axios from 'axios';
 
 const invalidDetailsLogger = () => toast.warning("Invalid Login details")
 const isUserAuthenticatedLogger = () => toast.info("Logging in")
 
-class Login extends Component{
-    constructor(props){
-        super(props)
-        this.state = {
-            user: {
-                workSpaceEmail: 'unclebay@gmail.com',
-                workSpacePassword: 'samueliscoming'
-            },
-            isUserAuthenticated: false
-        }
-    }
-
-    componentDidMount(){
+const Login = (props) =>{
+    const history = useHistory();
+    useEffect(() => {
         document.title = 'Login | Pace'
-    }
+    }, [])
 
-
-   
-    
-    
-    render(){
+    const [ isUserAuthenticated, setIsUserAuthenticated ] = useState(false)
         return(
             <div className="container">
                 <main className="container d-flex justify-content-center align-items-center mt-5">
@@ -56,7 +42,7 @@ class Login extends Component{
 
                             <HomeButton />
                             <div className="form-heading mt-5">
-                            <h3 className="mb-3">Login working</h3>
+                            <h3 className="mb-3">Login</h3>
                             <h4 className="mb-5">Welcome back!</h4>
                             </div>
                             <div className="mt-5" name="form">
@@ -67,21 +53,27 @@ class Login extends Component{
                                             password: ''
                                         }}
                                         validationSchema = {loginSchema}
-                                        onSubmit={(values, action)=>{
-                                                if(values.email === this.state.user.workSpaceEmail && values.password === this.state.user.workSpacePassword){
-                                                    isUserAuthenticatedLogger();
-                                                    setTimeout(() => {
-                                                        this.props.history.push('/dashboard');
-                                                    }, 2000);
-                                                }else{
-                                                    invalidDetailsLogger()
-                                                    setTimeout(() => {
-                                                        action.setSubmitting(false)
-                                                    }, 3000);
-                                                }
+                                        onSubmit= {(values, action)=>{
+                                            axios.post('https://reqres.in/api/login', values)
+                                            .then((res)=>{
+                                                localStorage.setItem('user', res.data.token)
+                                                setIsUserAuthenticated(true)
+                                                    if(isUserAuthenticated){
+                                                        isUserAuthenticatedLogger();
+                                                        setTimeout(() => {
+                                                            history.push('/dashboard');
+                                                        }, 2000);
+                                                    }else{
+                                                        console.log(isUserAuthenticated);
+                                                        invalidDetailsLogger()
+                                                        setTimeout(() => {
+                                                            action.setSubmitting(false)
+                                                        }, 2000);
+                                                    }
+                                                })
                                             }}
                                         
-                                    >{({values, touched, errors, isSubmitting, handleSubmit, handleChange}) => (
+                                    >{({touched, errors, isSubmitting, handleSubmit}) => (
                                         <Form onSubmit={handleSubmit}>
                                             <div className="email-wrapper pb-3">
                                                 <TextInput 
@@ -93,7 +85,6 @@ class Login extends Component{
                                                     }`}
                                                     id="email"
                                                     placeholder="example@company.com"
-                                                    onBlur = {this.handleChange}
                                                 />
                                                 <ErrorMessage
                                                     component="div"
@@ -120,15 +111,12 @@ class Login extends Component{
                                                 />
                                             </div>
                                             <div className="mt-3">
-                                            {/* <Link to="/dashboard"> */}
-
                                                 <Button 
                                                     type="submit"
                                                     className="btn btn-primary"
                                                     disabled={isSubmitting}
                                                     label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Loading...</span>) : "Login"}
                                                     />
-                                            {/* </Link> */}
                                                 <p>Create your workspace register <Link to="/signup">Here</Link></p>
                                                 <span><Link to="/forgot">Forgot Passwords</Link></span>
                                             </div>
@@ -148,14 +136,7 @@ class Login extends Component{
                 </div>
             </main>
         </div>
-        )
-    }
+    )
 }
-
-Login.propTypes = {
-    workSpaceEmail: PropTypes.string.isRequired,
-    password: PropTypes.any.isRequired
-};
-
 
 export default withRouter(Login);

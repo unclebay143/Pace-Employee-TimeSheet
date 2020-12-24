@@ -50,7 +50,7 @@ class Invite extends Component{
                                     <small className="text-muted" id="displayDepartment">Web Design</small>
                                     {/* <div class="user-name mt-3" id="displayUserName">Employee ID : <span id="displayUserName">unclebay143</span></div> */}
                                     <div className="text-muted">Date of Joined : <span id="displayJoinedDate">Aug 21, 2020</span></div>
-                                    <button className="btn pace-bg-accent mt-3" onclick="deleteUser();">Delete Account</button>
+                                    <button className="btn pace-bg-accent mt-3">Delete Account</button>
                                 </div>
                                 <div className="col-md-6 my-lg-4">
                                     <ul className="profile-info profile-right-section">
