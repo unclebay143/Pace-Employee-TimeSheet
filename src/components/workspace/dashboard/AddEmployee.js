@@ -11,9 +11,9 @@ const sampleCompany = {
     employeeType: ['admin', 'internal', 'staff'],
 }
 
-const existingDepartment = sampleCompany.departments.map((department)=><option value={department}>{department}</option>)
-const availableRole = sampleCompany.employeeRoles.map((role)=><option value={role}>{role}</option>)
-const availableType = sampleCompany.employeeType.map((type)=><option value={type}>{type}</option>)
+const existingDepartment = sampleCompany.departments.map((department, index)=><option key={index} value={department}>{department}</option>)
+const availableRole = sampleCompany.employeeRoles.map((role, index)=><option key={index} value={role}>{role}</option>)
+const availableType = sampleCompany.employeeType.map((type, index)=><option key={index} value={type}>{type}</option>)
 
 export default function AddEmployee() {
     return (
@@ -106,7 +106,7 @@ export default function AddEmployee() {
                                     <div className="type-wrapper form-group col-md-4">
                                         <label>Type</label>
                                         <Field component="select" name="type" className="form-control select">
-                                            <option selected>Choose...</option>
+                                            <option defaultValue>Choose...</option>
                                             {availableType}
                                         </Field>
                                         <ErrorMessage
@@ -119,7 +119,7 @@ export default function AddEmployee() {
                                     <div className="department-wrapper form-group col-md-4">
                                         <label>Department</label>
                                         <Field component="select" name="department" className="form-control select">
-                                            <option selected>Choose...</option>
+                                            <option defaultValue>Choose...</option>
                                             {existingDepartment}
                                         </Field>
                                         <ErrorMessage
@@ -132,7 +132,7 @@ export default function AddEmployee() {
                                     <div className="role-wrapper form-group col-md-4">
                                         <label>Job Position</label>
                                         <Field component="select" name="role" className="form-control select">
-                                            <option selected>Choose...</option>
+                                            <option defaultValue>Choose...</option>
                                             {availableRole}
                                         </Field>
                                         <ErrorMessage

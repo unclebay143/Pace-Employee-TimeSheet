@@ -8,10 +8,10 @@ class Navbar extends Component{
         return(
             <>
                 <header className="header">
-                    <nav className="navbar navbar-expand-lg px-4 py-2 bg-white shadow"><i className="sidebar-toggler text-gray-500 mr-4 mr-lg-5 lead"><i className="fas fa-align-left"></i></i><a href="#" className="navbar-brand font-weight-bold text-uppercase text-base pace-primary-color dashboard-lead companyDisplay">Ayodele Samuel Adebayo</a>
+                    <nav className="navbar navbar-expand-lg px-4 py-2 bg-white shadow"><i className="sidebar-toggler text-gray-500 mr-4 mr-lg-5 lead"><i className="fas fa-align-left"></i></i><a href="." className="navbar-brand font-weight-bold text-uppercase text-base pace-primary-color dashboard-lead companyDisplay">Ayodele Samuel Adebayo</a>
                         <ul className="ml-auto d-flex align-items-center list-unstyled mb-0">
                             <TimerHolder />
-                            <li className="nav-item dropdown mr-3 ml-4"><a id="notifications" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" className="nav-link dropdown-toggle text-gray-400 px-1"><i className="fa fa-bell pace-primary-color"></i><span className="notification-icon pace-bg-accent"></span></a>
+                            <li className="nav-item dropdown mr-3 ml-4"><a id="notifications" href="." data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" className="nav-link dropdown-toggle text-gray-400 px-1"><i className="fa fa-bell pace-primary-color"></i><span className="notification-icon pace-bg-accent"></span></a>
                                 <div aria-labelledby="notifications" className="dropdown-menu">
                                     <a href="/" className="dropdown-item">
                                         <div className="d-flex align-items-center">
@@ -49,10 +49,10 @@ class Navbar extends Component{
                                 </div>
                             </li>
                             <li className="nav-item dropdown ml-auto">
-                                <a id="userInfo" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" className="nav-link dropdown-toggle"><img src={u} alt="Ayodele Samuel Adebayo" style={{maxWidth:"2.5rem"}} className="img-fluid rounded-circle shadow" /></a>
+                                <a id="userInfo" href="." data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" className="nav-link dropdown-toggle"><img src={u} alt="Ayodele Samuel Adebayo" style={{maxWidth:"2.5rem"}} className="img-fluid rounded-circle shadow" /></a>
                                 <div aria-labelledby="userInfo" className="dropdown-menu"><a href="/" className="dropdown-item"><strong className="d-block text-uppercase headings-font-family companyDisplay">Ayodele Samuel Adebayo</strong><small id="role_display">Web Developer</small></a>
                                     <div className="dropdown-divider"></div><Link to="/dashboard/profile" className="dropdown-item">Profile</Link><a href="/" className="dropdown-item">Settings</a>
-                                    <div className="dropdown-divider"></div><a href="/" className="dropdown-item" onClick="logOut()">Logout</a>
+                                    <div className="dropdown-divider"></div><a href="/" className="dropdown-item">Logout</a>
                                 </div>
                             </li>
                         </ul>

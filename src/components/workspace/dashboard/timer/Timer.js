@@ -9,13 +9,13 @@ class TimerHolder extends Component{
     constructor(props){
         super(props)
         this.state = {
-            timerOff: true
+            isTimerOff  : true
         }
     }
 
     componentDidMount() {
         setTimeout(() => {
-            if(this.state.timerOff){
+            if(this.state.isTimerOff  ){
                 timerReminder.fire({
                     showCloseButton: true,
                     showCancelButton: true,
@@ -34,10 +34,8 @@ class TimerHolder extends Component{
     }
 
     
-    onStop = (value)=>{
-        console.log(this.state)
-        console.log("end")
-        this.setState((timerOff)=>({timerOff: timerOff = true}))
+    onStop = (value, resume, reset)=>{
+        this.setState((isTimerOff  )=>({isTimerOff  : isTimerOff   = true}))
         const formatTimer = Math.floor(value / 3600000)
         timerReminder.fire({
             showCloseButton: true,
@@ -49,11 +47,17 @@ class TimerHolder extends Component{
             title: 'Stop Timer?',
             text: `you worked ${(formatTimer <= 1 ? (`${formatTimer} hour`) : (`${formatTimer} hours`))} are you through?.`,
             footer: '<a href="">Why am I seeing this?</a>'
+        }).then((inputValue)=>{
+            if(inputValue.isConfirmed === true){
+                reset()
+            }else{
+                resume()
+            }
         })
     }
 
     render(){
-        const { hour, minute, second, timerOff } = this.state;
+        const { isTimerOff   } = this.state;
         return(
             <>
                 <li className="nav-item">
@@ -64,16 +68,14 @@ class TimerHolder extends Component{
                                     initialTime={0}
                                     startImmediately={false}
                                     onStart = {()=>{
-                                        console.log("timer is on")
-                                        this.setState((timerOff)=>({timerOff: timerOff = false}))
-                                        console.log(this.state)
+                                        this.setState((isTimerOff  )=>({isTimerOff  : isTimerOff   = false}))
                                     }}
                                     >
-                                    {({ start, stop, getTime, reset }) => (
+                                    {({ resume, start, stop, getTime, reset }) => (
                                         <>
                                             <div id="right-i">
                                                 {
-                                                    timerOff ? 
+                                                    isTimerOff   ? 
                                                         (
                                                         
                                                             <button onClick={start} id="start-time">Start Time</button>
@@ -85,9 +87,9 @@ class TimerHolder extends Component{
                                                             <button 
                                                                 onClick={()=>{
                                                                     const stopTime = getTime();
-                                                                    this.onStop(stopTime)
+                                                                    this.onStop(stopTime, resume, reset)
                                                                     stop()
-                                                                    reset()
+                                                                    // reset()
                                                                 }} 
                                                                 id="start-time"
                                                                 className="bg-red"
