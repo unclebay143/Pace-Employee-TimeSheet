@@ -1,5 +1,4 @@
 import { Component } from "react";
-import'../dashboard/dashboard-styles/timer.css';
 import Timer from 'react-compound-timer';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';

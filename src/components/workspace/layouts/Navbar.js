@@ -1,5 +1,5 @@
 import { React, Component } from 'react';
-import TimerHolder from '../timer/Timer';
+import TimerHolder from '../dashboard/timer/Timer';
 import u from '../../pages/pages-images/ayodele_samuel_adebayo.jpg';
 import { Link } from 'react-router-dom';
 

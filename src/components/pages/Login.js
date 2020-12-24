@@ -46,7 +46,7 @@ class Login extends Component{
                             <style>
                                 {
                                     `
-                                        .Toastiy__toast{
+                                        .Toastify__toast--warning{
                                             background: rgb(255,112,150);
                                             color: #FFFFFF;
                                         }
@@ -67,15 +67,17 @@ class Login extends Component{
                                             password: ''
                                         }}
                                         validationSchema = {loginSchema}
-                                        onSubmit={(values, setSubmitting)=>{
+                                        onSubmit={(values, action)=>{
                                                 if(values.email === this.state.user.workSpaceEmail && values.password === this.state.user.workSpacePassword){
                                                     isUserAuthenticatedLogger();
                                                     setTimeout(() => {
                                                         this.props.history.push('/dashboard');
                                                     }, 2000);
                                                 }else{
-                                                    setSubmitting=(false)
                                                     invalidDetailsLogger()
+                                                    setTimeout(() => {
+                                                        action.setSubmitting(false)
+                                                    }, 3000);
                                                 }
                                             }}
                                         
