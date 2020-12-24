@@ -37,6 +37,7 @@ import './components/workspace/dashboard/dashboard-styles/orionicons.css';
 import './components/workspace/dashboard/dashboard-styles/card.css';
 import './components/workspace/dashboard/dashboard-styles/task.css';
 import './components/workspace/dashboard/dashboard-styles/task-sidebar.css';
+import'./components/workspace/dashboard/dashboard-styles/timer.css';
 
 // DASHBOARD SCRIPT
 import './components/workspace/layouts/SibarToggle';
