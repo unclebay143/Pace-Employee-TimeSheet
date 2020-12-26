@@ -64,15 +64,20 @@ const Login = (props) =>{
                                                             history.push('/dashboard');
                                                         }, 2000);
                                                     }else{
-                                                        console.log(isUserAuthenticated);
                                                         invalidDetailsLogger()
                                                         setTimeout(() => {
                                                             action.setSubmitting(false)
                                                         }, 2000);
                                                     }
                                                 })
+                                            .catch(error =>{
+                                                invalidDetailsLogger()
+                                                console.log(error);
+                                                setTimeout(() => {
+                                                    action.setSubmitting(false)
+                                                }, 2000);
+                                            })
                                             }}
-                                        
                                     >{({touched, errors, isSubmitting, handleSubmit}) => (
                                         <Form onSubmit={handleSubmit}>
                                             <div className="email-wrapper pb-3">

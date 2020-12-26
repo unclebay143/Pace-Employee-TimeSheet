@@ -19,3 +19,5 @@ export const GET_EMPLOYEES = 'GET_EMPLOYEES';
 //  Timer
 
 export const GET_TIMER_REPORT = 'GET_TIMER_REPORT';
+export const TIMER_ON = 'TIMER_ON';
+export const TIMER_OFF = 'TIMER_OFF';

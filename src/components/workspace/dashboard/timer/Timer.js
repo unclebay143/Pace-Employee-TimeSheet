@@ -1,21 +1,20 @@
-import { Component } from "react";
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from 'react-redux';
+import { TIMER_ON, TIMER_OFF } from '../../../../actions/types';
 import Timer from 'react-compound-timer';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
-
 const timerReminder = withReactContent(Swal)
-class TimerHolder extends Component{
-    constructor(props){
-        super(props)
-        this.state = {
-            isTimerOff  : true
-        }
-    }
 
-    componentDidMount() {
+const TimerHolder=()=>{
+    const isTimerOff = useSelector(state => state.timerStatus)
+    // const [ isTimerOff, setIsTimerOff ] = useState(timeStatus)
+    const dispatch = useDispatch()
+    useEffect(() => {
+    
         setTimeout(() => {
-            if(this.state.isTimerOff  ){
+            if(isTimerOff){
                 timerReminder.fire({
                     showCloseButton: true,
                     showCancelButton: true,
@@ -28,14 +27,14 @@ class TimerHolder extends Component{
                     footer: '<a href="">Why am I seeing this?</a>'
                 })
             }
-
             
         }, 300000)
-    }
+
+    })
 
     
-    onStop = (value, resume, reset)=>{
-        this.setState((isTimerOff  )=>({isTimerOff  : isTimerOff   = true}))
+    const onStop = (value, resume, reset)=>{
+        // setIsTimerOff((isTimerOff  )=>({isTimerOff  : isTimerOff   = true}))
         const formatTimer = Math.floor(value / 3600000)
         timerReminder.fire({
             showCloseButton: true,
@@ -49,6 +48,7 @@ class TimerHolder extends Component{
             footer: '<a href="">Why am I seeing this?</a>'
         }).then((inputValue)=>{
             if(inputValue.isConfirmed === true){
+                dispatch({type: TIMER_OFF, hour:2})
                 reset()
             }else{
                 resume()
@@ -56,71 +56,72 @@ class TimerHolder extends Component{
         })
     }
 
-    render(){
-        const { isTimerOff   } = this.state;
-        return(
-            <>
-                <li className="nav-item">
-                    <div id="searchForm" className="ml-auto d-none d-lg-block">
-                        <div className="position-relative mb-0">
-                            <div id="right-i">
-                                <Timer
-                                    initialTime={0}
-                                    startImmediately={false}
-                                    onStart = {()=>{
-                                        this.setState((isTimerOff  )=>({isTimerOff  : isTimerOff   = false}))
-                                    }}
-                                    >
-                                    {({ resume, start, stop, getTime, reset }) => (
-                                        <>
-                                            <div id="right-i">
-                                                {
-                                                    isTimerOff   ? 
-                                                        (
-                                                        
-                                                            <button onClick={start} id="start-time">Start Time</button>
-                                                        
-                                                        )
-                                                    :
-                                                        (
+    return(
+        <>
+            <li className="nav-item">
+                <div id="searchForm" className="ml-auto d-none d-lg-block">
+                    <div className="position-relative mb-0">
+                        <div id="right-i">
+                            <Timer
+                                initialTime={0}
+                                startImmediately={false}
+                                onStart = {()=>{
+                                    // setIsTimerOff((isTimerOff)=>{isTimerOff = true})
+                                    dispatch({ type: TIMER_ON, payload: 3})
+                                }}
+                                >
+                                {({ resume, start, stop, getTime, reset }) => (
+                                    <>
+                                        <div id="right-i">
+                                            {
+                                                isTimerOff ? 
+                                                    (
+                                                    
+                                                        <button onClick={start} id="start-time">Start Time</button>
+                                                    
+                                                    )
+                                                :
+                                                    (
+                                                        <button 
+                                                            onClick={()=>{
+                                                                const stopTime = getTime();
+                                                                onStop(stopTime, resume, reset)
+                                                                stop()
+                                                                // reset()
+                                                            }} 
+                                                            id="start-time"
+                                                            className="bg-red"
+                                                        >Stop Time</button>
+                                                    )
+                                            }
 
-                                                            <button 
-                                                                onClick={()=>{
-                                                                    const stopTime = getTime();
-                                                                    this.onStop(stopTime, resume, reset)
-                                                                    stop()
-                                                                    // reset()
-                                                                }} 
-                                                                id="start-time"
-                                                                className="bg-red"
-                                                            >Stop Time</button>
-                                                        )
-                                                }
-                                                
-                                                <div id="time">
-                                                    <span id="hours">
-                                                        <Timer.Hours formatValue={((hour)=> `${(hour < 10 ? `0${hour}` : `${hour}`)}`)} />
-                                                    </span> 
-                                                    : 
-                                                    <span id="mins">
-                                                        <Timer.Minutes formatValue={((minute)=> `${(minute < 10 ? `0${minute}` : `${minute}`)}`)}/>
-                                                    </span> 
-                                                    : 
-                                                    <span id="seconds">
-                                                        <Timer.Seconds formatValue={((second)=> `${(second < 10 ? `0${second}` : `${second}`)}`)}/>
-                                                    </span>
-                                                </div>
+                                            {
+                                                // isTimerOff ? console.log('off') : console.log('on') 
+                                            }
+                                            
+                                            <div id="time">
+                                                <span id="hours">
+                                                    <Timer.Hours formatValue={((hour)=> `${(hour < 10 ? `0${hour}` : `${hour}`)}`)} />
+                                                </span> 
+                                                : 
+                                                <span id="mins">
+                                                    <Timer.Minutes formatValue={((minute)=> `${(minute < 10 ? `0${minute}` : `${minute}`)}`)}/>
+                                                </span> 
+                                                : 
+                                                <span id="seconds">
+                                                    <Timer.Seconds formatValue={((second)=> `${(second < 10 ? `0${second}` : `${second}`)}`)}/>
+                                                </span>
                                             </div>
-                                        </>
-                                    )}
-                                </Timer>
-                            </div>
+                                        </div>
+                                    </>
+                                )}
+                            </Timer>
                         </div>
                     </div>
-                </li>
-            </>
-        )
-    }
+                </div>
+            </li>
+        </>
+    )
 }
 
 

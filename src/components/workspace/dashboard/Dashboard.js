@@ -1,5 +1,5 @@
 // React
-import { React, Component, useState } from 'react';
+import { React } from 'react';
 import { Route, Switch } from 'react-router-dom/cjs/react-router-dom.min';
 
 // Layouts
@@ -12,20 +12,13 @@ import Index from './Index';
 import AddEmployee from './AddEmployee';
 import EditEmployee from './EditEmployee';
 import EmployeeList from './EmployeeList';
-import EmployeeTasks from './employeeTasks/EmployeeTasks';
 import TimerReport from './reports/TimerReport';
 import BillingReport from './reports/BillingReport';
 import Profile from './Profile';
 import Task from './Task';
-import Login from '../../pages/Login';
 
 
 const Dashboard = () =>{
-    // const [ auth, setAuth ] = useState()
-    // if(!auth){
-    //     return <Login/>
-    // }
-    
     return(
         <>
             <div>

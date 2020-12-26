@@ -22,53 +22,53 @@ export default function TaskInboxSample() {
                                     <input type="checkbox" className />
                                 </div>
                                 <div className="btn-group">
-                                    <a data-toggle="dropdown" href="#" className="btn mini all">
+                                    <a data-toggle="dropdown" href="." className="btn mini all">
                                     All
                                     <i className="fa fa-angle-down " />
                                     </a>
                                     <ul className="dropdown-menu">
-                                    <li><a href="#"> None</a></li>
-                                    <li><a href="#"> Read</a></li>
-                                    <li><a href="#"> Unread</a></li>
+                                    <li><a href="."> None</a></li>
+                                    <li><a href="."> Read</a></li>
+                                    <li><a href="."> Unread</a></li>
                                     </ul>
                                 </div>
                                 </div>
                                 <div className="btn-group">
-                                <a data-original-title="Refresh" data-placement="top" data-toggle="dropdown" href="#" className="btn mini tooltips">
+                                <a data-original-title="Refresh" data-placement="top" data-toggle="dropdown" href="." className="btn mini tooltips">
                                     <i className=" fa fa-refresh" />
                                 </a>
                                 </div>
                                 <div className="btn-group hidden-phone">
-                                <a data-toggle="dropdown" href="#" className="btn mini blue">
+                                <a data-toggle="dropdown" href="." className="btn mini blue">
                                     More
                                     <i className="fa fa-angle-down " />
                                 </a>
                                 <ul className="dropdown-menu">
-                                    <li><a href="#"><i className="fa fa-pencil" /> Mark as Read</a></li>
-                                    <li><a href="#"><i className="fa fa-ban" /> Spam</a></li>
+                                    <li><a href="."><i className="fa fa-pencil" /> Mark as Read</a></li>
+                                    <li><a href="."><i className="fa fa-ban" /> Spam</a></li>
                                     <li className="divider" />
-                                    <li><a href="#"><i className="fa fa-trash-o" /> Delete</a></li>
+                                    <li><a href="."><i className="fa fa-trash-o" /> Delete</a></li>
                                 </ul>
                                 </div>
                                 <div className="btn-group">
-                                <a data-toggle="dropdown" href="#" className="btn mini blue">
+                                <a data-toggle="dropdown" href="." className="btn mini blue">
                                     Move to
                                     <i className="fa fa-angle-down " />
                                 </a>
                                 <ul className="dropdown-menu">
-                                    <li><a href="#"><i className="fa fa-pencil" /> Mark as Read</a></li>
-                                    <li><a href="#"><i className="fa fa-ban" /> Spam</a></li>
+                                    <li><a href="."><i className="fa fa-pencil" /> Mark as Read</a></li>
+                                    <li><a href="."><i className="fa fa-ban" /> Spam</a></li>
                                     <li className="divider" />
-                                    <li><a href="#"><i className="fa fa-trash-o" /> Delete</a></li>
+                                    <li><a href="."><i className="fa fa-trash-o" /> Delete</a></li>
                                 </ul>
                                 </div>
                                 <ul className="unstyled inbox-pagination">
                                 <li><span>1-50 of 99</span></li>
                                 <li>
-                                    <a className="np-btn" href="#"><i className="fa fa-angle-left  pagination-left" /></a>
+                                    <a className="np-btn" href="."><i className="fa fa-angle-left  pagination-left" /></a>
                                 </li>
                                 <li>
-                                    <a className="np-btn" href="#"><i className="fa fa-angle-right pagination-right" /></a>
+                                    <a className="np-btn" href="."><i className="fa fa-angle-right pagination-right" /></a>
                                 </li>
                                 </ul>
                             </div>

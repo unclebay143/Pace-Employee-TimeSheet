@@ -7,13 +7,15 @@ const ShowDashboard = () => {
       <>
     
         {/* SAMPLES OF DASHBOARD SECTION*/}
-        <section className="container dashboard-display-wrapper">
+        <section className="container dashboard-display-wrapper mt-5">
           <div className="row block block-1">
-            <article className="col d-flex flex-column-reverse" id="dashboard-display" data-aos="zoom-in" data-aos-duration="2000">
+            <article className="col d-md-flex flex-md-row-reverse" id="dashboard-display" data-aos="zoom-in" data-aos-duration="2000">
+              <h3 className="d-md-none d-sm-block mb-4">Admin Dashboard</h3>
+              <img src={dashboard} alt="pace dashboard" className="img-fluid mb-5" />
               <blockquote>
-                <h3>Admin Dashboard</h3>
+              <h3 className="d-none d-md-block">Admin Dashboard</h3>
                 Pace version 1 Dashboard with bar-chat report and also a section showing the most active employee
-                <ul>
+                <ul className="mt-3">
                   <li>
                     <svg width="1em" height="1em" viewBox="0 0 16 16" className="bi bi-bar-chart" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                       <path fillRule="evenodd" d="M4 11H2v3h2v-3zm5-4H7v7h2V7zm5-5h-2v12h2V2zm-2-1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1h-2zM6 7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm-5 4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3z" />
@@ -34,16 +36,16 @@ const ShowDashboard = () => {
                   </li>
                 </ul>
               </blockquote>
-              <img src={dashboard} alt=" pace dashboard " />
             </article>
           </div>
           <div className="row block block-2">
-            <article className="col d-flex flex-column" id="dashboard-display">
-              <img src={manageEmployee} alt=" pace dashboard " data-aos="fade-right" data-aos-duration="2000" />
+            <article className="col d-md-flex" id="dashboard-display">
+              <h3 className="d-md-none d-sm-block mb-4">Add Employee Board</h3>
+              <img src={manageEmployee} className="img-fluid mb-5" alt="pace dashboard " data-aos="fade-right" data-aos-duration="2000" />
               <blockquote data-aos="fade-left" data-aos-duration="2000">  
-                <h3>Add Employee Board</h3>
+              <h3 className="d-none d-md-block">Add Employee Board</h3>
                 Pace version 1 Dashboard with bar-chat report and also a section showing the most active employee
-                <ul>
+                <ul className="mt-3">
                   <li>
                     <svg width="1em" height="1em" viewBox="0 0 16 16" className="bi bi-person-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                       <path fillRule="evenodd" d="M8 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm6 5c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10zM13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />

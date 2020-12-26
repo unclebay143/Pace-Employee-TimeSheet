@@ -59,15 +59,13 @@ const Header = [
 ];
 
 
-function handleDelete(rowId){
-  console.log(rowId);
-};
+// function handleDelete(rowId){
+//   console.log(rowId);
+// };
 
 
 const TimerReport = () => {
     const usersDetails = useSelector(state => state.timerReport)  
-    console.log(usersDetails)
-
     return (
         // <div className="container-fluid px-xl-5">
           <Table
