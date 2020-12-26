@@ -4,6 +4,7 @@ import acceptedTaskReducer from './acceptedTasksReducer';
 import userReducer from './usersReducer';
 import employeeReducer from './employeeReducer.';
 import TimerReportReducer from './TimerReportReducer';
+import timerReducer from './timerReducer';
 
 
 const rootReducer = combineReducers({
@@ -11,7 +12,8 @@ const rootReducer = combineReducers({
     acceptedTask: acceptedTaskReducer, 
     user: userReducer,
     employee: employeeReducer,
-    timerReport: TimerReportReducer
+    timerReport: TimerReportReducer,
+    timerStatus: timerReducer
 })
 
 export default rootReducer;

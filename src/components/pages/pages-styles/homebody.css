@@ -115,13 +115,15 @@ header.container{
   color: #161c2d;
 }
 
-.dashboard-display-wrapper{
-  margin-top: 200px !important;
-}
 
 #dashboard-display{
-  flex-direction: row !important;
   margin-top: 30px !important;
+}
+
+@media(min-width: 900px){
+  .dashboard-display-wrapper{
+    margin-top: 200px !important;
+  }
 }
 
 
