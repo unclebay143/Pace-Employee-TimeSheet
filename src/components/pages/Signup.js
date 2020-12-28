@@ -1,6 +1,9 @@
 // react 
-import { React, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom'
+import { React, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { ToastContainer } from 'react-toastify'; 
+
 // import PropTypes from 'prop-types';
 
 // layouts
@@ -11,12 +14,21 @@ import { signUpSchema } from '../Validation/Schema'
 import { TextInput, CheckbBox } from '../layouts/FormInput';
 import { HomeButton } from '../layouts/HomeButton'
 
-const Signup = () =>{
+// Toast
+import { registrationFailLogger, registrationCompletedLogger} from '../../toaster';
 
+
+// Authentication
+import { register } from '../../actions/authenticationAction';
+
+
+const Signup = () =>{
+    
     useEffect(() => {
         document.title = "Signup | Pace "
     })
 
+    const dispatch = useDispatch()
     // const [ isSubmitting, setIsSubmitting ]
 
     return(
@@ -24,6 +36,18 @@ const Signup = () =>{
             <main className="container d-flex justify-content-center align-items-center mt-5">
                 <div className="row">
                     <div className="form-con col-lg-5 mb-5">
+                        <ToastContainer />
+                        <style>
+                            {
+                                `
+                                    .Toastify__toast--warning{
+                                        background: rgb(255,112,150);
+                                        color: #FFFFFF;
+                                    }
+                                `
+                            }
+                        </style>
+                        
                         <HomeButton />
                         <div className="form-heading mt-2">
                         <h3 className="mb-3">Signup</h3>
@@ -34,16 +58,27 @@ const Signup = () =>{
                             initialValues={{
                                 workSpaceName : '',
                                 workSpaceEmail : '',
-                                workSpacePhone : '',
                                 password: '',
                                 confirmPassword: '',
                                 termsOfService: false
                             }}
                             validationSchema = {signUpSchema}
-                            onSubmit={(values)=>alert("done!!!", values)}
+                            onSubmit={(values, action)=>{
+                                dispatch(register(values))
+                                .then((res)=>{
+                                    console.log(res)
+                                    console.log('doneeeeeeeeeeeeeeeeeeeeeeeee');
+                                    registrationCompletedLogger()
+                                    action.setSubmitting(true)
+                                })
+                                .catch((err)=>{
+                                    registrationFailLogger()
+                                    action.setSubmitting(false)
+                                })
+                            }}
                         >
                             {
-                                ({ values, errors, touched, isSubmitting, handleSubmit })=>(
+                                ({ values, errors, touched, isSubmitting })=>(
                                     <Form>
                                         <div className="form-group signupForm">
                                             <div className="workSpaceName-wrapper">
@@ -142,9 +177,8 @@ const Signup = () =>{
                                                 type="submit"
                                                 className="btn btn-primary mt-3"
                                                 id="signUp"
-                                                // label="Signup"
                                                 disabled={!values.termsOfService}
-                                                label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Loading...</span>) : "Login"}
+                                                label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Please wait...</span>) : "Signup"}
 
                                             />
                                             <p>Already have an account? <Link to="./login">Login</Link></p>

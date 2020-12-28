@@ -2,17 +2,22 @@
 import { React, useEffect, useState } from 'react';
 import { Formik, Form, ErrorMessage } from 'formik';
 import { Link, useHistory, withRouter } from 'react-router-dom';
-import { ToastContainer, toast} from 'react-toastify'; 
-// Layouts, Customs
+import { ToastContainer } from 'react-toastify'; 
+
+// Libaries
+import axios from 'axios';
+
+// Toast
+import { invalidDetailsLogger, userIsAuthenticatedLogger} from '../../toaster';
+
+// Layouts
 import Button from '../layouts/Button';
 import loginImage from './pages-images/login-img.png';
 import { TextInput } from '../layouts/FormInput';
 import { loginSchema } from '../Validation/Schema';
 import { HomeButton } from '../layouts/HomeButton';
-import axios from 'axios';
 
-const invalidDetailsLogger = () => toast.warning("Invalid Login details")
-const isUserAuthenticatedLogger = () => toast.info("Logging in")
+
 
 const Login = (props) =>{
     const history = useHistory();
@@ -59,7 +64,7 @@ const Login = (props) =>{
                                                 localStorage.setItem('user', res.data.token)
                                                 setIsUserAuthenticated(true)
                                                     if(isUserAuthenticated){
-                                                        isUserAuthenticatedLogger();
+                                                        userIsAuthenticatedLogger();
                                                         setTimeout(() => {
                                                             history.push('/dashboard');
                                                         }, 2000);
@@ -72,7 +77,6 @@ const Login = (props) =>{
                                                 })
                                             .catch(error =>{
                                                 invalidDetailsLogger()
-                                                console.log(error);
                                                 setTimeout(() => {
                                                     action.setSubmitting(false)
                                                 }, 2000);
