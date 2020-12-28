@@ -15,23 +15,23 @@ const taskHeader = [
       //   text: 'S/N'
       // },
       {
-        dataField: 'tag',
+        // dataField: 'tag',
         text: 'Tag',
       },
       {
-        dataField: 'task',
+        // dataField: 'task',
         text: 'Task',
       },
       
       {
-        dataField: 'dueDate',
+        // dataField: 'dueDate',
         text: 'Due Date',
       },
       
-      {
-        dataField: 'requests',
-        // text: 'Requests',
-      },
+      // {
+      //   dataField: 'requests',
+      //   // text: 'Requests',
+      // },
 ];
 
 

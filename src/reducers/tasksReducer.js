@@ -6,7 +6,7 @@ const initialState = [
         id: '1',
         task: 'testing',
         dueDate: '12/06/21',
-        tag: 'urgent',
+        // tag: 'urgent',
         requests: 'requested'
       },
       {
@@ -20,7 +20,7 @@ const initialState = [
         id: '3',
         task: 'testing3',
         dueDate: '16/06/21',
-        tag: 'urgent',
+        // tag: 'urgent',
         requests: 'requested'
       },
       {
@@ -41,7 +41,7 @@ const initialState = [
         id: '6',
         task: 'testing3',
         dueDate: '16/06/21',
-        tag: 'urgent',
+        // tag: 'urgent',
         requests: 'requested'
       },
       {
@@ -55,7 +55,7 @@ const initialState = [
         id: '8',
         task: 'testing3',
         dueDate: '16/06/21',
-        tag: 'urgent',
+        // tag: 'urgent',
         requests: 'requested'
       },
       {
@@ -69,14 +69,14 @@ const initialState = [
         id: '10',
         task: 'testing3',
         dueDate: '16/06/21',
-        tag: 'urgent',
+        // tag: 'urgent',
         requests: 'requested'
       },
       {
         id: '11',
         task: 'testing111',
         dueDate: '16/06/21',
-        tag: 'urgent',
+        // tag: 'urgent',
         requests: 'requested'
       }
 ]
