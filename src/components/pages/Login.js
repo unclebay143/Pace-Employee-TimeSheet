@@ -23,7 +23,7 @@ const Login = (props) =>{
     const [ isUserAuthenticated, setIsUserAuthenticated ] = useState(false)
         return(
             <div className="container">
-                <main className="container d-flex justify-content-center align-items-center mt-5">
+                <main className="container d-lg-flex justify-content-center align-items-center mt-5">
                     <div className="row">
                         <div className="form-con col-lg-5 mb-5">
                             <ToastContainer 
