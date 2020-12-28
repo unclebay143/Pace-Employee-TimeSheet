@@ -43,7 +43,7 @@ class Signup extends Component{
                                 initialValues={{
                                     workSpaceName : '',
                                     workSpaceEmail : '',
-                                    workSpacePhone : '',
+                                    // workSpacePhone : '',
                                     password: '',
                                     confirmPassword: '',
                                     termsOfService: false
@@ -52,8 +52,8 @@ class Signup extends Component{
                                 onSubmit={(values)=>alert("done!!!", values)}
                             >
                                 {
-                                    ({values, errors, touched})=>(
-                                        <Form>
+                                    ({values, errors, touched, handleSubmit})=>(
+                                        <Form onSubmit={handleSubmit}>
                                             <div className="form-group signupForm">
                                                 <div className="workSpaceName-wrapper">
                                                     {/* <label className="mt-3">Workspace Name """validate workspace name here onChange"""</label> */}
@@ -95,7 +95,6 @@ class Signup extends Component{
                                                     />
                                                 </div>
                                             <div className="d-flex">
-
                                                 <div className="form-group password-wrapper mr-2">
                                                     <TextInput 
                                                         name="password"
@@ -142,9 +141,9 @@ class Signup extends Component{
                                                     className={`form-check-input ${touched.termsOfService && errors.termsOfService ? "is-invalid" : ""}`}
                                                 />
                                                  <ErrorMessage
-                                                        name="termsOfService"
-                                                        component="div"
-                                                        className="invalid-feedback p-0"
+                                                    component="div"
+                                                    name="termsOfService"
+                                                    className="invalid-feedback p-0"
                                                 />
                                             </div>
                                                 <Button 
@@ -152,7 +151,7 @@ class Signup extends Component{
                                                     className="btn btn-primary mt-3"
                                                     id="signUp"
                                                     label="Signup"
-                                                    disabled={!values.termsOfService}
+                                                    // disabled={!values.termsOfService}
                                                 />
                                                 <p>Already have an account? <Link to="./login">Login</Link></p>
                                             </div>

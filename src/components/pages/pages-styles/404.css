@@ -1,3 +1,6 @@
+.pageNotFound-wrapper{
+    font-size: calc(0.5rem - 1vw);
+}
 
 
 .pageNotFound-wrapper{
@@ -17,12 +20,12 @@
 }
 
 .pageNotFound-wrapper .error404{
-    font-size: 7rem;
+    font-size: 120px;
 }
 
 
 .pageNotFound-wrapper .errorText{
-    font-size: 19px;
+    font-size: 30px;
     color: #333333;
 }
 
@@ -30,4 +33,19 @@
 .error-img{
     width: 300px;
     height: 300px;
+}
+
+
+@media(max-width: 600px){
+    .error-img{
+        /* display: none; */
+    }
+
+    .pageNotFound-wrapper .error404{
+        font-size: 30px;
+    }
+    
+    .pageNotFound-wrapper .errorText{
+        font-size: 15px;
+    }
 }

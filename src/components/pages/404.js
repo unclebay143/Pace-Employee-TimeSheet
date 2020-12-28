@@ -32,7 +32,7 @@ const PageNotFound = () => {
                 </div>
                 <div>
                     <p className="errorText">
-                        You've clicked a broken link....let's get you back on track <Link to="/">Go Home</Link>
+                        You've clicked a broken link... let's get you back on track <Link to="/">Go Home</Link>
                     </p>
                 </div>
             </div>
