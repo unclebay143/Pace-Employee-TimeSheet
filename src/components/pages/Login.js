@@ -26,6 +26,7 @@ const Login = () =>{
     const history = useHistory();
     const dispatch = useDispatch()
     const { isLoggedIn } = useSelector((state)=>state.authentication)
+    const { message } = useSelector((state)=>state.message)
 
     if(isLoggedIn){
         return <Redirect to="/dashboard" />
@@ -52,6 +53,9 @@ const Login = () =>{
                             <h3 className="mb-3">Login</h3>
                             <h4 className="mb-5">Welcome back!</h4>
                         </div>
+                        {/* message can be placed here */}
+                        
+                        
                         <div className="mt-5" name="form">
                             <div className="form-group mt-b">
                                 <Formik

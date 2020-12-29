@@ -10,14 +10,9 @@ class DisplayProfile extends Component{
         
         return(
             <>
-
                 <Profile name="Adeyemo Peter" rank="Senior Developer" stack="Backend"/>
                 <Profile name="Toluwanimi Ayoola" rank="Senior Developer" stack="Backend"/>
-
                 <input type="text" placeholder="Surname" value=""/>
-
-
-
             </>
         )
     }
