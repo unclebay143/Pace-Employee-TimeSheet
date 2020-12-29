@@ -1,6 +1,7 @@
 // React
 import { React } from 'react';
-import { Route, Switch } from 'react-router-dom/cjs/react-router-dom.min';
+import { useSelector } from 'react-redux'
+import { Redirect, Route, Switch } from 'react-router-dom/cjs/react-router-dom.min';
 
 // Layouts
 import Navbar from '../layouts/Navbar';
@@ -19,6 +20,13 @@ import Task from './Task';
 
 
 const Dashboard = () =>{
+
+    const { isLoggedIn } = useSelector(state => state.authentication)
+
+    if(!isLoggedIn){
+        return <Redirect to="/login" />
+    }
+
     return(
         <>
             <div>
