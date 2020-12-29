@@ -1,7 +1,22 @@
-import { React, useSelector } from "react";
+import { React, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import fetchTodoFunction from '../../../../reducers/todo/fetchTodos';
+
 const TodoCard = () =>{
-    const getClosestTodo = useSelector((state)=>state.todoReducer)
-    const { title, dueDate, cardColor } = getClosestTodo;
+    const { todos } = useSelector((state)=>state.todoReducer);
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(fetchTodoFunction())
+    },[dispatch])
+    console.log(todos)
+    if(todos[0] === undefined){
+        return(
+            <div>
+                loading... todo
+            </div>
+        )
+    }
+    const { title, dueDate } = todos[0];
     return(
         <>
             <div className="bg-white shadow pace-roundy px-4 py-3 d-flex align-items-center justify-content-between mb-4">

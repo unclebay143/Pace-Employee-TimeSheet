@@ -12,13 +12,21 @@ const TodoRows = () => {
     // bg-success
 
     // Destructure todos from the todoReducer from store
-    const { todos } = useSelector((state)=>state.todoReducer)
+    const { todos, pending } = useSelector((state)=>state.todoReducer)
     const dispatch = useDispatch()
 
     // Invoke fetchTodos function to fetch todos from server
     useEffect(() => {
         dispatch(fetchTodoFunction())
     }, [dispatch]);
+    if(pending){
+        return(
+            <div className="d-flex justify-content-center align-items-center" style={{height:'360px', background: '#cccccc'}}>
+                <i className="fa fa-spinner fa-pulse fa-3x fa-fw" style={{fontSize: "23px"}}></i>
+                <span>Loading... Please wait</span>
+            </div>
+        )
+    }
     return (
         <>
         {
@@ -30,8 +38,8 @@ const TodoRows = () => {
                                 <div className="widget-content-wrapper">
                                 <div className="widget-content-left mr-2">
                                     <div className="custom-checkbox custom-control">
-                                        <input className="custom-control-input" id="checkBox" type="checkbox" />
-                                        <label className="custom-control-label" htmlFor="checkBox">&nbsp;</label>
+                                        <input className="custom-control-input" id={id} type="checkbox" />
+                                        <label className="custom-control-label" htmlFor={id}>&nbsp;</label>
                                     </div>
                                 </div>
                                 <div className="widget-content-left">

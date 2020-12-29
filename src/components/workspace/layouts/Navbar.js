@@ -6,17 +6,26 @@ import axios from 'axios';
 
 const Navbar = () =>{
     const currentUser = JSON.parse(localStorage.getItem('currentUser'))
-    const [ state, setState ] = useState(currentUser);
+    const [ state, setState ] = useState(currentUser); // because state has been set to current user here
 
 
     useEffect(() => {
         const getUser = async()=>{
             const { data } = await axios.get('https://reqres.in/api/users/1');
             localStorage.setItem('currentUser', JSON.stringify(data))
-            setState(currentUser)
+            setState(currentUser) // can be removed
         }
         getUser()
-    })
+    }, [])
+    
+    // if(state.data){
+    //     return(
+    //         <div>
+    //             loading....
+    //         </div>
+    //     )
+    // }
+    console.log(state);
     const { first_name, last_name, avatar } = state.data;
     
     return(
