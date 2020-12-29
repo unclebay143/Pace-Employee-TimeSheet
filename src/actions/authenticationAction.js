@@ -80,6 +80,8 @@ const login = (username, password) => (dispatch) => {
 };
 
 const logout = () => (dispatch) => {
+  console.log('hrereh');
+
 AuthService.logout();
 
 dispatch({

@@ -10,7 +10,7 @@ import todoReducer from './todo/todoReducer'
 
 const rootReducer = combineReducers({
     task: taskReducer, 
-    authentication: authReducer,
+    authenticationState: authReducer,
     employee: employeeReducer,
     timerReport: TimerReportReducer,
     timerStatus: timerReducer,

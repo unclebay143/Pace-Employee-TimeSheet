@@ -8,11 +8,11 @@ const TodoCard = () =>{
     useEffect(() => {
         dispatch(fetchTodoFunction())
     },[dispatch])
-    console.log(todos)
+
     if(todos[0] === undefined){
         return(
             <div>
-                loading... todo
+                loading... <i className="fa fa-spinner fa-spin"></i>
             </div>
         )
     }
