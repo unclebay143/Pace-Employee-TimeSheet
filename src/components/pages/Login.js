@@ -2,7 +2,7 @@
 import { React, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form, ErrorMessage } from 'formik';
-import { Link, Redirect, useHistory, withRouter } from 'react-router-dom';
+import { Link, useHistory, withRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify'; 
 
 // Toast
@@ -19,18 +19,20 @@ import { login } from '../../actions/authenticationAction';
 
 
 const Login = () =>{
-    useEffect(() => {
-        document.title = 'Login | Pace'
-    }, [])
-    
     const history = useHistory();
     const dispatch = useDispatch()
-    const { isLoggedIn } = useSelector((state)=>state.authentication)
+    const { isLoggedIn } = useSelector((state)=>state.authenticationState)
     const { message } = useSelector((state)=>state.message)
 
-    if(isLoggedIn){
-        return <Redirect to="/dashboard" />
-    }
+    useEffect(() => {
+        document.title = 'Login | Pace'
+        if(isLoggedIn){
+            userIsAuthenticatedLogger()
+            setTimeout(() => {
+                history.push('./dashboard');
+            }, 2000);
+        }
+    }, [isLoggedIn])
 
     return(
         <div className="container">
@@ -66,12 +68,6 @@ const Login = () =>{
                                     validationSchema = {loginSchema}
                                     onSubmit= {(values, action)=>{
                                         dispatch(login(values))
-                                        .then(()=>{
-                                            userIsAuthenticatedLogger();
-                                            setTimeout(() => {
-                                                history.push('/dashboard');
-                                            }, 2000);
-                                        })
                                         .catch(()=>{
                                             invalidDetailsLogger()
                                             setTimeout(() => {

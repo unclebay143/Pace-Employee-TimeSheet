@@ -1,36 +1,63 @@
-import { React, useEffect, useState } from 'react';
-import TimerHolder from '../dashboard/timer/Timer';
+
+// React
+import { React, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
+// Component
+import TimerHolder from '../dashboard/timer/Timer';
+
+// End session
+import { logout } from '../../../actions/authenticationAction'
+
+// Toast
+import { ToastContainer } from 'react-toastify';
+import { logOutSuccess } from '../../../toaster';
+
 
 const Navbar = () =>{
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'))
-    const [ state, setState ] = useState(currentUser); // because state has been set to current user here
-
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const getUser = async()=>{
             const { data } = await axios.get('https://reqres.in/api/users/1');
             localStorage.setItem('currentUser', JSON.stringify(data))
-            setState(currentUser) // can be removed
         }
         getUser()
     }, [])
     
-    if(!state){
+    if(!currentUser){
         // window.location.reload()
         return(
             <div>
-                loading....
+                loading... <i className="fa fa-spinner fa-spin"></i>
             </div>
         )
     }
-    console.log(state);
-    const { first_name, last_name, avatar } = state.data;
+    const { first_name, last_name, avatar } = currentUser.data;
+
+    const logOut = () =>{
+        logOutSuccess()
+        setTimeout(() => {
+            dispatch(logout());
+        }, 2000);
+    }
     
     return(
         <>
+            <ToastContainer />
+            <style>
+                {
+                    `
+                        .Toastify__toast--warning{
+                            background: rgb(255,112,150);
+                            color: #FFFFFF;
+                        }
+                    `
+                }
+            </style>
             <header className="header">
                 <nav className="navbar navbar-expand-lg px-4 py-2 bg-white shadow">
                     <i className="sidebar-toggler text-gray-500 mr-4 mr-lg-5 lead">
@@ -107,7 +134,7 @@ const Navbar = () =>{
                                 <div className="dropdown-divider"></div>
                                 <Link to="/dashboard/profile" className="dropdown-item">Profile</Link>
                                 <a href="/" className="dropdown-item">Settings</a>
-                                <div className="dropdown-divider"></div><a href="/" className="dropdown-item">Logout</a>
+                                <div className="dropdown-divider"></div><span className="dropdown-item" style={{cursor: 'pointer'}} onClick={logOut}>Logout</span>
                             </div>
                         </li>
                     </ul>

@@ -23,7 +23,7 @@ import Todo from './todos/Todo'
 
 const Dashboard = () =>{
 
-    const { isLoggedIn } = useSelector(state => state.authentication)
+    const { isLoggedIn } = useSelector(state => state.authenticationState)
 
     if(!isLoggedIn){
         return <Redirect to="/login" />
