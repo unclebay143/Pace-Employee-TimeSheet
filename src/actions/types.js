@@ -1,6 +1,7 @@
 // Task
 
 export const GET_TASKS = 'GET_TASKS';
+export const ASSIGN_TASKS = 'ASSIGN_TASKS';
 export const GET_ACCEPTED_TASKS = 'GET_ACCEPTED_TASKS';
 
 
@@ -12,6 +13,7 @@ export const AUTH_USER = 'AUTH_USER';
 
 // Employee
 
+export const GET_ADD_USER = 'GET_ADD_USER';
 export const GET_EMPLOYEES = 'GET_EMPLOYEES';
 
 

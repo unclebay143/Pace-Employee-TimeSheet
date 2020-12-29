@@ -1,4 +1,4 @@
-import { AUTH_USER } from '../actions/types';
+import { AUTH_USER } from '../../actions/types';
 import { v4 as uuidv4 } from 'uuid';
 
 const initialState = [

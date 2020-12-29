@@ -1,15 +1,13 @@
 import { combineReducers } from 'redux';
-import taskReducer from './tasksReducer';
-import acceptedTaskReducer from './acceptedTasksReducer';
-import userReducer from './usersReducer';
-import employeeReducer from './employeeReducer.';
-import TimerReportReducer from './TimerReportReducer';
-import timerReducer from './timerReducer';
+import taskReducer from './task/taskReducer';
+import userReducer from './user/usersReducer';
+import employeeReducer from './user/employeeReducer.';
+import TimerReportReducer from './timer/TimerReportReducer';
+import timerReducer from './timer/timerReducer';
 
 
 const rootReducer = combineReducers({
     task: taskReducer,
-    acceptedTask: acceptedTaskReducer, 
     user: userReducer,
     employee: employeeReducer,
     timerReport: TimerReportReducer,

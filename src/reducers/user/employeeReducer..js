@@ -1,4 +1,4 @@
-import { GET_EMPLOYEES } from '../actions/types'
+import { GET_EMPLOYEES } from '../../actions/types'
 import { v4 as uuidv4 } from 'uuid';
 
 const initialState = [
