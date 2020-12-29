@@ -4,7 +4,8 @@ import authReducer from './authentication/authReducer';
 import employeeReducer from './user/employeeReducer.';
 import TimerReportReducer from './timer/TimerReportReducer';
 import timerReducer from './timer/timerReducer';
-import message from './message/message';
+import message from './message/messageReducer';
+import todoReducer from './todo/todoReducer'
 
 
 const rootReducer = combineReducers({
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
     employee: employeeReducer,
     timerReport: TimerReportReducer,
     timerStatus: timerReducer,
-    message: message
+    message: message,
+    todoReducer: todoReducer
 })
 
 export default rootReducer;

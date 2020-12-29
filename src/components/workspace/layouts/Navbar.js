@@ -1,6 +1,5 @@
 import { React, useEffect, useState } from 'react';
 import TimerHolder from '../dashboard/timer/Timer';
-import u from '../../pages/pages-images/ayodele_samuel_adebayo.jpg';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
@@ -12,7 +11,7 @@ const Navbar = () =>{
 
     useEffect(() => {
         const getUser = async()=>{
-            const { data } = await axios.get('https://reqres.in/api/users/2');
+            const { data } = await axios.get('https://reqres.in/api/users/1');
             localStorage.setItem('currentUser', JSON.stringify(data))
             setState(currentUser)
         }
@@ -91,7 +90,7 @@ const Navbar = () =>{
                             <div aria-labelledby="userInfo" className="dropdown-menu">
                                 <a href="/" className="dropdown-item">
                                     <strong className="d-block text-uppercase headings-font-family companyDisplay">
-                                        {/* { first_name } { last_name } */}
+                                        { first_name } { last_name }
                                     </strong>
                                     <small id="role_display">Web Developer</small>
                                 </a>
