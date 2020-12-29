@@ -17,6 +17,8 @@ import TimerReport from './reports/TimerReport';
 import BillingReport from './reports/BillingReport';
 import Profile from './Profile';
 import Task from './Task';
+// import Todo from './Todo';
+import Todo from './todos/Todo'
 
 
 const Dashboard = () =>{
@@ -40,6 +42,7 @@ const Dashboard = () =>{
                             <div className="container-fluid dashboard-body-wrapper">
                 {/* >>>>> BODIES COMPONENTS SECTION <<<<< */}
                                 <Switch>
+                                    <Route path="/dashboard/todos" component={Todo} />
                                     <Route path="/dashboard/task" component={Task} />
                                     <Route exact path="/dashboard/profile" component={Profile} />
                                     <Route exact path="/dashboard/billing-report" component={BillingReport} />
