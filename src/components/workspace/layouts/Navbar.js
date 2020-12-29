@@ -18,13 +18,14 @@ const Navbar = () =>{
         getUser()
     }, [])
     
-    // if(state.data){
-    //     return(
-    //         <div>
-    //             loading....
-    //         </div>
-    //     )
-    // }
+    if(!state){
+        // window.location.reload()
+        return(
+            <div>
+                loading....
+            </div>
+        )
+    }
     console.log(state);
     const { first_name, last_name, avatar } = state.data;
     
