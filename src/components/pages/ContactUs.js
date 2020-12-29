@@ -1,15 +1,14 @@
-// ignore this page please but don't delete
-
+// React
 import React, { Component } from 'react';
-import Button from '../layouts/Button';
-
-// layouts , formik
 import { Link } from 'react-router-dom';
-import {Formik, Form, ErrorMessage} from 'formik';
-import { TextInput, TextArea } from '../layouts/FormInput';
+
+// Formik
+import { Formik, Form, ErrorMessage } from 'formik';
 import { contactUsSchema } from '../Validation/Schema';
-import PropTypes from 'prop-types';
-// import LoginAuth from '../Authentication/LoginAuth';
+
+// Layouts 
+import Button from '../layouts/Button';
+import { TextInput, TextArea } from '../layouts/FormInput';
 
 class ContactUs extends Component {
   render() {

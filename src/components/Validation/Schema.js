@@ -28,13 +28,11 @@ export const loginSchema = Yup.object().shape({
 export const signUpSchema = Yup.object().shape({
     // email: Yup.string().email('Invalid email format').required('Email is required'),
     // phone: Yup.string().matches(phoneRegExp, 'Phone number is not valid'),
-    password: Yup.string().min(7, 'Password must be at least 7 characters').required('Password is required'),
+    password: Yup.string().min(4, 'Password must be at least 7 characters').required('Password is required'),
     confirmPassword: Yup.string().required('Please confirm password').oneOf([Yup.ref('password')], 'Password Mismatch'),
     workSpaceName: Yup.string().required('Workspace Name is required'),
     workSpaceEmail: Yup.string().required('Email is required'),
-    termsOfService : Yup.bool()
-        .required('Please review and accept Terms and Condition')
-        .oneOf([true], 'Please review and accept Terms and Condition')
+    termsOfService : Yup.bool().oneOf([true], 'Please review and accept Terms and Condition')
 })
 
 // ContactUs form input validation

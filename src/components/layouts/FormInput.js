@@ -2,7 +2,7 @@
 import React from 'react';
 
 // layout, formik
-import { useField, Field } from 'formik';
+import { useField } from 'formik';
 
 export const TextInput = ({ label, labelClassName, ...props }) => {
   const [field] = useField(props);
@@ -20,7 +20,7 @@ export const CheckbBox = ({ children, ...props }) => {
     <div>
       <label className="checkbox">
         <input type="checkbox" {...field} {...props} />
-        <label className={` form-check-label ${props.titleClassName}`} for={props.id}>{props.title}</label>
+        <label className={` form-check-label ${props.titleclassname}`} htmlFor={props.id}>{props.title}</label>
         {children}
       </label>
     </div>
