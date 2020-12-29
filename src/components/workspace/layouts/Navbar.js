@@ -14,17 +14,18 @@ const Navbar = () =>{
             const { data } = await axios.get('https://reqres.in/api/users/1');
             localStorage.setItem('currentUser', JSON.stringify(data))
             setState(currentUser) // can be removed
+            window.location.reload()
         }
         getUser()
     }, [])
     
-    // if(state.data){
-    //     return(
-    //         <div>
-    //             loading....
-    //         </div>
-    //     )
-    // }
+    if(!state){
+        return(
+            <div>
+                loading....
+            </div>
+        )
+    }
     console.log(state);
     const { first_name, last_name, avatar } = state.data;
     
