@@ -1,19 +1,48 @@
 // this is just a page to hold the dummy data...will get rid of it once we start fetching data from the API
 
-export const allTasks = [
-  {
-    id: '1',
-    subject: 'testing1',
-    dueDate: '14/06/21',
-    file: 'attachment' // will change this to icon for attaaachment
-  },
-  {
-    id: '2',
-    subject: 'testing2',
-    dueDate: '18/11/21',
-    file: 'attachment'
-  },
-]
+import axios from "axios";
+
+// http://fakerestapi.azurewebsites.net/api/v1/Activities
+
+export const allTasks = axios.get('http://fakerestapi.azurewebsites.net/api/v1/Activities')
+.then(res => res.data)
+
+// export const allTaskss = () => {
+//   // axios.get('http://fakerestapi.azurewebsites.net/api/v1/Activities')
+//   // .then(res =>
+//   //   allTasks: res.data
+//   //   );
+//     return dispatch => {
+//       dispatch(fetchTodosPending());
+//       axios.get('http://fakerestapi.azurewebsites.net/api/v1/Activities')
+//       .then((res) => {
+//           // console.log(res)
+//           if(res.error) {
+//               throw(res.error);
+//           }
+//           dispatch(fetchTodosSuccess(res.data))
+//           return res.data;          
+//       })
+//       .catch(error => {
+//           dispatch(fetchTodosError(error));
+//           console.log(error)
+//       })
+//   }
+// }
+// const allTasks = [
+//   {
+//     id: '1',
+//     subject: 'testing1',
+//     dueDate: '14/06/21',
+//     file: 'attachment' // will change this to icon for attaaachment
+//   },
+//   {
+//     id: '2',
+//     subject: 'testing2',
+//     dueDate: '18/11/21',
+//     file: 'attachment'
+//   },
+// ]
 
 export const acceptedTasks = [
     {
