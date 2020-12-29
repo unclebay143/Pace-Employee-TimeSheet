@@ -49,7 +49,7 @@ const register = (workSpaceName, workSpaceEmail, password) => (dispatch) => {
 
 const login = (username, password) => (dispatch) => {
     return AuthService.login(username, password)
-        .then((data) => {
+        .then((data) => { // return jwt
             dispatch({
                 type: LOGIN_SUCCESS,
                 payload: { user: data },
