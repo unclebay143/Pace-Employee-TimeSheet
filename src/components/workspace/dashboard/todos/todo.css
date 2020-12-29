@@ -62,7 +62,7 @@
 }
 
 .scroll-area-sm {
-    height: 288px;
+    height: 378px;
     overflow-x: hidden
 }
 
@@ -132,21 +132,26 @@
     position: relative;
     transition: color 0.15s, background-color 0.15s, border-color 0.15s, box-shadow 0.15s
 }
+.todo-btn i{
+    font-size: 13px;
+}
 
 .btn-outline-success {
     color: #3ac47d;
-    border-color: #3ac47d
+    border-color: #3ac47d;
 }
 
 .btn-outline-success:hover {
-    color: #fff;
-    background-color: #3ac47d;
-    border-color: #3ac47d
+    color: #4a9970;
+    background-color: unset !important;
+    border-color: #3ac47d;
+    transform: scale(1.12);
 }
 
-.btn-outline-success:hover {
-    color: #fff;
-    background-color: #3ac47d;
+.btn-outline-danger:hover {
+    transform: scale(1.12);
+    color: rgb(150, 10, 10);
+    background-color: unset !important;
     border-color: #3ac47d
 }
 
