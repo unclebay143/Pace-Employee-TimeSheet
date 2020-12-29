@@ -10,7 +10,7 @@ import timerReducer from './timerReducer';
 const rootReducer = combineReducers({
     task: taskReducer,
     acceptedTask: acceptedTaskReducer, 
-    authenticate: authReducer,
+    authentication: authReducer,
     employee: employeeReducer,
     timerReport: TimerReportReducer,
     timerStatus: timerReducer

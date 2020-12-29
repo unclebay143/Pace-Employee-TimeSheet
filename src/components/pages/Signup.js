@@ -1,10 +1,10 @@
 // react 
 import { React, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { Link, Redirect, useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { ToastContainer } from 'react-toastify'; 
-
 // import PropTypes from 'prop-types';
+
 
 // layouts
 import Button from '../layouts/Button';
@@ -26,11 +26,16 @@ const Signup = () =>{
     
     useEffect(() => {
         document.title = "Signup | Pace "
-    })
+    });
 
-    const dispatch = useDispatch()
-    // const [ isSubmitting, setIsSubmitting ]
+    const dispatch = useDispatch();
+    const history = useHistory();
 
+    const { isLoggedIn } = useSelector(state => state.authentication)
+
+    if(isLoggedIn){
+        return <Redirect to="/dashboard" />
+    }
     return(
         <div className="container">
             <main className="container d-flex justify-content-center align-items-center mt-5">
@@ -65,11 +70,12 @@ const Signup = () =>{
                             validationSchema = {signUpSchema}
                             onSubmit={(values, action)=>{
                                 dispatch(register(values))
-                                .then((res)=>{
-                                    console.log(res)
-                                    console.log('doneeeeeeeeeeeeeeeeeeeeeeeee');
-                                    registrationCompletedLogger()
+                                .then(()=>{
                                     action.setSubmitting(true)
+                                    registrationCompletedLogger()
+                                    setTimeout(() => {
+                                        history.push('/dashboard');
+                                    }, 2000);
                                 })
                                 .catch((err)=>{
                                     registrationFailLogger()
