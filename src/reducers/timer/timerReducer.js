@@ -1,4 +1,4 @@
-import { TIMER_ON, TIMER_OFF } from '../actions/types';
+import { TIMER_ON, TIMER_OFF } from '../../actions/types';
 
 const initialState = {
     isTimerOff: true,

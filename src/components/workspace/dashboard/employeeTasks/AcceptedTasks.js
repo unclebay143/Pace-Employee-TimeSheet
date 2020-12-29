@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {NavLink} from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { GET_ACCEPTED_TASKS } from '../../../../actions/types';
+import { getAcceptedTask } from '../../../../actions/taskActions';
 
 import Table from '../../layouts/Table';
 import paginationFactory from 'react-bootstrap-table2-paginator';
@@ -69,7 +69,7 @@ const navigate = <>
   <div className="btn-group">
     <a data-toggle="dropdown" href="#" className="btn mini blue">
     More
-      <i className="fa fa-angle-down " />
+      <i className="fa fa-angle-down ml-1" />
     </a>
     <ul className="dropdown-menu">
       <li><a href="#"><i className="fa fa-pencil" /> Mark as Read</a></li>
@@ -114,13 +114,14 @@ class AcceptedTasks extends Component {
 
 
 const mapStateToProps = state => ({
-  acceptedTasks: state.acceptedTask
+  acceptedTasks: state.task.acceptedTasks
 })
 
-const mapDispatchToProps = dispatch => ({
-  acceptedTask: () => dispatch({ type:GET_ACCEPTED_TASKS })
-});
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-  )(AcceptedTasks);
+
+// const mapStateToProps = state => ({
+//   tasks: state.task.AllTasks
+// })
+
+
+export default connect(mapStateToProps,{getAcceptedTask})(AcceptedTasks);
+

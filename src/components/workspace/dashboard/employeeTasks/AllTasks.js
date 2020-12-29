@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import {NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { GET_TASKS } from '../../../../actions/types';
+import { getTasks } from '../../../../actions/taskActions';
 
 import Table from '../../layouts/Table';
 import paginationFactory from 'react-bootstrap-table2-paginator';
@@ -14,24 +14,19 @@ const taskHeader = [
       //   dataField: 'id',
       //   text: 'S/N'
       // },
+      
       {
-        // dataField: 'tag',
-        text: 'Tag',
-      },
-      {
-        // dataField: 'task',
+        dataField: 'subject',
         text: 'Task',
       },
-      
       {
-        // dataField: 'dueDate',
+        dataField: 'file',
+        text: 'Attachment',
+      },
+      {
+        dataField: 'dueDate',
         text: 'Due Date',
       },
-      
-      // {
-      //   dataField: 'requests',
-      //   // text: 'Requests',
-      // },
 ];
 
 
@@ -68,7 +63,7 @@ const navigate = <>
   <div className="btn-group">
     <a data-toggle="dropdown" href="#" className="btn mini blue">
     More
-      <i className="fa fa-angle-down " />
+      <i className="fa fa-angle-down ml-1" />
     </a>
     <ul className="dropdown-menu">
       <li><a href="#"><i className="fa fa-pencil" /> Mark as Read</a></li>
@@ -85,14 +80,14 @@ class AllTasks extends Component {
     super(props)
     this.state = {
       ComponentDidMount() {
-        this.props.task();
+        this.props.getTasks();
       }
     }
 }
 
   render() {
     
-    const { AllTasks} = this.props;
+    const { tasks} = this.props;
     const selectRow = {
       mode: 'checkbox' 
     };
@@ -102,7 +97,7 @@ class AllTasks extends Component {
         <Table
           keyField='id'
           title="Inbox (11)"
-          data={ AllTasks }
+          data={ tasks }
           columns={taskHeader}
           bordered= { false }
           selectRow = {selectRow}
@@ -117,13 +112,8 @@ class AllTasks extends Component {
 
 
 const mapStateToProps = state => ({
-  AllTasks: state.task
+  tasks: state.task.allTasks
 })
 
-const mapDispatchToProps = dispatch => ({
-  task: () => dispatch({ type:GET_TASKS })
-});
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-  )(AllTasks);
+
+export default connect(mapStateToProps,{getTasks})(AllTasks);

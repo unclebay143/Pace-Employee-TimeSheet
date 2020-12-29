@@ -1,16 +1,14 @@
 import { combineReducers } from 'redux';
-import taskReducer from './tasksReducer';
-import acceptedTaskReducer from './acceptedTasksReducer';
+import taskReducer from './task/taskReducer';
 import authReducer from './authentication/authReducer';
-import employeeReducer from './employeeReducer';
-import TimerReportReducer from './TimerReportReducer';
+import employeeReducer from './user/employeeReducer.';
+import TimerReportReducer from './timer/TimerReportReducer';
+import timerReducer from './timer/timerReducer';
 import message from './message/message';
-import timerReducer from './timerReducer';
 
 
 const rootReducer = combineReducers({
-    task: taskReducer,
-    acceptedTask: acceptedTaskReducer, 
+    task: taskReducer, 
     authentication: authReducer,
     employee: employeeReducer,
     timerReport: TimerReportReducer,
