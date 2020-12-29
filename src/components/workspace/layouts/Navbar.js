@@ -14,12 +14,12 @@ const Navbar = () =>{
             const { data } = await axios.get('https://reqres.in/api/users/1');
             localStorage.setItem('currentUser', JSON.stringify(data))
             setState(currentUser) // can be removed
-            window.location.reload()
         }
         getUser()
     }, [])
     
     if(!state){
+        // window.location.reload()
         return(
             <div>
                 loading....
