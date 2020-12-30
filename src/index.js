@@ -37,7 +37,9 @@ import './components/workspace/dashboard/dashboard-styles/orionicons.css';
 import './components/workspace/dashboard/dashboard-styles/card.css';
 import './components/workspace/dashboard/dashboard-styles/task.css';
 // import './components/workspace/dashboard/dashboard-styles/task-sidebar.css';
-import'./components/workspace/dashboard/dashboard-styles/timer.css';
+import './components/workspace/dashboard/dashboard-styles/timer.css';
+import './components/workspace/dashboard/todos/todoform.css'
+import './components/workspace/dashboard/todos/todo.css'
 
 // DASHBOARD SCRIPT
 import './components/workspace/layouts/SibarToggle';

@@ -3,7 +3,10 @@
     margin: 0;
     box-sizing: border-box;
   }
-  
+
+.cursor{
+  cursor: pointer !important; 
+}
   .pace-primary-color{
     color: #335eea !important;
   }

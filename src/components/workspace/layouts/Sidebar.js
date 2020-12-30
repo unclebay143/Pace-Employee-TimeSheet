@@ -1,9 +1,34 @@
-import {NavLink} from 'react-router-dom'
-
+import React from 'react';
+import { useDispatch, useSelector} from 'react-redux';
+import { NavLink } from 'react-router-dom';
+import { logout } from '../../../actions/authenticationAction';
+import { ToastContainer } from 'react-toastify'
+import { logOutSuccess } from '../../../toaster';
 
 const Sidebar = () => {
+    const dispatch = useDispatch();
+    const { isLoggedIn } = useSelector((state)=> state.authenticationState);
+
+    
+    const logOut = () =>{
+        logOutSuccess()
+        setTimeout(() => {
+            dispatch(logout());
+        }, 2000);
+    }
     return(
         <>
+        <ToastContainer />
+        <style>
+            {
+                `
+                    .Toastify__toast--warning{
+                        background: rgb(255,112,150);
+                        color: #FFFFFF;
+                    }
+                `
+            }
+        </style>
             <div id="sidebar" className="sidebar py-3">
                     <div className="text-gray-400 text-uppercase px-3 px-lg-4 py-4 font-weight-bold small headings-font-family" id="role_display">Admin</div>
                         <ul className="sidebar-menu list-unstyled">
@@ -34,7 +59,7 @@ const Sidebar = () => {
                         <li className="sidebar-list-item"><NavLink to="request.html" className="sidebar-link text-muted" activeclassname="active"><i className="o-letter-1 mr-3 text-gray"></i><span>Request</span></NavLink></li>
                         <li className="sidebar-list-item"><NavLink to="billing.html" className="sidebar-link text-muted" activeclassname="active"><i className="o-database-1 mr-3 text-gray"></i><span>Billing</span></NavLink></li>
                         <li className="sidebar-list-item"><NavLink to="/dashboard/settings" className="sidebar-link text-muted" activeclassname="active"><i className="o-settings-window-1 mr-3 text-gray"></i><span>Settings</span></NavLink></li>
-                        <li className="sidebar-list-item"><NavLink to="/logout" className="sidebar-link text-muted" activeclassname="active"><i className="o-exit-1 mr-3 text-gray"></i><span>Logout</span></NavLink></li>
+                        <li className="sidebar-list-item"><span onClick={logOut} className="sidebar-link text-muted cursor" activeclassname="active"><i className="o-exit-1 mr-3 text-gray"></i><span>Logout</span></span></li>
                     </ul>
                 </div>
         </>
