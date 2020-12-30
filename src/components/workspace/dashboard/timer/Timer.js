@@ -1,19 +1,28 @@
+// React 
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { TIMER_ON, TIMER_OFF } from '../../../../actions/types';
 import Timer from 'react-compound-timer';
-import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import Swal from 'sweetalert2';
+import useSound from 'use-sound';
+
+// Actions
+import { TIMER_ON, TIMER_OFF } from '../../../../actions/types';
+import notify from './notify.wav'
 
 const timerReminder = withReactContent(Swal)
 
 const TimerHolder=()=>{
     const isTimerOff = useSelector(state => state.timerStatus)
+    const [ playSound ] = useSound(
+        notify, { volume: 0.25 }
+    )
     // const [ isTimerOff, setIsTimerOff ] = useState(timeStatus)
     const dispatch = useDispatch()
     useEffect(() => {
     
         setTimeout(() => {
+            playSound()
             if(isTimerOff){
                 timerReminder.fire({
                     showCloseButton: true,
@@ -28,7 +37,7 @@ const TimerHolder=()=>{
                 })
             }
             
-        }, 300000)
+        }, 2000)
 
     })
 
