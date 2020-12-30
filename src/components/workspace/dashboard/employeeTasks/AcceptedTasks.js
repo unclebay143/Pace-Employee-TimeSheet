@@ -84,7 +84,7 @@ class AcceptedTasks extends Component {
     super(props)
     this.state = {
       ComponentDidMount() {
-        this.props.task();
+        this.props.getAcceptedTask();
       }
     }
 }
