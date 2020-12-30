@@ -17,7 +17,6 @@ import TimerReport from './reports/TimerReport';
 import BillingReport from './reports/BillingReport';
 import Profile from './Profile';
 import Task from './Task';
-// import Todo from './Todo';
 import Todo from './todos/Todo'
 
 
@@ -37,7 +36,7 @@ const Dashboard = () =>{
                     <div className="d-flex align-items-stretch">
                 {/* >>>>> SIDEBAR COMPONENT SECTION <<<<< */}
                         <Sidebar />
-                        <div className="page-holder w-10 d-flex flex-wrap">
+                        <div className="page-holder w-100 d-flex flex-wrap">
 
                             <div className="container-fluid dashboard-body-wrapper">
                 {/* >>>>> BODIES COMPONENTS SECTION <<<<< */}

@@ -31,7 +31,7 @@ const Signup = () =>{
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const { isLoggedIn } = useSelector(state => state.authentication)
+    const { isLoggedIn } = useSelector(state => state.authenticationState)
 
     if(isLoggedIn){
         return <Redirect to="/dashboard" />
