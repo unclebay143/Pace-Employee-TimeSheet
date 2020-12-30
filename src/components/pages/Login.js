@@ -19,11 +19,11 @@ import { login } from '../../actions/authenticationAction';
 
 
 const Login = () =>{
+    const { isLoggedIn } = useSelector((state)=>state.authenticationState)
     const history = useHistory();
     const dispatch = useDispatch()
-    const { isLoggedIn } = useSelector((state)=>state.authenticationState)
-    const { message } = useSelector((state)=>state.message)
-
+    // const { message } = useSelector((state)=>state.message)
+    
     useEffect(() => {
         document.title = 'Login | Pace'
         if(isLoggedIn){
