@@ -39,7 +39,7 @@ const TimerHolder=()=>{
             
         }, 2000)
 
-    })
+    },[isTimerOff])
 
     
     const onStop = (value, resume, reset)=>{
