@@ -1,0 +1,7 @@
+/* Ariyibi Create stylesheet for the pricing card */
+
+/* stling for the pricing card */
+li{
+    list-style-type:none;
+    cursor: pointer;
+}
