@@ -6,6 +6,7 @@ import TaskSidebar from '../layouts/TaskSidebar';
 import DraftTask from './DraftTask';
 import AcceptedTasks from './employeeTasks/AcceptedTasks';
 import AllTasks from './employeeTasks/AllTasks';
+import TaskDetails from './TaskDetails';
 import EmployeeTasks from './employeeTasks/EmployeeTasks';
 import Sample from './employeeTasks/Sample';
 import Button from '../../layouts/Button';
@@ -29,12 +30,13 @@ class Task extends Component {
             <section className="">
               <Switch>
                 {/* uncomment the routes to see the samples, sorry for the stress */}
+                <Route exact path="/dashboard/task/view-task" component={TaskDetails} />
                 <Route exact path="/dashboard/task/draft-task" component={DraftTask } />
                 <Route exact path="/dashboard/task/all-tasks" component={AllTasks} />
                 <Route exact path="/dashboard/task/accepted-tasks" component={AcceptedTasks} />
                 <Route exact path="/dashboard/task/draft-taskk" component={SampleCompose} />
                 <Route exact path="/dashboard/task/all-task" component={TaskInboxSample} />
-                <Route exact path="/dashboard/task/view-task" component={Sample} />
+                <Route exact path="/dashboard/task/view-taskk" component={Sample} />
               </Switch>
                 {/* <Sample />
                 <DraftTask />

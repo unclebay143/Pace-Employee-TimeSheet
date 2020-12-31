@@ -14,7 +14,9 @@
   .pace-accent-color{
     color: #FF6584 !important;
   }
-  
+  .pace-grey-color{
+    color: #a2a2a2 !important;
+  }
   .pace-bg-primary{
     background: #335eea;
     color: #ffffff;
@@ -32,7 +34,7 @@
     border-radius: .25rem;
   }
   .form-control:focus {
-    /* border: 1px solid #335eea !important; */
+    border: 1px solid #335eea !important;
     box-shadow: none !important;
   }
 

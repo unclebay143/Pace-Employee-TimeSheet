@@ -8,7 +8,6 @@ import Table from '../../layouts/Table';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 
 
-
 const taskHeader = [
       // {
       //   dataField: 'id',
@@ -31,18 +30,17 @@ const taskHeader = [
 
 // rowEvents to display full details of each row
 //  to be converted to a fcn that will render the task details
+
 const taskDetails =  {
-  onClick: (e, row, rowIndex) => {
+  onClick: (e, row, rowIndex) => {  
     console.log(`clicked on row with index: ${rowIndex}`);
     console.log(`details: ${JSON.stringify(row)}`);
     console.log(`Title: ${JSON.stringify(row.subject)}`);
     console.log(`S/N: ${JSON.stringify(row.id)}`);
-    // console.log(` and with details: ${JSON.stringify(taskHeader[rowIndex])}`);
-  },
-  // onMouseEnter: (e, row, rowIndex) => {
-  //   console.log(`enter on row with index: ${rowIndex}`);
-  // }
+    console.log(` and with details: ${JSON.stringify(taskHeader[rowIndex])}`);
+  }
 };
+
 
 const navigate = <>
   <div className="btn-group">
