@@ -1,5 +1,9 @@
 // this is just a page to hold the dummy data...will get rid of it once we start fetching data from the API
 
+import axios from "axios";
+
+// http://fakerestapi.azurewebsites.net/api/v1/Activities
+
 export const allTasks = [
   {
     id: '1',
@@ -14,6 +18,10 @@ export const allTasks = [
     file: 'attachment'
   },
 ]
+// [axios.get('http://fakerestapi.azurewebsites.net/api/v1/Activities')
+// .then(res => res.data)]
+
+
 
 export const acceptedTasks = [
     {

@@ -8,7 +8,6 @@ import Table from '../../layouts/Table';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 
 
-
 const taskHeader = [
       // {
       //   dataField: 'id',
@@ -28,6 +27,19 @@ const taskHeader = [
         text: 'Due Date',
       },
 ];
+
+// rowEvents to display full details of each row
+//  to be converted to a fcn that will render the task details
+
+const taskDetails =  {
+  onClick: (e, row, rowIndex) => {  
+    console.log(`clicked on row with index: ${rowIndex}`);
+    console.log(`details: ${JSON.stringify(row)}`);
+    console.log(`Title: ${JSON.stringify(row.subject)}`);
+    console.log(`S/N: ${JSON.stringify(row.id)}`);
+    console.log(` and with details: ${JSON.stringify(taskHeader[rowIndex])}`);
+  }
+};
 
 
 const navigate = <>
@@ -104,6 +116,7 @@ class AllTasks extends Component {
           enableSearch = { true }
           pagination = { paginationFactory() }
           controlHeader = { navigate }
+          rowEvents = { taskDetails }
         />
       </div>
     )
