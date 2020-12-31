@@ -17,12 +17,33 @@ class DraftTask extends Component {
       <div>
         <section className="">
           <div className="row mb-4">
-            <div className="col-lg-12 mb-4">
+            <div className="col task-util compose-task">
               <div className="card">
-                <div className="card-header">
-                  <h6 className="text-uppercase mb-0 pace-accent-color">Assign Task</h6>
-                </div>
+              <header className="card-header wht-bg">
+                <h4 className="gen-case">
+                    Assign Task
+                </h4>
+              </header>
                 <div className="card-body">
+                  <div className="compose-btn-wrapper">
+                    <Button 
+                      type="submit"
+                      label=" Send"
+                      icon="fa fa-check"
+                      className="btn btn-theme btn-sm"
+                    />                                   
+                    <Button 
+                      type="submit"
+                      label=" Discard"
+                      icon="fa fa-times"
+                      className="btn btn-sm special ml-2 mr-2 pace-bg-accent"
+                    />
+                    <Button 
+                      type="submit"
+                      label=" Draft"
+                      className="btn btn-sm special"
+                    />            
+                  </div>
                   <div className="card-text">
                     <Formik
                       initialValues={{
@@ -43,29 +64,6 @@ class DraftTask extends Component {
                     >
                       {({touched, errors, values, handleSubmit, handleChange, isSubmitting}) => (
                         <Form className="mt-0"  onSubmit={handleSubmit}>
-                          <div className="form-group d-flex justify-content-end">
-                            <div className="pr-1">
-                              <Button 
-                                type="submit"
-                                label="Send"
-                                className="btn pace-btn-primary py-1 fa fa-check" 
-                              />
-                            </div>
-                            <div className="pr-1">
-                              <Button 
-                                type="submit"
-                                label="Draft"
-                                className="btn pace-btn-grey py-1" 
-                              />
-                            </div>
-                            <div className="pr-1">
-                            <Button 
-                                type="submit"
-                                label="Discard"
-                                className="btn pace-btn-grey py-1 fa fa-times" 
-                            />
-                            </div>
-                          </div>
                           <div className="form-group">
                             <TextInput 
                                 label = "To:"
@@ -73,8 +71,7 @@ class DraftTask extends Component {
                                 id = "department"
                                 type = "text"
                                 value={values.department}
-                                className = "form-control lead"
-                                labelClassName="lead"
+                                className = "form-control lead"                                
                                 onChange={handleChange}
                             />
                           </div>
@@ -85,8 +82,7 @@ class DraftTask extends Component {
                                 id = "subject"
                                 type = "text"
                                 value={values.subject}
-                                className = "form-control lead"
-                                labelClassName="lead"
+                                className = "form-control lead"                                
                                 onChange={handleChange}
                             />
                           </div>
@@ -104,7 +100,7 @@ class DraftTask extends Component {
                                type = "text"
                                value={values.department}
                                className = "form-control lead"
-                               labelClassName="lead"
+                               
                                placeholder = "Department"
                                onChange={handleChange}
                               > 
@@ -121,15 +117,13 @@ class DraftTask extends Component {
                                 name = "taskDescription"
                                 id = "task-description"
                                 value = {values.taskDescription}
-                                className= "form-control lead"
-                                labelClassName="lead"
+                                className= "form-control lead"                               
                                 rows = "4"
                                 // cols = "57"
                                 resize = "none"
                                 onChange={handleChange} 
                               />
                           </div>
-                            
                           <div className="form-group row">
                             <div className="col-sm-6">
                               <TextInput 
@@ -138,8 +132,7 @@ class DraftTask extends Component {
                                   id = "file"
                                   type = "file"
                                   value={values.file}
-                                  className = "form-control lead"
-                                  labelClassName="lead"
+                                  className = "lead"
                                   onChange={handleChange}
                               />
                             </div>
@@ -150,34 +143,29 @@ class DraftTask extends Component {
                                   id = "due-date"
                                   type="date"
                                   value={values.dueDate}
-                                  className = "form-control lead"
-                                  labelClassName="lead"
+                                  className = "form-control lead"     
                                   onChange={handleChange}
                               />
                             </div>
                           </div>
-                          <div className="form-group row mt-5">
-                            <div className="col-sm-1 px-3">
-                              <Button 
-                                type="submit"
-                                label="Send"
-                                className="btn pace-btn-primary py-1 fa fa-check" 
-                              />
-                            </div>
-                            <div className="col-sm-1">
-                              <Button 
-                                type="submit"
-                                label="Draft"
-                                className="btn pace-btn-grey py-1" 
-                              />
-                            </div>
-                            <div className="col-sm-1">
+                          <div className="compose-btn mt-4">
                             <Button 
-                                type="submit"
-                                label="Discard"
-                                className="btn pace-btn-grey py-1 fa fa-times" 
+                              type="submit"
+                              label=" Send"
+                              icon="fa fa-check"
+                              className="btn btn-theme btn-sm"
+                            />                                   
+                            <Button 
+                              type="submit"
+                              label=" Discard"
+                              icon="fa fa-times"
+                              className="btn btn-sm special ml-2 mr-2 pace-bg-accent"
                             />
-                            </div>
+                            <Button 
+                              type="submit"
+                              label=" Draft"
+                              className="btn btn-sm special"
+                            />    
                           </div>
                         </Form>
                       )}

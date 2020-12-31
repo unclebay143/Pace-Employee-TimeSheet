@@ -16,15 +16,15 @@ const taskHeader = [
       
       {
         dataField: 'subject',
-        text: 'Task',
+        // text: 'Task',
       },
       {
         dataField: 'file',
-        text: 'Attachment',
+        // text: 'Attachment',
       },
       {
         dataField: 'dueDate',
-        text: 'Due Date',
+        // text: 'Due Date',
       },
 ];
 
@@ -35,7 +35,7 @@ const taskDetails =  {
   onClick: (e, row, rowIndex) => {  
     console.log(`clicked on row with index: ${rowIndex}`);
     console.log(`details: ${JSON.stringify(row)}`);
-    console.log(`Title: ${JSON.stringify(row.subject)}`);
+    alert(`Title: ${JSON.stringify(row.subject)}`);
     console.log(`S/N: ${JSON.stringify(row.id)}`);
     console.log(` and with details: ${JSON.stringify(taskHeader[rowIndex])}`);
   }
@@ -66,12 +66,12 @@ const navigate = <>
       </li>
     </ul>
   </div>
-  <div className="btn-group">
+  {/* <div className="btn-group">
     <NavLink exact to="/dashboard/task/all-tasks" className="sidebar-link text-muted">
       <i className="fa fa-sync text-gray"/>
-      {/* <span>sync</span> */}
+      <span>sync</span>
     </NavLink>
-  </div>
+  </div> */}
   <div className="btn-group">
     <a data-toggle="dropdown" href="#" className="btn mini blue">
     More

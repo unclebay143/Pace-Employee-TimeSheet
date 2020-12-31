@@ -12,62 +12,55 @@ export default class TaskDetails extends Component {
       <>
         <section className="py-0">
           <div className="row mb-4">
-            <div className="col-lg-12 mb-1">
+            <div className="col-lg-12 mb-1 compose-task task-util">
                 <div className="card">
-                  <div className="card-header py-3">
-                    <header className="">
-                      <h4 className="d-flex justify-content-between pace-grey-color">
-                        View Task
-                          <div className="">
-                            <input type="text" className="form-control search-box" placeholder="Search Task" />
-                          </div>
-                      </h4>
-                    </header>
+                  <div className="py-3">
+                  <header className="card-header wht-bg">
+                    <h4 className="d-flex justify-content-between task-page-lead">
+                      View Task
+                    </h4>
+                  </header>
                   </div>
                   <div className="card-body py-1">
                     <div className= "pt-3">
-                      <div className="row">
+                      <div className="mail-header row">
                         <div className="col-md-8">
-                          <h4 className="pace-grey-color">Build a new landing page</h4>
+                          <h4 className="float-left task-title">Build a new landing page</h4>
                         </div>
                         <div className="col-md-4">
-                          <div className="form-group d-flex justify-content-end">
-                            <div className="pr-1">
-                              <Button 
-                                type="submit"
-                                label="Accept"
-                                className="btn pace-btn-primary py-1 fa fa-check" 
-                              />
-                            </div>
-                            <div className="pr-1">
-                              <Button 
-                                type="submit"
-                                label="Decline"
-                                className="btn pace-btn-grey py-1" 
-                              />
-                            </div>
-                            <div className="pr-1">
+                          <div className="compose-btn-wrapper">
                             <Button 
-                                type="submit"
-                                label="Request"
-                                className="btn pace-btn-grey py-1 fa fa-times" 
+                              type="submit"
+                              label="  Accept"
+                              icon="fa fa-check"
+                              className="btn btn-theme btn-sm"
+                            />                                   
+                            <Button 
+                              type="submit"
+                              label=" Delete"
+                              icon="fa fa-trash-alt"
+                              className="btn btn-sm special ml-2 mr-2 pace-bg-accent"
                             />
-                            </div>
-                          </div>   
+                            <Button 
+                              type="submit"
+                              label=" Request"
+                              className="btn btn-sm special"
+                            />            
+                          </div>
                         </div>
                       </div>
                       <hr />
-                        <div className="">
+                        <div className="mail-sender">
                           <div className="row">
                             <div className="col-md-8">
                               <img src={unclebay} alt="sender" className="sender-image mr-2"/>
                               <strong>Zac Doe</strong>
-                              <span className="pace-grey-color">[zac@youremail.com]</span> to
+                              <span className="">[zac@youremail.com]</span> to
                               <strong> me</strong>
                             </div>
                             {/* due date */}
                             <div className="col-md-4">
-                              <p className="mr-2"> 10:15AM 02 FEB 2014</p>
+                              <p className="date float-right mr-2"> 10:15AM 02 FEB 2014</p>
                             </div>
                           </div>
                         </div>
@@ -125,29 +118,27 @@ export default class TaskDetails extends Component {
                           </li>
                         </ul>
                       </div>
-                      <div className="form-group d-flex justify-content-start">
-                        <div className="pr-1">
+                      {/* <div className="form-group d-flex justify-content-start"> */}
+                        <div className="compose-btn float-left my-4">
                           <Button 
-                                type="submit"
-                                label="Accept"
-                                className="btn pace-btn-primary py-1 fa fa-check" 
-                          />
-                        </div>
-                        <div className="pr-1">
+                            type="submit"
+                            label=" Accept"
+                            icon="fa fa-check"
+                            className="btn btn-theme btn-sm"
+                          />                                   
                           <Button 
-                                type="submit"
-                                label="Decline"
-                                className="btn pace-btn-grey py-1" 
+                            type="submit"
+                            label=" Delete"
+                            icon="fa fa-trash-alt"
+                            className="btn btn-sm special ml-2 mr-2 pace-bg-accent"
                           />
-                        </div>
-                        <div className="pr-1">
                           <Button 
-                                type="submit"
-                                label="Request"
-                                className="btn pace-btn-grey py-1 fa fa-times" 
-                          />
+                            type="submit"
+                            label=" Request"
+                            className="btn btn-sm special"
+                          />    
                         </div>
-                      </div>  
+                      {/* </div>   */}
                     </div>
                   </div>
                 </div>
