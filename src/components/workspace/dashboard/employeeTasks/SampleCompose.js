@@ -17,7 +17,7 @@ export default function SampleCompose() {
                                 <button className="btn btn-sm special ml-2 mr-2"><i className="fa fa-times" /> Discard</button>
                                 <button className="btn btn-sm special">Draft</button>
                             </div>
-                            <div className="compose-mail">
+                            <div >
                             <form role="form-horizontal" method="post">
                                 <div className="form-group">
                                     <label htmlFor="to" className="">To:</label>
