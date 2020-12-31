@@ -1,8 +1,10 @@
-import { GET_TASKS, ASSIGN_TASKS, GET_ACCEPTED_TASKS } from '../../actions/types';
-import {acceptedTasks, allTasks} from './taskDataReducer'
+import { GET_TASKS, GET_TASKS_SUCCESS, ASSIGN_TASKS, GET_ACCEPTED_TASKS } from '../../actions/types';
+import {acceptedTasks, FetchTask, allTasks} from './taskDataReducer'
 
 const initialState = {
-  allTasks,
+  pending: false,
+  allTasks: [],
+  // allTasks,
   acceptedTasks
 }
 
@@ -11,6 +13,13 @@ const taskReducer = (state=initialState, action) => {
         case GET_TASKS:
             return {
                 ...state,
+                pending: true
+            }
+            case GET_TASKS_SUCCESS:
+            return {
+                ...state,
+                pending: false,
+                allTasks: action.payload
             }
         case ASSIGN_TASKS:
             return {

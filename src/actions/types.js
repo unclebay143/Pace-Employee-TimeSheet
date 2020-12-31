@@ -22,6 +22,7 @@ export const TIMER_OFF = 'TIMER_OFF';
 
 // Task
 export const GET_TASKS = 'GET_TASKS';
+export const GET_TASKS_SUCCESS = 'GET_TASKS_SUCCESS';
 export const ASSIGN_TASKS = 'ASSIGN_TASKS';
 export const GET_ACCEPTED_TASKS = 'GET_ACCEPTED_TASKS';
 
