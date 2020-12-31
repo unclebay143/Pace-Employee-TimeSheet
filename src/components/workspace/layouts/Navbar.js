@@ -123,7 +123,7 @@ const Navbar = () =>{
                             </div>
                         </li>
                         <li className="nav-item dropdown ml-auto">
-                            <a id="userInfo" href="." data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" className="nav-link dropdown-toggle"><img src={avatar} alt="Ayodele Samuel Adebayo" style={{maxWidth:"2.5rem"}} className="img-fluid rounded-circle shadow" /></a>
+                            <a id="userInfo" href="." data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" className="nav-link dropdown-toggle"><img src={avatar} alt={first_name} style={{maxWidth:"2.5rem"}} className="img-fluid rounded-circle shadow" /></a>
                             <div aria-labelledby="userInfo" className="dropdown-menu">
                                 <a href="/" className="dropdown-item">
                                     <strong className="d-block text-uppercase headings-font-family companyDisplay">

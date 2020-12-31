@@ -19,6 +19,7 @@ export const GET_EMPLOYEES = 'GET_EMPLOYEES';
 export const GET_TIMER_REPORT = 'GET_TIMER_REPORT';
 export const TIMER_ON = 'TIMER_ON';
 export const TIMER_OFF = 'TIMER_OFF';
+export const SET_WORKED_MILLISECOND = 'SET_WORKED_MILLISECOND';
 
 // Task
 export const GET_TASKS = 'GET_TASKS';
