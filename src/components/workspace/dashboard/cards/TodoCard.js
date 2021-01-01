@@ -19,25 +19,7 @@ const TodoContent = ({title, dueDate}) =>{
 
 const TodoCard = () =>{
     const { todos } = useSelector((state)=>state.todoReducer);
-    const dispatch = useDispatch();
     
-    
-    useEffect(() => {
-        dispatch(fetchTodoFunction())
-    },[dispatch])
-    
-        // Render this if the todos have not been fetched or in fetching state
-        if(todos[0] === undefined){
-            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            // Convert Current Day to Day, Month date, year format
-            const currentDate = new Date().toLocaleDateString("en-US", options);
-            const [ title, dueDate ] = ['Your todo will be displayed here', currentDate];
-            
-            return(
-                <TodoContent title={title} dueDate={dueDate} />
-                )
-        }
-        
     const { title, dueDate } = todos[0];
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     // Convert the DueDate to Day, Month date, year format

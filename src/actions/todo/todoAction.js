@@ -4,7 +4,10 @@ import {
     FETCH_TODOS_ERROR, 
     EDIT_TODO, 
     ADD_TODO, 
-    DELETE_TODO
+    DELETE_TODO,
+    TOGGLE_TODO_COMPLETE,
+    OPEN_TODO_FORM,
+    CLOSE_TODO_FORM
  } from "../types";
 
 
@@ -31,6 +34,20 @@ const fetchTodosError = (error) =>{
     }
 }
 
+// Open Todo Form
+const openTodoForm = () =>{
+    return{
+        type: OPEN_TODO_FORM
+    }
+}
+
+// Close Todo Form
+const closeTodoForm = () =>{
+    return{
+        type: CLOSE_TODO_FORM
+    }
+}
+
 // Add new todo
 const addTodo = (task) =>{
     return{
@@ -39,12 +56,19 @@ const addTodo = (task) =>{
     }
 }
 
+// Toggle todo completion
+const toggleTodoCompletion = (id) =>{
+    return{
+        type: TOGGLE_TODO_COMPLETE,
+        payload: id
+    }
+}
 
 // Delete todo
-const deleteTodo = (key) =>{
+const deleteTodo = (id) =>{
     return{
         type: DELETE_TODO,
-        payload: key
+        payload: id
     }
 }
 
@@ -54,6 +78,9 @@ export{
     fetchTodosPending,
     fetchTodosSuccess,
     fetchTodosError,
+    openTodoForm,
+    closeTodoForm,
     addTodo,
+    toggleTodoCompletion,
     deleteTodo,
 }

@@ -16,6 +16,7 @@ import { Formik, Form, ErrorMessage } from 'formik';
 
 // Toaster
 import { invalidTodoTitle } from '../../../../toaster/index';
+import { closeTodoForm } from '../../../../actions/todo/todoAction';
 
 
 
@@ -32,12 +33,23 @@ const TodoForm = () =>{
                     initialValues = {
                         {
                             title: '',
-                            dueDate: '',
+                            dueDate: Date.now(),
                         }
                     }
-                    onSubmit={(values)=>{dispatch({type: ADD_TODO, payload: values})}}
+                    onSubmit={(values, action)=>{
+                        dispatch({type: ADD_TODO, payload: values})
+                        action.resetForm({
+                            title: '',
+                            dueDate: Date.now()
+                        })
+                        
+                    }}
                     validationSchema = {TodoListSchema}
-                >{({ errors, touched, handleSubmit })=>(
+                >{({ 
+                    errors,
+                    touched, 
+                    handleSubmit,
+                 })=>(
               
                     <Form
                         className="todo-form-container" 
@@ -46,7 +58,7 @@ const TodoForm = () =>{
                         {/* { errors.title ? invalidTodoTitle() : null } */}
                         <label className="bg-primary d-flex justify-content-between align-items-center p-2 text-white">
                             <b>TODO</b>
-                            <i className="fa fa-times form-popdown-btn" onClick={(()=>dispatch({ type:CLOSE_TODO_FORM }))}></i>
+                            <i className="fa fa-times form-popdown-btn" onClick={(()=>dispatch(closeTodoForm()))}></i>
                         </label>
                         <section className="todo-form-wrapper">
                             <label htmlFor="title"><b>Title</b></label>
