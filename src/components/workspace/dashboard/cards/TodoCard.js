@@ -1,10 +1,8 @@
-import { React, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import fetchTodoFunction from '../../../../reducers/todo/fetchTodos';
+// React
+import { React } from "react";
+import { useSelector } from "react-redux";
 
-
-
-const TodoContent = ({title, dueDate}) =>{
+const CardTemplate = ({title, dueDate}) =>{
     return(
         <div className="bg-white shadow pace-roundy px-4 py-3 d-flex align-items-center justify-content-between mb-4">
             <div className="flex-grow-1 d-flex align-items-center">
@@ -26,7 +24,7 @@ const TodoCard = () =>{
     const formatedDueDate = new Date(dueDate).toLocaleDateString("en-US", options);
         
     return(
-        <TodoContent title={title} dueDate={formatedDueDate} />
+        <CardTemplate title={title} dueDate={formatedDueDate} />
     )
 };
 

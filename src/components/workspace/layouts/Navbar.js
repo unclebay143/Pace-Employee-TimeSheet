@@ -9,7 +9,7 @@ import axios from 'axios';
 import TimerContainer from '../dashboard/timer/Timer';
 
 // End session
-import { logout } from '../../../actions/authenticationAction'
+import { logout } from '../../../actions/auth/authAction'
 
 // Toast
 import { ToastContainer } from 'react-toastify';

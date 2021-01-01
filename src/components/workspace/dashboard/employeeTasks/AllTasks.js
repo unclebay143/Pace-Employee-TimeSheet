@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { getTasks } from '../../../../actions/taskActions';
+import { getTasks } from '../../../../actions/task/taskAction';
 import { FetchTask } from '../../../../reducers/task/taskDataReducer';
 
 import Table from '../../layouts/Table';

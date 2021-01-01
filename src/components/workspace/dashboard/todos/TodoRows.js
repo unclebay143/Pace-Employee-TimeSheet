@@ -6,8 +6,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import Button from '../../../layouts/Button';
 
 // Actions & Reducers
-import fetchTodoFunction from '../../../../reducers/todo/todoApi';
-import { deleteTodo, toggleTodoCompletion } from '../../../../actions/todo/todoAction';
+// import fetchTodoFunction from '../../../../reducers/todo/todoApi';
+// import TodoService from '../../../../services/todo.service';
+import { getTodos, deleteTodo, toggleTodoCompletion } from '../../../../actions/todo/todoAction';
 
 const formatDate = ( date )=>{
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -25,7 +26,7 @@ const TodoRows = () => {
 
     // Invoke fetchTodos function to fetch todos from server
     useEffect(() => {
-        dispatch(fetchTodoFunction())
+        dispatch(getTodos())
     }, [dispatch]);
     if(pending){
         return(

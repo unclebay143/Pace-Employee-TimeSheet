@@ -1,3 +1,4 @@
+import TodoService from "../../services/todo.service"
 import { 
     FETCH_TODOS_PENDING, 
     FETCH_TODOS_SUCCESS, 
@@ -12,26 +13,14 @@ import {
 
 
 // Fetch todos
-const fetchTodosPending = () =>{
-    return{
-        type: FETCH_TODOS_PENDING
-
-    }
-}
-
-const fetchTodosSuccess = (todos) =>{
-    return{
-        type: FETCH_TODOS_SUCCESS,
-        payload: todos
-    }
-}
-
-const fetchTodosError = (error) =>{
-    return{
-        type: FETCH_TODOS_ERROR,
-        payload: error
-
-    }
+const getTodos = () => ( dispatch ) =>{
+    dispatch({type: FETCH_TODOS_PENDING})
+    return TodoService.fetchTodos()
+    .then((res) => {
+        dispatch({ type: FETCH_TODOS_SUCCESS, payload: res.data })
+        return res.data;          
+    })
+    .catch((error)=>dispatch({ type: FETCH_TODOS_ERROR, payload: error }))
 }
 
 // Open Todo Form
@@ -49,11 +38,24 @@ const closeTodoForm = () =>{
 }
 
 // Add new todo
-const addTodo = (task) =>{
-    return{
-        type: ADD_TODO,
-        payload: task
-    }
+const addTodo = (newTodo) => (dispatch) =>{
+    console.log(newTodo, 'action')
+    return TodoService.addTodo(newTodo)
+    .then((response) =>{
+        console.log(response)
+        console.log(response.data)
+        dispatch({
+            type: ADD_TODO,
+            payload: response.data
+        })
+    })
+    .catch((error)=>{
+        console.log(error)
+    })
+    // return{
+    //     type: ADD_TODO,
+    //     payload: task
+    // }
 }
 
 // Toggle todo completion
@@ -74,10 +76,8 @@ const deleteTodo = (id) =>{
 
 
 
-export{
-    fetchTodosPending,
-    fetchTodosSuccess,
-    fetchTodosError,
+export {
+    getTodos,
     openTodoForm,
     closeTodoForm,
     addTodo,

@@ -19,7 +19,7 @@ import { registrationFailLogger, registrationCompletedLogger} from '../../toaste
 
 
 // Authentication
-import { register } from '../../actions/authenticationAction';
+import { register } from '../../actions/auth/authAction';
 
 
 const Signup = () =>{

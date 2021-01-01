@@ -61,5 +61,6 @@ export const AddEmployeeSchema = Yup.object().shape({
 //  Todo
 
 export const TodoListSchema = Yup.object().shape({
-    title: Yup.string().required('Todo Title is required')
+    title: Yup.string().required('Todo Title is required'),
+    // dueDate: Yup.date().required("Due Date is Required").nullable('kll')
 })

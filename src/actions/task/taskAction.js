@@ -3,7 +3,7 @@ import {
   GET_TASKS_SUCCESS,
   ASSIGN_TASKS,
   GET_ACCEPTED_TASKS 
-} from './types';
+} from '../types';
 
 // getTask action
 export const getTasks = () => {

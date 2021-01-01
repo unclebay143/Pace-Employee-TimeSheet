@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ToastContainer } from 'react-toastify'; 
 
 // Action
-import { ADD_TODO, CLOSE_TODO_FORM } from '../../../../actions/types';
+import { ADD_TODO } from '../../../../actions/types';
 
 // Layout
 import Button from '../../../layouts/Button';
@@ -16,7 +16,7 @@ import { Formik, Form, ErrorMessage } from 'formik';
 
 // Toaster
 import { invalidTodoTitle } from '../../../../toaster/index';
-import { closeTodoForm } from '../../../../actions/todo/todoAction';
+import { closeTodoForm, addTodo } from '../../../../actions/todo/todoAction';
 
 
 
@@ -37,7 +37,7 @@ const TodoForm = () =>{
                         }
                     }
                     onSubmit={(values, action)=>{
-                        dispatch({type: ADD_TODO, payload: values})
+                        dispatch(addTodo(values))
                         action.resetForm({
                             title: '',
                             dueDate: Date.now()
@@ -79,14 +79,23 @@ const TodoForm = () =>{
                                 type="datetime-local"
                                 placeholder="Enter Due Date" 
                                 name="dueDate"
+                                className={` form-control ${ touched.dueDate && errors.dueDate ? "is-invalid" : " " }`}
+
                             />
+
+                            <ErrorMessage
+                                component="span"
+                                name="dueDate"
+                                className="invalid-feedback mb-2"
+                            />
+
                             <div className="d-flex">
 
-                            <Button 
-                                type="submit"
-                                label="Add"
-                                className="btn pace-btn-primary  mr-2"
-                            />
+                                <Button 
+                                    type="submit"
+                                    label="Add"
+                                    className="btn pace-btn-primary  mr-2"
+                                />
                             {/* <Button 
                                 type="button"
                                 label="Clear"
