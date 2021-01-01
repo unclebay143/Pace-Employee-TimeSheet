@@ -3,12 +3,13 @@
 // Axios
 import axios from "axios";
 
-// constant root-Endpoint url
-const API_URL = 'http://fakerestapi.azurewebsites.net/api/v1/Activities';
+// API
+
+import { TODO_API_URL } from "./root-endpoints";
 
 // Function to fetch todo from the server and dispatch actions based on response
 const fetchTodos = () => {
-        return axios.get(API_URL)
+        return axios.get(TODO_API_URL)
 }
 
 // Add new Todo to server
@@ -20,9 +21,9 @@ const addTodo = (data) => {
             title: data.title,
             dueDate: new Date()
         }
-        return axios.post(API_URL, data)
+        return axios.post(TODO_API_URL, data)
     }
-    return axios.post(API_URL, data)
+    return axios.post(TODO_API_URL, data)
 }
 
 export default { 
