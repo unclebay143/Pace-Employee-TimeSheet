@@ -3,10 +3,10 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { getTasks } from '../../../../actions/taskActions';
+import { FetchTask } from '../../../../reducers/task/taskDataReducer';
 
 import Table from '../../layouts/Table';
 import paginationFactory from 'react-bootstrap-table2-paginator';
-
 
 
 const taskHeader = [
@@ -15,19 +15,36 @@ const taskHeader = [
       //   text: 'S/N'
       // },
       
+      // {
+      //   dataField: 'id',
+      //   // text: 'Task',
+      // },
       {
-        dataField: 'subject',
-        text: 'Task',
-      },
-      {
-        dataField: 'file',
-        text: 'Attachment',
+        dataField: 'title',
+        // text: 'Attachment',
       },
       {
         dataField: 'dueDate',
-        text: 'Due Date',
+        // text: 'Due Date',
+      },
+      {
+        dataField: 'completed',
+        // text: 'Due Date',
       },
 ];
+
+// rowEvents to display full details of each row
+//  to be converted to a fcn that will render the task details
+
+const taskDetails =  {
+  onClick: (e, row, rowIndex) => {  
+    console.log(`clicked on row with index: ${rowIndex}`);
+    console.log(`details: ${JSON.stringify(row)}`);
+    alert(`Title: ${JSON.stringify(row.title)}`);
+    console.log(`S/N: ${JSON.stringify(row.id)}`);
+    console.log(` and with details: ${JSON.stringify(taskHeader[rowIndex])}`);
+  }
+};
 
 
 const navigate = <>
@@ -54,12 +71,12 @@ const navigate = <>
       </li>
     </ul>
   </div>
-  <div className="btn-group">
+  {/* <div className="btn-group">
     <NavLink exact to="/dashboard/task/all-tasks" className="sidebar-link text-muted">
       <i className="fa fa-sync text-gray"/>
-      {/* <span>sync</span> */}
+      <span>sync</span>
     </NavLink>
-  </div>
+  </div> */}
   <div className="btn-group">
     <a data-toggle="dropdown" href="#" className="btn mini blue">
     More
@@ -81,8 +98,22 @@ class AllTasks extends Component {
     this.state = {
       ComponentDidMount() {
         this.props.getTasks();
+        // this.props.FetchTask();
       }
     }
+}
+
+componentWillMount() {
+  const {FetchTask} = this.props;
+  FetchTask();
+}
+
+shouldComponentRender() {
+  const {pending} = this.props;
+  if(pending === false){ 
+  return false;
+  }
+  return true;
 }
 
   render() {
@@ -104,6 +135,7 @@ class AllTasks extends Component {
           enableSearch = { true }
           pagination = { paginationFactory() }
           controlHeader = { navigate }
+          rowEvents = { taskDetails }
         />
       </div>
     )
@@ -112,8 +144,9 @@ class AllTasks extends Component {
 
 
 const mapStateToProps = state => ({
-  tasks: state.task.allTasks
+  tasks: state.task.allTasks,
+  pending:getTasks(state)
 })
 
 
-export default connect(mapStateToProps,{getTasks})(AllTasks);
+export default connect(mapStateToProps,{FetchTask:FetchTask})(AllTasks);
