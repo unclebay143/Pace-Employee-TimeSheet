@@ -1,5 +1,5 @@
 // this is just a page to hold the dummy data...will get rid of it once we start fetching data from the API
-import {getTasks, getTasksSuccess} from '../../actions/taskActions';
+import {getTasks, getTasksSuccess} from '../../actions/task/taskAction';
 import axios from "axios";
 
 

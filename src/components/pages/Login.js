@@ -14,7 +14,7 @@ import loginImage from './pages-images/login-img.png';
 import { TextInput } from '../layouts/FormInput';
 import { loginSchema } from '../Validation/Schema';
 import { HomeButton } from '../layouts/HomeButton';
-import { login } from '../../actions/authenticationAction';
+import { login } from '../../actions/auth/authAction';
 
 
 

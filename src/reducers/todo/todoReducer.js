@@ -15,12 +15,12 @@ import {
 const initialState = {
     pending: false,
     todos: [ 
-        { 
-            id: 0,
-            title: 'Wait for the server', 
-            dueDate: Date(),
-            completed: false
-        }
+        // { 
+            // id: 0,
+            // title: 'Wait for the server', 
+            // dueDate: Date(),
+            // completed: false
+        // }
      ],
     error: null,
     isTodoFormOpen: false

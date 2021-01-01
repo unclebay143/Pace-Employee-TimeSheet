@@ -4,7 +4,7 @@ import { TextInput, TextArea, DataList, Datalist } from '../../layouts/FormInput
 
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { assignTask } from '../../../actions/taskActions';
+import { assignTask } from '../../../actions/task/taskAction';
 
 
 

@@ -28,7 +28,6 @@ const login = (values) => {
 };
 
 const logout = () => {
-  console.log('hrereh');
   localStorage.removeItem('user');
 };
 

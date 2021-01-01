@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+// React
+import React from 'react';
+import { useDispatch } from 'react-redux';
+
+// Layouts
 import TodoRows from './TodoRows';
 import TodoForm from './TodoForm';
-import { OPEN_TODO_FORM } from '../../../../actions/types';
-import { useDispatch, useSelector } from 'react-redux';
+
+// Actions
+import { openTodoForm } from '../../../../actions/todo/todoAction';
 
 const Todo = () => {
-    const { isTodoFormOpen } = useSelector((state)=> state.todoReducer);
     const dispatch = useDispatch();
     return (
         <>
@@ -30,7 +34,7 @@ const Todo = () => {
                         <div className="d-block text-right card-footer">
                             {/* <button className="mr-2 btn btn-link btn-sm">Cancel</button> */}
                             <TodoForm />
-                        <button className="btn btn-primary" onClick={(()=>dispatch({type: OPEN_TODO_FORM}))}>Add Todo</button></div>
+                        <button className="btn btn-primary" onClick={(()=>dispatch(openTodoForm()))}>Add Todo</button></div>
                     </div>
                 </div>
             </div>

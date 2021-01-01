@@ -1,4 +1,4 @@
-import AuthService from "../services/auth.service";
+import AuthService from "../../services/auth.service";
 import {
     REGISTER_SUCCESS,
     REGISTER_FAIL,
@@ -6,7 +6,7 @@ import {
     LOGIN_FAIL,
     LOGOUT,
     SET_MESSAGE,
-} from "./types";
+} from "../types";
 
 
 const register = (workSpaceName, workSpaceEmail, password) => (dispatch) => {
