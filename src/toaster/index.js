@@ -15,10 +15,19 @@ const registrationCompletedLogger = () => toast.info('Registration Successful');
 const logOutSuccess = () => toast.warning('Logout Successful')
 
 
+// Todo
+
+const invalidTodoTitle  =  () => toast.warning('Todo title is required')
+
+
+
+
+
 export{
     invalidDetailsLogger,
     userIsAuthenticatedLogger,
     registrationFailLogger,
     registrationCompletedLogger,
-    logOutSuccess
+    logOutSuccess,
+    invalidTodoTitle
 }

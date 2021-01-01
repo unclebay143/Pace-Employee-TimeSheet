@@ -11,8 +11,9 @@ const TaskSidebar =() => {
    <NavLink exact to="/dashboard/task/draft-task" className="mx-auto">
     <Button
       type="submit"
-      label="Draft Task"
-      className="btn pace-btn-outline-primary mx-3 o-home-1"  
+      label=" Draft Task"
+      icon="o-home-1"
+      className="btn pace-btn-outline-primary mx-3"  
     />
    </NavLink> 
    <hr/>

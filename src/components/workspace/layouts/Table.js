@@ -9,10 +9,16 @@ import Button from '../../layouts/Button';
 export default class Table extends Component {
 
   render() {
-    const { keyField, data, columns, bordered, enableSearch, 
+    const { 
+      keyField, data, columns, bordered, enableSearch, 
       selectRow, pagination, customInput, customInputName, 
       customInputPlaceHolder, customButtonType, customButtonLabel, 
+<<<<<<< HEAD
       customButtonFunction, controlHeader, rowEvents} = this.props;
+=======
+      customButtonFunction, controlHeader, rowEvents, enableClearSearchButton
+    } = this.props;
+>>>>>>> unclebay_develop
     const { SearchBar, ClearSearchButton } = Search;
     const {title} = this.props;
    
@@ -42,8 +48,13 @@ export default class Table extends Component {
                                   enableSearch ?
                                    (
                                     <>
-                                     <SearchBar { ...props.searchProps } className="search-box"/>
-                                      <ClearSearchButton { ...props.searchProps } className="btn form-control pace-btn-accent my-0"/>
+                                     <SearchBar { ...props.searchProps } className="search-box form-control"/>
+                                     {
+                                       enableClearSearchButton ? 
+                                          <ClearSearchButton { ...props.searchProps } className="btn form-control pace-btn-accent my-0 ml-5"/>
+                                        :
+                                       null
+                                      }
                                     </>
                                   )
                                   : ""

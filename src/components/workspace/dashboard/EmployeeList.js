@@ -64,6 +64,8 @@ export default function EmployeeList(){
             };
         return (
             <>
+            <div  className="py-5">
+
                 <Table
                     keyField='id'
                     title="Employee List"
@@ -72,7 +74,8 @@ export default function EmployeeList(){
                     bordered= { false }
                     pagination = { paginationFactory() }
                     enableSearch = { true }
-                />
+                  />
+                </div>
             </>
         )
     }
