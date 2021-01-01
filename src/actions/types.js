@@ -33,3 +33,6 @@ export const FETCH_TODOS_ERROR = 'FETCH_TODO_ERROR';
 export const ADD_TODO = 'ADD_TODO';
 export const EDIT_TODO = 'EDIT_TODO';
 export const DELETE_TODO = 'DELETE_TODO';
+export const OPEN_TODO_FORM = 'OPEN_TODO_FORM';
+export const CLOSE_TODO_FORM = 'CLOSE_TODO_FORM';
+export const TOGGLE_TODO_COMPLETE = 'TOGGLE_TODO_COMPLETE';

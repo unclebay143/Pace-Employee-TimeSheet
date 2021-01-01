@@ -56,3 +56,10 @@ export const AddEmployeeSchema = Yup.object().shape({
     type: Yup.string().required('Type is required')
 })
 
+
+
+//  Todo
+
+export const TodoListSchema = Yup.object().shape({
+    title: Yup.string().required('Todo Title is required')
+})

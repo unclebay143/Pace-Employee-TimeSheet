@@ -12,7 +12,7 @@ import notify from './notify.wav'
 
 const timerReminder = withReactContent(Swal)
 
-const TimerHolder=()=>{
+const TimerContainer=()=>{
     const { timerIsOff } = useSelector(state => state.timerStatus)
     const [ isTimerOff, setisTimerOff ] = useState(timerIsOff)
     const [ shouldRemindUser ] = useState(isTimerOff)
@@ -43,7 +43,7 @@ const TimerHolder=()=>{
         
         setTimeout(() => {
             reminder()
-        }, 3000)
+        }, 3000000)
     }, [shouldRemindUser, playSound])
     
     
@@ -184,4 +184,4 @@ const TimerHolder=()=>{
 
 
 
-export default TimerHolder;
+export default TimerContainer;

@@ -55,7 +55,7 @@
     white-space: nowrap
 }
 
-.btn-actions-pane-right {
+.todo-container .btn-actions-pane-right {
     margin-left: auto;
     white-space: nowrap
 }
@@ -127,47 +127,47 @@
     margin-left: auto
 }
 
-.btn:not(:disabled):not(.disabled) {
+.todo-container .btn:not(:disabled):not(.disabled) {
     cursor: pointer
 }
 
-.btn {
+.todo-container .btn {
     position: relative;
-    transition: color 0.15s, background-color 0.15s, border-color 0.15s, box-shadow 0.15s
+    /* transition: color 0.15s, background-color 0.15s, border-color 0.15s, box-shadow 0.15s */
 }
 .todo-btn i{
     font-size: 13px;
 }
 
-.btn-outline-success {
+.todo-container .completed-icon {
     color: #3ac47d;
-    border-color: #3ac47d;
 }
 
-.btn-outline-success:hover {
+.todo-container .completed-icon:hover {
     color: #4a9970;
     background-color: unset !important;
-    border-color: #3ac47d;
     transform: scale(1.12);
 }
 
-.btn-outline-danger:hover {
-    transform: scale(1.12);
+.todo-container .pending-icon {
+    color: rgb(150, 10, 10);
+}
+
+.todo-container .pending-icon:hover {
+    /* transition: 1s;   */
+    transform: scale(.99);
     color: rgb(150, 10, 10);
     background-color: unset !important;
-    border-color: #3ac47d
 }
 
-.btn-primary {
+.todo-container .btn-primary {
     color: #fff;
     background-color: #3f6ad8;
-    border-color: #3f6ad8
 }
 
-.btn {
+.todo-container .btn {
     position: relative;
     transition: color 0.15s, background-color 0.15s, border-color 0.15s, box-shadow 0.15s;
-    outline: none !important
 }
 
 .todo-container .card-footer {

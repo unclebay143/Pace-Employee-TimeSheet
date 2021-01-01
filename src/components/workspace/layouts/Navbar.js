@@ -1,12 +1,12 @@
 
 // React
-import { React, useEffect } from 'react';
+import { React, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 // Component
-import TimerHolder from '../dashboard/timer/Timer';
+import TimerContainer from '../dashboard/timer/Timer';
 
 // End session
 import { logout } from '../../../actions/authenticationAction'
@@ -17,27 +17,32 @@ import { logOutSuccess } from '../../../toaster';
 
 
 const Navbar = () =>{
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    const dispatch = useDispatch();
+    // Set initial value for user details in case of slow network when fetching
+    const [ user_first_name, setUser_First_name ] = useState('user_first_name')
+    const [ user_last_name, setUser_Last_name ] = useState('user_last_name')
+    const [ user_Image, setUser_image ] = useState('user_image')
+    const data = {
+        first_name: user_first_name,
+        last_name: user_last_name,
+        avatar: user_Image
+    }
+    // Store data === userDummy-data inside localStorage
+    localStorage.setItem('currentUser', JSON.stringify(data))
 
+    const dispatch = useDispatch();
+    
     useEffect(() => {
         const getUser = async()=>{
             const { data } = await axios.get('https://reqres.in/api/users/1');
             localStorage.setItem('currentUser', JSON.stringify(data))
+            const { data: {first_name, last_name, avatar} } = JSON.parse(localStorage.getItem('currentUser'));
+            setUser_First_name(first_name)
+            setUser_Last_name(last_name)
+            setUser_image(avatar)
         }
         getUser()
     }, [])
     
-    if(!currentUser){
-        // window.location.reload()
-        return(
-            <div>
-                loading... <i className="fa fa-spinner fa-spin"></i>
-            </div>
-        )
-    }
-    const { first_name, last_name, avatar } = currentUser.data;
-
     const logOut = () =>{
         logOutSuccess()
         setTimeout(() => {
@@ -63,11 +68,11 @@ const Navbar = () =>{
                     <i className="sidebar-toggler text-gray-500 mr-4 mr-lg-5 lead">
                         <i className="fas fa-align-left"></i>
                     </i>
-                    <a href="." className="navbar-brand font-weight-bold text-uppercase text-base pace-primary-color dashboard-lead companyDisplay">
-                        { first_name } { last_name }
-                    </a>
+                    <Link to="/dashboard/profile" className="navbar-brand font-weight-bold text-uppercase text-base pace-primary-color dashboard-lead companyDisplay">
+                        { user_first_name } { user_last_name }
+                    </Link>
                     <ul className="ml-auto d-flex align-items-center list-unstyled mb-0">
-                        <TimerHolder />
+                        <TimerContainer />
                         <li className="nav-item dropdown mr-3 ml-4">
                             <a id="notifications" href="." data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" className="nav-link dropdown-toggle text-gray-400 px-1">
                                 <i className="fa fa-bell pace-primary-color"></i>
@@ -123,11 +128,12 @@ const Navbar = () =>{
                             </div>
                         </li>
                         <li className="nav-item dropdown ml-auto">
-                            <a id="userInfo" href="." data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" className="nav-link dropdown-toggle"><img src={avatar} alt={first_name} style={{maxWidth:"2.5rem"}} className="img-fluid rounded-circle shadow" /></a>
+                            <a id="userInfo" href="." data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" className="nav-link dropdown-toggle">
+                                <img src={user_Image} alt={user_first_name} style={{maxWidth:"2.5rem"}} className="img-fluid rounded-circle shadow" /></a>
                             <div aria-labelledby="userInfo" className="dropdown-menu">
                                 <a href="/" className="dropdown-item">
                                     <strong className="d-block text-uppercase headings-font-family companyDisplay">
-                                        { first_name } { last_name }
+                                        { user_first_name } { user_last_name }
                                     </strong>
                                     <small id="role_display">Web Developer</small>
                                 </a>

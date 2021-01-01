@@ -5,6 +5,15 @@ import React, { useEffect } from 'react';
 import Button from '../../../layouts/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import fetchTodoFunction from '../../../../reducers/todo/fetchTodos';
+import { DELETE_TODO, TOGGLE_TODO_COMPLETE } from '../../../../actions/types';
+
+const formatDate = ( date )=>{
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    // Convert Current Day to Day, Month date, year format
+    const dueDate = new Date(date).toLocaleDateString("en-US", options);
+    return dueDate;
+}
+
 
 const TodoRows = () => {
     // bg-warning
@@ -50,7 +59,7 @@ const TodoRows = () => {
                                         </div> */}
                                     </div>
                                     <div className="widget-subheading">
-                                        <i>Due Date { dueDate }</i>
+                                        <i>Due Date { formatDate(dueDate) }</i>
                                         {/* <div className="badge badge-pill badge-info ml-2"></div> */}
                                         <div className={` badge badge-pill ml-2 ${completed ? 'badge-success': 'badge-danger'}`}>
                                             { completed ? 'Completed' : 'Pending' }
@@ -59,12 +68,14 @@ const TodoRows = () => {
                                 </div>
                                 <div className="widget-content-right">
                                     <Button 
-                                        className="border-0 btn-transition btn todo-btn btn-outline-success"
-                                        icon="fa fa-check"
+                                        className={` border-0 btn-transition btn todo-btn  { ${ completed ? "pending-icon" : "completed-icon"}`}
+                                        icon={`${completed ? "fa fa-sync-alt" : "fa fa-check"}`}
+                                        onClick={(()=>dispatch({type: TOGGLE_TODO_COMPLETE, payload: id}))}
                                     />
                                     <Button 
-                                        className="border-0 btn-transition btn todo-btn btn-outline-danger"
+                                        className="border-0 btn-transition btn todo-btn text-red"
                                         icon="fa fa-trash-alt"
+                                        onClick={(()=>dispatch({type: DELETE_TODO, payload: id}))}
                                     />
                                 </div>
                             </div>
