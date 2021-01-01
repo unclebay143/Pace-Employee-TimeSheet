@@ -1,10 +1,49 @@
 // this is just a page to hold the dummy data...will get rid of it once we start fetching data from the API
-
+import {getTasks, getTasksSuccess} from '../../actions/taskActions';
 import axios from "axios";
+
 
 // http://fakerestapi.azurewebsites.net/api/v1/Activities
 
-export const allTasks = [
+export const FetchTask = () => {
+  return dispatch => {
+    dispatch(getTasks());
+    axios.get('http://fakerestapi.azurewebsites.net/api/v1/Activities')
+    .then((res) => {
+        console.log(res)
+        if(res.error) {
+            throw(res.error);
+        }
+        dispatch(getTasksSuccess(res.data))
+        return res.data;          
+    })
+    // .catch(error => {
+    //     dispatch(fetchTodosError(error));
+    //     console.log(error)
+    // })
+}
+}
+
+// export const FetchTask = () => {
+//   return dispatch => {
+//     dispatch(getTasks());
+//     fetch('http://fakerestapi.azurewebsites.net/api/v1/Activities')
+//     .then(res => res.json())
+//     .then(res => {
+//         if(res.error) {
+//             throw(res.error);
+//         }
+//         dispatch(getTasksSuccess(res.allTasks))
+//         return res.allTasks;
+//     })
+//     // .catch(error => {
+//     //     dispatch(fetchProductsError(error));
+//     // })
+// }
+// }
+
+export const allTasks = 
+[
   {
     id: '1',
     subject: 'testing1',
