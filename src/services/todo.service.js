@@ -26,7 +26,19 @@ const addTodo = (data) => {
     return axios.post(TODO_API_URL, data)
 }
 
+// Delete target todo from server
+const deleteTodo = async (id) => {
+    await axios.delete(`${ TODO_API_URL }/${id}`)
+}
+
+// Update target todo from the server
+const updateTodo = async (id) => {
+    await axios.delete(`${ TODO_API_URL }/${id}`)
+}
+
 export default { 
     fetchTodos,
-    addTodo
- };
+    addTodo,
+    deleteTodo,
+    updateTodo
+};
