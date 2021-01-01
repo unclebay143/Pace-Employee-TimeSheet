@@ -1,11 +1,14 @@
+// Axios
 import axios from "axios";
 
-const API_URL = "https://reqres.in/api/";
+// API
+import { AUTH_API_URL } from "./root-endpoints";
+
 
 const register = (values) => {
   const { username, workSpaceEmail, password } = values;
   const email = workSpaceEmail
-  return axios.post(API_URL + 'register', {
+  return axios.post(AUTH_API_URL + 'register', {
     username,
     email,
     password,
@@ -15,7 +18,7 @@ const register = (values) => {
 const login = (values) => {
   const { email, password } = values;
   console.log(email, password)
-  return axios.post(API_URL + 'login', {
+  return axios.post(AUTH_API_URL + 'login', {
       email,
       password,
     })

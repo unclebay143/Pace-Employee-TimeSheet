@@ -4,7 +4,7 @@ import {
     FETCH_TODOS_ERROR,
     OPEN_TODO_FORM,
     CLOSE_TODO_FORM,
-    EDIT_TODO, 
+    UPDATE_TODO, 
     ADD_TODO, 
     DELETE_TODO,
     TOGGLE_TODO_COMPLETE,
@@ -70,7 +70,7 @@ const todoReducer = (state=initialState, action) =>{
                 ...state,
                 // But modify todos
                 todos: [ 
-                    // Add new todo from payload
+                    // Add new todo from payload (to the top of the existing todos)
                     {
                         id: generateId(state.todos),
                         title: title,
@@ -81,7 +81,7 @@ const todoReducer = (state=initialState, action) =>{
                     ...state.todos
                 ] 
             }
-        case EDIT_TODO:
+        case UPDATE_TODO:
             return Object.assign({}, state, {
                 todos: state.todos.map((todo)=>{
                     if(todo.id !== action.payload){

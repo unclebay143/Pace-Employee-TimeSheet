@@ -22,7 +22,7 @@ import { closeTodoForm, addTodo } from '../../../../actions/todo/todoAction';
 
 
 const TodoForm = () =>{
-    const { isTodoFormOpen, todos } = useSelector((state)=> state.todoReducer);
+    const { isTodoFormOpen } = useSelector((state)=> state.todoReducer);
     const dispatch = useDispatch()
     
     return (
@@ -37,11 +37,14 @@ const TodoForm = () =>{
                         }
                     }
                     onSubmit={(values, action)=>{
-                        dispatch(addTodo(values))
-                        action.resetForm({
-                            title: '',
-                            dueDate: Date.now()
-                        })
+                        setTimeout(() => {
+                            
+                            dispatch(addTodo(values))
+                            action.resetForm({
+                                title: '',
+                                dueDate: Date.now()
+                            })
+                        }, 2000);
                         
                     }}
                     validationSchema = {TodoListSchema}
@@ -49,13 +52,13 @@ const TodoForm = () =>{
                     errors,
                     touched, 
                     handleSubmit,
+                    isSubmitting
                  })=>(
               
                     <Form
                         className="todo-form-container" 
                         onSubmit={ handleSubmit }
                     >
-                        {/* { errors.title ? invalidTodoTitle() : null } */}
                         <label className="bg-primary d-flex justify-content-between align-items-center p-2 text-white">
                             <b>TODO</b>
                             <i className="fa fa-times form-popdown-btn" onClick={(()=>dispatch(closeTodoForm()))}></i>
@@ -90,12 +93,22 @@ const TodoForm = () =>{
                             />
 
                             <div className="d-flex">
-
-                                <Button 
-                                    type="submit"
-                                    label="Add"
-                                    className="btn pace-btn-primary  mr-2"
-                                />
+                            {
+                                isSubmitting ? 
+                                    <Button
+                                        disabled={isSubmitting}
+                                        icon = "fas fa-circle-notch fa-spin"
+                                        className="btn pace-btn-primary mr-2"
+                                    
+                                    />
+                                :
+                                    <Button 
+                                        type="submit"
+                                        label="Add"
+                                        className="btn pace-btn-primary mr-2"
+                                    />
+                            }
+                            
                             {/* <Button 
                                 type="button"
                                 label="Clear"
