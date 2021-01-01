@@ -13,12 +13,8 @@ export default class Table extends Component {
       keyField, data, columns, bordered, enableSearch, 
       selectRow, pagination, customInput, customInputName, 
       customInputPlaceHolder, customButtonType, customButtonLabel, 
-<<<<<<< HEAD
-      customButtonFunction, controlHeader, rowEvents} = this.props;
-=======
       customButtonFunction, controlHeader, rowEvents, enableClearSearchButton
     } = this.props;
->>>>>>> unclebay_develop
     const { SearchBar, ClearSearchButton } = Search;
     const {title} = this.props;
    
