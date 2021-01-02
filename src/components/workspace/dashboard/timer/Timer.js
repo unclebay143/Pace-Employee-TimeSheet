@@ -44,6 +44,7 @@ const TimerContainer=()=>{
         setTimeout(() => {
             reminder()
         }, 3000000)
+
     }, [shouldRemindUser, playSound])
     
     

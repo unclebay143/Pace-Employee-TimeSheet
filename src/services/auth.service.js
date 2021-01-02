@@ -6,10 +6,9 @@ import { AUTH_API_URL } from "./root-endpoints";
 
 
 const register = (values) => {
-  const { username, workSpaceEmail, password } = values;
-  const email = workSpaceEmail
-  return axios.post(AUTH_API_URL + 'register', {
-    username,
+  const { companyName, email, password } = values;
+    return axios.post( AUTH_API_URL + 'signUp', {  
+    companyName,
     email,
     password,
   });

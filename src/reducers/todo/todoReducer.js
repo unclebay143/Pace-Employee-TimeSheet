@@ -13,15 +13,13 @@ import {
 
 // Initial state
 const initialState = {
-    pending: false,
-    todos: [ 
-        // { 
-            // id: 0,
-            // title: 'Wait for the server', 
-            // dueDate: Date(),
-            // completed: false
-        // }
-     ],
+    isFetching: false,
+    todos: [
+        {
+            title: 'Todo Card',
+            dueDate: Date.now()
+        }
+    ],
     error: null,
     isTodoFormOpen: false
 }
@@ -39,18 +37,19 @@ const todoReducer = (state=initialState, action) =>{
         case FETCH_TODOS_PENDING:
             return {
                  ...state,
-                 pending: true,
+                 isFetching: true,
                 }
         case FETCH_TODOS_SUCCESS:
             return {
                 ...state,
-                pending: false,
+                isFetching: false,
                 todos: action.payload
             }
         case FETCH_TODOS_ERROR:
             return {
                 ...state,
-                pending: false,
+                todos: state.todos.length === 0 ? {} : state.todos,
+                isFetching: false,
                 error: action.error
             }
         case OPEN_TODO_FORM:
@@ -81,18 +80,14 @@ const todoReducer = (state=initialState, action) =>{
                     ...state.todos
                 ] 
             }
-        case UPDATE_TODO:
-            return Object.assign({}, state, {
-                todos: state.todos.map((todo)=>{
-                    if(todo.id !== action.payload){
-                        return todo
-                    }
 
-                    return Object.assign({}, todo, {
-                        text: action.title
-                    })
-                })
-            })
+        case UPDATE_TODO:
+            return {
+                ...state,
+                todos: state.todos.map( todo => todo.id === action.payload.id ? ( todo = action.payload ) : todo
+                )
+            }
+
         case DELETE_TODO:
             return {
                 ...state,
@@ -113,7 +108,7 @@ const todoReducer = (state=initialState, action) =>{
             })
 
         default:
-            return { ...state }
+            return state
     }
 }
 

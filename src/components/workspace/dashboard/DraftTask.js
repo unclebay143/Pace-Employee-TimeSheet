@@ -4,7 +4,7 @@ import { TextInput, TextArea, DataList, Datalist } from '../../layouts/FormInput
 
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { assignTask } from '../../../actions/task/taskAction';
+// import { assignTask } from '../../../actions/task/taskAction';
 
 
 
@@ -56,7 +56,7 @@ class DraftTask extends Component {
                         // validationSchema = {}
                         onSubmit={ values =>{
                           // console.log(values)
-                          this.props.assignTask(values)
+                          // this.props.assignTask(values)
                           console.log(values)
                           
                         }
@@ -186,8 +186,9 @@ class DraftTask extends Component {
 //   AllTasks: state.task
 // })
 
-DraftTask.propTypes = {
-  assignTask: PropTypes.func.isRequired
-}
+// DraftTask.propTypes = {
+//   assignTask: PropTypes.func.isRequired
+// }
 
-export default connect(null,{ assignTask })(DraftTask);
+// export default connect(null,{ assignTask })(DraftTask);
+export default DraftTask;

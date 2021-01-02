@@ -9,13 +9,13 @@ import todoReducer from './todo/todoReducer'
 
 
 const rootReducer = combineReducers({
-    task: taskReducer, 
     authenticationState: authReducer,
-    employee: employeeReducer,
+    tasks: taskReducer, 
+    todos: todoReducer,
+    employees: employeeReducer,
     timerReport: TimerReportReducer,
     timerStatus: timerReducer,
     message: message,
-    todoReducer: todoReducer
 })
 
 export default rootReducer;

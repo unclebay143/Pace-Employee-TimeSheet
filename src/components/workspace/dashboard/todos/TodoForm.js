@@ -22,7 +22,7 @@ import { closeTodoForm, addTodo } from '../../../../actions/todo/todoAction';
 
 
 const TodoForm = () =>{
-    const { isTodoFormOpen } = useSelector((state)=> state.todoReducer);
+    const { isTodoFormOpen } = useSelector((state)=> state.todos);
     const dispatch = useDispatch()
     
     return (
