@@ -13,6 +13,7 @@ const register = (workSpaceName, workSpaceEmail, password) => (dispatch) => {
 
     return AuthService.register(workSpaceName, workSpaceEmail, password)
         .then((response) => {
+            console.log(response)
             dispatch({
                 type: REGISTER_SUCCESS,
             });

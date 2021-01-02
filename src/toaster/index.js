@@ -16,8 +16,8 @@ const logOutSuccess = () => toast.warning('Logout Successful')
 
 
 // Todo
-
 const invalidTodoTitle  =  () => toast.warning('Todo title is required')
+const netWorkError  =  () => toast.warning('Network Error')
 
 
 
@@ -29,5 +29,6 @@ export{
     registrationFailLogger,
     registrationCompletedLogger,
     logOutSuccess,
-    invalidTodoTitle
+    invalidTodoTitle,
+    netWorkError
 }

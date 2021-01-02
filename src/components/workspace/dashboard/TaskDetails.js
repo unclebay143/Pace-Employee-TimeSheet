@@ -1,13 +1,24 @@
 import React, { Component } from 'react';
 
-import {NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
 import Button from '../../layouts/Button';
 
 import unclebay from '../../pages/pages-images/ayodele_samuel_adebayo.jpg';
 import attachment from '../../pages/pages-images/v.jpg';
 
-export default class TaskDetails extends Component {
+
+class TaskDetails extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      tasks: this.props.tasks
+    }
+  }
+
+
   render() {
+  console.log(this.props.tasks)
     return (
       <>
         <section className="py-0">
@@ -149,3 +160,10 @@ export default class TaskDetails extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) =>{
+  const { tasks } = state
+  return { tasks }
+}
+
+export default connect(mapStateToProps, null)(TaskDetails)

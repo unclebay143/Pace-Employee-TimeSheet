@@ -21,7 +21,7 @@ const formatDate = ( date )=>{
 const TodoRows = () => {
 
     // Destructure todos from the todoReducer from store
-    const { todos, pending } = useSelector((state)=>state.todoReducer)
+    const { todos, pending } = useSelector((state)=>state.todos)
     const dispatch = useDispatch()
 
     // Invoke fetchTodos function to fetch todos from server
