@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {NavLink} from 'react-router-dom';
+import {NavLink, Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { getAcceptedTask } from '../../../../actions/task/taskAction';
@@ -42,12 +42,7 @@ const taskHeader = [
       //       >
       //         Delete
       //       </button>
-      //       <button
-      //         className="btn btn-danger btn-xs"
-      //         onClick={(e) => handleDelete(row)} 
-      //       >
-      //         Delete
-      //       </button>
+           
       //       </>
       //     );
       //   },
@@ -88,9 +83,7 @@ class AcceptedTasks extends Component {
       }
     }
 }
-
   render() {
-    
     const { acceptedTasks} = this.props;
     const selectRow = {
       mode: 'checkbox' 

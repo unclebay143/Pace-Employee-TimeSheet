@@ -10,42 +10,29 @@ import paginationFactory from 'react-bootstrap-table2-paginator';
 
 
 const taskHeader = [
-      // {
-      //   dataField: 'id',
-      //   text: 'S/N'
-      // },
-      
-      // {
-      //   dataField: 'id',
-      //   // text: 'Task',
-      // },
+     
       {
         dataField: 'title',
-        // text: 'Attachment',
+        text: 'Title',
+        headerAttrs: {
+          hidden:true
+        }
       },
       {
         dataField: 'dueDate',
-        // text: 'Due Date',
+        text: 'Due Date',
+        headerAttrs: {
+          hidden:true
+        }
       },
       {
         dataField: 'completed',
-        // text: 'Due Date',
+        text: 'Status',
+        headerAttrs: {
+          hidden:true
+        },
       },
 ];
-
-// rowEvents to display full details of each row
-//  to be converted to a fcn that will render the task details
-
-const taskDetails =  {
-  onClick: (e, row, rowIndex) => {  
-    console.log(`clicked on row with index: ${rowIndex}`);
-    console.log(`details: ${JSON.stringify(row)}`);
-    alert(`Title: ${JSON.stringify(row.title)}`);
-    console.log(`S/N: ${JSON.stringify(row.id)}`);
-    console.log(` and with details: ${JSON.stringify(taskHeader[rowIndex])}`);
-  }
-};
-
 
 const navigate = <>
   <div className="btn-group">
@@ -71,12 +58,7 @@ const navigate = <>
       </li>
     </ul>
   </div>
-  {/* <div className="btn-group">
-    <NavLink exact to="/dashboard/task/all-tasks" className="sidebar-link text-muted">
-      <i className="fa fa-sync text-gray"/>
-      <span>sync</span>
-    </NavLink>
-  </div> */}
+
   <div className="btn-group">
     <a data-toggle="dropdown" href="#" className="btn mini blue">
     More
@@ -96,14 +78,11 @@ class AllTasks extends Component {
   constructor(props){
     super(props)
     this.state = {
-      ComponentDidMount() {
-        this.props.getTasks();
-        // this.props.FetchTask();
-      }
+  
     }
 }
 
-componentWillMount() {
+componentDidMount() {
   const {FetchTask} = this.props;
   FetchTask();
 }
@@ -116,11 +95,17 @@ shouldComponentRender() {
   return true;
 }
 
+// double click to view taskDetails
+taskDetails =  {
+  onDoubleClick: (e, row, rowIndex) => { 
+      this.props.history.push(`/dashboard/task/view-task/${row.id}`)
+  }
+};
+
   render() {
-    
     const { tasks} = this.props;
     const selectRow = {
-      mode: 'checkbox' 
+      mode: 'checkbox',
     };
     return (
       <div >
@@ -135,7 +120,8 @@ shouldComponentRender() {
           enableSearch = { true }
           pagination = { paginationFactory() }
           controlHeader = { navigate }
-          rowEvents = { taskDetails }
+          rowEvents = { this.taskDetails }
+          noDataIndication={'No available task'}
         />
       </div>
     )

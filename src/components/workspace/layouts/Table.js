@@ -13,8 +13,8 @@ export default class Table extends Component {
       keyField, data, columns, bordered, enableSearch, 
       selectRow, pagination, customInput, customInputName, 
       customInputPlaceHolder, customButtonType, customButtonLabel, 
-      customButtonFunction, controlHeader, rowEvents, enableClearSearchButton
-    } = this.props;
+      customButtonFunction, controlHeader, rowEvents, enableClearSearchButton,
+      noDataIndication } = this.props;
     const { SearchBar, ClearSearchButton } = Search;
     const {title} = this.props;
    
@@ -132,6 +132,7 @@ export default class Table extends Component {
                             pagination={ pagination }
                             selectRow = {selectRow}
                             rowEvents={ rowEvents }
+                            noDataIndication={  noDataIndication }
                             hover
                           />
                         </div>
