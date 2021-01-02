@@ -50,7 +50,7 @@ const Dashboard = () =>{
                                 <Switch>
                                     <Route path="/dashboard/todos" component={Todo} />
                                     <Route path="/dashboard/task" component={Task} />
-                                    <Route exact path="/dashboard/profile" component={Profile} />
+                                    <Route exact path="/dashboard/profile/:id" component={Profile} />
                                     <Route exact path="/dashboard/billing-report" component={BillingReport} />
                                     <Route exact path="/dashboard/timer-report" component={TimerReport} />
                                     {/* <Route exact path="/dashboard/task" component={EmployeeTasks} /> */}

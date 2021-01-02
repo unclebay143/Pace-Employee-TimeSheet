@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
     authenticationState: authReducer,
     tasks: taskReducer, 
     todos: todoReducer,
-    employee: employeeReducer,
+    employees: employeeReducer,
     timerReport: TimerReportReducer,
     timerStatus: timerReducer,
     message: message,

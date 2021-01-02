@@ -1,6 +1,8 @@
 // React
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import Button from '../../layouts/Button';
 import unclebay from '../../pages/pages-images/ayodele_samuel_adebayo.jpg';
 
@@ -26,6 +28,16 @@ const ProfileRow = (props) => {
 
 
 const Profile = () =>{
+    const params = useParams()
+    const [ user, setUser ] = useState({})
+
+    useEffect(() => {
+        const getUser = async() =>{
+            const { data } = await axios.get('http://fakerestapi.azurewebsites.net/api/v1/Users/'+params.id)
+            setUser(data)
+        }
+        getUser()
+    })
     return (
         <>
             <div className="container">
@@ -55,7 +67,7 @@ const Profile = () =>{
                                         {/* <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width={150} /> */}
                                         <img src={unclebay} alt="Admin" className="rounded-circle" width={150} />
                                         <div className="mt-3">
-                                            <h4>Ayodele S. Adebayo</h4>
+                                            <h4>{user.userName} </h4>
                                             <p className="text-secondary mb-1">Frontend Engineer</p>
                                             <p className="text-muted font-size-sm">Forestry Area, Bako, Gwagwalada, Abuja</p>
                                             <Link to="/dashboard/edit"><Button className="btn btn-primary mr-2" label="Edit"/></Link>
