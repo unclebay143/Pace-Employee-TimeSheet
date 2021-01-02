@@ -13,7 +13,7 @@ export default function EmployeeList(){
         // console.log(employees)
         const Header = [
             {
-              dataField: '',
+              dataField: '1',
               text: 'S/N'
             },
             {

@@ -33,7 +33,7 @@ const deleteTodo = async (id) => {
 
 // Update target todo from the server
 const updateTodo = async (id) => {
-    await axios.delete(`${ TODO_API_URL }/${id}`)
+    await axios.put(`${ TODO_API_URL }/${id}`)
 }
 
 export default { 

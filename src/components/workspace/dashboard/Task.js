@@ -36,7 +36,7 @@ class Task extends Component {
                 <Route exact path="/dashboard/task/accepted-tasks" component={AcceptedTasks} />
                 <Route exact path="/dashboard/task/draft-taskk" component={SampleCompose} />
                 <Route exact path="/dashboard/task/all-task" component={TaskInboxSample} />
-                {/* <Route exact path="/dashboard/task/view-taskk" component={Sample} /> */}
+                <Route exact path="/dashboard/task/view-taskk" component={Sample} />
               </Switch>
                 {/* <Sample />
                 <DraftTask />

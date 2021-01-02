@@ -16,9 +16,9 @@ import {
 const getTodos = () => ( dispatch ) =>{
     dispatch({type: FETCH_TODOS_PENDING})
     return TodoService.fetchTodos()
-    .then((res) => {
-        dispatch({ type: FETCH_TODOS_SUCCESS, payload: res.data })
-        return res.data;          
+    .then((response) => {
+        dispatch({ type: FETCH_TODOS_SUCCESS, payload: response.data })
+        return response.data;          
     })
     .catch((error)=>dispatch({ type: FETCH_TODOS_ERROR, payload: error }))
 }
@@ -40,6 +40,7 @@ const closeTodoForm = () =>{
 
 // Add new Todo
 const addTodo = (newTodo) => (dispatch) =>{
+    // dispatch({ type: ADD_TODO, payload: newTodo })
     return TodoService.addTodo(newTodo)
     .then((response) =>{
         dispatch({
