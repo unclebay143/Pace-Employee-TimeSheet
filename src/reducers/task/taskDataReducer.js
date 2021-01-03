@@ -7,7 +7,7 @@ import axios from "axios";
 
 export const FetchTask = () => {
   return dispatch => {
-    dispatch(getTasks());
+    // dispatch(getTasks());
     axios.get('http://fakerestapi.azurewebsites.net/api/v1/Activities')
     .then((res) => {
         console.log(res)
