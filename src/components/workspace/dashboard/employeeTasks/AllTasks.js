@@ -7,7 +7,23 @@ import { FetchTask } from '../../../../reducers/task/taskDataReducer';
 
 import Table from '../../layouts/Table';
 import paginationFactory from 'react-bootstrap-table2-paginator';
+import filterFactory, { selectFilter } from 'react-bootstrap-table2-filter';
 
+
+const selectOptionsArr = [
+  {
+  value: 0,
+  label: 'true'
+}, 
+{
+  value: 1,
+  label: 'false'
+}, 
+// {
+//   value: 2,
+//   label: 'unknown'
+// }
+];
 
 const taskHeader = [
      
@@ -31,6 +47,10 @@ const taskHeader = [
         headerAttrs: {
           hidden:true
         },
+        // formatter: cell => selectOptionsArr.filter(opt => opt.value === cell)[0].label || '',
+        //   filter: selectFilter({
+        //     options: selectOptionsArr
+        //   })
       },
 ];
 
@@ -122,6 +142,7 @@ taskDetails =  {
           controlHeader = { navigate }
           rowEvents = { this.taskDetails }
           noDataIndication={'No available task'}
+          filter={ filterFactory() }
         />
       </div>
     )

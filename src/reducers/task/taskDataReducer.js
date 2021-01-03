@@ -123,7 +123,7 @@ export const acceptedTasks = [
         id: '9',
         task: 'testing3',
         dueDate: '16/06/21',
-        status: 'accept',
+        status: 'pending',
         requests: 'requested'
       },
       {
@@ -137,7 +137,7 @@ export const acceptedTasks = [
         id: '11',
         task: 'testing111',
         dueDate: '16/06/21',
-        status: 'accept',
+        status: 'pending',
         requests: 'requested'
       }
 ]
