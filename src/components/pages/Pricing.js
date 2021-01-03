@@ -21,7 +21,7 @@ const Pricing = () => {
                 <div className="row mt-3 mt-4 p-lg-2 d-flex justify-content-center">
                     <div className="p-2 border" data-aos="fade-down">
                         <h2 className="mb-3 pace-accent-color text-center">
-                        <FontAwesomeIcon icon={faSitemap} />&nbsp;Premium
+                        <FontAwesomeIcon icon={faSitemap} />&nbsp;Premium...
                         </h2>
                         <h5 className="mb-4 text-center">#32, 000 / month</h5>
                         <Link to="/pricing">
@@ -38,7 +38,7 @@ const Pricing = () => {
                     <div>&nbsp;</div>
                     <div className="p-2 border mt-md-0 mt-3" data-aos="fade-down">
                         <h2 className="mb-3 pace-accent-color text-center">
-                        <FontAwesomeIcon icon={faSnowflake} />&nbsp;Basic
+                        <FontAwesomeIcon icon={faSnowflake} />&nbsp;Basic...
                         </h2>
                         <h5 className="mb-4 text-center">#12, 000 / month</h5>
                         <Link to="/pricing">
@@ -55,7 +55,7 @@ const Pricing = () => {
                     <div>&nbsp;</div>
                     <div className="p-2 bg-dark mt-md-0 mt-3" data-aos="fade-down">
                         <h2 className="mb-3 pace-accent-color text-center">
-                        <FontAwesomeIcon icon={faBookReader} />&nbsp;Free
+                        <FontAwesomeIcon icon={faBookReader} />&nbsp;Free....
                         </h2>
                         <h5 className="mb-4  text-white text-center">#0 / month</h5>
                         <Link to="/pricing">
