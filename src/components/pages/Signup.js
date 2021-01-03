@@ -61,8 +61,8 @@ const Signup = () =>{
                         <Formik 
                         
                             initialValues={{
-                                workSpaceName : '',
-                                workSpaceEmail : '',
+                                companyName : '',
+                                email : '',
                                 password: '',
                                 confirmPassword: '',
                                 termsOfService: false
@@ -87,42 +87,42 @@ const Signup = () =>{
                                 ({ values, errors, touched, isSubmitting })=>(
                                     <Form>
                                         <div className="form-group signupForm">
-                                            <div className="workSpaceName-wrapper">
+                                            <div className="companyName-wrapper">
                                                 {/* <label className="mt-3">Workspace Name """validate workspace name here onChange"""</label> */}
                                                 <TextInput 
-                                                    name="workSpaceName"
-                                                    id="workSpaceName"
+                                                    name="companyName"
+                                                    id="companyName"
                                                     type="text"
                                                     label="Workspace Name"
                                                     labelClassName="mt-3"
                                                     placeholder="Bascom Limited"
                                                     className={`form-control lead p-2 ${
-                                                        touched.workSpaceName && errors.workSpaceName ? "is-invalid" : ""
+                                                        touched.companyName && errors.companyName ? "is-invalid" : ""
                                                     }`}                                                        
-                                                    title = {touched.workSpaceName && errors.workSpaceName ? "Tooltip Text" : "Tooltip Text"}
+                                                    title = {touched.companyName && errors.companyName ? "Tooltip Text" : "Tooltip Text"}
                                                     data-placement = "bottom"
                                                 />
                                                 <ErrorMessage
                                                     component="span"
-                                                    name="workSpaceName"
+                                                    name="companyName"
                                                     className="invalid-feedback p-0"
                                                 />
                                             </div>
                                             <div className="email-wrapper">
                                                 <TextInput 
-                                                    name="workSpaceEmail"
-                                                    id="workSpaceEmail"
+                                                    name="email"
+                                                    id="email"
                                                     type="email"
                                                     label="Email"
                                                     labelClassName="mt-3"
                                                     className={`form-control lead p-2 ${
-                                                        touched.workSpaceEmail && errors.workSpaceEmail ? "is-invalid" : ""
+                                                        touched.email && errors.email ? "is-invalid" : ""
                                                     }`}
                                                     placeholder="Email" 
                                                 />
                                                 <ErrorMessage
                                                     component="div"
-                                                    name="workSpaceEmail"
+                                                    name="email"
                                                     className="invalid-feedback p-0"
                                                 />
                                             </div>
@@ -209,8 +209,8 @@ const Signup = () =>{
 }
 
 // Signup.propTypes = {
-//     workSpaceName : PropTypes.string.isRequired(),
-//     workSpaceEmail : PropTypes.string.isRequired(),
+//     companyName : PropTypes.string.isRequired(),
+//     email : PropTypes.string.isRequired(),
 //     password : PropTypes.string.isRequired(),
 //     confirmPassword : PropTypes.string.isRequired(),
 // }

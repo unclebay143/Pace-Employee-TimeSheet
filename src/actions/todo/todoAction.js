@@ -3,7 +3,7 @@ import {
     FETCH_TODOS_PENDING, 
     FETCH_TODOS_SUCCESS, 
     FETCH_TODOS_ERROR, 
-    EDIT_TODO, 
+    UPDATE_TODO, 
     ADD_TODO, 
     DELETE_TODO,
     TOGGLE_TODO_COMPLETE,
@@ -16,9 +16,9 @@ import {
 const getTodos = () => ( dispatch ) =>{
     dispatch({type: FETCH_TODOS_PENDING})
     return TodoService.fetchTodos()
-    .then((res) => {
-        dispatch({ type: FETCH_TODOS_SUCCESS, payload: res.data })
-        return res.data;          
+    .then((response) => {
+        dispatch({ type: FETCH_TODOS_SUCCESS, payload: response.data })
+        return response.data;          
     })
     .catch((error)=>dispatch({ type: FETCH_TODOS_ERROR, payload: error }))
 }
@@ -37,13 +37,12 @@ const closeTodoForm = () =>{
     }
 }
 
-// Add new todo
+
+// Add new Todo
 const addTodo = (newTodo) => (dispatch) =>{
-    console.log(newTodo, 'action')
+    // dispatch({ type: ADD_TODO, payload: newTodo })
     return TodoService.addTodo(newTodo)
     .then((response) =>{
-        console.log(response)
-        console.log(response.data)
         dispatch({
             type: ADD_TODO,
             payload: response.data
@@ -52,10 +51,19 @@ const addTodo = (newTodo) => (dispatch) =>{
     .catch((error)=>{
         console.log(error)
     })
-    // return{
-    //     type: ADD_TODO,
-    //     payload: task
-    // }
+}
+
+
+// Delete Todo
+const deleteTodo = (id) => (dispatch) =>{
+    dispatch({ type: DELETE_TODO, payload: id }) // Update the UI even when error occurs, since server will retain the undeleted item
+    return TodoService.deleteTodo(id)
+}
+
+
+// Edit Todo
+const updateTodo = (id) => (dispatch) =>{
+    dispatch({ type: UPDATE_TODO, payload: id })
 }
 
 // Toggle todo completion
@@ -65,15 +73,6 @@ const toggleTodoCompletion = (id) =>{
         payload: id
     }
 }
-
-// Delete todo
-const deleteTodo = (id) =>{
-    return{
-        type: DELETE_TODO,
-        payload: id
-    }
-}
-
 
 
 export {

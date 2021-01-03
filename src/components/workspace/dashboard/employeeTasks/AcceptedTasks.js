@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {NavLink, Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { getAcceptedTask } from '../../../../actions/task/taskAction';
+// import { getAcceptedTask } from '../../../../actions/task/taskAction';
 
 import Table from '../../layouts/Table';
 import paginationFactory from 'react-bootstrap-table2-paginator';
@@ -80,7 +80,7 @@ class AcceptedTasks extends Component {
     super(props)
     this.state = {
       ComponentDidMount() {
-        this.props.getAcceptedTask();
+        // this.props.getAcceptedTask();
       }
     }
 }
@@ -117,5 +117,6 @@ const mapStateToProps = state => ({
 // })
 
 
-export default connect(mapStateToProps,{getAcceptedTask})(AcceptedTasks);
+// export default connect(mapStateToProps,{getAcceptedTask})(AcceptedTasks);
+export default AcceptedTasks;
 

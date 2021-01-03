@@ -1,35 +1,76 @@
+import TaskService from "../../services/task.service";
 import { 
-  GET_TASKS,
-  GET_TASKS_SUCCESS,
-  ASSIGN_TASKS,
-  GET_ACCEPTED_TASKS 
+  FETCH_TASKS_PENDING,
+  FETCH_TASKS_SUCCESS,
+  FETCH_TASKS_ERROR,
+  ADD_TASK,
+  TASKS_ERROR,
+  DELETE_TASK,
+  UPDATE_TASK,
+  TOGGLE_TODO_COMPLETE,
+  TOGGLE_TASK_COMPLETE
 } from '../types';
 
-// getTask action
-export const getTasks = () => {
-  return {
-    type:GET_TASKS
-  };
+// don't forget to change this to async::Sam
+
+// Fetch Task action
+const getTasks = () => ( dispatch ) =>{
+  dispatch({ type: FETCH_TASKS_PENDING });
+  return TaskService.fetchTasks()
+  .then((response)=> {
+    dispatch({ type: FETCH_TASKS_SUCCESS, payload: response.data });
+    return response.data;
+  })
+  .catch((error) =>{
+    dispatch({ type: FETCH_TASKS_ERROR, payload: error })
+  })
 };
 
-export const getTasksSuccess = (task) => {
-  return {
-    type: GET_TASKS_SUCCESS,
-    payload: task
-  };
-};
 
-// assignTask action
-export const assignTask = (task) => {
-  return {
-    type:ASSIGN_TASKS,
-    payload: task
-  };
-};
 
-// getAcceptedTask action
-export const getAcceptedTask = () => {
-  return {
-    type:GET_ACCEPTED_TASKS,
-  };
-};
+// Add new Task 
+const addTask  = (newTask ) => (dispatch) =>{
+  return TaskService.addTask(newTask )
+  .then((response) =>{
+      dispatch({
+          type: ADD_TASK,
+          payload: response.data
+      })
+  })
+  .catch((error)=>{
+      console.log(error)
+  })
+}
+
+
+// Delete Task 
+const deleteTask  = (id) => (dispatch) =>{
+  dispatch({ type: DELETE_TASK, payload: id }) // Update the UI even when error occurs, since server will retain the undeleted item
+  return TaskService.deleteTask(id)
+}
+
+
+// Edit Task 
+const updateTask  = (id) => (dispatch) =>{
+  dispatch({ type: UPDATE_TASK, payload: id })
+}
+
+
+// Toggle todo completion
+const toggleTaskCompletion = (id) =>{
+  return{
+      type: TOGGLE_TASK_COMPLETE,
+      payload: id
+  }
+}
+
+
+
+
+export {
+  addTask,
+  getTasks,
+  updateTask,
+  deleteTask,
+  toggleTaskCompletion
+}
