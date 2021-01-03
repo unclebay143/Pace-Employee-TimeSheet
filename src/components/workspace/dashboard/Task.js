@@ -30,7 +30,7 @@ class Task extends Component {
             <section className="">
               <Switch>
                 {/* uncomment the routes to see the samples, sorry for the stress */}
-                <Route exact path="/dashboard/task/view-task" component={TaskDetails} />
+                <Route exact path="/dashboard/task/view-task/:id" component={TaskDetails} />
                 <Route exact path="/dashboard/task/draft-task" component={DraftTask } />
                 <Route exact path="/dashboard/task/all-tasks" component={AllTasks} />
                 <Route exact path="/dashboard/task/accepted-tasks" component={AcceptedTasks} />

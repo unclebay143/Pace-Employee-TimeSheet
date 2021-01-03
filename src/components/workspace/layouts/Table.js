@@ -13,12 +13,8 @@ export default class Table extends Component {
       keyField, data, columns, bordered, enableSearch, 
       selectRow, pagination, customInput, customInputName, 
       customInputPlaceHolder, customButtonType, customButtonLabel, 
-<<<<<<< HEAD
-      customButtonFunction, controlHeader, rowEvents} = this.props;
-=======
-      customButtonFunction, controlHeader, rowEvents, enableClearSearchButton
-    } = this.props;
->>>>>>> unclebay_develop
+      customButtonFunction, controlHeader, rowEvents, enableClearSearchButton,
+      noDataIndication, filter } = this.props;
     const { SearchBar, ClearSearchButton } = Search;
     const {title} = this.props;
    
@@ -48,7 +44,7 @@ export default class Table extends Component {
                                   enableSearch ?
                                    (
                                     <>
-                                     <SearchBar { ...props.searchProps } className="search-box form-control"/>
+                                     <SearchBar { ...props.searchProps } className="search-box form-control mt-0"/>
                                      {
                                        enableClearSearchButton ? 
                                           <ClearSearchButton { ...props.searchProps } className="btn form-control pace-btn-accent my-0 ml-5"/>
@@ -134,8 +130,10 @@ export default class Table extends Component {
                             { ...props.baseProps }
                             bordered={ bordered }
                             pagination={ pagination }
-                            selectRow = {selectRow}
+                            selectRow = { selectRow }
                             rowEvents={ rowEvents }
+                            noDataIndication={  noDataIndication }
+                            filter={ filter }
                             hover
                           />
                         </div>

@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 import Table from '../../layouts/Table';
 import paginationFactory from 'react-bootstrap-table2-paginator';
+import filterFactory, { selectFilter } from 'react-bootstrap-table2-filter';
 import { getTasks } from '../../../../actions/task/taskAction';
 import { useSelector } from 'react-redux';
 
@@ -18,6 +19,11 @@ const AllTasks = () => {
   const selectRow = {
     mode: 'checkbox' 
   };
+  const taskDetails =  {
+    onDoubleClick: (e, row, rowIndex) => { 
+        this.props.history.push(`/dashboard/task/view-task/${row.id}`)
+    }
+  };
   return (
     <div >
       
@@ -32,48 +38,42 @@ const AllTasks = () => {
         pagination = { paginationFactory() }
         controlHeader = { navigate }
         rowEvents = { taskDetails }
+        // rowEvents = { this.taskDetails }
+        noDataIndication={'No available task'}
+        filter={ filterFactory() }
       />
     </div>
   )
 }
 
-
 const taskHeader = [
-  // {
-  //   dataField: 'id',
-  //   text: 'S/N'
-  // },
-  
-  // {
-  //   dataField: 'id',
-  //   // text: 'Task',
-  // },
+     
   {
     dataField: 'title',
-    // text: 'Attachment',
-  },
-  {
-    dataField: 'description',
-    // text: 'Due Date',
+    text: 'Title',
+    headerAttrs: {
+      hidden:true
+    }
   },
   {
     dataField: 'dueDate',
-    // text: 'Due Date',
+    text: 'Due Date',
+    headerAttrs: {
+      hidden:true
+    }
+  },
+  {
+    dataField: 'completed',
+    text: 'Status',
+    headerAttrs: {
+      hidden:true
+    },
+    // formatter: cell => selectOptionsArr.filter(opt => opt.value === cell)[0].label || '',
+    //   filter: selectFilter({
+    //     options: selectOptionsArr
+    //   })
   },
 ];
-
-// rowEvents to display full details of each row
-//  to be converted to a fcn that will render the task details
-
-const taskDetails =  {
-onClick: (e, row, rowIndex) => {  
-console.log(`clicked on row with index: ${rowIndex}`);
-console.log(`details: ${JSON.stringify(row)}`);
-alert(`Title: ${JSON.stringify(row.title)}`);
-console.log(`S/N: ${JSON.stringify(row.id)}`);
-console.log(` and with details: ${JSON.stringify(taskHeader[rowIndex])}`);
-}
-};
 
 
 const navigate = <>
@@ -100,12 +100,6 @@ All
   </li>
 </ul>
 </div>
-{/* <div className="btn-group">
-<NavLink exact to="/dashboard/task/all-tasks" className="sidebar-link text-muted">
-  <i className="fa fa-sync text-gray"/>
-  <span>sync</span>
-</NavLink>
-</div> */}
 <div className="btn-group">
 <a data-toggle="dropdown" href="#" className="btn mini blue">
 More

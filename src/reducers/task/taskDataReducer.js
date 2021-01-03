@@ -7,7 +7,7 @@ import axios from "axios";
 
 export const FetchTask = () => {
   return dispatch => {
-    dispatch(getTasks());
+    // dispatch(getTasks());
     axios.get('http://fakerestapi.azurewebsites.net/api/v1/Activities')
     .then((res) => {
         console.log(res)
@@ -123,7 +123,7 @@ export const acceptedTasks = [
         id: '9',
         task: 'testing3',
         dueDate: '16/06/21',
-        status: 'accept',
+        status: 'pending',
         requests: 'requested'
       },
       {
@@ -137,7 +137,7 @@ export const acceptedTasks = [
         id: '11',
         task: 'testing111',
         dueDate: '16/06/21',
-        status: 'accept',
+        status: 'pending',
         requests: 'requested'
       }
 ]
