@@ -35,7 +35,7 @@ const Footer = () => {
               <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                 <h6 className="text-uppercase font-weight-bold small-footer-heading">Pace Timesheet</h6>
                 <hr className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style={{width: '60px'}} />
-                <p>we are working hard to replace this section with some better wording but TOLUWANI and AISHA are still on break .</p>
+                <p>Pace is an employee time tracking system, which provides employee clock time (timesheet).</p>
               </div>
               <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
                 <h6 className="text-uppercase font-weight-bold">Services</h6>
