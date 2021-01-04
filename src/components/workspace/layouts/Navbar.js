@@ -14,6 +14,7 @@ import { logout } from '../../../actions/auth/authAction'
 // Toast
 import { ToastContainer } from 'react-toastify';
 import { logOutSuccess } from '../../../toaster';
+import { AUTH_API_URL } from '../../../services/root-endpoints';
 
 
 const Navbar = () =>{
@@ -22,26 +23,26 @@ const Navbar = () =>{
     const [ user_last_name, setUser_Last_name ] = useState('user_last_name')
     const [ user_Image, setUser_image ] = useState('user_image')
     const data = {
-        first_name: user_first_name,
-        last_name: user_last_name,
-        avatar: user_Image
+        first_name: "demo",
+        last_name: "demo",
+        avatar: "demo"
     }
     // Store data === userDummy-data inside localStorage
-    localStorage.setItem('currentUser', JSON.stringify(data))
+    // localStorage.setItem('currentUser', JSON.stringify(data))
 
     const dispatch = useDispatch();
     
-    useEffect(() => {
-        const getUser = async()=>{
-            const { data } = await axios.get('https://reqres.in/api/users/1');
-            localStorage.setItem('currentUser', JSON.stringify(data))
-            const { data: {first_name, last_name, avatar} } = JSON.parse(localStorage.getItem('currentUser'));
-            setUser_First_name(first_name)
-            setUser_Last_name(last_name)
-            setUser_image(avatar)
-        }
-        getUser()
-    }, [])
+    // useEffect(() => {
+    //     const getUser = async()=>{
+    //         const { data } = await axios.get(AUTH_API_URL +);
+    //         localStorage.setItem('currentUser', JSON.stringify(data))
+    //         const { data: {first_name, last_name, avatar} } = JSON.parse(localStorage.getItem('currentUser'));
+    //         setUser_First_name(first_name)
+    //         setUser_Last_name(last_name)
+    //         setUser_image(avatar)
+    //     }
+    //     getUser()
+    // }, [])
     
     const logOut = () =>{
         logOutSuccess()

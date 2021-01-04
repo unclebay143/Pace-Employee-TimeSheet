@@ -1,86 +1,21 @@
+// Server functions
 import AuthService from "../../services/auth.service";
+
+// Actions
 import {
-    REGISTER_SUCCESS,
-    REGISTER_FAIL,
-    LOGIN_SUCCESS,
-    LOGIN_FAIL,
     LOGOUT,
-    SET_MESSAGE,
 } from "../types";
 
 
-const register = (workSpaceName, workSpaceEmail, password) => (dispatch) => {
-
+export const register = (workSpaceName, workSpaceEmail, password) =>{
     return AuthService.register(workSpaceName, workSpaceEmail, password)
-        .then((response) => {
-            console.log(response)
-            dispatch({
-                type: REGISTER_SUCCESS,
-            });
+}
 
-            dispatch({
-                type: SET_MESSAGE,
-                payload: response.data.message,
-            });
-
-            return Promise.resolve(); 
-        },
-        (error) => {
-            const message =
-                (error.response &&
-                error.response.data &&
-                error.response.data.message) ||
-                error.message ||
-                error.toString();
-
-            dispatch({
-                type: REGISTER_FAIL,
-            });
-
-            dispatch({
-                type: SET_MESSAGE,
-                payload: message,
-            });
-
-            return Promise.reject();
-        }
-    );
-};
-
-
-const login = (username, password) => (dispatch) => {
+export const login = (username, password) => {
     return AuthService.login(username, password)
-        .then((data) => { // return jwt
-            dispatch({
-                type: LOGIN_SUCCESS,
-                payload: { user: data },
-            });
-
-            return Promise.resolve();
-        },
-        (error) => {
-        const message =
-            (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-            error.message ||
-            error.toString();
-
-        dispatch({
-            type: LOGIN_FAIL,
-        });
-
-        dispatch({
-            type: SET_MESSAGE,
-            payload: message,
-        });
-
-        return Promise.reject();
-        }
-    );
 };
 
-const logout = () => (dispatch) => {
+export const logout = () => (dispatch) => {
   console.log('hrereh');
 
 AuthService.logout();
@@ -90,9 +25,3 @@ dispatch({
 });
 };
 
-
-export{
-    register,
-    login,
-    logout
-}

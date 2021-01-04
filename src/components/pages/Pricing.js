@@ -1,11 +1,9 @@
+// React
 import { Link } from "react-router-dom";
-import Button from "../layouts/Button";
 
-//import pricing stylesheet
-import './pages-styles/pricing.css';
-//import react fontawesome
+// Layout
+import Button from "../layouts/Button";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import fontawesome icon
 import { faSitemap, faSnowflake, faBookReader } from '@fortawesome/free-solid-svg-icons';
 
 const Pricing = () => {

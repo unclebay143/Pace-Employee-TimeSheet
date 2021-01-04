@@ -185,6 +185,8 @@ header.container{
 .pricing-tags ul li{
   font-size: large;
   padding: 6px;
+  list-style-type:none;
+  cursor:pointer;
 }
 
 .pricing-tags ul{
