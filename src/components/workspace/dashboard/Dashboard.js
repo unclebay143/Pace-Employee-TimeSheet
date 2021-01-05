@@ -73,7 +73,7 @@ const Dashboard = () =>{
                                     <Route exact path="/dashboard/billing-report" component={BillingReport} />
                                     <Route exact path="/dashboard/timer-report" component={TimerReport} />
                                     {/* <Route exact path="/dashboard/task" component={EmployeeTasks} /> */}
-                                    <Route exact path="/dashboard/edit" component={EditEmployee} />
+                                    <Route exact path="/dashboard/edit/:id" component={EditEmployee} />
                                     <Route exact path="/dashboard/employ" component={AddEmployee} />
                                     <Route exact path="/dashboard/employee-list" component={EmployeeList} />
                                     <Route exact path="/dashboard" component={Index} />

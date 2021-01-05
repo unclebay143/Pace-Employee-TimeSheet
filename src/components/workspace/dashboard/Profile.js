@@ -30,18 +30,26 @@ const ProfileRow = (props) => {
 const Profile = () =>{
     const params = useParams()
     const [ user, setUser ] = useState({})
-    const currentUser = JSON.parse(localStorage.getItem('token'));
-    const { data  } = currentUser;
-    console.log(currentUser)
-    console.log(currentUser.data.response[0].staffID)
+
+    useEffect(() => {
+        
+        const getCurrentUser = JSON.parse(localStorage.getItem('token'));
+        const currentUser = getCurrentUser.data.response[0];
+        setUser(currentUser)
+        console.log(user)
+    }, [])
+    
     useEffect(() => {
         const getUser = async() =>{
+            const getCurrentUser = JSON.parse(localStorage.getItem('token'));
+            const currentUser = getCurrentUser.data.response[0];
+            const accessToken1 = getCurrentUser.data.accessToken
             const headers = {
                 'Content-Type': 'application/json',
-                'Authorization': ` ${currentUser.token} `
+                'Authorization': `Bearer ${accessToken1} `
               }
             // const { data } = await axios.get('https://pacetimesheet.herokuapp.com/api/users/companyName/userProfile/' + params.id)
-            const { response } = await axios.get('https://pacetimesheet.herokuapp.com/api/users/company1k/userProfile/' + currentUser.data.response[0].staffID)
+            const { response } = await axios.get('https://pacetimesheet.herokuapp.com/api/users/companyName/userProfile/' + user.staffID)
             console.log(response)
             // setUser(data)
             // setUser(data)
@@ -81,7 +89,7 @@ const Profile = () =>{
                                             <h4>{user.id} </h4>
                                             <p className="text-secondary mb-1">Frontend Engineer</p>
                                             <p className="text-muted font-size-sm">Forestry Area, Bako, Gwagwalada, Abuja</p>
-                                            <Link to="/dashboard/edit"><Button className="btn btn-primary mr-2" label="Edit"/></Link>
+                                            <Link to={`/dashboard/edit/${user.staffID}`}><Button className="btn btn-primary mr-2" label="Edit"/></Link>
                                             <Button className="btn btn-danger" label="Disable" />
                                         </div>
                                     </div>
@@ -92,12 +100,12 @@ const Profile = () =>{
                         <div className="col-md-8">
                             <div className="card mb-3">
                                 <div className="card-body">
-                                    <ProfileRow title="Full Name" label="Ayodele Samuel Adebayo" editable='true' />
+                                    <ProfileRow title="Full Name" label={ ` ${user.firstName} ${user.lastName}` } />
                                     <ProfileRow title="Email" label="unclebigbay@gmail.com" />
                                     <ProfileRow title="Department" label="Web development" />
                                     <ProfileRow title="Role" label="Frontend Engineer" />
-                                    <ProfileRow title="Salary" label="# 203, 900" />
-                                    <ProfileRow title="Phone" label="080 8382 6262" />
+                                    <ProfileRow title="Salary" label={`${user.billRateCharge}`} />
+                                    <ProfileRow title="Phone" label={`${user.phoneNumber}`} />
                                     <ProfileRow title="Address" label="Forestry Area, Bako, Gwagwalada, Abuja" />
                                 </div>
                             </div>
