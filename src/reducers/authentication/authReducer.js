@@ -8,18 +8,10 @@ import {
   LOGOUT,
 } from "../../actions/types";
 
-// get user from local storage
-const user = JSON.parse(localStorage.getItem("user"));
 
-// If user exist logged user in else log them out
-const initialState = user ? { 
-  isLoggedIn: true,
-  user
-} 
-:
-{
+const initialState = {
   isLoggedIn: false, 
-  user: {} 
+  currentUser: {} 
 };
 
 const authReducer = (state = initialState, action) =>{
@@ -27,11 +19,7 @@ const authReducer = (state = initialState, action) =>{
   switch (type) {
 
     case REGISTER_SUCCESS:
-      return {
-        ...state,
-        isLoggedIn: true,
-        user: payload
-      };
+      return state;
 
     case REGISTER_FAIL:
       return {
@@ -43,21 +31,21 @@ const authReducer = (state = initialState, action) =>{
       return {
         ...state,
         isLoggedIn: true,
-        user: payload.user,
+        currentUser: payload,
       };
 
     case LOGIN_FAIL:
       return {
         ...state,
         isLoggedIn: false,
-        user: null,
+        currentUser: null,
       };
 
     case LOGOUT:
       return {
         ...state,
         isLoggedIn: false,
-        user: null,
+        currentUser: null,
       };
 
     default:

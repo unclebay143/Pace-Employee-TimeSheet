@@ -31,9 +31,9 @@ const Dashboard = () =>{
         dispatch(getTasks())
     }, [])
 
-    if(!isLoggedIn){
-        return <Redirect to="/login" />
-    }
+    // if(!isLoggedIn){
+    //     return <Redirect to="/login" />
+    // }
 
     return(
         <>

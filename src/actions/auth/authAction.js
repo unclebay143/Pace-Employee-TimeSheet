@@ -6,22 +6,25 @@ import {
     LOGOUT,
 } from "../types";
 
-
-export const register = (workSpaceName, workSpaceEmail, password) =>{
-    return AuthService.register(workSpaceName, workSpaceEmail, password)
+export const getUserProfile = () => {
+    return AuthService.fetchUserProfile()
 }
 
-export const login = (username, password) => {
-    return AuthService.login(username, password)
+export const register = ({ companyName, email, password }, action) =>{
+    return AuthService.register(companyName, email, password, action)
+}
+
+export const login = ({ email, password }, action) => {
+    return AuthService.login(email, password, action)
 };
 
 export const logout = () => (dispatch) => {
-  console.log('hrereh');
 
-AuthService.logout();
+    localStorage.clear()
+    AuthService.logout();
 
-dispatch({
-    type: LOGOUT,
-});
+    dispatch({
+        type: LOGOUT,
+    });
 };
 

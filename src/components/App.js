@@ -12,6 +12,7 @@ import AOS from 'aos';
 import About from './pages/About';
 import Home from './pages/Home';
 import PageNotFound from './pages/404';
+import { getUserProfile } from '../actions/auth/authAction';
 
 
 function App() {
@@ -19,7 +20,12 @@ function App() {
     AOS.init({
       duration : 2000
     });
+
+    getUserProfile()
+    console.log('In App')
   }, []);
+
+
 
   return (
     <>

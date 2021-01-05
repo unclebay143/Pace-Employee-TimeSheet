@@ -9,7 +9,7 @@ import { faSitemap, faSnowflake, faBookReader } from '@fortawesome/free-solid-sv
 const Pricing = () => {
     return(
         <>
-            <div class="mb-1" id="pricing">&nbsp;</div>
+            <div className="mb-1" id="pricing">&nbsp;</div>
             <div className="container pricing mb-5 pricing-tags ">
                 <div className="text-center">
                     <h4 className="w-2 mt-5 mg-lg-0 pace-accent-color p-2"  data-aos="zoom-out-down">Pricing</h4>
