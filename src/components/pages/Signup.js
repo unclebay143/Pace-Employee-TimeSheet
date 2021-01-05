@@ -69,18 +69,7 @@ const Signup = () =>{
                             }}
                             validationSchema = {signUpSchema}
                             onSubmit={(values, action)=>{
-                                dispatch(register(values))
-                                .then(()=>{
-                                    action.setSubmitting(true)
-                                    registrationCompletedLogger()
-                                    setTimeout(() => {
-                                        history.push('/dashboard');
-                                    }, 2000);
-                                })
-                                .catch((err)=>{
-                                    registrationFailLogger()
-                                    action.setSubmitting(false)
-                                })
+                                dispatch(register(values, action))
                             }}
                         >
                             {

@@ -5,6 +5,8 @@ export const REGISTER_FAIL = "REGISTER_FAIL";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAIL = "LOGIN_FAIL";
 export const LOGOUT = 'LOGOUT';
+export const SYNC_CURRENT_USER = 'SYNC_CURRENT_USER';
+
 
 // Error Messages
 export const SET_MESSAGE = "SET_MESSAGE";

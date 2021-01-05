@@ -1,7 +1,8 @@
 // React
 import { React, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
-import { Redirect, Route, Switch } from 'react-router-dom/cjs/react-router-dom.min';
+import { useDispatch } from 'react-redux'
+import { Route, Switch } from 'react-router-dom/cjs/react-router-dom.min';
+import { useHistory } from 'react-router-dom';
 
 // Layouts
 import Navbar from '../layouts/Navbar';
@@ -18,22 +19,40 @@ import BillingReport from './reports/BillingReport';
 import Profile from './Profile';
 import Task from './Task';
 import Todo from './todos/Todo'
+
+// Actions
 import { getTodos } from '../../../actions/todo/todoAction';
 import { getTasks } from '../../../actions/task/taskAction';
+import { syncCurrentUser } from '../../../actions/auth/authAction';
 
 
 const Dashboard = () =>{
 
-    const { isLoggedIn } = useSelector(state => state.authenticationState)
+    const history = useHistory()
     const dispatch = useDispatch()
+    
+
+    console.log('dashboard');
     useEffect(() => {
+        const  currentUser  = JSON.parse(localStorage.getItem('token'));
+
+        if( currentUser === null || currentUser === undefined ){
+            history.push('./login');
+        }
+        
+        if ( currentUser ){
+            dispatch(syncCurrentUser( currentUser ))
+        }
+
+    },[])
+
+    useEffect(() => {
+        // Fetch user todo list
         dispatch(getTodos())
+
+        // Fetch user tasks
         dispatch(getTasks())
     }, [])
-
-    if(!isLoggedIn){
-        return <Redirect to="/login" />
-    }
 
     return(
         <>

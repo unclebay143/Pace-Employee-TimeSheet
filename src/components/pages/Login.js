@@ -6,7 +6,7 @@ import { Link, useHistory, withRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify'; 
 
 // Toast
-import { invalidDetailsLogger, userIsAuthenticatedLogger} from '../../toaster';
+import { userIsAuthenticatedLogger} from '../../toaster';
 
 // Layouts
 import Button from '../layouts/Button';
@@ -22,8 +22,6 @@ const Login = () =>{
     const { isLoggedIn } = useSelector((state)=>state.authenticationState)
     const history = useHistory();
     const dispatch = useDispatch()
-    // const { message } = useSelector((state)=>state.message)
-    
     useEffect(() => {
         document.title = 'Login | Pace'
         if(isLoggedIn){
@@ -67,13 +65,7 @@ const Login = () =>{
                                     }}
                                     validationSchema = {loginSchema}
                                     onSubmit= {(values, action)=>{
-                                        dispatch(login(values))
-                                        .catch(()=>{
-                                            invalidDetailsLogger()
-                                            setTimeout(() => {
-                                                action.setSubmitting(false)
-                                            }, 2000);
-                                        });
+                                        dispatch(login(values, action))
                                     }}
                                 >{({touched, errors, isSubmitting, handleSubmit}) => (
                                     <Form onSubmit={handleSubmit}>

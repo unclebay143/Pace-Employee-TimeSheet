@@ -1,302 +1,332 @@
-import { Formik, Form, ErrorMessage, Field } from 'formik';
-import React from 'react';
-import { TextInput } from '../../layouts/FormInput';
+// React
+import { ErrorMessage, Field, Form, Formik } from 'formik';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import Button from '../../layouts/Button';
+import { TextInput } from '../../layouts/FormInput';
 import { AddEmployeeSchema } from '../../Validation/Schema';
-
 
 const sampleCompany = {
     departments: [ 'web development', 'quality assurance', 'web design' ],
     employeeRoles: ['backend', 'frontend', 'database manager'],
     employeeType: ['admin', 'internal', 'staff'],
 }
+const names = [
+    {value: "Wale", label: "boy"},
+    {value: "Wale", label: "boy"},
+    {value: "Wale", label: "boy"},
+    {value: "Wale", label: "boy"}
+]
 
-const existingDepartment = sampleCompany.departments.map((department, index)=><option key={index} value={department}>{department}</option>)
-const availableRole = sampleCompany.employeeRoles.map((role, index)=><option key={index} value={role}>{role}</option>)
-const availableType = sampleCompany.employeeType.map((type, index)=><option key={index} value={type}>{type}</option>)
+const existingDepartment = sampleCompany.departments.map((department, index)=><option value={department} key={index}>{department}</option>)
+const availableRole = sampleCompany.employeeRoles.map((role)=><option value={role}>{role}</option>)
+const availableType = sampleCompany.employeeType.map((type)=><option value={type}>{type}</option>)
 
-export default function AddEmployee() {
+
+
+const AddEmployee = () =>{
+    const params = useParams();
+    const dispatch = useDispatch();
+    const user = {
+        userName: 'Ayodele Samuel Adebayo'
+    }
+
     return (
+        <>
+            <div className="container py-5">
+                <style>
+                    {
+                        `
+                        .dashboard-body-wrapper, .page-holder{
+                            background: #e9ecef;
+                        }
+                        `
+                    }
+                </style>
+                <div className="main-body">
+                    <div className="col-md-12">
+                        <div className="card mb-3">
+                            <div className="card-body">
+                                <Formik
+                                    initialValues={
+                                        {
+                                            firstName: '',
+                                            lastName: '',
+                                            department: '',
+                                            phone: '',
+                                            email: '',
+                                            role: '',
+                                            type: '',
+                                            salary: '',
+                                            address: '',
+                                            password: '',
+                                        }
+                                    }
+                                    validationSchema={AddEmployeeSchema}
+                                    onSubmit={(values)=>alert(JSON.stringify(values, null, 2))}
+                                >
+                                    { (({ values, touched, errors, handleSubmit, isSubmitting, resetForm })=>{
+                                        return <Form onSubmit={handleSubmit}>
+                                            <div className="mb-5 text-gray">
+                                                {/* <pre>{JSON.stringify(values, null, 2)}</pre> */}
+                                                <h5>ADD EMPLOYEE</h5>
+                                            </div>
+                                            <hr />
 
-        <div  className="container py-4">
-            <div className="p-2">
-                <div className="row ml-3">
-                    <h3>Add New Employee</h3>
+                                            {/* FIRST NAME */}
+                                            <div className="row">
+                                                <div className="col-sm-6 col-md-3">
+                                                    <h6 className="mb-0">First Name</h6>
+                                                </div>
+                                                <div className="col-sm-12 col-md-9 text-secondary" >
+                                                    <TextInput
+                                                        name="firstName"
+                                                        id="firstName"
+                                                        placeholder="Enter Firstname"
+                                                        type="text" 
+                                                        className={`form-control ${ touched.firstName && errors.firstName ? "is-invalid" : ""}`} 
+                                                        />
+                                                    <ErrorMessage
+                                                        component="div"
+                                                        name="firstName"
+                                                        className="invalid-feedback p-0"
+                                                        />
+                                                </div>
+                                            </div>
+                                            <hr />
+
+                                            {/* LAST NAME */}
+                                            <div className="row">
+                                                <div className="col-sm-6 col-md-3">
+                                                    <h6 className="mb-0">Last Name</h6>
+                                                </div>
+                                                <div className="col-sm-12 col-md-9 text-secondary" >
+                                                    <TextInput
+                                                        name="lastName"
+                                                        placeholder="Enter last Name"
+                                                        type="text" 
+                                                        className={`form-control ${touched.lastName && errors.lastName ? "is-invalid" : ""}`} 
+                                                        id="lastName"
+                                                    />
+                                                    <ErrorMessage
+                                                        component="div"
+                                                        name="lastName"
+                                                        className="invalid-feedback p-0"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <hr />
+
+                                            {/* PHONE NUMBER */}
+                                            <div className="row">
+                                                <div className="col-sm-6 col-md-3">
+                                                    <h6 className="mb-0">Phone Number</h6>
+                                                </div>
+                                                <div className="col-sm-12 col-md-9 text-secondary" >
+                                                <TextInput
+                                                            name="phone"
+                                                            placeholder="Enter Phone Number"
+                                                            type="tel" 
+                                                            className={`form-control ${touched.phone && errors.phone ? "is-invalid" : ""}`} 
+                                                            id="phone"
+                                                        />
+                                                        <ErrorMessage
+                                                            component="div"
+                                                            name="phone"
+                                                            className="invalid-feedback p-0"
+                                                        />
+                                                </div>
+                                            </div>
+                                            <hr />
+
+                                            {/* EMAIL ADDRESS */}
+                                            <div className="row">
+                                                <div className="col-sm-6 col-md-3">
+                                                    <h6 className="mb-0">Email Address</h6>
+                                                </div>
+                                                <div className="col-sm-12 col-md-9 text-secondary" >
+                                                    <TextInput
+                                                        name="email"
+                                                        placeholder="Enter Valid Email Address"
+                                                        type="text" 
+                                                        className={`form-control ${touched.email && errors.email ? "is-invalid" : ""}`} 
+                                                        id="email"
+                                                    />
+                                                    <ErrorMessage
+                                                        component="div"
+                                                        name="email"
+                                                        className="invalid-feedback p-0"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <hr />
+
+                                            {/* CREATE PASSWORD */}
+                                            <div className="row">
+                                                <div className="col-sm-6 col-md-3">
+                                                    <h6 className="mb-0">Create Password</h6>
+                                                </div>
+                                                <div className="col-sm-12 col-md-9 text-secondary" >
+                                                    <TextInput
+                                                        name="password"
+                                                        placeholder="Create Password"
+                                                        type="password" 
+                                                        className={`form-control ${ touched.password && errors.password ? "is-invalid" : ""}`} 
+                                                        id="password"
+                                                    />
+                                                    <ErrorMessage
+                                                        component="div"
+                                                        name="password"
+                                                        className="invalid-feedback p-0"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <hr />
+
+                                            {/* CONFIRM PASSWORD */}
+                                            <div className="row">
+                                                <div className="col-sm-6 col-md-3">
+                                                    <h6 className="mb-0">Confirm Password</h6>
+                                                </div>
+                                                <div className="col-sm-12 col-md-9 text-secondary" >
+                                                    <TextInput
+                                                        name="password2"
+                                                        placeholder="Confirm Password"
+                                                        type="password" 
+                                                        className={`form-control ${ touched.password2 && errors.password2 ? "is-invalid" : ""}`} 
+                                                        id="password2"
+                                                    />
+                                                    <ErrorMessage
+                                                        component="div"
+                                                        name="password2"
+                                                        className="invalid-feedback p-0"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <hr />
+
+                                            {/*  DEPARTMENT*/}
+                                            <div className="row">
+                                                <div className="col-sm-6 col-md-3 mb-sm-3">
+                                                    <h6 className="mb-0">Department</h6>
+                                                </div>
+                                                <div className="col-sm-12 col-md-9 text-secondary" >
+                                                    <Field component="select" name="department" className="form-control">
+                                                        <option selected>Choose...</option>
+                                                        {existingDepartment}
+                                                    </Field>
+                                                    <ErrorMessage
+                                                        component="div"
+                                                        name="email"
+                                                        className="invalid-feedback p-0"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <hr />
+
+                                            {/* ROLE */}
+                                            <div className="row">
+                                                <div className="col-sm-6 col-md-3 mb-sm-3">
+                                                    <h6 className="mb-0">Role</h6>
+                                                </div>
+                                                <div className="col-sm-12 col-md-9 text-secondary" >
+                                                    <Field component="select" name="role" className="form-control">
+                                                        <option selected>Choose...</option>
+                                                        {availableRole}
+                                                    </Field>
+                                                    <ErrorMessage
+                                                        component="div"
+                                                        name="email"
+                                                        className="invalid-feedback p-0"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <hr />
+
+                                            {/* TYPE */}
+                                            <div className="row">
+                                                <div className="col-sm-6 col-md-3 mb-sm-3">
+                                                    <h6 className="mb-0">Type</h6>
+                                                </div>
+                                                <div className="col-sm-12 col-md-9 text-secondary" >
+                                                    <Field component="select" name="type" className="form-control">
+                                                        <option selected>Choose...</option>
+                                                        {availableType}
+                                                    </Field>
+                                                    <ErrorMessage
+                                                        component="div"
+                                                        name="email"
+                                                        className="invalid-feedback p-0"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <hr />
+
+                                            {/* SALARY */}
+                                            <div className="row">
+                                                <div className="col-sm-6 col-md-3">
+                                                    <h6 className="mb-0">Salary</h6>
+                                                </div>
+                                                <div className="col-sm-12 col-md-9 text-secondary" >
+                                                    <TextInput
+                                                        name="salary"
+                                                        id="salary"
+                                                        type="text" 
+                                                        placeholder="Salary"
+                                                        className={`form-control ${touched.salary && errors.salary ? "is-invalid" : ""}`}
+                                                    />
+                                                    <ErrorMessage
+                                                        component="div"
+                                                        name="salary"
+                                                        className="invalid-feedback p-0"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <hr />
+
+                                            {/* ADDRESS */}
+                                            <div className="row">
+                                                <div className="col-sm-6 col-md-3">
+                                                    <h6 className="mb-0">Address</h6>
+                                                </div>
+                                                <div className="col-sm-12 col-md-9 text-secondary" >
+                                                    <TextInput
+                                                        name="address"
+                                                        id="address"
+                                                        type="text" 
+                                                        placeholder="143 work and connect"
+                                                        className={`form-control ${touched.address && errors.address ? "is-invalid" : ""}`}
+                                                    />
+                                                    <ErrorMessage
+                                                        component="div"
+                                                        name="address"
+                                                        className="invalid-feedback p-0"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <hr />
+                                            <div className="d-flex justify-content-between">
+                                                <Button type="submit" label="Employ" className="btn pace-btn-primary" />
+                                                <Button 
+                                                    type="submit" 
+                                                    className="btn pace-btn-accent" 
+                                                    label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Please wait...</span>) : "Reset"}
+                                                    onClick={(()=>resetForm())} 
+                                                />
+                                            </div>
+                                        </Form>
+                                    })
+                                }
+                                </Formik>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                <Formik 
-                    initialValues = {{
-                        firstname: "",
-                        lastname: "",
-                        email: "",
-                        phone:"",
-                        role: "",
-                        department: "",
-                        type: "",
-                        salary: "",
-                        password: "",
-                        password2: "",
-                    }}
-
-                    validationSchema = { AddEmployeeSchema }
-                    
-                    onSubmit = {(values)=>alert(JSON.stringify(values, null, 3))}
-                    
-                    >
-                    {({values, touched, errors, handleSubmit})=>{
-                        return(
-                            <Form onSubmit={handleSubmit} className="container">
-
-                                {/* <pre>{JSON.stringify(values, null, 2)}</pre> */}
-                                <h4 className="lead mt-5">Personal Information</h4>
-                                <hr />
-                                <div className="row mb-3">
-                                    <div className="firstname-wrapper form-group col-md-4 ">
-                                        {/* <Select option={names}/> testing react-select */}
-                                        <TextInput 
-                                            name="firstname"
-                                            type="text" 
-                                            placeholder="Enter Firstname"
-                                            className={`form-control ${touched.firstname && errors.firstname ? "is-invalid" : ""}`} 
-                                            id="employee_name"
-                                            label="Firstname"
-                                        />
-                                        <ErrorMessage
-                                            component="div"
-                                            name="firstname"
-                                            className="invalid-feedback p-0"
-                                        />
-                                    </div>
-                                    <div className="lastname-wrapper form-group col-md-4">
-                                        <TextInput
-                                            name="lastname"
-                                            placeholder="Enter lastname"
-                                            type="text" 
-                                            className={`form-control ${touched.lastname && errors.lastname ? "is-invalid" : ""}`} 
-                                            id="lastname"
-                                            label="Lastname"
-                                        />
-                                        <ErrorMessage
-                                            component="div"
-                                            name="lastname"
-                                            className="invalid-feedback p-0"
-                                        />
-                                    </div>
-                                    <div className="phone-wrapper form-group col-md-4 ">
-                                        <TextInput
-                                            name="phone"
-                                            placeholder="Enter Phone Number"
-                                            type="tel" 
-                                            className={`form-control ${touched.phone && errors.phone ? "is-invalid" : ""}`} 
-                                            id="phone"
-                                            label="Phone"
-                                            />
-                                        <ErrorMessage
-                                            component="div"
-                                            name="phone"
-                                            className="invalid-feedback p-0"
-                                            />
-                                    </div>
-                                </div>
-
-                                {/* Row TWO */}
-                                <h4 className="lead mt-5">Job Description</h4>
-                                <hr />
-                                <div className="row mb-3">
-                                    <div className="type-wrapper form-group col-md-4">
-                                        <label>Type</label>
-                                        <Field component="select" name="type" className="form-control select">
-                                            <option defaultValue>Choose...</option>
-                                            {availableType}
-                                        </Field>
-                                        <ErrorMessage
-                                            component="div"
-                                            name="email"
-                                            className="invalid-feedback p-0"
-                                        />
-                                    </div>
-
-                                    <div className="department-wrapper form-group col-md-4">
-                                        <label>Department</label>
-                                        <Field component="select" name="department" className="form-control select">
-                                            <option defaultValue>Choose...</option>
-                                            {existingDepartment}
-                                        </Field>
-                                        <ErrorMessage
-                                            component="div"
-                                            name="email"
-                                            className="invalid-feedback p-0"
-                                        />
-                                    </div>
-                                    
-                                    <div className="role-wrapper form-group col-md-4">
-                                        <label>Job Position</label>
-                                        <Field component="select" name="role" className="form-control select">
-                                            <option defaultValue>Choose...</option>
-                                            {availableRole}
-                                        </Field>
-                                        <ErrorMessage
-                                            component="div"
-                                            name="email"
-                                            className="invalid-feedback p-0"
-                                        />
-                                    </div>
-                                </div>
-
-
-                                {/* Row THREE */}
-                                <div className="row mb-3">
-                                    <div className="email-wrapper form-group col-md-6">
-                                        <TextInput
-                                            name="email"
-                                            placeholder="Enter Valid Email Address"
-                                            type="text" 
-                                            className={`form-control ${touched.email && errors.email ? "is-invalid" : ""}`} 
-                                            id="email"
-                                            label="Email"
-                                        />
-                                        <ErrorMessage
-                                            component="div"
-                                            name="email"
-                                            className="invalid-feedback p-0"
-                                        />
-                                    </div>
-
-                                    <div className="salary-wrapper form-group col-md-6">
-                                        <TextInput
-                                            name="salary"
-                                            id="salary"
-                                            type="text" 
-                                            placeholder="Salary"
-                                            className={`form-control ${touched.salary && errors.salary ? "is-invalid" : ""}`}
-                                            label="Salary" 
-                                        />
-                                        <ErrorMessage
-                                            component="div"
-                                            name="salary"
-                                            className="invalid-feedback p-0"
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="row mb-3">
-                                    <div className="password-wrapper form-group col-md-6">
-                                        <TextInput
-                                            name="password"
-                                            placeholder="Create Password"
-                                            type="password" 
-                                            className={`form-control ${ touched.password && errors.password ? "is-invalid" : ""}`} 
-                                            id="password"
-                                            label="Password"
-                                        />
-                                        <ErrorMessage
-                                            component="div"
-                                            name="password"
-                                            className="invalid-feedback p-0"
-                                        />
-                                    </div>
-
-                                    <div className="Password2-wrapper form-group col-md-6">
-                                        <TextInput
-                                            name="password2"
-                                            placeholder="Confirm Password"
-                                            type="password" 
-                                            className={`form-control ${ touched.password2 && errors.password2 ? "is-invalid" : ""}`} 
-                                            id="password2"
-                                            label="Confirm Password"
-                                        />
-                                        <ErrorMessage
-                                            component="div"
-                                            name="password2"
-                                            className="invalid-feedback p-0"
-                                        />
-                                    </div>
-                                </div>
-                                
-                                {/*Row FOUR  */}
-                                <h4 className="lead mt-5">Contact Information</h4>
-                                <hr />
-                                <div className="row mb-4">
-                                    <div className="address1-wrapper col-md-12 mb-3">
-                                        <TextInput
-                                            name="address1"
-                                            id="address1"
-                                            type="text" 
-                                            placeholder="143 work and connect"
-                                            className={`form-control ${touched.address1 && errors.address1 ? "is-invalid" : ""}`}
-                                            label="Address 1" 
-                                        />
-                                        <ErrorMessage
-                                            component="div"
-                                            name="address1"
-                                            className="invalid-feedback p-0"
-                                        />
-                                    </div>
-
-                                    <div className="city-wrapper form-group col-md-4">
-                                        <TextInput
-                                            name="city"
-                                            id="city"
-                                            type="text" 
-                                            placeholder="Ilorin"
-                                            label="City"
-                                            className={`form-control ${touched.city && errors.city ? "is-invalid" : ""}`}
-                                            />
-                                        <ErrorMessage
-                                            component="div"
-                                            name="email"
-                                            className="invalid-feedback p-0"
-                                        />
-                                    </div>
-
-                                    <div className="state-wrapper form-group col-md-4">
-                                        <TextInput
-                                            name="state"
-                                            id="state"
-                                            type="text" 
-                                            placeholder="Abuja"
-                                            label="State"
-                                            className={`form-control ${touched.state && errors.state ? "is-invalid" : ""}`}
-                                        />
-                                        <ErrorMessage
-                                            component="div"
-                                            name="email"
-                                            className="invalid-feedback p-0"
-                                        />
-                                    </div>
-
-                                    <div className="country-wrapper form-group col-md-4">
-                                        <TextInput
-                                            name="country"
-                                            id="country"
-                                            type="text" 
-                                            placeholder="Nigeria"
-                                            label="Zip Code"
-                                            className={`form-control ${touched.country && errors.country ? "is-invalid" : ""}`}
-                                        />
-                                        <ErrorMessage
-                                            component="div"
-                                            name="email"
-                                            className="invalid-feedback p-0"
-                                        />
-                                    </div>
-                                </div>
-
-                                <hr />
-                                <div className="mt-5 mb-3">
-                                    <Button 
-                                        type="submit"
-                                        label="Employee"
-                                        className="btn pace-btn-primary" 
-                                    />
-                                </div>
-                        </Form>
-                        )
-                    }}
-                </Formik>
             </div>
-        </div>
-            
+        </>
     )
 }
 
+export default AddEmployee;

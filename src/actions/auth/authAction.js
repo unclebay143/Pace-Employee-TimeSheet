@@ -1,98 +1,37 @@
+// Server functions
 import AuthService from "../../services/auth.service";
+
+// Actions
 import {
-    REGISTER_SUCCESS,
-    REGISTER_FAIL,
-    LOGIN_SUCCESS,
-    LOGIN_FAIL,
-    LOGOUT,
-    SET_MESSAGE,
+    LOGOUT, SYNC_CURRENT_USER,
 } from "../types";
 
-
-const register = (workSpaceName, workSpaceEmail, password) => (dispatch) => {
-
-    return AuthService.register(workSpaceName, workSpaceEmail, password)
-        .then((response) => {
-            console.log(response)
-            dispatch({
-                type: REGISTER_SUCCESS,
-            });
-
-            dispatch({
-                type: SET_MESSAGE,
-                payload: response.data.message,
-            });
-
-            return Promise.resolve(); 
-        },
-        (error) => {
-            const message =
-                (error.response &&
-                error.response.data &&
-                error.response.data.message) ||
-                error.message ||
-                error.toString();
-
-            dispatch({
-                type: REGISTER_FAIL,
-            });
-
-            dispatch({
-                type: SET_MESSAGE,
-                payload: message,
-            });
-
-            return Promise.reject();
-        }
-    );
-};
-
-
-const login = (username, password) => (dispatch) => {
-    return AuthService.login(username, password)
-        .then((data) => { // return jwt
-            dispatch({
-                type: LOGIN_SUCCESS,
-                payload: { user: data },
-            });
-
-            return Promise.resolve();
-        },
-        (error) => {
-        const message =
-            (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-            error.message ||
-            error.toString();
-
-        dispatch({
-            type: LOGIN_FAIL,
-        });
-
-        dispatch({
-            type: SET_MESSAGE,
-            payload: message,
-        });
-
-        return Promise.reject();
-        }
-    );
-};
-
-const logout = () => (dispatch) => {
-  console.log('hrereh');
-
-AuthService.logout();
-
-dispatch({
-    type: LOGOUT,
-});
-};
-
-
-export{
-    register,
-    login,
-    logout
+export const getUserProfile = (currentUserID) => {
+    return AuthService.fetchUserProfile(currentUserID)
 }
+
+export const register = ({ companyName, email, password }, action) =>{
+    console.log(('in register action'));
+    return AuthService.register(companyName, email, password, action)
+}
+
+export const login = ({ email, password }, action) => {
+    return AuthService.login(email, password, action)
+};
+
+export const syncCurrentUser = ( currentUser ) => ( dispatch ) =>{
+
+    dispatch({
+        type: SYNC_CURRENT_USER,
+        payload: currentUser
+    })
+}
+
+export const logout = () => {
+
+    localStorage.clear()
+    window.location.reload()
+    AuthService.logout();
+
+};
+
