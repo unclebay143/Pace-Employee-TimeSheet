@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 
 import Table from '../../layouts/Table';
 import paginationFactory from 'react-bootstrap-table2-paginator';
@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux';
 const AllTasks = () => {
 
   const { tasks, tasks: { data } } = useSelector(state => state.tasks)
+  const history = useHistory();
   // const dispatch = useDispatch(function)
 // console.log(tasks);
   useEffect(() => {
@@ -20,9 +21,10 @@ const AllTasks = () => {
     mode: 'checkbox' 
   };
   const taskDetails =  {
-    onDoubleClick: (e, row, rowIndex) => { 
-        this.props.history.push(`/dashboard/task/view-task/${row.id}`)
-    }
+    onDoubleClick: (e, row, rowIndex) => 
+    // { 
+        history.push(`/dashboard/task/view-task/${row.id}`)
+    // }
   };
   return (
     <div >
