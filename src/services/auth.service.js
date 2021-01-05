@@ -9,13 +9,16 @@ import { AUTH_API_URL } from "./root-endpoints";
 
 // Function handling the user-Company registration
 const register = (companyName, email, password, action) => (dispatch) =>{
+    console.log(('in register action'));
+
 
     // Post user for validation and registration in the backend ( this method returns a response )
     return axios.post( AUTH_API_URL + 'signUp', {  
     companyName,
     email,
     password,
-  }).then((response)=>{
+  }).then(()=>{
+
     // Set Formik form to loading - for the spinnig icon
     action.setSubmitting(true)
 
@@ -23,7 +26,7 @@ const register = (companyName, email, password, action) => (dispatch) =>{
     registrationCompletedLogger()
 
     // Throw an action to reducer
-    dispatch({ type: REGISTER_SUCCESS, payload: response.data})
+    dispatch({ type: REGISTER_SUCCESS })
 
   
     axios.post(AUTH_API_URL + 'login', { 
@@ -33,15 +36,16 @@ const register = (companyName, email, password, action) => (dispatch) =>{
     .then((response)=>{
       
       // Destructure the response to get the email and password (the response 'data' has a 'data' and accessToken in it)
-      const { data: { accessToken } }  = response.data;
-    
+      // const { data, data: { accessToken } }  = response.data;
+
+      const { data }  = response.data;
       // Store the response token to the localstorage
-      localStorage.setItem('token', JSON.stringify(accessToken));
+      localStorage.setItem('token', JSON.stringify(data));
 
       // Store the data(user's) to the store
       dispatch({
         type: LOGIN_SUCCESS,
-        payload: response.data
+        payload: data
       })
     })
     .catch((error)=>{
@@ -80,17 +84,31 @@ const login = ( email, password, action ) => ( dispatch ) =>{
       password,
     })
     .then((response)=>{
-      
+      console.log(response);
       // Destructure the response to get the email and password (the response 'data' has a 'data' and accessToken in it)
-      const { data: { accessToken } }  = response.data;
+      const { data }  = response;
+      console.log(data);
 
+      // const { data, data: { accessToken } }  = response.data;
+      console.log('here3')
+      console.log("usercredentials")
       // Store the response token to the localstorage
-      localStorage.setItem('token', JSON.stringify(accessToken));
+      // localStorage.setItem('token', JSON.stringify(accessToken));
+      // const userCredentials = [
+      //   accessToken,
+      //   {
+      //     id: data.response[0].staffID
+      //   }
+      // ] 
 
+      console.log('here4')
+      localStorage.setItem('token', JSON.stringify(data));
+      
+      console.log('here')
       // Store the data(user's) to the store
       dispatch({
         type: LOGIN_SUCCESS,
-        payload: response.data
+        payload: data
       })
     })
     .catch((error)=>{
@@ -105,34 +123,31 @@ const login = ( email, password, action ) => ( dispatch ) =>{
 };
 
 
-const fetchUserProfile = () =>{
-  console.log('In service');
-  // Get token from the localstorage
-  const token = localStorage.token;
-  if(token){
-    const config = {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-        'Authorization': `Bearer ${token}`
-      } 
-    }
-      return axios('https://pacetimesheet.herokuapp.com/', config)
-      .then((response)=>console.log(response))
+const fetchUserProfile = async (currentUserID) =>{
 
-  }
+  // Get token from the localstorage
+    const currentUserDetails = await axios.get( AUTH_API_URL, currentUserID )    
+    console.log(currentUserDetails)
+  // if(token){
+  //   const config = {
+  //     method: 'GET',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       Accept: 'application/json',
+  //       'Authorization': `Bearer ${token}`
+  //     } 
+  //   }
+  //     return axios('https://pacetimesheet.herokuapp.com/', config)
+  //     .then((response)=>console.log(response))
+
+  // }
 }
 
-const logout = () => {
-  localStorage.removeItem('user');
-};
 
 const AuthService = {
   register,
   login,
-  fetchUserProfile,
-  logout,
+  fetchUserProfile
 }
 
 export default AuthService;

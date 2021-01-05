@@ -30,14 +30,24 @@ const ProfileRow = (props) => {
 const Profile = () =>{
     const params = useParams()
     const [ user, setUser ] = useState({})
-
+    const currentUser = JSON.parse(localStorage.getItem('token'));
+    const { data  } = currentUser;
+    console.log(currentUser)
+    console.log(currentUser.data.response[0].staffID)
     useEffect(() => {
         const getUser = async() =>{
-            const { data } = await axios.get('http://fakerestapi.azurewebsites.net/api/v1/Users/'+params.id)
-            setUser(data)
+            const headers = {
+                'Content-Type': 'application/json',
+                'Authorization': ` ${currentUser.token} `
+              }
+            // const { data } = await axios.get('https://pacetimesheet.herokuapp.com/api/users/companyName/userProfile/' + params.id)
+            const { response } = await axios.get('https://pacetimesheet.herokuapp.com/api/users/company1k/userProfile/' + currentUser.data.response[0].staffID)
+            console.log(response)
+            // setUser(data)
+            // setUser(data)
         }
         getUser()
-    })
+    },[])
     return (
         <>
             <div className="container">
@@ -67,7 +77,8 @@ const Profile = () =>{
                                         {/* <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width={150} /> */}
                                         <img src={unclebay} alt="Admin" className="rounded-circle" width={150} />
                                         <div className="mt-3">
-                                            <h4>{user.userName} </h4>
+                                            <h4>{user.firstName} </h4>
+                                            <h4>{user.id} </h4>
                                             <p className="text-secondary mb-1">Frontend Engineer</p>
                                             <p className="text-muted font-size-sm">Forestry Area, Bako, Gwagwalada, Abuja</p>
                                             <Link to="/dashboard/edit"><Button className="btn btn-primary mr-2" label="Edit"/></Link>

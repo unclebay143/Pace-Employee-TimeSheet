@@ -6,12 +6,13 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
+  SYNC_CURRENT_USER,
 } from "../../actions/types";
 
 
 const initialState = {
   isLoggedIn: false, 
-  currentUser: {} 
+  currentUser: {},
 };
 
 const authReducer = (state = initialState, action) =>{
@@ -40,6 +41,13 @@ const authReducer = (state = initialState, action) =>{
         isLoggedIn: false,
         currentUser: null,
       };
+    
+      case SYNC_CURRENT_USER:
+        return {
+          ...state,
+          isLoggedIn: true,
+          currentUser: action.payload
+        }
 
     case LOGOUT:
       return {

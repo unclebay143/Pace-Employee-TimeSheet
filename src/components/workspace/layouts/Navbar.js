@@ -12,22 +12,24 @@ import { logout } from '../../../actions/auth/authAction'
 
 // Toast
 import { ToastContainer } from 'react-toastify';
-import { logOutSuccess } from '../../../toaster';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 const Navbar = () =>{
-
-    const { currentUser } = useSelector(state => state.authenticationState)
-    console.log(currentUser)
-
+    const history = useHistory();
     const dispatch = useDispatch();
+    const [fullName, setFullName] = useState(0)
 
-    const logOut = () =>{
-        logOutSuccess()
-        setTimeout(() => {
-            dispatch(logout());
-        }, 2000);
-    }
+    useEffect(() => {
+        
+        const currentUser = JSON.parse(localStorage.getItem('token'));
+        if( currentUser === null || currentUser === undefined ){
+            history.push('./login');
+        }
+        const { firstName, lastName } = currentUser.data.response[0];
+        setFullName(` ${ firstName } ${ lastName } `)
+
+    }, [])
     
     return(
         <>
@@ -48,7 +50,7 @@ const Navbar = () =>{
                         <i className="fas fa-align-left"></i>
                     </i>
                     <Link to="/dashboard/profile" className="navbar-brand font-weight-bold text-uppercase text-base pace-primary-color dashboard-lead companyDisplay">
-                        {/* { user_first_name } { user_last_name } */}
+                        { fullName }
                     </Link>
                     <ul className="ml-auto d-flex align-items-center list-unstyled mb-0">
                         <TimerContainer />
@@ -113,14 +115,14 @@ const Navbar = () =>{
                             <div aria-labelledby="userInfo" className="dropdown-menu">
                                 <a href="/" className="dropdown-item">
                                     <strong className="d-block text-uppercase headings-font-family companyDisplay">
-                                        {/* { user_first_name } { user_last_name } */}
+                                        { fullName }
                                     </strong>
                                     <small id="role_display">Web Developer</small>
                                 </a>
                                 <div className="dropdown-divider"></div>
                                 <Link to="/dashboard/profile" className="dropdown-item">Profile</Link>
                                 <a href="/" className="dropdown-item">Settings</a>
-                                <div className="dropdown-divider"></div><span className="dropdown-item" style={{cursor: 'pointer'}} onClick={logOut}>Logout</span>
+                                <div className="dropdown-divider"></div><span className="dropdown-item" style={{cursor: 'pointer'}} onClick={(()=>dispatch(logout()))}>Logout</span>
                             </div>
                         </li>
                     </ul>
