@@ -53,13 +53,13 @@ const TaskDetails = (props) => {
                             <Button 
                               type="submit"
                               label=" Request"
-                              className="btn btn-sm special"
+                              className="btn btn-sm mx-2 special"
                             />                                     
                             <Button 
                               type="submit"
                               label=" Delete"
                               icon="fa fa-trash-alt"
-                              className="btn btn-sm special ml-2 mr-2 pace-bg-accent"
+                              className="btn btn-sm special pace-bg-accent"
                             />          
                           </div>
                         </div>
@@ -143,15 +143,15 @@ const TaskDetails = (props) => {
                           />                                   
                           <Button 
                             type="submit"
-                            label=" Delete"
-                            icon="fa fa-trash-alt"
-                            className="btn btn-sm special ml-2 mr-2 pace-bg-accent"
-                          />
+                            label=" Request"
+                            className="btn btn-sm special mx-2"
+                          />    
                           <Button 
                             type="submit"
-                            label=" Request"
-                            className="btn btn-sm special"
-                          />    
+                            label=" Delete"
+                            icon="fa fa-trash-alt"
+                            className="btn btn-sm special pace-bg-accent"
+                          />
                         </div>
                       {/* </div>   */}
                     </div>

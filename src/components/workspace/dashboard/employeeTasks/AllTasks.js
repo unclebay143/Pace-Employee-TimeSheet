@@ -17,14 +17,20 @@ const AllTasks = () => {
     getTasks()
   }, [])
 
+  // adds checkbox to each row
   const selectRow = {
     mode: 'checkbox' 
   };
+  // styles each row
+  const rowStyle = {
+    cursor: 'pointer'
+  }
+  // routes to full task details page on double click
   const taskDetails =  {
     onDoubleClick: (e, row, rowIndex) => 
-    // { 
+    { 
         history.push(`/dashboard/task/view-task/${row.id}`)
-    // }
+    }
   };
   return (
     <div >
@@ -40,9 +46,9 @@ const AllTasks = () => {
         pagination = { paginationFactory() }
         controlHeader = { navigate }
         rowEvents = { taskDetails }
-        // rowEvents = { this.taskDetails }
         noDataIndication={'No available task'}
         filter={ filterFactory() }
+        rowStyle={ rowStyle }
       />
     </div>
   )

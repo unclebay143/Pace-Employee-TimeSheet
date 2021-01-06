@@ -14,7 +14,7 @@ export default class Table extends Component {
       selectRow, pagination, customInput, customInputName, 
       customInputPlaceHolder, customButtonType, customButtonLabel, 
       customButtonFunction, controlHeader, rowEvents, enableClearSearchButton,
-      noDataIndication, filter } = this.props;
+      noDataIndication, filter, rowStyle }= this.props;
     const { SearchBar, ClearSearchButton } = Search;
     const {title} = this.props;
    
@@ -135,6 +135,7 @@ export default class Table extends Component {
                             noDataIndication={  noDataIndication }
                             filter={ filter }
                             hover
+                            rowStyle = { rowStyle }
                           />
                         </div>
                       </div>
