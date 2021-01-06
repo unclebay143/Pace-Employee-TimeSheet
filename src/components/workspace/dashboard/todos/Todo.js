@@ -30,7 +30,7 @@ const Todo = () => {
                     <div className="card-hover-shadow-2x mb-3 card">
                         <div className="card-header-tab card-header">
                             <div className="card-header-title font-size-lg text-capitalize font-weight-normal">
-                                <i className="fa fa-Todos" />&nbsp;Todo Lists</div>
+                                <i className="fa fa-Todos" />&nbsp;What do you want to do today?</div>
                         </div>
                         <div className="scroll-area-sm -shiftToDisabled">
                             <perfect-scrollbar className="ps-show-limits">
