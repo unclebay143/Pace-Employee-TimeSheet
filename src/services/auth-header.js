@@ -1,6 +1,5 @@
 // This file contains Authorization token and reusable properties of the currentUsers 
 
-
 // Header for authentication
 let getCurrentUser = JSON.parse(localStorage.getItem('token'));
 if(!getCurrentUser){

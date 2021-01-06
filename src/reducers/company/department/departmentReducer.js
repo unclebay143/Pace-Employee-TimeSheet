@@ -33,6 +33,7 @@ const todoReducer = (state = initialState, action) =>{
         case ADD_DEPARTMENT:
             return {
                 ...state,
+                isFormOpen: false,
                 departments: action.payload,
                 ...state.departments
             }
@@ -46,7 +47,7 @@ const todoReducer = (state = initialState, action) =>{
                 ...state,
                 departments: state.departments.filter((department)=> department.id !== action.payload )
             }
-        case ERROR_DEPARTMENT:
+        case DEPARTMENT_ERROR:
             return {
                 ...state,
                 error: action.payload
