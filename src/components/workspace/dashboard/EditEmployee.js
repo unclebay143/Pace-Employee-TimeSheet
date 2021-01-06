@@ -10,6 +10,7 @@ import { TextInput } from '../../layouts/FormInput';
 import { AddEmployeeSchema } from '../../Validation/Schema';
 import Profile from './Profile';
 import { updateUserProfile } from '../../../actions/userSetting/settings';
+import UserService from "../../../services/user.service";
 
 const AddEmployee = () =>{
     const params = useParams();
@@ -18,23 +19,55 @@ const AddEmployee = () =>{
     useEffect(() => {
         // Get user from local storage
         const currentUser = JSON.parse(localStorage.getItem('token'));
+        console.log(currentUser);
+        UserService.fetchUserProfile(currentUser.response[0].staffID)
+        .then((response)=>{
+            // profileUpdateCompletedLogger()
+            // Destructure response data
+            const { 
+                firstName,
+                lastName,
+                phoneNumber,
+                email,
+                address,
+                userName,
+                staffID
+             } = response.data.data[0]
+             // Store response destructuring into array of currenUserProfile
+             const currentUserserProfile = {
+                firstName,
+                lastName,
+                phoneNumber,
+                email,
+                address,
+                userName,
+                staffID
+             }
+            setProfile(currentUserserProfile)
+            console.log(profile);
+        })
+        .catch((error)=>{
+            console.log(error)
+            // profileUpdateFailLogger()
+        })
+        console.log(profile)
 
         // Destructure user information
-        const { firstName, lastName, phone, email, address, username, staffID} = currentUser.response[0]
+        // const { firstName, lastName, phone, email, address, username, staffID} = currentUser.response[0]
 
         // Store user information into an object
-        const currentUserProfile = {
-            firstName,
-            lastName,
-            phone,
-            email,
-            address,
-            username,
-            staffID
-        }
+        // const currentUserProfile = {
+        //     firstName,
+        //     lastName,
+        //     phone,
+        //     email,
+        //     address,
+        //     username,
+        //     staffID,
+        // }
         
         // Store user profile into profile state
-        setProfile(currentUserProfile)
+        // setProfile(currentUserProfile)
 
     }, [])
 
@@ -60,6 +93,7 @@ const AddEmployee = () =>{
                                     // validationSchema={AddEmployeeSchema}
                                     onSubmit={(values)=>{
                                         updateUserProfile(values);
+                                        alert(values)
                                     }
                                     }
                                 >
@@ -115,6 +149,28 @@ const AddEmployee = () =>{
                                             </div>
                                             <hr />
 
+                                            {/* USERNAME */}
+                                            <div className="row">
+                                                <div className="col-sm-6 col-md-3">
+                                                    <h6 className="mb-0">Username</h6>
+                                                </div>
+                                                <div className="col-sm-12 col-md-9 text-secondary" >
+                                                    <TextInput
+                                                        name="username"
+                                                        placeholder="Enter Username"
+                                                        type="text" 
+                                                        className={`form-control ${touched.username && errors.username ? "is-invalid" : ""}`} 
+                                                        id="username"
+                                                    />
+                                                    <ErrorMessage
+                                                        component="div"
+                                                        name="username"
+                                                        className="invalid-feedback p-0"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <hr />
+
                                             {/* PHONE NUMBER */}
                                             <div className="row">
                                                 <div className="col-sm-6 col-md-3">
@@ -122,15 +178,15 @@ const AddEmployee = () =>{
                                                 </div>
                                                 <div className="col-sm-12 col-md-9 text-secondary" >
                                                 <TextInput
-                                                            name="phone"
+                                                            name="phoneNumber"
                                                             placeholder="Enter Phone Number"
                                                             type="tel" 
-                                                            className={`form-control ${touched.phone && errors.phone ? "is-invalid" : ""}`} 
-                                                            id="phone"
+                                                            className={`form-control ${touched.phoneNumber && errors.phoneNumber ? "is-invalid" : ""}`} 
+                                                            id="phoneNumber"
                                                         />
                                                         <ErrorMessage
                                                             component="div"
-                                                            name="phone"
+                                                            name="phoneNumber"
                                                             className="invalid-feedback p-0"
                                                         />
                                                 </div>

@@ -1,5 +1,6 @@
 // Server functions
 import AuthService from "../../services/auth.service";
+import UserService from "../../services/user.service";
 import { logOutSuccess } from "../../toaster";
 
 // Actions
@@ -13,7 +14,9 @@ export const login = ({ email, password }, action) => {
 };
 
 export const syncCurrentUser = (staffID) =>{
-    return AuthService.fetchUserProfile(staffID)
+    console.log('in syn')
+    return UserService.fetchUserProfile(staffID)
+
 }
 
 export const logout = () => {

@@ -42,12 +42,12 @@ const authReducer = (state = initialState, action) =>{
         currentUser: null,
       };
     
-      case SYNC_CURRENT_USER:
-        return {
-          ...state,
-          isLoggedIn: true,
-          currentUser: action.payload
-        }
+    case SYNC_CURRENT_USER:
+      return {
+        ...state,
+        isLoggedIn: true,
+        currentUser: action.payload
+      }
 
     case LOGOUT:
       return {

@@ -1,13 +1,29 @@
-export default function authHeader() {
-  const user = JSON.parse(localStorage.getItem("user"));
+// Header for authentication
+let getCurrentUser = JSON.parse(localStorage.getItem('token'));
+if(!getCurrentUser){
+    getCurrentUser = {
+            accessToken: '',
+            response: [
+                {
+                    // firstName: 'sam'
+                }
+            ]
+    }
+}
+const userAccessToken = getCurrentUser.accessToken
+const currentUserFromLocalStorage = getCurrentUser.response[0]
 
-  if (user && user.accessToken) {
-    // For Spring Boot back-end
-    // return { Authorization: "Bearer " + user.accessToken };
 
-    // for Node.js Express back-end
-    return { "x-access-token": user.accessToken };
-  } else {
-    return {};
-  }
+
+const authHeader = {
+  'Content-Type': 'application/json',
+  "Accept": "application/json",
+  'Authorization': `basic ${userAccessToken}`
+}
+
+
+export {
+  authHeader,
+  userAccessToken,
+  currentUserFromLocalStorage
 }

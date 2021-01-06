@@ -41,7 +41,7 @@ const Dashboard = () =>{
         }
         
         if ( currentUser ){
-            syncCurrentUser( currentUser )
+            dispatch(syncCurrentUser( currentUser.response[0].staffID ))
         }
 
     })
