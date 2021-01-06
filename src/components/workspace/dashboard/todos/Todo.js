@@ -12,7 +12,7 @@ import { ToastContainer } from 'react-toastify';
 import { netWorkError } from '../../../../toaster';
 
 const Todo = () => {
-    const { error } = useSelector(state => state.tasks);
+    const { error } = useSelector(state => state.todos);
     const dispatch = useDispatch();
 
     // useEffect(() => {
@@ -29,7 +29,8 @@ const Todo = () => {
                 <div className="col-12">
                     <div className="card-hover-shadow-2x mb-3 card">
                         <div className="card-header-tab card-header">
-                            <div className="card-header-title font-size-lg text-capitalize font-weight-normal"><i className="fa fa-Todos" />&nbsp;Todo Lists</div>
+                            <div className="card-header-title font-size-lg text-capitalize font-weight-normal">
+                                <i className="fa fa-Todos" />&nbsp;Todo Lists</div>
                         </div>
                         <div className="scroll-area-sm -shiftToDisabled">
                             <perfect-scrollbar className="ps-show-limits">

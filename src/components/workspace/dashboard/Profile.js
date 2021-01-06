@@ -62,7 +62,7 @@ const Profile = () =>{
         //       }
         //     // const { data } = await axios.get('https://pacetimesheet.herokuapp.com/api/users/companyName/userProfile/' + params.id)
         //     console.log("response")
-        //     const { data } = await axios.get('https://pacetimesheet.herokuapp.com/api/users/companyName/userProfile/' + user.staffID, { headers: options })
+        //     const { data } = await axios.get('https://pacetimesheet.herokuapp.com/api/users/companyName/userProfile/' + user.staffID, { headers: authHeader })
         //     console.log(data)
         //     // setUser(data)
         //     // setUser(data)

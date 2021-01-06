@@ -1,10 +1,10 @@
 // Axios
 import axios from "axios";
 import { LOGIN_SUCCESS, LOGOUT, REGISTER_SUCCESS } from "../actions/types";
-import { registrationFailLogger, registrationCompletedLogger, emailAlreadyExistLogger, invalidDetailsLogger, profileUpdateCompletedLogger, profileUpdateFailLogger } from "../toaster";
+import { registrationFailLogger, registrationCompletedLogger, emailAlreadyExistLogger, invalidDetailsLogger } from "../toaster";
 
 // API
-import { AUTH_API_URL, options, currentUserFromLocalStorage, USER_PROFILE_URL } from "./root-endpoints";
+import { AUTH_API_URL } from "./root-endpoints";
 
 
 // Function handling the user-Company registration
@@ -109,22 +109,6 @@ const login = ( email, password, action ) => ( dispatch ) =>{
 };
 
 
-const fetchUserProfile = async (staffID) =>{
-  console.log(staffID)
-  console.log('in fetch')
-  // Get token from the localstorage
-      axios.get(`https://pacetimesheet.herokuapp.com/api/users/companyName/userProfile/${staffID}`, { headers: options })
-      .then((response)=>{
-          console.log(response)
-          // profileUpdateCompletedLogger()
-      }).catch((error)=>{
-          console.log(error)
-          // profileUpdateFailLogger()
-      })
-  // }
-
-}
-
 const logout = () => {
 
   // Clear the application localStorage
@@ -139,7 +123,6 @@ const logout = () => {
 const AuthService = {
   register,
   login,
-  fetchUserProfile,
   logout
 }
 

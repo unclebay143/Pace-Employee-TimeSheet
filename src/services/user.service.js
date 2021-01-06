@@ -1,27 +1,29 @@
 import axios from "axios";
-import authHeader from "./auth-header";
+import { SYNC_CURRENT_USER } from "../actions/types";
+import { authHeader } from "./auth-header";
+import { AUTH_API_URL, options, currentUserFromLocalStorage, USER_PROFILE_URL } from "./root-endpoints";
 
-const API_URL = "http://localhost:8080/api/test/";
 
-const getPublicContent = () => {
-  return axios.get(API_URL + "all");
-};
 
-const getUserBoard = () => {
-  return axios.get(API_URL + "user", { headers: authHeader() });
-};
 
-const getModeratorBoard = () => {
-  return axios.get(API_URL + "mod", { headers: authHeader() });
-};
+// This function keeps the user logged in by fetching the current user details and dispatching it into the store
+const fetchUserProfile = (staffID) => (dispatch) =>{
 
-const getAdminBoard = () => {
-  return axios.get(API_URL + "admin", { headers: authHeader() });
-};
+  return axios.get(`https://pacetimesheet.herokuapp.com/api/users/companyName/userProfile/${staffID}`, { headers: authHeader })
+  .then((response)=>{
+    console.log(response);
+    dispatch({
+      type: SYNC_CURRENT_USER,
+      payload: response
+    })
+  })
 
-export default {
-  getPublicContent,
-  getUserBoard,
-  getModeratorBoard,
-  getAdminBoard,
-};
+}
+
+const UserService = {
+  fetchUserProfile
+
+}
+
+
+export default UserService;

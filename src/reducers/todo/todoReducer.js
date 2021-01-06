@@ -49,6 +49,7 @@ const todoReducer = (state=initialState, action) =>{
         case FETCH_TODOS_ERROR:
             return {
                 ...state,
+                // If todo is empty then create a new object else return the todos
                 todos: state.todos.length === 0 ? {} : state.todos,
                 isFetching: false,
                 error: action.error

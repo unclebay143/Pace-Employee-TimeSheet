@@ -12,6 +12,17 @@ export const SYNC_CURRENT_USER = 'SYNC_CURRENT_USER';
 export const SET_MESSAGE = "SET_MESSAGE";
 export const CLEAR_MESSAGE = "CLEAR_MESSAGE";
 
+// Department 
+
+export const OPEN_NEW_FORM = 'OPEN_NEW_FORM';
+export const CLOSE_NEW_FORM = 'CLOSE_NEW_FORM';
+export const ADD_DEPARTMENT = 'ADD_DEPARTMENT';
+export const DELETE_DEPARTMENT = 'DELETE_DEPARTMENT';
+export const EDIT_DEPARTMENT = 'EDIT_DEPARTMENT';
+export const FETCH_COMPANY_DEPARTMENT = 'FETCH_COMPANY_DEPARTMENT';
+export const DEPARTMENT_ERROR = 'DEPARTMENT_ERROR';
+
+
 
 // Employee
 export const GET_ADD_USER = 'GET_ADD_USER';

@@ -19,6 +19,7 @@ import BillingReport from './reports/BillingReport';
 import Profile from './Profile';
 import Task from './Task';
 import Todo from './todos/Todo'
+import { ManageDepartment } from '../../company/department/ManageDepartment';
 
 // Actions
 import { getTodos } from '../../../actions/todo/todoAction';
@@ -41,7 +42,7 @@ const Dashboard = () =>{
         }
         
         if ( currentUser ){
-            syncCurrentUser( currentUser )
+            dispatch(syncCurrentUser( currentUser.response[0].staffID ))
         }
 
     })
@@ -67,6 +68,7 @@ const Dashboard = () =>{
                             <div className="container-fluid dashboard-body-wrapper">
                 {/* >>>>> BODIES COMPONENTS SECTION <<<<< */}
                                 <Switch>
+                                    <Route path="/dashboard/settings/departments" component={ManageDepartment} />
                                     <Route path="/dashboard/todos" component={Todo} />
                                     <Route path="/dashboard/task" component={Task} />
                                     <Route exact path="/dashboard/profile/:id" component={Profile} />
