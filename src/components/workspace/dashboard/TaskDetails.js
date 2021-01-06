@@ -1,24 +1,28 @@
-import React, { Component } from 'react';
+// import React, { Component } from 'react';
 
-import { NavLink } from 'react-router-dom';
-import { connect } from 'react-redux';
+// import { NavLink } from 'react-router-dom';
+// import { connect } from 'react-redux';
 import Button from '../../layouts/Button';
 
 import unclebay from '../../pages/pages-images/ayodele_samuel_adebayo.jpg';
 import attachment from '../../pages/pages-images/v.jpg';
 
+import React, { useEffect } from 'react';
+import { NavLink, useHistory } from 'react-router-dom';
+import { getTasks } from '../../../actions/task/taskAction';
+import { useSelector } from 'react-redux';
 
-class TaskDetails extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      tasks: this.props.tasks
-    }
-  }
+const TaskDetails = (props) => {
+  const { tasks, tasks: { data } } = useSelector(state => state.tasks)
+ 
+  console.log('task id 4 is', tasks[4])
+
+  useEffect(() => {
+    getTasks()
+  }, [])
 
 
-  render() {
-  console.log(this.props.tasks)
+ 
     return (
       <>
         <section className="py-0">
@@ -45,18 +49,18 @@ class TaskDetails extends Component {
                               label="  Accept"
                               icon="fa fa-check"
                               className="btn btn-theme btn-sm"
-                            />                                   
-                            <Button 
-                              type="submit"
-                              label=" Delete"
-                              icon="fa fa-trash-alt"
-                              className="btn btn-sm special ml-2 mr-2 pace-bg-accent"
                             />
                             <Button 
                               type="submit"
                               label=" Request"
                               className="btn btn-sm special"
-                            />            
+                            />                                     
+                            <Button 
+                              type="submit"
+                              label=" Delete"
+                              icon="fa fa-trash-alt"
+                              className="btn btn-sm special ml-2 mr-2 pace-bg-accent"
+                            />          
                           </div>
                         </div>
                       </div>
@@ -159,11 +163,5 @@ class TaskDetails extends Component {
       </>
     )
   }
-}
 
-const mapStateToProps = (state) =>{
-  const { tasks } = state
-  return { tasks }
-}
-
-export default connect(mapStateToProps, null)(TaskDetails)
+export default TaskDetails;
