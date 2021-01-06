@@ -18,16 +18,21 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 const Navbar = () =>{
     const history = useHistory();
     const dispatch = useDispatch();
-    const [fullName, setFullName] = useState(0)
+    const [fullName, setFullName] = useState('')
+    const [staffID, setStaffID] = useState('')
 
     useEffect(() => {
         
         const currentUser = JSON.parse(localStorage.getItem('token'));
-        if( currentUser === null || currentUser === undefined ){
-            history.push('./login');
+        // if( currentUser === null || currentUser === undefined ){
+        //     history.push('./login');
+        // }
+
+        if(currentUser){
+            const { firstName, lastName, staffID } = currentUser.data.response[0];
+            setFullName(` ${ firstName } ${ lastName } `)
+            setStaffID(staffID)
         }
-        const { firstName, lastName } = currentUser.data.response[0];
-        setFullName(` ${ firstName } ${ lastName } `)
 
     }, [])
     
@@ -120,9 +125,9 @@ const Navbar = () =>{
                                     <small id="role_display">Web Developer</small>
                                 </a>
                                 <div className="dropdown-divider"></div>
-                                <Link to="/dashboard/profile" className="dropdown-item">Profile</Link>
+                                <Link to={`/dashboard/profile/${staffID}`} className="dropdown-item">Profile</Link>
                                 <a href="/" className="dropdown-item">Settings</a>
-                                <div className="dropdown-divider"></div><span className="dropdown-item" style={{cursor: 'pointer'}} onClick={(()=>dispatch(logout()))}>Logout</span>
+                                <div className="dropdown-divider"></div><span className="dropdown-item" style={{cursor: 'pointer'}} onClick={(()=>logout())}>Logout</span>
                             </div>
                         </li>
                     </ul>
