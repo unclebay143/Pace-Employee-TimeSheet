@@ -115,18 +115,20 @@ const Signup = () =>{
                                                     className="invalid-feedback p-0"
                                                 />
                                             </div>
-                                        <div className="d-flex">
+                                        <div className="d-flex justify-content-beteen">
 
-                                            <div className="form-group password-wrapper mr-2">
+                                            <div className="form-group password-wrapper mr-2" style={{ width: '50%' }}>
                                                 <TextInput 
                                                     name="password"
                                                     id="password"
                                                     type="password"
                                                     label="Password"
                                                     labelClassName="mt-3"
-                                                    className={`form-control lead p-2 ${
+                                                    className={`form-control lead p-2 col-12
+                                                    ${ 
                                                         touched.password && errors.password ? "is-invalid" : ""
-                                                    }`}
+                                                     }
+                                                    `}
                                                     placeholder="Password" 
                                                 />
                                                 <ErrorMessage
@@ -135,7 +137,8 @@ const Signup = () =>{
                                                     className="invalid-feedback p-0"
                                                 />
                                             </div>
-                                            <div className="form-group confirmPassword-wrapper">
+                                                   
+                                            <div className="form-group confirmPassword-wrapper" style={{ width: '50%' }} >
                                                 <TextInput 
                                                     name="confirmPassword"
                                                     id="confirmPassword"

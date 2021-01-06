@@ -44,7 +44,7 @@ const Dashboard = () =>{
             dispatch(syncCurrentUser( currentUser ))
         }
 
-    },[])
+    })
 
     useEffect(() => {
         // Fetch user todo list

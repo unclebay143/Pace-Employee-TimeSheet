@@ -21,24 +21,12 @@ import { getUserProfile } from '../actions/auth/authAction';
 
 function App() {
 
-  // Get currentUser from redux
-  // const { currentUser } = useSelector(state => state.authenticationState)
-  const getCurrentUser = localStorage.token.id;
-
-  console.log(getCurrentUser)
-
   useEffect(() => {
 
     // Initialize AOS animation
     AOS.init({
       duration : 2000
     });
-console.log('HOME');
-    // If there's a user in redux
-    // if(currentUser){
-      // Revoke function to get the user profile
-      // getUserProfile(staffID)
-    // }
   }, []);
 
 

@@ -92,17 +92,22 @@ const AddEmployee = () =>{
                                         const data = {
                                             firstName,
                                             lastName,
-                                            address
+                                            address,
+                                            phone,
+                                            userName: 'unclebay143',
+
                                         }
-                                        alert(JSON.stringify(values, null, 2))
+                                        // alert(JSON.stringify(values, null, 2))
+                                        alert(JSON.stringify(data, null, 2))
                                         const getCurrentUser = JSON.parse(localStorage.getItem('token'));
                                         const accessToken1 = getCurrentUser.data.accessToken
-                                        console.log(accessToken1);
+                                        console.log(typeof accessToken1);
                                         const headers = {
                                             'Content-Type': 'application/json',
-                                            'Authorization': `Bearer ${accessToken1} `
+                                            "Accept": "application/json",
+                                            'Authorization': accessToken1
                                           }
-                                        axios.put(`https://pacetimesheet.herokuapp.com/api/users/companyName/userProfile/updateProfile/${params.id}`, headers, data)
+                                        axios.put(`https://pacetimesheet.herokuapp.com/api/users/companyName/userProfile/updateProfile/${params.id}`, data, headers)
                                         .then((response)=>{
                                             console.log(response)
                                         }).catch((error)=>{

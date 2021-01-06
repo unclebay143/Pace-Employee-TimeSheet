@@ -1,6 +1,6 @@
 // Axios
 import axios from "axios";
-import { LOGIN_SUCCESS, REGISTER_SUCCESS } from "../actions/types";
+import { LOGIN_SUCCESS, LOGOUT, REGISTER_SUCCESS } from "../actions/types";
 import { registrationFailLogger, registrationCompletedLogger, emailAlreadyExistLogger, invalidDetailsLogger } from "../toaster";
 
 // API
@@ -143,11 +143,22 @@ const fetchUserProfile = async (currentUserID) =>{
   // }
 }
 
+const logout = () => {
+
+  // Clear the application localStorage
+  localStorage.clear()
+
+  // Reload the tab to clear the redux state
+  setTimeout(()=>{
+    window.location.reload();
+  }, 1000)
+};
 
 const AuthService = {
   register,
   login,
-  fetchUserProfile
+  fetchUserProfile,
+  logout
 }
 
 export default AuthService;

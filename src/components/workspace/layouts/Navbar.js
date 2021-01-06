@@ -24,12 +24,15 @@ const Navbar = () =>{
     useEffect(() => {
         
         const currentUser = JSON.parse(localStorage.getItem('token'));
-        if( currentUser === null || currentUser === undefined ){
-            history.push('./login');
+        // if( currentUser === null || currentUser === undefined ){
+        //     history.push('./login');
+        // }
+
+        if(currentUser){
+            const { firstName, lastName, staffID } = currentUser.data.response[0];
+            setFullName(` ${ firstName } ${ lastName } `)
+            setStaffID(staffID)
         }
-        const { firstName, lastName, staffID } = currentUser.data.response[0];
-        setFullName(` ${ firstName } ${ lastName } `)
-        setStaffID(staffID)
 
     }, [])
     
@@ -124,7 +127,7 @@ const Navbar = () =>{
                                 <div className="dropdown-divider"></div>
                                 <Link to={`/dashboard/profile/${staffID}`} className="dropdown-item">Profile</Link>
                                 <a href="/" className="dropdown-item">Settings</a>
-                                <div className="dropdown-divider"></div><span className="dropdown-item" style={{cursor: 'pointer'}} onClick={(()=>dispatch(logout()))}>Logout</span>
+                                <div className="dropdown-divider"></div><span className="dropdown-item" style={{cursor: 'pointer'}} onClick={(()=>logout())}>Logout</span>
                             </div>
                         </li>
                     </ul>

@@ -1,5 +1,6 @@
 // Server functions
 import AuthService from "../../services/auth.service";
+import { logOutSuccess } from "../../toaster";
 
 // Actions
 import {
@@ -28,10 +29,9 @@ export const syncCurrentUser = ( currentUser ) => ( dispatch ) =>{
 }
 
 export const logout = () => {
-
-    localStorage.clear()
-    window.location.reload()
-    AuthService.logout();
-
+    console.log('logout action1');
+    logOutSuccess()
+    console.log('logout action2');
+    AuthService.logout()
 };
 
