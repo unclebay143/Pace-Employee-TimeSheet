@@ -14,7 +14,6 @@ export const login = ({ email, password }, action) => {
 };
 
 export const syncCurrentUser = (staffID) =>{
-    console.log('in syn')
     return UserService.fetchUserProfile(staffID)
 
 }

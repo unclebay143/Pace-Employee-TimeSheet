@@ -1,73 +1,66 @@
 // React
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { editDepartment, deleteDepartment, openForm, closeForm } from '../../../actions/company/department/departmentAction';
+
+// Components
+import { NewDepartmentForm } from './NewDepartmentForm';
 
 // Layout
 import Button from '../../layouts/Button';
 
-const DepartmentRowLayout =({index, name, size})=>{
-  return(
-      <tr key={index}>
-        <th scope="row" className='text-dark' style={{background: 'white', color:'blck'}}>{index}</th>
-        <td>{name}</td>
-        <td>{size}</td>
-        <td className="d-flex justify-content-end">
-            <Button 
-              className="btn btn-info btn-sm mr-2"
-              // label=" Edit "
-              icon="fa fa-edit"
-              type="button"
-              onClick={(()=>alert(name, 'will be edited'))}
-            />
-            <Button 
-              className="btn btn-danger btn-sm"
-              // label=" Delete"
-              icon="fa fa-trash"
-              type="button"
-              onClick={(()=>alert(name, 'will be deleted'))}
-            />
-        </td>
-      </tr>
-  )
-}
-
 
 export const ManageDepartment = () => {
+  const dispatch = useDispatch();
+  const [shouldFormOpen, setShouldFormOpen] = useState();
+  const [departments, setDepartments] = useState();
+  const departmentState = useSelector(state => state.departments)
+  
+  useEffect(() => {
+    setDepartments(departmentState.departments)
+    setShouldFormOpen(departmentState.isFormOpen)
+  }, [departmentState])
 
-  const dummyDepartment = [
-    {
-      name: 'company3',
-      staffSize: 40
-    },
-    {
-      name: 'company2',
-      staffSize: 30
-    },
-    {
-      name: 'company3',
-      staffSize: 40
-    },
-    {
-      name: 'company2',
-      staffSize: 30
-    },
-    {
-      name: 'company3',
-      staffSize: 40
-    },
-    {
-      name: 'company2',
-      staffSize: 30
-    },
-    {
-      name: 'company3',
-      staffSize: 40
-    },
-  ]
+
+    if(!departments){
+      return(
+          <div className="d-flex justify-content-center align-items-center mt-2" style={{height:'100vh', background: '#cccccc'}}>
+              <i className="fa fa-spinner fa-pulse fa-3x fa-fw" style={{fontSize: "23px"}}></i>
+              <span>Loading... Please wait</span>
+          </div>
+      )
+  }
+
     return (
       <>
       <div className="todo-container container">
           {/* <ToastContainer /> */}
           {/* <pre>{triggerTodoForm ? 'false, open' : 'false, don\'t open' }</pre> */}
+            {/* <div className="new-department-form" onClick={(()=>dispatch(closeForm()))}> */}
+            <div className="new-department-form">
+              <style>
+                {
+                  `
+
+                    .new-department-form{
+                      position: fixed;
+                      z-index: 1;
+                      width: 100%;
+                      height: 100%;
+                      overflow: hidden;
+                      top: 0;
+                      left: 0;
+                      justify-content: center;
+                      align-items: center;
+                      background-color: rgba(0, 0, 0, 0.5);
+                      display: ${shouldFormOpen ? 'flex' : 'none'};
+                    }
+
+                  `
+                }
+              </style>
+              <NewDepartmentForm />
+            </div>
             <div className="col-12">
                 <div className="card-hover-shadow-2x mb-3 card">
                     <div className="card-header-tab card-header">
@@ -77,6 +70,7 @@ export const ManageDepartment = () => {
                             icon="fa fa-plus "
                             type="button"
                             className="btn bg-success btn-sm text-white"
+                            onClick={(()=>dispatch(openForm()))}
                           />
                           </div>
                     </div>
@@ -96,13 +90,13 @@ export const ManageDepartment = () => {
                                   </thead>
                                   <tbody>
                                     {
-                                      dummyDepartment.map((info,index)=>{
-                                        console.log(index)
+                                      departments.map((info,index)=>{
                                         return(
                                           <DepartmentRowLayout 
-                                            index={index + 1}
+                                            serialNumber={index + 1}
                                             name={info.name}
                                             size={info.staffSize}
+                                            key={index}
                                           />
                                         )
                                       
@@ -126,3 +120,34 @@ export const ManageDepartment = () => {
     </>
     )
 }
+
+
+
+
+const DepartmentRowLayout =({serialNumber, name, size})=>{
+  const dispatch = useDispatch();
+  return(
+      <tr key={serialNumber}>
+        <th scope="row" className='text-dark' style={{background: 'white', color:'blck'}}>{serialNumber}</th>
+        <td>{name}</td>
+        <td>{size}</td>
+        <td className="d-flex justify-content-end">
+            <Button 
+              className="btn btn-info btn-sm mr-2"
+              // label=" Edit "
+              icon="fa fa-edit"
+              type="button"
+              onClick={(()=> dispatch(editDepartment()))}
+            />
+            <Button 
+              className="btn btn-danger btn-sm"
+              // label=" Delete"
+              icon="fa fa-trash"
+              type="button"
+              onClick={(()=> dispatch(deleteDepartment(serialNumber)))}
+            />
+        </td>
+      </tr>
+  )
+}
+

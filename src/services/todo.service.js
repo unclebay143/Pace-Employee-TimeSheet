@@ -27,18 +27,21 @@ const addTodo = (data) => {
 }
 
 // Delete target todo from server
-const deleteTodo = async (id) => {
-    await axios.delete(`${ TODO_API_URL }/${id}`)
+const deleteTodo = (id) => {
+     axios.delete(`${ TODO_API_URL }/${id}`)
 }
 
 // Update target todo from the server
-const updateTodo = async (id) => {
-    await axios.put(`${ TODO_API_URL }/${id}`)
+const updateTodo = (id) => {
+    axios.put(`${ TODO_API_URL }/${id}`)
 }
 
-export default { 
+
+const TodoService = {
     fetchTodos,
     addTodo,
     deleteTodo,
     updateTodo
 };
+
+export default TodoService

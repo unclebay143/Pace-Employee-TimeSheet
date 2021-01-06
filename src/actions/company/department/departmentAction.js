@@ -1,4 +1,13 @@
-import { OPEN_NEW_FORM, CLOSE_NEW_FORM, ADD_DEPARTMENT, ERROR_DEPARTMENT,  } from "../../types";
+import { 
+    OPEN_NEW_FORM, 
+    CLOSE_NEW_FORM, 
+    ADD_DEPARTMENT, 
+    ERROR_DEPARTMENT, 
+    DEPARTMENT_ERROR,
+    DELETE_DEPARTMENT
+} from "../../types";
+
+import DepartmentService from '../../../services/company/department-service'
 
 // Open new employee form
 const openForm = () => (dispatch) =>{
@@ -15,8 +24,9 @@ const closeForm = () => (dispatch) =>{
 }
 
 // Add new department
-const addDepartment = (newDepartment) => {
-    return DepartmentService.postNewDepartment(newDepartment)
+const addDepartment = ({ departmentName }) => (dispatch) =>{
+    console.log(departmentName);
+    return DepartmentService.postNewDepartment(departmentName)
     .then((response)=>{
         dispatch({
             type: ADD_DEPARTMENT,
@@ -32,13 +42,19 @@ const addDepartment = (newDepartment) => {
 };
 
 // Edit department
-const editDepartment = (departmentID) => {
+const editDepartment = (departmentID) => (dispatch) =>{
     return DepartmentService.editDepartment(departmentID);
 };
 
 // Delete department
-const deleteDepartment = (departmentID) => {
-    return DepartmentService.deleteDepartment(departmentID);
+const deleteDepartment = (departmentID) => (dispatch) =>{
+    // Delete Department Record from the UI
+    dispatch({
+        type: DELETE_DEPARTMENT,
+        payload: departmentID
+    })
+    // Then delete from the server
+    // return DepartmentService.deleteDepartment(departmentID);
 }
 
 
