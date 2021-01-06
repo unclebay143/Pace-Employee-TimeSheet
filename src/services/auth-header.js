@@ -1,3 +1,6 @@
+// This file contains Authorization token and reusable properties of the currentUsers 
+
+
 // Header for authentication
 let getCurrentUser = JSON.parse(localStorage.getItem('token'));
 if(!getCurrentUser){
@@ -10,16 +13,24 @@ if(!getCurrentUser){
             ]
     }
 }
-const userAccessToken = getCurrentUser.accessToken
-const currentUserFromLocalStorage = getCurrentUser.response[0]
 
+// Current user token
+const userAccessToken = getCurrentUser.accessToken;
 
+// currentUser in the localstorage
+const currentUserFromLocalStorage = getCurrentUser.response[0];
 
+// Current user companyID
+const companyID = currentUserFromLocalStorage.companyID;
+
+// Authorization token
 const authHeader = {
   'Content-Type': 'application/json',
   "Accept": "application/json",
   'Authorization': `basic ${userAccessToken}`
 }
+
+
 
 
 export {
