@@ -2,7 +2,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import { syncCurrentUser } from '../../../actions/auth/authAction';
 import Button from '../../layouts/Button';
 import unclebay from '../../pages/pages-images/ayodele_samuel_adebayo.jpg';
 
@@ -30,31 +31,43 @@ const ProfileRow = (props) => {
 const Profile = () =>{
     const params = useParams()
     const [ user, setUser ] = useState({})
-
+    const history = useHistory()
+    
     useEffect(() => {
         
         const getCurrentUser = JSON.parse(localStorage.getItem('token'));
-        const currentUser = getCurrentUser.data.response[0];
-        setUser(currentUser)
-        console.log(user)
+        if(getCurrentUser){
+            // history.push('../login')
+            const currentUser = getCurrentUser.response[0];
+            setUser(currentUser)
+            console.log(params.id)
+            syncCurrentUser(params.id)
+            // console.log(user)
+        }
+
+        return(()=>{
+            console.log('here1')
+            const currentUser = []
+            console.log('here2')
+        })
     }, [])
     
     useEffect(() => {
-        const getUser = async() =>{
-            const getCurrentUser = JSON.parse(localStorage.getItem('token'));
-            const currentUser = getCurrentUser.data.response[0];
-            const accessToken1 = getCurrentUser.data.accessToken
-            const headers = {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${accessToken1} `
-              }
-            // const { data } = await axios.get('https://pacetimesheet.herokuapp.com/api/users/companyName/userProfile/' + params.id)
-            const { response } = await axios.get('https://pacetimesheet.herokuapp.com/api/users/companyName/userProfile/' + user.staffID)
-            console.log(response)
-            // setUser(data)
-            // setUser(data)
-        }
-        getUser()
+        // const getUser = async() =>{
+        //     const getCurrentUser = JSON.parse(localStorage.getItem('token'));
+        //     const accessToken1 = getCurrentUser.data.accessToken
+        //     const options = {
+        //         'Content-Type': 'application/json',
+        //         'Authorization': `basic ${accessToken1} `
+        //       }
+        //     // const { data } = await axios.get('https://pacetimesheet.herokuapp.com/api/users/companyName/userProfile/' + params.id)
+        //     console.log("response")
+        //     const { data } = await axios.get('https://pacetimesheet.herokuapp.com/api/users/companyName/userProfile/' + user.staffID, { headers: options })
+        //     console.log(data)
+        //     // setUser(data)
+        //     // setUser(data)
+        // }
+        // getUser()
     },[])
     return (
         <>
@@ -85,10 +98,10 @@ const Profile = () =>{
                                         {/* <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width={150} /> */}
                                         <img src={unclebay} alt="Admin" className="rounded-circle" width={150} />
                                         <div className="mt-3">
-                                            <h4>{user.firstName} </h4>
+                                            <h4 className="text-capitalize">{user.firstName} {user.lastName}</h4>
                                             <h4>{user.id} </h4>
                                             <p className="text-secondary mb-1">Frontend Engineer</p>
-                                            <p className="text-muted font-size-sm">Forestry Area, Bako, Gwagwalada, Abuja</p>
+                                            <p className="text-muted font-size-sm">{user.address}</p>
                                             <Link to={`/dashboard/edit/${user.staffID}`}><Button className="btn btn-primary mr-2" label="Edit"/></Link>
                                             <Button className="btn btn-danger" label="Disable" />
                                         </div>
@@ -101,12 +114,12 @@ const Profile = () =>{
                             <div className="card mb-3">
                                 <div className="card-body">
                                     <ProfileRow title="Full Name" label={ ` ${user.firstName} ${user.lastName}` } />
-                                    <ProfileRow title="Email" label="unclebigbay@gmail.com" />
+                                    <ProfileRow title="Email" label={user.email} />
                                     <ProfileRow title="Department" label="Web development" />
                                     <ProfileRow title="Role" label="Frontend Engineer" />
-                                    <ProfileRow title="Salary" label={`${user.billRateCharge}`} />
-                                    <ProfileRow title="Phone" label={`${user.phoneNumber}`} />
-                                    <ProfileRow title="Address" label="Forestry Area, Bako, Gwagwalada, Abuja" />
+                                    <ProfileRow title="Salary" label={`# ${user.billRateCharge}`} />
+                                    <ProfileRow title="Phone" label={user.phoneNumber} />
+                                    <ProfileRow title="Address" label={user.address} />
                                 </div>
                             </div>
                         </div>

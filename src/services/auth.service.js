@@ -1,10 +1,10 @@
 // Axios
 import axios from "axios";
 import { LOGIN_SUCCESS, LOGOUT, REGISTER_SUCCESS } from "../actions/types";
-import { registrationFailLogger, registrationCompletedLogger, emailAlreadyExistLogger, invalidDetailsLogger } from "../toaster";
+import { registrationFailLogger, registrationCompletedLogger, emailAlreadyExistLogger, invalidDetailsLogger, profileUpdateCompletedLogger, profileUpdateFailLogger } from "../toaster";
 
 // API
-import { AUTH_API_URL } from "./root-endpoints";
+import { AUTH_API_URL, options, currentUserFromLocalStorage, USER_PROFILE_URL } from "./root-endpoints";
 
 
 // Function handling the user-Company registration
@@ -88,21 +88,7 @@ const login = ( email, password, action ) => ( dispatch ) =>{
       // Destructure the response to get the email and password (the response 'data' has a 'data' and accessToken in it)
       const { data }  = response;
       console.log(data);
-
-      // const { data, data: { accessToken } }  = response.data;
-      console.log('here3')
-      console.log("usercredentials")
-      // Store the response token to the localstorage
-      // localStorage.setItem('token', JSON.stringify(accessToken));
-      // const userCredentials = [
-      //   accessToken,
-      //   {
-      //     id: data.response[0].staffID
-      //   }
-      // ] 
-
-      console.log('here4')
-      localStorage.setItem('token', JSON.stringify(data));
+      localStorage.setItem('token', JSON.stringify(data.data));
       
       console.log('here')
       // Store the data(user's) to the store
@@ -123,24 +109,20 @@ const login = ( email, password, action ) => ( dispatch ) =>{
 };
 
 
-const fetchUserProfile = async (currentUserID) =>{
-
+const fetchUserProfile = async (staffID) =>{
+  console.log(staffID)
+  console.log('in fetch')
   // Get token from the localstorage
-    const currentUserDetails = await axios.get( AUTH_API_URL, currentUserID )    
-    console.log(currentUserDetails)
-  // if(token){
-  //   const config = {
-  //     method: 'GET',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       Accept: 'application/json',
-  //       'Authorization': `Bearer ${token}`
-  //     } 
-  //   }
-  //     return axios('https://pacetimesheet.herokuapp.com/', config)
-  //     .then((response)=>console.log(response))
-
+      axios.get(`https://pacetimesheet.herokuapp.com/api/users/companyName/userProfile/${staffID}`, { headers: options })
+      .then((response)=>{
+          console.log(response)
+          // profileUpdateCompletedLogger()
+      }).catch((error)=>{
+          console.log(error)
+          // profileUpdateFailLogger()
+      })
   // }
+
 }
 
 const logout = () => {

@@ -115,8 +115,18 @@ const Signup = () =>{
                                                     className="invalid-feedback p-0"
                                                 />
                                             </div>
-                                        <div className="d-flex justify-content-beteen">
-
+                                        <div className="d-md-flex passwords">
+                                            <style>
+                                                {
+                                                    `
+                                                        @media(max-width:700px){
+                                                            .passwords .password-wrapper,
+                                                            .passwords .confirmPassword-wrapper{
+                                                                width: 100% !important;
+                                                            }
+                                                    `
+                                                }
+                                            </style>
                                             <div className="form-group password-wrapper mr-2" style={{ width: '50%' }}>
                                                 <TextInput 
                                                     name="password"

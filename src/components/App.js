@@ -15,9 +15,6 @@ import About from './pages/About';
 import Home from './pages/Home';
 import PageNotFound from './pages/404';
 
-// Action
-import { getUserProfile } from '../actions/auth/authAction';
-
 
 function App() {
 

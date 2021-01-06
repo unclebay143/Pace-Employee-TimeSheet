@@ -41,7 +41,7 @@ const Dashboard = () =>{
         }
         
         if ( currentUser ){
-            dispatch(syncCurrentUser( currentUser ))
+            syncCurrentUser( currentUser )
         }
 
     })
