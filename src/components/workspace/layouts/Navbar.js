@@ -1,8 +1,9 @@
 
 // React
 import { React, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 // Component
 import TimerContainer from '../dashboard/timer/Timer';
@@ -12,7 +13,6 @@ import { logout } from '../../../actions/auth/authAction'
 
 // Toast
 import { ToastContainer } from 'react-toastify';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 const Navbar = () =>{
@@ -24,17 +24,18 @@ const Navbar = () =>{
     useEffect(() => {
         
         const currentUser = JSON.parse(localStorage.getItem('token'));
-        // if( currentUser === null || currentUser === undefined ){
-        //     history.push('./login');
-        // }
+        
 
         if(currentUser){
-            const { firstName, lastName, staffID } = currentUser.data.response[0];
+            const { firstName, lastName, staffID } = currentUser.response[0];
             setFullName(` ${ firstName } ${ lastName } `)
             setStaffID(staffID)
+
+        }else if( currentUser === null || currentUser === undefined ){
+            history.push('/');
         }
 
-    }, [])
+    },[])
     
     return(
         <>

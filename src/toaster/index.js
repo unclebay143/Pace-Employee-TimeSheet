@@ -1,8 +1,9 @@
-import { toast } from 'react-toastify'; 
+import { toast, ToastContainer } from 'react-toastify'; 
 
 
 // Common
 const netWorkError  =  () => toast.warning('Network Error')
+
 
 
 //  Login Toast
@@ -20,6 +21,9 @@ const emailAlreadyExistLogger = () => toast.warning('Email Already Exist')
 // Logout Toast
 const logOutSuccess = () => toast.warning('Logout Successful')
 
+// Users Setting Toasts
+const profileUpdateCompletedLogger = () => toast.info('Profile Update Successfully');
+const profileUpdateFailLogger = () => toast.warning('Profile Update Failed')
 
 // Todo
 const invalidTodoTitle  =  () => toast.warning('Todo title is required')
@@ -36,5 +40,7 @@ export{
     registrationCompletedLogger,
     logOutSuccess,
     invalidTodoTitle,
-    netWorkError
+    netWorkError,
+    profileUpdateCompletedLogger,
+    profileUpdateFailLogger,
 }
