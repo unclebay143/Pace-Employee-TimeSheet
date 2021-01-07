@@ -1,2 +1,9 @@
 Build todo component interface
 make todo card dynamic
+
+// 31ST DEC
+create todo reducers (CRUD)
+
+// 1ST JAN
+create todo api file
+modify dispatch method into function (action only)

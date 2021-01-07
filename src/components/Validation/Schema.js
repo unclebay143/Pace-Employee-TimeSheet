@@ -28,10 +28,10 @@ export const loginSchema = Yup.object().shape({
 export const signUpSchema = Yup.object().shape({
     // email: Yup.string().email('Invalid email format').required('Email is required'),
     // phone: Yup.string().matches(phoneRegExp, 'Phone number is not valid'),
+    companyName: Yup.string().required('Workspace Name is required'),
+    email: Yup.string().required('Email is required'),
     password: Yup.string().min(4, 'Password must be at least 7 characters').required('Password is required'),
     confirmPassword: Yup.string().required('Please confirm password').oneOf([Yup.ref('password')], 'Password Mismatch'),
-    workSpaceName: Yup.string().required('Workspace Name is required'),
-    workSpaceEmail: Yup.string().required('Email is required'),
     termsOfService : Yup.bool().oneOf([true], 'Please review and accept Terms and Condition')
 })
 
@@ -56,3 +56,11 @@ export const AddEmployeeSchema = Yup.object().shape({
     type: Yup.string().required('Type is required')
 })
 
+
+
+//  Todo
+
+export const TodoListSchema = Yup.object().shape({
+    title: Yup.string().required('Todo Title is required'),
+    // dueDate: Yup.date().required("Due Date is Required").nullable('kll')
+})

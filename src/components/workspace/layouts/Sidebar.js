@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { logout } from '../../../actions/authenticationAction';
+import { logout } from '../../../actions/auth/authAction';
 import { ToastContainer } from 'react-toastify'
 import { logOutSuccess } from '../../../toaster';
 

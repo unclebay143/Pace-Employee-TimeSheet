@@ -1,6 +1,8 @@
 // React 
 import React, {useEffect} from 'react';
 import { Route, Switch } from 'react-router-dom/cjs/react-router-dom.min';
+import { useSelector } from 'react-redux';
+
 // Layouts
 import Navbar from './layouts/Navbar';
 import Footer from './layouts/Footer';
@@ -15,11 +17,16 @@ import PageNotFound from './pages/404';
 
 
 function App() {
+
   useEffect(() => {
+
+    // Initialize AOS animation
     AOS.init({
       duration : 2000
     });
   }, []);
+
+
 
   return (
     <>

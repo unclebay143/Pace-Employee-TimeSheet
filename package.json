@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.32",
+    "@fortawesome/free-solid-svg-icons": "^5.15.1",
+    "@fortawesome/react-fontawesome": "^0.1.14",
     "@material-ui/core": "^4.11.2",
     "@material-ui/icons": "^4.11.2",
     "@testing-library/jest-dom": "^5.11.6",
@@ -11,6 +14,7 @@
     "aos": "^2.3.4",
     "axios": "^0.21.1",
     "bootstrap": "^4.5.3",
+    "font-awesome": "^4.7.0",
     "formik": "^2.2.5",
     "jquery": "^3.5.1",
     "material-table": "^1.69.2",
@@ -34,6 +38,7 @@
     "sweetalert": "^2.1.2",
     "sweetalert2": "^10.12.5",
     "sweetalert2-react-content": "^3.2.2",
+    "use-sound": "^2.0.1",
     "web-vitals": "^0.2.4",
     "yup": "^0.32.1"
   },

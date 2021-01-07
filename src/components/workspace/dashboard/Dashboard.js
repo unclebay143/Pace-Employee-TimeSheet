@@ -1,7 +1,8 @@
 // React
-import { React } from 'react';
-import { useSelector } from 'react-redux'
-import { Redirect, Route, Switch } from 'react-router-dom/cjs/react-router-dom.min';
+import { React, useEffect } from 'react';
+import { useDispatch } from 'react-redux'
+import { Route, Switch } from 'react-router-dom/cjs/react-router-dom.min';
+import { useHistory } from 'react-router-dom';
 
 // Layouts
 import Navbar from '../layouts/Navbar';
@@ -18,15 +19,41 @@ import BillingReport from './reports/BillingReport';
 import Profile from './Profile';
 import Task from './Task';
 import Todo from './todos/Todo'
+import { ManageDepartment } from '../../company/department/ManageDepartment';
+
+// Actions
+import { getTodos } from '../../../actions/todo/todoAction';
+import { getTasks } from '../../../actions/task/taskAction';
+import { syncCurrentUser } from '../../../actions/auth/authAction';
 
 
 const Dashboard = () =>{
 
-    const { isLoggedIn } = useSelector(state => state.authenticationState)
+    const history = useHistory()
+    const dispatch = useDispatch()
+    
 
-    if(!isLoggedIn){
-        return <Redirect to="/login" />
-    }
+    console.log('dashboard');
+    useEffect(() => {
+        const  currentUser  = JSON.parse(localStorage.getItem('token'));
+
+        if( currentUser === null || currentUser === undefined ){
+            history.push('./login');
+        }
+        
+        if ( currentUser ){
+            dispatch(syncCurrentUser( currentUser.response[0].staffID ))
+        }
+
+    })
+
+    useEffect(() => {
+        // Fetch user todo list
+        dispatch(getTodos())
+
+        // Fetch user tasks
+        dispatch(getTasks())
+    }, [])
 
     return(
         <>
@@ -41,13 +68,14 @@ const Dashboard = () =>{
                             <div className="container-fluid dashboard-body-wrapper">
                 {/* >>>>> BODIES COMPONENTS SECTION <<<<< */}
                                 <Switch>
+                                    <Route path="/dashboard/settings/departments" component={ManageDepartment} />
                                     <Route path="/dashboard/todos" component={Todo} />
                                     <Route path="/dashboard/task" component={Task} />
-                                    <Route exact path="/dashboard/profile" component={Profile} />
+                                    <Route exact path="/dashboard/profile/:id" component={Profile} />
                                     <Route exact path="/dashboard/billing-report" component={BillingReport} />
                                     <Route exact path="/dashboard/timer-report" component={TimerReport} />
                                     {/* <Route exact path="/dashboard/task" component={EmployeeTasks} /> */}
-                                    <Route exact path="/dashboard/edit" component={EditEmployee} />
+                                    <Route exact path="/dashboard/edit/:id" component={EditEmployee} />
                                     <Route exact path="/dashboard/employ" component={AddEmployee} />
                                     <Route exact path="/dashboard/employee-list" component={EmployeeList} />
                                     <Route exact path="/dashboard" component={Index} />
