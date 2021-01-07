@@ -20,7 +20,7 @@ const userAccessToken = getCurrentUser.accessToken;
 const currentUserFromLocalStorage = getCurrentUser.response[0];
 
 // Current user companyID
-const companyID = currentUserFromLocalStorage.companyID;
+const currentUserCompanyID = currentUserFromLocalStorage.companyID;
 
 // Authorization token
 const authHeader = {
@@ -35,5 +35,6 @@ const authHeader = {
 export {
   authHeader,
   userAccessToken,
-  currentUserFromLocalStorage
+  currentUserFromLocalStorage,
+  currentUserCompanyID
 }

@@ -1,14 +1,9 @@
 // React
-import axios from 'axios';
-import { ErrorMessage, Field, Form, Formik } from 'formik';
-import { param } from 'jquery';
+import { ErrorMessage, Form, Formik } from 'formik';
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import Button from '../../layouts/Button';
 import { TextInput } from '../../layouts/FormInput';
-import { AddEmployeeSchema } from '../../Validation/Schema';
-import Profile from './Profile';
 import { updateUserProfile } from '../../../actions/userSetting/settings';
 import UserService from "../../../services/user.service";
 
