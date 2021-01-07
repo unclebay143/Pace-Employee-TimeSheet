@@ -24,7 +24,7 @@ import { ManageDepartment } from '../../company/department/ManageDepartment';
 // Actions
 import { getTodos } from '../../../actions/todo/todoAction';
 import { getTasks } from '../../../actions/task/taskAction';
-import { syncCurrentUser } from '../../../actions/auth/authAction';
+import { syncCurrentUser } from '../../../actions/user/userAction';
 
 
 const Dashboard = () =>{

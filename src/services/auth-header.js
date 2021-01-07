@@ -24,12 +24,11 @@ const currentUserCompanyID = currentUserFromLocalStorage.companyID;
 
 // Authorization token
 const authHeader = {
-  // 'Content-Type': 'application/json',
-  // 'Accept': 'application/json',
-  // 'Access-Control-Allow-Origin': '*',
-  
-  // mode: 'no-cors',
-  // 'Authorization': `basic ${userAccessToken}`
+  'Content-Type': 'application/json',
+  'Accept': 'application/json',
+  'Access-Control-Allow-Origin': '*',
+  mode: 'no-cors',
+  'Authorization': `basic ${userAccessToken}`
 }
 
 
@@ -37,6 +36,7 @@ const authHeader = {
 
 export {
   authHeader,
+  getCurrentUser,
   userAccessToken,
   currentUserFromLocalStorage,
   currentUserCompanyID
