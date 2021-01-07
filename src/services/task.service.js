@@ -11,12 +11,12 @@ const fetchTasks = () =>{
     return axios.get( TASK_API_URL )
 }
 
-const deleteTask = async(id) =>{
-    await axios.delete(`${ TASK_API_URL }/${id}`)
+const deleteTask = (id) =>{
+     axios.delete(`${ TASK_API_URL }/${id}`)
 }
 
-const updateTask = async(id) =>{
-    await axios.put(`${ TASK_API_URL }/${id}`)
+const updateTask = (id) =>{
+     axios.put(`${ TASK_API_URL }/${id}`)
 }
 
 export default{

@@ -21,11 +21,13 @@ export default  function EmployeeList(){
           company: 'coming'
         }])
         useEffect(() => {
-          async function getEm() {
-            const { data } = await axios.get('http://fakerestapi.azurewebsites.net/api/v1/Users')
-            // const { data } = await axios.get('https://jsonplaceholder.typicode.com/users')
-            setEmployees(data)
-            console.log(data)
+          function getEm() {
+            axios.get('http://fakerestapi.azurewebsites.net/api/v1/Users')
+            .then((response)=>{
+              // const { data } = await axios.get('https://jsonplaceholder.typicode.com/users')
+              setEmployees(response.data)
+              console.log(response.data)
+            })
           }
           getEm()
         }, [])
