@@ -38,7 +38,8 @@ const register = (companyName, email, password, action) => (dispatch) =>{
 
       const { data }  = response.data;
       // Store the response token to the localstorage
-      localStorage.setItem('token', JSON.stringify(data));
+      localStorage.setItem('token', JSON.stringify(data.accessToken));
+      localStorage.setItem('currentUser', JSON.stringify(data.response));
 
       // Store the data(user's) to the store
       dispatch({
@@ -47,7 +48,6 @@ const register = (companyName, email, password, action) => (dispatch) =>{
       })
     })
     .catch((error)=>{
-      console.log('here')
       // Error code 500 means email already exist
       if(error && error.response.status === 500){
         
@@ -79,13 +79,11 @@ const login = ( email, password, action ) => ( dispatch ) =>{
       password,
     })
     .then((response)=>{
-      console.log(response);
       // Destructure the response to get the email and password (the response 'data' has a 'data' and 'accessToken' in it)
       const { data }  = response;
-      console.log(data);
-      localStorage.setItem('token', JSON.stringify(data.data));
+      localStorage.setItem('token', JSON.stringify(data.accessToken));
+      localStorage.setItem('currentUser', JSON.stringify(data.response));
       
-      console.log('here')
       // Store the data(user's) to the store
       dispatch({
         type: LOGIN_SUCCESS,

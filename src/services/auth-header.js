@@ -1,7 +1,8 @@
 // This file contains Authorization token and reusable properties of the currentUsers 
 
 // Header for authentication
-let getCurrentUser = JSON.parse(localStorage.getItem('token'));
+let accessToken = localStorage.getItem('token');
+let getCurrentUser = localStorage.getItem('currentUser');
 if(!getCurrentUser){
     getCurrentUser = {
             accessToken: '',
@@ -14,7 +15,7 @@ if(!getCurrentUser){
 }
 
 // Current user token
-const userAccessToken = getCurrentUser.accessToken;
+const userAccessToken = accessToken;
 
 // currentUser in the localstorage
 const currentUserFromLocalStorage = getCurrentUser.response[0];
