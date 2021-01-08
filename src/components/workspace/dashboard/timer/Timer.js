@@ -1,20 +1,31 @@
+// React 
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { TIMER_ON, TIMER_OFF } from '../../../../actions/types';
 import Timer from 'react-compound-timer';
-import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import Swal from 'sweetalert2';
+import useSound from 'use-sound';
+
+// Actions
+import { TIMER_ON, TIMER_OFF, SET_WORKED_MILLISECOND } from '../../../../actions/types';
+import notify from './notify.wav'
 
 const timerReminder = withReactContent(Swal)
 
-const TimerHolder=()=>{
-    const isTimerOff = useSelector(state => state.timerStatus)
-    // const [ isTimerOff, setIsTimerOff ] = useState(timeStatus)
+const TimerContainer=()=>{
+    const { timerIsOff } = useSelector(state => state.timerStatus)
+    const [ isTimerOff, setisTimerOff ] = useState(timerIsOff)
+    const [ shouldRemindUser ] = useState(isTimerOff)
+    const [ isTimerSessionExist, setTimerSessionExist ] = useState(null)
     const dispatch = useDispatch()
+    const [ playSound ] = useSound(
+        notify, { volume: 0.25 }
+    )
+
+
     useEffect(() => {
-    
-        setTimeout(() => {
-            if(isTimerOff){
+        const reminder = () => {
+            if(shouldRemindUser){
                 timerReminder.fire({
                     showCloseButton: true,
                     showCancelButton: true,
@@ -24,18 +35,29 @@ const TimerHolder=()=>{
                     icon: 'question',
                     title: 'Reminder!',
                     text: 'Did you forget to start your time?.',
-                    footer: '<a href="">Why am I seeing this?</a>'
+                    footer: '<a href="">Why am I seeing this?</a>',
                 })
+                playSound()
             }
-            
-        }, 300000)
+        }
 
-    })
+        const reminderTracker = setTimeout(reminder, 3000000);
+        
+        // setTimeout(() => {
+        //     reminder()
+        // }, 3000000)
+
+        return(()=>{
+            clearTimeout(reminderTracker)
+        })
+
+    }, [shouldRemindUser, playSound])
+    
+    
 
     
-    const onStop = (value, resume, reset)=>{
-        // setIsTimerOff((isTimerOff  )=>({isTimerOff  : isTimerOff   = true}))
-        const formatTimer = Math.floor(value / 3600000)
+    const onStop = (stopMillsecond, resume, reset)=>{
+        const convertedStopHour = Math.floor(stopMillsecond / 3600000)
         timerReminder.fire({
             showCloseButton: true,
             showCancelButton: true,
@@ -44,61 +66,103 @@ const TimerHolder=()=>{
             cancelButtonText: 'Resume',
             icon: 'warning',
             title: 'Stop Timer?',
-            text: `you worked ${(formatTimer <= 1 ? (`${formatTimer} hour`) : (`${formatTimer} hours`))} are you through?.`,
+            text: `you worked ${(convertedStopHour <= 1 ? (`${convertedStopHour} hour`) : (`${convertedStopHour} hours`))} are you through?.`,
             footer: '<a href="">Why am I seeing this?</a>'
         }).then((inputValue)=>{
             if(inputValue.isConfirmed === true){
-                dispatch({type: TIMER_OFF, hour:2})
+                setisTimerOff(true)
+                dispatch({type: TIMER_OFF, hour: convertedStopHour})
                 reset()
             }else{
+                console.log('resumeeeeeeee');
                 resume()
             }
         })
     }
+    const onStart = (start, getTime) =>{
+        start()
+        dispatch({ type: TIMER_ON })
+        setInterval(() => {
+            const currentMilliSecond = getTime();
+            localStorage.setItem('currentMilliSecond', JSON.stringify(currentMilliSecond))
+            setisTimerOff(false)
+            dispatch({ type: SET_WORKED_MILLISECOND, payload: currentMilliSecond})
+            
+        }, 1000);
+    }
 
+    // useEffect(() => {
+        // const isTimerSessionExist = localStorage.getItem('currentMilliSecond')
+        // if(isTimerSessionExist){
+        //     console.log('session', Number(isTimerSessionExist) )
+        //     dispatch({ type: TIMER_ON })
+        //     setInterval(() => {
+        //         const currentMilliSecond = Number(isTimerSessionExist);
+        //         localStorage.setItem('currentMilliSecond', JSON.stringify(currentMilliSecond))
+        //         setisTimerOff(false)
+        //         setTimerSessionExist(isTimerSessionExist)
+        //         dispatch({ type: SET_WORKED_MILLISECOND, payload: currentMilliSecond})
+                
+        //     }, 1000);
+        // }
+    // })
+
+    
     return(
         <>
             <li className="nav-item">
-                <div id="searchForm" className="ml-auto d-none d-lg-block">
+                <div id="searchForm" className="ml-auto d-non d-lg-block">
                     <div className="position-relative mb-0">
                         <div id="right-i">
                             <Timer
-                                initialTime={0}
-                                startImmediately={false}
-                                onStart = {()=>{
-                                    // setIsTimerOff((isTimerOff)=>{isTimerOff = true})
-                                    dispatch({ type: TIMER_ON, payload: 3})
-                                }}
+                                initialTime={ isTimerSessionExist ? Number(isTimerSessionExist) : 0 }
+                                startImmediately={ isTimerSessionExist ? true : false}
                                 >
                                 {({ resume, start, stop, getTime, reset }) => (
                                     <>
                                         <div id="right-i">
+                                            {/* {console.log(Hours())} */}
                                             {
-                                                isTimerOff ? 
-                                                    (
-                                                    
-                                                        <button onClick={start} id="start-time">Start Time</button>
-                                                    
-                                                    )
-                                                :
-                                                    (
-                                                        <button 
-                                                            onClick={()=>{
-                                                                const stopTime = getTime();
-                                                                onStop(stopTime, resume, reset)
-                                                                stop()
-                                                                // reset()
-                                                            }} 
-                                                            id="start-time"
-                                                            className="bg-red"
-                                                        >Stop Time</button>
-                                                    )
-                                            }
 
-                                            {
-                                                // isTimerOff ? console.log('off') : console.log('on') 
-                                            }
+                                                isTimerOff ?
+                                                
+                                                (
+                                                    
+                                                    <button onClick={()=>{
+
+                                                        
+                                                        onStart(start, getTime)
+                                                    }
+                                                        
+                                                    }
+                                                    id="start-time">
+                                                    
+                                                        Start Time
+                                                    
+                                                    </button>
+
+                                                )
+                                                :
+                                                (
+
+                                                    <button 
+                                                        onClick={()=>{
+                                                            const stopTime = getTime();
+                                                            onStop(stopTime, resume, reset)
+                                                            stop()
+                                                            // reset()
+                                                        }} 
+                                                        id="start-time"
+                                                        className="bg-red"
+                                                    >
+
+                                                        Stop Time
+                                                    
+                                                    </button>
+
+                                                )
                                             
+                                            }
                                             <div id="time">
                                                 <span id="hours">
                                                     <Timer.Hours formatValue={((hour)=> `${(hour < 10 ? `0${hour}` : `${hour}`)}`)} />
@@ -127,4 +191,4 @@ const TimerHolder=()=>{
 
 
 
-export default TimerHolder;
+export default TimerContainer;

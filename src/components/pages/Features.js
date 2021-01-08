@@ -16,6 +16,7 @@ const Features = () =>{
     return(
       <>
       <div id="features">&nbsp;</div>
+      <h3>PACE <span>FEATURES</span></h3>
         <section className="container features-wrapper">
           <section className="row d-flex flex-column flex-sm-row align-items-center pace-features-1" id="pace-features">
             <FeaturesCard

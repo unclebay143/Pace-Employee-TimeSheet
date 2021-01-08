@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import {NavLink} from 'react-router-dom';
+import {NavLink, Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { getAcceptedTask } from '../../../../actions/taskActions';
+// import { getAcceptedTask } from '../../../../actions/task/taskAction';
 
 import Table from '../../layouts/Table';
 import paginationFactory from 'react-bootstrap-table2-paginator';
@@ -30,6 +30,7 @@ const taskHeader = [
         dataField: 'requests',
         text: 'Requests',
       },
+      
         
       // {
       
@@ -42,12 +43,7 @@ const taskHeader = [
       //       >
       //         Delete
       //       </button>
-      //       <button
-      //         className="btn btn-danger btn-xs"
-      //         onClick={(e) => handleDelete(row)} 
-      //       >
-      //         Delete
-      //       </button>
+           
       //       </>
       //     );
       //   },
@@ -84,13 +80,11 @@ class AcceptedTasks extends Component {
     super(props)
     this.state = {
       ComponentDidMount() {
-        this.props.getAcceptedTask();
+        // this.props.getAcceptedTask();
       }
     }
 }
-
   render() {
-    
     const { acceptedTasks} = this.props;
     const selectRow = {
       mode: 'checkbox' 
@@ -123,5 +117,6 @@ const mapStateToProps = state => ({
 // })
 
 
-export default connect(mapStateToProps,{getAcceptedTask})(AcceptedTasks);
+// export default connect(mapStateToProps,{getAcceptedTask})(AcceptedTasks);
+export default AcceptedTasks;
 

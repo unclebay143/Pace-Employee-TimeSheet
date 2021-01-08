@@ -13,44 +13,64 @@
     width: 280px;
   }
   
-  /* The popup form - hidden by default */
+  /* The form - hidden by default */
+  #hide-form{
+    display: none; 
+  }
+
+  #show-form{
+    display: block !important;
+  }
+
+
   .form-popup {
-    /* display: none; */
     position: fixed;
     bottom: 0;
     right: 40px;
     border: 3px solid #f1f1f1;
     z-index: 9;
   }
+
+  /* Form popdown btn (Times) */
+  .form-popdown-btn{
+    float: right;
+    cursor: pointer;
+    font-size: 17px;
+  }
+
+  .form-popdown-btn:hover{
+    transform: scale(0.9);
+  }
   
   /* Add styles to the form container */
-  .form-container {
-    max-width: 300px;
-    padding: 10px;
+  .todo-form-container {
+    /* max-width: 300px; */
+    /* padding: 10px; */
     background-color: white;
     text-align: left;
   }
-  
-  /* Full-width input fields */
-  .form-container input[type=datetime-local] {
+
+  .todo-form-wrapper{
+    padding: 10px;
   }
 
-  .form-container input[type=text]{
-    width: 100%;
+  .todo-form-container input[type=text],
+    .todo-form-container input[type=datetime-local]{
+    width: 100% !important;
     padding: 15px;
     margin: 5px 0 22px 0;
     border: none;
     background: #f1f1f1;
+    background-color: #DADAD9;
   }
-  
-  /* When the inputs get focus, do something */
-  .form-container input[type=text]:focus, .form-container input[type=datetime-local]:focus {
-    background-color: #ddd;
+
+  .todo-form-container input[type=text]:focus, .todo-form-container input[type=datetime-local]:focus {
+    background-color: #dddddd;
     outline: none;
   }
   
   /* Set a style for the submit/login button */
-  .form-container .btn {
+  .todo-form-container .btn {
     background-color: #4CAF50;
     color: white;
     padding: 16px 20px;
@@ -61,13 +81,9 @@
     opacity: 0.8;
   }
   
-  /* Add a red background color to the cancel button */
-  .form-container .cancel {
-    background-color: red;
-  }
   
   /* Add some hover effects to buttons */
-  .form-container .btn:hover, .open-button:hover {
+  .todo-form-container .btn:hover, .open-button:hover {
     opacity: 1;
   }
   

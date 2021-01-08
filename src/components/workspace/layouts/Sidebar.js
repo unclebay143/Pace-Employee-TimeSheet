@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { logout } from '../../../actions/authenticationAction';
+import { logout } from '../../../actions/auth/authAction';
 import { ToastContainer } from 'react-toastify'
 import { logOutSuccess } from '../../../toaster';
 
@@ -11,10 +11,23 @@ const Sidebar = () => {
 
     
     const logOut = () =>{
+        
+        // logout notification
         logOutSuccess()
-        setTimeout(() => {
+
+        // process the logout dispatch
+        const processLogOut = () =>{
             dispatch(logout());
-        }, 2000);
+        }
+
+        //callback to allow the notification to complete
+        const waitForLogger = setTimeout(processLogOut, 2000)
+
+        // unsubscribe the callback
+        return(()=> clearTimeout(waitForLogger))
+        // setTimeout(() => {
+        //     dispatch(logout());
+        // }, 2000);
     }
     return(
         <>

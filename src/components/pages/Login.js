@@ -6,7 +6,7 @@ import { Link, useHistory, withRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify'; 
 
 // Toast
-import { invalidDetailsLogger, userIsAuthenticatedLogger} from '../../toaster';
+import { userIsAuthenticatedLogger} from '../../toaster';
 
 // Layouts
 import Button from '../layouts/Button';
@@ -14,7 +14,7 @@ import loginImage from './pages-images/login-img.png';
 import { TextInput } from '../layouts/FormInput';
 import { loginSchema } from '../Validation/Schema';
 import { HomeButton } from '../layouts/HomeButton';
-import { login } from '../../actions/authenticationAction';
+import { login } from '../../actions/auth/authAction';
 
 
 
@@ -22,15 +22,26 @@ const Login = () =>{
     const { isLoggedIn } = useSelector((state)=>state.authenticationState)
     const history = useHistory();
     const dispatch = useDispatch()
-    // const { message } = useSelector((state)=>state.message)
-    
+    // useEffect(() => {
+    //     document.title = 'Login | Pace'
+    //     if(isLoggedIn){
+    //         userIsAuthenticatedLogger()
+    //         setTimeout(() => {
+    //             history.push('./dashboard');
+    //         }, 2000);
+    //     }
+    // }, [isLoggedIn])
     useEffect(() => {
         document.title = 'Login | Pace'
+        
+        const redirector = () =>{
+            history.push('./dashboard')
+        }
+
         if(isLoggedIn){
             userIsAuthenticatedLogger()
-            setTimeout(() => {
-                history.push('./dashboard');
-            }, 2000);
+            const redirectUserToDashboard = setTimeout(redirector, 2000)
+            return(()=>clearTimeout(redirectUserToDashboard))
         }
     }, [isLoggedIn])
 
@@ -67,13 +78,7 @@ const Login = () =>{
                                     }}
                                     validationSchema = {loginSchema}
                                     onSubmit= {(values, action)=>{
-                                        dispatch(login(values))
-                                        .catch(()=>{
-                                            invalidDetailsLogger()
-                                            setTimeout(() => {
-                                                action.setSubmitting(false)
-                                            }, 2000);
-                                        });
+                                        dispatch(login(values, action))
                                     }}
                                 >{({touched, errors, isSubmitting, handleSubmit}) => (
                                     <Form onSubmit={handleSubmit}>
@@ -105,6 +110,7 @@ const Login = () =>{
                                                 }`}
                                                 id="passwords"
                                                 placeholder="Password"
+                                                autoComplete='on'
                                             />
                                             <ErrorMessage
                                                 component="div"
