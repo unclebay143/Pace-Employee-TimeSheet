@@ -1,7 +1,7 @@
 // React 
 import React, {useEffect} from 'react';
-import { Route, Switch } from 'react-router-dom/cjs/react-router-dom.min';
-import { useSelector } from 'react-redux';
+import { Route, Switch, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { useDispatch, useSelector } from 'react-redux';
 
 // Layouts
 import Navbar from './layouts/Navbar';
@@ -14,9 +14,22 @@ import AOS from 'aos';
 import About from './pages/About';
 import Home from './pages/Home';
 import PageNotFound from './pages/404';
+import { syncCurrentUser } from '../actions/user/userAction';
 
 
 function App() {
+  const histroy = useHistory()
+  const dispatch = useDispatch()
+
+  const  currentUser  = JSON.parse(localStorage.getItem('token'));
+
+  if( currentUser === null || currentUser === undefined ){
+      window.history.push('./login');
+  }
+  
+  if ( currentUser ){
+      dispatch(syncCurrentUser( currentUser.response[0].staffID ))
+  }
 
   useEffect(() => {
 

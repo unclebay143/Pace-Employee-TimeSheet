@@ -9,10 +9,8 @@ import { AUTH_API_URL } from "./root-endpoints";
 
 // Function handling the user-Company registration
 const register = (companyName, email, password, action) => (dispatch) =>{
-    console.log(('in register action'));
 
-
-    // Post user for validation and registration in the backend ( this method returns a response )
+  // Post user for validation and registration in the backend ( this method returns a response )
     return axios.post( AUTH_API_URL + 'signUp', {  
     companyName,
     email,
@@ -49,11 +47,8 @@ const register = (companyName, email, password, action) => (dispatch) =>{
       })
     })
     .catch((error)=>{
-
+      console.log('here')
       // Error code 500 means email already exist
-      console.log(error)
-      console.log(error.response)
-      console.log(error.response.status)
       if(error && error.response.status === 500){
         
         // taost a warning notification
@@ -85,7 +80,7 @@ const login = ( email, password, action ) => ( dispatch ) =>{
     })
     .then((response)=>{
       console.log(response);
-      // Destructure the response to get the email and password (the response 'data' has a 'data' and accessToken in it)
+      // Destructure the response to get the email and password (the response 'data' has a 'data' and 'accessToken' in it)
       const { data }  = response;
       console.log(data);
       localStorage.setItem('token', JSON.stringify(data.data));

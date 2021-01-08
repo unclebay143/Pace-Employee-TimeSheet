@@ -25,7 +25,6 @@ const TimerContainer=()=>{
 
     useEffect(() => {
         const reminder = () => {
-            playSound()
             if(shouldRemindUser){
                 timerReminder.fire({
                     showCloseButton: true,
@@ -38,12 +37,19 @@ const TimerContainer=()=>{
                     text: 'Did you forget to start your time?.',
                     footer: '<a href="">Why am I seeing this?</a>',
                 })
+                playSound()
             }
         }
+
+        const reminderTracker = setTimeout(reminder, 3000000);
         
-        setTimeout(() => {
-            reminder()
-        }, 3000000)
+        // setTimeout(() => {
+        //     reminder()
+        // }, 3000000)
+
+        return(()=>{
+            clearTimeout(reminderTracker)
+        })
 
     }, [shouldRemindUser, playSound])
     

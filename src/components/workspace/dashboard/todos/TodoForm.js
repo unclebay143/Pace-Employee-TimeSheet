@@ -38,7 +38,6 @@ const TodoForm = () =>{
                     }
                     onSubmit={(values, action)=>{
                         setTimeout(() => {
-                            
                             dispatch(addTodo(values))
                             action.resetForm({
                                 title: '',

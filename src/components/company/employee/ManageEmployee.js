@@ -1,5 +1,5 @@
 import { React, Component } from 'react';
-import Footer from '../layouts/Footer';
+import Footer from '../../workspace/layouts/Footer';
 import EmployeeList from './EmployeeList';
 import Button from '../../layouts/Button'
 

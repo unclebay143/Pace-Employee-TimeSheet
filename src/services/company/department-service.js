@@ -4,16 +4,15 @@ import axios from 'axios';
 //
 import { 
     authHeader, 
-    currentUserCompanyID 
+    currentUserCompanyID,
 } from '../auth-header';
 
 // Api endpoint
 import { ADD_DEPARTMENT_API } from '../root-endpoints';
 
-const postNewDepartment = (newDepartment) =>{
-    console.log(authHeader)
-    console.log(newDepartment)
-    return axios.post(ADD_DEPARTMENT_API + currentUserCompanyID, newDepartment,{ headers: authHeader})
+const postNewDepartment = (departmentName) =>{
+    console.log(departmentName);
+    return axios.post(ADD_DEPARTMENT_API + currentUserCompanyID, departmentName)
 }
 
 
