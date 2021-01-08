@@ -27,24 +27,24 @@ const UpdateEmployeeProfile = () =>{
         setStaffID(staffID)
 
         const getUserProfile = async()=>{
-            const response = await axios.get(USER_PROFILE_URL + staffID, { headers: authHeader })
-            const {
-                firstName,
-                lastName,
-                phoneNumber,
-                email,
-                address,
-                userName,
+            // const response = await axios.get(USER_PROFILE_URL + staffID, { headers: authHeader })
+            // const {
+            //     firstName,
+            //     lastName,
+            //     phoneNumber,
+            //     email,
+            //     address,
+            //     userName,
 
-            } = response.data.data[0]
-            setProfile({
-                firstName,
-                lastName,
-                phoneNumber,
-                email,
-                address,
-                userName,
-            })
+            // } = response.data.data[0]
+            // setProfile({
+            //     firstName,
+            //     lastName,
+            //     phoneNumber,
+            //     email,
+            //     address,
+            //     userName,
+            // })
         }
 
         getUserProfile()
@@ -196,12 +196,12 @@ const UpdateEmployeeProfile = () =>{
                                             {/* CREATE PASSWORD */}
                                             <div className="row">
                                                 <div className="col-sm-6 col-md-3">
-                                                    <h6 className="mb-0">Create Password</h6>
+                                                    <h6 className="mb-0">New Password</h6>
                                                 </div>
                                                 <div className="col-sm-12 col-md-9 text-secondary" >
                                                     <TextInput
                                                         name="password"
-                                                        placeholder="Create Password"
+                                                        placeholder="New Password"
                                                         type="password" 
                                                         className={`form-control ${ touched.password && errors.password ? "is-invalid" : ""}`} 
                                                         id="password"
@@ -258,62 +258,64 @@ const UpdateEmployeeProfile = () =>{
                                                 </div>
                                             </div>
                                             <hr />
-                                            <div className="form-row">
-                                                    <div className="department-wrapper form-group col-md-6">
-                                                        <label>Department</label>
-                                                        <Field component="select" name="department" className="form-control">
-                                                            <option selected>Choose...</option>
-                                                            {/* {existingDepartment} */}
-                                                        </Field>
-                                                        <ErrorMessage
-                                                            component="div"
-                                                            name="email"
-                                                            className="invalid-feedback p-0"
-                                                        />
-                                                    </div>
-                                                    <div className="role-wrapper form-group col-md-6">
-                                                        <label>Role</label>
-                                                        <Field component="select" name="role" className="form-control">
-                                                            <option selected>Choose...</option>
-                                                            {/* {availableRole} */}
-                                                        </Field>
-                                                        <ErrorMessage
-                                                            component="div"
-                                                            name="email"
-                                                            className="invalid-feedback p-0"
-                                                        />
-                                                    </div>
-                                                </div>
-                                                <div className="form-row">
 
-                                                    <div className="type-wrapper form-group col-md-6">
-                                                        <label>Type</label>
-                                                        <Field component="select" name="type" className="form-control">
-                                                            <option selected>Choose...</option>
-                                                            {/* {availableType} */}
-                                                        </Field>
-                                                        <ErrorMessage
-                                                            component="div"
-                                                            name="email"
-                                                            className="invalid-feedback p-0"
-                                                        />
-                                                    </div>
-                                                    <div className="salary-wrapper form-group col-md-6">
-                                                        <TextInput
-                                                            name="salary"
-                                                            id="salary"
-                                                            type="text" 
-                                                            placeholder="Salary"
-                                                            className={`form-control ${touched.salary && errors.salary ? "is-invalid" : ""}`}
-                                                            label="Salary" 
-                                                        />
-                                                        <ErrorMessage
-                                                            component="div"
-                                                            name="salary"
-                                                            className="invalid-feedback p-0"
-                                                        />
-                                                    </div>
+                                            {/* DEPARTMENT */}
+                                            <div className="row">
+                                                <div className="col-sm-6 col-md-3">
+                                                    <h6 className="mb-0">Department</h6>
                                                 </div>
+                                                <div className="col-sm-12 col-md-9 text-secondary" >
+                                                    <Field component="select" name="department" className="form-control">
+                                                        <option selected>Choose...</option>
+                                                        {/* {existingDepartment} */}
+                                                    </Field>
+                                                    <ErrorMessage
+                                                        component="div"
+                                                        name="email"
+                                                        className="invalid-feedback p-0"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <hr />
+
+                                            {/* Role */}
+                                            <div className="row">
+                                                <div className="col-sm-6 col-md-3">
+                                                    <h6 className="mb-0">Role</h6>
+                                                </div>
+                                                <div className="col-sm-12 col-md-9 text-secondary" >
+                                                    <Field component="select" name="role" className="form-control">
+                                                        <option selected>Choose...</option>
+                                                        {/* {availableRole} */}
+                                                    </Field>
+                                                    <ErrorMessage
+                                                        component="div"
+                                                        name="email"
+                                                        className="invalid-feedback p-0"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <hr />
+
+                                            {/* Type */}
+                                            <div className="row">
+                                                <div className="col-sm-6 col-md-3">
+                                                    <h6 className="mb-0">Type</h6>
+                                                </div>
+                                                <div className="col-sm-12 col-md-9 text-secondary" >
+                                                    <Field component="select" name="type" className="form-control">
+                                                        <option selected>Choose...</option>
+                                                        {/* {availableType} */}
+                                                    </Field>
+                                                    <ErrorMessage
+                                                        component="div"
+                                                        name="email"
+                                                        className="invalid-feedback p-0"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <hr />
+                                            
                                             <div className="d-flex justify-content-between">
                                                 <Button 
                                                     type="submit" 
