@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 import Button from "../layouts/Button";
 
-//import pricing stylesheet
-import './pages-styles/pricing.css';
 //import react fontawesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import fontawesome icon
@@ -28,7 +26,7 @@ const Pricing = () => {
                             <Button label="Get Started" className="btn pace-btn pace-btn-accent pricing-btn" />
                         </Link>
                         <h4 className="mt-3 text-center">What's included</h4>
-                        <ul className="px-4 text-center">
+                        <ul className="px-4 text-center list-unstyled">
                             <li>Timer Reminder</li>
                             <li>Unlimited staff</li>
                             <li>Unlimited Todo List</li>
@@ -45,7 +43,7 @@ const Pricing = () => {
                             <Button label="Get Started" className="btn pace-btn pace-btn-accent pricing-btn" />
                         </Link>
                         <h4 className="mt-3 text-center">What's included</h4>
-                        <ul className="px-4 text-center">
+                        <ul className="px-4 text-center list-unstyled">
                             <li>Timer Reminder</li>
                             <li>Workspace for 7 staff</li>
                             <li>Todo List</li>
@@ -62,7 +60,7 @@ const Pricing = () => {
                             <Button label="Get Started" className="btn pace-btn pace-btn-primary pricing-btn" />
                         </Link>
                         <h4 className="mt-3 text-center">What's included</h4>
-                        <ul className="px-4 text-center">
+                        <ul className="px-4 text-center list-unstyled">
                             <li>Timer Reminder</li>
                             <li>Workspace for 3 staff</li>
                             <li>Limited Todo List</li>
