@@ -1,8 +1,7 @@
 // react 
 import { React, useEffect } from 'react';
-import { Link, Redirect, useHistory } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { ToastContainer } from 'react-toastify'; 
 // import PropTypes from 'prop-types';
 
 
@@ -13,9 +12,6 @@ import { Formik, Form, ErrorMessage } from 'formik';
 import { signUpSchema } from '../Validation/Schema'
 import { TextInput, CheckbBox } from '../layouts/FormInput';
 import { HomeButton } from '../layouts/HomeButton'
-
-// Toast
-import { registrationFailLogger, registrationCompletedLogger} from '../../toaster';
 
 
 // Authentication
@@ -29,7 +25,6 @@ const Signup = () =>{
     });
 
     const dispatch = useDispatch();
-    const history = useHistory();
 
     const { isLoggedIn } = useSelector(state => state.authenticationState)
 
@@ -41,7 +36,6 @@ const Signup = () =>{
             <main className="container d-flex justify-content-center align-items-center mt-5">
                 <div className="row">
                     <div className="form-con col-lg-5 mb-5">
-                        <ToastContainer />
                         <style>
                             {
                                 `
@@ -104,7 +98,8 @@ const Signup = () =>{
                                                     type="email"
                                                     label="Email"
                                                     labelClassName="mt-3"
-                                                    className={`form-control lead p-2 ${
+                                                    className={`form-control lead p-2 
+                                                    ${
                                                         touched.email && errors.email ? "is-invalid" : ""
                                                     }`}
                                                     placeholder="Email" 
@@ -139,7 +134,8 @@ const Signup = () =>{
                                                         touched.password && errors.password ? "is-invalid" : ""
                                                      }
                                                     `}
-                                                    placeholder="Password" 
+                                                    placeholder="Password"
+                                                    autoComplete='on'
                                                 />
                                                 <ErrorMessage
                                                     component="div"
@@ -159,6 +155,7 @@ const Signup = () =>{
                                                         touched.confirmPassword && errors.confirmPassword ? "is-invalid" : ""
                                                     }`}
                                                     placeholder="Confirm Password" 
+                                                    autoComplete='on'
                                                 />
                                                 <ErrorMessage
                                                     component="div"

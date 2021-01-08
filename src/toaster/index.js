@@ -1,8 +1,9 @@
-import { toast, ToastContainer } from 'react-toastify'; 
+import { toast } from 'react-toastify'; 
 
 
 // Common
 const netWorkError  =  () => toast.warning('Network Error')
+const sessionExpired = () =>  toast.warning('Session Expired')
 
 
 
@@ -41,6 +42,7 @@ export{
     logOutSuccess,
     invalidTodoTitle,
     netWorkError,
+    sessionExpired,
     profileUpdateCompletedLogger,
     profileUpdateFailLogger,
 }

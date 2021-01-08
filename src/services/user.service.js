@@ -1,5 +1,7 @@
 import axios from "axios";
+import { logout } from "../actions/auth/authAction";
 import { SYNC_CURRENT_USER } from "../actions/types";
+import { sessionExpired } from "../toaster";
 import { authHeader } from "./auth-header";
 import { AUTH_API_URL, options, currentUserFromLocalStorage, USER_PROFILE_URL } from "./root-endpoints";
 
@@ -12,8 +14,11 @@ const fetchUserProfile = (staffID) => dispatch =>{
   .then((response)=>{
     dispatch({
       type: SYNC_CURRENT_USER,
-      payload: response
+      payload: response.data.data[0]
     })
+  })
+  .catch((error)=>{
+    sessionExpired()
   })
 
 }
