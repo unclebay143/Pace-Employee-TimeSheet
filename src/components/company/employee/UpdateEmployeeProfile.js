@@ -8,6 +8,7 @@ import { TextInput } from '../../layouts/FormInput';
 import { useDispatch } from 'react-redux';
 import { USER_PROFILE_URL } from '../../../services/root-endpoints';
 import { authHeader } from '../../../services/auth-header';
+import { Link } from 'react-router-dom';
 
 const UpdateEmployeeProfile = () =>{
     const params = useParams();
@@ -52,7 +53,20 @@ const UpdateEmployeeProfile = () =>{
 
     return ( 
         <>
-            <div className="container py-5">
+            <div className="container">
+                {/* Breadcrumb */}
+                <nav aria-label="breadcrumb" className="main-breadcrumb mt-2">
+                        <ol className="breadcrumb">
+                            <li className="breadcrumb-item" aria-current="page">
+                                <Link to={`/dashboard/employee/profile/${params.id}`} className="text-grey">
+                                        Profile
+                                </Link>
+                            </li>
+                        <li className="breadcrumb-item active" aria-current="page">Edit Profile</li>
+                        </ol>
+                    </nav>
+                    
+                    {/* /Breadcrumb */}
                 <style>
                     {
                         `
@@ -78,8 +92,8 @@ const UpdateEmployeeProfile = () =>{
                                     { (({ values, touched, errors, handleSubmit, isSubmitting, resetForm })=>{
                                         return <Form onSubmit={handleSubmit}>
                                             <div className="mb-5 text-gray">
-                                                <pre>{JSON.stringify(values, null, 2)}</pre>
-                                                <h5>EDIT PROFILE</h5>
+                                                {/* <pre>{JSON.stringify(values, null, 2)}</pre> */}
+                                                <h5>EDIT EMPLOYEE PROFILE</h5>
                                             </div>
                                             <hr />
 
