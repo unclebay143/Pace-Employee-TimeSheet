@@ -10,6 +10,9 @@ import { useDispatch } from 'react-redux';
 import Button from '../layouts/Button';
 import { TextInput } from '../layouts/FormInput';
 
+// Toaster
+import { sessionExpired } from '../../toaster'
+
 
 //  Actions
 import { updateUserProfile } from '../../actions/user/userAction';
@@ -40,26 +43,30 @@ const UpdateProfile = () =>{
             // Get user profile from the server
             const response = await axios.get(USER_PROFILE_URL + staffID, { headers: authHeader })
 
-            // Destructure the user information from the response.data.data[0] -response structure
-            const {
-                firstName,
-                lastName,
-                phoneNumber,
-                email,
-                address,
-                userName,
+            if(response.data === 'invalid token or token expired'){
+                syncCurrentUser()
+            }else{
+                // Destructure the user information from the response.data.data[0] -response structure
+                const {
+                    firstName,
+                    lastName,
+                    phoneNumber,
+                    email,
+                    address,
+                    userName,
+                    
+                } = response.data.data[0]
                 
-            } = response.data.data[0]
-
-            // Set the destructure user information into the profile state (ES6 syntax)
-            setProfile({
-                firstName,
-                lastName,
-                phoneNumber,
-                email,
-                address,
-                userName,
-            })
+                // Set the destructure user information into the profile state (ES6 syntax)
+                setProfile({
+                    firstName,
+                    lastName,
+                    phoneNumber,
+                    email,
+                    address,
+                    userName,
+                })
+            }
         }
         // Trigger function to get user profile
         fetchCurrentUserProfile()

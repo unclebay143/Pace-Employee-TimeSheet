@@ -1,7 +1,7 @@
 // React
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { editDepartment, deleteDepartment, openForm, closeForm } from '../../../actions/company/department/departmentAction';
+import { editDepartment, deleteDepartment, openForm } from '../../../actions/company/department/departmentAction';
 
 // Components
 import { NewDepartmentForm } from './NewDepartmentForm';
@@ -34,9 +34,6 @@ const ManageDepartment = () => {
     return (
       <>
       <div className="todo-container container">
-          {/* <ToastContainer /> */}
-          {/* <pre>{triggerTodoForm ? 'false, open' : 'false, don\'t open' }</pre> */}
-            {/* <div className="new-department-form" onClick={(()=>dispatch(closeForm()))}> */}
             <div className="new-department-form">
               <style>
                 {

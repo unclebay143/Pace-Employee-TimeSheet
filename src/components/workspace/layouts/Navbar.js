@@ -23,11 +23,11 @@ const Navbar = () =>{
 
     useEffect(() => {
         
-        const currentUser = JSON.parse(localStorage.getItem('token'));
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
         
 
         if(currentUser){
-            const { firstName, lastName, staffID } = currentUser.response[0];
+            const { firstName, lastName, staffID } = currentUser[0];
             setFullName(` ${ firstName } ${ lastName } `)
             setStaffID(staffID)
 

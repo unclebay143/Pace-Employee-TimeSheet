@@ -101,7 +101,7 @@ class Timer2 extends Component {
     }
     return (
       <div className="timer">
-          <style jsx>
+          <style>
               {
                   `
                   .timer {

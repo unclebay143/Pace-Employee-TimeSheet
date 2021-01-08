@@ -23,9 +23,9 @@ function App() {
 
   const  currentUser  = JSON.parse(localStorage.getItem('token'));
 
-  if( currentUser === null || currentUser === undefined ){
-      window.history.push('./login');
-  }
+  // if( currentUser === null || currentUser === undefined ){
+  //     // history.push('./login');
+  // }
   
   if ( currentUser ){
       dispatch(syncCurrentUser( currentUser.response[0].staffID ))

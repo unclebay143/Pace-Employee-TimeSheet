@@ -81,8 +81,8 @@ const login = ( email, password, action ) => ( dispatch ) =>{
     .then((response)=>{
       // Destructure the response to get the email and password (the response 'data' has a 'data' and 'accessToken' in it)
       const { data }  = response;
-      localStorage.setItem('token', JSON.stringify(data.accessToken));
-      localStorage.setItem('currentUser', JSON.stringify(data.response));
+      localStorage.setItem('token', JSON.stringify(data.data.accessToken));
+      localStorage.setItem('currentUser', JSON.stringify(data.data.response));
       
       // Store the data(user's) to the store
       dispatch({

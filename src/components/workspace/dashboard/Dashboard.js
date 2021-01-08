@@ -28,6 +28,9 @@ import UpdateCompanyProfile from '../../company/Settings/UpdateCompanyProfile';
 import { getTodos } from '../../../actions/todo/todoAction';
 import { getTasks } from '../../../actions/task/taskAction';
 import { syncCurrentUser } from '../../../actions/user/userAction';
+import { USER_PROFILE_URL } from '../../../services/root-endpoints';
+import axios from 'axios';
+import { authHeader } from "../../../services/auth-header";
 
 
 const Dashboard = () =>{
@@ -36,14 +39,15 @@ const Dashboard = () =>{
     const dispatch = useDispatch()
 
     useEffect(() => {
-        const currentUser  = JSON.parse(localStorage.getItem('token'));
+        const currentUser  = JSON.parse(localStorage.getItem('currentUser'));
+        const response = axios.get(USER_PROFILE_URL + currentUser[0].staffID, { headers: authHeader })
 
         if( currentUser === null || currentUser === undefined ){
             history.push('./login');
         }
         
         if ( currentUser ){
-            dispatch(syncCurrentUser( currentUser.response[0].staffID ))
+            dispatch(syncCurrentUser( currentUser[0].staffID ))
         }
 
     },[])
@@ -54,7 +58,7 @@ const Dashboard = () =>{
 
         // Fetch user tasks
         dispatch(getTasks())
-    }, [])
+    }, [dispatch, history])
 
     return(
         <>
