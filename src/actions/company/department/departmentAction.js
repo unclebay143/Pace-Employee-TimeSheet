@@ -25,7 +25,6 @@ const closeForm = () => (dispatch) =>{
 
 // Add new department
 const addDepartment = ({ departmentName }) => (dispatch) =>{
-    console.log(departmentName);
     return DepartmentService.postNewDepartment(departmentName)
     .then((response)=>{
         dispatch({

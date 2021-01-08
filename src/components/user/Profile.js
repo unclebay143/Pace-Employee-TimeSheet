@@ -2,9 +2,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom.min';
-import { syncCurrentUser } from '../../../actions/user/userAction';
-import Button from '../../layouts/Button';
-import unclebay from '../../pages/pages-images/ayodele_samuel_adebayo.jpg';
+import { syncCurrentUser } from '../../actions/user/userAction';
+import Button from '../layouts/Button';
+import unclebay from '../pages/pages-images/ayodele_samuel_adebayo.jpg';
 
 
 
@@ -78,8 +78,9 @@ const Profile = () =>{
                                             <h4>{user.id} </h4>
                                             <p className="text-secondary mb-1">Frontend Engineer</p>
                                             <p className="text-muted font-size-sm">{user.address}</p>
-                                            <Link to={`/dashboard/edit/${user.staffID}`}><Button className="btn btn-primary mr-2" label="Edit"/></Link>
-                                            <Button className="btn btn-danger" label="Disable" />
+                                            <Link to={`/dashboard/profile/update/${user.staffID}`}>
+                                                <Button className="btn btn-primary mr-2" label="Edit Profile"/>
+                                            </Link>
                                         </div>
                                     </div>
                                 </div>
