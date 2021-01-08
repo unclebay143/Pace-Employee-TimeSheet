@@ -1,74 +1,87 @@
 // React
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-import { ErrorMessage, Form, Formik } from 'formik';
+import { ErrorMessage, Form, Formik,Field } from 'formik';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import Button from '../../layouts/Button';
+import { TextInput } from '../../layouts/FormInput';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-// Layouts
-import Button from '../layouts/Button';
-import { TextInput } from '../layouts/FormInput';
-
-
-//  Actions
-import { updateUserProfile } from '../../actions/user/userAction';
-
-// Services helper
-import { USER_PROFILE_URL } from '../../services/root-endpoints';
-import { authHeader } from '../../services/auth-header';
-
-const UpdateProfile = () =>{
-    const params = useParams(); 
-    const dispatch = useDispatch();
-    const [ staffID, setStaffID ] = useState('');
-    // User credentials
-    const [profile, setProfile] = useState({
+const UpdateCompanyProfile = () =>{
+    const params = useParams();
+    const dispatch = useDispatch()
+    // const { currentUser } = useSelector(state => state.authenticationState)
+    // const [ staffID, setStaffID ] = useState('')
+    const [companyProfile, setCompanyProfile] = useState({
         firstName: '',
         lastName: '',
         phoneNumber: '',
+        companyName: '',
+        companyType: '',
         email: '',
         address: '',
         userName: '',
-    });
-
+    })
     useEffect(() => {
-        const staffID = params.id; // get id from urls(path)
-        setStaffID(staffID);
-
-        const fetchCurrentUserProfile = async()=>{
-            // Get user profile from the server
-            const response = await axios.get(USER_PROFILE_URL + staffID, { headers: authHeader })
-
-            // Destructure the user information from the response.data.data[0] -response structure
-            const {
-                firstName,
-                lastName,
-                phoneNumber,
-                email,
-                address,
-                userName,
-                
-            } = response.data.data[0]
-
-            // Set the destructure user information into the profile state (ES6 syntax)
-            setProfile({
-                firstName,
-                lastName,
-                phoneNumber,
-                email,
-                address,
-                userName,
-            })
+        const fetchCompanyProfile = async() =>{
+            const { data } = await axios.get(`https://jsonplaceholder.typicode.com/users/${params.id}`)
+            console.log(data)
+            setCompanyProfile(data)
         }
-        // Trigger function to get user profile
-        fetchCurrentUserProfile()
 
+        fetchCompanyProfile()
+        
     }, [])
+    // useEffect(() => {
+    //     const staffID = params.id;
+    //     setStaffID(staffID)
+
+    //     const geUserProfile = async()=>{
+            // const response = await axios.get(USER_PROFILE_URL + staffID, { headers: authHeader })
+            // const {
+            //     firstName,
+            //     lastName,
+            //     phoneNumber,
+            //     email,
+            //     address,
+            //     userName,
+
+            // } = response.data.data[0]
+            // setProfile({
+            //     firstName,
+            //     lastName,
+            //     phoneNumber,
+            //     email,
+            //     address,
+            //     userName,
+            // })
+        // }
+
+    //     getUserProfile()
+    // }, [])
 
     return ( 
         <>
             <div className="container">
+                {/* Breadcrumb */}
+                <nav aria-label="breadcrumb" className="main-breadcrumb mt-2">
+                        <ol className="breadcrumb">
+                            <li className="breadcrumb-item" aria-current="page">
+                                <Link to='/dashboard/employee-list' className="text-grey">
+                                        Employee List
+                                </Link>
+                            </li>
+                            <li className="breadcrumb-item" aria-current="page">
+                                <Link to={`/dashboard/employee/profile/${params.id}`} className="text-grey">
+                                        Profile
+                                </Link>
+                            </li>
+                        <li className="breadcrumb-item active" aria-current="page">Edit Profile</li>
+                        </ol>
+                    </nav>
+                    
+                    {/* /Breadcrumb */}
                 <style>
                     {
                         `
@@ -78,35 +91,16 @@ const UpdateProfile = () =>{
                         `
                     }
                 </style>
-                {/* Breadcrumb */}
-                <nav aria-label="breadcrumb" className="main-breadcrumb pt-3">
-                    <ol className="breadcrumb">
-                        <li className="breadcrumb-item active" aria-current="page">
-                            <Link to='/dashboard'>
-                                Dashboard
-                            </Link>
-                        </li>
-                        <li className="breadcrumb-item active" aria-current="page">
-                            <Link to={`/dashboard/profile/${params.id}`}>
-                                Profile
-                            </Link>
-                        </li>
-                        <li className="breadcrumb-item active" aria-current="page">
-                            Edit Profile
-                        </li>
-                    </ol>
-                </nav>
-                {/* /Breadcrumb */}
                 <div className="main-body">
                     <div className="col-md-12">
                         <div className="card mb-3">
                             <div className="card-body">
                                 <Formik
-                                    initialValues = {profile}
+                                    initialValues = {companyProfile}
                                     enableReinitialize
-                                    // validationSchema={UpdateProfileSchema}
+                                    // validationSchema={UpdateCompanyProfileSchema}
                                     onSubmit={(values, action)=>{
-                                        dispatch(updateUserProfile(values, staffID, action));
+                                        // dispatch(updateUserProfile(values, staffID, action));
                                     }
                                     }
                                 >
@@ -114,7 +108,7 @@ const UpdateProfile = () =>{
                                         return <Form onSubmit={handleSubmit}>
                                             <div className="mb-5 text-gray">
                                                 {/* <pre>{JSON.stringify(values, null, 2)}</pre> */}
-                                                <h5>EDIT PROFILE</h5>
+                                                <h5>EDIT EMPLOYEE PROFILE</h5>
                                             </div>
                                             <hr />
 
@@ -125,15 +119,15 @@ const UpdateProfile = () =>{
                                                 </div>
                                                 <div className="col-sm-12 col-md-9 text-secondary" >
                                                     <TextInput
-                                                        name="firstName"
-                                                        id="firstName"
+                                                        name="username"
+                                                        id="username"
                                                         placeholder="Enter Firstname"
                                                         type="text" 
-                                                        className={`form-control ${ touched.firstName && errors.firstName ? "is-invalid" : ""}`} 
+                                                        className={`form-control ${ touched.username && errors.username ? "is-invalid" : ""}`} 
                                                         />
                                                     <ErrorMessage
                                                         component="div"
-                                                        name="firstName"
+                                                        name="username"
                                                         className="invalid-feedback p-0"
                                                         />
                                                 </div>
@@ -147,15 +141,15 @@ const UpdateProfile = () =>{
                                                 </div>
                                                 <div className="col-sm-12 col-md-9 text-secondary" >
                                                     <TextInput
-                                                        name="lastName"
+                                                        name="name"
                                                         placeholder="Enter last Name"
                                                         type="text" 
-                                                        className={`form-control ${touched.lastName && errors.lastName ? "is-invalid" : ""}`} 
-                                                        id="lastName"
+                                                        className={`form-control ${touched.name && errors.name ? "is-invalid" : ""}`} 
+                                                        id="name"
                                                     />
                                                     <ErrorMessage
                                                         component="div"
-                                                        name="lastName"
+                                                        name="name"
                                                         className="invalid-feedback p-0"
                                                     />
                                                 </div>
@@ -190,18 +184,18 @@ const UpdateProfile = () =>{
                                                     <h6 className="mb-0">Phone Number</h6>
                                                 </div>
                                                 <div className="col-sm-12 col-md-9 text-secondary" >
-                                                <TextInput
-                                                            name="phoneNumber"
-                                                            placeholder="Enter Phone Number"
-                                                            type="tel" 
-                                                            className={`form-control ${touched.phoneNumber && errors.phoneNumber ? "is-invalid" : ""}`} 
-                                                            id="phoneNumber"
-                                                        />
-                                                        <ErrorMessage
-                                                            component="div"
-                                                            name="phoneNumber"
-                                                            className="invalid-feedback p-0"
-                                                        />
+                                                    <TextInput
+                                                        name="phone"
+                                                        placeholder="Enter Phone Number"
+                                                        type="tel" 
+                                                        className={`form-control ${touched.phone && errors.phone ? "is-invalid" : ""}`} 
+                                                        id="phone"
+                                                    />
+                                                    <ErrorMessage
+                                                        component="div"
+                                                        name="phone"
+                                                        className="invalid-feedback p-0"
+                                                    />
                                                 </div>
                                             </div>
                                             <hr />
@@ -231,12 +225,12 @@ const UpdateProfile = () =>{
                                             {/* CREATE PASSWORD */}
                                             <div className="row">
                                                 <div className="col-sm-6 col-md-3">
-                                                    <h6 className="mb-0">Create Password</h6>
+                                                    <h6 className="mb-0">New Password</h6>
                                                 </div>
                                                 <div className="col-sm-12 col-md-9 text-secondary" >
                                                     <TextInput
                                                         name="password"
-                                                        placeholder="Create Password"
+                                                        placeholder="New Password"
                                                         type="password" 
                                                         className={`form-control ${ touched.password && errors.password ? "is-invalid" : ""}`} 
                                                         id="password"
@@ -279,7 +273,7 @@ const UpdateProfile = () =>{
                                                 </div>
                                                 <div className="col-sm-12 col-md-9 text-secondary" >
                                                     <TextInput
-                                                        name="address"
+                                                        name="address.city"
                                                         id="address"
                                                         type="text" 
                                                         placeholder="143 work and connect"
@@ -293,6 +287,64 @@ const UpdateProfile = () =>{
                                                 </div>
                                             </div>
                                             <hr />
+
+                                            {/* DEPARTMENT */}
+                                            <div className="row">
+                                                <div className="col-sm-6 col-md-3">
+                                                    <h6 className="mb-0">Department</h6>
+                                                </div>
+                                                <div className="col-sm-12 col-md-9 text-secondary" >
+                                                    <Field component="select" name="department" className="form-control">
+                                                        <option selected>Choose...</option>
+                                                        {/* {existingDepartment} */}
+                                                    </Field>
+                                                    <ErrorMessage
+                                                        component="div"
+                                                        name="email"
+                                                        className="invalid-feedback p-0"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <hr />
+
+                                            {/* Role */}
+                                            <div className="row">
+                                                <div className="col-sm-6 col-md-3">
+                                                    <h6 className="mb-0">Role</h6>
+                                                </div>
+                                                <div className="col-sm-12 col-md-9 text-secondary" >
+                                                    <Field component="select" name="role" className="form-control">
+                                                        <option selected>Choose...</option>
+                                                        {/* {availableRole} */}
+                                                    </Field>
+                                                    <ErrorMessage
+                                                        component="div"
+                                                        name="email"
+                                                        className="invalid-feedback p-0"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <hr />
+
+                                            {/* Type */}
+                                            <div className="row">
+                                                <div className="col-sm-6 col-md-3">
+                                                    <h6 className="mb-0">Type</h6>
+                                                </div>
+                                                <div className="col-sm-12 col-md-9 text-secondary" >
+                                                    <Field component="select" name="type" className="form-control">
+                                                        <option selected>Choose...</option>
+                                                        {/* {availableType} */}
+                                                    </Field>
+                                                    <ErrorMessage
+                                                        component="div"
+                                                        name="email"
+                                                        className="invalid-feedback p-0"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <hr />
+                                            
                                             <div className="d-flex justify-content-between">
                                                 <Button 
                                                     type="submit" 
@@ -319,4 +371,4 @@ const UpdateProfile = () =>{
     )
 }
 
-export default UpdateProfile;
+export default UpdateCompanyProfile;

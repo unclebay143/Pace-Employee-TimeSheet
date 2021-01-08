@@ -27,7 +27,7 @@ const ProfileRow = (props) => {
 
 
 
-const EmployeeProfile = () =>{
+const Profile = () =>{
     const params = useParams()
     const [ employeeProfile, setEmployeeProfile ] = useState([])
     
@@ -122,4 +122,4 @@ const EmployeeProfile = () =>{
     )
 }
 
-export default EmployeeProfile;
+export default Profile;
