@@ -66,52 +66,30 @@ const Profile = () =>{
                 </style>
                 <div className="main-body">
                     {/* Breadcrumb */}
-                    <nav aria-label="breadcrumb" className="main-breadcrumb mt-2">
+                    <nav aria-label="breadcrumb" className="main-breadcrumb mt-2 ml-4">
                         <ol className="breadcrumb">
                             <li className="breadcrumb-item" aria-current="page">
                                 <Link to='/dashboard/employee-list' className="text-grey">
-                                        Employee List
+                                        Settings
                                 </Link>
                             </li>
-                        <li className="breadcrumb-item active" aria-current="page">Profile</li>
+                        <li className="breadcrumb-item active" aria-current="page">Company Profile</li>
                         </ol>
                     </nav>
                     
                     {/* /Breadcrumb */}
                     <div className="row gutters-sm mt-3">
-                        <div className="col-md-4 mb-3">
-                            <div className="card">
-                                <div className="card-body">
-                                    <div className="d-flex flex-column align-items-center text-center">
-                                        {/* <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width={150} /> */}
-                                        <img src={unclebay} alt="Admin" className="rounded-circle" width={150} />
-                                        <div className="mt-3">
-                                            <h4 className="text-capitalize">{employeeProfile.name} {employeeProfile.username}</h4>
-                                            {/* <h4>{employeeProfile.id} </h4> */}
-                                            {/* <h4>{params.id} </h4> */}
-                                            <p className="text-secondary mb-1">Frontend Engineer</p>
-                                            {/* <p className="text-muted font-size-sm">{employeeProfile.address.street}</p> */}
-                                            <Link to={`/dashboard/employee/profile/update/${params.id}`}>
-                                                <Button className="btn btn-primary mr-2" label="Edit"/>
-                                            </Link>
-                                            <Button className="btn btn-danger" label="Disable" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="col-md-8">
+                        <div className="col-md-12 ml-2">
                             <div className="card mb-3">
                                 <div className="card-body">
-                                    <ProfileRow title="Full Name" label={ ` ${employeeProfile.name} ${employeeProfile.username}` } />
+                                    <ProfileRow title="Company Name" label={ ` ${employeeProfile.name} ${employeeProfile.username}` } />
+                                    <ProfileRow title="Company Type" label="IT" />
+                                    <ProfileRow title="Company Adjective" label={employeeProfile.phone} />
+                                    <ProfileRow title="Currency" label="Naira(#)"/>
                                     <ProfileRow title="Email" label={employeeProfile.email} />
-                                    <ProfileRow title="Department" label="Web development" />
-                                    <ProfileRow title="Role" label="Frontend Engineer" />
-                                    <ProfileRow title="Salary" label={`# ${employeeProfile.billRateCharge}`} />
-                                    <ProfileRow title="Phone" label={employeeProfile.phone} />
-                                    {/* <ProfileRow title="Address" label={employeeProfile.address.city} /> */}
-                                    <ProfileRow title="Worked Hours" label={employeeProfile.workedHour} />
+                                    <Link to={`/dashboard/company/profile/update/${1}`}>
+                                        <Button className="btn btn-primary mr-2" label="Edit"/>
+                                    </Link>
                                 </div>
                             </div>
                         </div>

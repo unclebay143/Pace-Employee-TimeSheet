@@ -10,12 +10,8 @@ import { useDispatch } from 'react-redux';
 import Button from '../layouts/Button';
 import { TextInput } from '../layouts/FormInput';
 
-// Toaster
-import { sessionExpired } from '../../toaster'
-
-
 //  Actions
-import { updateUserProfile } from '../../actions/user/userAction';
+import { syncCurrentUser, updateUserProfile } from '../../actions/user/userAction';
 
 // Services helper
 import { USER_PROFILE_URL } from '../../services/root-endpoints';
@@ -71,7 +67,7 @@ const UpdateProfile = () =>{
         // Trigger function to get user profile
         fetchCurrentUserProfile()
 
-    }, [])
+    }, [params.id])
 
     return ( 
         <>

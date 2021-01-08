@@ -21,14 +21,14 @@ function App() {
   const histroy = useHistory()
   const dispatch = useDispatch()
 
-  const  currentUser  = JSON.parse(localStorage.getItem('token'));
+  const  currentUser  = JSON.parse(localStorage.getItem('currentUser'));
 
   // if( currentUser === null || currentUser === undefined ){
   //     // history.push('./login');
   // }
   
   if ( currentUser ){
-      dispatch(syncCurrentUser( currentUser.response[0].staffID ))
+      dispatch(syncCurrentUser( currentUser.staffID ))
   }
 
   useEffect(() => {

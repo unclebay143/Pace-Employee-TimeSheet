@@ -12,16 +12,13 @@ import { AUTH_API_URL, options, currentUserFromLocalStorage, USER_PROFILE_URL } 
 const fetchUserProfile = (staffID) => dispatch =>{
   return axios.get(`https://pacetimesheet.herokuapp.com/api/users/companyName/userProfile/${staffID}`, { headers: authHeader })
   .then((response)=>{
-    if(response.data === 'invalid token or token expired'){
-      sessionExpired()
-      logout()
-    }else{
-
-      dispatch({
-        type: SYNC_CURRENT_USER,
-        payload: response
-      })
-    }
+    dispatch({
+      type: SYNC_CURRENT_USER,
+      payload: response.data.data[0]
+    })
+  })
+  .catch((error)=>{
+    sessionExpired()
   })
 
 }

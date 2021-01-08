@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { TextInput } from '../../layouts/FormInput';
 import Button from '../../layouts/Button';
 import { Formik, Form } from 'formik';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addDepartment, closeForm } from '../../../actions/company/department/departmentAction';
 
 export const NewDepartmentForm = () => {
@@ -10,11 +10,11 @@ export const NewDepartmentForm = () => {
     const [companyID, setCompanyID] = useState('');
 
     // get current user from localStorage, getting it from the redux state makes the code break(takes a while to sycCurrent user)
-    const { response } = JSON.parse(localStorage.getItem('token'))
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'))
     
     useEffect(() => {
-        setCompanyID(response[0].companyID)
-    })
+        setCompanyID(currentUser.companyID)
+    }, [currentUser.companyID])
     
     return (
         <>
@@ -40,6 +40,7 @@ export const NewDepartmentForm = () => {
 
                             }    
                             onSubmit={(values)=>{
+                                console.log(companyID);
                                 dispatch(addDepartment(values, companyID))
                             }}              
                         >

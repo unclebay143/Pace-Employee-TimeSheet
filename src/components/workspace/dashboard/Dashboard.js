@@ -23,14 +23,13 @@ import BillingReport from './reports/BillingReport';
 import TimerReport from './reports/TimerReport';
 import UpdateEmployeeProfile from '../../company/employee/UpdateEmployeeProfile';
 import UpdateCompanyProfile from '../../company/Settings/UpdateCompanyProfile';
+import CompanyProfile from '../../company/Settings/CompanyProfile';
+import Settings from '../../company/Settings/Settings';
 
 // Actions
 import { getTodos } from '../../../actions/todo/todoAction';
 import { getTasks } from '../../../actions/task/taskAction';
 import { syncCurrentUser } from '../../../actions/user/userAction';
-import { USER_PROFILE_URL } from '../../../services/root-endpoints';
-import axios from 'axios';
-import { authHeader } from "../../../services/auth-header";
 
 
 const Dashboard = () =>{
@@ -40,14 +39,12 @@ const Dashboard = () =>{
 
     useEffect(() => {
         const currentUser  = JSON.parse(localStorage.getItem('currentUser'));
-        const response = axios.get(USER_PROFILE_URL + currentUser[0].staffID, { headers: authHeader })
-
         if( currentUser === null || currentUser === undefined ){
             history.push('./login');
         }
         
         if ( currentUser ){
-            dispatch(syncCurrentUser( currentUser[0].staffID ))
+            dispatch(syncCurrentUser( currentUser.staffID ))
         }
 
     },[])
@@ -82,7 +79,8 @@ const Dashboard = () =>{
                                     <Route exact path="/dashboard/profile/update/:id" component={UpdateProfile} />
 
                                     {/* company paths */}
-                                    {/* <Route exact path="/dashboard/company/profile/:id" component={CompanyProfile} /> */}
+                                    <Route exact path="/dashboard/company/profile/:id" component={CompanyProfile} />
+                                    <Route exact path="/dashboard/company/settings" component={Settings} />
                                     <Route exact path="/dashboard/company/profile/update/:id" component={UpdateCompanyProfile} />
                                     <Route exact path="/dashboard/employ" component={AddEmployee} />
                                     <Route exact path="/dashboard/employee-list" component={EmployeeList} />

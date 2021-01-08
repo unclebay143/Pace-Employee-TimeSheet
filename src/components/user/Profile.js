@@ -62,7 +62,6 @@ const Profile = () =>{
 
             // Check if the response data is an object (error occurs where data is Token expired)
             if(response.data === 'invalid token or token expired'){
-                console.log('bad response')
                 syncCurrentUser()
             }else{
                 //if there is a user in the local storage

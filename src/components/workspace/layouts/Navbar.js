@@ -27,7 +27,7 @@ const Navbar = () =>{
         
 
         if(currentUser){
-            const { firstName, lastName, staffID } = currentUser[0];
+            const { firstName, lastName, staffID } = currentUser;
             setFullName(` ${ firstName } ${ lastName } `)
             setStaffID(staffID)
 

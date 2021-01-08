@@ -69,7 +69,7 @@ const Sidebar = () => {
                     <ul className="sidebar-menu list-unstyled">
                         <li className="sidebar-list-item"><NavLink to="request.html" className="sidebar-link text-muted" activeclassname="active"><i className="o-letter-1 mr-3 text-gray"></i><span>Request</span></NavLink></li>
                         <li className="sidebar-list-item"><NavLink to="billing.html" className="sidebar-link text-muted" activeclassname="active"><i className="o-database-1 mr-3 text-gray"></i><span>Billing</span></NavLink></li>
-                        <li className="sidebar-list-item"><NavLink to="/dashboard/settings" className="sidebar-link text-muted" activeclassname="active"><i className="o-settings-window-1 mr-3 text-gray"></i><span>Settings</span></NavLink></li>
+                        <li className="sidebar-list-item"><NavLink to="/dashboard/company/settings" className="sidebar-link text-muted" activeclassname="active"><i className="o-settings-window-1 mr-3 text-gray"></i><span>Settings</span></NavLink></li>
                         <li className="sidebar-list-item"><span onClick={logOut} className="sidebar-link text-muted cursor" activeclassname="active"><i className="o-exit-1 mr-3 text-gray"></i><span>Logout</span></span></li>
                     </ul>
                 </div>
