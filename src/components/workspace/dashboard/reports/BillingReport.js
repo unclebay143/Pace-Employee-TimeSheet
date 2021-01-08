@@ -66,7 +66,7 @@ const BillingReport = () => {
     }
 
     return (
-        // <div className="container-fluid px-xl-5">
+        <div className="container-fluid py-5">
           <Table
             keyField='id'
             title="Billing Report"
@@ -81,7 +81,7 @@ const BillingReport = () => {
             customButtonLabel="Calculate"
             customButtonFunction={handleCalculate()}
           />
-        // </div>
+        </div>
     )
 }
 

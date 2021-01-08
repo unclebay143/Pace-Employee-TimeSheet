@@ -67,7 +67,7 @@ const Header = [
 const TimerReport = () => {
     const usersDetails = useSelector(state => state.timerReport)  
     return (
-        // <div className="container-fluid px-xl-5">
+        <div className="container-fluid py-5">
           <Table
             keyField='id'
             title="Timer Report"
@@ -76,7 +76,7 @@ const TimerReport = () => {
             bordered= { false }
             pagination = { paginationFactory() }
           />
-        // </div>
+        </div>
     )
 }
 

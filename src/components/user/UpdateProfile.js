@@ -1,74 +1,54 @@
 // React
 import axios from 'axios';
-import { ErrorMessage, Field, Form, Formik } from 'formik';
-import { param } from 'jquery';
+import { ErrorMessage, Form, Formik } from 'formik';
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
-import Button from '../../layouts/Button';
-import { TextInput } from '../../layouts/FormInput';
-import { AddEmployeeSchema } from '../../Validation/Schema';
-import Profile from './Profile';
-import { updateUserProfile } from '../../../actions/userSetting/settings';
-import UserService from "../../../services/user.service";
+import Button from '../layouts/Button';
+import { TextInput } from '../layouts/FormInput';
+import { getCurrentUserProfile, syncCurrentUser, updateUserProfile } from '../../actions/user/userAction';
+import { useDispatch } from 'react-redux';
+import { USER_PROFILE_URL } from '../../services/root-endpoints';
+import { authHeader } from '../../services/auth-header';
 
-const AddEmployee = () =>{
+const UpdateProfile = () =>{
     const params = useParams();
+    const dispatch = useDispatch()
     // const { currentUser } = useSelector(state => state.authenticationState)
-    const [profile, setProfile] = useState({})
+    const [ staffID, setStaffID ] = useState('')
+    const [profile, setProfile] = useState({
+        firstName: '',
+        lastName: '',
+        phoneNumber: '',
+        email: '',
+        address: '',
+        userName: '',
+    })
     useEffect(() => {
-        // Get user from local storage
-        const currentUser = JSON.parse(localStorage.getItem('token'));
-        console.log(currentUser);
-        UserService.fetchUserProfile(currentUser.response[0].staffID)
-        .then((response)=>{
-            // profileUpdateCompletedLogger()
-            // Destructure response data
-            const { 
+        const staffID = params.id;
+        setStaffID(staffID)
+
+        const getUserProfile = async()=>{
+            const response = await axios.get(USER_PROFILE_URL + staffID, { headers: authHeader })
+            const {
                 firstName,
                 lastName,
                 phoneNumber,
                 email,
                 address,
                 userName,
-                staffID
-             } = response.data.data[0]
-             // Store response destructuring into array of currenUserProfile
-             const currentUserserProfile = {
+
+            } = response.data.data[0]
+            setProfile({
                 firstName,
                 lastName,
                 phoneNumber,
                 email,
                 address,
                 userName,
-                staffID
-             }
-            setProfile(currentUserserProfile)
-            console.log(profile);
-        })
-        .catch((error)=>{
-            console.log(error)
-            // profileUpdateFailLogger()
-        })
-        console.log(profile)
+            })
+        }
 
-        // Destructure user information
-        // const { firstName, lastName, phone, email, address, username, staffID} = currentUser.response[0]
-
-        // Store user information into an object
-        // const currentUserProfile = {
-        //     firstName,
-        //     lastName,
-        //     phone,
-        //     email,
-        //     address,
-        //     username,
-        //     staffID,
-        // }
-        
-        // Store user profile into profile state
-        // setProfile(currentUserProfile)
-
+        getUserProfile()
     }, [])
 
     return ( 
@@ -90,10 +70,9 @@ const AddEmployee = () =>{
                                 <Formik
                                     initialValues = {profile}
                                     enableReinitialize
-                                    // validationSchema={AddEmployeeSchema}
-                                    onSubmit={(values)=>{
-                                        updateUserProfile(values);
-                                        alert(values)
+                                    // validationSchema={UpdateProfileSchema}
+                                    onSubmit={(values, action)=>{
+                                        dispatch(updateUserProfile(values, staffID, action));
                                     }
                                     }
                                 >
@@ -306,4 +285,4 @@ const AddEmployee = () =>{
     )
 }
 
-export default AddEmployee;
+export default UpdateProfile;

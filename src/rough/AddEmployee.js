@@ -1,6 +1,5 @@
 import { Formik, Form, ErrorMessage, Field } from 'formik';
 import React, { Component } from 'react';
-import Invite from '../components/workspace/dashboard/ManageEmployee';
 import { TextInput } from '../components/layouts/FormInput';
 import Button from '../components/layouts/Button';
 import { AddEmployeeSchema } from '../components/Validation/Schema';
