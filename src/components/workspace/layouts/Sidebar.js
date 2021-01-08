@@ -11,10 +11,23 @@ const Sidebar = () => {
 
     
     const logOut = () =>{
+        
+        // logout notification
         logOutSuccess()
-        setTimeout(() => {
+
+        // process the logout dispatch
+        const processLogOut = () =>{
             dispatch(logout());
-        }, 2000);
+        }
+
+        //callback to allow the notification to complete
+        const waitForLogger = setTimeout(processLogOut, 2000)
+
+        // unsubscribe the callback
+        return(()=> clearTimeout(waitForLogger))
+        // setTimeout(() => {
+        //     dispatch(logout());
+        // }, 2000);
     }
     return(
         <>

@@ -3,12 +3,12 @@ import axios from 'axios';
 import { ErrorMessage, Form, Formik } from 'formik';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
-import Button from '../../layouts/Button';
-import { TextInput } from '../../layouts/FormInput';
-import { getCurrentUserProfile, syncCurrentUser, updateUserProfile } from '../../../actions/user/userAction';
+import Button from '../layouts/Button';
+import { TextInput } from '../layouts/FormInput';
+import { getCurrentUserProfile, syncCurrentUser, updateUserProfile } from '../../actions/user/userAction';
 import { useDispatch } from 'react-redux';
-import { USER_PROFILE_URL } from '../../../services/root-endpoints';
-import { authHeader } from '../../../services/auth-header';
+import { USER_PROFILE_URL } from '../../services/root-endpoints';
+import { authHeader } from '../../services/auth-header';
 
 const AddEmployee = () =>{
     const params = useParams();

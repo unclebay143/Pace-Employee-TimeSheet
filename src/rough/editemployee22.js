@@ -4,9 +4,9 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { param } from 'jquery';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
-import Button from '../../layouts/Button';
-import { TextInput } from '../../layouts/FormInput';
-import { AddEmployeeSchema } from '../../Validation/Schema';
+import Button from '../components/layouts/Button';
+import { TextInput } from '../components/layouts/FormInput';
+import { AddEmployeeSchema } from '../components/Validation/Schema';
 
 const sampleCompany = {
     departments: [ 'web development', 'quality assurance', 'web design' ],

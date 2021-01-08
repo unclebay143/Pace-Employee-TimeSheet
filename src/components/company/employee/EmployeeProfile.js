@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom.min';
-import { syncCurrentUser } from '../../../actions/user/userAction';
 import Button from '../../layouts/Button';
 import unclebay from '../../pages/pages-images/ayodele_samuel_adebayo.jpg';
 
@@ -31,19 +30,19 @@ const Profile = () =>{
     const params = useParams()
     const [ user, setUser ] = useState({})
     
-    useEffect(() => {
+    // useEffect(() => {
         
-        const getCurrentUser = JSON.parse(localStorage.getItem('token'));
-        if(getCurrentUser){
-            const currentUser = getCurrentUser.response[0];
-            setUser(currentUser)
-            syncCurrentUser(params.id)
-        }
+    //     const getCurrentUser = JSON.parse(localStorage.getItem('token'));
+    //     if(getCurrentUser){
+    //         const currentUser = getCurrentUser.response[0];
+    //         setUser(currentUser)
+    //         syncCurrentUser(params.id)
+    //     }
 
-        return(()=>{
-            const currentUser = []
-        })
-    }, [])
+    //     return(()=>{
+    //         const currentUser = []
+    //     })
+    // }, [])
     
     return (
         <>
@@ -78,7 +77,9 @@ const Profile = () =>{
                                             <h4>{user.id} </h4>
                                             <p className="text-secondary mb-1">Frontend Engineer</p>
                                             <p className="text-muted font-size-sm">{user.address}</p>
-                                            <Link to={`/dashboard/edit/${user.staffID}`}><Button className="btn btn-primary mr-2" label="Edit"/></Link>
+                                            <Link to={`/dashboard/profile/update/${user.staffID}`}>
+                                                <Button className="btn btn-primary mr-2" label="Edit"/>
+                                            </Link>
                                             <Button className="btn btn-danger" label="Disable" />
                                         </div>
                                     </div>

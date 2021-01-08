@@ -10,7 +10,7 @@ import { NewDepartmentForm } from './NewDepartmentForm';
 import Button from '../../layouts/Button';
 
 
-export const ManageDepartment = () => {
+export default ManageDepartment = () => {
   const dispatch = useDispatch();
   const [shouldFormOpen, setShouldFormOpen] = useState();
   const [departments, setDepartments] = useState();

@@ -11,15 +11,16 @@ import Footer from '../layouts/Footer';
 
 // Components
 import Index from './Index';
-import AddEmployee from './AddEmployee';
-import EditEmployee from './EditEmployee';
-import EmployeeList from './EmployeeList';
-import TimerReport from './reports/TimerReport';
-import BillingReport from './reports/BillingReport';
-import Profile from './Profile';
+import AddEmployee from '../../company/employee/AddEmployee';
+import EmployeeList from '../../company/employee/EmployeeList';
+import EmployeeProfile from '../../company/employee/EmployeeProfile';
+import ManageDepartment from '../../company/department/ManageDepartment';
+import Profile from '../../user/Profile';
+import UpdateProfile from '../../user/UpdateProfile';
 import Task from './Task';
 import Todo from './todos/Todo'
-import { ManageDepartment } from '../../company/department/ManageDepartment';
+import BillingReport from './reports/BillingReport';
+import TimerReport from './reports/TimerReport';
 
 // Actions
 import { getTodos } from '../../../actions/todo/todoAction';
@@ -31,11 +32,9 @@ const Dashboard = () =>{
 
     const history = useHistory()
     const dispatch = useDispatch()
-    
 
-    console.log('dashboard');
     useEffect(() => {
-        const  currentUser  = JSON.parse(localStorage.getItem('token'));
+        const currentUser  = JSON.parse(localStorage.getItem('token'));
 
         if( currentUser === null || currentUser === undefined ){
             history.push('./login');
@@ -45,7 +44,7 @@ const Dashboard = () =>{
             dispatch(syncCurrentUser( currentUser.response[0].staffID ))
         }
 
-    })
+    },[])
 
     useEffect(() => {
         // Fetch user todo list
@@ -72,12 +71,13 @@ const Dashboard = () =>{
                                     <Route path="/dashboard/todos" component={Todo} />
                                     <Route path="/dashboard/task" component={Task} />
                                     <Route exact path="/dashboard/profile/:id" component={Profile} />
+                                    <Route exact path="/dashboard/profile/update/:id" component={UpdateProfile} />
                                     <Route exact path="/dashboard/billing-report" component={BillingReport} />
                                     <Route exact path="/dashboard/timer-report" component={TimerReport} />
                                     {/* <Route exact path="/dashboard/task" component={EmployeeTasks} /> */}
-                                    <Route exact path="/dashboard/edit/:id" component={EditEmployee} />
                                     <Route exact path="/dashboard/employ" component={AddEmployee} />
                                     <Route exact path="/dashboard/employee-list" component={EmployeeList} />
+                                    <Route exact path="/dashboard/profile/employee/:id" component={EmployeeProfile} />
                                     <Route exact path="/dashboard" component={Index} />
                                 </Switch>
                             </div>
