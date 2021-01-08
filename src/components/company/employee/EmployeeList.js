@@ -16,11 +16,11 @@ export default  function EmployeeList(){
         const [employees, setEmployees] = useState([{}])
         useEffect(() => {
           function getEm() {
-            axios.get('http://fakerestapi.azurewebsites.net/api/v1/Users')
+            // axios.get('http://fakerestapi.azurewebsites.net/api/v1/Users')
+            axios.get('https://jsonplaceholder.typicode.com/users')
             .then((response)=>{
               // const { data } = await axios.get('https://jsonplaceholder.typicode.com/users')
               setEmployees(response.data)
-              console.log(response.data)
             })
           }
           getEm()
@@ -33,11 +33,11 @@ export default  function EmployeeList(){
               text: 'S/N'
             },
             {
-              dataField: 'userName',
+              dataField: 'username',
               text: 'Firstname',
             },
             {
-              dataField: 'username',
+              dataField: 'name',
               text: 'Lastname',
             },
             {
@@ -60,7 +60,7 @@ export default  function EmployeeList(){
             {
             
               formatter: (cellContent, row) => {
-                console.log(row.id);
+                // console.log(row.id);
                 return (
                   <>
                   <Link to={`/dashboard/employee/profile/${row.id}`}
