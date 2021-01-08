@@ -26,6 +26,7 @@ import TimerReport from './reports/TimerReport';
 import { getTodos } from '../../../actions/todo/todoAction';
 import { getTasks } from '../../../actions/task/taskAction';
 import { syncCurrentUser } from '../../../actions/user/userAction';
+import UpdateEmployeeProfile from '../../company/employee/UpdateEmployeeProfile';
 
 
 const Dashboard = () =>{
@@ -78,6 +79,7 @@ const Dashboard = () =>{
                                     <Route exact path="/dashboard/employ" component={AddEmployee} />
                                     <Route exact path="/dashboard/employee-list" component={EmployeeList} />
                                     <Route exact path="/dashboard/employee/profile/:id" component={EmployeeProfile} />
+                                    <Route exact path="/dashboard/employee/profile/update/:id" component={UpdateEmployeeProfile} />
                                     <Route exact path="/dashboard" component={Index} />
                                 </Switch>
                             </div>

@@ -83,7 +83,7 @@ const Profile = () =>{
                                             <h4>{params.id} </h4>
                                             <p className="text-secondary mb-1">Frontend Engineer</p>
                                             <p className="text-muted font-size-sm">{user.address}</p>
-                                            <Link to={`/dashboard/profile/update/${user.staffID}`}>
+                                            <Link to={`/dashboard/employee/profile/update/${params.id}`}>
                                                 <Button className="btn btn-primary mr-2" label="Edit"/>
                                             </Link>
                                             <Button className="btn btn-danger" label="Disable" />

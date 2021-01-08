@@ -1,16 +1,15 @@
 // React
 import axios from 'axios';
-import { ErrorMessage, Form, Formik } from 'formik';
+import { ErrorMessage, Form, Formik,Field } from 'formik';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
-import Button from '../layouts/Button';
-import { TextInput } from '../layouts/FormInput';
-import { getCurrentUserProfile, syncCurrentUser, updateUserProfile } from '../../actions/user/userAction';
+import Button from '../../layouts/Button';
+import { TextInput } from '../../layouts/FormInput';
 import { useDispatch } from 'react-redux';
-import { USER_PROFILE_URL } from '../../services/root-endpoints';
-import { authHeader } from '../../services/auth-header';
+import { USER_PROFILE_URL } from '../../../services/root-endpoints';
+import { authHeader } from '../../../services/auth-header';
 
-const UpdateProfile = () =>{
+const UpdateEmployeeProfile = () =>{
     const params = useParams();
     const dispatch = useDispatch()
     // const { currentUser } = useSelector(state => state.authenticationState)
@@ -70,9 +69,9 @@ const UpdateProfile = () =>{
                                 <Formik
                                     initialValues = {profile}
                                     enableReinitialize
-                                    // validationSchema={UpdateProfileSchema}
+                                    // validationSchema={UpdateEmployeeProfileSchema}
                                     onSubmit={(values, action)=>{
-                                        dispatch(updateUserProfile(values, staffID, action));
+                                        // dispatch(updateUserProfile(values, staffID, action));
                                     }
                                     }
                                 >
@@ -259,6 +258,62 @@ const UpdateProfile = () =>{
                                                 </div>
                                             </div>
                                             <hr />
+                                            <div className="form-row">
+                                                    <div className="department-wrapper form-group col-md-6">
+                                                        <label>Department</label>
+                                                        <Field component="select" name="department" className="form-control">
+                                                            <option selected>Choose...</option>
+                                                            {/* {existingDepartment} */}
+                                                        </Field>
+                                                        <ErrorMessage
+                                                            component="div"
+                                                            name="email"
+                                                            className="invalid-feedback p-0"
+                                                        />
+                                                    </div>
+                                                    <div className="role-wrapper form-group col-md-6">
+                                                        <label>Role</label>
+                                                        <Field component="select" name="role" className="form-control">
+                                                            <option selected>Choose...</option>
+                                                            {/* {availableRole} */}
+                                                        </Field>
+                                                        <ErrorMessage
+                                                            component="div"
+                                                            name="email"
+                                                            className="invalid-feedback p-0"
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div className="form-row">
+
+                                                    <div className="type-wrapper form-group col-md-6">
+                                                        <label>Type</label>
+                                                        <Field component="select" name="type" className="form-control">
+                                                            <option selected>Choose...</option>
+                                                            {/* {availableType} */}
+                                                        </Field>
+                                                        <ErrorMessage
+                                                            component="div"
+                                                            name="email"
+                                                            className="invalid-feedback p-0"
+                                                        />
+                                                    </div>
+                                                    <div className="salary-wrapper form-group col-md-6">
+                                                        <TextInput
+                                                            name="salary"
+                                                            id="salary"
+                                                            type="text" 
+                                                            placeholder="Salary"
+                                                            className={`form-control ${touched.salary && errors.salary ? "is-invalid" : ""}`}
+                                                            label="Salary" 
+                                                        />
+                                                        <ErrorMessage
+                                                            component="div"
+                                                            name="salary"
+                                                            className="invalid-feedback p-0"
+                                                        />
+                                                    </div>
+                                                </div>
                                             <div className="d-flex justify-content-between">
                                                 <Button 
                                                     type="submit" 
@@ -285,4 +340,4 @@ const UpdateProfile = () =>{
     )
 }
 
-export default UpdateProfile;
+export default UpdateEmployeeProfile;
