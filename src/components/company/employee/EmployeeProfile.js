@@ -58,14 +58,19 @@ const Profile = () =>{
                 </style>
                 <div className="main-body">
                     {/* Breadcrumb */}
-                    <nav aria-label="breadcrumb" className="main-breadcrumb">
+                    <nav aria-label="breadcrumb" className="main-breadcrumb mt-2">
                         <ol className="breadcrumb">
-                        <li className="breadcrumb-item active" aria-current="page"></li>
+                            <li className="breadcrumb-item" aria-current="page">
+                                <Link to='/dashboard/employee-list' className="text-grey">
+                                        Employee List
+                                </Link>
+                            </li>
+                        <li className="breadcrumb-item active" aria-current="page">Profile</li>
                         </ol>
                     </nav>
                     
                     {/* /Breadcrumb */}
-                    <div className="row gutters-sm mt-4">
+                    <div className="row gutters-sm mt-3">
                         <div className="col-md-4 mb-3">
                             <div className="card">
                                 <div className="card-body">
@@ -75,6 +80,7 @@ const Profile = () =>{
                                         <div className="mt-3">
                                             <h4 className="text-capitalize">{user.firstName} {user.lastName}</h4>
                                             <h4>{user.id} </h4>
+                                            <h4>{params.id} </h4>
                                             <p className="text-secondary mb-1">Frontend Engineer</p>
                                             <p className="text-muted font-size-sm">{user.address}</p>
                                             <Link to={`/dashboard/profile/update/${user.staffID}`}>
@@ -97,6 +103,7 @@ const Profile = () =>{
                                     <ProfileRow title="Salary" label={`# ${user.billRateCharge}`} />
                                     <ProfileRow title="Phone" label={user.phoneNumber} />
                                     <ProfileRow title="Address" label={user.address} />
+                                    <ProfileRow title="Worked Hours" label={user.workedHour} />
                                 </div>
                             </div>
                         </div>

@@ -10,7 +10,7 @@ import { NewDepartmentForm } from './NewDepartmentForm';
 import Button from '../../layouts/Button';
 
 
-export default ManageDepartment = () => {
+const ManageDepartment = () => {
   const dispatch = useDispatch();
   const [shouldFormOpen, setShouldFormOpen] = useState();
   const [departments, setDepartments] = useState();
@@ -151,3 +151,5 @@ const DepartmentRowLayout =({serialNumber, name, size})=>{
   )
 }
 
+
+export default ManageDepartment;

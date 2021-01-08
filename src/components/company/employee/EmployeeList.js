@@ -63,7 +63,7 @@ export default  function EmployeeList(){
                 console.log(row.id);
                 return (
                   <>
-                  <Link to={`/dashboard/profile/${row.id}`}
+                  <Link to={`/dashboard/employee/profile/${row.id}`}
                     // className="fa fa-eye"
                     // onClick={(e) => handleDelete(row)} 
                     // onClick={(e) <Link to={`/dashboard/profile/${e}`} />}
