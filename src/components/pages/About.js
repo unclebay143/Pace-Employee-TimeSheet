@@ -73,17 +73,17 @@ const AboutContent = () => {
           <article className="col-12 col-lg-6">
             <section>
               <h3 className="mb-3">Our Vision</h3>
-              <p>
+              <p className="text-justify">
               The most key component of time trackers are increasing in productivity,
-issues identifying and eliminating. Pace timesheet give you that opportunity.
-with Time Tracking, Report Sheet and  productivity management features, it is very easy
-to track how much each task takes from start to finish, which websites was used during the work
-and understand how to boost you and your employees productivity.
+              issues identifying and eliminating. Pace timesheet give you that opportunity.
+              with Time Tracking, Report Sheet and  productivity management features, it is very easy
+              to track how much each task takes from start to finish, which websites was used during the work
+              and understand how to boost you and your employees productivity.
               </p>
             </section>
             <section className="mt-5">
               <h3 className="mb-3">How it started</h3>
-              <p>
+              <p className="text-justify">
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis quisquam sit debitis harum esse necessitatibus iusto obcaecati unde eligendi perspiciatis et nostrum maxime, earum fugit sequi inventore! Odit, cupiditate velit!
               </p>
             </section>
