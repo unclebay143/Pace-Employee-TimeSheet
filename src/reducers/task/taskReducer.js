@@ -2,6 +2,7 @@ import { FETCH_TASKS_PENDING, FETCH_TASKS_SUCCESS, DELETE_TASK, UPDATE_TASK, FET
 
 const initialState = {
   isFetching: false,
+  pending: false,
   tasks: [
       {
           id: 1,
@@ -48,7 +49,7 @@ const taskReducer = (state=initialState, action) => {
         case FETCH_TASK_DETAILS:
             return {
                 ...state,
-                isFetching: false,
+                pending: false,
                 task: action.payload
                 
             }
