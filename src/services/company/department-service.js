@@ -4,22 +4,28 @@ import axios from 'axios';
 //
 import { 
     authHeader, 
-    // currentUserCompanyID,
+    currentUserCompanyID,
 } from '../auth-header';
 
 // Api endpoint
-import { ADD_DEPARTMENT_API } from '../root-endpoints';
+import { ADD_DEPARTMENT_API, FETCH_DEPARTMENT_API } from '../root-endpoints';
 
-const postNewDepartment = (departmentName, companyID) =>{
-    console.log(departmentName);
-    console.log(companyID);
+
+const fetchDepartment = () => {
+    return axios.get(FETCH_DEPARTMENT_API + currentUserCompanyID, {headers: authHeader} )
+}
+
+const postNewDepartment = (values, companyID) =>{
+    console.log(typeof values);
+    console.log(values);
     // return axios.options(ADD_DEPARTMENT_API)
-    return axios.post(ADD_DEPARTMENT_API + companyID, departmentName)
+    return axios.post(ADD_DEPARTMENT_API + companyID, values, {headers: authHeader})
 }
 
 
 const DepartmentService = {
-    postNewDepartment
+    postNewDepartment,
+    fetchDepartment
 };
 
 export default DepartmentService;

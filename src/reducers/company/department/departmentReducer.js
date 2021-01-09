@@ -13,43 +13,11 @@ const initialState = {
     error: null,
     departments: [
         {
-            name: 'Web Development',
-            id: 1,
+            departmentName: 'book'
         },
         {
-            name: 'company3',
-            id: 2,
-            staffSize: 40
-          },
-          {
-            name: 'company2',
-            id: 3,
-            staffSize: 30
-          },
-          {
-            name: 'company3',
-            id: 4,
-            staffSize: 40
-          },
-          {
-            name: 'company2',
-            staffSize: 30
-          },
-          {
-            name: 'company3',
-            id: 8,
-            staffSize: 40
-          },
-          {
-            name: 'company2',
-            id: 5,
-            staffSize: 30
-          },
-          {
-            name: 'company3',
-            id: 9,
-            staffSize: 40
-          },
+            departmentName: 'book'
+        },
     ],
 }
 
@@ -70,8 +38,12 @@ const departmentReducer = (state = initialState, action) =>{
             return {
                 ...state,
                 isFormOpen: false,
-                departments: action.payload,
+                departments: [
+                    {
+                        departmentName: action.payload.departmentName
+                    },
                 ...state.departments
+                ]
             }
         case EDIT_DEPARTMENT:
             return {
