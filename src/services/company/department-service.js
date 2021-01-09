@@ -10,11 +10,11 @@ import {
 // Api endpoint
 import { ADD_DEPARTMENT_API } from '../root-endpoints';
 
-const postNewDepartment = (departmentName, companyID) =>{
-    console.log(departmentName);
-    console.log(companyID);
+const postNewDepartment = (values, companyID) =>{
+    console.log(typeof values);
+    console.log(values);
     // return axios.options(ADD_DEPARTMENT_API)
-    return axios.post(ADD_DEPARTMENT_API + companyID, departmentName)
+    return axios.post(ADD_DEPARTMENT_API + companyID, values, {headers: authHeader})
 }
 
 

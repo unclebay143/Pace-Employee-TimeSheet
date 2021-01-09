@@ -24,22 +24,23 @@ const closeForm = () => (dispatch) =>{
 }
 
 // Add new department
-const addDepartment = ({ departmentName }, companyID) => (dispatch) =>{
+const addDepartment = (values , companyID) => (dispatch) =>{
     console.log(companyID);
-    console.log(departmentName);
+    console.log(values);
 
-    return DepartmentService.postNewDepartment(departmentName, companyID)
+    return DepartmentService.postNewDepartment(values, companyID)
     .then((response)=>{
+        console.log(response)
         dispatch({
             type: ADD_DEPARTMENT,
             payload: response.data
         })
+    })
     .catch((error)=>{
         dispatch({
             type: DEPARTMENT_ERROR,
             payload: error
         })
-    })
     });
 };
 

@@ -15,6 +15,7 @@ const ManageDepartment = () => {
   const [shouldFormOpen, setShouldFormOpen] = useState();
   const [departments, setDepartments] = useState();
   const departmentState = useSelector(state => state.departments)
+  console.log(departmentState)
   
   useEffect(() => {
     setDepartments(departmentState.departments)
