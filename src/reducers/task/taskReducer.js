@@ -1,4 +1,4 @@
-import { FETCH_TASKS_PENDING, FETCH_TASKS_SUCCESS, DELETE_TASK, UPDATE_TASK, TOGGLE_TASK_COMPLETE } from '../../actions/types';
+import { FETCH_TASKS_PENDING, FETCH_TASKS_SUCCESS, DELETE_TASK, UPDATE_TASK, FETCH_TASK_DETAILS, TOGGLE_TASK_COMPLETE } from '../../actions/types';
 
 const initialState = {
   isFetching: false,
@@ -14,6 +14,7 @@ const initialState = {
           attachments: []
       }
   ],
+  task: {}
 }
 
 const taskReducer = (state=initialState, action) => {
@@ -42,6 +43,14 @@ const taskReducer = (state=initialState, action) => {
             return {
                 ...state,
                 tasks: state.tasks.map( task =>  task.id === action.payload.id ? ( task = action.payload ) : task )
+            }
+        
+        case FETCH_TASK_DETAILS:
+            return {
+                ...state,
+                isFetching: false,
+                task: action.payload
+                
             }
         
         case TOGGLE_TASK_COMPLETE:

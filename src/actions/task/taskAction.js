@@ -3,6 +3,7 @@ import {
   FETCH_TASKS_PENDING,
   FETCH_TASKS_SUCCESS,
   FETCH_TASKS_ERROR,
+  FETCH_TASK_DETAILS,
   ADD_TASK,
   TASKS_ERROR,
   DELETE_TASK,
@@ -55,6 +56,13 @@ const updateTask  = (id) => (dispatch) =>{
   dispatch({ type: UPDATE_TASK, payload: id })
 }
 
+// Fetch Task Details
+const getTaskDetails  = (id) => async(dispatch) =>{
+  const res = await TaskService.fetchTaskDetails(id);
+  dispatch({ type: FETCH_TASK_DETAILS, payload: res.data });
+}
+
+
 
 // Toggle todo completion
 const toggleTaskCompletion = (id) =>{
@@ -71,6 +79,7 @@ export {
   addTask,
   getTasks,
   updateTask,
+  getTaskDetails,
   deleteTask,
   toggleTaskCompletion
 }
