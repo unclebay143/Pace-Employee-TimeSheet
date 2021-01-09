@@ -25,8 +25,11 @@ const TASK_API_URL = 'http://fakerestapi.azurewebsites.net/api/v1/Activities';
 // (POST/ADD NEW DEPARTMENT)
 const ADD_DEPARTMENT_API = 'https://pacetimesheet.herokuapp.com/api/users/companyName/companyProfile/addDepartment/'
 
+
+
 // GET ALL DEPARTMENT
-const GET_DEPARTMENT_API = 'https://pacetimesheet.herokuapp.com/api/users/companyName/companyProfile/department/'
+const FETCH_DEPARTMENT_API = 'https://pacetimesheet.herokuapp.com/api/users/companyName/companyProfile/department/'
+
 
 
 
@@ -38,7 +41,7 @@ export {
 
 
     ADD_DEPARTMENT_API,
-    GET_DEPARTMENT_API,
+    FETCH_DEPARTMENT_API,
 
 
     TODO_API_URL,

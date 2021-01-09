@@ -1,20 +1,27 @@
 // React
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { ErrorMessage, Form, Formik } from 'formik';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import { useDispatch } from 'react-redux';
+
+// Layouts
 import Button from '../layouts/Button';
 import { TextInput } from '../layouts/FormInput';
-import { getCurrentUserProfile, syncCurrentUser, updateUserProfile } from '../../actions/user/userAction';
-import { useDispatch } from 'react-redux';
+
+//  Actions
+import { syncCurrentUser, updateUserProfile } from '../../actions/user/userAction';
+
+// Services helper
 import { USER_PROFILE_URL } from '../../services/root-endpoints';
 import { authHeader } from '../../services/auth-header';
 
 const UpdateProfile = () =>{
-    const params = useParams();
-    const dispatch = useDispatch()
-    // const { currentUser } = useSelector(state => state.authenticationState)
-    const [ staffID, setStaffID ] = useState('')
+    const params = useParams(); 
+    const dispatch = useDispatch();
+    const [ staffID, setStaffID ] = useState('');
+    // User credentials
     const [profile, setProfile] = useState({
         firstName: '',
         lastName: '',
@@ -22,38 +29,49 @@ const UpdateProfile = () =>{
         email: '',
         address: '',
         userName: '',
-    })
+    });
+
     useEffect(() => {
-        const staffID = params.id;
-        setStaffID(staffID)
+        const staffID = params.id; // get id from urls(path)
+        setStaffID(staffID);
 
-        const getUserProfile = async()=>{
+        const fetchCurrentUserProfile = async()=>{
+            // Get user profile from the server
             const response = await axios.get(USER_PROFILE_URL + staffID, { headers: authHeader })
-            const {
-                firstName,
-                lastName,
-                phoneNumber,
-                email,
-                address,
-                userName,
 
-            } = response.data.data[0]
-            setProfile({
-                firstName,
-                lastName,
-                phoneNumber,
-                email,
-                address,
-                userName,
-            })
+            if(response.data === 'invalid token or token expired'){
+                syncCurrentUser()
+            }else{
+                // Destructure the user information from the response.data.data[0] -response structure
+                const {
+                    firstName,
+                    lastName,
+                    phoneNumber,
+                    email,
+                    address,
+                    userName,
+                    
+                } = response.data.data[0]
+                
+                // Set the destructure user information into the profile state (ES6 syntax)
+                setProfile({
+                    firstName,
+                    lastName,
+                    phoneNumber,
+                    email,
+                    address,
+                    userName,
+                })
+            }
         }
+        // Trigger function to get user profile
+        fetchCurrentUserProfile()
 
-        getUserProfile()
-    }, [])
+    }, [params.id])
 
     return ( 
         <>
-            <div className="container py-5">
+            <div className="container">
                 <style>
                     {
                         `
@@ -63,6 +81,25 @@ const UpdateProfile = () =>{
                         `
                     }
                 </style>
+                {/* Breadcrumb */}
+                <nav aria-label="breadcrumb" className="main-breadcrumb pt-3">
+                    <ol className="breadcrumb">
+                        <li className="breadcrumb-item active" aria-current="page">
+                            <Link to='/dashboard'>
+                                Dashboard
+                            </Link>
+                        </li>
+                        <li className="breadcrumb-item active" aria-current="page">
+                            <Link to={`/dashboard/profile/${params.id}`}>
+                                Profile
+                            </Link>
+                        </li>
+                        <li className="breadcrumb-item active" aria-current="page">
+                            Edit Profile
+                        </li>
+                    </ol>
+                </nav>
+                {/* /Breadcrumb */}
                 <div className="main-body">
                     <div className="col-md-12">
                         <div className="card mb-3">
@@ -79,7 +116,7 @@ const UpdateProfile = () =>{
                                     { (({ values, touched, errors, handleSubmit, isSubmitting, resetForm })=>{
                                         return <Form onSubmit={handleSubmit}>
                                             <div className="mb-5 text-gray">
-                                                <pre>{JSON.stringify(values, null, 2)}</pre>
+                                                {/* <pre>{JSON.stringify(values, null, 2)}</pre> */}
                                                 <h5>EDIT PROFILE</h5>
                                             </div>
                                             <hr />

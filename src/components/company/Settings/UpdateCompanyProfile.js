@@ -1,40 +1,87 @@
 // React
-import { ErrorMessage, Field, Form, Formik } from 'formik';
-import React from 'react';
-import { useDispatch } from 'react-redux';
+import axios from 'axios';
+import { ErrorMessage, Form, Formik,Field } from 'formik';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import Button from '../../layouts/Button';
 import { TextInput } from '../../layouts/FormInput';
-import { AddEmployeeSchema } from '../../Validation/Schema';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-const sampleCompany = {
-    departments: [ 'web development', 'quality assurance', 'web design' ],
-    employeeRoles: ['backend', 'frontend', 'database manager'],
-    employeeType: ['admin', 'internal', 'staff'],
-}
-const names = [
-    {value: "Wale", label: "boy"},
-    {value: "Wale", label: "boy"},
-    {value: "Wale", label: "boy"},
-    {value: "Wale", label: "boy"}
-]
-
-const existingDepartment = sampleCompany.departments.map((department, index)=><option value={department} key={index}>{department}</option>)
-const availableRole = sampleCompany.employeeRoles.map((role)=><option value={role}>{role}</option>)
-const availableType = sampleCompany.employeeType.map((type)=><option value={type}>{type}</option>)
-
-
-
-const AddEmployee = () =>{
+const UpdateCompanyProfile = () =>{
     const params = useParams();
-    const dispatch = useDispatch();
-    const user = {
-        userName: 'Ayodele Samuel Adebayo'
-    }
+    const dispatch = useDispatch()
+    // const { currentUser } = useSelector(state => state.authenticationState)
+    // const [ staffID, setStaffID ] = useState('')
+    const [companyProfile, setCompanyProfile] = useState({
+        firstName: '',
+        lastName: '',
+        phoneNumber: '',
+        companyName: '',
+        companyType: '',
+        email: '',
+        address: '',
+        userName: '',
+    })
+    useEffect(() => {
+        const fetchCompanyProfile = async() =>{
+            const { data } = await axios.get(`https://jsonplaceholder.typicode.com/users/${params.id}`)
+            console.log(data)
+            setCompanyProfile(data)
+        }
 
-    return (
+        fetchCompanyProfile()
+        
+    }, [])
+    // useEffect(() => {
+    //     const staffID = params.id;
+    //     setStaffID(staffID)
+
+    //     const geUserProfile = async()=>{
+            // const response = await axios.get(USER_PROFILE_URL + staffID, { headers: authHeader })
+            // const {
+            //     firstName,
+            //     lastName,
+            //     phoneNumber,
+            //     email,
+            //     address,
+            //     userName,
+
+            // } = response.data.data[0]
+            // setProfile({
+            //     firstName,
+            //     lastName,
+            //     phoneNumber,
+            //     email,
+            //     address,
+            //     userName,
+            // })
+        // }
+
+    //     getUserProfile()
+    // }, [])
+
+    return ( 
         <>
-            <div className="container py-5">
+            <div className="container">
+                {/* Breadcrumb */}
+                <nav aria-label="breadcrumb" className="main-breadcrumb mt-2 ml-4">
+                        <ol className="breadcrumb">
+                            <li className="breadcrumb-item" aria-current="page">
+                                <Link to='/dashboard/employee-list' className="text-grey">
+                                        Settings
+                                </Link>
+                            </li>
+                            <li className="breadcrumb-item" aria-current="page">
+                                <Link to={`/dashboard/company/profile/${2}`} className="text-grey">
+                                        Company Profile
+                                </Link>
+                            </li>
+                        <li className="breadcrumb-item active" aria-current="page">Edit Company Profile</li>
+                        </ol>
+                    </nav>
+                    
+                    {/* /Breadcrumb */}
                 <style>
                     {
                         `
@@ -49,71 +96,84 @@ const AddEmployee = () =>{
                         <div className="card mb-3">
                             <div className="card-body">
                                 <Formik
-                                    initialValues={
-                                        {
-                                            firstName: '',
-                                            lastName: '',
-                                            department: '',
-                                            phone: '',
-                                            email: '',
-                                            role: '',
-                                            type: '',
-                                            salary: '',
-                                            address: '',
-                                            password: '',
-                                        }
+                                    initialValues = {companyProfile}
+                                    enableReinitialize
+                                    // validationSchema={UpdateCompanyProfileSchema}
+                                    onSubmit={(values, action)=>{
+                                        // dispatch(updateUserProfile(values, staffID, action));
                                     }
-                                    validationSchema={AddEmployeeSchema}
-                                    onSubmit={(values)=>alert(JSON.stringify(values, null, 2))}
+                                    }
                                 >
                                     { (({ values, touched, errors, handleSubmit, isSubmitting, resetForm })=>{
                                         return <Form onSubmit={handleSubmit}>
                                             <div className="mb-5 text-gray">
                                                 {/* <pre>{JSON.stringify(values, null, 2)}</pre> */}
-                                                <h5>ADD EMPLOYEE</h5>
+                                                <h5>EDIT COMPANY PROFILE</h5>
                                             </div>
                                             <hr />
 
-                                            {/* FIRST NAME */}
+                                            {/* COMPANY NAME */}
                                             <div className="row">
                                                 <div className="col-sm-6 col-md-3">
-                                                    <h6 className="mb-0">First Name</h6>
+                                                    <h6 className="mb-0">Company Name</h6>
                                                 </div>
                                                 <div className="col-sm-12 col-md-9 text-secondary" >
                                                     <TextInput
-                                                        name="firstName"
-                                                        id="firstName"
-                                                        placeholder="Enter Firstname"
+                                                        name="companyName"
+                                                        id="companyName"
+                                                        placeholder="Update Company Name"
                                                         type="text" 
-                                                        className={`form-control ${ touched.firstName && errors.firstName ? "is-invalid" : ""}`} 
+                                                        className={`form-control ${ touched.companyName && errors.companyName ? "is-invalid" : ""}`} 
                                                         />
                                                     <ErrorMessage
                                                         component="div"
-                                                        name="firstName"
+                                                        name="companyName"
                                                         className="invalid-feedback p-0"
                                                         />
                                                 </div>
                                             </div>
                                             <hr />
 
-                                            {/* LAST NAME */}
-                                            <div className="row">
+                                             {/* COMPANY TYPE */}
+                                             <div className="row">
                                                 <div className="col-sm-6 col-md-3">
-                                                    <h6 className="mb-0">Last Name</h6>
+                                                    <h6 className="mb-0">Company Type</h6>
                                                 </div>
                                                 <div className="col-sm-12 col-md-9 text-secondary" >
                                                     <TextInput
-                                                        name="lastName"
-                                                        placeholder="Enter last Name"
+                                                        name="companyType"
+                                                        id="companyType"
+                                                        placeholder="Update Company Type"
                                                         type="text" 
-                                                        className={`form-control ${touched.lastName && errors.lastName ? "is-invalid" : ""}`} 
-                                                        id="lastName"
-                                                    />
+                                                        className={`form-control ${ touched.companyType && errors.companyType ? "is-invalid" : ""}`} 
+                                                        />
                                                     <ErrorMessage
                                                         component="div"
-                                                        name="lastName"
+                                                        name="companyType"
                                                         className="invalid-feedback p-0"
-                                                    />
+                                                        />
+                                                </div>
+                                            </div>
+                                            <hr />
+
+                                             {/* COMPANY ADJECTIVE */}
+                                             <div className="row">
+                                                <div className="col-sm-6 col-md-3">
+                                                    <h6 className="mb-0">Company Adjective</h6>
+                                                </div>
+                                                <div className="col-sm-12 col-md-9 text-secondary" >
+                                                    <TextInput
+                                                        name="companyAdjective"
+                                                        id="companyAdjective"
+                                                        placeholder="Update Company Adjective"
+                                                        type="text" 
+                                                        className={`form-control ${ touched.companyAdjective && errors.companyAdjective ? "is-invalid" : ""}`} 
+                                                        />
+                                                    <ErrorMessage
+                                                        component="div"
+                                                        name="companyAdjective"
+                                                        className="invalid-feedback p-0"
+                                                        />
                                                 </div>
                                             </div>
                                             <hr />
@@ -124,18 +184,18 @@ const AddEmployee = () =>{
                                                     <h6 className="mb-0">Phone Number</h6>
                                                 </div>
                                                 <div className="col-sm-12 col-md-9 text-secondary" >
-                                                <TextInput
-                                                            name="phone"
-                                                            placeholder="Enter Phone Number"
-                                                            type="tel" 
-                                                            className={`form-control ${touched.phone && errors.phone ? "is-invalid" : ""}`} 
-                                                            id="phone"
-                                                        />
-                                                        <ErrorMessage
-                                                            component="div"
-                                                            name="phone"
-                                                            className="invalid-feedback p-0"
-                                                        />
+                                                    <TextInput
+                                                        name="phone"
+                                                        placeholder="Enter Phone Number"
+                                                        type="tel" 
+                                                        className={`form-control ${touched.phone && errors.phone ? "is-invalid" : ""}`} 
+                                                        id="phone"
+                                                    />
+                                                    <ErrorMessage
+                                                        component="div"
+                                                        name="phone"
+                                                        className="invalid-feedback p-0"
+                                                    />
                                                 </div>
                                             </div>
                                             <hr />
@@ -162,15 +222,17 @@ const AddEmployee = () =>{
                                             </div>
                                             <hr />
 
+                                           
+
                                             {/* CREATE PASSWORD */}
                                             <div className="row">
                                                 <div className="col-sm-6 col-md-3">
-                                                    <h6 className="mb-0">Create Password</h6>
+                                                    <h6 className="mb-0">New Password</h6>
                                                 </div>
                                                 <div className="col-sm-12 col-md-9 text-secondary" >
                                                     <TextInput
                                                         name="password"
-                                                        placeholder="Create Password"
+                                                        placeholder="New Password"
                                                         type="password" 
                                                         className={`form-control ${ touched.password && errors.password ? "is-invalid" : ""}`} 
                                                         id="password"
@@ -206,85 +268,6 @@ const AddEmployee = () =>{
                                             </div>
                                             <hr />
 
-                                            {/*  DEPARTMENT*/}
-                                            <div className="row">
-                                                <div className="col-sm-6 col-md-3 mb-sm-3">
-                                                    <h6 className="mb-0">Department</h6>
-                                                </div>
-                                                <div className="col-sm-12 col-md-9 text-secondary" >
-                                                    <Field component="select" name="department" className="form-control">
-                                                        <option selected>Choose...</option>
-                                                        {existingDepartment}
-                                                    </Field>
-                                                    <ErrorMessage
-                                                        component="div"
-                                                        name="email"
-                                                        className="invalid-feedback p-0"
-                                                    />
-                                                </div>
-                                            </div>
-                                            <hr />
-
-                                            {/* ROLE */}
-                                            <div className="row">
-                                                <div className="col-sm-6 col-md-3 mb-sm-3">
-                                                    <h6 className="mb-0">Role</h6>
-                                                </div>
-                                                <div className="col-sm-12 col-md-9 text-secondary" >
-                                                    <Field component="select" name="role" className="form-control">
-                                                        <option selected>Choose...</option>
-                                                        {availableRole}
-                                                    </Field>
-                                                    <ErrorMessage
-                                                        component="div"
-                                                        name="email"
-                                                        className="invalid-feedback p-0"
-                                                    />
-                                                </div>
-                                            </div>
-                                            <hr />
-
-                                            {/* TYPE */}
-                                            <div className="row">
-                                                <div className="col-sm-6 col-md-3 mb-sm-3">
-                                                    <h6 className="mb-0">Type</h6>
-                                                </div>
-                                                <div className="col-sm-12 col-md-9 text-secondary" >
-                                                    <Field component="select" name="type" className="form-control">
-                                                        <option selected>Choose...</option>
-                                                        {availableType}
-                                                    </Field>
-                                                    <ErrorMessage
-                                                        component="div"
-                                                        name="email"
-                                                        className="invalid-feedback p-0"
-                                                    />
-                                                </div>
-                                            </div>
-                                            <hr />
-
-                                            {/* SALARY */}
-                                            <div className="row">
-                                                <div className="col-sm-6 col-md-3">
-                                                    <h6 className="mb-0">Salary</h6>
-                                                </div>
-                                                <div className="col-sm-12 col-md-9 text-secondary" >
-                                                    <TextInput
-                                                        name="salary"
-                                                        id="salary"
-                                                        type="text" 
-                                                        placeholder="Salary"
-                                                        className={`form-control ${touched.salary && errors.salary ? "is-invalid" : ""}`}
-                                                    />
-                                                    <ErrorMessage
-                                                        component="div"
-                                                        name="salary"
-                                                        className="invalid-feedback p-0"
-                                                    />
-                                                </div>
-                                            </div>
-                                            <hr />
-
                                             {/* ADDRESS */}
                                             <div className="row">
                                                 <div className="col-sm-6 col-md-3">
@@ -292,7 +275,7 @@ const AddEmployee = () =>{
                                                 </div>
                                                 <div className="col-sm-12 col-md-9 text-secondary" >
                                                     <TextInput
-                                                        name="address"
+                                                        name="address.city"
                                                         id="address"
                                                         type="text" 
                                                         placeholder="143 work and connect"
@@ -306,11 +289,19 @@ const AddEmployee = () =>{
                                                 </div>
                                             </div>
                                             <hr />
+
+                                           
+                                            <hr />
+                                            
                                             <div className="d-flex justify-content-between">
-                                                <Button type="submit" label="Employ" className="btn pace-btn-primary" />
                                                 <Button 
                                                     type="submit" 
-                                                    className="btn pace-btn-accent" 
+                                                    label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Updating...</span>) : "Update"}
+                                                    className="btn pace-btn-primary" 
+                                                />
+                                                <Button 
+                                                    type="submit" 
+                                                    className="btn pace-btn-accent d-none" 
                                                     label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Please wait...</span>) : "Reset"}
                                                     onClick={(()=>resetForm())} 
                                                 />
@@ -328,4 +319,4 @@ const AddEmployee = () =>{
     )
 }
 
-export default AddEmployee;
+export default UpdateCompanyProfile;

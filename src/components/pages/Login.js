@@ -43,7 +43,7 @@ const Login = () =>{
             const redirectUserToDashboard = setTimeout(redirector, 2000)
             return(()=>clearTimeout(redirectUserToDashboard))
         }
-    }, [isLoggedIn])
+    }, [isLoggedIn, history])
 
     return(
         <div className="container">

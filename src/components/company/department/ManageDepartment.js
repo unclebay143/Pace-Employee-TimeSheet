@@ -1,13 +1,15 @@
 // React
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { editDepartment, deleteDepartment, openForm, closeForm } from '../../../actions/company/department/departmentAction';
+import { editDepartment, deleteDepartment, openForm } from '../../../actions/company/department/departmentAction';
 
 // Components
 import { NewDepartmentForm } from './NewDepartmentForm';
 
 // Layout
 import Button from '../../layouts/Button';
+import axios from 'axios';
+import DepartmentService from '../../../services/company/department-service';
 
 
 const ManageDepartment = () => {
@@ -15,8 +17,13 @@ const ManageDepartment = () => {
   const [shouldFormOpen, setShouldFormOpen] = useState();
   const [departments, setDepartments] = useState();
   const departmentState = useSelector(state => state.departments)
+  console.log(departmentState)
+  console.log(departments)
+
   
   useEffect(() => {
+    DepartmentService.fetchDepartment()
+    .then((response)=>console.log(response))
     setDepartments(departmentState.departments)
     setShouldFormOpen(departmentState.isFormOpen)
   }, [departmentState])
@@ -34,9 +41,6 @@ const ManageDepartment = () => {
     return (
       <>
       <div className="todo-container container">
-          {/* <ToastContainer /> */}
-          {/* <pre>{triggerTodoForm ? 'false, open' : 'false, don\'t open' }</pre> */}
-            {/* <div className="new-department-form" onClick={(()=>dispatch(closeForm()))}> */}
             <div className="new-department-form">
               <style>
                 {
@@ -94,8 +98,8 @@ const ManageDepartment = () => {
                                         return(
                                           <DepartmentRowLayout 
                                             serialNumber={index + 1}
-                                            name={info.name}
-                                            size={info.staffSize}
+                                            name={info.departmentName}
+                                            // size={info.staffSize}
                                             key={index}
                                           />
                                         )
