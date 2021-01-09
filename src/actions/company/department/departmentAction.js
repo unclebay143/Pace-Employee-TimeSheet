@@ -26,6 +26,7 @@ const closeForm = () => (dispatch) =>{
 const getDepartment = () => (dispatch) =>{
     return DepartmentService.fetchDepartment()
     .then((response)=>{
+        console.log('in department action')
         console.log(response)
     })
     .catch((error)=>console.log(error))
@@ -74,5 +75,6 @@ export {
     closeForm,
     addDepartment,
     editDepartment,
-    deleteDepartment
+    deleteDepartment,
+    getDepartment
 }

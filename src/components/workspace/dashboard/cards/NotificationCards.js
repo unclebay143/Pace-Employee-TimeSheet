@@ -7,7 +7,7 @@ import EscheduleCard from './EscheduleCard';
 const NotificationCards = ()=>{
     return(
         <>
-            {/* <TodoCard /> */}
+            <TodoCard />
             <EventCard />
             <EscheduleCard />
         </>

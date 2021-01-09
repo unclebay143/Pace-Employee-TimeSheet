@@ -20,13 +20,13 @@ export const NewDepartmentForm = () => {
         <>
             <div className="card" style={{width: '18rem'}}>
                 <ul className="list-group list-group-flush">
-                    <li className="list-group-item"> 
+                    <li className="list-group-item  pace-bg-accent"> 
                     <span className="d-flex justify-content-between align-items-center">
                         New department 
                         <Button 
                             className="btn btn-sm"
                             onClick={(()=>dispatch(closeForm()))}
-                            icon="fa fa-times text-red"
+                            icon="fa fa-times text-white"
                         />
                     </span>
                     
@@ -57,11 +57,11 @@ export const NewDepartmentForm = () => {
                                             className="form-control"
                                         />
                                     
-                                        <li className="list-group-item">
+                                    <li className="list-group-item d-flex justify-content-center">
                                         <Button 
                                             type="submit"
                                             label="Creates"
-                                            className="btn btn-success btn-sm"
+                                            className="btn pace-btn-accent btn-sm"
                                         />
                                     </li>
                                     </Form>

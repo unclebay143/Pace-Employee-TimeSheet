@@ -12,31 +12,36 @@ const fetchTasks = () =>{
 }
 
 const deleteTask = (id) =>{
-     axios.delete(`${ TASK_API_URL }/${id}`)
+     return axios.delete(`${ TASK_API_URL }/${id}`)
 }
 
 const fetchTaskDetails = (id) =>{
-     axios.get(`${ TASK_API_URL }/${id}`)
+     return axios.get(`${ TASK_API_URL }/${id}`)
 }
 
 const updateTask = (id) =>{
-     axios.put(`${ TASK_API_URL }/${id}`)
+     return axios.put(`${ TASK_API_URL }/${id}`)
 }
 
-export const fetchAcceptedTasks = () =>{
+const fetchAcceptedTasks = () =>{
     return axios.get( ACCEPTED_TASK_API_URL )
 }
 
-export const deleteAcceptedTask = (id) =>{
+const deleteAcceptedTask = (id) =>{
      axios.delete(`${ ACCEPTED_TASK_API_URL }/${id}`)
 }
 
 
 
-export default{
+const TaskService = {
     fetchTasks,
     fetchAcceptedTasks,
     deleteTask,
     fetchTaskDetails,
     updateTask,
+    fetchAcceptedTasks,
+    deleteAcceptedTask,
 }
+
+
+export default TaskService;

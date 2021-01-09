@@ -2,19 +2,7 @@ import { FETCH_TASKS_PENDING, FETCH_TASKS_SUCCESS, DELETE_TASK, UPDATE_TASK, FET
 
 const initialState = {
   isFetching: false,
-  tasks: [
-      {
-          id: 1,
-          title: 'Build Home Page',
-          description: 'use html, css, react, bootstrap, and also use nice font, typography and some other useful resources you can lay your hands on',
-          accepted: false,
-          completed: false,
-          assignedDate: Date.now(),
-          dueDate: Date('01-09-2020'),
-          attachments: []
-      }
-  ],
-  task: {}
+  tasks: []
 }
 
 const taskReducer = (state=initialState, action) => {
@@ -43,14 +31,6 @@ const taskReducer = (state=initialState, action) => {
             return {
                 ...state,
                 tasks: state.tasks.map( task =>  task.id === action.payload.id ? ( task = action.payload ) : task )
-            }
-        
-        case FETCH_TASK_DETAILS:
-            return {
-                ...state,
-                isFetching: false,
-                task: action.payload
-                
             }
         
         case TOGGLE_TASK_COMPLETE:
