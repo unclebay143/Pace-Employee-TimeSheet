@@ -8,6 +8,8 @@ import { NewDepartmentForm } from './NewDepartmentForm';
 
 // Layout
 import Button from '../../layouts/Button';
+import axios from 'axios';
+import DepartmentService from '../../../services/company/department-service';
 
 
 const ManageDepartment = () => {
@@ -16,8 +18,12 @@ const ManageDepartment = () => {
   const [departments, setDepartments] = useState();
   const departmentState = useSelector(state => state.departments)
   console.log(departmentState)
+  console.log(departments)
+
   
   useEffect(() => {
+    DepartmentService.fetchDepartment()
+    .then((response)=>console.log(response))
     setDepartments(departmentState.departments)
     setShouldFormOpen(departmentState.isFormOpen)
   }, [departmentState])
@@ -92,8 +98,8 @@ const ManageDepartment = () => {
                                         return(
                                           <DepartmentRowLayout 
                                             serialNumber={index + 1}
-                                            name={info.name}
-                                            size={info.staffSize}
+                                            name={info.departmentName}
+                                            // size={info.staffSize}
                                             key={index}
                                           />
                                         )

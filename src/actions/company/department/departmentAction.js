@@ -23,6 +23,14 @@ const closeForm = () => (dispatch) =>{
     })
 }
 
+const getDepartment = () => (dispatch) =>{
+    return DepartmentService.fetchDepartment()
+    .then((response)=>{
+        console.log(response)
+    })
+    .catch((error)=>console.log(error))
+}
+
 // Add new department
 const addDepartment = (values , companyID) => (dispatch) =>{
     console.log(companyID);
@@ -33,7 +41,7 @@ const addDepartment = (values , companyID) => (dispatch) =>{
         console.log(response)
         dispatch({
             type: ADD_DEPARTMENT,
-            payload: response.data
+            payload: response.data.data
         })
     })
     .catch((error)=>{

@@ -11,7 +11,14 @@ import {
 const initialState = {
     isFormOpen: false,
     error: null,
-    departments: [],
+    departments: [
+        {
+            departmentName: 'book'
+        },
+        {
+            departmentName: 'book'
+        },
+    ],
 }
 
 
@@ -31,8 +38,12 @@ const departmentReducer = (state = initialState, action) =>{
             return {
                 ...state,
                 isFormOpen: false,
-                departments: action.payload,
+                departments: [
+                    {
+                        departmentName: action.payload.departmentName
+                    },
                 ...state.departments
+                ]
             }
         case EDIT_DEPARTMENT:
             return {
