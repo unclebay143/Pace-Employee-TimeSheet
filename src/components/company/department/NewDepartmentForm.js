@@ -1,13 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { TextInput } from '../../layouts/FormInput';
 import Button from '../../layouts/Button';
 import { Formik, Form } from 'formik';
 import { useDispatch } from 'react-redux';
 import { addDepartment, closeForm } from '../../../actions/company/department/departmentAction';
-import AddEmployee from '../../workspace/dashboard/AddEmployee';
 
 export const NewDepartmentForm = () => {
     const dispatch = useDispatch();
+    const [companyID, setCompanyID] = useState('');
+
+    // get current user from localStorage, getting it from the redux state makes the code break(takes a while to sycCurrent user)
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'))
+    
+    useEffect(() => {
+        setCompanyID(currentUser.companyID)
+    }, [currentUser.companyID])
+    
     return (
         <>
             <div className="card" style={{width: '18rem'}}>
@@ -32,10 +40,11 @@ export const NewDepartmentForm = () => {
 
                             }    
                             onSubmit={(values)=>{
-                                dispatch(addDepartment(values))
+                                console.log(companyID);
+                                dispatch(addDepartment(values, companyID))
                             }}              
                         >
-                            {({handleSubmit, values})=>{
+                            {({handleSubmit})=>{
                                 return(
                             <li className="list-group-item" style={{border: 'none'}}>
                                 <span>Department Name</span>

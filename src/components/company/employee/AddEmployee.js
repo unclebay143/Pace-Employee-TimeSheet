@@ -1,8 +1,7 @@
 // React
-import axios from 'axios';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import { param } from 'jquery';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import Button from '../../layouts/Button';
 import { TextInput } from '../../layouts/FormInput';
@@ -21,42 +20,17 @@ const names = [
 ]
 
 const existingDepartment = sampleCompany.departments.map((department, index)=><option value={department} key={index}>{department}</option>)
-const availableRole = sampleCompany.employeeRoles.map((role, index)=><option value={role} key={index}>{role}</option>)
-const availableType = sampleCompany.employeeType.map((type, index)=><option value={type} key={index}>{type}</option>)
+const availableRole = sampleCompany.employeeRoles.map((role)=><option value={role}>{role}</option>)
+const availableType = sampleCompany.employeeType.map((type)=><option value={type}>{type}</option>)
 
 
 
 const AddEmployee = () =>{
     const params = useParams();
     const dispatch = useDispatch();
-    const { currentUser } = useSelector(state => state.authenticationState)
-    console.log(
-        currentUser
-    );
     const user = {
         userName: 'Ayodele Samuel Adebayo'
     }
-    const firstName = 'ayodele'
-    const lastName = 'samuel adebayo'
-    const email = 'unclebigbay@gmail.com'
-    const phone = '090987773663'
-    const role = 'frontend'
-    const department = 'web development'
-    const type = 'admin'
-    const salary = 9000000
-    const password = 9000000
-    const password2 = 900000
-    const address = 'eko'
-    const city = 'abuka'
-    const state = 'lagos'
-    const country = 'nigeria'
-
-    useEffect(() => {
-        
-        
-
-
-    }, [])
 
     return (
         <>
@@ -77,62 +51,26 @@ const AddEmployee = () =>{
                                 <Formik
                                     initialValues={
                                         {
-                                            firstName,
-                                            lastName,
-                                            email,
-                                            phone,
-                                            role,
-                                            department,
-                                            type,
-                                            salary,
-                                            password,
-                                            password2,
-                                            address,
-                                            city,
-                                            state,
-                                            country
+                                            firstName: '',
+                                            lastName: '',
+                                            department: '',
+                                            phone: '',
+                                            email: '',
+                                            role: '',
+                                            type: '',
+                                            salary: '',
+                                            address: '',
+                                            password: '',
                                         }
                                     }
-                                    // validationSchema={AddEmployeeSchema}
-                                    onSubmit={(values)=>{
-                                        const { firstName, lastName, address } = values
-                                        const data = {
-                                            firstName,
-                                            lastName,
-                                            address,
-                                            phone,
-                                            userName: 'unclebay143',
-
-                                        }
-
-                                        
-                                        // alert(JSON.stringify(values, null, 2))
-                                        alert(JSON.stringify(data, null, 2))
-                                        const getCurrentUser = JSON.parse(localStorage.getItem('token'));
-                                        const accessToken1 = getCurrentUser.data.accessToken
-                                        console.log(typeof accessToken1);
-
-                                        const options = {
-                                            'Content-Type': 'application/json',
-                                            "Accept": "application/json",
-                                            'Authorization': `basic ${accessToken1}`
-                                          }
-
-                                          axios.get('https://pacetimesheet.herokuapp.com/api/users/companyName/userProfile/')
-                                        axios.put(`https://pacetimesheet.herokuapp.com/api/users/companyName/userProfile/updateProfile/${params.id}`, data, {headers:options})
-                                        .then((response)=>{
-                                            console.log(response)
-                                        }).catch((error)=>{
-                                            console.log(error)
-                                        })
-                                    }
-                                    }
+                                    validationSchema={AddEmployeeSchema}
+                                    onSubmit={(values)=>alert(JSON.stringify(values, null, 2))}
                                 >
                                     { (({ values, touched, errors, handleSubmit, isSubmitting, resetForm })=>{
                                         return <Form onSubmit={handleSubmit}>
                                             <div className="mb-5 text-gray">
-                                                <pre>{JSON.stringify(values, null, 2)}</pre>
-                                                <h5>EDIT PROFILE</h5>
+                                                {/* <pre>{JSON.stringify(values, null, 2)}</pre> */}
+                                                <h5>ADD EMPLOYEE</h5>
                                             </div>
                                             <hr />
 
@@ -275,7 +213,7 @@ const AddEmployee = () =>{
                                                 </div>
                                                 <div className="col-sm-12 col-md-9 text-secondary" >
                                                     <Field component="select" name="department" className="form-control">
-                                                        <option defaultValue>Choose...</option>
+                                                        <option selected>Choose...</option>
                                                         {existingDepartment}
                                                     </Field>
                                                     <ErrorMessage
@@ -294,7 +232,7 @@ const AddEmployee = () =>{
                                                 </div>
                                                 <div className="col-sm-12 col-md-9 text-secondary" >
                                                     <Field component="select" name="role" className="form-control">
-                                                        <option defaultValue>Choose...</option>
+                                                        <option selected>Choose...</option>
                                                         {availableRole}
                                                     </Field>
                                                     <ErrorMessage
@@ -313,7 +251,7 @@ const AddEmployee = () =>{
                                                 </div>
                                                 <div className="col-sm-12 col-md-9 text-secondary" >
                                                     <Field component="select" name="type" className="form-control">
-                                                        <option defaultValue>Choose...</option>
+                                                        <option selected>Choose...</option>
                                                         {availableType}
                                                     </Field>
                                                     <ErrorMessage
@@ -372,7 +310,7 @@ const AddEmployee = () =>{
                                                 <Button type="submit" label="Employ" className="btn pace-btn-primary" />
                                                 <Button 
                                                     type="submit" 
-                                                    className="btn pace-btn-accent d-none" 
+                                                    className="btn pace-btn-accent" 
                                                     label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Please wait...</span>) : "Reset"}
                                                     onClick={(()=>resetForm())} 
                                                 />

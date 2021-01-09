@@ -1,41 +1,77 @@
 // React
-import { ErrorMessage, Field, Form, Formik } from 'formik';
-import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { ErrorMessage, Form, Formik } from 'formik';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
-import Button from '../../layouts/Button';
-import { TextInput } from '../../layouts/FormInput';
-import { AddEmployeeSchema } from '../../Validation/Schema';
+import { useDispatch } from 'react-redux';
 
-const sampleCompany = {
-    departments: [ 'web development', 'quality assurance', 'web design' ],
-    employeeRoles: ['backend', 'frontend', 'database manager'],
-    employeeType: ['admin', 'internal', 'staff'],
-}
-const names = [
-    {value: "Wale", label: "boy"},
-    {value: "Wale", label: "boy"},
-    {value: "Wale", label: "boy"},
-    {value: "Wale", label: "boy"}
-]
+// Layouts
+import Button from '../layouts/Button';
+import { TextInput } from '../layouts/FormInput';
 
-const existingDepartment = sampleCompany.departments.map((department, index)=><option value={department} key={index}>{department}</option>)
-const availableRole = sampleCompany.employeeRoles.map((role)=><option value={role}>{role}</option>)
-const availableType = sampleCompany.employeeType.map((type)=><option value={type}>{type}</option>)
+//  Actions
+import { syncCurrentUser, updateUserProfile } from '../../actions/user/userAction';
 
+// Services helper
+import { USER_PROFILE_URL } from '../../services/root-endpoints';
+import { authHeader } from '../../services/auth-header';
 
-
-const AddEmployee = () =>{
-    const params = useParams();
+const UpdateProfile = () =>{
+    const params = useParams(); 
     const dispatch = useDispatch();
-    const user = {
-        userName: 'Ayodele Samuel Adebayo'
-    }
+    const [ staffID, setStaffID ] = useState('');
+    // User credentials
+    const [profile, setProfile] = useState({
+        firstName: '',
+        lastName: '',
+        phoneNumber: '',
+        email: '',
+        address: '',
+        userName: '',
+    });
 
-    return (
+    useEffect(() => {
+        const staffID = params.id; // get id from urls(path)
+        setStaffID(staffID);
+
+        const fetchCurrentUserProfile = async()=>{
+            // Get user profile from the server
+            const response = await axios.get(USER_PROFILE_URL + staffID, { headers: authHeader })
+
+            if(response.data === 'invalid token or token expired'){
+                syncCurrentUser()
+            }else{
+                // Destructure the user information from the response.data.data[0] -response structure
+                const {
+                    firstName,
+                    lastName,
+                    phoneNumber,
+                    email,
+                    address,
+                    userName,
+                    
+                } = response.data.data[0]
+                
+                // Set the destructure user information into the profile state (ES6 syntax)
+                setProfile({
+                    firstName,
+                    lastName,
+                    phoneNumber,
+                    email,
+                    address,
+                    userName,
+                })
+            }
+        }
+        // Trigger function to get user profile
+        fetchCurrentUserProfile()
+
+    }, [params.id])
+
+    return ( 
         <>
-            <div className="container py-5">
+            <div className="container">
                 <style>
                     {
                         `
@@ -45,33 +81,43 @@ const AddEmployee = () =>{
                         `
                     }
                 </style>
+                {/* Breadcrumb */}
+                <nav aria-label="breadcrumb" className="main-breadcrumb pt-3">
+                    <ol className="breadcrumb">
+                        <li className="breadcrumb-item active" aria-current="page">
+                            <Link to='/dashboard'>
+                                Dashboard
+                            </Link>
+                        </li>
+                        <li className="breadcrumb-item active" aria-current="page">
+                            <Link to={`/dashboard/profile/${params.id}`}>
+                                Profile
+                            </Link>
+                        </li>
+                        <li className="breadcrumb-item active" aria-current="page">
+                            Edit Profile
+                        </li>
+                    </ol>
+                </nav>
+                {/* /Breadcrumb */}
                 <div className="main-body">
                     <div className="col-md-12">
                         <div className="card mb-3">
                             <div className="card-body">
                                 <Formik
-                                    initialValues={
-                                        {
-                                            firstName: '',
-                                            lastName: '',
-                                            department: '',
-                                            phone: '',
-                                            email: '',
-                                            role: '',
-                                            type: '',
-                                            salary: '',
-                                            address: '',
-                                            password: '',
-                                        }
+                                    initialValues = {profile}
+                                    enableReinitialize
+                                    // validationSchema={UpdateProfileSchema}
+                                    onSubmit={(values, action)=>{
+                                        dispatch(updateUserProfile(values, staffID, action));
                                     }
-                                    validationSchema={AddEmployeeSchema}
-                                    onSubmit={(values)=>alert(JSON.stringify(values, null, 2))}
+                                    }
                                 >
                                     { (({ values, touched, errors, handleSubmit, isSubmitting, resetForm })=>{
                                         return <Form onSubmit={handleSubmit}>
                                             <div className="mb-5 text-gray">
                                                 {/* <pre>{JSON.stringify(values, null, 2)}</pre> */}
-                                                <h5>ADD EMPLOYEE</h5>
+                                                <h5>EDIT PROFILE</h5>
                                             </div>
                                             <hr />
 
@@ -119,6 +165,28 @@ const AddEmployee = () =>{
                                             </div>
                                             <hr />
 
+                                            {/* USERNAME */}
+                                            <div className="row">
+                                                <div className="col-sm-6 col-md-3">
+                                                    <h6 className="mb-0">Username</h6>
+                                                </div>
+                                                <div className="col-sm-12 col-md-9 text-secondary" >
+                                                    <TextInput
+                                                        name="username"
+                                                        placeholder="Enter Username"
+                                                        type="text" 
+                                                        className={`form-control ${touched.username && errors.username ? "is-invalid" : ""}`} 
+                                                        id="username"
+                                                    />
+                                                    <ErrorMessage
+                                                        component="div"
+                                                        name="username"
+                                                        className="invalid-feedback p-0"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <hr />
+
                                             {/* PHONE NUMBER */}
                                             <div className="row">
                                                 <div className="col-sm-6 col-md-3">
@@ -126,15 +194,15 @@ const AddEmployee = () =>{
                                                 </div>
                                                 <div className="col-sm-12 col-md-9 text-secondary" >
                                                 <TextInput
-                                                            name="phone"
+                                                            name="phoneNumber"
                                                             placeholder="Enter Phone Number"
                                                             type="tel" 
-                                                            className={`form-control ${touched.phone && errors.phone ? "is-invalid" : ""}`} 
-                                                            id="phone"
+                                                            className={`form-control ${touched.phoneNumber && errors.phoneNumber ? "is-invalid" : ""}`} 
+                                                            id="phoneNumber"
                                                         />
                                                         <ErrorMessage
                                                             component="div"
-                                                            name="phone"
+                                                            name="phoneNumber"
                                                             className="invalid-feedback p-0"
                                                         />
                                                 </div>
@@ -207,85 +275,6 @@ const AddEmployee = () =>{
                                             </div>
                                             <hr />
 
-                                            {/*  DEPARTMENT*/}
-                                            <div className="row">
-                                                <div className="col-sm-6 col-md-3 mb-sm-3">
-                                                    <h6 className="mb-0">Department</h6>
-                                                </div>
-                                                <div className="col-sm-12 col-md-9 text-secondary" >
-                                                    <Field component="select" name="department" className="form-control">
-                                                        <option selected>Choose...</option>
-                                                        {existingDepartment}
-                                                    </Field>
-                                                    <ErrorMessage
-                                                        component="div"
-                                                        name="email"
-                                                        className="invalid-feedback p-0"
-                                                    />
-                                                </div>
-                                            </div>
-                                            <hr />
-
-                                            {/* ROLE */}
-                                            <div className="row">
-                                                <div className="col-sm-6 col-md-3 mb-sm-3">
-                                                    <h6 className="mb-0">Role</h6>
-                                                </div>
-                                                <div className="col-sm-12 col-md-9 text-secondary" >
-                                                    <Field component="select" name="role" className="form-control">
-                                                        <option selected>Choose...</option>
-                                                        {availableRole}
-                                                    </Field>
-                                                    <ErrorMessage
-                                                        component="div"
-                                                        name="email"
-                                                        className="invalid-feedback p-0"
-                                                    />
-                                                </div>
-                                            </div>
-                                            <hr />
-
-                                            {/* TYPE */}
-                                            <div className="row">
-                                                <div className="col-sm-6 col-md-3 mb-sm-3">
-                                                    <h6 className="mb-0">Type</h6>
-                                                </div>
-                                                <div className="col-sm-12 col-md-9 text-secondary" >
-                                                    <Field component="select" name="type" className="form-control">
-                                                        <option selected>Choose...</option>
-                                                        {availableType}
-                                                    </Field>
-                                                    <ErrorMessage
-                                                        component="div"
-                                                        name="email"
-                                                        className="invalid-feedback p-0"
-                                                    />
-                                                </div>
-                                            </div>
-                                            <hr />
-
-                                            {/* SALARY */}
-                                            <div className="row">
-                                                <div className="col-sm-6 col-md-3">
-                                                    <h6 className="mb-0">Salary</h6>
-                                                </div>
-                                                <div className="col-sm-12 col-md-9 text-secondary" >
-                                                    <TextInput
-                                                        name="salary"
-                                                        id="salary"
-                                                        type="text" 
-                                                        placeholder="Salary"
-                                                        className={`form-control ${touched.salary && errors.salary ? "is-invalid" : ""}`}
-                                                    />
-                                                    <ErrorMessage
-                                                        component="div"
-                                                        name="salary"
-                                                        className="invalid-feedback p-0"
-                                                    />
-                                                </div>
-                                            </div>
-                                            <hr />
-
                                             {/* ADDRESS */}
                                             <div className="row">
                                                 <div className="col-sm-6 col-md-3">
@@ -308,10 +297,14 @@ const AddEmployee = () =>{
                                             </div>
                                             <hr />
                                             <div className="d-flex justify-content-between">
-                                                <Button type="submit" label="Employ" className="btn pace-btn-primary" />
                                                 <Button 
                                                     type="submit" 
-                                                    className="btn pace-btn-accent" 
+                                                    label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Updating...</span>) : "Update"}
+                                                    className="btn pace-btn-primary" 
+                                                />
+                                                <Button 
+                                                    type="submit" 
+                                                    className="btn pace-btn-accent d-none" 
                                                     label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Please wait...</span>) : "Reset"}
                                                     onClick={(()=>resetForm())} 
                                                 />
@@ -329,4 +322,4 @@ const AddEmployee = () =>{
     )
 }
 
-export default AddEmployee;
+export default UpdateProfile;

@@ -14,7 +14,7 @@ const PageNotFound = () => {
 
     return(
         <>
-        <style jsx>
+        <style>
             {
                 `
                 nav.navbar,

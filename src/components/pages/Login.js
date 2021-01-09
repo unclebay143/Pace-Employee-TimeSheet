@@ -22,15 +22,28 @@ const Login = () =>{
     const { isLoggedIn } = useSelector((state)=>state.authenticationState)
     const history = useHistory();
     const dispatch = useDispatch()
+    // useEffect(() => {
+    //     document.title = 'Login | Pace'
+    //     if(isLoggedIn){
+    //         userIsAuthenticatedLogger()
+    //         setTimeout(() => {
+    //             history.push('./dashboard');
+    //         }, 2000);
+    //     }
+    // }, [isLoggedIn])
     useEffect(() => {
         document.title = 'Login | Pace'
+        
+        const redirector = () =>{
+            history.push('./dashboard')
+        }
+
         if(isLoggedIn){
             userIsAuthenticatedLogger()
-            setTimeout(() => {
-                history.push('./dashboard');
-            }, 2000);
+            const redirectUserToDashboard = setTimeout(redirector, 2000)
+            return(()=>clearTimeout(redirectUserToDashboard))
         }
-    }, [isLoggedIn])
+    }, [isLoggedIn, history])
 
     return(
         <div className="container">
