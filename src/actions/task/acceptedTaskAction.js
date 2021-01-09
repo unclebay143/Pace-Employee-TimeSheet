@@ -12,6 +12,7 @@ import {
   dispatch({ type: FETCH_ACCEPTED_TASKS_PENDING });
   return TaskService.fetchAcceptedTasks()
   .then((response)=> {
+    console.log(response)
     dispatch({ type: FETCH_ACCEPTED_TASKS_SUCCESS, payload: response.data });
     return response.data;
   })

@@ -57,9 +57,11 @@ const updateTask  = (id) => (dispatch) =>{
 }
 
 // Fetch Task Details
-const getTaskDetails  = (id) => async(dispatch) =>{
-  const res = await TaskService.fetchTaskDetails(id);
-  dispatch({ type: FETCH_TASK_DETAILS, payload: res.data });
+const getTaskDetails  = (id) => (dispatch) =>{
+  return TaskService.fetchTaskDetails(id)
+  .then((response)=>{
+    dispatch({ type: FETCH_TASK_DETAILS, payload: response.data });
+  })
 }
 
 

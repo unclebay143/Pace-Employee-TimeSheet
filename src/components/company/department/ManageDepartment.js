@@ -1,15 +1,13 @@
 // React
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { editDepartment, deleteDepartment, openForm } from '../../../actions/company/department/departmentAction';
+import { editDepartment, deleteDepartment, openForm, getDepartment } from '../../../actions/company/department/departmentAction';
 
 // Components
 import { NewDepartmentForm } from './NewDepartmentForm';
 
 // Layout
 import Button from '../../layouts/Button';
-import axios from 'axios';
-import DepartmentService from '../../../services/company/department-service';
 
 
 const ManageDepartment = () => {
@@ -17,13 +15,10 @@ const ManageDepartment = () => {
   const [shouldFormOpen, setShouldFormOpen] = useState();
   const [departments, setDepartments] = useState();
   const departmentState = useSelector(state => state.departments)
-  console.log(departmentState)
-  console.log(departments)
-
   
   useEffect(() => {
-    DepartmentService.fetchDepartment()
-    .then((response)=>console.log(response))
+    dispatch(getDepartment())
+    .then((response)=>console.log(response,'response'))
     setDepartments(departmentState.departments)
     setShouldFormOpen(departmentState.isFormOpen)
   }, [departmentState])
@@ -73,7 +68,7 @@ const ManageDepartment = () => {
                             label=" Add Department"
                             icon="fa fa-plus "
                             type="button"
-                            className="btn bg-success btn-sm text-white"
+                            className="btn pace-btn-primary btn-sm text-white"
                             onClick={(()=>dispatch(openForm()))}
                           />
                           </div>
@@ -84,7 +79,7 @@ const ManageDepartment = () => {
                             <div className="ps-content">
                               <ul className=" list-group list-group-flush">
                                 <table className="table">
-                                  <thead className="thead-dark">
+                                  <thead className="thead-primary">
                                     <tr>
                                       <th scope="col">#</th>
                                       <th scope="col">Department name</th>
