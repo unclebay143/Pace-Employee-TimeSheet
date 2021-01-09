@@ -17,6 +17,9 @@ const TODO_API_URL = 'http://fakerestapi.azurewebsites.net/api/v1/Activities';
 // const TASK_API_URL = 'https://api.fake.rest/6c02d615-a40c-47ce-89c1-a4cf5a547ba0/task'
 const TASK_API_URL = 'http://fakerestapi.azurewebsites.net/api/v1/Activities';
 
+// ACCEPTED TASK API
+const ACCEPTED_TASK_API_URL = 'http://fakerestapi.azurewebsites.net/api/v1/Activities';
+
 
 
 //>>>>>>>>>>> MANAGE DEPARTMENT API
@@ -47,5 +50,6 @@ export {
     TODO_API_URL,
 
     
-    TASK_API_URL
+    TASK_API_URL,
+    ACCEPTED_TASK_API_URL
 }
