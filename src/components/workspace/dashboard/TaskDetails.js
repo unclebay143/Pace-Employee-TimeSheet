@@ -1,4 +1,8 @@
-// import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
+import { NavLink, useHistory } from 'react-router-dom';
+import { getTaskDetails, deleteTask } from '../../../actions/task/taskAction';
+import { useDispatch, useSelector } from 'react-redux';
 
 // import { NavLink } from 'react-router-dom';
 // import { connect } from 'react-redux';
@@ -6,23 +10,23 @@ import Button from '../../layouts/Button';
 
 import unclebay from '../../pages/pages-images/ayodele_samuel_adebayo.jpg';
 import attachment from '../../pages/pages-images/v.jpg';
+import { TASK_API_URL } from '../../../services/root-endpoints';
+import axios from 'axios';
 
-import React, { useEffect } from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
-import { getTasks } from '../../../actions/task/taskAction';
-import { useSelector } from 'react-redux';
 
-const TaskDetails = (props) => {
-  const { tasks, tasks: { data } } = useSelector(state => state.tasks)
- 
-  console.log('task id 4 is', tasks[4])
+const TaskDetails = () => {
+  const params = useParams();
+  const dispatch = useDispatch();
+  const [taskDetails, setTaskDetails] = useState({})
 
   useEffect(() => {
-    getTasks()
+    const fetchTaskDetails = async(taskID)=>{
+    const { data } = await axios.get(`${TASK_API_URL}/${taskID}`);
+    setTaskDetails(data)
+  }
+    fetchTaskDetails(params.id)
   }, [])
 
-
- 
     return (
       <>
         <section className="py-0">
@@ -32,7 +36,8 @@ const TaskDetails = (props) => {
                   <div className="py-3">
                   <header className="card-header wht-bg">
                     <h4 className="d-flex justify-content-between task-page-lead">
-                      View Task
+                      {/* View Task */}
+                      { taskDetails.title }
                     </h4>
                   </header>
                   </div>
@@ -60,6 +65,7 @@ const TaskDetails = (props) => {
                               label=" Delete"
                               icon="fa fa-trash-alt"
                               className="btn btn-sm special pace-bg-accent"
+                              // onClick={(()=>dispatch(deleteTask(id)))}
                             />          
                           </div>
                         </div>
@@ -151,6 +157,7 @@ const TaskDetails = (props) => {
                             label=" Delete"
                             icon="fa fa-trash-alt"
                             className="btn btn-sm special pace-bg-accent"
+                            // onClick={(()=>dispatch(deleteTask(id)))}
                           />
                         </div>
                       {/* </div>   */}

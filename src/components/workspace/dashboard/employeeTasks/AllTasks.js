@@ -5,16 +5,17 @@ import Table from '../../layouts/Table';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import filterFactory, { selectFilter } from 'react-bootstrap-table2-filter';
 import { getTasks } from '../../../../actions/task/taskAction';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const AllTasks = () => {
 
   const { tasks, tasks: { data } } = useSelector(state => state.tasks)
+  const dispatch = useDispatch()
   const history = useHistory();
   // const dispatch = useDispatch(function)
 // console.log(tasks);
   useEffect(() => {
-    getTasks()
+    dispatch(getTasks())
   }, [])
 
   // adds checkbox to each row

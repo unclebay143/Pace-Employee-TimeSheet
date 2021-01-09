@@ -1,19 +1,8 @@
-import { FETCH_TASKS_PENDING, FETCH_TASKS_SUCCESS, DELETE_TASK, UPDATE_TASK, TOGGLE_TASK_COMPLETE } from '../../actions/types';
+import { FETCH_TASKS_PENDING, FETCH_TASKS_SUCCESS, DELETE_TASK, UPDATE_TASK, FETCH_TASK_DETAILS, TOGGLE_TASK_COMPLETE } from '../../actions/types';
 
 const initialState = {
   isFetching: false,
-  tasks: [
-      {
-          id: 1,
-          title: 'Build Home Page',
-          description: 'use html, css, react, bootstrap, and also use nice font, typography and some other useful resources you can lay your hands on',
-          accepted: false,
-          completed: false,
-          assignedDate: Date.now(),
-          dueDate: Date('01-09-2020'),
-          attachments: []
-      }
-  ],
+  tasks: []
 }
 
 const taskReducer = (state=initialState, action) => {

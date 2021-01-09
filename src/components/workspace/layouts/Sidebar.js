@@ -96,7 +96,11 @@ const Sidebar = () => {
                         </ul>
                     <div className="text-gray-400 text-uppercase px-3 px-lg-4 py-4 font-weight-bold small headings-font-family">EXTRAS</div>
                     <ul className="sidebar-menu list-unstyled">
-                        <li className="sidebar-list-item"><NavLink to="/dashboard/company/settings" className="sidebar-link text-muted" activeclassname="active"><i className="o-settings-window-1 mr-3 text-gray"></i><span>Settings</span></NavLink></li>
+                        {
+                            currentUserRoleID === 5 ? '' : (
+                                <li className="sidebar-list-item"><NavLink to="/dashboard/company/settings" className="sidebar-link text-muted" activeclassname="active"><i className="o-settings-window-1 mr-3 text-gray"></i><span>Settings</span></NavLink></li>
+                            )
+                        }
                         <li className="sidebar-list-item"><span onClick={logOut} className="sidebar-link text-muted cursor" activeclassname="active"><i className="o-exit-1 mr-3 text-gray"></i><span>Logout</span></span></li>
                     </ul>
                 </div>

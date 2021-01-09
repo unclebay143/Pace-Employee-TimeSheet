@@ -35,7 +35,7 @@ const Settings = () =>{
                                     <div className="p-3 col-9 col-md-4">
                                         <Link to="/dashboard/company/profile/1">
                                             <Button to="/" 
-                                                className="btn btn-sm btn-success"
+                                                className="btn btn-sm btn-theme"
                                                 label="View Company Profile"
                                                 />
                                         </Link>
@@ -44,7 +44,7 @@ const Settings = () =>{
                                     <div className="p-3 col-10 col-md-4 ml-3">
                                         <Link to="/dashboard/company/profile/update/1">
                                             <Button to="/" 
-                                                className="btn btn-sm btn-success"
+                                                className="btn btn-sm pace-btn-accent"
                                                 label="Update Company Profile"
                                                 />
                                         </Link>

@@ -68,7 +68,7 @@ const ManageDepartment = () => {
                             label=" Add Department"
                             icon="fa fa-plus "
                             type="button"
-                            className="btn bg-success btn-sm text-white"
+                            className="btn pace-btn-primary btn-sm text-white"
                             onClick={(()=>dispatch(openForm()))}
                           />
                           </div>
@@ -79,7 +79,7 @@ const ManageDepartment = () => {
                             <div className="ps-content">
                               <ul className=" list-group list-group-flush">
                                 <table className="table">
-                                  <thead className="thead-dark">
+                                  <thead className="thead-primary">
                                     <tr>
                                       <th scope="col">#</th>
                                       <th scope="col">Department name</th>
