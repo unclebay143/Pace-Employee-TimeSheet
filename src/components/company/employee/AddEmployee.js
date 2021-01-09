@@ -7,21 +7,32 @@ import Button from '../../layouts/Button';
 import { TextInput } from '../../layouts/FormInput';
 import { AddEmployeeSchema } from '../../Validation/Schema';
 
-const sampleCompany = {
+const employeeDetailsDropDown = {
     departments: [ 'web development', 'quality assurance', 'web design' ],
     employeeRoles: ['backend', 'frontend', 'database manager'],
-    employeeType: ['admin', 'internal', 'staff'],
-}
-const names = [
-    {value: "Wale", label: "boy"},
-    {value: "Wale", label: "boy"},
-    {value: "Wale", label: "boy"},
-    {value: "Wale", label: "boy"}
-]
+    employeeType: [
+        {
+            roleName: 'Super-Admin',
+            roleID: 1
+        },
+        {
+            roleName: 'Co-Admin',
+            roleID: 3
+        },
+        {
+            roleName: 'Internal-Admin',
+            roleID: 4
+        },
+        {
+            roleName: 'Employee',
+            roleID: 5
+        }
 
-const existingDepartment = sampleCompany.departments.map((department, index)=><option value={department} key={index}>{department}</option>)
-const availableRole = sampleCompany.employeeRoles.map((role)=><option value={role}>{role}</option>)
-const availableType = sampleCompany.employeeType.map((type)=><option value={type}>{type}</option>)
+    ],
+}
+const existingDepartment = employeeDetailsDropDown.departments.map((department, index)=><option value={department} key={index}>{department}</option>)
+const availableRole = employeeDetailsDropDown.employeeRoles.map((role)=><option value={role}>{role}</option>)
+const availableType = employeeDetailsDropDown.employeeType.map(({roleName, roleID})=><option value={roleID}>{roleName}</option>)
 
 
 
@@ -69,7 +80,7 @@ const AddEmployee = () =>{
                                     { (({ values, touched, errors, handleSubmit, isSubmitting, resetForm })=>{
                                         return <Form onSubmit={handleSubmit}>
                                             <div className="mb-5 text-gray">
-                                                {/* <pre>{JSON.stringify(values, null, 2)}</pre> */}
+                                                <pre>{JSON.stringify(values, null, 2)}</pre>
                                                 <h5>ADD EMPLOYEE</h5>
                                             </div>
                                             <hr />

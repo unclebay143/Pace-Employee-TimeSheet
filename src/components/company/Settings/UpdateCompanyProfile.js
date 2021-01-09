@@ -68,7 +68,7 @@ const UpdateCompanyProfile = () =>{
                 <nav aria-label="breadcrumb" className="main-breadcrumb mt-2 ml-4">
                         <ol className="breadcrumb">
                             <li className="breadcrumb-item" aria-current="page">
-                                <Link to='/dashboard/employee-list' className="text-grey">
+                                <Link to='/dashboard/company/settings' className="text-grey">
                                         Settings
                                 </Link>
                             </li>

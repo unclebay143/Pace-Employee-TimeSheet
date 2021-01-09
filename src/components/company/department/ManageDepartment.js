@@ -1,15 +1,13 @@
 // React
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { editDepartment, deleteDepartment, openForm } from '../../../actions/company/department/departmentAction';
+import { editDepartment, deleteDepartment, openForm, getDepartment } from '../../../actions/company/department/departmentAction';
 
 // Components
 import { NewDepartmentForm } from './NewDepartmentForm';
 
 // Layout
 import Button from '../../layouts/Button';
-import axios from 'axios';
-import DepartmentService from '../../../services/company/department-service';
 
 
 const ManageDepartment = () => {
@@ -17,13 +15,10 @@ const ManageDepartment = () => {
   const [shouldFormOpen, setShouldFormOpen] = useState();
   const [departments, setDepartments] = useState();
   const departmentState = useSelector(state => state.departments)
-  console.log(departmentState)
-  console.log(departments)
-
   
   useEffect(() => {
-    DepartmentService.fetchDepartment()
-    .then((response)=>console.log(response))
+    dispatch(getDepartment())
+    .then((response)=>console.log(response,'response'))
     setDepartments(departmentState.departments)
     setShouldFormOpen(departmentState.isFormOpen)
   }, [departmentState])

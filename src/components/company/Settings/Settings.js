@@ -20,9 +20,9 @@ const Settings = () =>{
                     <div className="col-md-12">
                         <div className="card mb-3">
                             <div className="card-body">
-                                <div  className="d-flex justify-content-between align-items-center">
+                                <div  className="d-flex flex-md-row align-items-center justify-content-center flex-column">
                                     {/* ADD NEW DEPARTMENT BUTTON */}
-                                    <div className="p-3">
+                                    <div className="p-3 col-9 col-md-4">
                                         <Link to="/dashboard/company/settings/departments">
                                             <Button to="/" 
                                                 className="btn btn-sm btn-primary"
@@ -32,7 +32,7 @@ const Settings = () =>{
                                     </div>
 
                                     {/* VIEW COMPANY PROFILE BUTTON */}
-                                    <div className="p-3">
+                                    <div className="p-3 col-9 col-md-4">
                                         <Link to="/dashboard/company/profile/1">
                                             <Button to="/" 
                                                 className="btn btn-sm btn-success"
@@ -41,7 +41,7 @@ const Settings = () =>{
                                         </Link>
                                     </div>
                                     {/* UPDATE COMPANY PROFILE BUTTON */}
-                                    <div className="p-3">
+                                    <div className="p-3 col-10 col-md-4 ml-3">
                                         <Link to="/dashboard/company/profile/update/1">
                                             <Button to="/" 
                                                 className="btn btn-sm btn-success"
