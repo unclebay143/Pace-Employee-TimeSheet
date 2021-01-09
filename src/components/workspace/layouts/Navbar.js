@@ -20,6 +20,7 @@ const Navbar = () =>{
     const dispatch = useDispatch();
     const [fullName, setFullName] = useState('')
     const [staffID, setStaffID] = useState('')
+    const [roleID, setRoleID] = useState('')
 
     useEffect(() => {
         
@@ -27,9 +28,10 @@ const Navbar = () =>{
         
 
         if(currentUser){
-            const { firstName, lastName, staffID } = currentUser;
+            const { firstName, lastName, staffID, roleID } = currentUser;
             setFullName(` ${ firstName } ${ lastName } `)
             setStaffID(staffID)
+            setRoleID(roleID)
 
         }else if( currentUser === null || currentUser === undefined ){
             history.push('/');
@@ -127,7 +129,11 @@ const Navbar = () =>{
                                 </a>
                                 <div className="dropdown-divider"></div>
                                 <Link to={`/dashboard/profile/${staffID}`} className="dropdown-item">Profile</Link>
-                                <a href="/" className="dropdown-item">Settings</a>
+                                {
+                                    roleID !== 5 ? '' : (
+                                        <a href="/" className="dropdown-item">Settings</a>
+                                    )
+                                }
                                 <div className="dropdown-divider"></div><span className="dropdown-item" style={{cursor: 'pointer'}} onClick={(()=>logout())}>Logout</span>
                             </div>
                         </li>

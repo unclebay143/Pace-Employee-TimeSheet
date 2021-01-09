@@ -25,8 +25,8 @@ export const DEPARTMENT_ERROR = 'DEPARTMENT_ERROR';
 
 
 // Employee
-export const GET_ADD_USER = 'GET_ADD_USER';
 export const GET_EMPLOYEES = 'GET_EMPLOYEES';
+export const ADD_NEW_EMPLOYEE = 'ADD_NEW_EMPLOYEE';
 
 //  Timer
 export const GET_TIMER_REPORT = 'GET_TIMER_REPORT';

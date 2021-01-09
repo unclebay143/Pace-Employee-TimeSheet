@@ -13,6 +13,7 @@ import { ADD_DEPARTMENT_API, FETCH_DEPARTMENT_API } from '../root-endpoints';
 
 const fetchDepartment = () => {
     console.log('deparment service')
+    console.log(authHeader)
     return axios.get(FETCH_DEPARTMENT_API + currentUserCompanyID, {headers: authHeader} )
 }
 

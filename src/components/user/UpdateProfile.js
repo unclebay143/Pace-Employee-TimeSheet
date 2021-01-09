@@ -243,6 +243,7 @@ const UpdateProfile = () =>{
                                                         type="password" 
                                                         className={`form-control ${ touched.password && errors.password ? "is-invalid" : ""}`} 
                                                         id="password"
+                                                        autoComplete='on'
                                                     />
                                                     <ErrorMessage
                                                         component="div"
@@ -265,6 +266,7 @@ const UpdateProfile = () =>{
                                                         type="password" 
                                                         className={`form-control ${ touched.password2 && errors.password2 ? "is-invalid" : ""}`} 
                                                         id="password2"
+                                                        autoComplete='on'
                                                     />
                                                     <ErrorMessage
                                                         component="div"

@@ -28,6 +28,7 @@ function App() {
   // }
   
   if ( currentUser ){
+    console.log(currentUser)
       dispatch(syncCurrentUser( currentUser.staffID ))
   }
 
