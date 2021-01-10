@@ -30,6 +30,7 @@ import Settings from '../../company/Settings/Settings';
 import { getTodos } from '../../../actions/todo/todoAction';
 import { getTasks } from '../../../actions/task/taskAction';
 import { syncCurrentUser } from '../../../actions/user/userAction';
+import { getDepartment } from '../../../actions/company/department/departmentAction';
 
 
 const Dashboard = () =>{
@@ -55,6 +56,11 @@ const Dashboard = () =>{
 
         // Fetch user tasks
         dispatch(getTasks())
+
+
+        // Fetch company department
+        dispatch(getDepartment())
+
     }, [dispatch, history])
 
     return(

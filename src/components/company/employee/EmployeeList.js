@@ -1,6 +1,6 @@
 // React
 import React, { useEffect, useState } from 'react';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 
 // Components
@@ -8,11 +8,15 @@ import Table from '../../workspace/layouts/Table';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
   
+// Actions
+import { getCompanyEmployees } from '../../../actions/employee/employeeAction';
+
 
 export default  function EmployeeList(){
         // const { firstname, lastname, department, phone, role, employeed_date } = employees
         // const employees = useSelector(state => state.employee)
         // console.log(employees)
+        const dispatch = useDispatch();
         const [employees, setEmployees] = useState([{}])
         useEffect(() => {
           function getEm() {
@@ -23,6 +27,11 @@ export default  function EmployeeList(){
               setEmployees(response.data)
             })
           }
+
+          dispatch(getCompanyEmployees())
+          .then((response)=> console.log(response))
+
+
           getEm()
         }, [])
         

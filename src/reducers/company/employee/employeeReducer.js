@@ -1,4 +1,4 @@
-import { GET_EMPLOYEES, ADD_NEW_EMPLOYEE } from "../../../actions/types";
+import { ADD_NEW_EMPLOYEE, FETCH_COMPANY_EMPLOYEES } from "../../../actions/types";
 
 const initialState = {
     error: null,
@@ -9,8 +9,12 @@ const initialState = {
 
 const employeeReducer = (state=initialState, action) =>{
     switch (action.type) {
-        case GET_EMPLOYEES:
-            return state
+        case FETCH_COMPANY_EMPLOYEES:
+            return {
+                ...state,
+                employees: action.payload
+            }
+
         case ADD_NEW_EMPLOYEE:
             return {
                 ...state,

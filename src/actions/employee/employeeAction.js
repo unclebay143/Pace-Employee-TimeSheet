@@ -1,12 +1,26 @@
-import EmployeeService from '../../services/employee/employee.service'
+import { FETCH_COMPANY_EMPLOYEES } from '../types';
+import EmployeeService from '../../services/employee/employee.service';
 
 const addNewEmployee = (newEmployee) => ( dispatch ) =>{
     return EmployeeService.addNewEmployeeToServer(newEmployee)
-    .then((response) => console.log(response))
 }
 
 
+// Function to get the company employee list
+const getCompanyEmployees = () => (dispatch) =>{
+    return EmployeeService.fetchCompanyEmployees()
+    .then((response)=>{
+        // Get company Employees
+        const companyEmployees = response.data.data
+        dispatch({
+            type: FETCH_COMPANY_EMPLOYEES,
+            payload: companyEmployees
+        })
+    })
+}
+
 
 export {
-    addNewEmployee
+    addNewEmployee,
+    getCompanyEmployees
 }
