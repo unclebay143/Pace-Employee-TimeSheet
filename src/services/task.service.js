@@ -15,10 +15,6 @@ const deleteTask = (id) =>{
      return axios.delete(`${ TASK_API_URL }/${id}`)
 }
 
-const fetchTaskDetails = (id) =>{
-     return axios.get(`${ TASK_API_URL }/${id}`)
-}
-
 const updateTask = (id) =>{
      return axios.put(`${ TASK_API_URL }/${id}`)
 }
@@ -32,12 +28,10 @@ const deleteAcceptedTask = (id) =>{
 }
 
 
-
 const TaskService = {
     fetchTasks,
     fetchAcceptedTasks,
     deleteTask,
-    fetchTaskDetails,
     updateTask,
     fetchAcceptedTasks,
     deleteAcceptedTask,

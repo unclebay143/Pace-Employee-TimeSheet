@@ -20,7 +20,8 @@ const AcceptedTasks = () => {
 
   // adds checkbox to each row
   const selectRow = {
-    mode: 'checkbox' 
+    mode: 'checkbox',
+    headerColumnStyle: { backgroundColor: 'transparent' }
   };
   // styles each row
   const rowStyle = {
@@ -28,7 +29,7 @@ const AcceptedTasks = () => {
   }
   // routes to full task details page on double click
   const taskDetails =  {
-    onDoubleClick: (e, row, rowIndex) => 
+    onClick: (e, row, rowIndex) => 
     { 
         history.push(`/dashboard/task/view-task/${row.id}`)
     }
@@ -42,7 +43,7 @@ const AcceptedTasks = () => {
         data={acceptedTasks }
         columns={taskHeader}
         bordered= { false }
-        selectRow = {selectRow}
+        selectRow = { selectRow }
         enableSearch = { true }
         pagination = { paginationFactory() }
         // controlHeader = { navigate }
