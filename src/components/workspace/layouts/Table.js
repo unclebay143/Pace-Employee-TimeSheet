@@ -44,7 +44,7 @@ export default class Table extends Component {
                                   enableSearch ?
                                    (
                                     <>
-                                     <SearchBar { ...props.searchProps } className="search-box form-control mt-0"/>
+                                     <SearchBar { ...props.searchProps } className="search-box form-control mt-0 display-1"/>
                                      {
                                        enableClearSearchButton ? 
                                           <ClearSearchButton { ...props.searchProps } className="btn form-control pace-btn-accent my-0 ml-5"/>
@@ -125,7 +125,7 @@ export default class Table extends Component {
                               {controlHeader}
                             </div>
                           </div>
-                          <hr />
+                          {/* <hr /> */}
                           <BootstrapTable
                             { ...props.baseProps }
                             bordered={ bordered }

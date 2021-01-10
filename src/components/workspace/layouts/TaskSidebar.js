@@ -13,16 +13,11 @@ const TaskSidebar =() => {
       type="submit"
       label=" Draft Task"
       icon="o-home-1"
-      className="btn pace-btn-outline-primary mx-3"  
+      className="btn pace-btn-primary mx-3"  
     />
    </NavLink> 
    <hr/>
    <ul className="sidebar-menu list-unstyled">
-     <li className="sidebar-list-item">
-       <NavLink exact to="/dashboard/task/draft-task" className="sidebar-link text-muted" activeClassName="active">
-         <i className="o-home-1 mr-3 text-gray"/><span>Drafted</span>
-       </NavLink>
-     </li>
      <li className="">
        <NavLink exact to="/dashboard/task/all-tasks" className="sidebar-link text-muted" activeClassName="active">
          <i className="o-home-1 mr-3 text-gray"/><span>Inbox</span>
@@ -33,14 +28,14 @@ const TaskSidebar =() => {
          <i className="o-home-1 mr-3 text-gray"/><span>Accepted</span>
        </NavLink>
      </li>
-     <li className="">
-       <NavLink exact to="/dashboard" className="sidebar-link text-muted" activeClassName="active">
-         <i className="o-home-1 mr-3 text-gray"/><span>Assigned</span>
-       </NavLink>
-     </li>
      <li className="sidebar-list-item">
        <NavLink exact to="/dashboard" className="sidebar-link text-muted" activeClassName="active">
          <i className="o-home-1 mr-3 text-gray"/><span>Pending</span>
+       </NavLink>
+     </li>
+     <li className="sidebar-list-item">
+       <NavLink exact to="/dashboard/task/" className="sidebar-link text-muted" activeClassName="active">
+         <i className="o-home-1 mr-3 text-gray"/><span>Drafted</span>
        </NavLink>
      </li>
    </ul>

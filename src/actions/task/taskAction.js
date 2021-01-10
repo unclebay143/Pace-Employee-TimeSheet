@@ -26,8 +26,6 @@ const getTasks = () => ( dispatch ) =>{
   })
 };
 
-
-
 // Add new Task 
 const addTask  = (newTask ) => (dispatch) =>{
   return TaskService.addTask(newTask )
@@ -42,19 +40,16 @@ const addTask  = (newTask ) => (dispatch) =>{
   })
 }
 
-
 // Delete Task 
 const deleteTask  = (id) => (dispatch) =>{
   dispatch({ type: DELETE_TASK, payload: id }) // Update the UI even when error occurs, since server will retain the undeleted item
   return TaskService.deleteTask(id)
 }
 
-
 // Edit Task 
 const updateTask  = (id) => (dispatch) =>{
   dispatch({ type: UPDATE_TASK, payload: id })
 }
-
 
 // Toggle todo completion
 const toggleTaskCompletion = (id) =>{
@@ -63,8 +58,6 @@ const toggleTaskCompletion = (id) =>{
       payload: id
   }
 }
-
-
 
 
 export {

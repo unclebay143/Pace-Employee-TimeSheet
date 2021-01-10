@@ -34,15 +34,15 @@ class DraftTask extends Component {
                     />                                   
                     <Button 
                       type="submit"
-                      label=" Discard"
-                      icon="fa fa-times"
-                      className="btn btn-sm special ml-2 mr-2 pace-bg-accent"
-                    />
+                      label=" Draft"
+                      className="btn btn-sm ml-2 mr-2 special"
+                    />     
                     <Button 
                       type="submit"
-                      label=" Draft"
-                      className="btn btn-sm special"
-                    />            
+                      label=" Discard"
+                      icon="fa fa-times"
+                      className="btn btn-sm pace-bg-accent"
+                    />       
                   </div>
                   <div className="card-text">
                     <Formik
@@ -154,18 +154,18 @@ class DraftTask extends Component {
                               label=" Send"
                               icon="fa fa-check"
                               className="btn btn-theme btn-sm"
-                            />                                   
+                            />         
+                            <Button 
+                              type="submit"
+                              label=" Draft"
+                              className="btn btn-sm ml-2 mr-2 special"
+                            />                           
                             <Button 
                               type="submit"
                               label=" Discard"
                               icon="fa fa-times"
-                              className="btn btn-sm special ml-2 mr-2 pace-bg-accent"
-                            />
-                            <Button 
-                              type="submit"
-                              label=" Draft"
-                              className="btn btn-sm special"
-                            />    
+                              className="btn btn-sm pace-bg-accent"
+                            />   
                           </div>
                         </Form>
                       )}

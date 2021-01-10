@@ -15,7 +15,7 @@ const Todo = () => {
     const dispatch = useDispatch();
 
     // useEffect(() => {
-        console.log('MOUNTED')
+        // console.log('MOUNTED')
         if(error){
             netWorkError()
         }

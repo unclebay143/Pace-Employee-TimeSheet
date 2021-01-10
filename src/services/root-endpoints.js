@@ -6,7 +6,7 @@
 const AUTH_API_URL = 'https://pacetimesheet.herokuapp.com/api/users/';
 
 // Update user personal profile (/:staffID)
-const USER_PROFILE_URL = 'https://pacetimesheet.herokuapp.com/api/users/companyName/userProfile/'
+const USER_PROFILE_URL = 'https://pacetimesheet.herokuapp.com/api/users/companyName/userProfile/';
 
 
 // TODO API
@@ -17,18 +17,31 @@ const TODO_API_URL = 'http://fakerestapi.azurewebsites.net/api/v1/Activities';
 // const TASK_API_URL = 'https://api.fake.rest/6c02d615-a40c-47ce-89c1-a4cf5a547ba0/task'
 const TASK_API_URL = 'http://fakerestapi.azurewebsites.net/api/v1/Activities';
 
+// ACCEPTED TASK API
+const ACCEPTED_TASK_API_URL = 'http://fakerestapi.azurewebsites.net/api/v1/Activities';
 
 
-//>>>>>>>>>>> MANAGE DEPARTMENT API
+
+/* >>>>>>>>>>> MANAGE DEPARTMENT API <<<<<<<<<<<<< */
 
 
 // (POST/ADD NEW DEPARTMENT)
-const ADD_DEPARTMENT_API = 'https://pacetimesheet.herokuapp.com/api/users/companyName/companyProfile/addDepartment/'
+const ADD_DEPARTMENT_API = 'https://pacetimesheet.herokuapp.com/api/users/companyName/companyProfile/addDepartment/';
 
 
 
 // GET ALL DEPARTMENT
-const FETCH_DEPARTMENT_API = 'https://pacetimesheet.herokuapp.com/api/users/companyName/companyProfile/department/'
+const FETCH_DEPARTMENT_API = 'https://pacetimesheet.herokuapp.com/api/users/companyName/companyProfile/department/';
+
+
+
+/* >>>>>>>>>>> MANAGE EMPLOYEE API <<<<<<<<<<<<< */
+
+
+// ADD EMPLOYEE
+const ADD_NEW_EMPLOYEE_API = 'https://pacetimesheet.herokuapp.com/api/users/signUp/companyName/addUser/';
+
+
 
 
 
@@ -44,8 +57,12 @@ export {
     FETCH_DEPARTMENT_API,
 
 
+    ADD_NEW_EMPLOYEE_API,
+
+
     TODO_API_URL,
 
     
-    TASK_API_URL
+    TASK_API_URL,
+    ACCEPTED_TASK_API_URL
 }
