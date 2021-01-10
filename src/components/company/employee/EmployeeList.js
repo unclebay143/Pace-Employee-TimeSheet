@@ -13,45 +13,44 @@ import { getCompanyEmployees } from '../../../actions/employee/employeeAction';
 
 
 export default  function EmployeeList(){
-        // const { firstname, lastname, department, phone, role, employeed_date } = employees
-        // const employees = useSelector(state => state.employee)
+        const { employees } = useSelector(state => state.employees)
+        const [employeesList, setEmployeesList] = useState([{}])
         // console.log(employees)
         const dispatch = useDispatch();
-        const [employees, setEmployees] = useState([{}])
         useEffect(() => {
-          function getEm() {
-            // axios.get('http://fakerestapi.azurewebsites.net/api/v1/Users')
-            axios.get('https://jsonplaceholder.typicode.com/users')
-            .then((response)=>{
-              // const { data } = await axios.get('https://jsonplaceholder.typicode.com/users')
-              setEmployees(response.data)
-            })
-          }
+          setEmployeesList(employees)
+          // function getEm() {
+          //   // axios.get('http://fakerestapi.azurewebsites.net/api/v1/Users')
+          //   axios.get('https://jsonplaceholder.typicode.com/users')
+          //   .then((response)=>{
+          //     // const { data } = await axios.get('https://jsonplaceholder.typicode.com/users')
+          //     setEmployees(response.data)
+          //   })
+          // }
 
-          dispatch(getCompanyEmployees())
-          .then((response)=> console.log(response))
-
-
-          getEm()
+          // dispatch(getCompanyEmployees())
+          // getEm()
         }, [])
+
+        console.log(employeesList)
         
 
         const Header = [
             {
-              dataField: 'id',
+              dataField: 'staffID',
               text: 'S/N'
             },
             {
-              dataField: 'username',
+              dataField: 'firstName',
               text: 'Firstname',
             },
             {
-              dataField: 'name',
+              dataField: 'lastName',
               text: 'Lastname',
             },
             {
-              dataField: 'phone',
-              text: 'Phone',
+              // dataField: 'phone',
+              // text: 'Phone',
             },
             // {
             //   dataField: 'department',
@@ -69,17 +68,14 @@ export default  function EmployeeList(){
             {
             
               formatter: (cellContent, row) => {
-                // console.log(row.id);
                 return (
                   <>
-                  <Link to={`/dashboard/employee/profile/${row.id}`}
-                    // className="fa fa-eye"
-                    // onClick={(e) => handleDelete(row)} 
-                    // onClick={(e) <Link to={`/dashboard/profile/${e}`} />}
+                    <Link 
+                      to={`/dashboard/employee/profile/${row.staffID}`}
                     >
-                    View
-                    
-                  </Link>
+                      View
+                      
+                    </Link>
                   </>
                 );
               },

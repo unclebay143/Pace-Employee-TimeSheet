@@ -17,6 +17,7 @@ const getCompanyEmployees = () => (dispatch) =>{
             payload: companyEmployees
         })
     })
+    .catch((response)=>console.log(response))
 }
 
 
