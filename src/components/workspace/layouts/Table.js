@@ -125,7 +125,7 @@ export default class Table extends Component {
                               {controlHeader}
                             </div>
                           </div>
-                          <hr />
+                          {/* <hr /> */}
                           <BootstrapTable
                             { ...props.baseProps }
                             bordered={ bordered }

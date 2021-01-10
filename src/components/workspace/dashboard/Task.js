@@ -38,10 +38,10 @@ class Task extends Component {
                 <Route exact path="/dashboard/task/all-task" component={TaskInboxSample} />
                 <Route exact path="/dashboard/task/view-taskk" component={Sample} />
               </Switch>
-                {/* <Sample />
-                <DraftTask />
+                {/* <Sample /> */}
+                {/* <DraftTask /> */}
                 <AcceptedTasks />
-                <EmployeeTasks /> */}
+                {/* <EmployeeTasks /> */}
             </section>
           </div>
           {/* MAIN ENDS */}
