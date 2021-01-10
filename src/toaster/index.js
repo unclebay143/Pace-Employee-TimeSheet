@@ -13,10 +13,13 @@ const userIsAuthenticatedLogger = () => toast.info('Logging in');
 
 
 // Registration Toast
-
 const registrationFailLogger = () => toast.warning('Registration Failed');
 const registrationCompletedLogger = () => toast.info('Registration Successful');
 const emailAlreadyExistLogger = () => toast.warning('Email Already Exist')
+
+
+// Manage Employee Toast
+const emailAlreadyExist = () => toast.warning('Email Already Exist');
 
 
 // Logout Toast
@@ -45,4 +48,5 @@ export{
     sessionExpired,
     profileUpdateCompletedLogger,
     profileUpdateFailLogger,
+    emailAlreadyExist,
 }

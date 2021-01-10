@@ -1,18 +1,25 @@
 import axios from 'axios';
-import { ADD_NEW_EMPLOYEE_API } from '../root-endpoints';
+import { ADD_NEW_EMPLOYEE_API, FETCH_EMPLOYEES_LIST_API } from '../root-endpoints';
 import { authHeader, currentUserCompanyID } from '../auth-header';
 
+
+// Function to add new employee to the server
 const addNewEmployeeToServer = ( newEmployee ) =>{
-    console.log(typeof currentUserCompanyID)
-    console.log(currentUserCompanyID)
-    console.log(newEmployee)
-    // console.log('endpoing', ADD_NEW_EMPLOYEE_API, 'newEmployee', {...newEmployee, companyID : currentUserCompanyID})
+
+    // Spread the newEmployee properties and add the companyID to it
     return axios.post(ADD_NEW_EMPLOYEE_API, {...newEmployee, companyID : currentUserCompanyID.toString()}, { headers: authHeader })
 }
 
 
+// Function to get all employee from the server
+const fetchCompanyEmployees = async() =>{
+    return await axios.get(FETCH_EMPLOYEES_LIST_API + currentUserCompanyID, { headers: authHeader })
+}
+
+
 const EmployeeService = {
-    addNewEmployeeToServer
+    addNewEmployeeToServer,
+    fetchCompanyEmployees
 }
 
 
