@@ -73,7 +73,9 @@ const Profile = () =>{
                                         Settings
                                 </Link>
                             </li>
-                        <li className="breadcrumb-item active" aria-current="page">Company Profile</li>
+                            <li className="breadcrumb-item active" aria-current="page">
+                                Company Profile
+                            </li>
                         </ol>
                     </nav>
                     

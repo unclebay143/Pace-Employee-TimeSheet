@@ -43,7 +43,6 @@ const Profile = () =>{
     const [ userProfile, setUserProfile ] = useState({});
     const [ staffID, setStaffID ] = useState('');
 
-    
     useEffect(() => {
         // Get staffID from the urls 
         const staffID = params.id;
@@ -62,7 +61,7 @@ const Profile = () =>{
 
             // Check if the response data is an object (error occurs where data is Token expired)
             if(response.data === 'invalid token or token expired'){
-                syncCurrentUser()
+                syncCurrentUser(checkUserInLocalStorage.staffID)
             }else{
                 //if there is a user in the local storage
                 if(checkUserInLocalStorage && response){
@@ -72,6 +71,7 @@ const Profile = () =>{
             
                 // synchronize with the redux store
                 syncCurrentUser(params.id)
+                setUserProfile(response)
             }
             
             if(!response || response === undefined){

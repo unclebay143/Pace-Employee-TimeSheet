@@ -15,35 +15,31 @@ import { TextInput } from '../layouts/FormInput';
 import { loginSchema } from '../Validation/Schema';
 import { HomeButton } from '../layouts/HomeButton';
 import { login } from '../../actions/auth/authAction';
+import { syncCurrentUser } from '../../actions/user/userAction';
 
 
 
 const Login = () =>{
-    const { isLoggedIn } = useSelector((state)=>state.authenticationState)
+    // const { isLoggedIn } = useSelector((state)=>state.authenticationState)
+    const currentUserFromLocalStorage = JSON.parse(localStorage.getItem('currentUser'));
+
     const history = useHistory();
     const dispatch = useDispatch()
-    // useEffect(() => {
-    //     document.title = 'Login | Pace'
-    //     if(isLoggedIn){
-    //         userIsAuthenticatedLogger()
-    //         setTimeout(() => {
-    //             history.push('./dashboard');
-    //         }, 2000);
-    //     }
-    // }, [isLoggedIn])
+    // Redirect user to the dashboard when there is a user in the local storage
+    const redirector = () =>{
+        history.push('./dashboard');
+    }
     useEffect(() => {
         document.title = 'Login | Pace'
         
-        const redirector = () =>{
-            history.push('./dashboard')
-        }
 
-        if(isLoggedIn){
+        if(currentUserFromLocalStorage){
             userIsAuthenticatedLogger()
+            syncCurrentUser(currentUserFromLocalStorage.staffID)
             const redirectUserToDashboard = setTimeout(redirector, 2000)
             return(()=>clearTimeout(redirectUserToDashboard))
         }
-    }, [isLoggedIn, history])
+    })
 
     return(
         <div className="container">
@@ -79,6 +75,8 @@ const Login = () =>{
                                     validationSchema = {loginSchema}
                                     onSubmit= {(values, action)=>{
                                         dispatch(login(values, action))
+                                        // Reload to referesh the app (solve the fetch error from profile)
+                                        .then((response)=>window.location.reload())
                                     }}
                                 >{({touched, errors, isSubmitting, handleSubmit}) => (
                                     <Form onSubmit={handleSubmit}>
