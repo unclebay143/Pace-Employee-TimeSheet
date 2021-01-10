@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { NavLink, useHistory } from 'react-router-dom';
-import { getTaskDetails, deleteTask } from '../../../actions/task/taskAction';
+import { deleteTask } from '../../../actions/task/taskAction';
 import { useDispatch, useSelector } from 'react-redux';
 
 // import { NavLink } from 'react-router-dom';
@@ -65,7 +65,7 @@ const TaskDetails = () => {
                               label=" Delete"
                               icon="fa fa-trash-alt"
                               className="btn btn-sm special pace-bg-accent"
-                              // onClick={(()=>dispatch(deleteTask(id)))}
+                              onClick={(()=>dispatch(deleteTask(taskDetails.id)))}
                             />          
                           </div>
                         </div>
@@ -157,7 +157,7 @@ const TaskDetails = () => {
                             label=" Delete"
                             icon="fa fa-trash-alt"
                             className="btn btn-sm special pace-bg-accent"
-                            // onClick={(()=>dispatch(deleteTask(id)))}
+                            onClick={(()=>(deleteTask(taskDetails.id)))}
                           />
                         </div>
                       {/* </div>   */}
