@@ -84,7 +84,10 @@ const AboutContent = () => {
             <section className="mt-5">
               <h3 className="mb-3">How it started</h3>
               <p className="text-justify">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis quisquam sit debitis harum esse necessitatibus iusto obcaecati unde eligendi perspiciatis et nostrum maxime, earum fugit sequi inventore! Odit, cupiditate velit!
+              It all started over 4months ago with a set of core principles that have remained unchanged to this day.
+Having worked for several small businesses that struggled with timesheets, Pace Team decided to create a product that would make timesheets simple, affordable, and accessible from anywhere.
+A time and attendance system that is: Easy for anyone to use, Fast and simple to implement, Fully featured and flexible, hugely cost effective. The system was initially designed to cater specifically for the contract cleaning industry.
+It has now evolved into a comprehensive time and attendance suite used internationally by a wide range of different businesses and industries, both small and large.
               </p>
             </section>
           </article>
