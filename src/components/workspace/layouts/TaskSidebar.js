@@ -13,7 +13,7 @@ const TaskSidebar =() => {
       type="submit"
       label=" Draft Task"
       icon="o-home-1"
-      className="btn pace-primary-btn mx-3"  
+      className="btn pace-btn-primary mx-3"  
     />
    </NavLink> 
    <hr/>
@@ -34,7 +34,7 @@ const TaskSidebar =() => {
        </NavLink>
      </li>
      <li className="sidebar-list-item">
-       <NavLink exact to="/dashboard/task/draft-task" className="sidebar-link text-muted" activeClassName="active">
+       <NavLink exact to="/dashboard/task/" className="sidebar-link text-muted" activeClassName="active">
          <i className="o-home-1 mr-3 text-gray"/><span>Drafted</span>
        </NavLink>
      </li>
