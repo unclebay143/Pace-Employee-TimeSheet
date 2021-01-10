@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { logout } from '../../../actions/auth/authAction';
-import { logOutSuccess } from '../../../toaster';
+import { logOutSuccessLogger } from '../../../toaster';
 
 const Sidebar = () => {
     const dispatch = useDispatch();
@@ -15,24 +15,24 @@ const Sidebar = () => {
             setCurrentUserRoleID(getCurrentUser.roleID)
             switch (getCurrentUser.roleID) {
                 case 1:
-                    setCurrentUserRoleName('Super-Admin')
+                    return setCurrentUserRoleName('Super Admin')
                 case 3:
-                    setCurrentUserRoleName('Co-Admin')
+                    return setCurrentUserRoleName('Co Admin')
                 case 4:
-                    setCurrentUserRoleName('Internal-Admin')
+                    return setCurrentUserRoleName('Internal Admin')
                 case 5:
-                    setCurrentUserRoleName('Employee')
+                    return setCurrentUserRoleName('Staff')
                 default:
+                    setCurrentUserRoleName('Welcome')
                     break;
             }
         }
     }, [])
-
     
     const logOut = () =>{
         
         // logout notification
-        logOutSuccess()
+        logOutSuccessLogger()
 
         // process the logout dispatch
         const processLogOut = () =>{
@@ -67,7 +67,7 @@ const Sidebar = () => {
                            {
                                currentUserRoleID === 5 ? '' : (
 
-                                   <li className="sidebar-list-item"><a href="#" data-toggle="collapse" data-target="#manage-employee" aria-expanded="false" aria-controls="manage-employee" className="sidebar-link text-muted" ><i className="o-user-details-1 mr-3 text-gray"></i><span>Employee</span></a>
+                                   <li className="sidebar-list-item"><a href="." data-toggle="collapse" data-target="#manage-employee" aria-expanded="false" aria-controls="manage-employee" className="sidebar-link text-muted" ><i className="o-user-details-1 mr-3 text-gray"></i><span>Employee</span></a>
                                         <div id="manage-employee" className="collapse">
                                             <ul className="sidebar-menu list-unstyled border-left border-primary border-thick">
                                                 <li className="sidebar-list-item"><NavLink to="/dashboard/employ" className="sidebar-link text-muted pl-lg-5">Add Employee</NavLink></li>
@@ -83,7 +83,7 @@ const Sidebar = () => {
                             <li className="sidebar-list-item"><NavLink exact to="/dashboard/calendar" className="sidebar-link text-muted" activeclassname="active"><i className="o-table-content-1 mr-3 text-gray"></i><span>Calendar</span></NavLink></li>
                            {
                                currentUserRoleID === 5 ? '' : (
-                                   <li className="sidebar-list-item"><a href="#" data-toggle="collapse" data-target="#report" aria-expanded="false" aria-controls="pages" className="sidebar-link text-muted" activeclassname="active"><i className="o-wireframe-1 mr-3 text-gray"></i><span>Report</span></a>
+                                   <li className="sidebar-list-item"><a href="." data-toggle="collapse" data-target="#report" aria-expanded="false" aria-controls="pages" className="sidebar-link text-muted" activeclassname="active"><i className="o-wireframe-1 mr-3 text-gray"></i><span>Report</span></a>
                                         <div id="report" className="collapse">
                                             <ul className="sidebar-menu list-unstyled border-left border-primary border-thick">
                                                 <li className="sidebar-list-item"><NavLink to="/dashboard/timer-report" className="sidebar-link text-muted pl-lg-5">Timer</NavLink></li>

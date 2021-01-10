@@ -1,6 +1,6 @@
 // Server functions
 import AuthService from "../../services/auth.service";
-import { logOutSuccess } from "../../toaster";
+import { logOutSuccessLogger } from "../../toaster";
 
 // Actions
 
@@ -15,7 +15,7 @@ export const login = ({ email, password }, action) => {
 
 
 export const logout = () => {
-    logOutSuccess()
+    logOutSuccessLogger()
     AuthService.logout()
 };
 
