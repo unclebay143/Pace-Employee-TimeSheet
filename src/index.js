@@ -9,6 +9,7 @@ import {HashRouter as Router, Route, Switch } from "react-router-dom";
 import './components/pages/pages-styles/util.css';
 import './components/pages/pages-styles/form.css';
 import './components/layouts/layout-styles/button.css';
+import './components/loader/loader.css';
 
 // CUSTOM
 import './components/layouts/layout-styles/navbar.css';
