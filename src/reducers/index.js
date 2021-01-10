@@ -2,12 +2,12 @@ import { combineReducers } from 'redux';
 import taskReducer from './task/taskReducer';
 import acceptedTaskReducer from './task/acceptedTaskReducer';
 import authReducer from './authentication/authReducer';
-import employeeReducer from './user/employeeReducer.';
 import TimerReportReducer from './timer/TimerReportReducer';
 import timerReducer from './timer/timerReducer';
 import message from './message/messageReducer';
-import todoReducer from './todo/todoReducer'
+import todoReducer from './todo/todoReducer';
 import departmentReducer from './company/department/departmentReducer';
+import employeeReducer from './company/employee/employeeReducer';
 
 
 const rootReducer = combineReducers({
@@ -16,11 +16,11 @@ const rootReducer = combineReducers({
     acceptedTasks: acceptedTaskReducer,
     // tasks: [taskReducer, acceptedTaskReducer]
     todos: todoReducer,
-    employees: employeeReducer,
     timerReport: TimerReportReducer,
     timerStatus: timerReducer,
     message: message,
-    departments: departmentReducer
+    departments: departmentReducer,
+    employees: employeeReducer,
 })
 
 export default rootReducer;

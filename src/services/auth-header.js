@@ -18,11 +18,14 @@ if(!getCurrentUser){
     }
 }
 
-// currentUser in the localstorage
+// CurrentUser in the localstorage
 const currentUserFromLocalStorage = getCurrentUser;
 
 // Current user companyID
 const currentUserCompanyID = currentUserFromLocalStorage.companyID;
+
+// Current user staffID 
+const currentUserStaffID = currentUserFromLocalStorage.staffID;
 
 // Authorization token
 const authHeader = {
@@ -41,5 +44,6 @@ export {
   getCurrentUser,
   accessToken,
   currentUserFromLocalStorage,
-  currentUserCompanyID
+  currentUserCompanyID,
+  currentUserStaffID
 }

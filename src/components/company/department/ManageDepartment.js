@@ -13,16 +13,12 @@ import Button from '../../layouts/Button';
 const ManageDepartment = () => {
   const dispatch = useDispatch();
   const [shouldFormOpen, setShouldFormOpen] = useState();
-  const [departments, setDepartments] = useState();
-  const departmentState = useSelector(state => state.departments)
+  const { isFormOpen, departments } = useSelector(state => state.departments)
   
   useEffect(() => {
-    dispatch(getDepartment())
-    .then((response)=>console.log(response,'response'))
-    setDepartments(departmentState.departments)
-    setShouldFormOpen(departmentState.isFormOpen)
-  }, [departmentState])
-
+    document.title = 'Manage Department'
+    setShouldFormOpen(isFormOpen)
+  }, [isFormOpen])
 
     if(!departments){
       return(
@@ -71,7 +67,7 @@ const ManageDepartment = () => {
                             className="btn pace-btn-primary btn-sm text-white"
                             onClick={(()=>dispatch(openForm()))}
                           />
-                          </div>
+                        </div>
                     </div>
                     <div className="scroll-area-sm -shiftToDisabled">
                         <perfect-scrollbar className="ps-show-limits">

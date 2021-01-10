@@ -42,6 +42,9 @@ const FETCH_DEPARTMENT_API = 'https://pacetimesheet.herokuapp.com/api/users/comp
 const ADD_NEW_EMPLOYEE_API = 'https://pacetimesheet.herokuapp.com/api/users/signUp/companyName/addUser/';
 
 
+// GET ALL COMPANY EMPLOYEES
+const FETCH_EMPLOYEES_LIST_API = 'https://pacetimesheet.herokuapp.com/api/users/companyName/employee/'
+
 
 
 
@@ -58,6 +61,7 @@ export {
 
 
     ADD_NEW_EMPLOYEE_API,
+    FETCH_EMPLOYEES_LIST_API,
 
 
     TODO_API_URL,

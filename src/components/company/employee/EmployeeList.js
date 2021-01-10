@@ -1,6 +1,6 @@
 // React
 import React, { useEffect, useState } from 'react';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 
 // Components
@@ -8,41 +8,49 @@ import Table from '../../workspace/layouts/Table';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
   
+// Actions
+import { getCompanyEmployees } from '../../../actions/employee/employeeAction';
+
 
 export default  function EmployeeList(){
-        // const { firstname, lastname, department, phone, role, employeed_date } = employees
-        // const employees = useSelector(state => state.employee)
+        const { employees } = useSelector(state => state.employees)
+        const [employeesList, setEmployeesList] = useState([{}])
         // console.log(employees)
-        const [employees, setEmployees] = useState([{}])
+        const dispatch = useDispatch();
         useEffect(() => {
-          function getEm() {
-            // axios.get('http://fakerestapi.azurewebsites.net/api/v1/Users')
-            axios.get('https://jsonplaceholder.typicode.com/users')
-            .then((response)=>{
-              // const { data } = await axios.get('https://jsonplaceholder.typicode.com/users')
-              setEmployees(response.data)
-            })
-          }
-          getEm()
+          setEmployeesList(employees)
+          // function getEm() {
+          //   // axios.get('http://fakerestapi.azurewebsites.net/api/v1/Users')
+          //   axios.get('https://jsonplaceholder.typicode.com/users')
+          //   .then((response)=>{
+          //     // const { data } = await axios.get('https://jsonplaceholder.typicode.com/users')
+          //     setEmployees(response.data)
+          //   })
+          // }
+
+          // dispatch(getCompanyEmployees())
+          // getEm()
         }, [])
+
+        console.log(employeesList)
         
 
         const Header = [
             {
-              dataField: 'id',
+              dataField: 'staffID',
               text: 'S/N'
             },
             {
-              dataField: 'username',
+              dataField: 'firstName',
               text: 'Firstname',
             },
             {
-              dataField: 'name',
+              dataField: 'lastName',
               text: 'Lastname',
             },
             {
-              dataField: 'phone',
-              text: 'Phone',
+              // dataField: 'phone',
+              // text: 'Phone',
             },
             // {
             //   dataField: 'department',
@@ -60,17 +68,14 @@ export default  function EmployeeList(){
             {
             
               formatter: (cellContent, row) => {
-                // console.log(row.id);
                 return (
                   <>
-                  <Link to={`/dashboard/employee/profile/${row.id}`}
-                    // className="fa fa-eye"
-                    // onClick={(e) => handleDelete(row)} 
-                    // onClick={(e) <Link to={`/dashboard/profile/${e}`} />}
+                    <Link 
+                      to={`/dashboard/employee/profile/${row.staffID}`}
                     >
-                    View
-                    
-                  </Link>
+                      View
+                      
+                    </Link>
                   </>
                 );
               },
