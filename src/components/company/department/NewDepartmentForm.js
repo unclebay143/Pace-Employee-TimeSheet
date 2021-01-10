@@ -60,8 +60,8 @@ export const NewDepartmentForm = () => {
                                     <li className="list-group-item d-flex justify-content-center">
                                         <Button 
                                             type="submit"
-                                            label="Creates"
-                                            className="btn pace-btn-accent btn-sm"
+                                            label="Create"
+                                            className="btn pace-btn-accent"
                                         />
                                     </li>
                                     </Form>
