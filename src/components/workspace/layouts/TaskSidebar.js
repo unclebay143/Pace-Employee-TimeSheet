@@ -13,7 +13,7 @@ const TaskSidebar =() => {
       type="submit"
       label=" Draft Task"
       icon="o-home-1"
-      className="btn pace-btn-primary mx-3"  
+      className="btn pace-btn-accent mx-3"  
     />
    </NavLink> 
    <hr/>

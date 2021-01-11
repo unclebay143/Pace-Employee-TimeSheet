@@ -40,7 +40,7 @@ class Task extends Component {
               </Switch>
                 {/* <Sample /> */}
                 {/* <DraftTask /> */}
-                <AcceptedTasks />
+                {/* <AcceptedTasks /> */}
                 {/* <EmployeeTasks /> */}
             </section>
           </div>
