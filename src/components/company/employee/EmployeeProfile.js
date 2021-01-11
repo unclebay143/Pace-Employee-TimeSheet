@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import { getCompanyEmployees } from '../../../actions/employee/employeeAction';
 import Button from '../../layouts/Button';
+import Loader from '../../loader/Loader';
 import unclebay from '../../pages/pages-images/ayodele_samuel_adebayo.jpg';
 
 
@@ -31,7 +32,7 @@ const ProfileRow = (props) => {
 
 const EmployeeProfile = () =>{
     const params = useParams()
-    const { employees } = useSelector(state => state.employees)
+    const { employees, isFetching } = useSelector(state => state.employees)
     const [ employeeProfile, setEmployeeProfile ] = useState([])
     const dispatch = useDispatch()
 
@@ -44,7 +45,7 @@ const EmployeeProfile = () =>{
     if(employeeProfile === undefined){
         return(
             <>
-                <h5>hiiii</h5>
+                <Loader />
             </>
         )
     }

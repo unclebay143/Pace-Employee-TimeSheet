@@ -9,6 +9,7 @@ import withReactContent from 'sweetalert2-react-content';
 import Swal from 'sweetalert2';
 import { AddEmployeeSchema } from '../../Validation/Schema';
 import { emailAlreadyExist } from '../../../toaster';
+import Loader from '../../loader/Loader';
 
 const employeeDetailsDropDown = {
     employeeRole: [
@@ -55,6 +56,9 @@ const AddEmployee = () =>{
     
     // Generate the dropdown of company departments
     const companyDepartmentDropDown = departments.map(({departmentName, departmentID}, index)=><option value={departmentID} key={index}>{departmentName}</option>)
+    if(!departments || departments === undefined){
+        return <Loader />
+    }
     return (
         <>
             <div className="container py-5">

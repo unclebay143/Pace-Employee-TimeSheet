@@ -48,14 +48,14 @@ function App() {
   return (
     <>
       <main className="container">
-        <Navbar />
+        {/* <Navbar /> */}
           <Switch>
             <Route exact path="/about" component = {About} />
             <Route exact path="/" component = {Home} />
             <Route component = {PageNotFound} />
           </Switch>
       </main>
-        <Footer />
+        {/* <Footer /> */}
     </>
   )
 }
