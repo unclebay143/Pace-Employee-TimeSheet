@@ -7,6 +7,8 @@ import Button from '../../layouts/Button';
 import { TextInput } from '../../layouts/FormInput';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { authHeader, currentUserCompanyID } from '../../../services/auth-header';
+import { FETCH_COMPANY_PROFILE_API } from '../../../services/root-endpoints';
 
 const UpdateCompanyProfile = () =>{
     const params = useParams();
@@ -25,41 +27,13 @@ const UpdateCompanyProfile = () =>{
     })
     useEffect(() => {
         const fetchCompanyProfile = async() =>{
-            const { data } = await axios.get(`https://jsonplaceholder.typicode.com/users/${params.id}`)
-            console.log(data)
-            setCompanyProfile(data)
+           const { data } = await axios.get(FETCH_COMPANY_PROFILE_API + currentUserCompanyID, { headers: authHeader })
+           setCompanyProfile(data.data[0])
         }
 
         fetchCompanyProfile()
         
     }, [])
-    // useEffect(() => {
-    //     const staffID = params.id;
-    //     setStaffID(staffID)
-
-    //     const geUserProfile = async()=>{
-            // const response = await axios.get(USER_PROFILE_URL + staffID, { headers: authHeader })
-            // const {
-            //     firstName,
-            //     lastName,
-            //     phoneNumber,
-            //     email,
-            //     address,
-            //     userName,
-
-            // } = response.data.data[0]
-            // setProfile({
-            //     firstName,
-            //     lastName,
-            //     phoneNumber,
-            //     email,
-            //     address,
-            //     userName,
-            // })
-        // }
-
-    //     getUserProfile()
-    // }, [])
 
     return ( 
         <>

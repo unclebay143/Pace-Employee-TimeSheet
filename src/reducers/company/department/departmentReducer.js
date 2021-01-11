@@ -38,10 +38,10 @@ const departmentReducer = (state = initialState, action) =>{
                 ...state,
                 isFormOpen: false,
                 departments: [
+                    ...state.departments,
                     {
                         departmentName: action.payload.departmentName
-                    },
-                ...state.departments
+                    }
                 ]
             }
         case EDIT_DEPARTMENT:

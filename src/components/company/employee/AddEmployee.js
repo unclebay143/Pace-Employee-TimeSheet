@@ -131,7 +131,7 @@ const AddEmployee = () =>{
                                                 </div>
                                             </div>
                                             <hr />
-
+                                        
                                              {/* EMPLOYEE POSITION */}
                                              <div className="row">
                                                 <div className="col-sm-6 col-md-3">
@@ -140,7 +140,7 @@ const AddEmployee = () =>{
                                                 <div className="col-sm-12 col-md-9 text-secondary" >
                                                     <TextInput
                                                         name="staffRole"
-                                                        placeholder="Enter Role"
+                                                        placeholder="Enter Position"
                                                         type="text" 
                                                         className={`form-control ${touched.staffRole && errors.staffRole ? "is-invalid" : ""}`} 
                                                         id="staffRole"
