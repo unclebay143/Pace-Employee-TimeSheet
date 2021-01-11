@@ -60,7 +60,7 @@ const Sidebar = () => {
                 `
             }
         </style>
-            <div id="sidebar" className="sidebar py-3">
+            <div id="sidebar" className="sidebar py-3" h='6' data-tut='reactour__sidebar'>
                     <div className="text-gray-400 text-uppercase px-3 px-lg-4 py-4 font-weight-bold small headings-font-family" id="role_display">{ currentUserRoleName }</div>
                         <ul className="sidebar-menu list-unstyled">
                             <li className="sidebar-list-item"><NavLink exact to="/dashboard" className="sidebar-link text-muted" activeclassname="active"><i className="o-home-1 mr-3 text-gray"></i><span>Dashboard</span></NavLink></li>

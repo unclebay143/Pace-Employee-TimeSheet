@@ -116,9 +116,10 @@ const Navbar = () =>{
                                 </a>
                             </div>
                         </li>
-                        <li className="nav-item dropdown ml-auto">
+                        <li className="nav-item dropdown ml-auto" h='7' data-tut='reactour__profileImage'>
                             <a id="userInfo" href="." data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" className="nav-link dropdown-toggle">
                                 {/* <img src={user_Image} alt={user_first_name} style={{maxWidth:"2.5rem"}} className="img-fluid rounded-circle shadow" /> */}
+                                <img src='https://github.com/unclebay143.png' alt='unclebay' style={{maxWidth:"2.5rem"}} className="img-fluid rounded-circle shadow" />
                             </a>
                             <div aria-labelledby="userInfo" className="dropdown-menu">
                                 <a href="/" className="dropdown-item">
