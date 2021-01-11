@@ -12,8 +12,8 @@ const addNewEmployeeToServer = ( newEmployee ) =>{
 
 
 // Function to get all employee from the server
-const fetchCompanyEmployees = async() =>{
-    return await axios.get(FETCH_EMPLOYEES_LIST_API + currentUserCompanyID, { headers: authHeader })
+const fetchCompanyEmployees = () =>{
+    return  axios.get(FETCH_EMPLOYEES_LIST_API + currentUserCompanyID, { headers: authHeader })
 }
 
 

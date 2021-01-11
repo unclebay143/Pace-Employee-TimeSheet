@@ -16,6 +16,7 @@ import { HomeButton } from '../layouts/HomeButton'
 
 // Authentication
 import { register } from '../../actions/auth/authAction';
+import { ToastContainer } from 'react-toastify';
 
 
 const Signup = () =>{
@@ -33,6 +34,7 @@ const Signup = () =>{
     }
     return(
         <div className="container">
+            <ToastContainer />
             <main className="container d-flex justify-content-center align-items-center mt-3 mt-md-5">
                 <div className="row">
                     <div className="form-con col-lg-5 mb-5">

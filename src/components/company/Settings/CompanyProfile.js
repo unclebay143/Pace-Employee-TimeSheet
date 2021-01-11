@@ -3,12 +3,16 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import { authHeader, currentUserCompanyID } from '../../../services/auth-header';
+import { FETCH_COMPANY_PROFILE_API } from '../../../services/root-endpoints';
 import Button from '../../layouts/Button';
+import Loader from '../../loader/Loader';
 import unclebay from '../../pages/pages-images/ayodele_samuel_adebayo.jpg';
 
 
 
 const ProfileRow = (props) => {
+    
     const { title, label } = props
     return(
         <>
@@ -28,30 +32,24 @@ const ProfileRow = (props) => {
 
 
 const Profile = () =>{
-    const params = useParams()
-    const [ employeeProfile, setEmployeeProfile ] = useState([])
-    
+    const params = useParams();
+    const [companyProfile, setCompanyProfile] = useState({});
+  
     useEffect(() => {
-        const fetchEmployeeProfile = async() =>{
-            const { data } = await axios.get(`https://jsonplaceholder.typicode.com/users/${params.id}`)
-            console.log(data)
-            setEmployeeProfile(data)
+        const fetchCompanyProfile = async () =>{
+            axios.get(FETCH_COMPANY_PROFILE_API + currentUserCompanyID, { headers: authHeader })
+            .then((response)=>console.log(response))
+            .catch((error)=>console.log(error))
         }
-
-        fetchEmployeeProfile()
-        
-    //     const getCurrentUser = JSON.parse(localStorage.getItem('token'));
-    //     if(getCurrentUser){
-    //         const currentUser = getCurrentemployeeProfile.response[0];
-    //         setUser(currentUser)
-    //         syncCurrentUser(params.id)
-    //     }
-
-    //     return(()=>{
-    //         const currentUser = []
-    //     })
+        fetchCompanyProfile()
     }, [])
-    
+    if(companyProfile === undefined){
+        return(
+            <>
+                <Loader />
+            </>
+        )
+    }
     return (
         <>
             <div className="container">
@@ -84,11 +82,11 @@ const Profile = () =>{
                         <div className="col-md-12 ml-2">
                             <div className="card mb-3">
                                 <div className="card-body">
-                                    <ProfileRow title="Company Name" label={ ` ${employeeProfile.name} ${employeeProfile.username}` } />
+                                    <ProfileRow title="Company Name" label={ ` ${companyProfile.name} ${companyProfile.username}` } />
                                     <ProfileRow title="Company Type" label="IT" />
-                                    <ProfileRow title="Company Adjective" label={employeeProfile.phone} />
+                                    <ProfileRow title="Company Adjective" label={companyProfile.phone} />
                                     <ProfileRow title="Currency" label="Naira(#)"/>
-                                    <ProfileRow title="Email" label={employeeProfile.email} />
+                                    <ProfileRow title="Email" label={companyProfile.email} />
                                     <Link to={`/dashboard/company/profile/update/${1}`}>
                                         <Button className="btn btn-primary mr-2" label="Edit"/>
                                     </Link>

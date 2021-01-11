@@ -48,6 +48,11 @@ const FETCH_EMPLOYEES_LIST_API = 'https://pacetimesheet.herokuapp.com/api/users/
 
 
 
+/* >>>>>>>>>>>>>>> COMPANY API <<<<<<<<<<<<<<<<<< */
+
+
+// GET COMPANY PROFILE
+export const FETCH_COMPANY_PROFILE_API = 'https://pacetimesheet.herokuapp.com/api/users/companyName/companyProfile/';
 
 
 
