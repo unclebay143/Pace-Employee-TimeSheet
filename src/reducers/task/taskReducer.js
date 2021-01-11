@@ -1,12 +1,18 @@
-import { FETCH_TASKS_PENDING, FETCH_TASKS_SUCCESS, DELETE_TASK, UPDATE_TASK, TOGGLE_TASK_COMPLETE } from '../../actions/types';
+import { ASSIGN_TASK, FETCH_TASKS_PENDING, FETCH_TASKS_SUCCESS, DELETE_TASK, UPDATE_TASK, TOGGLE_TASK_COMPLETE } from '../../actions/types';
 
 const initialState = {
   isFetching: false,
-  tasks: []
+  tasks: [],
+  assignTask: []
 }
 
 const taskReducer = (state=initialState, action) => {
     switch(action.type){
+        case ASSIGN_TASK:
+            return {
+                ...state,
+                assignTask: [action.payload, ...state.assignTask]
+            }
 
         case FETCH_TASKS_PENDING:
             return {

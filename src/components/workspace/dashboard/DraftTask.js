@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {Formik, Form, Field,  ErrorMessage} from 'formik';
+
+import { assignTask } from '../../../actions/task/taskAction';
+
 import { TextInput, TextArea, DataList, Datalist } from '../../layouts/FormInput';
 
 import PropTypes from 'prop-types';
@@ -11,8 +15,8 @@ import { connect } from 'react-redux';
 import Button from '../../layouts/Button';
 
 
-class DraftTask extends Component {
-  render() {
+const DraftTask = () => {
+  const dispatch = useDispatch();
     return (
       <div>
         <section className="">
@@ -25,52 +29,60 @@ class DraftTask extends Component {
                 </h4>
               </header>
                 <div className="card-body">
-                  <div className="compose-btn-wrapper">
-                    <Button 
-                      type="submit"
-                      label=" Send"
-                      icon="fa fa-check"
-                      className="btn btn-theme btn-sm"
-                    />                                   
-                    <Button 
-                      type="submit"
-                      label=" Draft"
-                      className="btn btn-sm ml-2 mr-2 special"
-                    />     
-                    <Button 
-                      type="submit"
-                      label=" Discard"
-                      icon="fa fa-times"
-                      className="btn btn-sm pace-bg-accent"
-                    />       
-                  </div>
                   <div className="card-text">
                     <Formik
                       initialValues={{
-                        department: '',
-                        subject: '',
+                        assignedID: '',
+                        taskName: '',
                         taskDescription: '',
-                        file: '',
-                        dueDate: ''
+                        documentsAttached: '',
+                        endDate: ''
                       }}
                         // validationSchema = {}
-                        onSubmit={ values =>{
-                          // console.log(values)
-                          // this.props.assignTask(values)
+                        onSubmit={( values, action) =>{
+                          dispatch(assignTask(values))
+                          .then((response)=>{
+                            action.setSubmitting(true)
+                            action.setSubmitting(false)
+                            action.resetForm()
+                        })
+                        .catch((error)=>{
+                            action.setSubmitting(false)
+                        })
                           console.log(values)
                           
                         }
                       }
                     >
-                      {({touched, errors, values, handleSubmit, handleChange, isSubmitting}) => (
+                      {({touched, errors, values, handleSubmit, handleChange, isSubmitting, resetForm}) => (
                         <Form className="mt-0"  onSubmit={handleSubmit}>
+                          <div className="compose-btn-wrapper">
+                            <Button 
+                              type="submit"
+                              label=" Send"
+                              icon="fa fa-check"
+                              className="btn btn-theme btn-sm"
+                            />                                   
+                            <Button 
+                              type="submit"
+                              label=" Draft"
+                              className="btn btn-sm ml-2 mr-2 special"
+                            />     
+                            <Button 
+                              type="submit"
+                              label=" Discard"
+                              icon="fa fa-times"
+                              className="btn btn-sm pace-bg-accent"
+                              onClick={(()=>resetForm())} 
+                            />       
+                          </div>
                           <div className="form-group">
                             <TextInput 
                                 label = "To:"
-                                name = "department"
-                                id = "department"
+                                name = "assignedID"
+                                id = "assignedID"
                                 type = "text"
-                                value={values.department}
+                                value={values.assignedID}
                                 className = "form-control lead"                                
                                 onChange={handleChange}
                             />
@@ -78,10 +90,10 @@ class DraftTask extends Component {
                           <div className="form-group">
                             <TextInput 
                                 label = "Subject:"
-                                name = "subject"
-                                id = "subject"
+                                name = "taskName"
+                                id = "taskName"
                                 type = "text"
-                                value={values.subject}
+                                value={values.taskName}
                                 className = "form-control lead"                                
                                 onChange={handleChange}
                             />
@@ -94,14 +106,14 @@ class DraftTask extends Component {
                                             {availableRole}
                               </Field>
                               <DataList
-                               label = "Department"
-                               name = "department"
-                               id = "department"
+                               label = "assignedID"
+                               name = "assignedID"
+                               id = "assignedID"
                                type = "text"
-                               value={values.department}
+                               value={values.assignedID}
                                className = "form-control lead"
                                
-                               placeholder = "Department"
+                               placeholder = "assignedID"
                                onChange={handleChange}
                               > 
                               <option selected>Choose...</option>
@@ -128,10 +140,10 @@ class DraftTask extends Component {
                             <div className="col-sm-6">
                               <TextInput 
                                   label = "Attachment"
-                                  name = "file"
-                                  id = "file"
-                                  type = "file"
-                                  value={values.file}
+                                  name = "documentsAttached"
+                                  id = "documentsAttached"
+                                  type = "documentsAttached"
+                                  value={values.documentsAttached}
                                   className = "lead"
                                   onChange={handleChange}
                               />
@@ -139,10 +151,10 @@ class DraftTask extends Component {
                             <div className="col-sm-6">
                               <TextInput 
                                   label = "Due Date"
-                                  name = "dueDate"
+                                  name = "endDate"
                                   id = "due-date"
                                   type="date"
-                                  value={values.dueDate}
+                                  value={values.endDate}
                                   className = "form-control lead"     
                                   onChange={handleChange}
                               />
@@ -165,6 +177,7 @@ class DraftTask extends Component {
                               label=" Discard"
                               icon="fa fa-times"
                               className="btn btn-sm pace-bg-accent"
+                              onClick={(()=>resetForm())} 
                             />   
                           </div>
                         </Form>
@@ -180,7 +193,7 @@ class DraftTask extends Component {
       </div>
     )
   }
-}
+
 
 // const mapStateToProps = state => ({
 //   AllTasks: state.task
