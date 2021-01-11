@@ -7,12 +7,15 @@ import {
   LOGIN_FAIL,
   LOGOUT,
   SYNC_CURRENT_USER,
+  END_TOUR,
 } from "../../actions/types";
 
 
 const initialState = {
   isLoggedIn: false, 
   currentUser: {},
+  isFirstTimer: false,
+  error: null,
 };
 
 const authReducer = (state = initialState, action) =>{
@@ -20,7 +23,16 @@ const authReducer = (state = initialState, action) =>{
   switch (type) {
 
     case REGISTER_SUCCESS:
-      return state;
+      return  {
+        ...state,
+        isFirstTimer: true
+      }
+      
+    case END_TOUR:
+      return {
+        ...state,
+        isFirstTimer: false
+      }
 
     case REGISTER_FAIL:
       return {
@@ -40,13 +52,14 @@ const authReducer = (state = initialState, action) =>{
         ...state,
         isLoggedIn: false,
         currentUser: null,
+        error: payload
       };
     
     case SYNC_CURRENT_USER:
       return {
         ...state,
         isLoggedIn: true,
-        currentUser: action.payload
+        currentUser: payload
       }
 
     case LOGOUT:
