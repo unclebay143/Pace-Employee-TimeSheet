@@ -23,7 +23,7 @@ const emailAlreadyExist = () => toast.warning('Email Already Exist');
 
 
 // Logout Toast
-const logOutSuccess = () => toast.warning('Logout Successful')
+const logOutSuccessLogger = () => toast.warning('Logout Successful')
 
 // Users Setting Toasts
 const profileUpdateCompletedLogger = () => toast.info('Profile Update Successfully');
@@ -42,7 +42,7 @@ export{
     emailAlreadyExistLogger,
     registrationFailLogger,
     registrationCompletedLogger,
-    logOutSuccess,
+    logOutSuccessLogger,
     invalidTodoTitle,
     netWorkError,
     sessionExpired,

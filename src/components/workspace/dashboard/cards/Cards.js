@@ -9,8 +9,9 @@ class Cards extends Component{
     render(){
         return(
             <>
-                <section className="py-5">
+                <section className="py-5" h='2' data-tut='reactour__taskCards'>
                     <div className="row">
+                        
                         <Card
                             
                                 title="Complete Task"
@@ -19,7 +20,7 @@ class Cards extends Component{
                                 icon="fa-server"
                                 cardColor="pace-bg-accent"
                                 style= {{ }}
-                        
+                                
                         />
                         <Card
                             

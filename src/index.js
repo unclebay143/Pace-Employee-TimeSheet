@@ -9,6 +9,7 @@ import {HashRouter as Router, Route, Switch } from "react-router-dom";
 import './components/pages/pages-styles/util.css';
 import './components/pages/pages-styles/form.css';
 import './components/layouts/layout-styles/button.css';
+import './components/loader/loader.css';
 
 // CUSTOM
 import './components/layouts/layout-styles/navbar.css';
@@ -41,12 +42,17 @@ import './components/workspace/dashboard/dashboard-styles/timer.css';
 import './components/workspace/dashboard/todos/todoform.css'
 import './components/workspace/dashboard/todos/todo.css'
 
+// TOUR STYLES -- will only apply when the user is a first timer
+import './components/tour/tour-styles/tour.css'
+
+
 // DASHBOARD SCRIPT
 import './components/workspace/layouts/SibarToggle';
 
 // Redux 
 import store from "./Store";
 import { Provider } from 'react-redux';
+
 
 // test DEVcomponent
 import Test from './rough/Test';

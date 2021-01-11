@@ -1,5 +1,5 @@
 // React
-import { React, useEffect } from 'react';
+import { React, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux'
 import { Route, Switch } from 'react-router-dom/cjs/react-router-dom.min';
 import { useHistory } from 'react-router-dom';
@@ -32,6 +32,10 @@ import { getTasks } from '../../../actions/task/taskAction';
 import { syncCurrentUser } from '../../../actions/user/userAction';
 import { getDepartment } from '../../../actions/company/department/departmentAction';
 import { getCompanyEmployees } from '../../../actions/employee/employeeAction';
+
+// Tour
+import TourContainer from '../../tour/config/TourContainer';
+
 
 
 const Dashboard = () =>{
@@ -67,16 +71,17 @@ const Dashboard = () =>{
 
     }, [dispatch, history])
 
+
     return(
         <>
-            <div>
+            <div h='1' data-tut='reactour__welcome'>
+                <TourContainer />
                 {/* >>>>> NAVBAR COMPONENT SECTION <<<<< */}
                 <Navbar  />
                     <div className="d-flex align-items-stretch">
                 {/* >>>>> SIDEBAR COMPONENT SECTION <<<<< */}
                         <Sidebar />
                         <div className="page-holder w-100 d-flex flex-wrap">
-
                             <div className="container-fluid dashboard-body-wrapper">
                 {/* >>>>> BODIES COMPONENTS SECTION <<<<< */}
                                 <Switch>
