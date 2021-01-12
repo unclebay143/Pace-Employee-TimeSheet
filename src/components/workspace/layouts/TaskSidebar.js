@@ -8,7 +8,9 @@ const TaskSidebar =() => {
   
   useEffect(() => {
       const getCurrentUser = JSON.parse(localStorage.getItem('currentUser'));
-      setCurrentUserRoleID(getCurrentUser.roleID)
+      if(getCurrentUser){
+        setCurrentUserRoleID(getCurrentUser.roleID)
+      }
   }, [])
   return (
 
