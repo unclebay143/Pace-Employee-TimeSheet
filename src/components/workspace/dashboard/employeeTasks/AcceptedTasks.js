@@ -39,7 +39,7 @@ const AcceptedTasks = () => {
       
       <Table
         keyField='id'
-        title="Inbox (11)"
+        title="Accepted Task"
         data={acceptedTasks }
         columns={taskHeader}
         bordered= { false }

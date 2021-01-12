@@ -2,7 +2,7 @@
 
 // Contact us 
 
-export const CONTACT_PACETEAM_API = 'https://pacetimesheet.herokuapp.com/api/contact-us/contact/'
+export const CONTACT_PACETEAM_API = 'https://pacetimesheet.herokuapp.com/api/contactUs/contact'
 
 
 // Handles Authentication, /signUp, /login
@@ -18,17 +18,17 @@ const TODO_API_URL = 'http://fakerestapi.azurewebsites.net/api/v1/Activities';
 /* >>>>>>>>>>> MANAGE TASKS API <<<<<<<<<<<<< */
 
 // ASSIGN TASK API
-const ASSIGN_TASK_API_URL = 'https://pacetimesheet.herokuapp.com/api/tasks/companyName/newTask';
+const ASSIGN_TASK_API_URL = 'https://pacetimesheet.herokuapp.com/api/tasks/companyName/newTask/';
 
 // const TASK_API_URL = 'https://api.fake.rest/6c02d615-a40c-47ce-89c1-a4cf5a547ba0/task'
-const TASK_API_URL = 'https://pacetimesheet.herokuapp.com/api/tasks/companyName';
+const TASK_API_URL = 'https://pacetimesheet.herokuapp.com/api/tasks/companyName/';
 
 // ACCEPTED TASK API
 const ACCEPTED_TASK_API_URL = 'http://fakerestapi.azurewebsites.net/api/v1/Activities';
 
 
 // ASSIGNED TASK API
-const ASSIGNED_TASK_API_URL = 'https://pacetimesheet.herokuapp.com/api/tasks/companyName/assignedTasks';
+const ASSIGNED_TASK_API_URL = 'https://pacetimesheet.herokuapp.com/api/tasks/companyName/assignedTasks/';
 
 
 
