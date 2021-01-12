@@ -27,6 +27,7 @@ import { syncCurrentUser } from '../../actions/user/userAction';
 //     companyID: 1928,
 //     roleID: 5
 // }
+
 // const token = 'wkknohsiosdoiwoihh.wohoifhfiohiohfiuhui.iuwiuhiuhfuhiuwhg'
 // localStorage.setItem('token', JSON.stringify(token))
 // localStorage.setItem('currentUser', JSON.stringify(data) )
@@ -34,8 +35,7 @@ import { syncCurrentUser } from '../../actions/user/userAction';
 
 
 const Login = () =>{
-
-    
+   
     const currentUserFromLocalStorage = JSON.parse(localStorage.getItem('currentUser'));
     const authenticationState = useSelector(state => state.authenticationState)
 
@@ -46,13 +46,17 @@ const Login = () =>{
     useEffect(() => {
         document.title = 'Login | Pace'
     })
+
+    // Function that redirects user to the dashboard
     const redirector = () =>{
         history.push('./dashboard');
     }
 
-    // Conditonal Statement to check if a user is logged in
-    if(authenticationState.isLoggedIn){
+    // Conditonal Statement to check if a user is logged in from the redux state and local storage
+    if(authenticationState.isLoggedIn || currentUserFromLocalStorage){
+        
         userIsAuthenticatedLogger()
+        // Synchronize the current user 
         syncCurrentUser(currentUserFromLocalStorage.staffID)
         const redirectUserToDashboard = setTimeout(redirector, 2000)
         return(()=>clearTimeout(redirectUserToDashboard))
@@ -80,8 +84,6 @@ const Login = () =>{
                             <h4 className="mb-5">Welcome back!</h4>
                         </div>
                         {/* message can be placed here */}
-                        
-                        
                         <div className="mt-5" name="form">
                             <div className="form-group mt-b">
                                 <Formik

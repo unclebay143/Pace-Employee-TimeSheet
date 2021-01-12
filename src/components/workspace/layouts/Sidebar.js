@@ -98,7 +98,18 @@ const Sidebar = () => {
                     <ul className="sidebar-menu list-unstyled">
                         {
                             currentUserRoleID === 5 ? '' : (
-                                <li className="sidebar-list-item"><NavLink to="/dashboard/company/settings" className="sidebar-link text-muted" activeclassname="active"><i className="o-settings-window-1 mr-3 text-gray"></i><span>Settings</span></NavLink></li>
+                                <>
+                                    {/* <li className="sidebar-list-item"><NavLink to="/dashboard/company/settings" className="sidebar-link text-muted" activeclassname="active"><i className="o-settings-window-1 mr-3 text-gray"></i><span>Settings</span></NavLink></li> */}
+                                    <li className="sidebar-list-item"><a href="." data-toggle="collapse" data-target="#settings" aria-expanded="false" aria-controls="pages" className="sidebar-link text-muted" activeclassname="active"><i className="o-wireframe-1 mr-3 text-gray"></i><span>settings</span></a>
+                                        <div id="settings" className="collapse">
+                                            <ul className="sidebar-menu list-unstyled border-left border-primary border-thick">
+                                                <li className="sidebar-list-item"><NavLink to="/dashboard/company/profile/1" className="sidebar-link text-muted pl-lg-5">Company Profile</NavLink></li>
+                                                <li className="sidebar-list-item"><NavLink to="/dashboard/company/settings/departments" className="sidebar-link text-muted pl-lg-5">Manage Team</NavLink></li>
+                                                <li className="sidebar-list-item"><NavLink to="/dashboard/company/profile/update/1" className="sidebar-link text-muted pl-lg-5">Update Profile</NavLink></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </>
                             )
                         }
                         <li className="sidebar-list-item"><span onClick={logOut} className="sidebar-link text-muted cursor" activeclassname="active"><i className="o-exit-1 mr-3 text-gray"></i><span>Logout</span></span></li>
