@@ -39,20 +39,19 @@ class ContactUs extends Component {
               }}
                 validationSchema = {contactUsSchema}
                 onSubmit={ (values, action) =>{
-                  alert(values)
                   axios.post(CONTACT_PACETEAM_API, values)
                   .then((response)=>{
                     console.log(response)
                   })
                   .catch((error)=>{
                     action.setSubmitting(false)
+                    console.log(error)
                   })
                 }}
               > 
                 {({touched, errors, values, handleSubmit, handleChange, isSubmitting}) => (
                   <Form className="mt-5"  onSubmit={handleSubmit}>
                     <div className="form-group">
-                      <pre>{JSON.stringify(values, null, 2)}</pre>
                       <TextInput 
                         label = "Name"
                         name = "contactName"

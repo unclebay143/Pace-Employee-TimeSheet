@@ -20,12 +20,12 @@ const TaskSidebar =() => {
    <ul className="sidebar-menu list-unstyled">
      <li className="">
        <NavLink exact to="/dashboard/task/all-tasks" className="sidebar-link text-muted" activeClassName="active">
-         <i className="o-home-1 mr-3 text-gray"/><span>Inbox</span>
+         <i className="fa fa-inbox mr-3 text-gray"/><span>Inbox</span>
        </NavLink>
      </li>
      <li className="">
        <NavLink exact to="/dashboard/task/accepted-tasks" className="sidebar-link text-muted" activeClassName="active">
-         <i className="o-home-1 mr-3 text-gray"/><span>Accepted</span>
+         <i className="fa fa-tasks mr-3 text-gray"/><span>Accepted</span>
        </NavLink>
      </li>
      <li className="sidebar-list-item">
