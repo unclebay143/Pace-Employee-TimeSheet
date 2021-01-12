@@ -43,6 +43,7 @@ const DraftTask = () => {
                         onSubmit={( values, action) =>{
                           dispatch(assignTask(values))
                           .then((response)=>{
+                            console.log(response)
                             action.setSubmitting(true)
                             action.setSubmitting(false)
                             action.resetForm()
