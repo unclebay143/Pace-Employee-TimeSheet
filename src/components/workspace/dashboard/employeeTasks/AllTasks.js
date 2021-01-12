@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 
 import Table from '../../layouts/Table';
@@ -11,12 +11,13 @@ import Loader from '../../../loader/Loader';
 
 const AllTasks = () => {
 
-  const { tasks, isFetching, tasks: { data } } = useSelector(state => state.tasks)
-  const dispatch = useDispatch()
+  const { tasks, isFetching } = useSelector(state => state.tasks)
+  const { employees } = useSelector(state => state.employees)
+  const [taskState, setTaskState] = useState()
   const history = useHistory();
-  
+
   useEffect(() => {
-    dispatch(getTasks())
+    setTaskState(tasks)
   }, [])
 
   // adds checkbox to each row
@@ -43,6 +44,12 @@ const AllTasks = () => {
   //       </>
   //   )
   // }
+
+  const taskss = [
+    {
+      taskName: 'sss'
+    }
+  ]
   return (
     <div >
       

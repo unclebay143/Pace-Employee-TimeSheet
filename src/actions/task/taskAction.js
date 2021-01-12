@@ -18,10 +18,10 @@ const getTasks = () => ( dispatch ) =>{
   dispatch({ type: FETCH_TASKS_PENDING });
   return TaskService.fetchTasks()
   .then((response)=> {
-    dispatch({ type: FETCH_TASKS_SUCCESS, payload: response.data });
-    return response.data;
+    dispatch({ type: FETCH_TASKS_SUCCESS, payload: response.data.data });
   })
   .catch((error) =>{
+    console.log(error)
     dispatch({ type: FETCH_TASKS_ERROR, payload: error })
   })
 };

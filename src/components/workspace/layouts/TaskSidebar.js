@@ -43,7 +43,7 @@ const TaskSidebar =() => {
             </li>
             <li className="">
               <NavLink exact to="/dashboard/task/accepted-tasks" className="sidebar-link text-muted" activeClassName="active">
-                <i className="fa fa-tasks mr-3 text-gray"/><span>Accelllpted</span>
+                <i className="fa fa-tasks mr-3 text-gray"/><span>Accepted</span>
               </NavLink>
             </li>
 
