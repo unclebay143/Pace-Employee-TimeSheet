@@ -1,5 +1,6 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
+import 'bootstrap-icons';
 
 import Button from '../../layouts/Button';
 const TaskSidebar =() => {
@@ -30,7 +31,7 @@ const TaskSidebar =() => {
      </li>
      <li className="sidebar-list-item">
        <NavLink exact to="/dashboard" className="sidebar-link text-muted" activeClassName="active">
-         <i className="o-home-1 mr-3 text-gray"/><span>Pending</span>
+         <i className="bi bi-inbox mr-3 text-gray"/><span>Pending</span>
        </NavLink>
      </li>
      <li className="sidebar-list-item">
