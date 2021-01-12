@@ -17,29 +17,46 @@ import { HomeButton } from '../layouts/HomeButton';
 import { login } from '../../actions/auth/authAction';
 import { syncCurrentUser } from '../../actions/user/userAction';
 
+/* Development fake user credentials */
+
+// this is should be used when the server is down and you need to login to the dashboard
+// const data = {
+//     firstName: 'Ayodele Samuel',
+//     lastName: 'Dummy',
+//     staffID: 123,
+//     companyID: 1928,
+//     roleID: 5
+// }
+// const token = 'wkknohsiosdoiwoihh.wohoifhfiohiohfiuhui.iuwiuhiuhfuhiuwhg'
+// localStorage.setItem('token', JSON.stringify(token))
+// localStorage.setItem('currentUser', JSON.stringify(data) )
+//
 
 
 const Login = () =>{
-    // const { isLoggedIn } = useSelector((state)=>state.authenticationState)
+
+    
     const currentUserFromLocalStorage = JSON.parse(localStorage.getItem('currentUser'));
+    const authenticationState = useSelector(state => state.authenticationState)
 
     const history = useHistory();
     const dispatch = useDispatch()
-    // Redirect user to the dashboard when there is a user in the local storage
+
+    // Function to redirect user to the dashboard when there is a user in the local storage
+    useEffect(() => {
+        document.title = 'Login | Pace'
+    })
     const redirector = () =>{
         history.push('./dashboard');
     }
-    useEffect(() => {
-        document.title = 'Login | Pace'
-        
 
-        if(currentUserFromLocalStorage){
-            userIsAuthenticatedLogger()
-            syncCurrentUser(currentUserFromLocalStorage.staffID)
-            const redirectUserToDashboard = setTimeout(redirector, 2000)
-            return(()=>clearTimeout(redirectUserToDashboard))
-        }
-    })
+    // Conditonal Statement to check if a user is logged in
+    if(authenticationState.isLoggedIn){
+        userIsAuthenticatedLogger()
+        syncCurrentUser(currentUserFromLocalStorage.staffID)
+        const redirectUserToDashboard = setTimeout(redirector, 2000)
+        return(()=>clearTimeout(redirectUserToDashboard))
+    }
 
     return(
         <div className="container">
@@ -76,7 +93,7 @@ const Login = () =>{
                                     onSubmit= {(values, action)=>{
                                         dispatch(login(values, action))
                                         // Reload to referesh the app (solve the fetch error from profile)
-                                        .then((response)=>window.location.reload())
+                                        // .then((response)=>window.location.reload())
                                     }}
                                 >{({touched, errors, isSubmitting, handleSubmit}) => (
                                     <Form onSubmit={handleSubmit}>

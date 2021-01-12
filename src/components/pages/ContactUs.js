@@ -11,6 +11,10 @@ import Button from '../layouts/Button';
 import { TextInput, TextArea } from '../layouts/FormInput';
 
 class ContactUs extends Component {
+
+  componentDidMount() {
+    document.title = 'Contact us'
+  }
   render() {
     return (
       <div className="container">

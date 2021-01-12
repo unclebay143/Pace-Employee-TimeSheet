@@ -38,6 +38,9 @@ function App() {
     AOS.init({
       duration : 2000
     });
+
+    document.title = 'Pace Timesheet | Home'
+
   }, []);
 
 

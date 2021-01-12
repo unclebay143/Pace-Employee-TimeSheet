@@ -8,12 +8,17 @@ export const LOGOUT = 'LOGOUT';
 export const SYNC_CURRENT_USER = 'SYNC_CURRENT_USER';
 
 
+// TOUR
+export const END_TOUR = 'END_TOUR';
+
+
 // Error Messages
 export const SET_MESSAGE = "SET_MESSAGE";
 export const CLEAR_MESSAGE = "CLEAR_MESSAGE";
 
-// Department 
 
+
+// Department 
 export const OPEN_NEW_FORM = 'OPEN_NEW_FORM';
 export const CLOSE_NEW_FORM = 'CLOSE_NEW_FORM';
 export const ADD_DEPARTMENT = 'ADD_DEPARTMENT';
@@ -25,8 +30,10 @@ export const DEPARTMENT_ERROR = 'DEPARTMENT_ERROR';
 
 
 // Employee
-export const GET_EMPLOYEES = 'GET_EMPLOYEES';
+export const FETCH_COMPANY_EMPLOYEES = 'GET_EMPLOYEES';
 export const ADD_NEW_EMPLOYEE = 'ADD_NEW_EMPLOYEE';
+
+
 
 //  Timer
 export const GET_TIMER_REPORT = 'GET_TIMER_REPORT';

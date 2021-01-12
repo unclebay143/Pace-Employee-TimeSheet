@@ -110,7 +110,7 @@ const TimerContainer=()=>{
     
     return(
         <>
-            <li className="nav-item">
+            <li className="nav-item" h='4' data-tut='reactour__timer'>
                 <div id="searchForm" className="ml-auto d-non d-lg-block">
                     <div className="position-relative mb-0">
                         <div id="right-i">

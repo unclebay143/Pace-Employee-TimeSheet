@@ -16,6 +16,7 @@ import { HomeButton } from '../layouts/HomeButton'
 
 // Authentication
 import { register } from '../../actions/auth/authAction';
+import { ToastContainer } from 'react-toastify';
 
 
 const Signup = () =>{
@@ -33,7 +34,8 @@ const Signup = () =>{
     }
     return(
         <div className="container">
-            <main className="container d-flex justify-content-center align-items-center mt-5">
+            <ToastContainer />
+            <main className="container d-flex justify-content-center align-items-center mt-3 mt-md-5">
                 <div className="row">
                     <div className="form-con col-lg-5 mb-5">
                         <style>
@@ -77,7 +79,7 @@ const Signup = () =>{
                                                     id="companyName"
                                                     type="text"
                                                     label="Workspace Name"
-                                                    labelClassName="mt-3"
+                                                    labelClassName="mt-md-3"
                                                     placeholder="Bascom Limited"
                                                     className={`form-control lead p-2 ${
                                                         touched.companyName && errors.companyName ? "is-invalid" : ""
@@ -114,7 +116,7 @@ const Signup = () =>{
                                             <style>
                                                 {
                                                     `
-                                                        @media(max-width:700px){
+                                                        @media(max-width:800px){
                                                             .passwords .password-wrapper,
                                                             .passwords .confirmPassword-wrapper{
                                                                 width: 100% !important;
@@ -143,14 +145,15 @@ const Signup = () =>{
                                                     className="invalid-feedback p-0"
                                                 />
                                             </div>
-                                                   
+                                            
+                                            {/* confirm password */}
                                             <div className="form-group confirmPassword-wrapper" style={{ width: '50%' }} >
                                                 <TextInput 
                                                     name="confirmPassword"
                                                     id="confirmPassword"
                                                     type="password"
                                                     label="Confirm Password"
-                                                    labelClassName="mt-3"
+                                                    labelClassName="mt-md-3"
                                                     className={`form-control lead p-2 ${
                                                         touched.confirmPassword && errors.confirmPassword ? "is-invalid" : ""
                                                     }`}

@@ -10,7 +10,7 @@ export const NewDepartmentForm = () => {
     const [companyID, setCompanyID] = useState('');
 
     // get current user from localStorage, getting it from the redux state makes the code break(takes a while to sycCurrent user)
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'))
+    const currentUser = JSON.parse(localStorage.getItem('currentUser')) || []
     
     useEffect(() => {
         setCompanyID(currentUser.companyID)
@@ -60,8 +60,8 @@ export const NewDepartmentForm = () => {
                                     <li className="list-group-item d-flex justify-content-center">
                                         <Button 
                                             type="submit"
-                                            label="Creates"
-                                            className="btn pace-btn-accent btn-sm"
+                                            label="Create"
+                                            className="btn pace-btn-accent"
                                         />
                                     </li>
                                     </Form>
