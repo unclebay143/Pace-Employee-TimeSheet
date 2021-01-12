@@ -3,7 +3,7 @@ import { ASSIGN_TASK, FETCH_TASKS_PENDING, FETCH_TASKS_SUCCESS, DELETE_TASK, UPD
 const initialState = {
   isFetching: false,
   tasks: [],
-  assignTask: []
+  tasks: []
 }
 
 const taskReducer = (state=initialState, action) => {
@@ -11,7 +11,7 @@ const taskReducer = (state=initialState, action) => {
         case ASSIGN_TASK:
             return {
                 ...state,
-                assignTask: [action.payload, ...state.assignTask]
+                tasks: [action.payload, ...state.tasks]
             }
 
         case FETCH_TASKS_PENDING:

@@ -17,6 +17,7 @@ import Button from '../../layouts/Button';
 
 const DraftTask = () => {
   const dispatch = useDispatch();
+
     return (
       <div>
         <section className="">
@@ -86,7 +87,7 @@ const DraftTask = () => {
                                 className = "form-control lead"                                
                                 onChange={handleChange}
                             />
-                          </div>
+                          </div>                            
                           <div className="form-group">
                             <TextInput 
                                 label = "Subject:"
@@ -98,31 +99,6 @@ const DraftTask = () => {
                                 onChange={handleChange}
                             />
                           </div>
-                          
-                          {/* <div className="form-group row">
-                            <div className="col-lg-6">
-                              <Field component="datalist" name="role"  onChange={handleChange} className="form-control">
-                                            <option selected>Choose...</option>
-                                            {availableRole}
-                              </Field>
-                              <DataList
-                               label = "assignedID"
-                               name = "assignedID"
-                               id = "assignedID"
-                               type = "text"
-                               value={values.assignedID}
-                               className = "form-control lead"
-                               
-                               placeholder = "assignedID"
-                               onChange={handleChange}
-                              > 
-                              <option selected>Choose...</option>
-                                            {availableRole}
-
-                              </DataList>
-                            </div>
-                          </div> */}
-                            
                           <div className="form-group">
                               <TextArea 
                                 label = "Task description"
@@ -142,7 +118,7 @@ const DraftTask = () => {
                                   label = "Attachment"
                                   name = "documentsAttached"
                                   id = "documentsAttached"
-                                  type = "documentsAttached"
+                                  type = "file"
                                   value={values.documentsAttached}
                                   className = "lead"
                                   onChange={handleChange}

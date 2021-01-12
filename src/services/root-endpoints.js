@@ -18,10 +18,16 @@ const TODO_API_URL = 'http://fakerestapi.azurewebsites.net/api/v1/Activities';
 const ASSIGN_TASK_API_URL = 'https://pacetimesheet.herokuapp.com/api/tasks/companyName/newTask';
 
 // const TASK_API_URL = 'https://api.fake.rest/6c02d615-a40c-47ce-89c1-a4cf5a547ba0/task'
-const TASK_API_URL = 'http://fakerestapi.azurewebsites.net/api/v1/Activities';
+const TASK_API_URL = 'https://pacetimesheet.herokuapp.com/api/tasks/companyName';
 
 // ACCEPTED TASK API
 const ACCEPTED_TASK_API_URL = 'http://fakerestapi.azurewebsites.net/api/v1/Activities';
+
+
+// ASSIGNED TASK API
+const ASSIGNED_TASK_API_URL = 'https://pacetimesheet.herokuapp.com/api/tasks/companyName/assignedTasks';
+
+
 
 
 
@@ -71,5 +77,6 @@ export {
 
     ASSIGN_TASK_API_URL,
     TASK_API_URL,
-    ACCEPTED_TASK_API_URL
+    ACCEPTED_TASK_API_URL,
+    ASSIGNED_TASK_API_URL
 }

@@ -19,16 +19,16 @@ import { syncCurrentUser } from '../../actions/user/userAction';
 
 // Development fake user credentials
 // this is should be used when the server is down and you need to login to the dashboard
-const data = {
-    firstName: 'Ayodele Samuel',
-    lastName: 'Dummy',
-    staffID: 123,
-    companyID: 1928,
-    roleID: 5
-}
-const token = 'wkknohsiosdoiwoihh.wohoifhfiohiohfiuhui.iuwiuhiuhfuhiuwhg'
-localStorage.setItem('token', JSON.stringify(token))
-localStorage.setItem('currentUser', JSON.stringify(data) )
+// const data = {
+//     firstName: 'Ayodele Samuel',
+//     lastName: 'Dummy',
+//     staffID: 123,
+//     companyID: 1928,
+//     roleID: 5
+// }
+// const token = 'wkknohsiosdoiwoihh.wohoifhfiohiohfiuhui.iuwiuhiuhfuhiuwhg'
+// localStorage.setItem('token', JSON.stringify(token))
+// localStorage.setItem('currentUser', JSON.stringify(data) )
 //
 
 
