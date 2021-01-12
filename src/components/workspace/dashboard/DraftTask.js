@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {Formik, Form, Field,  ErrorMessage} from 'formik';
 
@@ -17,6 +17,13 @@ import Button from '../../layouts/Button';
 
 const DraftTask = () => {
   const dispatch = useDispatch();
+  const [renderEmployeeList, setRenderEmployeeList] = useState()
+  const { employees } = useSelector(state => state.employees)
+  const employeesDropDown = employees.map(({staffID, firstName, lastName}, index)=><option value={staffID} key={index}>{firstName } {lastName}</option>)
+  
+  useEffect(() => {
+    setRenderEmployeeList(employeesDropDown)
+  }, [])
 
     return (
       <div>
@@ -44,8 +51,6 @@ const DraftTask = () => {
                           dispatch(assignTask(values))
                           .then((response)=>{
                             console.log(response)
-                            action.setSubmitting(true)
-                            action.setSubmitting(false)
                             action.resetForm()
                         })
                         .catch((error)=>{
@@ -58,12 +63,18 @@ const DraftTask = () => {
                     >
                       {({touched, errors, values, handleSubmit, handleChange, isSubmitting, resetForm}) => (
                         <Form className="mt-0"  onSubmit={handleSubmit}>
+                          {/* <pre>{ JSON.stringify(values, null, 2) }</pre> */}
                           <div className="compose-btn-wrapper">
                             <Button 
                               type="submit"
-                              label=" Send"
-                              icon="fa fa-check"
                               className="btn btn-theme btn-sm"
+                              disabled={isSubmitting}
+                              label={isSubmitting ? 
+                                (
+                                  <span><i className="fa fa-spinner fa-spin"></i> Sending</span>
+                                ) : (
+                                  <span><i className="fa fa-check"></i> Send</span>
+                              )}
                             />                                   
                             <Button 
                               type="submit"
@@ -82,12 +93,17 @@ const DraftTask = () => {
                             <TextInput 
                                 label = "To:"
                                 name = "assignedID"
-                                id = "assignedID"
+                                id = "assignedId" // id must not share same name with list
+                                list = "assignedID"
                                 type = "text"
                                 value={values.assignedID}
                                 className = "form-control lead"                                
                                 onChange={handleChange}
                             />
+
+                            <datalist id="assignedID">
+                                { employeesDropDown }
+                            </datalist>
                           </div>                            
                           <div className="form-group">
                             <TextInput 
@@ -140,9 +156,9 @@ const DraftTask = () => {
                           <div className="compose-btn mt-4">
                             <Button 
                               type="submit"
-                              label=" Send"
-                              icon="fa fa-check"
                               className="btn btn-theme btn-sm"
+                              disabled={isSubmitting}
+                              label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Sending</span>) : " Send"}
                             />         
                             <Button 
                               type="submit"

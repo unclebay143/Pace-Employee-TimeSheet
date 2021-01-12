@@ -2,7 +2,7 @@ import { ASSIGN_TASK, FETCH_TASKS_PENDING, FETCH_TASKS_SUCCESS, DELETE_TASK, UPD
 
 const initialState = {
   isFetching: false,
-  tasks: [{}],
+  tasks: [],
 }
 
 const taskReducer = (state=initialState, action) => {
