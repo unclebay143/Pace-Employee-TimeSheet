@@ -37,8 +37,8 @@ export const signUpSchema = Yup.object().shape({
 
 // ContactUs form input validation
 export const contactUsSchema = Yup.object().shape({
-    name: Yup.string().required('Name is required'),
-    email: Yup.string().email('Invalid email format').required('Email is required'),
+    contactName: Yup.string().required('Name is required'),
+    contactEmail: Yup.string().email('Invalid email format').required('Email is required'),
     message: Yup.string().required('Message cannot be blank'),
 });
 
