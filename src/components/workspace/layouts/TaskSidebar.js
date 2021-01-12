@@ -1,6 +1,5 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
-import 'bootstrap-icons';
 
 import Button from '../../layouts/Button';
 const TaskSidebar =() => {
@@ -13,7 +12,7 @@ const TaskSidebar =() => {
     <Button
       type="submit"
       label=" Draft Task"
-      icon="o-home-1"
+      icon="fa fa-pen"
       className="btn pace-btn-primary mx-3"  
     />
    </NavLink> 
@@ -21,7 +20,12 @@ const TaskSidebar =() => {
    <ul className="sidebar-menu list-unstyled">
      <li className="">
        <NavLink exact to="/dashboard/task/all-tasks" className="sidebar-link text-muted" activeClassName="active">
-         <i className="fa fa-inbox mr-3 text-gray"/><span>Inbox</span>
+         <i className="fa fa-download mr-3 text-gray"/><span>Inbox</span>
+       </NavLink>
+     </li>
+     <li className="">
+       <NavLink exact to="/dashboard/task/assigned-tasks" className="sidebar-link text-muted" activeClassName="active">
+         <i className="fa fa-location-arrow mr-3 text-gray"/><span>Assigned</span>
        </NavLink>
      </li>
      <li className="">
@@ -31,12 +35,12 @@ const TaskSidebar =() => {
      </li>
      <li className="sidebar-list-item">
        <NavLink exact to="/dashboard" className="sidebar-link text-muted" activeClassName="active">
-         <i className="bi bi-inbox mr-3 text-gray"/><span>Pending</span>
+         <i className="fa fa-reply-all mr-3 text-gray"/><span>Pending</span>
        </NavLink>
      </li>
      <li className="sidebar-list-item">
        <NavLink exact to="/dashboard/task/" className="sidebar-link text-muted" activeClassName="active">
-         <i className="o-home-1 mr-3 text-gray"/><span>Drafted</span>
+         <i className="fa fa-inbox mr-3 text-gray"/><span>Drafted</span>
        </NavLink>
      </li>
    </ul>
