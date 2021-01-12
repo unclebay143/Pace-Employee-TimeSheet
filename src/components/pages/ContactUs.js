@@ -1,6 +1,6 @@
 // React
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 // Formik
 import { Formik, Form, ErrorMessage } from 'formik';
@@ -11,8 +11,15 @@ import Button from '../layouts/Button';
 import { TextInput, TextArea } from '../layouts/FormInput';
 import { CONTACT_PACETEAM_API } from '../../services/root-endpoints';
 import axios from 'axios';
+import { somethingWentWrongLogger } from '../../toaster';
+import { ToastContainer } from 'react-toastify';
 
 class ContactUs extends Component {
+  redirectToThanks = () =>{
+    const { history } = this.props;
+    history.push('/thanks')
+
+  }
 
   componentDidMount() {
     document.title = 'Contact us'
@@ -20,12 +27,12 @@ class ContactUs extends Component {
   render() {
     return (
       <div className="container">
+        <ToastContainer />
         <main className="container d-flex justify-content-center align-items-center mt-5">
           <div className="row">
             <div className="form-con col-lg-12 mb-5">
               {/* link to go back to the home page */}
               <Link to="/">
-                {/* <i className="fas fa-long-arrow-alt-left" /> */}
                 <i className="fas fa-home" />
               </Link>
               <div className="form-heading mt-2">
@@ -42,10 +49,12 @@ class ContactUs extends Component {
                   axios.post(CONTACT_PACETEAM_API, values)
                   .then((response)=>{
                     console.log(response)
+                    this.redirectToThanks()
                   })
                   .catch((error)=>{
-                    action.setSubmitting(false)
                     console.log(error)
+                    action.setSubmitting(false)
+                    somethingWentWrongLogger()
                   })
                 }}
               > 
@@ -118,7 +127,7 @@ class ContactUs extends Component {
                       className = "btn btn-primary"
                       id = "contact-us"
                       disabled={isSubmitting}
-                      label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Loading...</span>) : "Contact Us"}
+                      label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Sending...</span>) : "Contact Us"}
                     />
                   </Form>
                 )}
@@ -132,4 +141,4 @@ class ContactUs extends Component {
   }
 }
 
-export default ContactUs;
+export default withRouter(ContactUs);

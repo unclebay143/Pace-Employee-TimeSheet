@@ -14,23 +14,23 @@ import AOS from 'aos';
 import About from './pages/About';
 import Home from './pages/Home';
 import PageNotFound from './pages/404';
-import { syncCurrentUser } from '../actions/user/userAction';
+// import { syncCurrentUser } from '../actions/user/userAction';
 
 
 function App() {
   const histroy = useHistory()
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
 
-  const  currentUser  = JSON.parse(localStorage.getItem('currentUser'));
+  // const  currentUser  = JSON.parse(localStorage.getItem('currentUser'));
 
   // if( currentUser === null || currentUser === undefined ){
   //     // history.push('./login');
   // }
   
-  if ( currentUser ){
-    console.log(currentUser)
-      dispatch(syncCurrentUser( currentUser.staffID ))
-  }
+  // if ( currentUser ){
+  //   console.log(currentUser)
+  //     dispatch(syncCurrentUser( currentUser.staffID ))
+  // }
 
   useEffect(() => {
 

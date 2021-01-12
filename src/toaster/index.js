@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 // Common
 const netWorkError  =  () => toast.warning('Network Error')
 const sessionExpired = () =>  toast.warning('Session Expired')
-const somethingWentWrongLogger = () =>  toast.warning('Something went wrong')
+const somethingWentWrongLogger = () =>  toast.warning('Something went wrong, Please try again')
 
 
 

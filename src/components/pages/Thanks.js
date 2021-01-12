@@ -1,3 +1,7 @@
+// React
+import { Link } from "react-router-dom";
+
+// Layouts
 import Button from "../../components/layouts/Button";
 import messageSent from "../../components/pages/pages-images/message_sent.svg";
 
@@ -16,16 +20,20 @@ export default function Thanks(){
                                     Follow us on twitter &nbsp;
                                     <i className="fab fa-twitter text-blue"></i>
                                 </h5>
-                                <Button
-                                    label=" Go Home"
-                                    icon="fa fa-arrow-left"
-                                    className="btn pace-btn-accent"
-                                />
-                                <Button
-                                    label=" Twitter"
-                                    icon="fab fa-twitter"
-                                    className="btn btn-primary ml-3"
-                                />
+                                <Link to="/">
+                                    <Button
+                                        label=" Go Home"
+                                        icon="fa fa-arrow-left"
+                                        className="btn pace-btn-accent"
+                                    />
+                                </Link>
+                                <a href="https://twitter.com/tiidelab" target="_blank">
+                                    <Button
+                                        label=" Twitter"
+                                        icon="fab fa-twitter"
+                                        className="btn btn-primary ml-3"
+                                    />
+                                </a>
                             </section>
                         </aside>
                         <aside className="col-lg-6 col-9 mt-5">
