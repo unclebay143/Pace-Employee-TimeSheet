@@ -11,7 +11,8 @@ import Loader from '../../../loader/Loader';
 
 const AllTasks = () => {
 
-  const { tasks, isFetching, tasks: { data } } = useSelector(state => state.tasks)
+  const { tasks, isFetching, tasks: { data } } = useSelector(state => state.tasks.tasks)
+  console.log(data)
   const dispatch = useDispatch()
   const history = useHistory();
   

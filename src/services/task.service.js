@@ -9,11 +9,11 @@ import { authHeader, currentUserStaffID } from './auth-header';
 import { ASSIGN_TASK_API_URL, TASK_API_URL, ACCEPTED_TASK_API_URL,  ASSIGNED_TASK_API_URL } from "./root-endpoints";
 
 const assignTask = (newTask) => {
-    return axios.post(`${ASSIGN_TASK_API_URL}/${currentUserStaffID.toString()}`, {...newTask, staffID : currentUserStaffID }, { headers: authHeader } );
+    return axios.post( ASSIGN_TASK_API_URL + currentUserStaffID, {...newTask, staffID : currentUserStaffID }, { headers: authHeader } );
 }
 
 const fetchTasks = () =>{
-    return axios.get( `${ TASK_API_URL }/${currentUserStaffID.toString()}`, { headers: authHeader } )
+    return axios.get( TASK_API_URL + currentUserStaffID, { headers: authHeader } )
 }
 
 const deleteTask = (id) =>{
@@ -29,7 +29,7 @@ const fetchAcceptedTasks = (newTask) =>{
 }
 
 const fetchAssignedTasks = (newTask) =>{
-    return axios.get( `${ ASSIGNED_TASK_API_URL }/${currentUserStaffID.toString()}`, { headers: authHeader })
+    return axios.get( ASSIGNED_TASK_API_URL + currentUserStaffID, { headers: authHeader })
 }
 
 const deleteAcceptedTask = (id) =>{
