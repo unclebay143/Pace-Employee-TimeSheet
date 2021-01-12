@@ -1,5 +1,6 @@
 import { FETCH_COMPANY_EMPLOYEES } from '../types';
 import EmployeeService from '../../services/employee/employee.service';
+import { somethingWentWrongLogger } from '../../toaster';
 
 const addNewEmployee = (newEmployee) => ( dispatch ) =>{
     return EmployeeService.addNewEmployeeToServer(newEmployee)
@@ -10,6 +11,7 @@ const addNewEmployee = (newEmployee) => ( dispatch ) =>{
 const getCompanyEmployees = () => (dispatch) =>{
     return EmployeeService.fetchCompanyEmployees()
     .then((response)=>{
+        console.log(response)
         // Get company Employees
         const companyEmployees = response.data.data
         dispatch({
@@ -17,7 +19,10 @@ const getCompanyEmployees = () => (dispatch) =>{
             payload: companyEmployees
         })
     })
-    .catch((response)=>console.log(response))
+    .catch((response)=>{
+        // Alert user about network failure
+        somethingWentWrongLogger()
+    })
 }
 
 

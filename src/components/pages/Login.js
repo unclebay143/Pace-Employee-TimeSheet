@@ -17,7 +17,8 @@ import { HomeButton } from '../layouts/HomeButton';
 import { login } from '../../actions/auth/authAction';
 import { syncCurrentUser } from '../../actions/user/userAction';
 
-// Development fake user credentials
+/* Development fake user credentials */
+
 // this is should be used when the server is down and you need to login to the dashboard
 // const data = {
 //     firstName: 'Ayodele Samuel',

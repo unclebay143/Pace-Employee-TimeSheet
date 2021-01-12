@@ -8,6 +8,10 @@ export const LOGOUT = 'LOGOUT';
 export const SYNC_CURRENT_USER = 'SYNC_CURRENT_USER';
 
 
+// TOUR
+export const END_TOUR = 'END_TOUR';
+
+
 // Error Messages
 export const SET_MESSAGE = "SET_MESSAGE";
 export const CLEAR_MESSAGE = "CLEAR_MESSAGE";

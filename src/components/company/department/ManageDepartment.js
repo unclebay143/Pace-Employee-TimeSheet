@@ -19,7 +19,6 @@ const ManageDepartment = () => {
     document.title = 'Manage Department'
     setShouldFormOpen(isFormOpen)
   }, [isFormOpen])
-
     if(!departments){
       return(
           <div className="d-flex justify-content-center align-items-center mt-2" style={{height:'100vh', background: '#cccccc'}}>
@@ -85,7 +84,8 @@ const ManageDepartment = () => {
                                   </thead>
                                   <tbody>
                                     {
-                                      departments.map((info,index)=>{
+                                      // Sort the department from bottom to head (reversing)- response from the server is using push
+                                      [...departments].reverse().map((info,index)=>{
                                         return(
                                           <DepartmentRowLayout 
                                             serialNumber={index + 1}
