@@ -65,7 +65,7 @@ const Dashboard = () =>{
         // Fetch company department
         dispatch(getDepartment())
 
-        // Fetc Company Employess
+        // Fetch Company Employess
         dispatch(getCompanyEmployees())
 
 
