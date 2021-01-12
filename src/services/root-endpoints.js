@@ -1,5 +1,8 @@
 //  This file contains all the root endpoint for Api in this application
 
+// Contact us 
+
+export const CONTACT_PACETEAM_API = 'https://pacetimesheet.herokuapp.com/api/contact-us/contact/'
 
 
 // Handles Authentication, /signUp, /login
@@ -54,7 +57,8 @@ const FETCH_EMPLOYEES_LIST_API = 'https://pacetimesheet.herokuapp.com/api/users/
 // GET COMPANY PROFILE
 export const FETCH_COMPANY_PROFILE_API = 'https://pacetimesheet.herokuapp.com/api/users/companyName/companyProfile/';
 
-
+// UPDATE COMPANY PROFILE
+export const UPDATE_COMPANY_PROFILE_API = 'https://pacetimesheet.herokuapp.com/api/users/companyName/companyProfile/updateProfile/';
 
 export {
     AUTH_API_URL,

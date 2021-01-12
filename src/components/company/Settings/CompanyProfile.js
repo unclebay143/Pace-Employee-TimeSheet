@@ -3,11 +3,20 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom.min';
-import { authHeader, currentUserCompanyID } from '../../../services/auth-header';
-import { FETCH_COMPANY_PROFILE_API } from '../../../services/root-endpoints';
+
+
+// Components
 import Button from '../../layouts/Button';
 import Loader from '../../loader/Loader';
-import unclebay from '../../pages/pages-images/ayodele_samuel_adebayo.jpg';
+
+// Auth Header
+import { authHeader, currentUserCompanyID } from '../../../services/auth-header';
+
+//  Actions
+import { FETCH_COMPANY_PROFILE_API } from '../../../services/root-endpoints';
+
+// Helper function
+import { formatDate } from '../../../_helper/dateFormatter';
 
 
 
@@ -38,11 +47,12 @@ const Profile = () =>{
     useEffect(() => {
         const fetchCompanyProfile = async () =>{
             axios.get(FETCH_COMPANY_PROFILE_API + currentUserCompanyID, { headers: authHeader })
-            .then((response)=>console.log(response))
+            .then((response)=>setCompanyProfile(response.data.data[0]))
             .catch((error)=>console.log(error))
         }
         fetchCompanyProfile()
     }, [])
+    console.log(companyProfile);
     if(companyProfile === undefined){
         return(
             <>
@@ -82,12 +92,13 @@ const Profile = () =>{
                         <div className="col-md-12 ml-2">
                             <div className="card mb-3">
                                 <div className="card-body">
-                                    <ProfileRow title="Company Name" label={ ` ${companyProfile.name} ${companyProfile.username}` } />
-                                    <ProfileRow title="Company Type" label="IT" />
-                                    <ProfileRow title="Company Adjective" label={companyProfile.phone} />
-                                    <ProfileRow title="Currency" label="Naira(#)"/>
+                                    <ProfileRow title="Company Name" label= {companyProfile.companyName} />
                                     <ProfileRow title="Email" label={companyProfile.email} />
-                                    <Link to={`/dashboard/company/profile/update/${1}`}>
+                                    <ProfileRow title="Currency" label={companyProfile.currency}/>
+                                    <ProfileRow title="Company Type" label={companyProfile.companyType} />
+                                    <ProfileRow title="Company Adjective" label={companyProfile.companyAdjective} />
+                                    <ProfileRow title="Created Date" label={formatDate(companyProfile.dateCreated)} />
+                                    <Link to={`/dashboard/company/profile/update/${companyProfile.companyID}`}>
                                         <Button className="btn btn-primary mr-2" label="Edit"/>
                                     </Link>
                                 </div>
