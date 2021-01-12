@@ -6,14 +6,15 @@ import paginationFactory from 'react-bootstrap-table2-paginator';
 import filterFactory, { selectFilter } from 'react-bootstrap-table2-filter';
 import { getTasks } from '../../../../actions/task/taskAction';
 import { useDispatch, useSelector } from 'react-redux';
+// Loader
+import Loader from '../../../loader/Loader';
 
 const AllTasks = () => {
 
-  const { tasks, tasks: { data } } = useSelector(state => state.tasks)
+  const { tasks, isFetching, tasks: { data } } = useSelector(state => state.tasks)
   const dispatch = useDispatch()
   const history = useHistory();
-  // const dispatch = useDispatch(function)
-// console.log(tasks);
+  
   useEffect(() => {
     dispatch(getTasks())
   }, [])
@@ -34,12 +35,20 @@ const AllTasks = () => {
         history.push(`/dashboard/task/view-task/${row.id}`)
     }
   };
+  // If the task list is been fetched from the server or not mounted on the ui, show the loader 
+  // if(isFetching){
+  //   return(
+  //       <>
+  //           <Loader />
+  //       </>
+  //   )
+  // }
   return (
     <div >
       
       <Table
         keyField='id'
-        title="Inbox (11)"
+        title="Inbox"
         data={ tasks }
         columns={taskHeader}
         bordered= { false }
@@ -59,7 +68,7 @@ const AllTasks = () => {
 const taskHeader = [
      
   {
-    dataField: 'title',
+    dataField: 'taskName',
     text: 'Title',
     headerAttrs: {
       hidden:true
@@ -73,15 +82,11 @@ const taskHeader = [
     }
   },
   {
-    dataField: 'completed',
-    text: 'Status',
+    dataField: 'documentsAttached',
+    text: 'Attachment',
     headerAttrs: {
       hidden:true
-    },
-    // formatter: cell => selectOptionsArr.filter(opt => opt.value === cell)[0].label || '',
-    //   filter: selectFilter({
-    //     options: selectOptionsArr
-    //   })
+    }
   },
 ];
 
