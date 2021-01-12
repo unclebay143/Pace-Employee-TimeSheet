@@ -9,9 +9,9 @@ import { useDispatch, useSelector } from 'react-redux';
 // Loader
 import Loader from '../../../loader/Loader';
 
-const AllTasks = () => {
+const AssignedTasks = () => {
 
-  const { tasks, isFetching, tasks: { data } } = useSelector(state => state.tasks)
+  const {assignedTasks, isFetching,assignedTasks: { data } } = useSelector(state => state.assignedTasks)
   const dispatch = useDispatch()
   const history = useHistory();
   
@@ -47,7 +47,7 @@ const AllTasks = () => {
       <Table
         keyField='id'
         title="Inbox"
-        data={ tasks }
+        data={assignedTasks }
         columns={taskHeader}
         bordered= { false }
         // selectRow = {selectRow}
@@ -88,4 +88,4 @@ const taskHeader = [
   },
 ];
 
-export default AllTasks;
+export default AssignedTasks;
