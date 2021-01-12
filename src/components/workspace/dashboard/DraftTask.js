@@ -13,6 +13,7 @@ import { connect } from 'react-redux';
 
 
 import Button from '../../layouts/Button';
+import { taskNotSent, taskSent } from '../../../toaster';
 
 
 const DraftTask = () => {
@@ -50,14 +51,13 @@ const DraftTask = () => {
                         onSubmit={( values, action) =>{
                           dispatch(assignTask(values))
                           .then((response)=>{
-                            console.log(response)
+                            taskSent()
                             action.resetForm()
-                        })
-                        .catch((error)=>{
+                          })
+                          .catch((error)=>{
+                            taskNotSent()
                             action.setSubmitting(false)
-                        })
-                          console.log(values)
-                          
+                          })
                         }
                       }
                     >
