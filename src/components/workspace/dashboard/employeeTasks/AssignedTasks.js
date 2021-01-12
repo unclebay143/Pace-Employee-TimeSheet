@@ -46,7 +46,7 @@ const AssignedTasks = () => {
       
       <Table
         keyField='id'
-        title="Inbox"
+        title = "Assigned Tasks"
         data={assignedTasks }
         columns={taskHeader}
         bordered= { false }
