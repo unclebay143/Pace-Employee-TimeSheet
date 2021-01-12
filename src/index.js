@@ -66,6 +66,7 @@ import ForgotPassword from './components/pages/ForgotPassword';
 import Confirmation from './components/pages/Confirmation';
 import ResetPassword from './components/pages/ResetPassword';
 import Dashboard from './components/workspace/dashboard/Dashboard';
+import Thanks from './components/pages/Thanks';
 
 
 
@@ -78,6 +79,7 @@ ReactDOM.render(
           <Route exact path="/contact" component = {ContactUs} />
           <Route exact path="/ResetPassword" component = {ResetPassword} />
           <Route exact path="/confirmation" component = {Confirmation} />
+          <Route exact path="/thanks" component = {Thanks} />
           <Route exact path="/forgot" component = {ForgotPassword} />
           <Route exact path="/signup" component = {Signup} />
           <Route exact path="/login" component = {Login} />
