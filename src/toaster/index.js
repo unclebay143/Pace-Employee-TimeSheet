@@ -34,6 +34,10 @@ const profileUpdateFailLogger = () => toast.warning('Profile Update Failed')
 const invalidTodoTitle  =  () => toast.warning('Todo title is required')
 
 
+// Tasks
+export const taskNotSent = () => toast.warning('Task Not Sent Try again')
+export const taskSent = () => toast.info('Task Sent Successfully')
+
 
 
 
