@@ -25,6 +25,11 @@ header.container{
   padding: 0px !important;
 }
 
+.home-intro .home-intro-wrapper{
+  padding-right: -15px !important;
+  padding-left: -15px !important;
+}
+
 .home-intro-text{
   margin-top: 50px;
   color: #FF6584;
