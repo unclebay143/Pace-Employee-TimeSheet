@@ -11,7 +11,7 @@ const IndexArea = () => {
     return(
       <>
         <section className="container row d-flex flex-column-reverse home-intro flex-lg-row">
-          <div className="col d-flex flex-row">
+          <div className="col d-flex flex-row home-intro-wrapper">
             <section className="home-intro-text">
               {/* type-writing effect */}
               <h2>Track Your Time At Your Own  
