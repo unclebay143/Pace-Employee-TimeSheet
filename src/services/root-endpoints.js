@@ -8,6 +8,7 @@ export const CONTACT_PACETEAM_API = 'https://pacetimesheet.herokuapp.com/api/con
 // Handles Authentication, /signUp, /login
 const AUTH_API_URL = 'https://pacetimesheet.herokuapp.com/api/users/';
 
+
 // Update user personal profile (/:staffID)
 const USER_PROFILE_URL = 'https://pacetimesheet.herokuapp.com/api/users/companyName/userProfile/';
 
