@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 
 import Table from '../../layouts/Table';
@@ -10,14 +10,23 @@ import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../../../loader/Loader';
 
 const AssignedTasks = () => {
-
-  const {assignedTasks, isFetching,assignedTasks: { data } } = useSelector(state => state.assignedTasks)
-  const dispatch = useDispatch()
+  const {assignedTasks, isFetching } = useSelector(state => state.assignedTasks)
+  // const { employees } = useSelector(state => state.employees)
+  const [taskState, setTaskState] = useState()
   const history = useHistory();
-  
+
   useEffect(() => {
-    dispatch(getAssignedTasks())
+    setTaskState(assignedTasks)
   }, [])
+
+
+  // const {assignedTasks, isFetching,assignedTasks: { data } } = useSelector(state => state.assignedTasks)
+  // const dispatch = useDispatch()
+  // const history = useHistory();
+
+  // useEffect(() => {
+  //   dispatch(getAssignedTasks())
+  // }, [])
 
 
   // styles each row
@@ -27,13 +36,13 @@ const AssignedTasks = () => {
 
   // routes to full task details page on double click
   const taskDetails =  {
-    onClick: (e, row, rowIndex) => 
-    { 
+    onClick: (e, row, rowIndex) =>
+    {
         history.push(`/dashboard/task/view-task/${row.id}`)
     }
   };
-  
-  // If the task list is been fetched from the server or not mounted on the ui, show the loader 
+
+  // If the task list is been fetched from the server or not mounted on the ui, show the loader
   // if(isFetching){
   //   return(
   //       <>
@@ -43,7 +52,7 @@ const AssignedTasks = () => {
   // }
   return (
     <div >
-      
+
       <Table
         keyField='id'
         title = "Assigned Tasks"
@@ -64,7 +73,7 @@ const AssignedTasks = () => {
 }
 
 const taskHeader = [
-     
+
   {
     dataField: 'taskName',
     text: 'Title',
