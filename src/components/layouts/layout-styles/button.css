@@ -1,7 +1,7 @@
 .pace-btn{
     padding: .5625rem 1rem !important;
     font-size: 1.0625rem !important;
-    border: none;
+    /* border: none; */
 }
 
 .pace-btn-primary{

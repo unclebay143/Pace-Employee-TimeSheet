@@ -26,8 +26,7 @@ header.container{
 }
 
 .home-intro .home-intro-wrapper{
-  padding-right: -15px !important;
-  padding-left: -15px !important;
+  padding: unset;
 }
 
 .home-intro-text{
