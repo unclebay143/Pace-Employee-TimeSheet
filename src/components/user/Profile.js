@@ -105,7 +105,7 @@ const Profile = () =>{
         }
             
         fetchCurrentUserProfile()
-    }, [params.id])
+    }, [])
 
     if(!userProfile){
         return(
