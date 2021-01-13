@@ -5,6 +5,11 @@ import {HashRouter as Router, Route, Switch } from "react-router-dom";
 
 //  >>>>>>>> APPLICATION STYLES  <<<<<<<<<<
 
+// BOOTSTRAP
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.js';
+
 // UTILITIES
 import './components/pages/pages-styles/util.css';
 import './components/pages/pages-styles/form.css';
@@ -19,12 +24,6 @@ import './components/pages/pages-styles/forgotpassword.css';
 import './components/pages/pages-styles/confirmation.css';
 import './components/pages/pages-styles/404.css';
 import './components/pages/pages-styles/about.css';
-
-
-// BOOTSTRAP
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.js';
 
 // AOS
 import 'react-toastify/dist/ReactToastify.css';

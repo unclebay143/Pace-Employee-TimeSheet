@@ -25,8 +25,6 @@ const Navbar = () =>{
     useEffect(() => {
         
         const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        
-
         if(currentUser){
             const { firstName, lastName, staffID, roleID } = currentUser;
             setFullName(` ${ firstName } ${ lastName } `)
@@ -37,7 +35,7 @@ const Navbar = () =>{
             history.push('/');
         }
 
-    },[])
+    },[currentUser])
     
     return(
         <>
