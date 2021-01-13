@@ -3,12 +3,20 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
+
+// Actions
 import { syncCurrentUser } from '../../actions/user/userAction';
+
+// Service helper
 import { authHeader } from '../../services/auth-header';
 import { USER_PROFILE_URL } from '../../services/root-endpoints';
+
+//Layout
 import Button from '../layouts/Button';
 import unclebay from '../pages/pages-images/ayodele_samuel_adebayo.jpg';
 
+// Toaster
+import { sessionExpired } from '../../toaster'
 
 
 const ProfileRow = (props) => {
@@ -35,7 +43,6 @@ const Profile = () =>{
     const [ userProfile, setUserProfile ] = useState({});
     const [ staffID, setStaffID ] = useState('');
 
-    
     useEffect(() => {
         // Get staffID from the urls 
         const staffID = params.id;
@@ -48,26 +55,30 @@ const Profile = () =>{
 
             // Get user profile from the server
             const response = await axios.get(USER_PROFILE_URL + staffID, { headers: authHeader })
-            
-                
             // Get current user from local storage
             const checkUserInLocalStorage = JSON.parse(localStorage.getItem('currentUser'));
             
-            //if there is a user in the local storage
-            if(checkUserInLocalStorage && response){
-                
-                // Synchronize the local storage with the server
-                localStorage.setItem('currentUser', response)
 
+            // Check if the response data is an object (error occurs where data is Token expired)
+            if(response.data === 'invalid token or token expired'){
+                syncCurrentUser(checkUserInLocalStorage.staffID)
+            }else{
+                //if there is a user in the local storage
+                if(checkUserInLocalStorage && response){
+                    
+                        // Synchronize the local storage with the server
+                // localStorage.setItem('currentUser', JSON.stringify(response))
+            
                 // synchronize with the redux store
                 syncCurrentUser(params.id)
+                setUserProfile(response)
             }
-
+            
             if(!response || response === undefined){
                 response = {}
                 setUserProfile(checkUserInLocalStorage)
             }
-
+            
             
             // Destructure the user information from the response.data.data[0] -response structure
             const {
@@ -77,21 +88,22 @@ const Profile = () =>{
                 email,
                 address,
                 userName,
-                
+            
             } = response.data.data[0]
             
             // Set the destructure user information into the profile state (ES6 syntax)
             setUserProfile({
-                firstName,
-                lastName,
-                phoneNumber,
-                email,
-                address,
-                userName,
-            })
-            
+                    firstName,
+                    lastName,
+                    phoneNumber,
+                    email,
+                    address,
+                    userName,
+                })
+                
+            }
         }
-
+            
         fetchCurrentUserProfile()
     }, [params.id])
 
@@ -107,7 +119,7 @@ const Profile = () =>{
     return (
         <>
             <div className="container">
-                <style jsx>
+                <style>
                     {
                         `
                         .dashboard-body-wrapper, .page-holder{

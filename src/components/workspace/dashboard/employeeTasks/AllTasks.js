@@ -1,25 +1,29 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 
 import Table from '../../layouts/Table';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import filterFactory, { selectFilter } from 'react-bootstrap-table2-filter';
 import { getTasks } from '../../../../actions/task/taskAction';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+// Loader
+import Loader from '../../../loader/Loader';
 
 const AllTasks = () => {
 
-  const { tasks, tasks: { data } } = useSelector(state => state.tasks)
+  const { tasks, isFetching } = useSelector(state => state.tasks)
+  const { employees } = useSelector(state => state.employees)
+  const [taskState, setTaskState] = useState()
   const history = useHistory();
-  // const dispatch = useDispatch(function)
-// console.log(tasks);
+
   useEffect(() => {
-    getTasks()
+    setTaskState(tasks)
   }, [])
 
   // adds checkbox to each row
   const selectRow = {
-    mode: 'checkbox' 
+    mode: 'checkbox',
+    headerColumnStyle: { backgroundColor: 'transparent' }
   };
   // styles each row
   const rowStyle = {
@@ -27,24 +31,38 @@ const AllTasks = () => {
   }
   // routes to full task details page on double click
   const taskDetails =  {
-    onDoubleClick: (e, row, rowIndex) => 
+    onClick: (e, row, rowIndex) => 
     { 
         history.push(`/dashboard/task/view-task/${row.id}`)
     }
   };
+  // If the task list is been fetched from the server or not mounted on the ui, show the loader 
+  // if(isFetching){
+  //   return(
+  //       <>
+  //           <Loader />
+  //       </>
+  //   )
+  // }
+
+  const taskss = [
+    {
+      taskName: 'sss'
+    }
+  ]
   return (
     <div >
       
       <Table
         keyField='id'
-        title="Inbox (11)"
+        title="Inbox"
         data={ tasks }
         columns={taskHeader}
         bordered= { false }
         selectRow = {selectRow}
         enableSearch = { true }
         pagination = { paginationFactory() }
-        controlHeader = { navigate }
+        // controlHeader = { navigate }
         rowEvents = { taskDetails }
         noDataIndication={'No available task'}
         filter={ filterFactory() }
@@ -57,7 +75,7 @@ const AllTasks = () => {
 const taskHeader = [
      
   {
-    dataField: 'title',
+    dataField: 'taskName',
     text: 'Title',
     headerAttrs: {
       hidden:true
@@ -71,15 +89,11 @@ const taskHeader = [
     }
   },
   {
-    dataField: 'completed',
-    text: 'Status',
+    dataField: 'documentsAttached',
+    text: 'Attachment',
     headerAttrs: {
       hidden:true
-    },
-    // formatter: cell => selectOptionsArr.filter(opt => opt.value === cell)[0].label || '',
-    //   filter: selectFilter({
-    //     options: selectOptionsArr
-    //   })
+    }
   },
 ];
 

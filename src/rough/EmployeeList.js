@@ -16,7 +16,7 @@ export default function EmployeeList(){
                             <div className="d-flex">
                               <input placeholder="Search" className="form-control"/>
                               {/* <Button label="Search" className="search-btn pace-btn pace-btn-primary ml-2" /> */}
-                              <style jsx>
+                              <style>
                                   {
                                     ` 
                                       .search-btn{

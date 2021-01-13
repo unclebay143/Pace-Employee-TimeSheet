@@ -9,6 +9,7 @@ import {HashRouter as Router, Route, Switch } from "react-router-dom";
 import './components/pages/pages-styles/util.css';
 import './components/pages/pages-styles/form.css';
 import './components/layouts/layout-styles/button.css';
+import './components/loader/loader.css';
 
 // CUSTOM
 import './components/layouts/layout-styles/navbar.css';
@@ -41,12 +42,17 @@ import './components/workspace/dashboard/dashboard-styles/timer.css';
 import './components/workspace/dashboard/todos/todoform.css'
 import './components/workspace/dashboard/todos/todo.css'
 
+// TOUR STYLES -- will only apply when the user is a first timer
+import './components/tour/tour-styles/tour.css'
+
+
 // DASHBOARD SCRIPT
 import './components/workspace/layouts/SibarToggle';
 
 // Redux 
 import store from "./Store";
 import { Provider } from 'react-redux';
+
 
 // test DEVcomponent
 import Test from './rough/Test';
@@ -60,6 +66,7 @@ import ForgotPassword from './components/pages/ForgotPassword';
 import Confirmation from './components/pages/Confirmation';
 import ResetPassword from './components/pages/ResetPassword';
 import Dashboard from './components/workspace/dashboard/Dashboard';
+import Thanks from './components/pages/Thanks';
 
 
 
@@ -72,6 +79,7 @@ ReactDOM.render(
           <Route exact path="/contact" component = {ContactUs} />
           <Route exact path="/ResetPassword" component = {ResetPassword} />
           <Route exact path="/confirmation" component = {Confirmation} />
+          <Route exact path="/thanks" component = {Thanks} />
           <Route exact path="/forgot" component = {ForgotPassword} />
           <Route exact path="/signup" component = {Signup} />
           <Route exact path="/login" component = {Login} />

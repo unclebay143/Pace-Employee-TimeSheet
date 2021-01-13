@@ -20,16 +20,18 @@ const Navbar = () =>{
     const dispatch = useDispatch();
     const [fullName, setFullName] = useState('')
     const [staffID, setStaffID] = useState('')
+    const [roleID, setRoleID] = useState('')
 
     useEffect(() => {
         
-        const currentUser = JSON.parse(localStorage.getItem('token'));
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
         
 
         if(currentUser){
-            const { firstName, lastName, staffID } = currentUser.response[0];
+            const { firstName, lastName, staffID, roleID } = currentUser;
             setFullName(` ${ firstName } ${ lastName } `)
             setStaffID(staffID)
+            setRoleID(roleID)
 
         }else if( currentUser === null || currentUser === undefined ){
             history.push('/');
@@ -114,9 +116,10 @@ const Navbar = () =>{
                                 </a>
                             </div>
                         </li>
-                        <li className="nav-item dropdown ml-auto">
+                        <li className="nav-item dropdown ml-auto" h='7' data-tut='reactour__profileImage'>
                             <a id="userInfo" href="." data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" className="nav-link dropdown-toggle">
                                 {/* <img src={user_Image} alt={user_first_name} style={{maxWidth:"2.5rem"}} className="img-fluid rounded-circle shadow" /> */}
+                                <img src='https://github.com/unclebay143.png' alt='unclebay' style={{maxWidth:"2.5rem"}} className="img-fluid rounded-circle shadow" />
                             </a>
                             <div aria-labelledby="userInfo" className="dropdown-menu">
                                 <a href="/" className="dropdown-item">
@@ -127,7 +130,11 @@ const Navbar = () =>{
                                 </a>
                                 <div className="dropdown-divider"></div>
                                 <Link to={`/dashboard/profile/${staffID}`} className="dropdown-item">Profile</Link>
-                                <a href="/" className="dropdown-item">Settings</a>
+                                {
+                                    roleID !== 5 ? '' : (
+                                        <a href="/" className="dropdown-item">Settings</a>
+                                    )
+                                }
                                 <div className="dropdown-divider"></div><span className="dropdown-item" style={{cursor: 'pointer'}} onClick={(()=>logout())}>Logout</span>
                             </div>
                         </li>

@@ -1,7 +1,7 @@
 // React
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { editDepartment, deleteDepartment, openForm, closeForm } from '../../../actions/company/department/departmentAction';
+import { editDepartment, deleteDepartment, openForm, getDepartment } from '../../../actions/company/department/departmentAction';
 
 // Components
 import { NewDepartmentForm } from './NewDepartmentForm';
@@ -13,15 +13,12 @@ import Button from '../../layouts/Button';
 const ManageDepartment = () => {
   const dispatch = useDispatch();
   const [shouldFormOpen, setShouldFormOpen] = useState();
-  const [departments, setDepartments] = useState();
-  const departmentState = useSelector(state => state.departments)
+  const { isFormOpen, departments } = useSelector(state => state.departments)
   
   useEffect(() => {
-    setDepartments(departmentState.departments)
-    setShouldFormOpen(departmentState.isFormOpen)
-  }, [departmentState])
-
-
+    document.title = 'Manage Department'
+    setShouldFormOpen(isFormOpen)
+  }, [isFormOpen])
     if(!departments){
       return(
           <div className="d-flex justify-content-center align-items-center mt-2" style={{height:'100vh', background: '#cccccc'}}>
@@ -34,9 +31,6 @@ const ManageDepartment = () => {
     return (
       <>
       <div className="todo-container container">
-          {/* <ToastContainer /> */}
-          {/* <pre>{triggerTodoForm ? 'false, open' : 'false, don\'t open' }</pre> */}
-            {/* <div className="new-department-form" onClick={(()=>dispatch(closeForm()))}> */}
             <div className="new-department-form">
               <style>
                 {
@@ -69,10 +63,10 @@ const ManageDepartment = () => {
                             label=" Add Department"
                             icon="fa fa-plus "
                             type="button"
-                            className="btn bg-success btn-sm text-white"
+                            className="btn pace-btn-primary btn-sm text-white"
                             onClick={(()=>dispatch(openForm()))}
                           />
-                          </div>
+                        </div>
                     </div>
                     <div className="scroll-area-sm -shiftToDisabled">
                         <perfect-scrollbar className="ps-show-limits">
@@ -80,7 +74,7 @@ const ManageDepartment = () => {
                             <div className="ps-content">
                               <ul className=" list-group list-group-flush">
                                 <table className="table">
-                                  <thead className="thead-dark">
+                                  <thead className="thead-primary">
                                     <tr>
                                       <th scope="col">#</th>
                                       <th scope="col">Department name</th>
@@ -90,12 +84,13 @@ const ManageDepartment = () => {
                                   </thead>
                                   <tbody>
                                     {
-                                      departments.map((info,index)=>{
+                                      // Sort the department from bottom to head (reversing)- response from the server is using push
+                                      [...departments].reverse().map((info,index)=>{
                                         return(
                                           <DepartmentRowLayout 
                                             serialNumber={index + 1}
-                                            name={info.name}
-                                            size={info.staffSize}
+                                            name={info.departmentName}
+                                            // size={info.staffSize}
                                             key={index}
                                           />
                                         )

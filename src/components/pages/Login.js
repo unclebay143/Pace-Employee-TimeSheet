@@ -15,35 +15,52 @@ import { TextInput } from '../layouts/FormInput';
 import { loginSchema } from '../Validation/Schema';
 import { HomeButton } from '../layouts/HomeButton';
 import { login } from '../../actions/auth/authAction';
+import { syncCurrentUser } from '../../actions/user/userAction';
 
+/* Development fake user credentials */
+
+// this is should be used when the server is down and you need to login to the dashboard
+// const data = {
+//     firstName: 'Ayodele Samuel',
+//     lastName: 'Dummy',
+//     staffID: 123,
+//     companyID: 1928,
+//     roleID: 5
+// }
+
+// const token = 'wkknohsiosdoiwoihh.wohoifhfiohiohfiuhui.iuwiuhiuhfuhiuwhg'
+// localStorage.setItem('token', JSON.stringify(token))
+// localStorage.setItem('currentUser', JSON.stringify(data) )
+//
 
 
 const Login = () =>{
-    const { isLoggedIn } = useSelector((state)=>state.authenticationState)
+   
+    const currentUserFromLocalStorage = JSON.parse(localStorage.getItem('currentUser'));
+    const authenticationState = useSelector(state => state.authenticationState)
+
     const history = useHistory();
     const dispatch = useDispatch()
-    // useEffect(() => {
-    //     document.title = 'Login | Pace'
-    //     if(isLoggedIn){
-    //         userIsAuthenticatedLogger()
-    //         setTimeout(() => {
-    //             history.push('./dashboard');
-    //         }, 2000);
-    //     }
-    // }, [isLoggedIn])
+
+    // Function to redirect user to the dashboard when there is a user in the local storage
     useEffect(() => {
         document.title = 'Login | Pace'
-        
-        const redirector = () =>{
-            history.push('./dashboard')
-        }
+    })
 
-        if(isLoggedIn){
-            userIsAuthenticatedLogger()
-            const redirectUserToDashboard = setTimeout(redirector, 2000)
-            return(()=>clearTimeout(redirectUserToDashboard))
-        }
-    }, [isLoggedIn, history])
+    // Function that redirects user to the dashboard
+    const redirector = () =>{
+        history.push('./dashboard');
+    }
+
+    // Conditonal Statement to check if a user is logged in from the redux state and local storage
+    if(authenticationState.isLoggedIn || currentUserFromLocalStorage){
+        
+        userIsAuthenticatedLogger()
+        // Synchronize the current user 
+        syncCurrentUser(currentUserFromLocalStorage.staffID)
+        const redirectUserToDashboard = setTimeout(redirector, 2000)
+        return(()=>clearTimeout(redirectUserToDashboard))
+    }
 
     return(
         <div className="container">
@@ -67,8 +84,6 @@ const Login = () =>{
                             <h4 className="mb-5">Welcome back!</h4>
                         </div>
                         {/* message can be placed here */}
-                        
-                        
                         <div className="mt-5" name="form">
                             <div className="form-group mt-b">
                                 <Formik
@@ -79,6 +94,8 @@ const Login = () =>{
                                     validationSchema = {loginSchema}
                                     onSubmit= {(values, action)=>{
                                         dispatch(login(values, action))
+                                        // Reload to referesh the app (solve the fetch error from profile)
+                                        // .then((response)=>window.location.reload())
                                     }}
                                 >{({touched, errors, isSubmitting, handleSubmit}) => (
                                     <Form onSubmit={handleSubmit}>

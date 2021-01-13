@@ -1,5 +1,5 @@
 // React
-import { React, useEffect } from 'react';
+import { React, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux'
 import { Route, Switch } from 'react-router-dom/cjs/react-router-dom.min';
 import { useHistory } from 'react-router-dom';
@@ -23,11 +23,19 @@ import BillingReport from './reports/BillingReport';
 import TimerReport from './reports/TimerReport';
 import UpdateEmployeeProfile from '../../company/employee/UpdateEmployeeProfile';
 import UpdateCompanyProfile from '../../company/Settings/UpdateCompanyProfile';
+import CompanyProfile from '../../company/Settings/CompanyProfile';
+import Settings from '../../company/Settings/Settings';
 
 // Actions
 import { getTodos } from '../../../actions/todo/todoAction';
 import { getTasks } from '../../../actions/task/taskAction';
 import { syncCurrentUser } from '../../../actions/user/userAction';
+import { getDepartment } from '../../../actions/company/department/departmentAction';
+import { getCompanyEmployees } from '../../../actions/employee/employeeAction';
+
+// Tour
+import TourContainer from '../../tour/config/TourContainer';
+
 
 
 const Dashboard = () =>{
@@ -36,14 +44,13 @@ const Dashboard = () =>{
     const dispatch = useDispatch()
 
     useEffect(() => {
-        const currentUser  = JSON.parse(localStorage.getItem('token'));
-
+        const currentUser  = JSON.parse(localStorage.getItem('currentUser'));
         if( currentUser === null || currentUser === undefined ){
             history.push('./login');
         }
         
         if ( currentUser ){
-            dispatch(syncCurrentUser( currentUser.response[0].staffID ))
+            dispatch(syncCurrentUser( currentUser.staffID ))
         }
 
     },[])
@@ -54,22 +61,30 @@ const Dashboard = () =>{
 
         // Fetch user tasks
         dispatch(getTasks())
-    }, [])
+
+        // Fetch company department
+        dispatch(getDepartment())
+
+        // Fetch Company Employess
+        dispatch(getCompanyEmployees())
+
+
+    }, [dispatch, history])
+
 
     return(
         <>
-            <div>
+            <div h='1' data-tut='reactour__welcome'>
+                <TourContainer />
                 {/* >>>>> NAVBAR COMPONENT SECTION <<<<< */}
                 <Navbar  />
                     <div className="d-flex align-items-stretch">
                 {/* >>>>> SIDEBAR COMPONENT SECTION <<<<< */}
                         <Sidebar />
                         <div className="page-holder w-100 d-flex flex-wrap">
-
                             <div className="container-fluid dashboard-body-wrapper">
                 {/* >>>>> BODIES COMPONENTS SECTION <<<<< */}
                                 <Switch>
-                                    <Route path="/dashboard/settings/departments" component={ManageDepartment} />
                                     <Route path="/dashboard/todos" component={Todo} />
                                     <Route path="/dashboard/task" component={Task} />
 
@@ -78,8 +93,10 @@ const Dashboard = () =>{
                                     <Route exact path="/dashboard/profile/update/:id" component={UpdateProfile} />
 
                                     {/* company paths */}
-                                    {/* <Route exact path="/dashboard/company/profile/:id" component={CompanyProfile} /> */}
+                                    <Route exact path="/dashboard/company/profile/:id" component={CompanyProfile} />
                                     <Route exact path="/dashboard/company/profile/update/:id" component={UpdateCompanyProfile} />
+                                    <Route exact path="/dashboard/company/settings" component={Settings} />
+                                    <Route path="/dashboard/company/settings/departments" component={ManageDepartment} />
                                     <Route exact path="/dashboard/employ" component={AddEmployee} />
                                     <Route exact path="/dashboard/employee-list" component={EmployeeList} />
                                     <Route exact path="/dashboard/employee/profile/:id" component={EmployeeProfile} />

@@ -4,7 +4,8 @@ import {
     ADD_DEPARTMENT, 
     ERROR_DEPARTMENT, 
     DEPARTMENT_ERROR,
-    DELETE_DEPARTMENT
+    DELETE_DEPARTMENT,
+    FETCH_COMPANY_DEPARTMENT
 } from "../../types";
 
 import DepartmentService from '../../../services/company/department-service'
@@ -23,20 +24,30 @@ const closeForm = () => (dispatch) =>{
     })
 }
 
+const getDepartment = () => (dispatch) =>{
+    return DepartmentService.fetchDepartment()
+    .then((response)=>{
+        const companyDepartment = response.data.data;
+        dispatch({type: FETCH_COMPANY_DEPARTMENT, payload: companyDepartment})
+    })
+    .catch((error)=>console.log(error))
+}
+
 // Add new department
-const addDepartment = ({ departmentName }) => (dispatch) =>{
-    return DepartmentService.postNewDepartment(departmentName)
+const addDepartment = (values , companyID) => (dispatch) =>{
+    return DepartmentService.postNewDepartment(values, companyID)
     .then((response)=>{
         dispatch({
             type: ADD_DEPARTMENT,
-            payload: response.data
+            payload: response.data.data
         })
+        // dispatch(getDepartment())
+    })
     .catch((error)=>{
         dispatch({
             type: DEPARTMENT_ERROR,
             payload: error
         })
-    })
     });
 };
 
@@ -62,5 +73,6 @@ export {
     closeForm,
     addDepartment,
     editDepartment,
-    deleteDepartment
+    deleteDepartment,
+    getDepartment
 }

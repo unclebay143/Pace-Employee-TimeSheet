@@ -1,8 +1,7 @@
 // react 
 import { React, useEffect } from 'react';
-import { Link, Redirect, useHistory } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { ToastContainer } from 'react-toastify'; 
 // import PropTypes from 'prop-types';
 
 
@@ -14,12 +13,10 @@ import { signUpSchema } from '../Validation/Schema'
 import { TextInput, CheckbBox } from '../layouts/FormInput';
 import { HomeButton } from '../layouts/HomeButton'
 
-// Toast
-import { registrationFailLogger, registrationCompletedLogger} from '../../toaster';
-
 
 // Authentication
 import { register } from '../../actions/auth/authAction';
+import { ToastContainer } from 'react-toastify';
 
 
 const Signup = () =>{
@@ -29,7 +26,6 @@ const Signup = () =>{
     });
 
     const dispatch = useDispatch();
-    const history = useHistory();
 
     const { isLoggedIn } = useSelector(state => state.authenticationState)
 
@@ -38,10 +34,10 @@ const Signup = () =>{
     }
     return(
         <div className="container">
-            <main className="container d-flex justify-content-center align-items-center mt-5">
+            <ToastContainer />
+            <main className="container d-flex justify-content-center align-items-center mt-3 mt-md-5">
                 <div className="row">
                     <div className="form-con col-lg-5 mb-5">
-                        <ToastContainer />
                         <style>
                             {
                                 `
@@ -83,7 +79,7 @@ const Signup = () =>{
                                                     id="companyName"
                                                     type="text"
                                                     label="Workspace Name"
-                                                    labelClassName="mt-3"
+                                                    labelClassName="mt-md-3"
                                                     placeholder="Bascom Limited"
                                                     className={`form-control lead p-2 ${
                                                         touched.companyName && errors.companyName ? "is-invalid" : ""
@@ -104,7 +100,8 @@ const Signup = () =>{
                                                     type="email"
                                                     label="Email"
                                                     labelClassName="mt-3"
-                                                    className={`form-control lead p-2 ${
+                                                    className={`form-control lead p-2 
+                                                    ${
                                                         touched.email && errors.email ? "is-invalid" : ""
                                                     }`}
                                                     placeholder="Email" 
@@ -119,7 +116,7 @@ const Signup = () =>{
                                             <style>
                                                 {
                                                     `
-                                                        @media(max-width:700px){
+                                                        @media(max-width:800px){
                                                             .passwords .password-wrapper,
                                                             .passwords .confirmPassword-wrapper{
                                                                 width: 100% !important;
@@ -139,7 +136,8 @@ const Signup = () =>{
                                                         touched.password && errors.password ? "is-invalid" : ""
                                                      }
                                                     `}
-                                                    placeholder="Password" 
+                                                    placeholder="Password"
+                                                    autoComplete='on'
                                                 />
                                                 <ErrorMessage
                                                     component="div"
@@ -147,18 +145,20 @@ const Signup = () =>{
                                                     className="invalid-feedback p-0"
                                                 />
                                             </div>
-                                                   
+                                            
+                                            {/* confirm password */}
                                             <div className="form-group confirmPassword-wrapper" style={{ width: '50%' }} >
                                                 <TextInput 
                                                     name="confirmPassword"
                                                     id="confirmPassword"
                                                     type="password"
                                                     label="Confirm Password"
-                                                    labelClassName="mt-3"
+                                                    labelClassName="mt-md-3"
                                                     className={`form-control lead p-2 ${
                                                         touched.confirmPassword && errors.confirmPassword ? "is-invalid" : ""
                                                     }`}
                                                     placeholder="Confirm Password" 
+                                                    autoComplete='on'
                                                 />
                                                 <ErrorMessage
                                                     component="div"

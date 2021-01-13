@@ -39,9 +39,9 @@ const TodoRows = () => {
     return (
         <>
         {
-            todos.map(({id, title, completed, dueDate})=>{
+            todos.map(({id, title, completed, dueDate}, index)=>{
                 return(
-                    <li className="list-group-item" key={ id }>
+                    <li className="list-group-item" key={index}>
                         <div className={`todo-indicator ${ completed ? 'bg-primary' : 'bg-warning' }`} />
                             <div className="widget-content p-0">
                                 <div className="widget-content-wrapper">
