@@ -73,12 +73,13 @@ const DraftTask = () => {
                                 (
                                   <span><i className="fa fa-spinner fa-spin"></i> Sending</span>
                                 ) : (
-                                  <span><i className="fa fa-check"></i> Send</span>
+                                  <span><i className="fa fa-check"></i> Assign</span>
                               )}
                             />                                   
                             <Button 
                               type="submit"
                               label=" Draft"
+                              icon="fa fa-edit"
                               className="btn btn-sm ml-2 mr-2 special"
                             />     
                             <Button 
@@ -153,16 +154,22 @@ const DraftTask = () => {
                               />
                             </div>
                           </div>
-                          <div className="compose-btn mt-4">
+                          <div className="d-none compose-btn mt-4">
                             <Button 
                               type="submit"
                               className="btn btn-theme btn-sm"
                               disabled={isSubmitting}
-                              label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Sending</span>) : " Send"}
+                              label={isSubmitting ? 
+                                (
+                                  <span><i className="fa fa-spinner fa-spin"></i> Sending</span>
+                                ) : (
+                                  <span><i className="fa fa-check"></i> Assign</span>
+                              )}
                             />         
                             <Button 
                               type="submit"
                               label=" Draft"
+                              icon="fa fa-edit"
                               className="btn btn-sm ml-2 mr-2 special"
                             />                           
                             <Button 
