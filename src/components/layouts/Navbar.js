@@ -8,7 +8,7 @@ function Navbar() {
   return (
     <React.Fragment>
       <nav className="navbar navbar-expand-lg navbar-light home-nav">
-        <a href="../index.html" className="navbar-brand" id="logo">Pace2</a>
+        <a href="../index.html" className="navbar-brand" id="logo">Pace2 33</a>
         <Button 
           className="navbar-toggler" 
           type="button" 
