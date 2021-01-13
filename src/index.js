@@ -8,12 +8,12 @@ import {HashRouter as Router, Route, Switch } from "react-router-dom";
 // UTILITIES
 import './components/pages/pages-styles/util.css';
 import './components/pages/pages-styles/form.css';
-import './components/layouts/layout-styles/button.css';
+import './components/layouts/layout-styless/button.css';
 import './components/loader/loader.css';
 
 // CUSTOM
-import './components/layouts/layout-styles/navbar.css';
-import './components/layouts/layout-styles/footer.css';
+import './components/layouts/layout-styless/navbar.css';
+import './components/layouts/layout-styless/footer.css';
 import './components/pages/pages-styles/homebody.css';
 import './components/pages/pages-styles/forgotpassword.css';
 import './components/pages/pages-styles/confirmation.css';
