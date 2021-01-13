@@ -13,7 +13,7 @@ import Loader from '../../loader/Loader';
 
 
 export default  function EmployeeList(){
-
+  // set usestate for isFetching too
   const { employees, isFetching } = useSelector(state => state.employees)
   const [ employeesList, setEmployeesList ] = useState([{}])
   const [ Header, setHeader ] = useState([{}])
@@ -21,7 +21,7 @@ export default  function EmployeeList(){
 
   useEffect(() => {
     setEmployeesList(employees)
-  }, [employees])
+  }, [employees, isFetching])
 
   // Set the bootrap details
   useEffect(() => {

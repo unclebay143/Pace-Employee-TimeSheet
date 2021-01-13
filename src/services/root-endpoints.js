@@ -1,8 +1,7 @@
 //  This file contains all the root endpoint for Api in this application
 
 // Contact us 
-
-export const CONTACT_PACETEAM_API = 'https://pacetimesheet.herokuapp.com/api/contactUs/contact'
+export const CONTACT_PACETEAM_API = 'https://pacetimesheet.herokuapp.com/api/contactUs/contact';
 
 
 // Handles Authentication, /signUp, /login
