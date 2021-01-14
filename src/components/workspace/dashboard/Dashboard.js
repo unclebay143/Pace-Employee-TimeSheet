@@ -44,7 +44,10 @@ const Dashboard = () =>{
     const dispatch = useDispatch()
     useEffect(() => {
         const currentUser  = JSON.parse(localStorage.getItem('currentUser'));
-        dispatch(syncCurrentUser( currentUser.staffID ))
+        if(currentUser){
+            dispatch(syncCurrentUser( currentUser.staffID ))
+        }
+        
         if( currentUser === null || currentUser === undefined ){
             console.log('null')
         }else{

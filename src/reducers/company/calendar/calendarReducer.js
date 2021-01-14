@@ -3,15 +3,10 @@ import { ADD_NEW_CALENDAR_EVENT, FETCH_CALENDAR_EVENT_SUCCESSFUL } from '../../.
 const initialState = {
     isFetching: true,
     events: [
+
         {
-            title: 'Conference Meeting',
-            start: '01/01/2021',
-            end: '01/01/2021',
-        },
-        {
-            title: 'Conference Meeting',
-            start: '2021-01-02',
-            end: '2021-01-02',
+            title: '1',
+            end: '01/01/2020'
         }
     ],
     error: null
@@ -25,14 +20,21 @@ const calendarReducer = (state=initialState, action) => {
             return {
                 ...state,
                 isFetching: false,
-                event: action.payload
+                events: action.payload
             }
 
         case ADD_NEW_CALENDAR_EVENT:
             return {
                 ...state,
                 isFetching: false,
-                event: action.payload
+                events: [
+                    ...state.events,
+                    // action.payload
+                    {
+                        title: action.payload.eventName,
+                        end: action.payload.eventDateAndTime
+                    }
+                ]
             }
             
     

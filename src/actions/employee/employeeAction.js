@@ -25,7 +25,16 @@ const getCompanyEmployees = () => (dispatch) =>{
     })
 }
 
+const updateCompanyEmployee = (staffID) => ( dispatch ) =>{
+    return EmployeeService.putCompanyEmployee(staffID)
+    .then((response)=>{
 
+        console.log(response)
+    })
+    .catch((error)=>{
+        console.log(error)
+    })
+}
 export {
     addNewEmployee,
     getCompanyEmployees

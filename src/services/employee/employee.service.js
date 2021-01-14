@@ -17,7 +17,10 @@ const fetchCompanyEmployees = () =>{
     return  axios.get(FETCH_EMPLOYEES_LIST_API + currentUserCompanyID, { headers: authHeader })
 }
 
-
+// Function that allow admin to update the employee profile
+const putCompanyEmployee = () =>{
+    // return axios.put(UPDATE_EMPLOYEE_PROFIEL + , {headers: authHeader})
+}
 const EmployeeService = {
     addNewEmployeeToServer,
     fetchCompanyEmployees

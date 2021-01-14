@@ -1,11 +1,11 @@
 import axios from 'axios';
-import { authHeader, currentUserStaffID } from '../../auth-header';
-import { NEW_CALENDAR_EVENT_API } from '../../root-endpoints';
+import { authHeader, currentUserCompanyID } from '../../auth-header';
+import { NEW_CALENDAR_EVENT_API, FETCH_CALENDAR_EVENT_API } from '../../root-endpoints';
 
 
 
-const fetchCalendarEvent = () =>{
-    return axios.get(NEW_CALENDAR_EVENT_API, { headers: authHeader })
+const fetchCalendarEvent = async() =>{
+    return await axios.get(FETCH_CALENDAR_EVENT_API + currentUserCompanyID, { headers: authHeader })
 }
 
 
