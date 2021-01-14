@@ -21,8 +21,10 @@ const AssignedTasks = () => {
 
   useEffect(() => {
     dispatch(getAssignedTasks())
-  }, [dispatch])
+    console.log(assignedTasks.taskStatus)
+  }, [assignedTasks.taskStatus, dispatch])
 
+  
 
   // styles each row
   const rowStyle = {
@@ -33,7 +35,7 @@ const AssignedTasks = () => {
   const taskDetails =  {
     onClick: (e, row, rowIndex) =>
     {
-        history.push(`/dashboard/task/view-task/${row.id}`)
+        history.push(`/dashboard/task/view-task/`+ row.taskID)
     }
   };
 
@@ -77,7 +79,7 @@ const taskHeader = [
     }
   },
   {
-    dataField: 'dueDate',
+    dataField: 'endDate',
     text: 'Due Date',
     headerAttrs: {
       hidden:true
@@ -86,8 +88,37 @@ const taskHeader = [
   {
     dataField: 'documentsAttached',
     text: 'Attachment',
+    formatter: (cell, row) => {
+      if(!cell){
+      return(
+        <i class="fa fa-paperclip" />
+      )}
+    },
     headerAttrs: {
       hidden:true
+    }
+  },
+  {
+    dataField: 'taskStatus',
+    text: 'Status',
+    headerAttrs: {
+      hidden:true
+    },
+    formatter: (cell, row) => {
+      if(cell){
+      // return(
+        switch (cell) {
+          case 1:
+              return 'pending'
+          case 2:
+              return 'accepted'
+          case 3:
+              return 'completed'
+          default: 
+              break;
+      }
+      // )
+    }
     }
   },
 ];

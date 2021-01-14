@@ -12,19 +12,26 @@ import unclebay from '../../pages/pages-images/ayodele_samuel_adebayo.jpg';
 import attachment from '../../pages/pages-images/v.jpg';
 import { TASK_API_URL } from '../../../services/root-endpoints';
 import axios from 'axios';
+import { authHeader } from '../../../services/auth-header';
 
 
 const TaskDetails = () => {
+  const {assignedTasks, isFetching } = useSelector(state => state.assignedTasks);
   const params = useParams();
   const dispatch = useDispatch();
-  const [taskDetails, setTaskDetails] = useState({})
+  const [taskDetails, setTaskDetails] = useState([{}]);
 
   useEffect(() => {
-    const fetchTaskDetails = async(taskID)=>{
-    const { data } = await axios.get(`${TASK_API_URL}/${taskID}`);
-    setTaskDetails(data)
-  }
-    fetchTaskDetails(params.id)
+    const getTaskDetails = assignedTasks.filter((task)=>task.id === params.id);
+    const { taskName } = getTaskDetails;
+    console.log(getTaskDetails)
+    console.log(assignedTasks)
+    setTaskDetails(getTaskDetails)
+    // const fetchTaskDetails = async( taskID )=>{
+    // const { data } = await axios.get( TASK_API_URL + taskID, { headers: authHeader } );
+    // setTaskDetails(data)
+  // }
+    // fetchTaskDetails(params.id)
   }, [])
 
     return (
@@ -37,7 +44,7 @@ const TaskDetails = () => {
                   <header className="card-header wht-bg">
                     <h4 className="d-flex justify-content-between task-page-lead">
                       {/* View Task */}
-                      { taskDetails.title }
+                      { taskDetails.taskName }
                     </h4>
                   </header>
                   </div>
