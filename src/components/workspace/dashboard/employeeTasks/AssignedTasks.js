@@ -11,22 +11,17 @@ import Loader from '../../../loader/Loader';
 
 const AssignedTasks = () => {
   const {assignedTasks, isFetching } = useSelector(state => state.assignedTasks)
-  // const { employees } = useSelector(state => state.employees)
-  const [taskState, setTaskState] = useState()
+  const dispatch = useDispatch();
   const history = useHistory();
 
-  useEffect(() => {
-    setTaskState(assignedTasks)
-  }, [])
-
-
-  // const {assignedTasks, isFetching,assignedTasks: { data } } = useSelector(state => state.assignedTasks)
-  // const dispatch = useDispatch()
-  // const history = useHistory();
-
+  // const [taskState, setTaskState] = useState();
   // useEffect(() => {
-  //   dispatch(getAssignedTasks())
+  //   setTaskState(assignedTasks)
   // }, [])
+
+  useEffect(() => {
+    dispatch(getAssignedTasks())
+  }, [dispatch])
 
 
   // styles each row
