@@ -36,10 +36,16 @@ const EmployeeProfile = () =>{
     const dispatch = useDispatch()
     
     useEffect(() => {
+        // fetch the company's employees from the server
         dispatch(getCompanyEmployees())
+    },[])
+
+
+    useEffect(() => {
         const getEmployeeProfile = employees.filter((employee)=>employee.staffID === parseInt(params.id))
         setEmployeeProfile(getEmployeeProfile[0])
     }, [employees, params.id, setEmployeeProfile])
+
     if(employeeProfile === undefined){
         return(
             <>
