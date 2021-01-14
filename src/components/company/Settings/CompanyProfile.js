@@ -3,12 +3,25 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom.min';
+
+
+// Components
 import Button from '../../layouts/Button';
-import unclebay from '../../pages/pages-images/ayodele_samuel_adebayo.jpg';
+import Loader from '../../loader/Loader';
+
+// Auth Header
+import { authHeader, currentUserCompanyID } from '../../../services/auth-header';
+
+//  Actions
+import { FETCH_COMPANY_PROFILE_API } from '../../../services/root-endpoints';
+
+// Helper function
+import { formatDate } from '../../../_helper/dateFormatter';
 
 
 
 const ProfileRow = (props) => {
+    
     const { title, label } = props
     return(
         <>
@@ -28,30 +41,25 @@ const ProfileRow = (props) => {
 
 
 const Profile = () =>{
-    const params = useParams()
-    const [ employeeProfile, setEmployeeProfile ] = useState([])
-    
+    const params = useParams();
+    const [companyProfile, setCompanyProfile] = useState({});
+  
     useEffect(() => {
-        const fetchEmployeeProfile = async() =>{
-            const { data } = await axios.get(`https://jsonplaceholder.typicode.com/users/${params.id}`)
-            console.log(data)
-            setEmployeeProfile(data)
+        const fetchCompanyProfile = async () =>{
+            axios.get(FETCH_COMPANY_PROFILE_API + currentUserCompanyID, { headers: authHeader })
+            .then((response)=>setCompanyProfile(response.data.data[0]))
+            .catch((error)=>console.log(error))
         }
-
-        fetchEmployeeProfile()
-        
-    //     const getCurrentUser = JSON.parse(localStorage.getItem('token'));
-    //     if(getCurrentUser){
-    //         const currentUser = getCurrentemployeeProfile.response[0];
-    //         setUser(currentUser)
-    //         syncCurrentUser(params.id)
-    //     }
-
-    //     return(()=>{
-    //         const currentUser = []
-    //     })
+        fetchCompanyProfile()
     }, [])
-    
+    console.log(companyProfile);
+    if(companyProfile === undefined){
+        return(
+            <>
+                <Loader />
+            </>
+        )
+    }
     return (
         <>
             <div className="container">
@@ -84,12 +92,13 @@ const Profile = () =>{
                         <div className="col-md-12 ml-2">
                             <div className="card mb-3">
                                 <div className="card-body">
-                                    <ProfileRow title="Company Name" label={ ` ${employeeProfile.name} ${employeeProfile.username}` } />
-                                    <ProfileRow title="Company Type" label="IT" />
-                                    <ProfileRow title="Company Adjective" label={employeeProfile.phone} />
-                                    <ProfileRow title="Currency" label="Naira(#)"/>
-                                    <ProfileRow title="Email" label={employeeProfile.email} />
-                                    <Link to={`/dashboard/company/profile/update/${1}`}>
+                                    <ProfileRow title="Company Name" label= {companyProfile.companyName} />
+                                    <ProfileRow title="Email" label={companyProfile.email} />
+                                    <ProfileRow title="Currency" label={companyProfile.currency}/>
+                                    <ProfileRow title="Company Type" label={companyProfile.companyType} />
+                                    <ProfileRow title="Company Adjective" label={companyProfile.companyAdjective} />
+                                    <ProfileRow title="Created Date" label={formatDate(companyProfile.dateCreated)} />
+                                    <Link to={`/dashboard/company/profile/update/${companyProfile.companyID}`}>
                                         <Button className="btn btn-primary mr-2" label="Edit"/>
                                     </Link>
                                 </div>

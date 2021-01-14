@@ -1,77 +1,91 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
+import { NavLink, useHistory } from 'react-router-dom';
+
 import Table from '../../layouts/Table';
+import paginationFactory from 'react-bootstrap-table2-paginator';
+import filterFactory, { selectFilter } from 'react-bootstrap-table2-filter';
+import { getAssignedTasks } from '../../../../actions/task/assignedTaskAction';
+import { useDispatch, useSelector } from 'react-redux';
+// Loader
+import Loader from '../../../loader/Loader';
+
+const AllTasks = () => {
+
+  const { tasks, isFetching, tasks: { data } } = useSelector(state => state.tasks)
+  const dispatch = useDispatch()
+  const history = useHistory();
+  
+  useEffect(() => {
+    dispatch(getAssignedTasks())
+  }, [])
 
 
+  // styles each row
+  const rowStyle = {
+    cursor: 'pointer'
+  }
 
-
+  // routes to full task details page on double click
+  const taskDetails =  {
+    onClick: (e, row, rowIndex) => 
+    { 
+        history.push(`/dashboard/task/view-task/${row.id}`)
+    }
+  };
+  
+  // If the task list is been fetched from the server or not mounted on the ui, show the loader 
+  // if(isFetching){
+  //   return(
+  //       <>
+  //           <Loader />
+  //       </>
+  //   )
+  // }
+  return (
+    <div >
+      
+      <Table
+        keyField='id'
+        title="Assigned Tasks"
+        data={ tasks }
+        columns={taskHeader}
+        bordered= { false }
+        // selectRow = {selectRow}
+        enableSearch = { true }
+        pagination = { paginationFactory() }
+        // controlHeader = { navigate }
+        rowEvents = { taskDetails }
+        noDataIndication={'No available task'}
+        filter={ filterFactory() }
+        rowStyle={ rowStyle }
+      />
+    </div>
+  )
+}
 
 const taskHeader = [
-      {
-        dataField: 'id',
-        text: 'S/N'
-      },
-      {
-        dataField: 'task',
-        text: 'Task',
-      },
-      {
-        dataField: 'dueDate',
-        text: 'Due Date',
-      },
-      {
-        dataField: 'status',
-        text: 'status',
-      },
-      {
-        dataField: 'requests',
-        text: 'Requests',
-      },
-      
-    ];
-class AssignedTasks extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      AssignedTasks : [
-        {
-          id: '1',
-          task: 'testing',
-          dueDate: '12/06/21',
-          status: 'accepted',
-          requests: 'requested'
-        },
-        {
-          id: '2',
-          task: 'testing2',
-          dueDate: '14/06/21',
-          status: 'accepted',
-          requests: 'requested'
-        },
-        {
-          id: '3',
-          task: 'testing3',
-          dueDate: '16/06/21',
-          status: 'accepted',
-          requests: 'requested'
-        },
-      ]
+     
+  {
+    dataField: 'taskName',
+    text: 'Title',
+    headerAttrs: {
+      hidden:true
     }
-}
+  },
+  {
+    dataField: 'dueDate',
+    text: 'Due Date',
+    headerAttrs: {
+      hidden:true
+    }
+  },
+  {
+    dataField: 'documentsAttached',
+    text: 'Attachment',
+    headerAttrs: {
+      hidden:true
+    }
+  },
+];
 
-  render() {
-    
-    const { AssignedTasks} = this.state;
-    return (
-      <div >
-        <Table
-          keyField='id'
-          data={ AssignedTasks }
-          columns={ taskHeader } 
-          bordered= { false }
-        />
-      </div>
-    )
-  }
-}
-
-export default AssignedTasks;
+export default AllTasks;

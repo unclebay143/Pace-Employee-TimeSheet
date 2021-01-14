@@ -11,17 +11,19 @@ import {
 import { ADD_DEPARTMENT_API, FETCH_DEPARTMENT_API } from '../root-endpoints';
 
 
-const fetchDepartment = () => {
-    console.log('deparment service')
-    console.log(authHeader)
-    return axios.get(FETCH_DEPARTMENT_API + currentUserCompanyID, {headers: authHeader} )
+const fetchDepartment = async() => {
+    console.log(currentUserCompanyID);
+    return await axios.get(FETCH_DEPARTMENT_API + currentUserCompanyID, {headers: authHeader} )
 }
 
 const postNewDepartment = (values, companyID) =>{
-    console.log(typeof values);
-    console.log(values);
+    const newDepartment = {
+        departmentName: values.departmentName,
+        id: companyID
+    }
+
     // return axios.options(ADD_DEPARTMENT_API)
-    return axios.post(ADD_DEPARTMENT_API + companyID, values, {headers: authHeader})
+    return axios.post(ADD_DEPARTMENT_API + companyID, newDepartment, {headers: authHeader})
 }
 
 

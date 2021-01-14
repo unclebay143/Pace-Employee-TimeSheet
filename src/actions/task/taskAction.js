@@ -3,7 +3,7 @@ import {
   FETCH_TASKS_PENDING,
   FETCH_TASKS_SUCCESS,
   FETCH_TASKS_ERROR,
-  ADD_TASK,
+  ASSIGN_TASK,
   TASKS_ERROR,
   DELETE_TASK,
   UPDATE_TASK,
@@ -18,27 +18,41 @@ const getTasks = () => ( dispatch ) =>{
   dispatch({ type: FETCH_TASKS_PENDING });
   return TaskService.fetchTasks()
   .then((response)=> {
-    dispatch({ type: FETCH_TASKS_SUCCESS, payload: response.data });
-    return response.data;
+    dispatch({ type: FETCH_TASKS_SUCCESS, payload: response.data.data });
   })
   .catch((error) =>{
+    console.log(error)
     dispatch({ type: FETCH_TASKS_ERROR, payload: error })
   })
 };
 
 // Add new Task 
-const addTask  = (newTask ) => (dispatch) =>{
-  return TaskService.addTask(newTask )
-  .then((response) =>{
-      dispatch({
-          type: ADD_TASK,
-          payload: response.data
-      })
-  })
-  .catch((error)=>{
-      console.log(error)
-  })
+const assignTask  = (newTask) => (dispatch) =>{
+  return TaskService.assignTask(newTask)
+  // .then((response) =>{
+  //     dispatch({
+  //         type: ASSIGN_TASK,
+  //         payload: response.data
+  //     })
+  // })
+  // .catch((error)=>{
+  //     console.log(error)
+  // })
 }
+
+// // Add new Task 
+// const addTask  = (newTask ) => (dispatch) =>{
+//   return TaskService.addTask(newTask )
+//   .then((response) =>{
+//       dispatch({
+//           type: ADD_TASK,
+//           payload: response.data
+//       })
+//   })
+//   .catch((error)=>{
+//       console.log(error)
+//   })
+// }
 
 // Delete Task 
 const deleteTask  = (id) => (dispatch) =>{
@@ -61,7 +75,7 @@ const toggleTaskCompletion = (id) =>{
 
 
 export {
-  addTask,
+  assignTask,
   getTasks,
   updateTask,
   deleteTask,

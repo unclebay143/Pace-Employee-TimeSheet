@@ -4,26 +4,25 @@ import {
     ADD_DEPARTMENT, 
     EDIT_DEPARTMENT, 
     DELETE_DEPARTMENT, 
-    DEPARTMENT_ERROR
+    DEPARTMENT_ERROR,
+    FETCH_COMPANY_DEPARTMENT
 } 
     from '../../../actions/types';
 
 const initialState = {
     isFormOpen: false,
     error: null,
-    departments: [
-        {
-            departmentName: 'book'
-        },
-        {
-            departmentName: 'book'
-        },
-    ],
+    departments: []
 }
 
 
 const departmentReducer = (state = initialState, action) =>{
     switch(action.type){
+        case FETCH_COMPANY_DEPARTMENT:
+            return {
+                ...state,
+                departments: action.payload
+            }
         case OPEN_NEW_FORM:
             return {
                 ...state,
@@ -39,10 +38,10 @@ const departmentReducer = (state = initialState, action) =>{
                 ...state,
                 isFormOpen: false,
                 departments: [
+                    ...state.departments,
                     {
                         departmentName: action.payload.departmentName
-                    },
-                ...state.departments
+                    }
                 ]
             }
         case EDIT_DEPARTMENT:

@@ -1,5 +1,5 @@
 // React
-import { React, useEffect } from 'react';
+import { React, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux'
 import { Route, Switch } from 'react-router-dom/cjs/react-router-dom.min';
 import { useHistory } from 'react-router-dom';
@@ -27,54 +27,62 @@ import CompanyProfile from '../../company/Settings/CompanyProfile';
 import Settings from '../../company/Settings/Settings';
 
 // Actions
-import { getTodos } from '../../../actions/todo/todoAction';
-import { getTasks } from '../../../actions/task/taskAction';
 import { syncCurrentUser } from '../../../actions/user/userAction';
+
+// Tour
+import TourContainer from '../../tour/config/TourContainer';
+import ChangePassword from '../../user/ChangePassword';
+import Calendar from '../../company/calendar/Calendar';
+
 
 
 const Dashboard = () =>{
-
+    
     const history = useHistory()
     const dispatch = useDispatch()
-
     useEffect(() => {
+        // const x = () =>{
+            //     // window.location.reload()
+            // }
+            // const b = window.confirm('welcome')
+            // if(b === true){
+                //     x()
+                // }else{
+                    //     console.log('what')
+                    // }
         const currentUser  = JSON.parse(localStorage.getItem('currentUser'));
         if( currentUser === null || currentUser === undefined ){
             history.push('./login');
-        }
-        
-        if ( currentUser ){
+        }else{
             dispatch(syncCurrentUser( currentUser.staffID ))
+            // setTimeout(() => {
+            // }, 2000);
         }
+    }, [])
 
-    },[])
-
-    useEffect(() => {
-        // Fetch user todo list
-        dispatch(getTodos())
-
-        // Fetch user tasks
-        dispatch(getTasks())
-    }, [dispatch, history])
 
     return(
         <>
-            <div>
+            <div h='1' data-tut='reactour__welcome'>
+                <TourContainer />
                 {/* >>>>> NAVBAR COMPONENT SECTION <<<<< */}
                 <Navbar  />
                     <div className="d-flex align-items-stretch">
                 {/* >>>>> SIDEBAR COMPONENT SECTION <<<<< */}
                         <Sidebar />
                         <div className="page-holder w-100 d-flex flex-wrap">
-
                             <div className="container-fluid dashboard-body-wrapper">
                 {/* >>>>> BODIES COMPONENTS SECTION <<<<< */}
                                 <Switch>
+
+                                    <Route path="/dashboard/calendar" component={Calendar} />
+
                                     <Route path="/dashboard/todos" component={Todo} />
                                     <Route path="/dashboard/task" component={Task} />
 
                                     {/* users paths */}
                                     <Route exact path="/dashboard/profile/:id" component={Profile} />
+                                    <Route exact path="/dashboard/profile/changepassword/:id" component={ChangePassword} />
                                     <Route exact path="/dashboard/profile/update/:id" component={UpdateProfile} />
 
                                     {/* company paths */}

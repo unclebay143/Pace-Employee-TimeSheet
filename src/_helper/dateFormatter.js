@@ -5,3 +5,7 @@ const formatDate = ( date )=>{
     // Return formated date
     return dueDate;
 }
+
+export {
+    formatDate
+}

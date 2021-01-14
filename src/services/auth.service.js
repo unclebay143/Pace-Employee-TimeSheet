@@ -1,7 +1,7 @@
 // Axios
 import axios from "axios";
-import { LOGIN_SUCCESS, LOGOUT, REGISTER_SUCCESS } from "../actions/types";
-import { registrationFailLogger, registrationCompletedLogger, emailAlreadyExistLogger, invalidDetailsLogger } from "../toaster";
+import { LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT, REGISTER_SUCCESS } from "../actions/types";
+import { registrationFailLogger, registrationCompletedLogger, emailAlreadyExistLogger, invalidDetailsLogger, somethingWentWrongLogger, netWorkError } from "../toaster";
 
 // API
 import { AUTH_API_URL } from "./root-endpoints";
@@ -15,8 +15,11 @@ const register = (companyName, email, password, action) => (dispatch) =>{
     companyName,
     email,
     password,
-  }).then(()=>{
-
+  }).then((response)=>{
+    console.log(response)
+    if (response.data.code === 'ECONNREFUSED'){
+      netWorkError()
+    }
     // Set Formik form to loading - for the spinnig icon
     action.setSubmitting(true)
 
@@ -26,7 +29,7 @@ const register = (companyName, email, password, action) => (dispatch) =>{
     // Throw an action to reducer
     dispatch({ type: REGISTER_SUCCESS })
 
-  
+    // Login the user
     axios.post(AUTH_API_URL + 'login', { 
       email,
       password,
@@ -34,39 +37,64 @@ const register = (companyName, email, password, action) => (dispatch) =>{
     .then((response)=>{
       
       // Destructure the response to get the email and password (the response 'data' has a 'data' and accessToken in it)
-      // const { data, data: { accessToken } }  = response.data;
+      // const { data }  = response;
+      // console.log(response.data)
+      // console.log(response.data.data2[0])
 
-      const { data }  = response.data;
       // Store the response token to the localstorage
-      localStorage.setItem('token', JSON.stringify(data.data.accessToken));
-      localStorage.setItem('currentUser', JSON.stringify(data.data.response[0]));
-
+      localStorage.setItem('token', JSON.stringify(response.data.data.accessToken));
+      localStorage.setItem('currentUser', JSON.stringify(response.data.data2[0]));
+      
       // Store the data(user's) to the store
       dispatch({
         type: LOGIN_SUCCESS,
-        payload: data.data.response[0]
+        payload: response.data.data2[0]
       })
     })
-    .catch((error)=>{
-      // Error code 500 means email already exist
-      if(error && error.response.status === 500){
-        
-        // taost a warning notification
-        emailAlreadyExistLogger()
-
-        // Set Formik form submission state to false (stop the spinning icon)
-        action.setSubmitting(false)
+    .catch((error)=>{ // CATCH LOGIN FAILURE
+      console.log('LOGIN CATCH', error)
       
-      }else{
-        
-        // If there's more error, toast a failure warning
-        registrationFailLogger()
+      // Set Formik form submission state to false (stop the spinning icon)
+      action.setSubmitting(false)
 
-        // Set Formik form submission to false (stop the spinning icon)
-        action.setSubmitting(false)
-      }
+      // Show something went wrong logger
+      somethingWentWrongLogger()
+      
+      // Trigger lofin fail and store error in redux
+      dispatch({
+        type: LOGIN_FAIL,
+        payload: error
+      })
     }) 
   }) 
+  .catch((error)=>{ // CATCH FOR REGISTRATION FAILURE
+    // If the error from the backend is not handled well
+    if(error === undefined || error.response === undefined){
+      
+      // Set Formik form submission state to false (stop the spinning icon)
+      action.setSubmitting(false)
+
+      // Show alert for something went wrong
+      somethingWentWrongLogger()
+      
+      // Error code 500 means email already exist  
+    }else if(error.response.status === 500 || error.response.data.message === 'This email already exists'){
+      
+      // taost a warning notification
+      emailAlreadyExistLogger()
+      
+      // Set Formik form submission state to false (stop the spinning icon)
+      action.setSubmitting(false)
+    
+    }else{
+      // Set Formik form submission to false (stop the spinning icon)
+      action.setSubmitting(false)
+
+      // If there's more error, toast a failure warning
+      registrationFailLogger()
+    }
+      
+  })
 }
 
 
@@ -79,16 +107,15 @@ const login = ( email, password, action ) => ( dispatch ) =>{
       password,
     })
     .then((response)=>{
-      console.log(response)
-      // Destructure the response to get the email and password (the response 'data' has a 'data' and 'accessToken' in it)
-      const { data }  = response;
-      localStorage.setItem('token', JSON.stringify(data.data.accessToken));
-      localStorage.setItem('currentUser', JSON.stringify(data.data.response[0]));
+
+      // don't forget to destructure later
+      localStorage.setItem('token', JSON.stringify(response.data.data.accessToken));
+      localStorage.setItem('currentUser', JSON.stringify(response.data.data2[0]));
       
       // Store the data(user's) to the store
       dispatch({
         type: LOGIN_SUCCESS,
-        payload: data.data.response[0]
+        payload: response.data.data2[0]
       })
     })
     .catch((error)=>{

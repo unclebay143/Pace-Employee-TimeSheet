@@ -4,8 +4,7 @@ import NotificationCards from './cards/NotificationCards';
 import MostActiveEmployee from './cards/MostActiveEmployee';
 import HourTimerScreen from './timer/HourTimerScreen';
 
-
-const Index = () => {
+const Index = ({openTour}) => {
     useEffect(()=>{
         document.title = 'Company name | dashboard'
     })

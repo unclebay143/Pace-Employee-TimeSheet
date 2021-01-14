@@ -1,6 +1,6 @@
 // React
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 // Formik
 import { Formik, Form, ErrorMessage } from 'formik';
@@ -9,17 +9,30 @@ import { contactUsSchema } from '../Validation/Schema';
 // Layouts 
 import Button from '../layouts/Button';
 import { TextInput, TextArea } from '../layouts/FormInput';
+import { CONTACT_PACETEAM_API } from '../../services/root-endpoints';
+import axios from 'axios';
+import { somethingWentWrongLogger } from '../../toaster';
+import { ToastContainer } from 'react-toastify';
 
 class ContactUs extends Component {
+  redirectToThanks = () =>{
+    const { history } = this.props;
+    history.push('/thanks')
+
+  }
+
+  componentDidMount() {
+    document.title = 'Contact us'
+  }
   render() {
     return (
       <div className="container">
+        <ToastContainer />
         <main className="container d-flex justify-content-center align-items-center mt-5">
           <div className="row">
             <div className="form-con col-lg-12 mb-5">
               {/* link to go back to the home page */}
               <Link to="/">
-                {/* <i className="fas fa-long-arrow-alt-left" /> */}
                 <i className="fas fa-home" />
               </Link>
               <div className="form-heading mt-2">
@@ -27,24 +40,35 @@ class ContactUs extends Component {
               </div>
               <Formik  
                 initialValues={{
-                name: '',
-                email: '',
+                contactName: '',
+                contactEmail: '',
                 message: ''
               }}
                 validationSchema = {contactUsSchema}
-                onSubmit={ values=> console.log(values)}
+                onSubmit={ (values, action) =>{
+                  axios.post(CONTACT_PACETEAM_API, values)
+                  .then((response)=>{
+                    console.log(response)
+                    this.redirectToThanks()
+                  })
+                  .catch((error)=>{
+                    console.log(error)
+                    action.setSubmitting(false)
+                    somethingWentWrongLogger()
+                  })
+                }}
               > 
                 {({touched, errors, values, handleSubmit, handleChange, isSubmitting}) => (
                   <Form className="mt-5"  onSubmit={handleSubmit}>
                     <div className="form-group">
                       <TextInput 
                         label = "Name"
-                        name = "name"
-                        id = "name"
+                        name = "contactName"
+                        id = "contactName"
                         type = "text"
-                        value={values.name}
+                        value={values.contactName}
                         className = {`form-control lead  ${
-                          touched.name && errors.name ? "is-invalid" : ""
+                          touched.contactName && errors.contactName ? "is-invalid" : ""
                           }`}
                         labelClassName="lead"
                         placeholder = "John Doe"
@@ -59,12 +83,12 @@ class ContactUs extends Component {
                     <div className="form-group">
                       <TextInput 
                         label = "Email"
-                        name = "email"
-                        id = "email"
+                        name = "contactEmail"
+                        id = "contactEmail"
                         type = "email"
-                        value = {values.email}
+                        value = {values.contactEmail}
                         className={`form-control lead  ${
-                          touched.email && errors.email ? "is-invalid" : ""
+                          touched.contactEmail && errors.contactEmail ? "is-invalid" : ""
                           }`}
                         labelClassName="lead"
                         placeholder = "johndoe@gmail.com"
@@ -99,12 +123,11 @@ class ContactUs extends Component {
                     </div>
                    
                     <Button 
-                      label="Contact Us"
                       type="submit"
                       className = "btn btn-primary"
                       id = "contact-us"
                       disabled={isSubmitting}
-                      // label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Loading...</span>) : "Login"}
+                      label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Sending...</span>) : "Contact Us"}
                     />
                   </Form>
                 )}
@@ -118,4 +141,4 @@ class ContactUs extends Component {
   }
 }
 
-export default ContactUs;
+export default withRouter(ContactUs);
