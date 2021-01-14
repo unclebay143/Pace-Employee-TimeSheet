@@ -11,7 +11,7 @@ const addNewEmployee = (newEmployee) => ( dispatch ) =>{
 const getCompanyEmployees = () => (dispatch) =>{
     return EmployeeService.fetchCompanyEmployees()
     .then((response)=>{
-        console.log(response)
+        
         // Get company Employees
         const companyEmployees = response.data.data
         dispatch({

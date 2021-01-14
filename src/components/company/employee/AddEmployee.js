@@ -56,8 +56,9 @@ const AddEmployee = () =>{
 
     useEffect(() => {
         // Fetch company department
+        console.log('here')
         dispatch(getDepartment())
-    }, [])
+    }, [dispatch])
     // Generate the dropdown of company departments
     const companyDepartmentDropDown = departments.map(({departmentName, departmentID}, index)=><option value={departmentID} key={index}>{departmentName}</option>)
     if(!departments || departments === undefined){
@@ -95,6 +96,7 @@ const AddEmployee = () =>{
                                     onSubmit={(values, action)=>{
                                         dispatch(addNewEmployee(values))
                                         .then((response)=>{
+                                            console.log('adddd', response)
                                             action.setSubmitting(true)
                                             employeeAddedSuccessfully()
                                             action.setSubmitting(false)

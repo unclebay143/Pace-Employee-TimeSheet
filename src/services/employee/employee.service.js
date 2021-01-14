@@ -5,8 +5,9 @@ import { authHeader, currentUserCompanyID } from '../auth-header';
 
 // Function to add new employee to the server
 const addNewEmployeeToServer = ( newEmployee ) =>{
-
     // Spread the newEmployee properties and add the companyID to it
+    console.log('sent service')
+
     return axios.post(ADD_NEW_EMPLOYEE_API, {...newEmployee, companyID : currentUserCompanyID.toString()}, { headers: authHeader })
 }
 

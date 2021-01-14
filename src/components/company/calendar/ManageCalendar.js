@@ -1,6 +1,14 @@
-import React from 'react'
+import React from 'react';
+import { ErrorMessage, Form, Formik } from 'formik';
+import { TextInput } from '../../layouts/FormInput';
+import Button from '../../layouts/Button';
+import { Link } from 'react-router-dom';
+import { addNewCalendarEvent } from '../../../actions/company/calendar/calendarAction';
+import { useDispatch } from 'react-redux';
+
 
 export default function ManageCalendar() {
+    const dispatch = useDispatch();
     return (
         <>
 
@@ -35,12 +43,17 @@ export default function ManageCalendar() {
                         <Formik 
                         
                             initialValues={{
-                                eventName: ''
+                                eventName: '',
+                                eventDateAndTime: ''
                             }}
+                            onSubmit={((values)=>{
+                                dispatch(addNewCalendarEvent(values))
+                            })}
                         >
-                            {({errors, touched})=>(
+                            {({errors, touched, values})=>(
                                 <Form className="form-inline">
-                                    <div class="input-group mb-2 mr-sm-2">
+                                    <pre>{JSON.stringify(values, null, 2)}</pre>
+                                    <div className="input-group mb-2 mr-sm-2">
                                         <TextInput 
                                             name="eventName"
                                             type="eventName"
@@ -56,19 +69,20 @@ export default function ManageCalendar() {
                                             className="invalid-feedback p-0"
                                         />
                                     </div>
-                                    <div class="input-group mb-2 mr-sm-2">
+                                    <div className="input-group mb-2 mr-sm-2">
                                         <TextInput 
-                                            name="eventDate"
+                                            name="eventDateAndTime"
                                             type="datetime-local"
                                             className={`form-control p-2 ${
-                                                touched.eventDate && errors.eventDate ? "is-invalid" : ""
+                                                touched.eventDateAndTime && errors.eventDateAndTime ? "is-invalid" : ""
                                             }`}
-                                            id="eventDate"
+                                            id="eventDateAndTime"
                                             placeholder="Enter New Event"
                                         />
                                     </div>
-                                    <div class="input-group mb-2 mr-sm-2">
+                                    <div className="input-group mb-2 mr-sm-2">
                                         <Button 
+                                            type="submit"
                                             label="Create Event"
                                             className="btn btn-sm btn-info ml-2"
                                         />
@@ -76,6 +90,19 @@ export default function ManageCalendar() {
                                 </Form>
                             )}
                         </Formik>
+                    </div>
+                    <div col="col-9">
+                        <section>
+                            <ul className="list-group">
+                                <li className="list-group-item d-flex justify-content-between align-items-center">
+                                    Cras justo odio
+                                    <span>
+                                        <button className="btn text-white badge badge-primary badge-pill mr-2">Edit</button>
+                                        <button className="btn text-white badge badge-red badge-pill">Delete</button>
+                                    </span>
+                                </li>
+                            </ul>
+                        </section>
                     </div>
                 </section>
             </div>

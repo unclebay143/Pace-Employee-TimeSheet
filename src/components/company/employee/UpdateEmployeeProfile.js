@@ -1,13 +1,10 @@
 // React
-import axios from 'axios';
 import { ErrorMessage, Form, Formik,Field } from 'formik';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import Button from '../../layouts/Button';
 import { TextInput } from '../../layouts/FormInput';
 import { useDispatch, useSelector } from 'react-redux';
-import { USER_PROFILE_URL } from '../../../services/root-endpoints';
-import { authHeader } from '../../../services/auth-header';
 import { Link } from 'react-router-dom';
 import { getCompanyEmployees } from '../../../actions/employee/employeeAction';
 import { getDepartment } from '../../../actions/company/department/departmentAction';
@@ -54,57 +51,56 @@ const UpdateEmployeeProfile = () =>{
     
     const companyDepartmentDropDown = departments.map(({departmentName, departmentID}, index)=><option value={departmentID} key={index}>{departmentName}</option>)
     useEffect(() => {
+        // Fetch company employess
         dispatch(getCompanyEmployees())
+
         // Fetch company department
         dispatch(getDepartment())
-
     }, [])
-console.log(employeeProfile)
-useEffect(() => {
-    const getEmployeeProfile = employees.filter((employee)=>employee.staffID === parseInt(params.id))
-    console.log(employees);
-    if(getEmployeeProfile.length > 0){
-            setEmployeeProfile(getEmployeeProfile[0])
-            const {
-                firstName,
-                lastName,
-                phoneNumber,
-                email,
-                address,
-                userName,
-                billRateCharge,
-                expectedWorkHours,
-                staffRole,
-                roleID,
-                departmentID
-            } = getEmployeeProfile[0]
-        
-            // Set the destructure user information into the profile state (ES6 syntax)
-            setEmployeeProfile({
-                firstName,
-                lastName,
-                phoneNumber,
-                email,
-                address,
-                userName,
-                billRateCharge,
-                expectedWorkHours,
-                phoneNumber,
-                staffRole,
-                roleID,
-                departmentID
-            })
-        }else{
+    useEffect(() => {
+        const getEmployeeProfile = employees.filter((employee)=>employee.staffID === parseInt(params.id))
+        if(getEmployeeProfile.length > 0){
+                setEmployeeProfile(getEmployeeProfile[0])
+                const {
+                    firstName,
+                    lastName,
+                    phoneNumber,
+                    email,
+                    address,
+                    userName,
+                    billRateCharge,
+                    expectedWorkHours,
+                    staffRole,
+                    roleID,
+                    departmentID
+                } = getEmployeeProfile[0]
             
-        }
-    }, [employees, params.id])
-    // if(employeeProfile === undefined){
-    //     return(
-    //         <>
-    //             {/* <Loader /> */}
-    //         </>
-    //     )
-    // }
+                // Set the destructure user information into the profile state (ES6 syntax)
+                setEmployeeProfile({
+                    firstName,
+                    lastName,
+                    phoneNumber,
+                    email,
+                    address,
+                    userName,
+                    billRateCharge,
+                    expectedWorkHours,
+                    phoneNumber,
+                    staffRole,
+                    roleID,
+                    departmentID
+                })
+            }else{
+                
+            }
+        }, [employees, params.id])
+        if(employeeProfile === undefined){
+            return(
+                <>
+                    <Loader />
+                </>
+        )
+    }
     return ( 
         <>
             <div className="container">

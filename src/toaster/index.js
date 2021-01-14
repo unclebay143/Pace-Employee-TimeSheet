@@ -11,6 +11,7 @@ const somethingWentWrongLogger = () =>  toast.warning('Something went wrong, Ple
 //  Login Toast
 const invalidDetailsLogger = () => toast.warning('Invalid Login details');
 const userIsAuthenticatedLogger = () => toast.info('Logging in');
+const welcomeBackLogger = () => toast.info('Welcome Back');
 
 
 // Registration Toast
@@ -55,4 +56,5 @@ export{
     profileUpdateCompletedLogger,
     profileUpdateFailLogger,
     emailAlreadyExist,
+    welcomeBackLogger,
 }
