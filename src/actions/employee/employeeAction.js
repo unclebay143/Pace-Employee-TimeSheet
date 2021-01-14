@@ -21,7 +21,7 @@ const getCompanyEmployees = () => (dispatch) =>{
     })
     .catch((response)=>{
         // Alert user about network failure
-        somethingWentWrongLogger()
+        // somethingWentWrongLogger()
     })
 }
 

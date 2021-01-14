@@ -8,6 +8,10 @@ export const LOGOUT = 'LOGOUT';
 export const SYNC_CURRENT_USER = 'SYNC_CURRENT_USER';
 
 
+// User
+export const UPDATE_USER_PROFILE = 'UPDATE_USER_PROFILE';
+
+
 // TOUR
 export const END_TOUR = 'END_TOUR';
 

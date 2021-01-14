@@ -12,8 +12,11 @@ const AUTH_API_URL = 'https://pacetimesheet.herokuapp.com/api/users/';
 const USER_PROFILE_URL = 'https://pacetimesheet.herokuapp.com/api/users/companyName/userProfile/';
 
 
-// TODO API
+/* TODO API */ 
 const TODO_API_URL = 'http://fakerestapi.azurewebsites.net/api/v1/Activities';
+// export const FETCH_TODO = 'https://pacetimesheet.herokuapp.com/api/todo/todolist/'
+export const ADD_NEW_TODO_API = 'https://pacetimesheet.herokuapp.com/api/todo/companyName/todolist/'
+// const TODO_API_URL = 'https://pacetimesheet.herokuapp.com/api/todo/companyName/todolist/'
 
 /* >>>>>>>>>>> MANAGE TASKS API <<<<<<<<<<<<< */
 
@@ -81,8 +84,7 @@ export {
     ADD_NEW_EMPLOYEE_API,
     FETCH_EMPLOYEES_LIST_API,
 
-
-    TODO_API_URL,
+    // TODO_API_URL,
 
     ASSIGN_TASK_API_URL,
     TASK_API_URL,
