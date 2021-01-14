@@ -14,8 +14,12 @@ import loginImage from './pages-images/login-img.png';
 import { TextInput } from '../layouts/FormInput';
 import { loginSchema } from '../Validation/Schema';
 import { HomeButton } from '../layouts/HomeButton';
+
+// Actions
 import { login } from '../../actions/auth/authAction';
 import { syncCurrentUser } from '../../actions/user/userAction';
+import { getTodos } from '../../actions/todo/todoAction';
+import { getTasks } from '../../actions/task/taskAction';
 
 /* Development fake user credentials */
 
@@ -45,22 +49,35 @@ const Login = () =>{
     // Function to redirect user to the dashboard when there is a user in the local storage
     useEffect(() => {
         document.title = 'Login | Pace'
+        // Function that redirects user to the dashboard
+        const handleRedirect = () =>{
+
+            // Fetch user todo list
+            dispatch(getTodos())
+                
+            // Fetch user tasks
+            dispatch(getTasks())
+            
+           
+            
+
+            setTimeout(() => {
+                history.push('./dashboard');
+            }, 2000);
+        }
+        const redirector = (cb) =>{
+            userIsAuthenticatedLogger()
+            cb()
+        }
+        
+        // Conditonal Statement to check if a user is logged in from the redux state and local storage
+        if(authenticationState.isLoggedIn || currentUserFromLocalStorage){
+            // Synchronize the current user 
+            syncCurrentUser(currentUserFromLocalStorage.staffID)
+            redirector(handleRedirect)
+        }
     })
 
-    // Function that redirects user to the dashboard
-    const redirector = () =>{
-        history.push('./dashboard');
-    }
-
-    // Conditonal Statement to check if a user is logged in from the redux state and local storage
-    if(authenticationState.isLoggedIn || currentUserFromLocalStorage){
-        
-        userIsAuthenticatedLogger()
-        // Synchronize the current user 
-        syncCurrentUser(currentUserFromLocalStorage.staffID)
-        const redirectUserToDashboard = setTimeout(redirector, 2000)
-        return(()=>clearTimeout(redirectUserToDashboard))
-    }
 
     return(
         <div className="container">

@@ -44,16 +44,12 @@ export const contactUsSchema = Yup.object().shape({
 
 //  AddEmployee Schema
 export const AddEmployeeSchema = Yup.object().shape({
-    firstname: Yup.string().required('Firstname is required'),
-    lastname: Yup.string().required('Lastname is required'),
     email: Yup.string().email('Invalid Email Format').required('Email is required'),
-    phone: Yup.string().matches(phoneRegExp, 'Phone number is not valid').required('Phone is required'),
-    salary: Yup.number().required('Salary is required'),
-    password: Yup.string().min(7).required('Password is required'),
-    password2: Yup.string().required('Please confirm password').oneOf([Yup.ref('password')], 'Password mismatch'),
-    department: Yup.string().required('Department is required'),
-    role: Yup.string().required('Role is required'),
-    type: Yup.string().required('Type is required')
+    billRateCharge: Yup.number().required('Bill Rate Charge is required'),
+    expectedWorkHours: Yup.number().required('Expected Work Hour is required'),
+    departmentID: Yup.string().required('Department is required'),
+    roleID: Yup.string().required('Role is required'),
+    staffRole: Yup.string().required('Position is required')
 })
 
 

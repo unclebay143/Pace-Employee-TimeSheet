@@ -6,15 +6,10 @@ let accessToken = JSON.parse(localStorage.getItem('token'));
 // let accessToken = localStorage.getItem('token')
 let getCurrentUser = JSON.parse(localStorage.getItem('currentUser'));
 
-
-if(!getCurrentUser){
+if(getCurrentUser === null){
     getCurrentUser = {
             accessToken: '',
-            response: [
-                {
-                    // firstName: 'sam'
-                }
-            ]
+            response: {}
     }
 }
 

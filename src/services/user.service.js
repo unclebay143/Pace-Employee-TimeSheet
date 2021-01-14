@@ -24,7 +24,8 @@ const fetchUserProfile = (staffID) => dispatch =>{
   .catch((error)=>{
 
     //
-    sessionExpired()
+    // sessionExpired()
+    // logout()
   })
 
 }
