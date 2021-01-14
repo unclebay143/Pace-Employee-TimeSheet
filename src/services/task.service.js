@@ -29,7 +29,7 @@ const fetchAcceptedTasks = (newTask) =>{
 }
 
 const fetchAssignedTasks = (newTask) =>{
-    return axios.get( `${ ASSIGNED_TASK_API_URL }/${currentUserStaffID.toString()}`, { headers: authHeader })
+    return axios.get( ASSIGNED_TASK_API_URL + currentUserStaffID, { headers: authHeader })
 }
 
 const deleteAcceptedTask = (id) =>{
