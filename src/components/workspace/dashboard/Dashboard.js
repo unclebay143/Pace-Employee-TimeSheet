@@ -33,6 +33,7 @@ import { syncCurrentUser } from '../../../actions/user/userAction';
 import TourContainer from '../../tour/config/TourContainer';
 import ChangePassword from '../../user/ChangePassword';
 import Calendar from '../../company/calendar/Calendar';
+import ManageCalendar from '../../company/calendar/ManageCalendar';
 
 
 
@@ -76,6 +77,7 @@ const Dashboard = () =>{
                                 <Switch>
 
                                     <Route path="/dashboard/calendar" component={Calendar} />
+                                    <Route path="/dashboard/manageCalendar" component={ManageCalendar} />
 
                                     <Route path="/dashboard/todos" component={Todo} />
                                     <Route path="/dashboard/task" component={Task} />
