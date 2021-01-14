@@ -1,6 +1,6 @@
 // React
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 
 // Components
@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 
 // Loader
 import Loader from '../../loader/Loader';
+import { getCompanyEmployees } from '../../../actions/employee/employeeAction';
 
 
 
@@ -16,49 +17,60 @@ export default  function EmployeeList(){
   // set usestate for isFetching too
   const { employees, isFetching } = useSelector(state => state.employees)
   const [ employeesList, setEmployeesList ] = useState([{}])
-  const [ Header, setHeader ] = useState([{}])
+  const [ isFetchingState, setIsFetchingState ] = useState(isFetching)
+  const dispatch = useDispatch()
 
 
   useEffect(() => {
     setEmployeesList(employees)
+    if(!isFetching){
+      setIsFetchingState(false)
+    }
   }, [employees, isFetching])
+  
+  useEffect(() => {
+    // Fetch Company Employess
+    dispatch(getCompanyEmployees())
+  }, [])
+
 
   // Set the bootrap details
-  useEffect(() => {
-    const Header = [
+  const Header = [
+    {
+      dataField: 'staffID',
+        text: 'S/N'
+      },
       {
-        dataField: 'staffID',
-          text: 'S/N'
+        dataField: 'firstName',
+        text: 'First',
+      },
+      {
+        dataField: 'lastName',
+        text: 'Lastname',
+      },
+      {
+        dataField: 'email',
+        text: 'Email',
+      },
+      {
+        
+        formatter: (cellContent, row) => {
+          return (
+            <>
+              <Link 
+                to={`/dashboard/employee/profile/${row.staffID}`}
+                >
+                View
+                
+              </Link>
+            </>
+          );
         },
-        {
-          dataField: 'firstName',
-          text: 'Firstname',
-        },
-        {
-          dataField: 'lastName',
-          text: 'Lastname',
-        },
-        {
-          
-          formatter: (cellContent, row) => {
-            return (
-              <>
-                <Link 
-                  to={`/dashboard/employee/profile/${row.staffID}`}
-                  >
-                  View
-                  
-                </Link>
-              </>
-            );
-          },
-        },
-      
-      ];
-      setHeader(Header)
+      },
+    
+    ];
 
-      // styles each row
-  }, [])
+    // styles each row
 
 
   const rowStyles = {
@@ -67,7 +79,7 @@ export default  function EmployeeList(){
 
 
   // If the employee list is been fetched from the server or not mounted on the ui, show the loader 
-  if(isFetching){
+  if(isFetchingState){
     return(
         <>
             <Loader />

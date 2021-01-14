@@ -41,7 +41,7 @@ const TimerContainer=()=>{
             }
         }
 
-        const reminderTracker = setTimeout(reminder, 1000);
+        const reminderTracker = setTimeout(reminder, 3200000);
         
         // setTimeout(() => {
         //     reminder()

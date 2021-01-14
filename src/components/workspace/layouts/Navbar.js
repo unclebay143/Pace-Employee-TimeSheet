@@ -1,7 +1,7 @@
 
 // React
 import { React, useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
@@ -18,15 +18,17 @@ import { ToastContainer } from 'react-toastify';
 const Navbar = () =>{
     const history = useHistory();
     const dispatch = useDispatch();
-    const [fullName, setFullName] = useState('')
+    const { currentUser } = useSelector(state => state.authenticationState)
+    const [fullName, setFullName] = useState('') // the fullName is empty before the data are fetch, to prevent seeing undefined
     const [staffID, setStaffID] = useState('')
     const [roleID, setRoleID] = useState('')
-
     useEffect(() => {
         
-        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        // const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        
+
         if(currentUser){
-            const { firstName, lastName, staffID, roleID } = currentUser;
+            const { firstName, lastName, staffID, roleID } = currentUser || '';
             setFullName(` ${ firstName } ${ lastName } `)
             setStaffID(staffID)
             setRoleID(roleID)
@@ -55,7 +57,7 @@ const Navbar = () =>{
                     <i className="sidebar-toggler text-gray-500 mr-4 mr-lg-5 lead">
                         <i className="fas fa-align-left"></i>
                     </i>
-                    <Link to="/dashboard/profile" className="navbar-brand font-weight-bold text-uppercase text-base pace-primary-color dashboard-lead companyDisplay">
+                    <Link to={`/dashboard/profile/${staffID}`} className="navbar-brand font-weight-bold text-uppercase text-base pace-primary-color dashboard-lead companyDisplay">
                         { fullName }
                     </Link>
                     <ul className="ml-auto d-flex align-items-center list-unstyled mb-0">

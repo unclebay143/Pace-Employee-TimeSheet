@@ -16,6 +16,8 @@ const ManageDepartment = () => {
   const { isFormOpen, departments } = useSelector(state => state.departments)
   
   useEffect(() => {
+     // Fetch company department
+     dispatch(getDepartment())
     document.title = 'Manage Department'
     setShouldFormOpen(isFormOpen)
   }, [isFormOpen])

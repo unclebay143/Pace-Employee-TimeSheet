@@ -1,26 +1,29 @@
 // React
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { ErrorMessage, Form, Formik } from 'formik';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
-import { useDispatch } from 'react-redux';
+import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import { useDispatch, useSelector } from 'react-redux';
 
 // Layouts
 import Button from '../layouts/Button';
 import { TextInput } from '../layouts/FormInput';
 
 //  Actions
-import { syncCurrentUser, updateUserProfile } from '../../actions/user/userAction';
+import { updateUserProfile } from '../../actions/user/userAction';
 
 // Services helper
-import { USER_PROFILE_URL } from '../../services/root-endpoints';
-import { authHeader } from '../../services/auth-header';
+import Loader from '../loader/Loader';
+import ChangePassword from './ChangePassword';
 
 const UpdateProfile = () =>{
+    const { currentUser } = useSelector(state => state.authenticationState)
     const params = useParams(); 
     const dispatch = useDispatch();
     const [ staffID, setStaffID ] = useState('');
+    const history = useHistory();
+    const [isLoading, setIsLoading] = useState(true)
+
     // User credentials
     const [profile, setProfile] = useState({
         firstName: '',
@@ -35,39 +38,38 @@ const UpdateProfile = () =>{
         const staffID = params.id; // get id from urls(path)
         setStaffID(staffID);
 
-        const fetchCurrentUserProfile = async()=>{
-            // Get user profile from the server
-            const response = await axios.get(USER_PROFILE_URL + staffID, { headers: authHeader })
-
-            if(response.data === 'invalid token or token expired'){
-                syncCurrentUser()
-            }else{
-                // Destructure the user information from the response.data.data[0] -response structure
-                const {
-                    firstName,
-                    lastName,
-                    phoneNumber,
-                    email,
-                    address,
-                    userName,
-                    
-                } = response.data.data[0]
+        // Destructure the user information from the redux
+        if(currentUser){
+            const {
+                firstName,
+                lastName,
+                phoneNumber,
+                email,
+                address,
+                userName,
                 
-                // Set the destructure user information into the profile state (ES6 syntax)
-                setProfile({
-                    firstName,
-                    lastName,
-                    phoneNumber,
-                    email,
-                    address,
-                    userName,
-                })
-            }
+            } = currentUser
+        
+            // Set the destructure user information into the profile state (ES6 syntax)
+            setProfile({
+                firstName,
+                lastName,
+                phoneNumber,
+                email,
+                address,
+                userName,
+            })
+            setIsLoading(false)
         }
-        // Trigger function to get user profile
-        fetchCurrentUserProfile()
-
-    }, [params.id])
+    }, [params.id, currentUser])
+    
+    if(isLoading){
+        return(
+            <>
+                <Loader />
+            </>
+        )
+    }
 
     return ( 
         <>
@@ -109,14 +111,21 @@ const UpdateProfile = () =>{
                                     enableReinitialize
                                     // validationSchema={UpdateProfileSchema}
                                     onSubmit={(values, action)=>{
-                                        dispatch(updateUserProfile(values, staffID, action));
+                                        dispatch(updateUserProfile(values, staffID, action))
+                                        .then((response)=>{
+                                            console.log(response)
+                                            history.push(`/dashboard/profile/${params.id}`)
+                                        })
+                                        .catch((error)=>{
+                                            console.log(error)
+                                        })
                                     }
                                     }
                                 >
                                     { (({ values, touched, errors, handleSubmit, isSubmitting, resetForm })=>{
                                         return <Form onSubmit={handleSubmit}>
                                             <div className="mb-5 text-gray">
-                                                {/* <pre>{JSON.stringify(values, null, 2)}</pre> */}
+                                                {/* <pre>{JSON.stringify(values, null, 2)}</pre>  */}
                                                 <h5>EDIT PROFILE</h5>
                                             </div>
                                             <hr />
@@ -172,15 +181,15 @@ const UpdateProfile = () =>{
                                                 </div>
                                                 <div className="col-sm-12 col-md-9 text-secondary" >
                                                     <TextInput
-                                                        name="username"
-                                                        placeholder="Enter Username"
+                                                        name="userName"
+                                                        placeholder="Enter username"
                                                         type="text" 
-                                                        className={`form-control ${touched.username && errors.username ? "is-invalid" : ""}`} 
-                                                        id="username"
+                                                        className={`form-control ${touched.userName && errors.userName ? "is-invalid" : ""}`} 
+                                                        id="userName"
                                                     />
                                                     <ErrorMessage
                                                         component="div"
-                                                        name="username"
+                                                        name="userName"
                                                         className="invalid-feedback p-0"
                                                     />
                                                 </div>
@@ -225,52 +234,6 @@ const UpdateProfile = () =>{
                                                     <ErrorMessage
                                                         component="div"
                                                         name="email"
-                                                        className="invalid-feedback p-0"
-                                                    />
-                                                </div>
-                                            </div>
-                                            <hr />
-
-                                            {/* CREATE PASSWORD */}
-                                            <div className="row">
-                                                <div className="col-sm-6 col-md-3">
-                                                    <h6 className="mb-0">Create Password</h6>
-                                                </div>
-                                                <div className="col-sm-12 col-md-9 text-secondary" >
-                                                    <TextInput
-                                                        name="password"
-                                                        placeholder="Create Password"
-                                                        type="password" 
-                                                        className={`form-control ${ touched.password && errors.password ? "is-invalid" : ""}`} 
-                                                        id="password"
-                                                        autoComplete='on'
-                                                    />
-                                                    <ErrorMessage
-                                                        component="div"
-                                                        name="password"
-                                                        className="invalid-feedback p-0"
-                                                    />
-                                                </div>
-                                            </div>
-                                            <hr />
-
-                                            {/* CONFIRM PASSWORD */}
-                                            <div className="row">
-                                                <div className="col-sm-6 col-md-3">
-                                                    <h6 className="mb-0">Confirm Password</h6>
-                                                </div>
-                                                <div className="col-sm-12 col-md-9 text-secondary" >
-                                                    <TextInput
-                                                        name="password2"
-                                                        placeholder="Confirm Password"
-                                                        type="password" 
-                                                        className={`form-control ${ touched.password2 && errors.password2 ? "is-invalid" : ""}`} 
-                                                        id="password2"
-                                                        autoComplete='on'
-                                                    />
-                                                    <ErrorMessage
-                                                        component="div"
-                                                        name="password2"
                                                         className="invalid-feedback p-0"
                                                     />
                                                 </div>
