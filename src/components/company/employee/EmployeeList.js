@@ -16,22 +16,18 @@ import { getCompanyEmployees } from '../../../actions/employee/employeeAction';
 export default  function EmployeeList(){
   // set usestate for isFetching too
   const { employees, isFetching } = useSelector(state => state.employees)
-  const [ employeesList, setEmployeesList ] = useState([{}])
+  const [ employeesList, setEmployeesList ] = useState([])
   const [ isFetchingState, setIsFetchingState ] = useState(isFetching)
   const dispatch = useDispatch()
-
-
-  useEffect(() => {
-    setEmployeesList(employees)
-    if(!isFetching){
-      setIsFetchingState(false)
-    }
-  }, [employees, isFetching])
   
   useEffect(() => {
     // Fetch Company Employess
-    dispatch(getCompanyEmployees())
-  }, [])
+    if(employees.length === 0){
+      dispatch(getCompanyEmployees())
+    }
+    setEmployeesList(employees)
+    setIsFetchingState(false)
+  }, [dispatch, employees])
 
 
   // Set the bootrap details
@@ -79,6 +75,16 @@ export default  function EmployeeList(){
 
 
   // If the employee list is been fetched from the server or not mounted on the ui, show the loader 
+  
+  const employeesLists = [
+    {
+      firstName: 'Adebayo',
+      staffID: '123',
+      lastName: 'samuel',
+      email: 'samuel'
+    }
+  ]
+
   if(isFetchingState){
     return(
         <>

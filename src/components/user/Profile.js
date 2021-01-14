@@ -41,10 +41,12 @@ const Profile = () =>{
     const [ staffID, setStaffID ] = useState('');
     const dispatch = useDispatch()
 
-    console.log(currentUser);
-
     useEffect(() => {
         dispatch(syncCurrentUser( params.id ))
+    }, [])
+
+    
+    useEffect(() => {
 
         // Get staffID from the urls 
         const staffID = params.id;
@@ -73,7 +75,7 @@ const Profile = () =>{
                 userName,
             })
                 
-    }, [currentUser, params.id])
+    }, [currentUser, params.id, dispatch])
 
     if(userProfile.firstName === undefined){
         return(
@@ -128,10 +130,10 @@ const Profile = () =>{
                                             <p className="text-secondary mb-1">Frontend Engineer</p>
                                             <p className="text-muted font-size-sm">{userProfile.address}</p>
                                             <Link to={`/dashboard/profile/update/${staffID}`}>
-                                                <Button className="btn btn-primary mr-2 btn-sm" label="Edit Profile"/>
+                                                <Button className="btn btn-primary mr-2 m btn-sm" label="Edit Profile"/>
                                             </Link>
                                             <Link to={`/dashboard/profile/changepassword/${staffID}`}>
-                                                <Button className="btn btn-warning text-white btn-sm" label="Change Password"/>
+                                                <Button className="btn btn-warning text-white btn-sm mt-2 mt-lg-0" label="Change Password"/>
                                             </Link>
                                         </div>
                                     </div>

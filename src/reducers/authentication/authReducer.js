@@ -17,6 +17,7 @@ const initialState = {
   currentUser: '',
   isFirstTimer: false,
   error: null,
+  welcome: false,
 };
 
 const authReducer = (state = initialState, action) =>{
@@ -44,6 +45,7 @@ const authReducer = (state = initialState, action) =>{
     case LOGIN_SUCCESS:
       return {
         ...state,
+        welcome: true,
         isLoggedIn: true,
         currentUser: payload,
       };

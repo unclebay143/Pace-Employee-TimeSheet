@@ -3,13 +3,7 @@ import { ADD_NEW_EMPLOYEE, FETCH_COMPANY_EMPLOYEES } from "../../../actions/type
 const initialState = {
     isFetching: true,
     error: null,
-    employees: [
-        {
-            staffID: '001',
-            firstName: 'Employee List is Empty',
-            lastName: ''
-        }
-    ]
+    employees: []
 }
 
 

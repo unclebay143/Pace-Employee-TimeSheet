@@ -1,8 +1,8 @@
 // React
 import { React, useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Route, Switch } from 'react-router-dom/cjs/react-router-dom.min';
-import { useHistory } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 
 // Layouts
 import Navbar from '../layouts/Navbar';
@@ -33,32 +33,32 @@ import { syncCurrentUser } from '../../../actions/user/userAction';
 import TourContainer from '../../tour/config/TourContainer';
 import ChangePassword from '../../user/ChangePassword';
 import Calendar from '../../company/calendar/Calendar';
+import ManageCalendar from '../../company/calendar/ManageCalendar';
+import { userIsAuthenticatedLogger, welcomeBackLogger } from '../../../toaster';
 
 
 
 const Dashboard = () =>{
-    
+    const { welcome } = useSelector(state => state.authenticationState)
     const history = useHistory()
     const dispatch = useDispatch()
     useEffect(() => {
-        // const x = () =>{
-            //     // window.location.reload()
-            // }
-            // const b = window.confirm('welcome')
-            // if(b === true){
-                //     x()
-                // }else{
-                    //     console.log('what')
-                    // }
         const currentUser  = JSON.parse(localStorage.getItem('currentUser'));
+        dispatch(syncCurrentUser( currentUser.staffID ))
         if( currentUser === null || currentUser === undefined ){
-            history.push('./login');
+            console.log('null')
         }else{
             dispatch(syncCurrentUser( currentUser.staffID ))
-            // setTimeout(() => {
-            // }, 2000);
         }
-    }, [])
+    }, [dispatch])
+
+    useEffect(() => {
+        if(welcome){
+            welcomeBackLogger()
+        }
+    },[welcome]);
+        
+
 
 
     return(
@@ -76,6 +76,7 @@ const Dashboard = () =>{
                                 <Switch>
 
                                     <Route path="/dashboard/calendar" component={Calendar} />
+                                    <Route path="/dashboard/manageCalendar" component={ManageCalendar} />
 
                                     <Route path="/dashboard/todos" component={Todo} />
                                     <Route path="/dashboard/task" component={Task} />

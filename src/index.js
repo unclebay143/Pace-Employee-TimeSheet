@@ -2,7 +2,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {HashRouter as Router, Route, Switch } from "react-router-dom";
-
 //  >>>>>>>> APPLICATION STYLES  <<<<<<<<<<
 
 // BOOTSTRAP
@@ -72,8 +71,8 @@ import Thanks from './components/pages/Thanks';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <Router>
+    <Router>
+      <Provider store={store}>
         <Switch>
           <Route exact path="/contact" component = {ContactUs} />
           <Route exact path="/ResetPassword" component = {ResetPassword} />
@@ -89,8 +88,8 @@ ReactDOM.render(
           <Route path="/" component = {Home} />
 
         </Switch>
-      </Router>
-    </Provider>
+      </Provider>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );
