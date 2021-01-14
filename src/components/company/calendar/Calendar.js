@@ -6,17 +6,33 @@ import Button from '../../layouts/Button';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCalendarEvent } from '../../../actions/company/calendar/calendarAction';
+import Loader from '../../loader/Loader';
                     
 
 export default function Calendar() {
     const localizer = momentLocalizer(moment);
-    const { events } = useSelector(state => state.calendar);
-    const [ eventsState, setEventStates ] = useState([]);
+    const { events, isFetching } = useSelector(state => state.calendar);
+    const [ eventsState, setEventsState ] = useState([]);
+    const [ isFetchingState, setIsFetchingState ] = useState(isFetching);
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(getCalendarEvent())
-        setEventStates(events)
+        // console.log('snsnsn')
+        // setEventStates(events)
+    }, []);
+    
+    useEffect(() => {
+        if(events){
+            setEventsState([events])
+            setIsFetchingState(false)
+        }
     }, [events]);
+ 
+    if(isFetchingState){
+        return(
+            <Loader />
+        )
+    }
     return (
         <>
             <style>

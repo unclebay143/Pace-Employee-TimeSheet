@@ -27,12 +27,16 @@ const Navbar = () =>{
         
         if(currentUser){
             const { firstName, lastName, staffID, roleID } = currentUser || '';
-            setFullName(` ${ firstName } ${ lastName } `)
+            setFullName(` ${ firstName === undefined ? '' : firstName } ${ lastName === undefined ? '' : lastName} `)
             setStaffID(staffID)
             setRoleID(roleID)
 
         }
     },[currentUser])
+
+    if(!isLoggedIn){
+        return <Redirect to="/login" push={true} />
+    }
 
     return(
         <>

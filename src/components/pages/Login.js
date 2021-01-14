@@ -43,6 +43,7 @@ const Login = () =>{
     const currentUserFromLocalStorage = JSON.parse(localStorage.getItem('currentUser'));
     const authenticationState = useSelector(state => state.authenticationState)
     const dispatch = useDispatch()
+    const history = useHistory()
     
     // Function to redirect user to the dashboard when there is a user in the local storage
     useEffect(() => {
@@ -54,7 +55,8 @@ const Login = () =>{
     },[currentUserFromLocalStorage])
 
     if(authenticationState.isLoggedIn){
-        return <Redirect to="/dashboard" push={true} />
+        // return <Redirect to="/dashboard" push={true} />
+         history.push('./dashboard')
     }
     
     
