@@ -2,7 +2,7 @@ import { FETCH_ASSIGNED_TASKS_PENDING, FETCH_ASSIGNED_TASKS_SUCCESS, DELETE_ASSI
 
 const initialState = {
   isFetching: false,
-  assignedTasks: [{},],
+  assignedTasks: [{}]
 }
 const assignedTaskReducer = (state=initialState, action) => {
   switch(action.type){
