@@ -1,24 +1,32 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
+import { NavLink, useHistory } from 'react-router-dom';
+import { deleteTask } from '../../../actions/task/taskAction';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { NavLink } from 'react-router-dom';
-import { connect } from 'react-redux';
+// import { NavLink } from 'react-router-dom';
+// import { connect } from 'react-redux';
 import Button from '../../layouts/Button';
 
 import unclebay from '../../pages/pages-images/ayodele_samuel_adebayo.jpg';
 import attachment from '../../pages/pages-images/v.jpg';
+import { TASK_API_URL } from '../../../services/root-endpoints';
+import axios from 'axios';
 
 
-class TaskDetails extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      tasks: this.props.tasks
-    }
+const TaskDetails = () => {
+  const params = useParams();
+  const dispatch = useDispatch();
+  const [taskDetails, setTaskDetails] = useState({})
+
+  useEffect(() => {
+    const fetchTaskDetails = async(taskID)=>{
+    const { data } = await axios.get(`${TASK_API_URL}/${taskID}`);
+    setTaskDetails(data)
   }
+    fetchTaskDetails(params.id)
+  }, [])
 
-
-  render() {
-  console.log(this.props.tasks)
     return (
       <>
         <section className="py-0">
@@ -28,7 +36,8 @@ class TaskDetails extends Component {
                   <div className="py-3">
                   <header className="card-header wht-bg">
                     <h4 className="d-flex justify-content-between task-page-lead">
-                      View Task
+                      {/* View Task */}
+                      { taskDetails.title }
                     </h4>
                   </header>
                   </div>
@@ -45,18 +54,19 @@ class TaskDetails extends Component {
                               label="  Accept"
                               icon="fa fa-check"
                               className="btn btn-theme btn-sm"
-                            />                                   
-                            <Button 
-                              type="submit"
-                              label=" Delete"
-                              icon="fa fa-trash-alt"
-                              className="btn btn-sm special ml-2 mr-2 pace-bg-accent"
                             />
                             <Button 
                               type="submit"
                               label=" Request"
-                              className="btn btn-sm special"
-                            />            
+                              className="btn btn-sm mx-2 special"
+                            />                                     
+                            <Button 
+                              type="submit"
+                              label=" Delete"
+                              icon="fa fa-trash-alt"
+                              className="btn btn-sm special pace-bg-accent"
+                              onClick={(()=>dispatch(deleteTask(taskDetails.id)))}
+                            />          
                           </div>
                         </div>
                       </div>
@@ -139,15 +149,16 @@ class TaskDetails extends Component {
                           />                                   
                           <Button 
                             type="submit"
-                            label=" Delete"
-                            icon="fa fa-trash-alt"
-                            className="btn btn-sm special ml-2 mr-2 pace-bg-accent"
-                          />
+                            label=" Request"
+                            className="btn btn-sm special mx-2"
+                          />    
                           <Button 
                             type="submit"
-                            label=" Request"
-                            className="btn btn-sm special"
-                          />    
+                            label=" Delete"
+                            icon="fa fa-trash-alt"
+                            className="btn btn-sm special pace-bg-accent"
+                            onClick={(()=>(deleteTask(taskDetails.id)))}
+                          />
                         </div>
                       {/* </div>   */}
                     </div>
@@ -159,11 +170,5 @@ class TaskDetails extends Component {
       </>
     )
   }
-}
 
-const mapStateToProps = (state) =>{
-  const { tasks } = state
-  return { tasks }
-}
-
-export default connect(mapStateToProps, null)(TaskDetails)
+export default TaskDetails;

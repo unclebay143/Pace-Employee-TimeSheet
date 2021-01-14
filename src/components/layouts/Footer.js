@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -35,38 +36,38 @@ const Footer = () => {
               <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                 <h6 className="text-uppercase font-weight-bold small-footer-heading">Pace Timesheet</h6>
                 <hr className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style={{width: '60px'}} />
-                <p>we are working hard to replace this section with some better wording but TOLUWANI and AISHA are still on break .</p>
+                <p>Pace is an employee time tracking system, which provides employee clock time (timesheet).</p>
               </div>
               <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
                 <h6 className="text-uppercase font-weight-bold">Services</h6>
                 <hr className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style={{width: '60px'}} />
                 <p>
-                  <a href="https://google.com">Business Management</a>
+                  <Link to="/login">Business Management</Link>
                 </p>
                 <p>
-                  <a href="https://google.com">Employee Timer</a>
+                  <Link to="/login">Employee Timer</Link>
                 </p>
                 <p>
-                  <a href="https://google.com">Timeline</a>
+                  <Link to="/login">Timeline</Link>
                 </p>
                 <p>
-                  <a href="https://google.com">Report</a>
+                  <Link to="/login">Report</Link>
                 </p>
               </div>
               <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
                 <h6 className="text-uppercase font-weight-bold small-footer-heading">Useful links</h6>
                 <hr className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style={{width: '60px'}} />
                 <p>
-                  <a href="#!">Your Account</a>
+                  <Link to="/login">Your Account</Link>
                 </p>
                 <p>
-                  <a href="#!">Become an Affiliate</a>
+                  <Link to="/contact">Become an Affiliate</Link>
                 </p>
                 <p>
-                  <a href="#!">Contact us</a>
+                  <Link to="/contact">Contact us</Link>
                 </p>
                 <p>
-                  <a href="#!">Help</a>
+                  <Link to="/contact">Help</Link>
                 </p>
               </div>
               <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 contact-container">

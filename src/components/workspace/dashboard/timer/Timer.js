@@ -25,7 +25,6 @@ const TimerContainer=()=>{
 
     useEffect(() => {
         const reminder = () => {
-            playSound()
             if(shouldRemindUser){
                 timerReminder.fire({
                     showCloseButton: true,
@@ -38,12 +37,19 @@ const TimerContainer=()=>{
                     text: 'Did you forget to start your time?.',
                     footer: '<a href="">Why am I seeing this?</a>',
                 })
+                playSound()
             }
         }
+
+        const reminderTracker = setTimeout(reminder, 3200000);
         
-        setTimeout(() => {
-            reminder()
-        }, 3000000)
+        // setTimeout(() => {
+        //     reminder()
+        // }, 3000000)
+
+        return(()=>{
+            clearTimeout(reminderTracker)
+        })
 
     }, [shouldRemindUser, playSound])
     
@@ -104,7 +110,7 @@ const TimerContainer=()=>{
     
     return(
         <>
-            <li className="nav-item">
+            <li className="nav-item" h='4' data-tut='reactour__timer'>
                 <div id="searchForm" className="ml-auto d-non d-lg-block">
                     <div className="position-relative mb-0">
                         <div id="right-i">

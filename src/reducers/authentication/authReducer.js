@@ -6,24 +6,34 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
+  SYNC_CURRENT_USER,
+  END_TOUR,
+  UPDATE_USER_PROFILE
 } from "../../actions/types";
 
-// get user JWT from local storage
-const user = JSON.parse(localStorage.getItem("user"));
 
-// If user exist logged user in else log them out
-const initialState = user ? { isLoggedIn: true, user } : { isLoggedIn: false, user: null };
+const initialState = {
+  isLoggedIn: false, 
+  currentUser: '',
+  isFirstTimer: false,
+  error: null,
+};
 
 const authReducer = (state = initialState, action) =>{
   const { type, payload } = action;
-
   switch (type) {
 
     case REGISTER_SUCCESS:
+      return  {
+        ...state,
+        isFirstTimer: true
+      }
+      
+    case END_TOUR:
       return {
         ...state,
-        isLoggedIn: false,
-      };
+        isFirstTimer: false
+      }
 
     case REGISTER_FAIL:
       return {
@@ -35,22 +45,39 @@ const authReducer = (state = initialState, action) =>{
       return {
         ...state,
         isLoggedIn: true,
-        user: payload.user,
+        currentUser: payload,
       };
 
     case LOGIN_FAIL:
       return {
         ...state,
         isLoggedIn: false,
-        user: null,
+        currentUser: null,
+        error: payload
       };
+    
+    case SYNC_CURRENT_USER:
+      return {
+        ...state,
+        isLoggedIn: true,
+        currentUser: payload
+      }
 
     case LOGOUT:
       return {
         ...state,
         isLoggedIn: false,
-        user: null,
+        currentUser: null,
       };
+    
+      case UPDATE_USER_PROFILE:
+        return {
+          ...state,
+          currentUser: {
+            ...state.currentUser,
+            payload
+          }
+        }
 
     default:
       return state;

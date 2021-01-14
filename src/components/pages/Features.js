@@ -16,6 +16,7 @@ const Features = () =>{
     return(
       <>
       <div id="features">&nbsp;</div>
+        <h3 data-aos="fade-left" className="features-lead mt-3 mr-md-5 mr-4 h2 pace-accent-color text-center">PACE <span className="text-dark mr-3">FEATURES</span></h3>
         <section className="container features-wrapper">
           <section className="row d-flex flex-column flex-sm-row align-items-center pace-features-1" id="pace-features">
             <FeaturesCard

@@ -1,10 +1,9 @@
 // React 
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { ToastContainer } from 'react-toastify'; 
 
 // Action
-import { ADD_TODO } from '../../../../actions/types';
+import { closeTodoForm, addTodo } from '../../../../actions/todo/todoAction';
 
 // Layout
 import Button from '../../../layouts/Button';
@@ -16,7 +15,6 @@ import { Formik, Form, ErrorMessage } from 'formik';
 
 // Toaster
 import { invalidTodoTitle } from '../../../../toaster/index';
-import { closeTodoForm, addTodo } from '../../../../actions/todo/todoAction';
 
 
 
@@ -28,7 +26,6 @@ const TodoForm = () =>{
     return (
         <>
             <div  className='form-popup' id={`${isTodoFormOpen ? 'show-form' : "hide-form"  }`}>
-                <ToastContainer />
                 <Formik
                     initialValues = {
                         {
@@ -38,7 +35,6 @@ const TodoForm = () =>{
                     }
                     onSubmit={(values, action)=>{
                         setTimeout(() => {
-                            
                             dispatch(addTodo(values))
                             action.resetForm({
                                 title: '',

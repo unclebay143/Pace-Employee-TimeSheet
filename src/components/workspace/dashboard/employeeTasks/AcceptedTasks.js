@@ -1,122 +1,88 @@
-import React, { Component } from 'react';
-import {NavLink, Link} from 'react-router-dom';
-import { connect } from 'react-redux';
-
-// import { getAcceptedTask } from '../../../../actions/task/taskAction';
+import React, { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import Table from '../../layouts/Table';
 import paginationFactory from 'react-bootstrap-table2-paginator';
+import filterFactory, { selectFilter } from 'react-bootstrap-table2-filter';
+import { getAcceptedTasks } from '../../../../actions/task/acceptedTaskAction';
+import { useDispatch, useSelector } from 'react-redux';
 
+const AcceptedTasks = () => {
 
+  // const { tasks, tasks: { data } } = useSelector(state => state.tasks)
+  const { acceptedTasks, acceptedTasks: { data } } = useSelector(state => state.acceptedTasks)
+  const history = useHistory();
+  const dispatch = useDispatch()
+  
+  useEffect(() => {
+    dispatch(getAcceptedTasks())
+  }, [])
+
+  // adds checkbox to each row
+  const selectRow = {
+    mode: 'checkbox',
+    headerColumnStyle: { backgroundColor: 'transparent' }
+  };
+  // styles each row
+  const rowStyle = {
+    cursor: 'pointer'
+  }
+  // routes to full task details page on double click
+  const taskDetails =  {
+    onClick: (e, row, rowIndex) => 
+    { 
+        history.push(`/dashboard/task/view-task/${row.id}`)
+    }
+  };
+  return (
+    <div >
+      
+      <Table
+        keyField='id'
+        title="Accepted Task"
+        data={acceptedTasks }
+        columns={taskHeader}
+        bordered= { false }
+        selectRow = { selectRow }
+        enableSearch = { true }
+        pagination = { paginationFactory() }
+        // controlHeader = { navigate }
+        rowEvents = { taskDetails }
+        noDataIndication={'No available task'}
+        filter={ filterFactory() }
+        rowStyle={ rowStyle }
+      />
+    </div>
+  )
+}
 
 const taskHeader = [
-      {
-        dataField: 'id',
-        text: 'S/N'
-      },
-      {
-        dataField: 'task',
-        text: 'Task',
-      },
-      {
-        dataField: 'dueDate',
-        text: 'Due Date',
-      },
-      {
-        dataField: 'status',
-        text: 'status',
-      },
-      {
-        dataField: 'requests',
-        text: 'Requests',
-      },
-      
-        
-      // {
-      
-      //   formatter: (cellContent, row) => {
-      //     return (
-      //       <>
-      //       <button
-      //         className="btn btn-danger btn-xs mr-3"
-      //         onClick={(e) => handleDelete(row)} 
-      //       >
-      //         Delete
-      //       </button>
-           
-      //       </>
-      //     );
-      //   },
-      // },
-    
+     
+  {
+    dataField: 'title',
+    text: 'Title',
+    headerAttrs: {
+      hidden:true
+    }
+  },
+  {
+    dataField: 'dueDate',
+    text: 'Due Date',
+    headerAttrs: {
+      hidden:true
+    }
+  },
+  {
+    dataField: 'completed',
+    text: 'Status',
+    headerAttrs: {
+      hidden:true
+    },
+    // formatter: cell => selectOptionsArr.filter(opt => opt.value === cell)[0].label || '',
+    //   filter: selectFilter({
+    //     options: selectOptionsArr
+    //   })
+  },
 ];
 
-function handleDelete(rowId){
-  console.log(rowId);
-};
-
-const navigate = <>
-  <div className="btn-group">
-    <NavLink exact to="/dashboard/task/all-tasks" className="sidebar-link text-muted">
-      <i className="fa fa-sync text-gray"/>
-      {/* <span>sync</span> */}
-    </NavLink>
-  </div>
-  <div className="btn-group">
-    <a data-toggle="dropdown" href="#" className="btn mini blue">
-    More
-      <i className="fa fa-angle-down ml-1" />
-    </a>
-    <ul className="dropdown-menu">
-      <li><a href="#"><i className="fa fa-pencil" /> Mark as Read</a></li>
-      <li><a href="#"><i className="fa fa-ban" /> Spam</a></li>
-      <li className="divider" />
-      <li><a href="#"><i className="fa fa-trash-o" /> Delete</a></li>
-    </ul>                           
-  </div>
-</>
-class AcceptedTasks extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      ComponentDidMount() {
-        // this.props.getAcceptedTask();
-      }
-    }
-}
-  render() {
-    const { acceptedTasks} = this.props;
-    const selectRow = {
-      mode: 'checkbox' 
-    };
-    return (
-      <div >
-        <Table
-          keyField='id'
-          title="Accepted Task"
-          data={ acceptedTasks }
-          columns={taskHeader}
-          bordered= { false }
-          selectRow = {selectRow}
-          pagination = { paginationFactory() }
-          controlHeader = { navigate }
-        />
-      </div>
-    )
-  }
-}
-
-
-const mapStateToProps = state => ({
-  acceptedTasks: state.task.acceptedTasks
-})
-
-
-// const mapStateToProps = state => ({
-//   tasks: state.task.AllTasks
-// })
-
-
-// export default connect(mapStateToProps,{getAcceptedTask})(AcceptedTasks);
 export default AcceptedTasks;
-

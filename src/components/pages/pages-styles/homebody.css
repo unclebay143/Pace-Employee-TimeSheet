@@ -104,6 +104,15 @@ header.container{
 
 /* landing page section 0 */
 
+@media(min-width: 700px){
+
+  
+  .features-lead,
+  .dashboard-show-lead{
+    font-size: 2.5rem !important;
+  }
+}
+
 .pace-features-1{
   margin-top: 3rem;
   margin-bottom: 9rem;
@@ -132,9 +141,13 @@ header.container{
   color: #161c2d;
 }
 
+.dashboard-show-lead{
+  margin-top: 100px !important;
+
+}
 
 #dashboard-display{
-  margin-top: 30px !important;
+  margin-top: 60px !important;
 }
 
 @media(min-width: 900px){
@@ -185,6 +198,8 @@ header.container{
 .pricing-tags ul li{
   font-size: large;
   padding: 6px;
+  list-style-type:none;
+  cursor:pointer;
 }
 
 .pricing-tags ul{

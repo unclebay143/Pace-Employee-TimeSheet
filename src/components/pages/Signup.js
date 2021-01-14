@@ -1,8 +1,7 @@
 // react 
 import { React, useEffect } from 'react';
-import { Link, Redirect, useHistory } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { ToastContainer } from 'react-toastify'; 
 // import PropTypes from 'prop-types';
 
 
@@ -14,12 +13,10 @@ import { signUpSchema } from '../Validation/Schema'
 import { TextInput, CheckbBox } from '../layouts/FormInput';
 import { HomeButton } from '../layouts/HomeButton'
 
-// Toast
-import { registrationFailLogger, registrationCompletedLogger} from '../../toaster';
-
 
 // Authentication
 import { register } from '../../actions/auth/authAction';
+import { ToastContainer } from 'react-toastify';
 
 
 const Signup = () =>{
@@ -29,7 +26,6 @@ const Signup = () =>{
     });
 
     const dispatch = useDispatch();
-    const history = useHistory();
 
     const { isLoggedIn } = useSelector(state => state.authenticationState)
 
@@ -38,10 +34,10 @@ const Signup = () =>{
     }
     return(
         <div className="container">
-            <main className="container d-flex justify-content-center align-items-center mt-5">
+            <ToastContainer />
+            <main className="container d-flex justify-content-center align-items-center mt-3 mt-md-5">
                 <div className="row">
                     <div className="form-con col-lg-5 mb-5">
-                        <ToastContainer />
                         <style>
                             {
                                 `
@@ -69,18 +65,7 @@ const Signup = () =>{
                             }}
                             validationSchema = {signUpSchema}
                             onSubmit={(values, action)=>{
-                                dispatch(register(values))
-                                .then(()=>{
-                                    action.setSubmitting(true)
-                                    registrationCompletedLogger()
-                                    setTimeout(() => {
-                                        history.push('/dashboard');
-                                    }, 2000);
-                                })
-                                .catch((err)=>{
-                                    registrationFailLogger()
-                                    action.setSubmitting(false)
-                                })
+                                dispatch(register(values, action))
                             }}
                         >
                             {
@@ -94,7 +79,7 @@ const Signup = () =>{
                                                     id="companyName"
                                                     type="text"
                                                     label="Workspace Name"
-                                                    labelClassName="mt-3"
+                                                    labelClassName="mt-md-3"
                                                     placeholder="Bascom Limited"
                                                     className={`form-control lead p-2 ${
                                                         touched.companyName && errors.companyName ? "is-invalid" : ""
@@ -115,7 +100,8 @@ const Signup = () =>{
                                                     type="email"
                                                     label="Email"
                                                     labelClassName="mt-3"
-                                                    className={`form-control lead p-2 ${
+                                                    className={`form-control lead p-2 
+                                                    ${
                                                         touched.email && errors.email ? "is-invalid" : ""
                                                     }`}
                                                     placeholder="Email" 
@@ -126,19 +112,32 @@ const Signup = () =>{
                                                     className="invalid-feedback p-0"
                                                 />
                                             </div>
-                                        <div className="d-flex">
-
-                                            <div className="form-group password-wrapper mr-2">
+                                        <div className="d-md-flex passwords">
+                                            <style>
+                                                {
+                                                    `
+                                                        @media(max-width:800px){
+                                                            .passwords .password-wrapper,
+                                                            .passwords .confirmPassword-wrapper{
+                                                                width: 100% !important;
+                                                            }
+                                                    `
+                                                }
+                                            </style>
+                                            <div className="form-group password-wrapper mr-2" style={{ width: '50%' }}>
                                                 <TextInput 
                                                     name="password"
                                                     id="password"
                                                     type="password"
                                                     label="Password"
                                                     labelClassName="mt-3"
-                                                    className={`form-control lead p-2 ${
+                                                    className={`form-control lead p-2 col-12
+                                                    ${ 
                                                         touched.password && errors.password ? "is-invalid" : ""
-                                                    }`}
-                                                    placeholder="Password" 
+                                                     }
+                                                    `}
+                                                    placeholder="Password"
+                                                    autoComplete='on'
                                                 />
                                                 <ErrorMessage
                                                     component="div"
@@ -146,17 +145,20 @@ const Signup = () =>{
                                                     className="invalid-feedback p-0"
                                                 />
                                             </div>
-                                            <div className="form-group confirmPassword-wrapper">
+                                            
+                                            {/* confirm password */}
+                                            <div className="form-group confirmPassword-wrapper" style={{ width: '50%' }} >
                                                 <TextInput 
                                                     name="confirmPassword"
                                                     id="confirmPassword"
                                                     type="password"
                                                     label="Confirm Password"
-                                                    labelClassName="mt-3"
+                                                    labelClassName="mt-md-3"
                                                     className={`form-control lead p-2 ${
                                                         touched.confirmPassword && errors.confirmPassword ? "is-invalid" : ""
                                                     }`}
                                                     placeholder="Confirm Password" 
+                                                    autoComplete='on'
                                                 />
                                                 <ErrorMessage
                                                     component="div"

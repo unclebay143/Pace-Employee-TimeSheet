@@ -7,7 +7,8 @@ const ShowDashboard = () => {
       <>
     
         {/* SAMPLES OF DASHBOARD SECTION*/}
-        <section className="container dashboard-display-wrapper mt-5">
+        <h3 data-aos="fade-right" className="dashboard-show-lead mr-4 h3 text-dark text-center">UI <span className="pace-accent-color">SCREENSHOTS</span></h3>
+        <section className="container dashboard-display-wrapper mt-md-5">
           <div className="row block block-1">
             <article className="col d-md-flex flex-md-row-reverse" id="dashboard-display" data-aos="zoom-in" data-aos-duration="2000">
               <h3 className="d-md-none d-sm-block mb-4">Admin Dashboard</h3>

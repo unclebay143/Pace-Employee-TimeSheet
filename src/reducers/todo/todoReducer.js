@@ -33,7 +33,8 @@ const generateId = (todos) =>{
 
 // Reducer that modifiy the state according to dispatched actions
 const todoReducer = (state=initialState, action) =>{
-    switch(action.type){
+    const { type, payload } = action
+    switch(type){
         case FETCH_TODOS_PENDING:
             return {
                  ...state,
@@ -43,11 +44,12 @@ const todoReducer = (state=initialState, action) =>{
             return {
                 ...state,
                 isFetching: false,
-                todos: action.payload
+                todos: payload
             }
         case FETCH_TODOS_ERROR:
             return {
                 ...state,
+                // If todo is empty then create a new object else return the todos
                 todos: state.todos.length === 0 ? {} : state.todos,
                 isFetching: false,
                 error: action.error
@@ -63,7 +65,7 @@ const todoReducer = (state=initialState, action) =>{
                 isTodoFormOpen: false
             }
         case ADD_TODO:
-            const { title, dueDate } = action.payload;
+            const { title, dueDate } = payload;
             return {
                 // Return everything in the state
                 ...state,
@@ -84,20 +86,20 @@ const todoReducer = (state=initialState, action) =>{
         case UPDATE_TODO:
             return {
                 ...state,
-                todos: state.todos.map( todo => todo.id === action.payload.id ? ( todo = action.payload ) : todo
+                todos: state.todos.map( todo => todo.id === payload.id ? ( todo = payload ) : todo
                 )
             }
 
         case DELETE_TODO:
             return {
                 ...state,
-                todos: state.todos.filter((todo)=> todo.id !== action.payload )
+                todos: state.todos.filter((todo)=> todo.id !== payload )
             }
         
         case TOGGLE_TODO_COMPLETE:
             return Object.assign({}, state, {
                 todos: state.todos.map((todo)=>{
-                    if(todo.id !== action.payload){
+                    if(todo.id !== payload){
                         return todo
                     }
 

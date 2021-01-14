@@ -1,98 +1,30 @@
+// >> Some actions are called in the auth.service helper file
+
+
+// Server functions
 import AuthService from "../../services/auth.service";
-import {
-    REGISTER_SUCCESS,
-    REGISTER_FAIL,
-    LOGIN_SUCCESS,
-    LOGIN_FAIL,
-    LOGOUT,
-    SET_MESSAGE,
-} from "../types";
+
+// Toasters
+import { logOutSuccessLogger } from "../../toaster";
+
+// Action Types
+import { END_TOUR } from "../types";
 
 
-const register = (workSpaceName, workSpaceEmail, password) => (dispatch) => {
-
-    return AuthService.register(workSpaceName, workSpaceEmail, password)
-        .then((response) => {
-            console.log(response)
-            dispatch({
-                type: REGISTER_SUCCESS,
-            });
-
-            dispatch({
-                type: SET_MESSAGE,
-                payload: response.data.message,
-            });
-
-            return Promise.resolve(); 
-        },
-        (error) => {
-            const message =
-                (error.response &&
-                error.response.data &&
-                error.response.data.message) ||
-                error.message ||
-                error.toString();
-
-            dispatch({
-                type: REGISTER_FAIL,
-            });
-
-            dispatch({
-                type: SET_MESSAGE,
-                payload: message,
-            });
-
-            return Promise.reject();
-        }
-    );
-};
-
-
-const login = (username, password) => (dispatch) => {
-    return AuthService.login(username, password)
-        .then((data) => { // return jwt
-            dispatch({
-                type: LOGIN_SUCCESS,
-                payload: { user: data },
-            });
-
-            return Promise.resolve();
-        },
-        (error) => {
-        const message =
-            (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-            error.message ||
-            error.toString();
-
-        dispatch({
-            type: LOGIN_FAIL,
-        });
-
-        dispatch({
-            type: SET_MESSAGE,
-            payload: message,
-        });
-
-        return Promise.reject();
-        }
-    );
-};
-
-const logout = () => (dispatch) => {
-  console.log('hrereh');
-
-AuthService.logout();
-
-dispatch({
-    type: LOGOUT,
-});
-};
-
-
-export{
-    register,
-    login,
-    logout
+export const register = ({ companyName, email, password }, action) =>{
+    return AuthService.register(companyName, email, password, action)
 }
+
+export const login = ({ email, password }, action) => {
+    return AuthService.login(email, password, action)
+};
+
+export const endTour = () => dispatch =>{
+    dispatch({type: END_TOUR})
+}
+
+export const logout = () => {
+    logOutSuccessLogger()
+    AuthService.logout()
+};
+

@@ -1,9 +1,9 @@
 
 // React
 import { React, useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 // Component
 import TimerContainer from '../dashboard/timer/Timer';
@@ -13,42 +13,31 @@ import { logout } from '../../../actions/auth/authAction'
 
 // Toast
 import { ToastContainer } from 'react-toastify';
-import { logOutSuccess } from '../../../toaster';
 
 
 const Navbar = () =>{
-    // Set initial value for user details in case of slow network when fetching
-    const [ user_first_name, setUser_First_name ] = useState('user_first_name')
-    const [ user_last_name, setUser_Last_name ] = useState('user_last_name')
-    const [ user_Image, setUser_image ] = useState('user_image')
-    const data = {
-        first_name: user_first_name,
-        last_name: user_last_name,
-        avatar: user_Image
-    }
-    // Store data === userDummy-data inside localStorage
-    localStorage.setItem('currentUser', JSON.stringify(data))
-
+    const history = useHistory();
     const dispatch = useDispatch();
-    
+    const { currentUser } = useSelector(state => state.authenticationState)
+    const [fullName, setFullName] = useState('') // the fullName is empty before the data are fetch, to prevent seeing undefined
+    const [staffID, setStaffID] = useState('')
+    const [roleID, setRoleID] = useState('')
     useEffect(() => {
-        const getUser = async()=>{
-            const { data } = await axios.get('https://reqres.in/api/users/1');
-            localStorage.setItem('currentUser', JSON.stringify(data))
-            const { data: {first_name, last_name, avatar} } = JSON.parse(localStorage.getItem('currentUser'));
-            setUser_First_name(first_name)
-            setUser_Last_name(last_name)
-            setUser_image(avatar)
+        
+        // const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        
+
+        if(currentUser){
+            const { firstName, lastName, staffID, roleID } = currentUser || '';
+            setFullName(` ${ firstName } ${ lastName } `)
+            setStaffID(staffID)
+            setRoleID(roleID)
+
+        }else if( currentUser === null || currentUser === undefined ){
+            history.push('/');
         }
-        getUser()
-    }, [])
-    
-    const logOut = () =>{
-        logOutSuccess()
-        setTimeout(() => {
-            dispatch(logout());
-        }, 2000);
-    }
+
+    },[currentUser])
     
     return(
         <>
@@ -68,8 +57,8 @@ const Navbar = () =>{
                     <i className="sidebar-toggler text-gray-500 mr-4 mr-lg-5 lead">
                         <i className="fas fa-align-left"></i>
                     </i>
-                    <Link to="/dashboard/profile" className="navbar-brand font-weight-bold text-uppercase text-base pace-primary-color dashboard-lead companyDisplay">
-                        { user_first_name } { user_last_name }
+                    <Link to={`/dashboard/profile/${staffID}`} className="navbar-brand font-weight-bold text-uppercase text-base pace-primary-color dashboard-lead companyDisplay">
+                        { fullName }
                     </Link>
                     <ul className="ml-auto d-flex align-items-center list-unstyled mb-0">
                         <TimerContainer />
@@ -127,20 +116,26 @@ const Navbar = () =>{
                                 </a>
                             </div>
                         </li>
-                        <li className="nav-item dropdown ml-auto">
+                        <li className="nav-item dropdown ml-auto" h='7' data-tut='reactour__profileImage'>
                             <a id="userInfo" href="." data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" className="nav-link dropdown-toggle">
-                                <img src={user_Image} alt={user_first_name} style={{maxWidth:"2.5rem"}} className="img-fluid rounded-circle shadow" /></a>
+                                {/* <img src={user_Image} alt={user_first_name} style={{maxWidth:"2.5rem"}} className="img-fluid rounded-circle shadow" /> */}
+                                <img src='https://github.com/unclebay143.png' alt='unclebay' style={{maxWidth:"2.5rem"}} className="img-fluid rounded-circle shadow" />
+                            </a>
                             <div aria-labelledby="userInfo" className="dropdown-menu">
                                 <a href="/" className="dropdown-item">
                                     <strong className="d-block text-uppercase headings-font-family companyDisplay">
-                                        { user_first_name } { user_last_name }
+                                        { fullName }
                                     </strong>
                                     <small id="role_display">Web Developer</small>
                                 </a>
                                 <div className="dropdown-divider"></div>
-                                <Link to="/dashboard/profile" className="dropdown-item">Profile</Link>
-                                <a href="/" className="dropdown-item">Settings</a>
-                                <div className="dropdown-divider"></div><span className="dropdown-item" style={{cursor: 'pointer'}} onClick={logOut}>Logout</span>
+                                <Link to={`/dashboard/profile/${staffID}`} className="dropdown-item">Profile</Link>
+                                {
+                                    roleID !== 5 ? '' : (
+                                        <a href="/" className="dropdown-item">Settings</a>
+                                    )
+                                }
+                                <div className="dropdown-divider"></div><span className="dropdown-item" style={{cursor: 'pointer'}} onClick={(()=>logout())}>Logout</span>
                             </div>
                         </li>
                     </ul>

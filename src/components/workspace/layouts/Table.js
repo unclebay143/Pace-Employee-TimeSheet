@@ -14,7 +14,7 @@ export default class Table extends Component {
       selectRow, pagination, customInput, customInputName, 
       customInputPlaceHolder, customButtonType, customButtonLabel, 
       customButtonFunction, controlHeader, rowEvents, enableClearSearchButton,
-      noDataIndication, filter } = this.props;
+      noDataIndication, filter, rowStyle }= this.props;
     const { SearchBar, ClearSearchButton } = Search;
     const {title} = this.props;
    
@@ -44,7 +44,7 @@ export default class Table extends Component {
                                   enableSearch ?
                                    (
                                     <>
-                                     <SearchBar { ...props.searchProps } className="search-box form-control mt-0"/>
+                                      <SearchBar { ...props.searchProps } className="search-box form-control mt-0"/>
                                      {
                                        enableClearSearchButton ? 
                                           <ClearSearchButton { ...props.searchProps } className="btn form-control pace-btn-accent my-0 ml-5"/>
@@ -63,8 +63,8 @@ export default class Table extends Component {
                                       <Formik initialValues={{}}>
                                         {(()=>(
                                           <Form className="d-flex">
-                                            <TextInput id={customInputName} name={customInputName} placeholder = {customInputPlaceHolder} className="form-control custom-box" />
-                                            <Button type={customButtonType} label={customButtonLabel} onClick={customButtonFunction} className="btn form-control pace-btn-accent" />
+                                            <TextInput id={customInputName} name={customInputName} placeholder = {customInputPlaceHolder} className="form-control text-sm custom-box" />
+                                            <Button type={customButtonType} label={customButtonLabel} onClick={customButtonFunction} className="btn form-contro pace-btn-accent btn-sm" />
 
                                           </Form>))}
                                       </Formik></>) : ""
@@ -125,7 +125,7 @@ export default class Table extends Component {
                               {controlHeader}
                             </div>
                           </div>
-                          <hr />
+                          {/* <hr /> */}
                           <BootstrapTable
                             { ...props.baseProps }
                             bordered={ bordered }
@@ -135,6 +135,7 @@ export default class Table extends Component {
                             noDataIndication={  noDataIndication }
                             filter={ filter }
                             hover
+                            rowStyle = { rowStyle }
                           />
                         </div>
                       </div>
