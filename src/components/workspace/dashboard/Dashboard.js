@@ -56,6 +56,7 @@ const Dashboard = () =>{
     },[])
 
     useEffect(() => {
+        
         // Fetch user todo list
         dispatch(getTodos())
 
