@@ -99,8 +99,8 @@ const UpdateEmployeeProfile = () =>{
                 <>
                     <Loader />
                 </>
-        )
-    }
+            )
+        }
     return ( 
         <>
             <div className="container">
@@ -140,7 +140,7 @@ const UpdateEmployeeProfile = () =>{
                                     enableReinitialize
                                     // validationSchema={UpdateEmployeeProfileSchema}
                                     onSubmit={(values, action)=>{
-                                        // dispatch(updateUserProfile(values, staffID, action));
+                                        dispatch(updateUserProfile(values, staffID, action));
                                     }
                                     }
                                 >

@@ -1,14 +1,37 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { ErrorMessage, Form, Formik } from 'formik';
 import { TextInput } from '../../layouts/FormInput';
 import Button from '../../layouts/Button';
 import { Link } from 'react-router-dom';
-import { addNewCalendarEvent } from '../../../actions/company/calendar/calendarAction';
-import { useDispatch } from 'react-redux';
+import { addNewCalendarEvent, getCalendarEvent } from '../../../actions/company/calendar/calendarAction';
+import { useDispatch, useSelector } from 'react-redux';
+import Loader from '../../loader/Loader';
 
 
 export default function ManageCalendar() {
+    const { events, isFetching } = useSelector(state => state.calendar);
+    const [eventsState, setEventsState] = useState([]);
+    const [ isFetchingState, setIsFetchingState ] = useState(isFetching);
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getCalendarEvent())
+    }, []);
+    
+    useEffect(() => {
+        if(events){
+            setEventsState([events])
+            setIsFetchingState(false)
+        }
+    }, [events]);
+
+    if(isFetchingState){
+        return(
+            <Loader />
+        )
+    }
+
+   
     return (
         <>
 
@@ -46,13 +69,13 @@ export default function ManageCalendar() {
                                 eventName: '',
                                 eventDateAndTime: ''
                             }}
-                            onSubmit={((values)=>{
-                                dispatch(addNewCalendarEvent(values))
+                            onSubmit={((values, action)=>{
+                                dispatch(addNewCalendarEvent(values, action))
                             })}
                         >
-                            {({errors, touched, values})=>(
+                            {({errors, touched, values, isSubmitting})=>(
                                 <Form className="form-inline">
-                                    <pre>{JSON.stringify(values, null, 2)}</pre>
+                                    {/* <pre>{JSON.stringify(values, null, 2)}</pre> */}
                                     <div className="input-group mb-2 mr-sm-2">
                                         <TextInput 
                                             name="eventName"
@@ -83,7 +106,7 @@ export default function ManageCalendar() {
                                     <div className="input-group mb-2 mr-sm-2">
                                         <Button 
                                             type="submit"
-                                            label="Create Event"
+                                            label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Creating Event</span>) : "Create Event"}
                                             className="btn btn-sm btn-info ml-2"
                                         />
                                     </div>
@@ -94,13 +117,20 @@ export default function ManageCalendar() {
                     <div col="col-9">
                         <section>
                             <ul className="list-group">
-                                <li className="list-group-item d-flex justify-content-between align-items-center">
-                                    Cras justo odio
-                                    <span>
-                                        <button className="btn text-white badge badge-primary badge-pill mr-2">Edit</button>
-                                        <button className="btn text-white badge badge-red badge-pill">Delete</button>
-                                    </span>
-                                </li>
+                                {
+                                    eventsState.map(({title}, index)=>{
+                                        return(
+                                            <li className="list-group-item d-flex justify-content-between align-items-center" key={index}>
+                                                {title}
+                                                <span>
+                                                    <button className="btn text-white badge badge-primary badge-pill mr-2">Edit</button>
+                                                    <button className="btn text-white badge badge-red badge-pill">Delete</button>
+                                                </span>
+                                            </li>
+                                        )
+
+                                    })
+                                }
                             </ul>
                         </section>
                     </div>

@@ -18,9 +18,9 @@ export const USER_PROFILE_URL = 'https://pacetimesheet.herokuapp.com/api/users/c
 
 
 /* TODO API */ 
-// export const TODO_API_URL = 'http://fakerestapi.azurewebsites.net/api/v1/Activities';
+export const TODO_API_URL = 'http://fakerestapi.azurewebsites.net/api/v1/Activities';
 // export const FETCH_TODO = 'https://pacetimesheet.herokuapp.com/api/todo/todolist/'
-export const ADD_NEW_TODO_API = 'https://pacetimesheet.herokuapp.com/api/todo/companyName/todolist/'
+// export const ADD_NEW_TODO_API = 'https://pacetimesheet.herokuapp.com/api/todo/companyName/todolist/'
 // export const TODO_API_URL = 'https://pacetimesheet.herokuapp.com/api/todo/companyName/todolist/'
 
 
@@ -61,4 +61,5 @@ export const UPDATE_COMPANY_PROFILE_API = 'https://pacetimesheet.herokuapp.com/a
 
 // CALENDAR
 // export const ADD_NEW_CALENDAR_EVENT = 'https://pacetimesheet.herokuapp.com/api/companyName/calendar/new/';
+export const FETCH_CALENDAR_EVENT_API = 'https://pacetimesheet.herokuapp.com/api/calendar/companyName/';
 export const NEW_CALENDAR_EVENT_API = 'https://pacetimesheet.herokuapp.com/api/calendar/companyName/new/';

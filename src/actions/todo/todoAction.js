@@ -17,6 +17,8 @@ const getTodos = () => ( dispatch ) =>{
     dispatch({type: FETCH_TODOS_PENDING})
     return TodoService.fetchTodos()
     .then((response) => {
+        console.log(response)
+        console.closeTodoForm(response)
         dispatch({ type: FETCH_TODOS_SUCCESS, payload: response.data })
         return response.data;          
     })
