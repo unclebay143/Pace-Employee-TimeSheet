@@ -1,13 +1,14 @@
 import axios from "axios";
-import { logout } from "../actions/auth/authAction";
 import { SYNC_CURRENT_USER } from "../actions/types";
-import { sessionExpired } from "../toaster";
-import { authHeader } from "./auth-header";
-import { AUTH_API_URL, options, currentUserFromLocalStorage, USER_PROFILE_URL } from "./root-endpoints";
+import { authHeader,currentUserFromLocalStorage } from "./auth-header";
 
 
 // This function keeps the user logged in by fetching the current user details and dispatching it into the store
 const fetchUserProfile = (staffID) => dispatch =>{
+  dispatch({
+    type: SYNC_CURRENT_USER,
+    payload: currentUserFromLocalStorage
+  })
   return axios.get(`https://pacetimesheet.herokuapp.com/api/users/companyName/userProfile/${staffID}`, { headers: authHeader })
   .then((response)=>{
     // Extract updated user profile from the server response
@@ -24,7 +25,8 @@ const fetchUserProfile = (staffID) => dispatch =>{
   .catch((error)=>{
 
     //
-    sessionExpired()
+    // sessionExpired()
+    // logout()
   })
 
 }

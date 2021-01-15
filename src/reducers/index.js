@@ -8,6 +8,7 @@ import message from './message/messageReducer';
 import todoReducer from './todo/todoReducer';
 import departmentReducer from './company/department/departmentReducer';
 import employeeReducer from './company/employee/employeeReducer';
+import calendarReducer from './company/calendar/calendarReducer';
 
 
 const rootReducer = combineReducers({
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
     message: message,
     departments: departmentReducer,
     employees: employeeReducer,
+    calendar: calendarReducer,
 })
 
 export default rootReducer;

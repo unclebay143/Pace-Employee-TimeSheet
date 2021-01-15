@@ -1,8 +1,8 @@
 
 // React
 import { React, useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, Redirect } from 'react-router-dom';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 // Component
@@ -13,32 +13,31 @@ import { logout } from '../../../actions/auth/authAction'
 
 // Toast
 import { ToastContainer } from 'react-toastify';
+import { currentUserFromLocalStorage } from '../../../services/auth-header';
 
 
 const Navbar = () =>{
     const history = useHistory();
     const dispatch = useDispatch();
-    const [fullName, setFullName] = useState('')
+    const { currentUser, isLoggedIn } = useSelector(state => state.authenticationState)
+    const [fullName, setFullName] = useState('') // the fullName is empty before the data are fetch, to prevent seeing undefined
     const [staffID, setStaffID] = useState('')
     const [roleID, setRoleID] = useState('')
-
     useEffect(() => {
         
-        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        
-
         if(currentUser){
-            const { firstName, lastName, staffID, roleID } = currentUser;
-            setFullName(` ${ firstName } ${ lastName } `)
+            const { firstName, lastName, staffID, roleID } = currentUser || '';
+            setFullName(` ${ firstName === undefined ? '' : firstName } ${ lastName === undefined ? '' : lastName} `)
             setStaffID(staffID)
             setRoleID(roleID)
 
-        }else if( currentUser === null || currentUser === undefined ){
-            history.push('/');
         }
+    },[currentUser])
 
-    },[])
-    
+    if(!isLoggedIn){
+        return <Redirect to="/login" push={true} />
+    }
+
     return(
         <>
             <ToastContainer />
@@ -57,7 +56,7 @@ const Navbar = () =>{
                     <i className="sidebar-toggler text-gray-500 mr-4 mr-lg-5 lead">
                         <i className="fas fa-align-left"></i>
                     </i>
-                    <Link to="/dashboard/profile" className="navbar-brand font-weight-bold text-uppercase text-base pace-primary-color dashboard-lead companyDisplay">
+                    <Link to={`/dashboard/profile/${staffID}`} className="navbar-brand font-weight-bold text-uppercase text-base pace-primary-color dashboard-lead companyDisplay">
                         { fullName }
                     </Link>
                     <ul className="ml-auto d-flex align-items-center list-unstyled mb-0">
@@ -135,7 +134,7 @@ const Navbar = () =>{
                                         <a href="/" className="dropdown-item">Settings</a>
                                     )
                                 }
-                                <div className="dropdown-divider"></div><span className="dropdown-item" style={{cursor: 'pointer'}} onClick={(()=>logout())}>Logout</span>
+                                <div className="dropdown-divider"></div><span className="dropdown-item" style={{cursor: 'pointer'}} onClick={(()=>dispatch(logout()))}>Logout</span>
                             </div>
                         </li>
                     </ul>

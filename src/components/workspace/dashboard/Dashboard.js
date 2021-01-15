@@ -1,8 +1,8 @@
 // React
 import { React, useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Route, Switch } from 'react-router-dom/cjs/react-router-dom.min';
-import { useHistory } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 
 // Layouts
 import Navbar from '../layouts/Navbar';
@@ -27,49 +27,41 @@ import CompanyProfile from '../../company/Settings/CompanyProfile';
 import Settings from '../../company/Settings/Settings';
 
 // Actions
-import { getTodos } from '../../../actions/todo/todoAction';
-import { getTasks } from '../../../actions/task/taskAction';
 import { syncCurrentUser } from '../../../actions/user/userAction';
-import { getDepartment } from '../../../actions/company/department/departmentAction';
-import { getCompanyEmployees } from '../../../actions/employee/employeeAction';
 
 // Tour
 import TourContainer from '../../tour/config/TourContainer';
+import ChangePassword from '../../user/ChangePassword';
+import Calendar from '../../company/calendar/Calendar';
+import ManageCalendar from '../../company/calendar/ManageCalendar';
+import { userIsAuthenticatedLogger, welcomeBackLogger } from '../../../toaster';
 
 
 
 const Dashboard = () =>{
-
+    const { welcome } = useSelector(state => state.authenticationState)
     const history = useHistory()
     const dispatch = useDispatch()
-
     useEffect(() => {
         const currentUser  = JSON.parse(localStorage.getItem('currentUser'));
-        if( currentUser === null || currentUser === undefined ){
-            history.push('./login');
-        }
-        
-        if ( currentUser ){
+        if(currentUser){
             dispatch(syncCurrentUser( currentUser.staffID ))
         }
-
-    },[])
+        
+        if( currentUser === null || currentUser === undefined ){
+            console.log('null')
+        }else{
+            dispatch(syncCurrentUser( currentUser.staffID ))
+        }
+    }, [dispatch])
 
     useEffect(() => {
-        // Fetch user todo list
-        dispatch(getTodos())
+        if(welcome){
+            welcomeBackLogger()
+        }
+    },[welcome]);
+        
 
-        // Fetch user tasks
-        dispatch(getTasks())
-
-        // Fetch company department
-        dispatch(getDepartment())
-
-        // Fetch Company Employess
-        dispatch(getCompanyEmployees())
-
-
-    }, [dispatch, history])
 
 
     return(
@@ -85,11 +77,16 @@ const Dashboard = () =>{
                             <div className="container-fluid dashboard-body-wrapper">
                 {/* >>>>> BODIES COMPONENTS SECTION <<<<< */}
                                 <Switch>
+
+                                    <Route path="/dashboard/calendar" component={Calendar} />
+                                    <Route path="/dashboard/manageCalendar" component={ManageCalendar} />
+
                                     <Route path="/dashboard/todos" component={Todo} />
                                     <Route path="/dashboard/task" component={Task} />
 
                                     {/* users paths */}
                                     <Route exact path="/dashboard/profile/:id" component={Profile} />
+                                    <Route exact path="/dashboard/profile/changepassword/:id" component={ChangePassword} />
                                     <Route exact path="/dashboard/profile/update/:id" component={UpdateProfile} />
 
                                     {/* company paths */}

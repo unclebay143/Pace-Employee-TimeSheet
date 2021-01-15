@@ -11,7 +11,7 @@ const addNewEmployee = (newEmployee) => ( dispatch ) =>{
 const getCompanyEmployees = () => (dispatch) =>{
     return EmployeeService.fetchCompanyEmployees()
     .then((response)=>{
-        console.log(response)
+        
         // Get company Employees
         const companyEmployees = response.data.data
         dispatch({
@@ -21,12 +21,22 @@ const getCompanyEmployees = () => (dispatch) =>{
     })
     .catch((response)=>{
         // Alert user about network failure
-        somethingWentWrongLogger()
+        // somethingWentWrongLogger()
     })
 }
 
+const updateCompanyEmployee = (staffID) => ( dispatch ) =>{
+    return EmployeeService.putCompanyEmployee(staffID)
+    .then((response)=>{
 
+        console.log(response)
+    })
+    .catch((error)=>{
+        console.log(error)
+    })
+}
 export {
     addNewEmployee,
-    getCompanyEmployees
+    getCompanyEmployees,
+    updateCompanyEmployee
 }

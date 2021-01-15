@@ -8,14 +8,16 @@ import {
   LOGOUT,
   SYNC_CURRENT_USER,
   END_TOUR,
+  UPDATE_USER_PROFILE
 } from "../../actions/types";
 
 
 const initialState = {
   isLoggedIn: false, 
-  currentUser: {},
+  currentUser: '',
   isFirstTimer: false,
   error: null,
+  welcome: false,
 };
 
 const authReducer = (state = initialState, action) =>{
@@ -43,6 +45,7 @@ const authReducer = (state = initialState, action) =>{
     case LOGIN_SUCCESS:
       return {
         ...state,
+        welcome: true,
         isLoggedIn: true,
         currentUser: payload,
       };
@@ -68,6 +71,15 @@ const authReducer = (state = initialState, action) =>{
         isLoggedIn: false,
         currentUser: null,
       };
+    
+      case UPDATE_USER_PROFILE:
+        return {
+          ...state,
+          currentUser: {
+            ...state.currentUser,
+            payload
+          }
+        }
 
     default:
       return state;

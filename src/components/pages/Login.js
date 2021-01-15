@@ -2,7 +2,7 @@
 import { React, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form, ErrorMessage } from 'formik';
-import { Link, useHistory, withRouter } from 'react-router-dom';
+import { Link, Redirect, useHistory, withRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify'; 
 
 // Toast
@@ -14,8 +14,12 @@ import loginImage from './pages-images/login-img.png';
 import { TextInput } from '../layouts/FormInput';
 import { loginSchema } from '../Validation/Schema';
 import { HomeButton } from '../layouts/HomeButton';
+
+// Actions
 import { login } from '../../actions/auth/authAction';
 import { syncCurrentUser } from '../../actions/user/userAction';
+import { getTodos } from '../../actions/todo/todoAction';
+import { getTasks } from '../../actions/task/taskAction';
 
 /* Development fake user credentials */
 
@@ -38,30 +42,24 @@ const Login = () =>{
    
     const currentUserFromLocalStorage = JSON.parse(localStorage.getItem('currentUser'));
     const authenticationState = useSelector(state => state.authenticationState)
-
-    const history = useHistory();
     const dispatch = useDispatch()
-
+    const history = useHistory()
+    
     // Function to redirect user to the dashboard when there is a user in the local storage
     useEffect(() => {
         document.title = 'Login | Pace'
-    })
+        if(currentUserFromLocalStorage){
+            syncCurrentUser(currentUserFromLocalStorage.staffID)
+            // userIsAuthenticatedLogger()
+        }
+    },[currentUserFromLocalStorage])
 
-    // Function that redirects user to the dashboard
-    const redirector = () =>{
-        history.push('./dashboard');
+    if(authenticationState.isLoggedIn){
+        // return <Redirect to="/dashboard" push={true} />
+         history.push('./dashboard')
     }
-
-    // Conditonal Statement to check if a user is logged in from the redux state and local storage
-    if(authenticationState.isLoggedIn || currentUserFromLocalStorage){
-        
-        userIsAuthenticatedLogger()
-        // Synchronize the current user 
-        syncCurrentUser(currentUserFromLocalStorage.staffID)
-        const redirectUserToDashboard = setTimeout(redirector, 2000)
-        return(()=>clearTimeout(redirectUserToDashboard))
-    }
-
+    
+    
     return(
         <div className="container">
             <main className="container d-lg-flex justify-content-center align-items-center mt-5">

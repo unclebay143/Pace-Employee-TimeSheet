@@ -11,6 +11,7 @@ const somethingWentWrongLogger = () =>  toast.warning('Something went wrong, Ple
 //  Login Toast
 const invalidDetailsLogger = () => toast.warning('Invalid Login details');
 const userIsAuthenticatedLogger = () => toast.info('Logging in');
+const welcomeBackLogger = () => toast.info('Welcome Back');
 
 
 // Registration Toast
@@ -39,6 +40,11 @@ export const taskNotSent = () => toast.warning('Task Not Sent Try again')
 export const taskSent = () => toast.info('Task Sent Successfully')
 
 
+// Calendar
+export const calendarEventNotSavedLogger = () => toast.warning('Event Not Set Please Try again')
+export const eventAddedSuccessfullyLogger = () => toast.info('Event added Successfully')
+
+
 
 
 export{
@@ -55,4 +61,5 @@ export{
     profileUpdateCompletedLogger,
     profileUpdateFailLogger,
     emailAlreadyExist,
+    welcomeBackLogger,
 }

@@ -1,5 +1,4 @@
 // React
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
@@ -7,16 +6,13 @@ import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 // Actions
 import { syncCurrentUser } from '../../actions/user/userAction';
 
-// Service helper
-import { authHeader } from '../../services/auth-header';
-import { USER_PROFILE_URL } from '../../services/root-endpoints';
-
 //Layout
 import Button from '../layouts/Button';
 import unclebay from '../pages/pages-images/ayodele_samuel_adebayo.jpg';
 
 // Toaster
-import { sessionExpired } from '../../toaster'
+import Loader from '../loader/Loader';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 const ProfileRow = (props) => {
@@ -39,80 +35,57 @@ const ProfileRow = (props) => {
 
 
 const Profile = () =>{
+    const { currentUser } = useSelector(state => state.authenticationState)
     const params = useParams();
-    const [ userProfile, setUserProfile ] = useState({});
+    const [ userProfile, setUserProfile ] = useState('');
     const [ staffID, setStaffID ] = useState('');
+    const dispatch = useDispatch()
 
     useEffect(() => {
+        dispatch(syncCurrentUser( params.id ))
+    }, [])
+
+    
+    useEffect(() => {
+
         // Get staffID from the urls 
         const staffID = params.id;
 
         // Set the staffID state to be reusable in the edit profile button path
         setStaffID(staffID);
 
-        // Function to get the user profile from the server (using local storage before but not synchronizing with the server)
-        const fetchCurrentUserProfile = async() =>{
-
-            // Get user profile from the server
-            const response = await axios.get(USER_PROFILE_URL + staffID, { headers: authHeader })
-            // Get current user from local storage
-            const checkUserInLocalStorage = JSON.parse(localStorage.getItem('currentUser'));
-            
-
-            // Check if the response data is an object (error occurs where data is Token expired)
-            if(response.data === 'invalid token or token expired'){
-                syncCurrentUser(checkUserInLocalStorage.staffID)
-            }else{
-                //if there is a user in the local storage
-                if(checkUserInLocalStorage && response){
-                    
-                        // Synchronize the local storage with the server
-                // localStorage.setItem('currentUser', JSON.stringify(response))
-            
-                // synchronize with the redux store
-                syncCurrentUser(params.id)
-                setUserProfile(response)
-            }
-            
-            if(!response || response === undefined){
-                response = {}
-                setUserProfile(checkUserInLocalStorage)
-            }
-            
-            
-            // Destructure the user information from the response.data.data[0] -response structure
-            const {
+        // Destructure the user information from the response.data.data[0] -response structure
+        const {
+            firstName,
+            lastName,
+            phoneNumber,
+            email,
+            address,
+            userName,
+        
+        } = currentUser;
+        
+        // Set the destructure user information into the profile state (ES6 syntax)
+        setUserProfile({
                 firstName,
                 lastName,
                 phoneNumber,
                 email,
                 address,
                 userName,
-            
-            } = response.data.data[0]
-            
-            // Set the destructure user information into the profile state (ES6 syntax)
-            setUserProfile({
-                    firstName,
-                    lastName,
-                    phoneNumber,
-                    email,
-                    address,
-                    userName,
-                })
+            })
                 
-            }
-        }
-            
-        fetchCurrentUserProfile()
-    }, [params.id])
+    }, [currentUser, params.id, dispatch])
 
-    if(!userProfile){
+    if(userProfile.firstName === undefined){
         return(
-            <div className="d-flex justify-content-center align-items-center mt-2" style={{height:'100vh', background: '#cccccc'}}>
-                <i className="fa fa-spinner fa-pulse fa-3x fa-fw" style={{fontSize: "23px"}}></i>
-                <span>Loading... Please wait</span>
-            </div>
+            <>
+             {/* <div className="d-flex justify-content-center align-items-center mt-2" style={{height:'100vh', background: '#cccccc'}}>
+                   <i className="fa fa-spinner fa-pulse fa-3x fa-fw" style={{fontSize: "23px"}}></i> 
+                   <span>Loading... Please wait</span> 
+             </div> */}
+                <Loader />
+            </>
         )
     }
     
@@ -157,7 +130,10 @@ const Profile = () =>{
                                             <p className="text-secondary mb-1">Frontend Engineer</p>
                                             <p className="text-muted font-size-sm">{userProfile.address}</p>
                                             <Link to={`/dashboard/profile/update/${staffID}`}>
-                                                <Button className="btn btn-primary mr-2" label="Edit Profile"/>
+                                                <Button className="btn btn-primary mr-2 m btn-sm" label="Edit Profile"/>
+                                            </Link>
+                                            <Link to={`/dashboard/profile/changepassword/${staffID}`}>
+                                                <Button className="btn btn-warning text-white btn-sm mt-2 mt-lg-0" label="Change Password"/>
                                             </Link>
                                         </div>
                                     </div>
@@ -172,7 +148,7 @@ const Profile = () =>{
                                     <ProfileRow title="Email" label={userProfile.email} />
                                     <ProfileRow title="Department" label="Web development" />
                                     <ProfileRow title="Role" label="Frontend Engineer" />
-                                    <ProfileRow title="Salary" label={`# ${userProfile.billRateCharge}`} />
+                                    <ProfileRow title="Salary" label={`# ${userProfile.billRateCharge === undefined ? '' : userProfile.billRateCharge}`} />
                                     <ProfileRow title="Phone" label={userProfile.phoneNumber} />
                                     <ProfileRow title="Address" label={userProfile.address} />
                                 </div>

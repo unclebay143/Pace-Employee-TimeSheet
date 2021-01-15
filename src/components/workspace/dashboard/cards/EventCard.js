@@ -1,39 +1,62 @@
-import { Component } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getCalendarEvent } from "../../../../actions/company/calendar/calendarAction";
+import { formatDate } from "../../../../_helper/dateFormatter";
+import Loader from "../../../loader/Loader";
 
-class EventCard extends Component{
-    constructor(props){
-        super(props)
-        this.state = {
-            event: [
-                {
-                    title: "I will be coming home soon", 
-                    eventDate: Date.now()
-                },
-                {
-                    title: "2020 TIIDELab Hackathon",
-                    eventDate: "30 Dec 2020"
-                },
+// event: [
+//     {
+//         title: "I will be coming home soon", 
+//         eventDate: Date.now()
+//     },
+//     {
+//         title: "2020 TIIDELab Hackathon",
+//         eventDate: "30 Dec 2020"
+//     },
 
-            ]
-        }
+// ]
+const EventCard = () =>{
+    const {events, isFetching} = useSelector(state => state.calendar);
+    const [ isFetchingState, setIsFetchingState ] = useState(isFetching);
+    const [eventState, setEventState] = useState({});
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getCalendarEvent())
+        // console.log('snsnsn')
+        // setEventStates(events)
+    }, [dispatch]);
+
+    useEffect(() => {
+        // if(eventState === undefined){
+        //     setEventState({
+        //         title: 'Event Card',
+        //         end: '01/15/2021'
+        //     })
+        // }
+        setEventState(events)
+        setIsFetchingState(false)
+    }, [events]);
+
+    if(isFetchingState){
+        return <Loader />
     }
 
-    render(){
-        const { event } = this.state;
-        return(
-            <>
-                <div className="bg-white shadow pace-roundy px-4 py-3 d-flex align-items-center justify-content-between mb-4">
-                    <div className="flex-grow-1 d-flex align-items-center">
-                        <div className="dot mr-3 bg-green"></div>
-                        <div className="text">
-                            <h6 className="mb-0">{event[0].title}</h6><span className="text-gray">{event[0].eventDate}</span>
-                        </div>
+
+    return(
+        <>
+            <div className="bg-white shadow pace-roundy px-4 py-3 d-flex align-items-center justify-content-between mb-4">
+                <div className="flex-grow-1 d-flex align-items-center">
+                    <div className="dot mr-3 bg-green"></div>
+                    <div className="text">
+                        {/* <h6 className="mb-0">{eventState[0].title}</h6><span className="text-gray">{formatDate(eventState[0].end)}</span> */}
+                        <h6 className="mb-0">Event Card</h6><span className="text-gray">January 15, 2021</span>
                     </div>
                 </div>
+            </div>
 
-            </>
-        )
-    };
+        </>
+    )
 };
 
 

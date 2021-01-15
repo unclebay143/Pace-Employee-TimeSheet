@@ -2,29 +2,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {HashRouter as Router, Route, Switch } from "react-router-dom";
-
 //  >>>>>>>> APPLICATION STYLES  <<<<<<<<<<
-
-// UTILITIES
-import './components/pages/pages-styles/util.css';
-import './components/pages/pages-styles/form.css';
-import './components/layouts/layout-styles/button.css';
-import './components/loader/loader.css';
-
-// CUSTOM
-import './components/layouts/layout-styles/navbar.css';
-import './components/layouts/layout-styles/footer.css';
-import './components/pages/pages-styles/homebody.css';
-import './components/pages/pages-styles/forgotpassword.css';
-import './components/pages/pages-styles/confirmation.css';
-import './components/pages/pages-styles/404.css';
-import './components/pages/pages-styles/about.css';
-
 
 // BOOTSTRAP
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.js';
+
+// UTILITIES
+import './components/pages/pages-styles/util.css';
+import './components/pages/pages-styles/form.css';
+import './components/layouts/layout-style/button.css';
+import './components/loader/loader.css';
+
+// CUSTOM
+import './components/layouts/layout-style/navbar.css';
+import './components/layouts/layout-style/footer.css';
+import './components/pages/pages-styles/homebody.css';
+import './components/pages/pages-styles/forgotpassword.css';
+import './components/pages/pages-styles/confirmation.css';
+import './components/pages/pages-styles/404.css';
+import './components/pages/pages-styles/about.css';
 
 // AOS
 import 'react-toastify/dist/ReactToastify.css';
@@ -73,8 +71,8 @@ import Thanks from './components/pages/Thanks';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <Router>
+    <Router>
+      <Provider store={store}>
         <Switch>
           <Route exact path="/contact" component = {ContactUs} />
           <Route exact path="/ResetPassword" component = {ResetPassword} />
@@ -90,8 +88,8 @@ ReactDOM.render(
           <Route path="/" component = {Home} />
 
         </Switch>
-      </Router>
-    </Provider>
+      </Provider>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );
