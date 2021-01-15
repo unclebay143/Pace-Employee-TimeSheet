@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../../loader/Loader';
 import { formatDate } from '../../../_helper/dateFormatter';
 import { date } from 'yup';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 export default function ManageCalendar() {
@@ -15,6 +16,7 @@ export default function ManageCalendar() {
     const [eventsState, setEventsState] = useState([]);
     const [ isFetchingState, setIsFetchingState ] = useState(isFetching);
     const dispatch = useDispatch();
+    const history = useHistory()
 
     useEffect(() => {
         dispatch(getCalendarEvent())
@@ -73,6 +75,9 @@ export default function ManageCalendar() {
                             }}
                             onSubmit={((values, action)=>{
                                 dispatch(addNewCalendarEvent(values, action))
+                                .then((response)=>{
+                                    history.push('/dashboard/calendar')
+                                })
                             })}
                         >
                             {({errors, touched, values, isSubmitting})=>(
