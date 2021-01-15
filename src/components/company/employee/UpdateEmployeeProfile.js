@@ -97,7 +97,7 @@ const UpdateEmployeeProfile = () =>{
         if(employeeProfile === undefined){
             return(
                 <>
-                    <Loader />
+                    {/* <Loader /> */}
                 </>
             )
         }
@@ -140,7 +140,7 @@ const UpdateEmployeeProfile = () =>{
                                     enableReinitialize
                                     // validationSchema={UpdateEmployeeProfileSchema}
                                     onSubmit={(values, action)=>{
-                                        dispatch(updateUserProfile(values, staffID, action));
+                                        // dispatch(updateUserProfile(values, staffID, action));
                                     }
                                     }
                                 >
