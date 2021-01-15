@@ -34,8 +34,12 @@ const addNewCalendarEvent = (newEvent, action) => ( dispatch ) =>{
     })
 }
 
+const deleteCalendarEvent = () => (dispatch) =>{
+
+}
 
 export {
     getCalendarEvent,
-    addNewCalendarEvent
+    addNewCalendarEvent,
+    deleteCalendarEvent
 }

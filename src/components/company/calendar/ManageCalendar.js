@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import { addNewCalendarEvent, getCalendarEvent } from '../../../actions/company/calendar/calendarAction';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../../loader/Loader';
+import { formatDate } from '../../../_helper/dateFormatter';
+import { date } from 'yup';
 
 
 export default function ManageCalendar() {
@@ -20,7 +22,7 @@ export default function ManageCalendar() {
     
     useEffect(() => {
         if(events){
-            setEventsState([events])
+            setEventsState(events)
             setIsFetchingState(false)
         }
     }, [events]);
@@ -64,7 +66,7 @@ export default function ManageCalendar() {
                 <section className="">
                     <div className="mb-3">
                         <Formik 
-                        
+                            enableReinitialize
                             initialValues={{
                                 eventName: '',
                                 eventDateAndTime: ''
@@ -117,15 +119,27 @@ export default function ManageCalendar() {
                     <div col="col-9">
                         <section>
                             <ul className="list-group">
+                            <li className="list-group-item d-flex justify-content-between align-items-center h5">
+                                <span>Event Name</span>
+                                {/* <span className="mr-5 pr-5">Event Name</span> */}
+                            </li>
+
                                 {
-                                    eventsState.map(({title}, index)=>{
+                                    eventsState.map(({title, end}, index)=>{
                                         return(
                                             <li className="list-group-item d-flex justify-content-between align-items-center" key={index}>
-                                                {title}
                                                 <span>
-                                                    <button className="btn text-white badge badge-primary badge-pill mr-2">Edit</button>
-                                                    <button className="btn text-white badge badge-red badge-pill">Delete</button>
+                                                {title}
                                                 </span>
+                                                <section>
+                                                    <span className="text-center mr-5 pr-5">
+                                                        {formatDate(end)}
+                                                    </span>
+                                                    <span className="   ">
+                                                        <button className="btn text-white badge badge-primary badge-pill mr-2">Edit</button>
+                                                        <button className="btn text-white badge badge-red badge-pill">Delete</button>
+                                                    </span>
+                                                </section>
                                             </li>
                                         )
 

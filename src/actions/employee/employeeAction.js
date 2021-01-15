@@ -37,5 +37,6 @@ const updateCompanyEmployee = (staffID) => ( dispatch ) =>{
 }
 export {
     addNewEmployee,
-    getCompanyEmployees
+    getCompanyEmployees,
+    updateCompanyEmployee
 }
