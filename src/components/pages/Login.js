@@ -50,7 +50,7 @@ const Login = () =>{
         document.title = 'Login | Pace'
         if(currentUserFromLocalStorage){
             syncCurrentUser(currentUserFromLocalStorage.staffID)
-            userIsAuthenticatedLogger()
+            // userIsAuthenticatedLogger()
         }
     },[currentUserFromLocalStorage])
 
