@@ -16,6 +16,7 @@ const updateUserProfile = ( newProfile, staffID, action ) => ((dispatch) =>{
     return UserService.updateUserProfile(newProfile, staffID)
     .then((response)=>{
         // Set formik submittion state to false (the loader)
+        console.log(response.data.data);
         action.setSubmitting(false)
         UserService.fetchUserProfile(currentUserStaffID)
         dispatch({

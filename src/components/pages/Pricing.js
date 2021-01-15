@@ -71,7 +71,7 @@ const Pricing = () => {
             </div>
 
             {/*--------------------------- FAQ Section --------------------------------------------------------*/}
-            <div className="container mb-5">
+            {/* <div className="container mb-5">
             <h3 className="text-center text-bold mt-3" style={{color:'#FF6584'}}>Frequently Asked Questions</h3>
         <div className="d-flex flex-row justify-content-center flex-wrap">
             <div className="p-2 mt-3">
@@ -146,8 +146,8 @@ const Pricing = () => {
                     </div>
                 </div>
             </div>
-        </div>
-        </div>
+        </div> */}
+        {/* </div> */}
         </>
     )
 }

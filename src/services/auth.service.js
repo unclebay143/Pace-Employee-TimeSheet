@@ -107,7 +107,7 @@ const login = ( email, password, action ) => ( dispatch ) =>{
       password,
     })
     .then((response)=>{
-      // console.log(response.data.data.response[0])
+      console.log(response)
       // console.log(response.data.data.accessToken)
       // don't forget to destructure later
       localStorage.setItem('token', JSON.stringify(response.data.data.accessToken));

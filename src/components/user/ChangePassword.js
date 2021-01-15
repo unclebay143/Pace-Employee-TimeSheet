@@ -1,10 +1,19 @@
 import { ErrorMessage, Form, Formik } from 'formik'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { TextInput } from '../layouts/FormInput'
 import Button from '../layouts/Button';
 import { Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 
 export default function ChangePassword() {
+    const [staffID, setStaffID] = useState();
+    const params = useParams();
+    
+    useEffect(() => {
+        const staffID = params.id; // get id from urls(path)
+        setStaffID(staffID);
+
+    }, []);
     return (
         <>
         <div className="container">
@@ -26,8 +35,7 @@ export default function ChangePassword() {
                             </Link>
                         </li>
                         <li className="breadcrumb-item active" aria-current="page">
-                            <Link to={`/dashboard/profile/`}>
-                            {/* <Link to={`/dashboard/profile/${params.id}`}> */}
+                            <Link to={`/dashboard/profile/${params.id}`}>
                                 Profile
                             </Link>
                         </li>

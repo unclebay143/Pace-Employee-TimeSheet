@@ -19,17 +19,26 @@ const fetchCompanyEmployees = () =>{
 
 // Function that allow admin to update the employee profile
 const putEmployeeBillingAndWorkHour = (values, action, staffID) =>{
-    // const { billRateCharge, expectedWorkHours } = values;
-    // const data = {
-    //     billRateCharge,
-    //     expectedWorkHours
-    // }
+    const { billRateCharge, expectedWorkHours } = values;
+    const data = {
+        billRateCharge,
+        expectedWorkHours
+    }
     console.log('values from put', values)
     console.log('staffID from put', staffID)
     console.log('action from put', action)
     // console.log('billing from put', billRateCharge)
-    return axios.put(UPDATE_EMPLOYEE_BILLING_AND_TIME_API + staffID , ' ', {headers: authHeader})
+    return axios.put(UPDATE_EMPLOYEE_BILLING_AND_TIME_API + staffID , data, {headers: authHeader})
 }
+
+
+
+
+
+
+
+
+
 const EmployeeService = {
     addNewEmployeeToServer,
     fetchCompanyEmployees,

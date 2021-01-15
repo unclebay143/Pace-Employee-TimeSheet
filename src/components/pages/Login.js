@@ -47,7 +47,7 @@ const Login = () =>{
                 history.push('./dashboard')
             }
         }
-    },[currentUserFromLocalStorage])
+    },[currentUserFromLocalStorage, authenticationState.isLoggedIn, history])
     
     return(
         <div className="container">
@@ -127,7 +127,7 @@ const Login = () =>{
                                                 type="submit"
                                                 className="btn btn-primary"
                                                 disabled={isSubmitting}
-                                                label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Loading...</span>) : "Login"}
+                                                label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Loading</span>) : "Login"}
                                                 />
                                             <p>Create your workspace register <Link to="/signup">Here</Link></p>
                                             <span><Link to="/forgot">Forgot Passwords</Link></span>

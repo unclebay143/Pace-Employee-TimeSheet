@@ -39,7 +39,7 @@ const TodoRows = () => {
     return (
         <>
         {
-            todos.map(({id, title, completed, dueDate}, index)=>{
+            todos.map(({toDoID, title, completed, dueDate}, index)=>{
                 return(
                     <li className="list-group-item" key={index}>
                         <div className={`todo-indicator ${ completed ? 'bg-primary' : 'bg-warning' }`} />
@@ -47,8 +47,8 @@ const TodoRows = () => {
                                 <div className="widget-content-wrapper">
                                 <div className="widget-content-left mr-2">
                                     <div className="custom-checkbox custom-control">
-                                        <input className="custom-control-input" id={id} type="checkbox" />
-                                        <label className="custom-control-label" htmlFor={id}>&nbsp;</label>
+                                        <input className="custom-control-input" id={toDoID} type="checkbox" />
+                                        <label className="custom-control-label" htmlFor={toDoID}>&nbsp;</label>
                                     </div>
                                 </div>
                                 <div className="widget-content-left">
@@ -70,12 +70,12 @@ const TodoRows = () => {
                                     <Button 
                                         className={` border-0 btn-transition btn todo-btn  { ${ completed ? "pending-icon" : "completed-icon"}`}
                                         icon={`${completed ? "fa fa-sync-alt" : "fa fa-check"}`}
-                                        onClick={(()=>dispatch(toggleTodoCompletion(id)))}
+                                        onClick={(()=>dispatch(toggleTodoCompletion(toDoID)))}
                                     />
                                     <Button 
                                         className="border-0 btn-transition btn todo-btn text-red"
                                         icon="fa fa-trash-alt"
-                                        onClick={(()=>dispatch(deleteTodo(id)))}
+                                        onClick={(()=>dispatch(deleteTodo(toDoID)))}
                                     />
                                 </div>
                             </div>

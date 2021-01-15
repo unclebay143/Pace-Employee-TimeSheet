@@ -53,13 +53,15 @@ const UpdateProfile = () =>{
             // Set the destructure user information into the profile state (ES6 syntax)
             setProfile({
                 firstName : typeof firstName !== 'string' ? '' : firstName,
-                lastName : typeof lastName !== 'string' ? '' : firstName,
+                lastName : typeof lastName !== 'string' ? '' : lastName,
                 phoneNumber,
                 email,
                 address : typeof address !== 'string' ? '' : address,
-                userName : typeof userName !== 'string' ? '' : userName,
+                userName,
+                // userName : typeof userName !== 'string' ? '' : userName,
             })
 
+            console.log(firstName)
             console.log(userName)
             console.log(typeof userName)
             setIsLoading(false)

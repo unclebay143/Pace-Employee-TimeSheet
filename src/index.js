@@ -40,17 +40,16 @@ import './components/workspace/dashboard/dashboard-styles/card.css';
 import './components/workspace/dashboard/dashboard-styles/task.css';
 // import './components/workspace/dashboard/dashboard-styles/task-sidebar.css';
 import './components/workspace/dashboard/dashboard-styles/timer.css';
-import './components/workspace/dashboard/todos/todoform.css'
-import './components/workspace/dashboard/todos/todo.css'
+import './components/workspace/dashboard/todos/todoform.css';
+import './components/workspace/dashboard/todos/todo.css';
 
 
 // TOUR STYLES -- will only apply when the user is a first timer
-import './components/tour/tour-styles/tour.css'
+import './components/tour/tour-styles/tour.css';
 
 // Redux 
 import store from "./Store";
 import { Provider } from 'react-redux';
-
 
 // test DEVcomponent
 import Test from './rough/Test';

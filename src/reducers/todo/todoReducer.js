@@ -65,7 +65,7 @@ const todoReducer = (state=initialState, action) =>{
                 isTodoFormOpen: false
             }
         case ADD_TODO:
-            const { title, dueDate } = payload;
+            const { title, dueDate, toDoID } = payload;
             return {
                 // Return everything in the state
                 ...state,
@@ -73,7 +73,7 @@ const todoReducer = (state=initialState, action) =>{
                 todos: [ 
                     // Add new todo from payload (to the top of the existing todos)
                     {
-                        id: generateId(state.todos),
+                        toDoID: toDoID,
                         title: title,
                         dueDate: dueDate,
                         completed: false
