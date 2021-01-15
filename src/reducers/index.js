@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import taskReducer from './task/taskReducer';
 import acceptedTaskReducer from './task/acceptedTaskReducer';
+import assignedTaskReducer from './task/assignedTaskReducer';
 import authReducer from './authentication/authReducer';
 import TimerReportReducer from './timer/TimerReportReducer';
 import timerReducer from './timer/timerReducer';
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
     authenticationState: authReducer,
     tasks: taskReducer, 
     acceptedTasks: acceptedTaskReducer,
+    assignedTasks: assignedTaskReducer,
     // tasks: [taskReducer, acceptedTaskReducer]
     todos: todoReducer,
     timerReport: TimerReportReducer,

@@ -12,13 +12,12 @@ import Loader from '../../../loader/Loader';
 const AllTasks = () => {
 
   const { tasks, isFetching } = useSelector(state => state.tasks)
-  const { employees } = useSelector(state => state.employees)
-  const [taskState, setTaskState] = useState()
+  const dispatch = useDispatch()
   const history = useHistory();
 
   useEffect(() => {
-    setTaskState(tasks)
-  }, [])
+    dispatch(getTasks())
+  }, [dispatch])
 
   // adds checkbox to each row
   const selectRow = {

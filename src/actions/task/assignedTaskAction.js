@@ -13,8 +13,8 @@ import {
   return TaskService.fetchAssignedTasks()
   .then((response)=> {
     console.log(response)
-    dispatch({ type: FETCH_ASSIGNED_TASKS_SUCCESS, payload: response.data });
-    return response.data;
+    dispatch({ type: FETCH_ASSIGNED_TASKS_SUCCESS, payload: response.data.data });
+    return response.data.data;
   })
   .catch((error) =>{
     dispatch({ type: FETCH_ASSIGNED_TASKS_ERROR, payload: error })
