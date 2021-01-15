@@ -23,7 +23,7 @@ export default function Calendar() {
     
     useEffect(() => {
         if(events){
-            setEventsState([events])
+            setEventsState(events)
             setIsFetchingState(false)
         }
     }, [events]);

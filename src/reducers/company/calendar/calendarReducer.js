@@ -5,7 +5,7 @@ const initialState = {
     events: [
 
         {
-            title: '1',
+            title: 'Event Card',
             end: '01/01/2020'
         }
     ],
