@@ -6,8 +6,9 @@ import Button from '../../layouts/Button';
 import { TextInput } from '../../layouts/FormInput';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getCompanyEmployees } from '../../../actions/employee/employeeAction';
+import { getCompanyEmployees, updateCompanyEmployee } from '../../../actions/employee/employeeAction';
 import { getDepartment } from '../../../actions/company/department/departmentAction';
+import Loader from '../../loader/Loader';
 
 
 const employeeDetailsDropDown = {
@@ -97,7 +98,7 @@ const UpdateEmployeeProfile = () =>{
         if(employeeProfile === undefined){
             return(
                 <>
-                    {/* <Loader /> */}
+                    <Loader  />
                 </>
             )
         }
@@ -140,7 +141,7 @@ const UpdateEmployeeProfile = () =>{
                                     enableReinitialize
                                     // validationSchema={UpdateEmployeeProfileSchema}
                                     onSubmit={(values, action)=>{
-                                        // dispatch(updateUserProfile(values, staffID, action));
+                                        dispatch(updateCompanyEmployee(values, action));
                                     }
                                     }
                                 >
