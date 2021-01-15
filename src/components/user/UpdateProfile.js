@@ -52,13 +52,16 @@ const UpdateProfile = () =>{
         
             // Set the destructure user information into the profile state (ES6 syntax)
             setProfile({
-                firstName,
-                lastName,
+                firstName : typeof firstName !== 'string' ? '' : firstName,
+                lastName : typeof lastName !== 'string' ? '' : firstName,
                 phoneNumber,
                 email,
-                address,
-                userName,
+                address : typeof address !== 'string' ? '' : address,
+                userName : typeof userName !== 'string' ? '' : userName,
             })
+
+            console.log(userName)
+            console.log(typeof userName)
             setIsLoading(false)
         }
     }, [params.id, currentUser])
@@ -125,7 +128,7 @@ const UpdateProfile = () =>{
                                     { (({ values, touched, errors, handleSubmit, isSubmitting, resetForm })=>{
                                         return <Form onSubmit={handleSubmit}>
                                             <div className="mb-5 text-gray">
-                                                {/* <pre>{JSON.stringify(values, null, 2)}</pre>  */}
+                                                <pre>{JSON.stringify(values, null, 2)}</pre> 
                                                 <h5>EDIT PROFILE</h5>
                                             </div>
                                             <hr />
@@ -264,7 +267,7 @@ const UpdateProfile = () =>{
                                             <div className="d-flex justify-content-between">
                                                 <Button 
                                                     type="submit" 
-                                                    label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Updating...</span>) : "Update"}
+                                                    label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Updating</span>) : "Update"}
                                                     className="btn pace-btn-primary" 
                                                 />
                                                 <Button 

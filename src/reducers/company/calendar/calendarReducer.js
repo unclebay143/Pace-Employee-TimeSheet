@@ -6,7 +6,7 @@ const initialState = {
 
         {
             title: 'Event Card',
-            end: '01/01/2020'
+            end: '10/10/2021'
         }
     ],
     error: null

@@ -6,21 +6,18 @@ let accessToken = JSON.parse(localStorage.getItem('token'));
 // let accessToken = localStorage.getItem('token')
 let getCurrentUser = JSON.parse(localStorage.getItem('currentUser'));
 
-if(getCurrentUser === null){
-    getCurrentUser = {
-            accessToken: '',
-            response: {}
-    }
-}
+// if(getCurrentUser === null){
+//     getCurrentUser = null
+// }
 
 // CurrentUser in the localstorage
 const currentUserFromLocalStorage = getCurrentUser;
 
 // Current user companyID
-const currentUserCompanyID = currentUserFromLocalStorage.companyID;
+const currentUserCompanyID = getCurrentUser === null ? null : currentUserFromLocalStorage.companyID;
 
 // Current user staffID 
-const currentUserStaffID = currentUserFromLocalStorage.staffID;
+const currentUserStaffID = getCurrentUser === null ? null : currentUserFromLocalStorage.staffID;
 
 // Authorization token
 const authHeader = {

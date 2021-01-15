@@ -25,8 +25,8 @@ const getCompanyEmployees = () => (dispatch) =>{
     })
 }
 
-const updateCompanyEmployee = (staffID) => ( dispatch ) =>{
-    return EmployeeService.putCompanyEmployee(staffID)
+const updateEmployeeBillingAndWorkHour = (values, action, staffID,) => ( dispatch ) =>{
+    return EmployeeService.putEmployeeBillingAndWorkHour(values, action, staffID)
     .then((response)=>{
 
         console.log(response)
@@ -35,8 +35,9 @@ const updateCompanyEmployee = (staffID) => ( dispatch ) =>{
         console.log(error)
     })
 }
+
 export {
     addNewEmployee,
     getCompanyEmployees,
-    updateCompanyEmployee
+    updateEmployeeBillingAndWorkHour
 }

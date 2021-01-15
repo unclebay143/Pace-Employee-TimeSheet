@@ -3,9 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 
-// Actions
-import { syncCurrentUser } from '../../actions/user/userAction';
-
 //Layout
 import Button from '../layouts/Button';
 import unclebay from '../pages/pages-images/ayodele_samuel_adebayo.jpg';
@@ -41,9 +38,9 @@ const Profile = () =>{
     const [ staffID, setStaffID ] = useState('');
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        dispatch(syncCurrentUser( params.id ))
-    }, [])
+    // useEffect(() => {
+    //     dispatch(syncCurrentUser( params.id ))
+    // }, [])
 
     
     useEffect(() => {
@@ -53,29 +50,31 @@ const Profile = () =>{
 
         // Set the staffID state to be reusable in the edit profile button path
         setStaffID(staffID);
+        if(currentUser){
 
-        // Destructure the user information from the response.data.data[0] -response structure
-        const {
-            firstName,
-            lastName,
-            phoneNumber,
-            email,
-            address,
-            userName,
-        
-        } = currentUser;
-        
-        // Set the destructure user information into the profile state (ES6 syntax)
-        setUserProfile({
+            // Destructure the user information from the response.data.data[0] -response structure
+            const {
                 firstName,
                 lastName,
                 phoneNumber,
                 email,
                 address,
                 userName,
-            })
                 
-    }, [currentUser, params.id, dispatch])
+            } = currentUser;
+            
+            // Set the destructure user information into the profile state (ES6 syntax)
+            setUserProfile({
+                firstName,
+                    lastName,
+                    phoneNumber,
+                    email,
+                    address,
+                    userName,
+                })
+            }   
+            
+        }, [currentUser, params.id, dispatch])
 
     if(userProfile.firstName === undefined){
         return(
@@ -130,10 +129,10 @@ const Profile = () =>{
                                             <p className="text-secondary mb-1">Frontend Engineer</p>
                                             <p className="text-muted font-size-sm">{userProfile.address}</p>
                                             <Link to={`/dashboard/profile/update/${staffID}`}>
-                                                <Button className="btn btn-primary mr-2 m btn-sm" label="Edit Profile"/>
+                                                <Button className="btn btn-primary mr-2 m-2 btn-sm" label="Edit Profile"/>
                                             </Link>
                                             <Link to={`/dashboard/profile/changepassword/${staffID}`}>
-                                                <Button className="btn btn-warning text-white btn-sm mt-2 mt-lg-0" label="Change Password"/>
+                                                <Button className="btn btn-warning text-white m-2 btn-sm mt-2 mt-lg-0" label="Change Password"/>
                                             </Link>
                                         </div>
                                     </div>

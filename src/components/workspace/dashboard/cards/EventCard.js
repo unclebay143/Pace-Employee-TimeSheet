@@ -18,25 +18,23 @@ import Loader from "../../../loader/Loader";
 const EventCard = () =>{
     const {events, isFetching} = useSelector(state => state.calendar);
     const [ isFetchingState, setIsFetchingState ] = useState(isFetching);
-    const [eventState, setEventState] = useState({});
+    const [eventState, setEventState] = useState(events[0]);
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(getCalendarEvent())
-        // console.log('snsnsn')
-        // setEventStates(events)
     }, [dispatch]);
 
     useEffect(() => {
-        // if(eventState === undefined){
-        //     setEventState({
-        //         title: 'Event Card',
-        //         end: '01/15/2021'
-        //     })
-        // }
-        setEventState(events)
+        // Set the eventState with event in redux
+        setEventState(events[0])
+
+        // Set the fetching state to false
         setIsFetchingState(false)
     }, [events]);
+
+    console.log(events[0])
+    console.log(eventState[0])
 
     if(isFetchingState){
         return <Loader />
@@ -49,8 +47,7 @@ const EventCard = () =>{
                 <div className="flex-grow-1 d-flex align-items-center">
                     <div className="dot mr-3 bg-green"></div>
                     <div className="text">
-                        {/* <h6 className="mb-0">{eventState[0].title}</h6><span className="text-gray">{formatDate(eventState[0].end)}</span> */}
-                        <h6 className="mb-0">Event Card</h6><span className="text-gray">January 15, 2021</span>
+                        <h6 className="mb-0">{eventState.title}</h6><span className="text-gray">{formatDate(eventState.end)} - Calendar</span>
                     </div>
                 </div>
             </div>

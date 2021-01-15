@@ -2,7 +2,7 @@
 
 // Axios
 import axios from "axios";
-import { authHeader } from "./auth-header";
+import { authHeader, currentUserStaffID } from "./auth-header";
 
 // API
 
@@ -22,9 +22,10 @@ const addTodo = (data) => {
             title: data.title,
             dueDate: new Date()
         }
-        return axios.post(TODO_API_URL, data, {headers: authHeader})
+        return axios.post(TODO_API_URL + currentUserStaffID, data, {headers: authHeader})
     }
-    return axios.post(TODO_API_URL, data)
+    return axios.post(TODO_API_URL + currentUserStaffID, data, {headers: authHeader})
+    // return axios.post(TODO_API_URL, data)
 }
 
 // Delete target todo from server
