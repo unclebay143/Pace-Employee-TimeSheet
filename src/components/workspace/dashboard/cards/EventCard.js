@@ -28,6 +28,12 @@ const EventCard = () =>{
     }, [dispatch]);
 
     useEffect(() => {
+        // if(eventState === undefined){
+        //     setEventState({
+        //         title: 'Event Card',
+        //         end: '01/15/2021'
+        //     })
+        // }
         setEventState(events)
         setIsFetchingState(false)
     }, [events]);
@@ -35,13 +41,16 @@ const EventCard = () =>{
     if(isFetchingState){
         return <Loader />
     }
+
+
     return(
         <>
             <div className="bg-white shadow pace-roundy px-4 py-3 d-flex align-items-center justify-content-between mb-4">
                 <div className="flex-grow-1 d-flex align-items-center">
                     <div className="dot mr-3 bg-green"></div>
                     <div className="text">
-                        <h6 className="mb-0">{eventState[0].title}</h6><span className="text-gray">{formatDate(eventState[0].end)}</span>
+                        {/* <h6 className="mb-0">{eventState[0].title}</h6><span className="text-gray">{formatDate(eventState[0].end)}</span> */}
+                        <h6 className="mb-0">Event Card</h6><span className="text-gray">January 15, 2021</span>
                     </div>
                 </div>
             </div>
