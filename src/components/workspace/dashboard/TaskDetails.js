@@ -1,31 +1,50 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { NavLink, useHistory } from 'react-router-dom';
-import { deleteTask } from '../../../actions/task/taskAction';
+import { updateTaskStatus, deleteTask } from '../../../actions/task/taskAction';
+import { deleteAssignedTask } from '../../../actions/task/assignedTaskAction';
 import { useDispatch, useSelector } from 'react-redux';
 
-// import { NavLink } from 'react-router-dom';
 // import { connect } from 'react-redux';
+
 import Button from '../../layouts/Button';
 
 import unclebay from '../../pages/pages-images/ayodele_samuel_adebayo.jpg';
 import attachment from '../../pages/pages-images/v.jpg';
-import { TASK_API_URL } from '../../../services/root-endpoints';
-import axios from 'axios';
-import { authHeader } from '../../../services/auth-header';
 
 
 const TaskDetails = () => {
   const {assignedTasks, isFetching } = useSelector(state => state.assignedTasks);
+  const { tasks } = useSelector(state => state.tasks);
   const params = useParams();
   const dispatch = useDispatch();
   const [taskDetails, setTaskDetails] = useState([{}]);
-console.log(assignedTasks);
+
+  console.log(assignedTasks);
+  console.log(tasks, 'ttt');
+
 useEffect(() => {
   const getTaskDetails = assignedTasks.filter((task)=>task.taskID === parseInt(params.id));
     setTaskDetails(getTaskDetails[0])
-  }, [])
+    console.log(getTaskDetails[0], 'gtd')
+  }, []);
+
+useEffect(() => {
+  const getTaskDetails = tasks.filter((task)=>task.taskID === parseInt(params.id));
+    setTaskDetails(getTaskDetails[0])
+    console.log(getTaskDetails[0], 'taskgtds')
+  }, []);
   
+  const updateTaskDetails = {
+    assignedID: taskDetails.assignedID,
+    staffID: taskDetails.staffID,
+    taskID: taskDetails.taskID,
+    taskStatus: taskDetails.taskStatus + 1,
+  }
+
+
+  
+  console.log(updateTaskDetails, 'uuuhere');
   console.log(taskDetails, 'here');
   console.log(taskDetails.taskName, 'hereE');
     return (
@@ -54,6 +73,7 @@ useEffect(() => {
                               label="  Accept"
                               icon="fa fa-check"
                               className="btn btn-theme btn-sm"
+                              onClick={(()=>dispatch(updateTaskStatus(updateTaskDetails)))}
                             />
                             <Button 
                               type="submit"
@@ -65,7 +85,8 @@ useEffect(() => {
                               label=" Delete"
                               icon="fa fa-trash-alt"
                               className="btn btn-sm special pace-bg-accent"
-                              onClick={(()=>dispatch(deleteTask(taskDetails.taskID)))}
+                              onClick={(()=>dispatch(deleteAssignedTask(taskDetails.staffID)))}
+                              // onClick={(()=>dispatch(deleteTask(taskDetails.taskID)))}
                             />          
                           </div>
                         </div>
@@ -141,6 +162,7 @@ useEffect(() => {
                             label=" Accept"
                             icon="fa fa-check"
                             className="btn btn-theme btn-sm"
+                            onClick={(()=>dispatch(updateTaskStatus(updateTaskDetails)))}
                           />                                   
                           <Button 
                             type="submit"
@@ -148,11 +170,12 @@ useEffect(() => {
                             className="btn btn-sm special mx-2"
                           />    
                           <Button 
-                            type="button"
+                            type="submit"
                             label=" Delete"
                             icon="fa fa-trash-alt"
                             className="btn btn-sm special pace-bg-accent"
-                            onClick={(()=>(deleteTask(taskDetails.taskID)))}
+                            // onClick={(()=>(deleteAssignedTask(taskDetails.staffID)))}
+                            onClick={(()=>(deleteTask(taskDetails.staffID)))}
                           />
                         </div>
                       {/* </div>   */}

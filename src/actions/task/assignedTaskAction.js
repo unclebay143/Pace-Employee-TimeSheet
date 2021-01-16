@@ -7,7 +7,7 @@ import {
   DELETE_ASSIGNED_TASK
 } from '../types';
 
-// Fetch accepted Task action
+// Fetch assigned Task action
  export const getAssignedTasks = () => ( dispatch ) =>{
   dispatch({ type: FETCH_ASSIGNED_TASKS_PENDING });
   return TaskService.fetchAssignedTasks()
@@ -20,7 +20,6 @@ import {
     dispatch({ type: FETCH_ASSIGNED_TASKS_ERROR, payload: error })
   })
 };
-
 
 export const deleteAssignedTask  = (id) => (dispatch) =>{
   dispatch({ type: DELETE_ASSIGNED_TASK, payload: id }) // Update the UI even when error occurs, since server will retain the undeleted item

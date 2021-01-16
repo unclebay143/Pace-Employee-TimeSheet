@@ -194,14 +194,4 @@ const DraftTask = () => {
     )
   }
 
-
-// const mapStateToProps = state => ({
-//   AllTasks: state.task
-// })
-
-// DraftTask.propTypes = {
-//   assignTask: PropTypes.func.isRequired
-// }
-
-// export default connect(null,{ assignTask })(DraftTask);
 export default DraftTask;

@@ -33,6 +33,7 @@ export const TASK_API_URL = 'https://pacetimesheet.herokuapp.com/api/tasks/compa
 export const ACCEPTED_TASK_API_URL = 'http://fakerestapi.azurewebsites.net/api/v1/Activities';
 export const ASSIGNED_TASK_API_URL = 'https://pacetimesheet.herokuapp.com/api/tasks/companyName/assignedTasks/';
 export const UPDATE_TASK_STATUS_API_URL = 'https://pacetimesheet.herokuapp.com/api/tasks/companyName/editTaskStatus/';
+export const DELETE_ASSIGNED_TASK_API_URL = 'https://pacetimesheet.herokuapp.com/api/tasks/companyName/deleteTask/';
 
 
 
