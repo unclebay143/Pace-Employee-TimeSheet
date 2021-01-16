@@ -6,7 +6,7 @@ import { authHeader, currentUserStaffID } from './auth-header';
 
 // API
 
-import { ASSIGN_TASK_API_URL, TASK_API_URL, ACCEPTED_TASK_API_URL,  ASSIGNED_TASK_API_URL } from "./root-endpoints";
+import { ASSIGN_TASK_API_URL, TASK_API_URL, ACCEPTED_TASK_API_URL, ASSIGNED_TASK_API_URL,  UPDATE_TASK_STATUS_API_URL, DELETE_ASSIGNED_TASK_API_URL } from "./root-endpoints";
 
 const assignTask = async(newTask) => {
     return await axios.post(ASSIGN_TASK_API_URL + currentUserStaffID, {...newTask, staffID : currentUserStaffID }, { headers: authHeader } );
@@ -17,11 +17,16 @@ const fetchTasks = () =>{
 }
 
 const deleteTask = (id) =>{
-     return axios.delete(`${ TASK_API_URL }/${id}`)
+     return axios.delete(TASK_API_URL + `${id}`)
 }
 
-const updateTask = (id) =>{
-     return axios.put(`${ TASK_API_URL }/${id}`)
+const updateTaskStatus = (taskStatus) =>{
+     return axios.put( UPDATE_TASK_STATUS_API_URL + currentUserStaffID, {...taskStatus, staffID : currentUserStaffID }, { headers: authHeader } )
+}
+
+
+const editTask = (id) =>{
+    return axios.put(`${ TASK_API_URL }/${id}`)
 }
 
 const fetchAcceptedTasks = (newTask) =>{
@@ -29,11 +34,11 @@ const fetchAcceptedTasks = (newTask) =>{
 }
 
 const fetchAssignedTasks = (newTask) =>{
-    return axios.get( `${ ASSIGNED_TASK_API_URL }/${currentUserStaffID.toString()}`, { headers: authHeader })
+    return axios.get( ASSIGNED_TASK_API_URL + currentUserStaffID, { headers: authHeader })
 }
 
-const deleteAcceptedTask = (id) =>{
-     axios.delete(`${ ACCEPTED_TASK_API_URL }/${id}`)
+const deleteAssignedTask = (id) =>{
+     axios.delete( DELETE_ASSIGNED_TASK_API_URL + currentUserStaffID, {...id, staffID : currentUserStaffID }, { headers: authHeader }  )
 }
 
 
@@ -42,9 +47,10 @@ const TaskService = {
     fetchTasks,
     fetchAcceptedTasks,
     fetchAssignedTasks,
+    editTask,
     deleteTask,
-    updateTask,
-    deleteAcceptedTask,
+    updateTaskStatus,
+    deleteAssignedTask,
 }
 
 

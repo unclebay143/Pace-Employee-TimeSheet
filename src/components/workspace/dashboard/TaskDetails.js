@@ -1,32 +1,52 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { NavLink, useHistory } from 'react-router-dom';
-import { deleteTask } from '../../../actions/task/taskAction';
+import { updateTaskStatus, deleteTask } from '../../../actions/task/taskAction';
+import { deleteAssignedTask } from '../../../actions/task/assignedTaskAction';
 import { useDispatch, useSelector } from 'react-redux';
 
-// import { NavLink } from 'react-router-dom';
 // import { connect } from 'react-redux';
+
 import Button from '../../layouts/Button';
 
 import unclebay from '../../pages/pages-images/ayodele_samuel_adebayo.jpg';
 import attachment from '../../pages/pages-images/v.jpg';
-import { TASK_API_URL } from '../../../services/root-endpoints';
-import axios from 'axios';
 
 
 const TaskDetails = () => {
+  const {assignedTasks, isFetching } = useSelector(state => state.assignedTasks);
+  const { tasks } = useSelector(state => state.tasks);
   const params = useParams();
   const dispatch = useDispatch();
-  const [taskDetails, setTaskDetails] = useState({})
+  const [taskDetails, setTaskDetails] = useState([{}]);
 
-  useEffect(() => {
-    const fetchTaskDetails = async(taskID)=>{
-    const { data } = await axios.get(`${TASK_API_URL}/${taskID}`);
-    setTaskDetails(data)
+  console.log(assignedTasks);
+  console.log(tasks, 'ttt');
+
+useEffect(() => {
+  const getTaskDetails = assignedTasks.filter((task)=>task.taskID === parseInt(params.id));
+    setTaskDetails(getTaskDetails[0])
+    console.log(getTaskDetails[0], 'gtd')
+  }, []);
+
+useEffect(() => {
+  const getTaskDetails = tasks.filter((task)=>task.taskID === parseInt(params.id));
+    setTaskDetails(getTaskDetails[0])
+    console.log(getTaskDetails[0], 'taskgtds')
+  }, []);
+  
+  const updateTaskDetails = {
+    assignedID: taskDetails.assignedID,
+    staffID: taskDetails.staffID,
+    taskID: taskDetails.taskID,
+    taskStatus: taskDetails.taskStatus + 1,
   }
-    fetchTaskDetails(params.id)
-  }, [])
 
+
+  
+  console.log(updateTaskDetails, 'uuuhere');
+  console.log(taskDetails, 'here');
+  console.log(taskDetails.taskName, 'hereE');
     return (
       <>
         <section className="py-0">
@@ -36,8 +56,7 @@ const TaskDetails = () => {
                   <div className="py-3">
                   <header className="card-header wht-bg">
                     <h4 className="d-flex justify-content-between task-page-lead">
-                      {/* View Task */}
-                      { taskDetails.title }
+                      { taskDetails.taskName }
                     </h4>
                   </header>
                   </div>
@@ -54,6 +73,7 @@ const TaskDetails = () => {
                               label="  Accept"
                               icon="fa fa-check"
                               className="btn btn-theme btn-sm"
+                              onClick={(()=>dispatch(updateTaskStatus(updateTaskDetails)))}
                             />
                             <Button 
                               type="submit"
@@ -65,7 +85,8 @@ const TaskDetails = () => {
                               label=" Delete"
                               icon="fa fa-trash-alt"
                               className="btn btn-sm special pace-bg-accent"
-                              onClick={(()=>dispatch(deleteTask(taskDetails.id)))}
+                              onClick={(()=>dispatch(deleteAssignedTask(taskDetails.staffID)))}
+                              // onClick={(()=>dispatch(deleteTask(taskDetails.taskID)))}
                             />          
                           </div>
                         </div>
@@ -81,19 +102,14 @@ const TaskDetails = () => {
                             </div>
                             {/* due date */}
                             <div className="col-md-4">
-                              <p className="date float-right mr-2"> 10:15AM 02 FEB 2014</p>
+                              <p className="date float-right mr-2"> { taskDetails.dateCreated } </p>
                             </div>
                           </div>
                         </div>
                       <hr />
                       {/* TASK DESCRIPTION */}
                       <div className="view-mail">
-                       <p>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis quisquam sit debitis harum esse necessitatibus iusto obcaecati unde eligendi perspiciatis et nostrum maxime, earum fugit sequi inventore! Odit, cupiditate velit!
-                       </p>
-                       <p>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis quisquam sit debitis harum esse necessitatibus iusto obcaecati unde eligendi perspiciatis et nostrum maxime, earum fugit sequi inventore! Odit, cupiditate velit!
-                       </p>
+                       <p> {taskDetails.taskDescription} </p>
                       </div>
                       <div className="attachment-mail ">
                         <p>
@@ -146,6 +162,7 @@ const TaskDetails = () => {
                             label=" Accept"
                             icon="fa fa-check"
                             className="btn btn-theme btn-sm"
+                            onClick={(()=>dispatch(updateTaskStatus(updateTaskDetails)))}
                           />                                   
                           <Button 
                             type="submit"
@@ -157,7 +174,8 @@ const TaskDetails = () => {
                             label=" Delete"
                             icon="fa fa-trash-alt"
                             className="btn btn-sm special pace-bg-accent"
-                            onClick={(()=>(deleteTask(taskDetails.id)))}
+                            // onClick={(()=>(deleteAssignedTask(taskDetails.staffID)))}
+                            onClick={(()=>(deleteTask(taskDetails.staffID)))}
                           />
                         </div>
                       {/* </div>   */}
