@@ -17,7 +17,8 @@ const AllTasks = () => {
 
   useEffect(() => {
     dispatch(getTasks())
-  }, [dispatch])
+    console.log(tasks.taskStatus)
+  }, [tasks.taskStatus, dispatch])
 
   // adds checkbox to each row
   const selectRow = {
@@ -28,21 +29,24 @@ const AllTasks = () => {
   const rowStyle = {
     cursor: 'pointer'
   }
+
   // routes to full task details page on double click
   const taskDetails =  {
-    onClick: (e, row, rowIndex) => 
-    { 
-        history.push(`/dashboard/task/view-task/${row.id}`)
+    onClick: (e, row, rowIndex) =>
+    {
+        history.push(`/dashboard/task/view-task/`+ row.taskID)
     }
   };
+
+  
   // If the task list is been fetched from the server or not mounted on the ui, show the loader 
-  // if(isFetching){
-  //   return(
-  //       <>
-  //           <Loader />
-  //       </>
-  //   )
-  // }
+  if(isFetching){
+    return(
+        <>
+            <Loader />
+        </>
+    )
+  }
 
   const taskss = [
     {
@@ -72,7 +76,7 @@ const AllTasks = () => {
 }
 
 const taskHeader = [
-     
+
   {
     dataField: 'taskName',
     text: 'Title',
@@ -81,7 +85,7 @@ const taskHeader = [
     }
   },
   {
-    dataField: 'dueDate',
+    dataField: 'endDate',
     text: 'Due Date',
     headerAttrs: {
       hidden:true
@@ -90,8 +94,45 @@ const taskHeader = [
   {
     dataField: 'documentsAttached',
     text: 'Attachment',
+    formatter: (cell, row) => {
+      if(!cell){
+      return(
+        <i class="fa fa-paperclip" />
+      )}
+    },
     headerAttrs: {
       hidden:true
+    }
+  },
+  {
+    dataField: 'taskStatus',
+    text: 'Status',
+    headerAttrs: {
+      hidden:true
+    },
+    formatter: (cell, row) => {
+      if(cell){
+      // return(
+        switch (cell) {
+          case 1:
+              return (
+               <>
+                <i> pending </i>
+               </>
+              ) 
+          case 2:
+              return (
+              <i> accepted </i>
+             )
+          case 3:
+              return ( 
+                <i> completed </i>
+                )
+          default: 
+              break;
+      }
+      // )
+    }
     }
   },
 ];

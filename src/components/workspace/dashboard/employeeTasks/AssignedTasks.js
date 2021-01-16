@@ -40,13 +40,13 @@ const AssignedTasks = () => {
   };
 
   // If the task list is been fetched from the server or not mounted on the ui, show the loader
-  // if(isFetching){
-  //   return(
-  //       <>
-  //           <Loader />
-  //       </>
-  //   )
-  // }
+  if(isFetching){
+    return(
+        <>
+            <Loader />
+        </>
+    )
+  }
   return (
     <div >
 
