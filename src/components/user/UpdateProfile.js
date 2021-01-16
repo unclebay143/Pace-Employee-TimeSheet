@@ -43,10 +43,10 @@ const UpdateProfile = () =>{
             const {
                 firstName,
                 lastName,
+                userName,
                 phoneNumber,
                 email,
                 address,
-                userName,
                 
             } = currentUser
         
@@ -54,16 +54,16 @@ const UpdateProfile = () =>{
             setProfile({
                 firstName : typeof firstName !== 'string' ? '' : firstName,
                 lastName : typeof lastName !== 'string' ? '' : lastName,
-                phoneNumber,
+                userName,
+                phoneNumber: typeof phoneNumber === null || undefined ? '' : phoneNumber,
                 email,
                 address : typeof address !== 'string' ? '' : address,
-                userName,
                 // userName : typeof userName !== 'string' ? '' : userName,
             })
 
             console.log(firstName)
             console.log(userName)
-            console.log(typeof userName)
+            console.log(typeof phoneNumber)
             setIsLoading(false)
         }
     }, [params.id, currentUser])
@@ -130,7 +130,7 @@ const UpdateProfile = () =>{
                                     { (({ values, touched, errors, handleSubmit, isSubmitting, resetForm })=>{
                                         return <Form onSubmit={handleSubmit}>
                                             <div className="mb-5 text-gray">
-                                                <pre>{JSON.stringify(values, null, 2)}</pre> 
+                                                {/* <pre>{JSON.stringify(values, null, 2)}</pre>  */}
                                                 <h5>EDIT PROFILE</h5>
                                             </div>
                                             <hr />

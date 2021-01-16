@@ -14,17 +14,21 @@ import { connect } from 'react-redux';
 
 import Button from '../../layouts/Button';
 import { taskNotSent, taskSent } from '../../../toaster';
-
+import { getCompanyEmployees } from "../../../actions/employee/employeeAction";
 
 const DraftTask = () => {
   const dispatch = useDispatch();
   const [renderEmployeeList, setRenderEmployeeList] = useState()
   const { employees } = useSelector(state => state.employees)
   const employeesDropDown = employees.map(({staffID, firstName, lastName}, index)=><option value={staffID} key={index}>{firstName } {lastName}</option>)
-  
+
+  useEffect(() => {
+    dispatch(getCompanyEmployees())
+  },[dispatch])
+
   useEffect(() => {
     setRenderEmployeeList(employeesDropDown)
-  }, [])
+  }, [employeesDropDown])
 
     return (
       <div>
@@ -100,7 +104,18 @@ const DraftTask = () => {
                                 value={values.assignedID}
                                 className = "form-control lead"                                
                                 onChange={handleChange}
+                                autocomplete="off"
                             />
+                            <style>
+                              {
+                                `
+                                  datalist{
+                                    widthh: 100% !important;
+                                  }
+                                `
+                              }
+
+                            </style>
 
                             <datalist id="assignedID">
                                 { employeesDropDown }

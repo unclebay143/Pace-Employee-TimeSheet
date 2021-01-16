@@ -2,13 +2,7 @@ import { ADD_NEW_CALENDAR_EVENT, FETCH_CALENDAR_EVENT_SUCCESSFUL } from '../../.
 
 const initialState = {
     isFetching: true,
-    events: [
-
-        {
-            title: 'Event Card',
-            end: '10/10/2021'
-        }
-    ],
+    events: [],
     error: null
 }
 

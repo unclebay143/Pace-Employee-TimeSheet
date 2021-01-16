@@ -1,45 +1,43 @@
+//  React
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
+// Actions
 import { getCalendarEvent } from "../../../../actions/company/calendar/calendarAction";
+
+// Date Formatter Helper
 import { formatDate } from "../../../../_helper/dateFormatter";
-import Loader from "../../../loader/Loader";
 
-// event: [
-//     {
-//         title: "I will be coming home soon", 
-//         eventDate: Date.now()
-//     },
-//     {
-//         title: "2020 TIIDELab Hackathon",
-//         eventDate: "30 Dec 2020"
-//     },
-
-// ]
+const eventHolder = 
+    {
+        title: 'Event Card',
+        end: Date.now()
+    }
+    
 const EventCard = () =>{
-    const {events, isFetching} = useSelector(state => state.calendar);
-    const [ isFetchingState, setIsFetchingState ] = useState(isFetching);
-    const [eventState, setEventState] = useState(events[0]);
+    const {events} = useSelector(state => state.calendar);
+    const [eventState, setEventState] = useState(eventHolder);
     const dispatch = useDispatch()
-
+    
     useEffect(() => {
+
         dispatch(getCalendarEvent())
+
     }, [dispatch]);
-
+    
     useEffect(() => {
-        if(events.length > 0){
 
+        // If the length of the calendar events is equals to 0
+        if(events.length === 0){
+
+            // Set the dummy event 
+            setEventState(eventHolder)
+        }else{
             // Set the eventState with event in redux
             setEventState(events[0])
-            
-            // Set the fetching state to false
-            setIsFetchingState(false)
         }
+            
     }, [events]);
-
-    if(isFetchingState){
-        return <Loader />
-    }
-
 
     return(
         <>

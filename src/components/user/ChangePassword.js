@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import { useDispatch } from 'react-redux';
 import { updatePassword } from '../../actions/user/userAction';
+import { changePasswordSchema } from '../Validation/Schema';
 
 export default function ChangePassword() {
     const [staffID, setStaffID] = useState();
@@ -58,17 +59,9 @@ export default function ChangePassword() {
                                         confirmPassword: '',
                                     }}
                                     enableReinitialize
-                                    // validationSchema={UpdateProfileSchema}
+                                    validationSchema={changePasswordSchema}
                                     onSubmit={(values, action)=>{
-                                        console.log('here')
                                         dispatch(updatePassword(values, action))
-                                        // .then((response)=>{
-                                        //     console.log(response)
-                                        //     history.push(`/dashboard/profile/${params.id}`)
-                                        // })
-                                        // .catch((error)=>{
-                                        //     console.log(error)
-                                        // })
                                     }
                                     }
                                 >

@@ -38,11 +38,6 @@ const Profile = () =>{
     const [ staffID, setStaffID ] = useState('');
     const dispatch = useDispatch()
 
-    // useEffect(() => {
-    //     dispatch(syncCurrentUser( params.id ))
-    // }, [])
-
-    
     useEffect(() => {
 
         // Get staffID from the urls 
@@ -87,7 +82,6 @@ const Profile = () =>{
             </>
         )
     }
-    
     return (
         <>
             <div className="container">
@@ -126,7 +120,7 @@ const Profile = () =>{
                                         <div className="mt-3">
                                             <h4 className="text-capitalize">{userProfile.firstName} {userProfile.lastName}</h4>
                                             <h4>{userProfile.id} </h4>
-                                            <p className="text-secondary mb-1">Frontend Engineer</p>
+                                            <p className="text-secondary mb-1">{ userProfile.staffRole === undefined || null ? userProfile.userName : userProfile.staffRole }</p>
                                             <p className="text-muted font-size-sm">{userProfile.address}</p>
                                             <Link to={`/dashboard/profile/update/${staffID}`}>
                                                 <Button className="btn btn-primary mr-2 m-2 btn-sm" label="Edit Profile"/>
@@ -146,8 +140,8 @@ const Profile = () =>{
                                     <ProfileRow title="Full Name" label={ ` ${userProfile.firstName} ${userProfile.lastName}` } />
                                     <ProfileRow title="Email" label={userProfile.email} />
                                     <ProfileRow title="Department" label="Web development" />
-                                    <ProfileRow title="Role" label="Frontend Engineer" />
-                                    <ProfileRow title="Salary" label={`# ${userProfile.billRateCharge === undefined ? '' : userProfile.billRateCharge}`} />
+                                    <ProfileRow title="Role" label={ userProfile.staffRole } />
+                                    <ProfileRow title="Salary" label={`# ${userProfile.billRateCharge === undefined || null ? '' : userProfile.billRateCharge}`} />
                                     <ProfileRow title="Phone" label={userProfile.phoneNumber} />
                                     <ProfileRow title="Address" label={userProfile.address} />
                                 </div>

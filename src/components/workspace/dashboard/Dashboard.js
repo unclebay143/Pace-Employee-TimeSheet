@@ -36,6 +36,7 @@ import Calendar from '../../company/calendar/Calendar';
 import ManageCalendar from '../../company/calendar/ManageCalendar';
 import { welcomeBackLogger } from '../../../toaster';
 import { currentUserFromLocalStorage } from '../../../services/auth-header';
+import TaskReport from './reports/TaskReport';
 
 
 
@@ -97,6 +98,7 @@ const Dashboard = () =>{
                                     <Route exact path="/dashboard/employee/profile/update/:id" component={UpdateEmployeeProfile} />
 
                                     <Route exact path="/dashboard/billing-report" component={BillingReport} />
+                                    <Route exact path="/dashboard/task-report" component={TaskReport} />
                                     <Route exact path="/dashboard/timer-report" component={TimerReport} />
                                     {/* <Route exact path="/dashboard/task" component={EmployeeTasks} /> */}
                                     <Route exact path="/dashboard" component={Index} />

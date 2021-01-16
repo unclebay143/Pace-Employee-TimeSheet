@@ -8,6 +8,7 @@ import { UPDATE_USER_PROFILE } from "../types";
 
 //  This action get the current user details from the server and stores it inside the store for update
 const syncCurrentUser = (staffID) =>{
+    console.log('ACTION', staffID === '');
     return UserService.fetchUserProfile(staffID)
 }
 
@@ -38,9 +39,11 @@ const updatePassword = (newPassword, action) => (dispatch) =>{
     return UserService.updateUserPassword(newPassword)
     .then((response)=>{
         action.setSubmitting(false)
+        action.resetForm()
         console.log(response)
     })
     .catch((error)=>{
+        action.resetForm()
         action.setSubmitting(false)
         console.log(error)
     })
