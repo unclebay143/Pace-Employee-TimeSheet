@@ -33,9 +33,21 @@ const updateUserProfile = ( newProfile, staffID, action ) => ((dispatch) =>{
     })
 })
 
-
+// Function that update the user password
+const updatePassword = (newPassword, action) => (dispatch) =>{
+    return UserService.updateUserPassword(newPassword)
+    .then((response)=>{
+        action.setSubmitting(false)
+        console.log(response)
+    })
+    .catch((error)=>{
+        action.setSubmitting(false)
+        console.log(error)
+    })
+}
 
 export {
     syncCurrentUser,
     updateUserProfile,
+    updatePassword,
 }

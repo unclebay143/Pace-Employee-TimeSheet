@@ -4,10 +4,13 @@ import { TextInput } from '../layouts/FormInput'
 import Button from '../layouts/Button';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import { useDispatch } from 'react-redux';
+import { updatePassword } from '../../actions/user/userAction';
 
 export default function ChangePassword() {
     const [staffID, setStaffID] = useState();
     const params = useParams();
+    const dispatch = useDispatch()
     
     useEffect(() => {
         const staffID = params.id; // get id from urls(path)
@@ -57,7 +60,8 @@ export default function ChangePassword() {
                                     enableReinitialize
                                     // validationSchema={UpdateProfileSchema}
                                     onSubmit={(values, action)=>{
-                                        // dispatch(updateUserProfile(values, staffID, action))
+                                        console.log('here')
+                                        dispatch(updatePassword(values, action))
                                         // .then((response)=>{
                                         //     console.log(response)
                                         //     history.push(`/dashboard/profile/${params.id}`)
@@ -123,7 +127,7 @@ export default function ChangePassword() {
                                             <div className="d-flex justify-content-between">
                                                 <Button 
                                                     type="submit" 
-                                                    label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Updating...</span>) : "Update"}
+                                                    label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Updating</span>) : "Update"}
                                                     className="btn pace-btn-primary" 
                                                 />
                                                 <Button 

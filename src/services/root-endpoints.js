@@ -9,6 +9,7 @@ export const AUTH_API_URL = 'https://pacetimesheet.herokuapp.com/api/users/';
 
 // Update user personal profile (/:staffID)
 export const USER_PROFILE_URL = 'https://pacetimesheet.herokuapp.com/api/users/companyName/userProfile/';
+export const UPDATE_USER_PASSWORD = 'https://pacetimesheet.herokuapp.com/api/users/companyName/userProfile/changePassword/';
 
 /* TODO API */ 
 export const TODO_API_URL = 'https://pacetimesheet.herokuapp.com/api/todo/companyName/todolist/'

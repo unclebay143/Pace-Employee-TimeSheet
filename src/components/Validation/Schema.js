@@ -28,7 +28,7 @@ export const loginSchema = Yup.object().shape({
 export const signUpSchema = Yup.object().shape({
     // email: Yup.string().email('Invalid email format').required('Email is required'),
     // phone: Yup.string().matches(phoneRegExp, 'Phone number is not valid'),
-    companyName: Yup.string().required('Workspace Name is required'),
+    companyName: Yup.string().max(15, 'Workspace Name must be less than 16').required('Workspace Name is required'),
     email: Yup.string().required('Email is required'),
     password: Yup.string().min(4, 'Password must be at least 7 characters').required('Password is required'),
     confirmPassword: Yup.string().required('Please confirm password').oneOf([Yup.ref('password')], 'Password Mismatch'),

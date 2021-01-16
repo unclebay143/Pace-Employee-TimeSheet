@@ -1,6 +1,7 @@
 import axios from "axios";
 import { SYNC_CURRENT_USER } from "../actions/types";
-import { authHeader,currentUserFromLocalStorage } from "./auth-header";
+import { authHeader,currentUserFromLocalStorage, currentUserStaffID } from "./auth-header";
+import { UPDATE_USER_PASSWORD } from "./root-endpoints";
 
 
 // This function keeps the user logged in by fetching the current user details and dispatching it into the store
@@ -37,10 +38,18 @@ const updateUserProfile = (newProfile, staffID) =>{
 
 }
 
+const updateUserPassword = ({password}) =>{
+  const data = {
+    password
+  }
+  return axios.put(UPDATE_USER_PASSWORD + currentUserStaffID, data, { headers: authHeader })
+}
+
 // Requires to be stored in an object before using
 const UserService = {
   fetchUserProfile,
-  updateUserProfile
+  updateUserProfile,
+  updateUserPassword
 
 }
 
