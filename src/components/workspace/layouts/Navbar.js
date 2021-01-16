@@ -36,7 +36,6 @@ const Navbar = () =>{
     },[currentUser])
     
     useEffect(() => {
-        console.log('NAVBAR', staffID);
         dispatch(syncCurrentUser(staffID))    
     }, [dispatch]);
 

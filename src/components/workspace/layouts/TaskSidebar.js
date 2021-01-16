@@ -24,9 +24,9 @@ const TaskSidebar =() => {
                 <NavLink exact to="/dashboard/task/draft-task" className="mx-auto">
                   <Button
                     type="submit"
-                    label=" Draft Task"
-                    icon="fa fa-pen"
-                    className="btn pace-btn-primary mx-3"  
+                    label=" Draft Task "
+                    icon="fa fa-pen" 
+                    className="btn pace-btn-primary mx-3 btn-sm p-1"  
                   />
                 </NavLink> 
               )
@@ -35,7 +35,7 @@ const TaskSidebar =() => {
           <ul className="sidebar-menu list-unstyled">
             <li className="">
               <NavLink exact to="/dashboard/task/all-tasks" className="sidebar-link text-muted" activeClassName="active">
-                <i className="fa fa-download mr-3 text-gray"/><span>Inbox</span>
+                <i className="fa fa-download mr-3 text-gray"/><span> Task Inbox</span>
               </NavLink>
             </li>
             <li className="">

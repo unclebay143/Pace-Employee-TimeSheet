@@ -1,230 +1,162 @@
+// React
 import React, { useEffect, useState } from 'react';
-import { ErrorMessage, Form, Formik } from 'formik';
-import { TextInput } from '../../../layouts/FormInput';
-import Button from '../../../layouts/Button';
 import { Link } from 'react-router-dom';
-// import { addNewCalendarEvent, getCalendarEvent } from '../../../actions/company/calendar/calendarAction';
 import { useDispatch, useSelector } from 'react-redux';
-// import Loader from '../../loader/Loader';
-// import { formatDate } from '../../_helper/dateFormatter';
-// import { date } from 'yup';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+
+// Axios
 import axios from 'axios';
+
+// APIs and Payloads
 import { FETCH_COMPANY_TASK_SHEET_URL } from '../../../../services/root-endpoints';
 import { authHeader, currentUserCompanyID } from '../../../../services/auth-header';
+
+// Actions
 import { getDepartment } from "../../../../actions/company/department/departmentAction";
-// import React from 'react';
+
+// Layouts
 import Table from '../../layouts/Table';
 import paginationFactory from 'react-bootstrap-table2-paginator';
-import { formatDate } from '../../../../_helper/dateFormatter';
-// import { useSelector } from 'react-redux';
-// import { TextInput } from '../../../../../../layouts/FormInput';
 
+// Helper
+import { formatDate } from '../../../../_helper/dateFormatter';
+import { somethingWentWrongLogger } from '../../../../toaster';
+
+
+// Set the departments component state
+const handleFormatDate = (selectedDepartmentTaskSheet) =>{
+  const formatedTaskSheet = selectedDepartmentTaskSheet.map((taskRecord)=> {
+    taskRecord.endDate = formatDate(taskRecord.endDate) 
+    return taskRecord
+  })
+  return formatedTaskSheet
+}
 
 export default function TaskReport() {
-    // const { events, isFetching } = useSelector(state => state.calendar);
-    const [tasksSheet, setTasksSheet] = useState([]);
-    // const [ isFetchingState, setIsFetchingState ] = useState(isFetching);
-    const dispatch = useDispatch();
-    // const history = useHistory()
+  const { departments } = useSelector(state => state.departments); // departments from redux
+  const dispatch = useDispatch();
+  const [departmentsState, setDepartmentsState] = useState([]); // department state in component level, helps triggers renders
+  const [ selectedDepartmentID, setSelectedDepartmentID ] = useState(""); // selected department ID
+  const [ selectedDepartmentTaskSheet, setSelectedDepartmentTaskSheet ] = useState([]);
+  const departmentsDropDown = departmentsState.map(({departmentName, departmentID}, index)=><option className="text-red" value={departmentID} key={index}>{departmentName}</option>)
 
-    useEffect(() => {
-        dispatch(getDepartment())
-    }, [])
+  // Function handling the change in department dropdown
+  const handleChange = (event) =>{
+    // Get the selected department and  store the values which is the departmentID to the state
+    setSelectedDepartmentID(event.target.value)
+  }
 
-    useEffect(() => {
-        // const data = {
-            const departmentID = 671
-        // }
-        console.log(currentUserCompanyID);
-        axios.get(FETCH_COMPANY_TASK_SHEET_URL + currentUserCompanyID + "/" + departmentID, {headers: authHeader} )
-        .then((response)=>{
-            console.log(response.data)
-            setTasksSheet(response.data.data)
-        })
-        .catch((error)=>{
-            console.log(error)
-        })
-    }, []);
-    console.log(tasksSheet)
+  // Dispatch function to fetch the department in the company
+  useEffect(() => {
+      dispatch(getDepartment())
+  }, [dispatch])
+
+
+  useEffect(() => {
+    setDepartmentsState(departments)
+  }, [departments, selectedDepartmentTaskSheet]);
+
+  // Fetch the selected department task sheet
+  useEffect(() => {
+    // Only fetch the department task if the user select a department
+    if(selectedDepartmentID.length !== 0){
+      axios.get(FETCH_COMPANY_TASK_SHEET_URL + currentUserCompanyID + "/" + selectedDepartmentID, {headers: authHeader} )
+      .then((response)=>{
+        setSelectedDepartmentTaskSheet(handleFormatDate(response.data.data)) // Send to function to formate the date to human readable
+      })
+      .catch((error)=>{
+        somethingWentWrongLogger()
+      })
+    }
+  }, [selectedDepartmentID]);
+
+  // Boostrap header
+  const Header = [
+    {
+      dataField: 'id',
+      text: 'S/N'
+    },
+    {
+      dataField: 'firstname',
+      text: 'Firstname',
+    },
+    {
+      dataField: 'lastname',
+      text: 'Lastname',
+    },
+    {
+      dataField: 'taskName',
+      text: 'Task Assigned',
+    },
+    {
+      dataField: 'endDate',
+      text: 'Due Date',
+    },
+    {
+      dataField: 'taskStatus',
+      text: 'Task Status',
+    },
+    {
     
-    // useEffect(() => {
-    //     if(events){
-    //         setEventsState(events)
-    //         setIsFetchingState(false)
-    //     }
-    // }, [events]);
+      formatter: (cellContent, row) => {
+        console.log(row)
+        return (
+          <>
+              <tr>
+                <Link to={`/dashboard/task/view-task/`}>
+                  View
+                </Link>
+              </tr>
+          </>
+        );
+      },
+    },
+  
+  ];
+  
+    
 
-    // if(isFetchingState){
-    //     return(
-    //         <Loader />
-    //     )
-    // }
 
-   const eventsState =  [
-       {
-            title: 'samue',
-            end: '01/01/2020',
-            end: '01/01/2020'
-        }
-    ]
-    const calc = 2;
-
-    const Header = [
-      {
-        dataField: 'id',
-        text: 'S/N'
-      },
-      {
-        dataField: 'firstname',
-        text: 'Firstname',
-      },
-      {
-        dataField: 'lastname',
-        text: 'Lastname',
-      },
-      {
-        dataField: 'taskName',
-        text: 'Task Assigned',
-      },
-      {
-        dataField: 'endDate',
-        text: 'Due Date',
-      },
-      {
-        dataField: 'taskStatus',
-        text: 'Task Status',
-      },
-      {
-        dataField: 'workedHour',
-        text: 'Receivable',
-      },
-        
-      {
+  return (
+      <>
+        <div className="container-fluid py-3">
+          {/* Breadcrumb */}
+          <nav aria-label="breadcrumb" className="px-3 main-breadcrumb">
+              <ol className="breadcrumb">
+              <li className="breadcrumb-item active" aria-current="page">
+                  <Link to='/dashboard'>
+                      Dashboard 
+                  </Link>
+              </li>
+              <li className="breadcrumb-item active" aria-current="page">
+                  { selectedDepartmentTaskSheet.departmentName } Task Sheet 
+              </li>
+              </ol>
+          </nav>
       
-        formatter: (cellContent, row) => {
-          return (
-            <>
-                <tr></tr>
-            </>
-          );
-        },
-      },
-    
-    ];
-    
-    
-
-
-    return (
-        <>
-
-            <style>
-                {
-                    `
-                    .rbc-calendar {
-                        min-height: 500px ;
-                        }
-                    `
-                }
-            </style>
-            <div className="py-3">
-                {/* Breadcrumb */}
-                <nav aria-label="breadcrumb" className="main-breadcrumb">
-                        <ol className="breadcrumb">
-                        <li className="breadcrumb-item active" aria-current="page">
-                            <Link to='/dashboard'>
-                                Dashboard
-                            </Link>
-                        </li>
-                        <li className="breadcrumb-item active" aria-current="page">
-                            Task Sheet
-                        </li>
-                        </ol>
-                    </nav>
-                
-                {/* /Breadcrumb */}
-            <div className="">
-                <section className="">
-                    <div className="mb-3">
-                        <div className="input-group mb-2 mr-sm-2">
-                            <Link to="/dashboard/task/draft-task">
-                                <Button 
-                                    type="button"
-                                    label="New Task"
-                                    className="btn btn-sm btn-info ml-2"
-                                    />
-                            </Link>
-                        </div>
-                    </div>
-                    <div col="col-9">
-                    <div className="container-fluid py-5">
-                        <Table
-                            keyField='id'
-                            title="Task Report"
-                            data={tasksSheet}
-                            columns={Header}
-                            bordered= { false }
-                            pagination = { paginationFactory() }
-                            enableSearch = { true }
-                            // customInput = { true }
-                            // customInputName = "expectedWorkHour"
-                            // customInputPlaceHolder = "Expected WorkHour"
-                            // customButtonType="button"
-                            // customButtonLabel="Calculate"
-                            // customButtonFunction={handleCalculate()}
-                        />
-                        </div>
-                        {/* <section>
-                            <ul className="list-group">
-                            <li className="list-group-item d-flex justify-content-between align-items-center h5">
-                                <span>Task Sheet</span>
-                                <span>Task Sheet</span>
-                                <span>Task Sheet</span>
-                                <span>Task Sheet</span> */}
-                                {/* <span className="mr-5 pr-5">Event Name</span> */}
-                            {/* </li>
-
-                                {
-                                    tasksSheet.map(({firstName, lastName, taskName, endDate, taskStatus}, index)=>{
-                                        return(
-                                            <li className="list-group-item d-flex justify-content-between align-items-center" key={index}>
-                                                <span>
-                                                {taskName}
-                                                </span>
-                                                <span>
-                                                {firstName}
-                                                </span>
-                                                <span>
-                                                {lastName}
-                                                </span>
-                                                <span>
-                                                {endDate}
-                                                </span>
-                                                <span>
-                                                {taskStatus}
-                                                </span>
-                                                <section>
-                                                    <span className="text-center mr-5 pr-5">
-                            
-                                                    </span>
-                                                    <span className="   ">
-                                                        <button className="btn text-white badge badge-primary badge-pill mr-2">Edit</button>
-                                                        <button className="btn text-white badge badge-red badge-pill">Delete</button>
-                                                    </span>
-                                                </section>
-                                            </li>
-                                        )
-
-                                    })
-                                }
-                            </ul>
-                        </section> */}
-                    </div>
+          {/* /Breadcrumb */}
+          <div className="">
+            <div col="col-9">
+                <section className="col-4 mb-4 text-dark text-uppercase">
+                  <select name="department" onChange={handleChange} className="form-control">
+                    <option>Select Department</option>
+                    {departmentsDropDown}
+                  </select>
                 </section>
-            </div>
-        </div>
-            
-        </>
-    )
+              <div className="container-flid">
+                <Table
+                    keyField='id'
+                    title="Task Sheet"
+                    data={selectedDepartmentTaskSheet}
+                    columns={Header}
+                    bordered= { false }
+                    pagination = { paginationFactory() }
+                    enableSearch = { true }
+                  /> 
+                  </div>
+              </div>
+          </div>
+      </div>
+          
+    </>
+  )
 }

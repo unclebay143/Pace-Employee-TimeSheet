@@ -40,3 +40,5 @@ export const UPDATE_EMPLOYEE_BILLING_AND_TIME_API = 'https://pacetimesheet.herok
 // export const ADD_NEW_CALENDAR_EVENT = 'https://pacetimesheet.herokuapp.com/api/companyName/calendar/new/';
 export const FETCH_CALENDAR_EVENT_API = 'https://pacetimesheet.herokuapp.com/api/calendar/companyName/';
 export const NEW_CALENDAR_EVENT_API = 'https://pacetimesheet.herokuapp.com/api/calendar/companyName/new/';
+export const EDIT_CALENDAR_EVENT_API = 'https://pacetimesheet.herokuapp.com/api/calendar/companyName/edit/';
+export const DELETE_CALENDAR_EVENT_API = 'https://pacetimesheet.herokuapp.com/api/calendar/companyName/delete/';

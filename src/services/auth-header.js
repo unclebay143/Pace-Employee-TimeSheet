@@ -12,7 +12,6 @@ let getCurrentUser = JSON.parse(localStorage.getItem('currentUser'));
 
 // CurrentUser in the localstorage
 const currentUserFromLocalStorage = getCurrentUser;
-console.log(currentUserFromLocalStorage.departmentID)
 
 // Current user companyID
 const currentUserCompanyID = getCurrentUser === null ? null : currentUserFromLocalStorage.companyID;

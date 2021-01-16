@@ -43,6 +43,8 @@ export const taskSent = () => toast.info('Task Sent Successfully')
 // Calendar
 export const calendarEventNotSavedLogger = () => toast.warning('Event Not Set Please Try again')
 export const eventAddedSuccessfullyLogger = () => toast.info('Event added Successfully')
+export const eventDeletedSuccessfullyLogger = () =>  toast.info('Event Deleted Successfully')
+export const eventNotDeletedLogger = () => toast.warning('Event Not Deleted Please Try again')
 
 
 
