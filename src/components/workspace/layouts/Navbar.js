@@ -31,10 +31,13 @@ const Navbar = () =>{
             setFullName(` ${ firstName === undefined ? '' : firstName } ${ lastName === undefined ? '' : lastName} `)
             setStaffID(staffID)
             setRoleID(roleID)
-            // dispatch(syncCurrentUser(staffID))    
             
         }
-    },[currentUser, dispatch])
+    },[currentUser])
+    
+    useEffect(() => {
+        dispatch(syncCurrentUser(staffID))    
+    }, [dispatch]);
 
     useEffect(() => {
         // console.log('here')

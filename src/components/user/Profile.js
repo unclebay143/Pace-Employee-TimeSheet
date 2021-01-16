@@ -132,7 +132,7 @@ const Profile = () =>{
                                                 <Button className="btn btn-primary mr-2 m-2 btn-sm" label="Edit Profile"/>
                                             </Link>
                                             <Link to={`/dashboard/profile/changepassword/${staffID}`}>
-                                                <Button className="btn btn-warning text-white m-2 btn-sm mt-2 mt-lg-0" label="Change Password"/>
+                                                <Button className="btn btn-warning text-white m-2  mt-2 btn-sm" label="Change Password"/>
                                             </Link>
                                         </div>
                                     </div>

@@ -26,15 +26,15 @@ const EventCard = () =>{
     }, [dispatch]);
 
     useEffect(() => {
-        // Set the eventState with event in redux
-        setEventState(events[0])
+        if(events.length > 0){
 
-        // Set the fetching state to false
-        setIsFetchingState(false)
+            // Set the eventState with event in redux
+            setEventState(events[0])
+            
+            // Set the fetching state to false
+            setIsFetchingState(false)
+        }
     }, [events]);
-
-    console.log(events[0])
-    console.log(eventState[0])
 
     if(isFetchingState){
         return <Loader />

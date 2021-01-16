@@ -5,10 +5,10 @@ import { authHeader,currentUserFromLocalStorage } from "./auth-header";
 
 // This function keeps the user logged in by fetching the current user details and dispatching it into the store
 const fetchUserProfile = (staffID) => dispatch =>{
-  // dispatch({
-  //   type: SYNC_CURRENT_USER,
-  //   payload: currentUserFromLocalStorage
-  // })
+  dispatch({
+    type: SYNC_CURRENT_USER,
+    payload: currentUserFromLocalStorage
+  })
   return axios.get(`https://pacetimesheet.herokuapp.com/api/users/companyName/userProfile/${staffID}`, { headers: authHeader })
   .then((response)=>{
     console.log(response)
