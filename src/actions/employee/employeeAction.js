@@ -1,6 +1,6 @@
 import { FETCH_COMPANY_EMPLOYEES } from '../types';
 import EmployeeService from '../../services/employee/employee.service';
-import { somethingWentWrongLogger } from '../../toaster';
+import { profileUpdateCompletedLogger, profileUpdateFailLogger, somethingWentWrongLogger } from '../../toaster';
 
 const addNewEmployee = (newEmployee) => ( dispatch ) =>{
     return EmployeeService.addNewEmployeeToServer(newEmployee)
@@ -25,18 +25,22 @@ const getCompanyEmployees = () => (dispatch) =>{
     })
 }
 
-const updateCompanyEmployee = (staffID) => ( dispatch ) =>{
-    return EmployeeService.putCompanyEmployee(staffID)
+const updateEmployeeBillingAndWorkHour = (values, action, staffID,) => ( dispatch ) =>{
+    return EmployeeService.putEmployeeBillingAndWorkHour(values, action, staffID)
     .then((response)=>{
-
         console.log(response)
+        profileUpdateCompletedLogger()
+        action.setSubmitting(false)
     })
     .catch((error)=>{
         console.log(error)
+        profileUpdateFailLogger()
+        action.setSubmitting(false)
     })
 }
+
 export {
     addNewEmployee,
     getCompanyEmployees,
-    updateCompanyEmployee
+    updateEmployeeBillingAndWorkHour
 }

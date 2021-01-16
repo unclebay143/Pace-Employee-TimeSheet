@@ -43,22 +43,27 @@ const UpdateProfile = () =>{
             const {
                 firstName,
                 lastName,
+                userName,
                 phoneNumber,
                 email,
                 address,
-                userName,
                 
             } = currentUser
         
             // Set the destructure user information into the profile state (ES6 syntax)
             setProfile({
-                firstName,
-                lastName,
-                phoneNumber,
-                email,
-                address,
+                firstName : typeof firstName !== 'string' ? '' : firstName,
+                lastName : typeof lastName !== 'string' ? '' : lastName,
                 userName,
+                phoneNumber: typeof phoneNumber === null || undefined ? '' : phoneNumber,
+                email,
+                address : typeof address !== 'string' ? '' : address,
+                // userName : typeof userName !== 'string' ? '' : userName,
             })
+
+            console.log(firstName)
+            console.log(userName)
+            console.log(typeof phoneNumber)
             setIsLoading(false)
         }
     }, [params.id, currentUser])
@@ -264,7 +269,7 @@ const UpdateProfile = () =>{
                                             <div className="d-flex justify-content-between">
                                                 <Button 
                                                     type="submit" 
-                                                    label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Updating...</span>) : "Update"}
+                                                    label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Updating</span>) : "Update"}
                                                     className="btn pace-btn-primary" 
                                                 />
                                                 <Button 

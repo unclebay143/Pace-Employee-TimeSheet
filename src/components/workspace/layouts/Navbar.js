@@ -13,7 +13,8 @@ import { logout } from '../../../actions/auth/authAction'
 
 // Toast
 import { ToastContainer } from 'react-toastify';
-import { currentUserFromLocalStorage } from '../../../services/auth-header';
+import { accessToken, currentUserFromLocalStorage, currentUserStaffID } from '../../../services/auth-header';
+import { syncCurrentUser } from '../../../actions/user/userAction';
 
 
 const Navbar = () =>{
@@ -23,20 +24,33 @@ const Navbar = () =>{
     const [fullName, setFullName] = useState('') // the fullName is empty before the data are fetch, to prevent seeing undefined
     const [staffID, setStaffID] = useState('')
     const [roleID, setRoleID] = useState('')
+
     useEffect(() => {
-        
         if(currentUser){
             const { firstName, lastName, staffID, roleID } = currentUser || '';
             setFullName(` ${ firstName === undefined ? '' : firstName } ${ lastName === undefined ? '' : lastName} `)
             setStaffID(staffID)
             setRoleID(roleID)
-
+            
         }
     },[currentUser])
+    
+    useEffect(() => {
+        dispatch(syncCurrentUser(staffID))    
+    }, [dispatch]);
 
-    if(!isLoggedIn){
-        return <Redirect to="/login" push={true} />
-    }
+    useEffect(() => {
+        // console.log('here')
+        // // Check if there is a user in the local storage, don't use redux state , it get cleared before synchronizing
+        // if(currentUserFromLocalStorage.length > 0){
+        //     console.log('here2')
+        //     // sync the current user with the server, redux, and localstorage
+        //     console.log('local', currentUserFromLocalStorage)
+        // }else{
+        //     // alert('me')
+        // }
+    }, [dispatch])
+        
 
     return(
         <>

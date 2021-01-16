@@ -2,11 +2,8 @@
 import { React, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form, ErrorMessage } from 'formik';
-import { Link, Redirect, useHistory, withRouter } from 'react-router-dom';
+import { Link, useHistory, withRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify'; 
-
-// Toast
-import { userIsAuthenticatedLogger} from '../../toaster';
 
 // Layouts
 import Button from '../layouts/Button';
@@ -17,9 +14,6 @@ import { HomeButton } from '../layouts/HomeButton';
 
 // Actions
 import { login } from '../../actions/auth/authAction';
-import { syncCurrentUser } from '../../actions/user/userAction';
-import { getTodos } from '../../actions/todo/todoAction';
-import { getTasks } from '../../actions/task/taskAction';
 
 /* Development fake user credentials */
 
@@ -49,16 +43,11 @@ const Login = () =>{
     useEffect(() => {
         document.title = 'Login | Pace'
         if(currentUserFromLocalStorage){
-            syncCurrentUser(currentUserFromLocalStorage.staffID)
-            // userIsAuthenticatedLogger()
+            if(authenticationState.isLoggedIn){
+                history.push('./dashboard')
+            }
         }
-    },[currentUserFromLocalStorage])
-
-    if(authenticationState.isLoggedIn){
-        // return <Redirect to="/dashboard" push={true} />
-         history.push('./dashboard')
-    }
-    
+    },[currentUserFromLocalStorage, authenticationState.isLoggedIn, history])
     
     return(
         <div className="container">
@@ -138,7 +127,7 @@ const Login = () =>{
                                                 type="submit"
                                                 className="btn btn-primary"
                                                 disabled={isSubmitting}
-                                                label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Loading...</span>) : "Login"}
+                                                label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Loading</span>) : "Login"}
                                                 />
                                             <p>Create your workspace register <Link to="/signup">Here</Link></p>
                                             <span><Link to="/forgot">Forgot Passwords</Link></span>

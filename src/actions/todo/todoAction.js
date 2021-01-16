@@ -42,13 +42,13 @@ const closeTodoForm = () =>{
 
 // Add new Todo
 const addTodo = (newTodo) => (dispatch) =>{
-    // dispatch({ type: ADD_TODO, payload: newTodo })
+    dispatch({ type: ADD_TODO, payload: newTodo })
     return TodoService.addTodo(newTodo)
     .then((response) =>{
-        dispatch({
-            type: ADD_TODO,
-            payload: response.data
-        })
+        // dispatch({
+        //     type: ADD_TODO,
+        //     payload: response.data
+        // })
     })
     .catch((error)=>{
         console.log(error)
@@ -84,4 +84,5 @@ export {
     addTodo,
     toggleTodoCompletion,
     deleteTodo,
+    updateTodo,
 }

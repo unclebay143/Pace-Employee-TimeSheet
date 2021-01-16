@@ -1,21 +1,14 @@
-import { ADD_NEW_CALENDAR_EVENT, FETCH_CALENDAR_EVENT_SUCCESSFUL } from '../../../actions/types';
+import { ADD_NEW_CALENDAR_EVENT, DELETE_EVENT_SUCCESSFUL, FETCH_CALENDAR_EVENT_SUCCESSFUL } from '../../../actions/types';
 
 const initialState = {
     isFetching: true,
-    events: [
-
-        {
-            title: 'Event Card',
-            end: '01/01/2020'
-        }
-    ],
+    events: [],
     error: null
 }
 
 
 const calendarReducer = (state=initialState, action) => {
     switch (action.type) {
-
         case FETCH_CALENDAR_EVENT_SUCCESSFUL:
             return {
                 ...state,
@@ -35,6 +28,11 @@ const calendarReducer = (state=initialState, action) => {
                         end: action.payload.eventDateAndTime
                     }
                 ]
+            }
+        case DELETE_EVENT_SUCCESSFUL:
+            return {
+                ...state,
+                events: state.events.filter((evts)=> evts.eventID !== action.payload)
             }
             
     

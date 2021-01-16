@@ -1,5 +1,5 @@
 import CalendarService from "../../../services/company/calendar/calendarService";
-import { FETCH_CALENDAR_EVENT_SUCCESSFUL, ADD_NEW_CALENDAR_EVENT } from "../../types";
+import { FETCH_CALENDAR_EVENT_SUCCESSFUL, ADD_NEW_CALENDAR_EVENT, DELETE_EVENT_SUCCESSFUL } from "../../types";
 import { calendarEventNotSavedLogger, eventAddedSuccessfullyLogger } from '../../../toaster/index';
 
 const getCalendarEvent = () => ( dispatch ) =>{
@@ -19,8 +19,6 @@ const getCalendarEvent = () => ( dispatch ) =>{
 const addNewCalendarEvent = (newEvent, action) => ( dispatch ) =>{
     return CalendarService.postNewCalendarEvent(newEvent)
     .then((response)=>{
-        console.log('from add new event',response)
-        console.log(response.data.data)
         eventAddedSuccessfullyLogger()
         action.setSubmitting(false)
         dispatch({
@@ -34,8 +32,16 @@ const addNewCalendarEvent = (newEvent, action) => ( dispatch ) =>{
     })
 }
 
-const deleteCalendarEvent = () => (dispatch) =>{
-
+const deleteCalendarEvent = (eventID) => (dispatch) =>{
+    console.log(eventID)
+    dispatch({
+        type: DELETE_EVENT_SUCCESSFUL,
+        payload: eventID
+    })
+    return CalendarService.deleteCalendarEvent(eventID)
+    .then((response)=>{
+        console.log('respons', response)
+    })
 }
 
 export {

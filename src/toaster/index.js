@@ -29,7 +29,7 @@ const logOutSuccessLogger = () => toast.warning('Logout Successful')
 
 // Users Setting Toasts
 const profileUpdateCompletedLogger = () => toast.info('Profile Update Successfully');
-const profileUpdateFailLogger = () => toast.warning('Profile Update Failed')
+const profileUpdateFailLogger = () => toast.warning('Update Failed, Please try again')
 
 // Todo
 const invalidTodoTitle  =  () => toast.warning('Todo title is required')
@@ -43,6 +43,8 @@ export const taskSent = () => toast.info('Task Sent Successfully')
 // Calendar
 export const calendarEventNotSavedLogger = () => toast.warning('Event Not Set Please Try again')
 export const eventAddedSuccessfullyLogger = () => toast.info('Event added Successfully')
+export const eventDeletedSuccessfullyLogger = () =>  toast.info('Event Deleted Successfully')
+export const eventNotDeletedLogger = () => toast.warning('Event Not Deleted Please Try again')
 
 
 

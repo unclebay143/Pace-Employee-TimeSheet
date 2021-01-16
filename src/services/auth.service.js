@@ -107,8 +107,8 @@ const login = ( email, password, action ) => ( dispatch ) =>{
       password,
     })
     .then((response)=>{
-      console.log(response.data.data.response[0])
-      console.log(response.data.data.accessToken)
+      console.log(response)
+      // console.log(response.data.data.accessToken)
       // don't forget to destructure later
       localStorage.setItem('token', JSON.stringify(response.data.data.accessToken));
       localStorage.setItem('currentUser', JSON.stringify(response.data.data.response[0]));
@@ -134,11 +134,11 @@ const login = ( email, password, action ) => ( dispatch ) =>{
 const logout = () => (dispatch) =>{
   setTimeout(() => {
     // Clear the application localStorage
-    localStorage.clear()
     
     dispatch({
       type: LOGOUT
     })
+    localStorage.clear()
   
   }, 1000);
 };

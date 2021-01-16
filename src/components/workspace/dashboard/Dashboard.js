@@ -1,6 +1,6 @@
 // React
 import { React, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { Route, Switch } from 'react-router-dom/cjs/react-router-dom.min';
 import { Redirect, useHistory } from 'react-router-dom';
 
@@ -34,35 +34,33 @@ import TourContainer from '../../tour/config/TourContainer';
 import ChangePassword from '../../user/ChangePassword';
 import Calendar from '../../company/calendar/Calendar';
 import ManageCalendar from '../../company/calendar/ManageCalendar';
-import { userIsAuthenticatedLogger, welcomeBackLogger } from '../../../toaster';
+import { welcomeBackLogger } from '../../../toaster';
+import { currentUserFromLocalStorage } from '../../../services/auth-header';
+import TaskReport from './reports/TaskReport';
 
 
 
 const Dashboard = () =>{
-    const { welcome } = useSelector(state => state.authenticationState)
+    const { welcome, isLoggedIn } = useSelector(state => state.authenticationState)
     const history = useHistory()
-    const dispatch = useDispatch()
+    const [redirect, setRedirect] = useState(false)
+    console.log(currentUserFromLocalStorage)
     useEffect(() => {
-        const currentUser  = JSON.parse(localStorage.getItem('currentUser'));
-        if(currentUser){
-            dispatch(syncCurrentUser( currentUser.staffID ))
+        if(localStorage.getItem('token') === null){
+            setRedirect(true)
         }
+    }, [isLoggedIn])
         
-        if( currentUser === null || currentUser === undefined ){
-            console.log('null')
-        }else{
-            dispatch(syncCurrentUser( currentUser.staffID ))
-        }
-    }, [dispatch])
-
     useEffect(() => {
         if(welcome){
             welcomeBackLogger()
         }
     },[welcome]);
-        
-
-
+    
+    if(redirect){
+        //  history.push('/login')
+        return <Redirect to="/login" push={true} />
+    }
 
     return(
         <>
@@ -100,6 +98,7 @@ const Dashboard = () =>{
                                     <Route exact path="/dashboard/employee/profile/update/:id" component={UpdateEmployeeProfile} />
 
                                     <Route exact path="/dashboard/billing-report" component={BillingReport} />
+                                    <Route exact path="/dashboard/task-report" component={TaskReport} />
                                     <Route exact path="/dashboard/timer-report" component={TimerReport} />
                                     {/* <Route exact path="/dashboard/task" component={EmployeeTasks} /> */}
                                     <Route exact path="/dashboard" component={Index} />
