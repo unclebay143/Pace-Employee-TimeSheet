@@ -8,6 +8,17 @@ import { getTasks } from '../../../../actions/task/taskAction';
 import { useDispatch, useSelector } from 'react-redux';
 // Loader
 import Loader from '../../../loader/Loader';
+import { formatDate } from '../../../../_helper/dateFormatter';
+
+
+// Set the departments component state
+const handleFormatDate = (selectedDepartmentTaskSheet) =>{
+  const formatedTaskSheet = selectedDepartmentTaskSheet.map((taskRecord)=> {
+    taskRecord.endDate = formatDate(taskRecord.endDate) 
+    return taskRecord
+  })
+  return formatedTaskSheet
+}
 
 const AllTasks = () => {
 
@@ -59,7 +70,7 @@ const AllTasks = () => {
       <Table
         keyField='id'
         title="Task Inbox"
-        data={ tasks }
+        data={ handleFormatDate(tasks) }
         columns={taskHeader}
         bordered= { false }
         selectRow = {selectRow}

@@ -37,7 +37,7 @@ const AcceptedTasks = () => {
       setIsLoading(false)
     })
     .catch((error)=>{
-      somethingWentWrongLogger()
+      // somethingWentWrongLogger()
       setIsLoading(false)
     })
   }, [])

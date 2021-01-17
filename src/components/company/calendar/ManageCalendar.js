@@ -35,7 +35,6 @@ export default function ManageCalendar() {
     const handleDelete = (eventID) =>{
         dispatch(deleteCalendarEvent(eventID))
         .then((response)=>{
-            console.log(response)
             eventDeletedSuccessfullyLogger()
             // history.push('/dashboard/calendar')
         })
@@ -46,11 +45,10 @@ export default function ManageCalendar() {
 
     const handleEdit = (eventID, title, end) =>{
         setEventInEditMode({
+            eventName: title,
+            eventDateAndTime: end,
             eventID,
-            title,
-            end
         })
-        // console.log(stageEventForEdit)
         setEditMode(true)
         
     }
@@ -103,18 +101,15 @@ export default function ManageCalendar() {
                                             enableReinitialize
                                             initialValues={eventInEditMode}
                                             onSubmit={((values, action)=>{
-                                                console.log(values)
                                                 dispatch(editCalendarEvent(values))
                                                 .then((response)=>{
                                                     action.setSubmitting(false)
                                                     eventUpdatedSuccessfullyLogger()
-                                                    console.log(response)
-                                                    // history.push('/dashboard/calendar')
+                                                    history.push('/dashboard/calendar')
                                                 })
                                                 .catch((error)=>{
                                                     action.setSubmitting(false)
                                                     eventnNotUpdatedLogger()
-                                                    console.log(error)
                                                 })
                                             })}
                                         >
@@ -123,28 +118,28 @@ export default function ManageCalendar() {
                                                 {/* <pre>{JSON.stringify(values, null, 2)}</pre> */}
                                                 <div className="input-group mb-2 mr-sm-2">
                                                     <TextInput 
-                                                        name="title"
-                                                        type="title"
+                                                        name="eventName"
+                                                        type="eventName"
                                                         className={`form-control p-2 ${
-                                                            touched.title && errors.title ? "is-invalid" : ""
+                                                            touched.eventName && errors.eventName ? "is-invalid" : ""
                                                         }`}
-                                                        id="title"
+                                                        id="eventName"
                                                         placeholder="Enter New Event"
                                                     />
                                                     <ErrorMessage
                                                         component="div"
-                                                        name="title"
+                                                        name="eventName"
                                                         className="invalid-feedback p-0"
                                                     />
                                                 </div>
                                                 <div className="input-group mb-2 mr-sm-2">
                                                     <TextInput 
-                                                        name="end"
+                                                        name="eventDateAndTime"
                                                         type="datetime-local"
                                                         className={`form-control p-2 ${
-                                                            touched.end && errors.end ? "is-invalid" : ""
+                                                            touched.eventDateAndTime && errors.eventDateAndTime ? "is-invalid" : ""
                                                         }`}
-                                                        id="end"
+                                                        id="eventDateAndTime"
                                                         placeholder="Enter New Event"
                                                     />
                                                 </div>
@@ -182,7 +177,6 @@ export default function ManageCalendar() {
                                             eventDateAndTime: ''
                                         }}
                                         onSubmit={((values, action)=>{
-                                            console.log(values)
                                             dispatch(addNewCalendarEvent(values, action))
                                             .then((response)=>{
                                                 history.push('/dashboard/calendar')

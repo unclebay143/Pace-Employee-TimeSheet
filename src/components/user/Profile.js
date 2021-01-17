@@ -10,6 +10,7 @@ import unclebay from '../pages/pages-images/ayodele_samuel_adebayo.jpg';
 // Toaster
 import Loader from '../loader/Loader';
 import { useDispatch, useSelector } from 'react-redux';
+import { currentUserFromLocalStorage } from '../../services/auth-header';
 
 
 const ProfileRow = (props) => {
@@ -69,7 +70,7 @@ const Profile = () =>{
                 })
             }   
             
-        }, [currentUser, params.id, dispatch])
+        }, [currentUser, params.id])
 
     // if(userProfile.firstName === undefined){
     //     return(
@@ -140,9 +141,10 @@ const Profile = () =>{
                                     <ProfileRow title="Full Name" label={ ` ${userProfile.firstName === undefined ? '' : userProfile.firstName} ${userProfile.lastName === undefined ? '' : userProfile.lastName}` } />
                                     <ProfileRow title="Email" label={userProfile.email} />
                                     <ProfileRow title="Department" label="Web development" />
-                                    <ProfileRow title="Role" label={ userProfile.staffRole } />
+                                    <ProfileRow title="Role" label={ userProfile.staffRole === undefined ? currentUserFromLocalStorage.staffRole : userProfile.staffRole} />
                                     <ProfileRow title="Salary" label={`# ${userProfile.billRateCharge === undefined || null ? '' : userProfile.billRateCharge}`} />
                                     <ProfileRow title="Phone" label={userProfile.phoneNumber} />
+                                    <ProfileRow title="Work Hours" label={ userProfile.expectedWorkHours === undefined ? currentUserFromLocalStorage.expectedWorkHours : userProfile.expectedWorkHours} />
                                     <ProfileRow title="Address" label={userProfile.address} />
                                 </div>
                             </div>

@@ -38,6 +38,7 @@ const invalidTodoTitle  =  () => toast.warning('Todo title is required');
 // Tasks
 export const taskNotSent = () => toast.warning('Task Not Sent Try again');
 export const taskSent = () => toast.info('Task Sent Successfully');
+export const taskStatusUpdated = () => toast.info('Task Status Updated')
 
 
 // Calendar
