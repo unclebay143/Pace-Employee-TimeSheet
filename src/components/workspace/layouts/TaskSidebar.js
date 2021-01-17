@@ -61,7 +61,7 @@ const TaskSidebar =() => {
                 // EMPLOYEE SIDEBAR
                 <>
                   <li className="sidebar-list-item">
-                    <NavLink exact to="/dashboard/task/" className="sidebar-link text-muted" activeClassName="active">
+                    <NavLink exact to="/dashboard/task/pending-tasks" className="sidebar-link text-muted" activeClassName="active">
                       <i className="fa fa-reply-all mr-3 text-gray"/><span>Pending</span>
                     </NavLink>
                   </li>
@@ -76,15 +76,15 @@ const TaskSidebar =() => {
                 <>
                     
                     <li className="sidebar-list-item">
-                      <NavLink exact to="/dashboard/task" className="sidebar-link text-muted" activeClassName="active">
+                      <NavLink exact to="/dashboard/task/pending-tasks" className="sidebar-link text-muted" activeClassName="active">
                         <i className="fa fa-reply-all mr-3 text-gray"/><span>Pending</span>
                       </NavLink>
                     </li>
-                    <li className="sidebar-list-item">
+                    {/* <li className="sidebar-list-item">
                       <NavLink exact to="/dashboard/task/" className="sidebar-link text-muted" activeClassName="active">
                         <i className="fa fa-inbox mr-3 text-gray"/><span>Drafted</span>
                       </NavLink>
-                    </li>
+                    </li> */}
                 </>
               )
         

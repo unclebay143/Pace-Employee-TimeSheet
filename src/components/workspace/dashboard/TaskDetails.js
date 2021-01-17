@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import { NavLink, useHistory } from 'react-router-dom';
-import { updateTaskStatus, deleteTask } from '../../../actions/task/taskAction';
+import { NavLink } from 'react-router-dom';
+import { updateTaskStatus } from '../../../actions/task/taskAction';
 import { deleteAssignedTask } from '../../../actions/task/assignedTaskAction';
 import { useDispatch, useSelector } from 'react-redux';
+import { getCompanyEmployees } from '../../../actions/employee/employeeAction';
 
 // import { connect } from 'react-redux';
 
@@ -11,42 +12,56 @@ import Button from '../../layouts/Button';
 
 import unclebay from '../../pages/pages-images/ayodele_samuel_adebayo.jpg';
 import attachment from '../../pages/pages-images/v.jpg';
+import { FETCH_TASK_DETAILS_API_URL } from '../../../services/root-endpoints';
+import { authHeader } from '../../../services/auth-header';
+import axios from 'axios';
+import { formatDate } from '../../../_helper/dateFormatter';
+import Loader from '../../loader/Loader';
+import { currentUserRoleID } from "../../../services/auth-header";
 
 
 const TaskDetails = () => {
-  const {assignedTasks, isFetching } = useSelector(state => state.assignedTasks);
-  const { tasks } = useSelector(state => state.tasks);
   const params = useParams();
   const dispatch = useDispatch();
-  const [taskDetails, setTaskDetails] = useState([{}]);
+  const [taskDetails, setTaskDetails] = useState([]);
+  const { employees } = useSelector(state => state.employees)
+  const [assignedUser, setAssignedUser] = useState({});
 
-  console.log(assignedTasks);
-  console.log(tasks, 'ttt');
-
-useEffect(() => {
-  const getTaskDetails = assignedTasks.filter((task)=>task.taskID === parseInt(params.id));
-    setTaskDetails(getTaskDetails[0])
-    console.log(getTaskDetails[0], 'gtd')
-  }, []);
-
-useEffect(() => {
-  const getTaskDetails = tasks.filter((task)=>task.taskID === parseInt(params.id));
-    setTaskDetails(getTaskDetails[0])
-    console.log(getTaskDetails[0], 'taskgtds')
-  }, []);
+  useEffect(() => {
+    // Fetch company employees
+      dispatch(getCompanyEmployees())               
+  },[dispatch]);
+    
+  useEffect(() => {
+      // Fetch the task details from the server
+      const fetchTaskDetails = async() =>{
+        const response = await axios.get(FETCH_TASK_DETAILS_API_URL + params.id, { headers: authHeader })
+        setTaskDetails(response.data.data[0])
+          const findAssignedEmployee = employees.filter((employee)=>employee.staffID === response.data.data[0].assignedID)
+          setAssignedUser(findAssignedEmployee[0])
+            
+        }
+      // Function call
+      fetchTaskDetails()
+  },[params.id, employees]);
   
   const updateTaskDetails = {
     assignedID: taskDetails.assignedID,
     staffID: taskDetails.staffID,
     taskID: taskDetails.taskID,
-    taskStatus: taskDetails.taskStatus + 1,
+    // check if the status is already upto 5
+    taskStatus: taskDetails.taskStatus === 5 ? taskDetails.taskStatus = 5 : taskDetails + 1,
   }
 
 
-  
-  console.log(updateTaskDetails, 'uuuhere');
-  console.log(taskDetails, 'here');
-  console.log(taskDetails.taskName, 'hereE');
+  if(assignedUser === undefined){ // If the assignedUser details is not fetched keep loading
+    return(
+        <>
+          <Loader />
+        </>
+      )
+  }
+
     return (
       <>
         <section className="py-0">
@@ -56,7 +71,9 @@ useEffect(() => {
                   <div className="py-3">
                   <header className="card-header wht-bg">
                     <h4 className="d-flex justify-content-between task-page-lead">
-                      { taskDetails.taskName }
+                      {/* { taskDetails.taskName } */}
+                      {/* View Task */}
+                      
                     </h4>
                   </header>
                   </div>
@@ -64,30 +81,49 @@ useEffect(() => {
                     <div className= "pt-3">
                       <div className="mail-header row">
                         <div className="col-md-8">
-                          <h4 className="float-left task-title">Build a new landing page</h4>
+                          <h4 className="float-left task-title">{taskDetails.taskName}</h4>
                         </div>
                         <div className="col-md-4">
                           <div className="compose-btn-wrapper">
-                            <Button 
-                              type="submit"
-                              label="  Accept"
-                              icon="fa fa-check"
-                              className="btn btn-theme btn-sm"
-                              onClick={(()=>dispatch(updateTaskStatus(updateTaskDetails)))}
-                            />
-                            <Button 
-                              type="submit"
-                              label=" Request"
-                              className="btn btn-sm mx-2 special"
-                            />                                     
-                            <Button 
-                              type="submit"
-                              label=" Delete"
-                              icon="fa fa-trash-alt"
-                              className="btn btn-sm special pace-bg-accent"
-                              onClick={(()=>dispatch(deleteAssignedTask(taskDetails.staffID)))}
-                              // onClick={(()=>dispatch(deleteTask(taskDetails.taskID)))}
-                            />          
+                            {
+                              currentUserRoleID === 5 ? (
+                                <>
+                                  <Button 
+                                    type="submit"
+                                    label="  Accept"
+                                    icon="fa fa-check"
+                                    className="btn btn-theme btn-sm"
+                                    onClick={(()=>dispatch(updateTaskStatus(updateTaskDetails)))}
+                                    />
+                                  <Button 
+                                    type="submit"
+                                    label=" Request"
+                                    className="btn btn-sm mx-2 special"
+                                    />                                     
+                                  <Button 
+                                    type="submit"
+                                    label=" Delete"
+                                    icon="fa fa-trash-alt"
+                                    className="btn btn-sm special pace-bg-accent"
+                                    onClick={(()=>dispatch(deleteAssignedTask(taskDetails.staffID)))}
+                                    // onClick={(()=>dispatch(deleteTask(taskDetails.taskID)))}
+                                  />          
+                                </>
+                              )
+                              :
+                              (
+                                <>
+                                  <Button 
+                                    type="submit"
+                                    label=" Delete"
+                                    icon="fa fa-trash-alt"
+                                    className="btn btn-sm special pace-bg-accent"
+                                    onClick={(()=>dispatch(deleteAssignedTask(taskDetails.staffID)))}
+                                    // onClick={(()=>dispatch(deleteTask(taskDetails.taskID)))}
+                                  />          
+                                </>
+                              )
+                            }
                           </div>
                         </div>
                       </div>
@@ -95,14 +131,30 @@ useEffect(() => {
                         <div className="mail-sender">
                           <div className="row">
                             <div className="col-md-8">
-                              <img src={unclebay} alt="sender" className="sender-image mr-2"/>
-                              <strong>Zac Doe</strong>
-                              <span className="">[zac@youremail.com]</span> to
-                              <strong> me</strong>
+                              {
+                                currentUserRoleID === 5 ? (
+                                  <>
+                                    <img src={unclebay} alt="sender profile" className="sender-image mr-2"/>
+                                    <strong>Admin</strong>
+                                    <span className=""> </span> to
+                                    <strong> {assignedUser.email} </strong>
+                                  </>
+                                )
+                                :
+                                (
+                                  <>
+                                    <img src={unclebay} alt="sender profile" className="sender-image mr-2"/>
+                                    <strong>Me</strong>
+                                    <span className=""> </span> to
+                                    <strong> {assignedUser.email} </strong>
+                                  </>
+                                )
+                              }
+                              
                             </div>
                             {/* due date */}
                             <div className="col-md-4">
-                              <p className="date float-right mr-2"> { taskDetails.dateCreated } </p>
+                              <p className="date float-right mr-2"> {formatDate(taskDetails.dateCreated)} </p>
                             </div>
                           </div>
                         </div>
@@ -127,7 +179,7 @@ useEffect(() => {
                         <ul className="attachment-wrapper d-flex">
                           <li>
                             <NavLink exact to="/dashboard/task/" className="attachment-thumb mr-5">
-                              <img src={attachment} />
+                              <img src={attachment} alt="attachment"/>
                             </NavLink>
                             <div className="links">
                               <NavLink exact to="/dashboard/task/">
@@ -141,7 +193,7 @@ useEffect(() => {
                           </li>
                           <li>
                             <NavLink exact to="/dashboard/task/" className="attachment-thumb">
-                              <img src={attachment} />
+                              <img src={attachment} alt="attachment"/>
                             </NavLink>
                             <div className="links">
                               <NavLink exact to="/dashboard/task/">
@@ -156,7 +208,7 @@ useEffect(() => {
                         </ul>
                       </div>
                       {/* <div className="form-group d-flex justify-content-start"> */}
-                        <div className="compose-btn float-left my-4">
+                        {/* <div className="compose-btn float-left my-4">
                           <Button 
                             type="submit"
                             label=" Accept"
@@ -174,10 +226,10 @@ useEffect(() => {
                             label=" Delete"
                             icon="fa fa-trash-alt"
                             className="btn btn-sm special pace-bg-accent"
-                            // onClick={(()=>(deleteAssignedTask(taskDetails.staffID)))}
+                            onClick={(()=>(deleteAssignedTask(taskDetails.staffID)))}
                             onClick={(()=>(deleteTask(taskDetails.staffID)))}
                           />
-                        </div>
+                        </div> */}
                       {/* </div>   */}
                     </div>
                   </div>

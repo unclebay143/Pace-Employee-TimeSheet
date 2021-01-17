@@ -23,7 +23,7 @@ import { login } from '../../actions/auth/authAction';
 //     lastName: 'Dummy',
 //     staffID: 123,
 //     companyID: 1928,
-//     roleID: 5
+//     roleID: 1
 // }
 
 // const token = 'wkknohsiosdoiwoihh.wohoifhfiohiohfiuhui.iuwiuhiuhfuhiuwhg'

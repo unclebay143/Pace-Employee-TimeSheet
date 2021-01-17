@@ -58,7 +58,7 @@ const AllTasks = () => {
       
       <Table
         keyField='id'
-        title="Inbox"
+        title="Task Inbox"
         data={ tasks }
         columns={taskHeader}
         bordered= { false }

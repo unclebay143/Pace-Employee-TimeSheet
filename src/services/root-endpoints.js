@@ -14,6 +14,7 @@ export const UPDATE_USER_PASSWORD = 'https://pacetimesheet.herokuapp.com/api/use
 /* TODO API */ 
 export const TODO_API_URL = 'https://pacetimesheet.herokuapp.com/api/todo/companyName/todolist/'
 
+
 // TASK API
 export const ASSIGN_TASK_API_URL = 'https://pacetimesheet.herokuapp.com/api/tasks/companyName/newTask/';
 export const TASK_API_URL = 'https://pacetimesheet.herokuapp.com/api/tasks/companyName/';
@@ -22,9 +23,8 @@ export const ASSIGNED_TASK_API_URL = 'https://pacetimesheet.herokuapp.com/api/ta
 export const FETCH_COMPANY_TASK_SHEET_URL = 'https://pacetimesheet.herokuapp.com/api/taskSheet/companyName/departments/';
 export const UPDATE_TASK_STATUS_API_URL = 'https://pacetimesheet.herokuapp.com/api/tasks/companyName/editTaskStatus/';
 export const DELETE_ASSIGNED_TASK_API_URL = 'https://pacetimesheet.herokuapp.com/api/tasks/companyName/deleteTask/';
-
-
-
+export const FETCH_TASK_DETAILS_API_URL = 'https://pacetimesheet.herokuapp.com/api/tasks/companyName/select/';
+export const FETCH_TASKS_BY_STATUS_API_URL = 'https://pacetimesheet.herokuapp.com/api/tasks/companyName/allTasks/'
 
 
 

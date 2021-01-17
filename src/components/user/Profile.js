@@ -71,17 +71,17 @@ const Profile = () =>{
             
         }, [currentUser, params.id, dispatch])
 
-    if(userProfile.firstName === undefined){
-        return(
-            <>
-             {/* <div className="d-flex justify-content-center align-items-center mt-2" style={{height:'100vh', background: '#cccccc'}}>
-                   <i className="fa fa-spinner fa-pulse fa-3x fa-fw" style={{fontSize: "23px"}}></i> 
-                   <span>Loading... Please wait</span> 
-             </div> */}
-                <Loader />
-            </>
-        )
-    }
+    // if(userProfile.firstName === undefined){
+    //     return(
+    //         <>
+    //          {/* <div className="d-flex justify-content-center align-items-center mt-2" style={{height:'100vh', background: '#cccccc'}}>
+    //                <i className="fa fa-spinner fa-pulse fa-3x fa-fw" style={{fontSize: "23px"}}></i> 
+    //                <span>Loading... Please wait</span> 
+    //          </div> */}
+    //             <Loader />
+    //         </>
+    //     )
+    // }
     return (
         <>
             <div className="container">
@@ -137,7 +137,7 @@ const Profile = () =>{
                         <div className="col-md-8">
                             <div className="card mb-3">
                                 <div className="card-body">
-                                    <ProfileRow title="Full Name" label={ ` ${userProfile.firstName} ${userProfile.lastName}` } />
+                                    <ProfileRow title="Full Name" label={ ` ${userProfile.firstName === undefined ? '' : userProfile.firstName} ${userProfile.lastName === undefined ? '' : userProfile.lastName}` } />
                                     <ProfileRow title="Email" label={userProfile.email} />
                                     <ProfileRow title="Department" label="Web development" />
                                     <ProfileRow title="Role" label={ userProfile.staffRole } />

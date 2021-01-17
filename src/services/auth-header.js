@@ -18,6 +18,7 @@ const currentUserCompanyID = getCurrentUser === null ? null : currentUserFromLoc
 
 // Current user staffID 
 const currentUserStaffID = getCurrentUser === null ? null : currentUserFromLocalStorage.staffID;
+const currentUserRoleID = getCurrentUser === null ? null : currentUserFromLocalStorage.roleID;
 
 // Authorization token
 const authHeader = {
@@ -37,5 +38,6 @@ export {
   accessToken,
   currentUserFromLocalStorage,
   currentUserCompanyID,
-  currentUserStaffID
+  currentUserStaffID,
+  currentUserRoleID
 }
