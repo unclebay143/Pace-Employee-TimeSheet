@@ -22,18 +22,19 @@ const handleFormatDate = (selectedDepartmentTaskSheet) =>{
   return formatedTaskSheet
 }
 
-const AcceptedTasks = () => {
+const PendingTasks = () => {
 
-  const [acceptedTasks, setAcceptedTasks] = useState([])
+  const [pendingTasks, setPendingTasks] = useState([])
   const [isLoading, setIsLoading] = useState(true)
+
   const history = useHistory();
   
   useEffect(() => {
     // Get all accepted tasks from the server
-    axios.get(FETCH_TASKS_BY_STATUS_API_URL + "2/" + currentUserCompanyID, { headers: authHeader } )
+    axios.get(FETCH_TASKS_BY_STATUS_API_URL + "1/" + currentUserCompanyID, { headers: authHeader } )
     .then((response)=>{
       // Set the response to the component state
-      setAcceptedTasks(handleFormatDate(response.data.data))
+      setPendingTasks(handleFormatDate(response.data.data))
       setIsLoading(false)
     })
     .catch((error)=>{
@@ -59,13 +60,10 @@ const AcceptedTasks = () => {
   //       history.push(`/dashboard/task/view-task/`+ row.taskID)
   //   }
   // };
-
-  if (isLoading){
-    return(
+  if(isLoading){
+    return (
       <>
-
-          <Loader />
-
+        <Loader />        
       </>
     )
   }
@@ -74,8 +72,8 @@ const AcceptedTasks = () => {
       
       <Table
         keyField='id'
-        title="Accepted Task"
-        data={acceptedTasks }
+        title="Pending Tasks"
+        data={pendingTasks }
         columns={taskHeader}
         bordered= { false }
         selectRow = { selectRow }
@@ -127,4 +125,4 @@ const taskHeader = [
   },
 ];
 
-export default AcceptedTasks;
+export default PendingTasks;

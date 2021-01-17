@@ -17,7 +17,7 @@ import { getCompanyEmployees } from "../../../actions/employee/employeeAction";
 const DraftTask = () => {
   const dispatch = useDispatch();
   const { employees } = useSelector(state => state.employees)
-  const employeesDropDown = employees.map(({staffID, firstName, lastName}, index)=><option className="text-red" value={staffID} key={index}>{firstName } {lastName}</option>)
+  const employeesDropDown = employees.map(({staffID, email}, index)=><option className="text-red" value={staffID} key={index}>{email}</option>)
 
   useEffect(() => {
     dispatch(getCompanyEmployees()) 

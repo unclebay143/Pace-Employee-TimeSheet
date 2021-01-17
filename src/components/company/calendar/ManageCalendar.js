@@ -3,13 +3,13 @@ import { ErrorMessage, Form, Formik } from 'formik';
 import { TextInput } from '../../layouts/FormInput';
 import Button from '../../layouts/Button';
 import { Link } from 'react-router-dom';
-import { addNewCalendarEvent, deleteCalendarEvent, getCalendarEvent } from '../../../actions/company/calendar/calendarAction';
+import { addNewCalendarEvent, deleteCalendarEvent, editCalendarEvent, getCalendarEvent } from '../../../actions/company/calendar/calendarAction';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../../loader/Loader';
 import { formatDate } from '../../../_helper/dateFormatter';
 import { date } from 'yup';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
-import { eventDeletedSuccessfullyLogger, eventNotDeletedLogger } from '../../../toaster';
+import { eventDeletedSuccessfullyLogger, eventNotDeletedLogger, eventUpdatedSuccessfullyLogger, eventnNotUpdatedLogger } from '../../../toaster';
 
 
 export default function ManageCalendar() {
@@ -94,7 +94,7 @@ export default function ManageCalendar() {
                 <section className="">
                     <div className="mb-3">
                             {
-                                !editMode ?
+                                editMode ?
                                 (
                                     
                                     //  EDIT EVENT MODE
@@ -103,9 +103,18 @@ export default function ManageCalendar() {
                                             enableReinitialize
                                             initialValues={eventInEditMode}
                                             onSubmit={((values, action)=>{
-                                                dispatch(addNewCalendarEvent(values, action))
+                                                console.log(values)
+                                                dispatch(editCalendarEvent(values))
                                                 .then((response)=>{
-                                                    history.push('/dashboard/calendar')
+                                                    action.setSubmitting(false)
+                                                    eventUpdatedSuccessfullyLogger()
+                                                    console.log(response)
+                                                    // history.push('/dashboard/calendar')
+                                                })
+                                                .catch((error)=>{
+                                                    action.setSubmitting(false)
+                                                    eventnNotUpdatedLogger()
+                                                    console.log(error)
                                                 })
                                             })}
                                         >
@@ -142,7 +151,7 @@ export default function ManageCalendar() {
                                                 <div className="input-group mb-2 mr-sm-2">
                                                     <Button 
                                                         type="submit"
-                                                        label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i>Updating Event</span>) : "Update Event"}
+                                                        label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Updating Event</span>) : "Update Event"}
                                                         className="btn btn-sm btn-info ml-2"
                                                     />
                                                 </div>
@@ -153,6 +162,7 @@ export default function ManageCalendar() {
                                                         type="button"
                                                         label="New Event"
                                                         className="btn btn-sm btn-info ml-2"
+                                                        onClick={(()=>setEditMode(false))}
                                                     />
                                                 </div>
                                             </Form>
@@ -172,6 +182,7 @@ export default function ManageCalendar() {
                                             eventDateAndTime: ''
                                         }}
                                         onSubmit={((values, action)=>{
+                                            console.log(values)
                                             dispatch(addNewCalendarEvent(values, action))
                                             .then((response)=>{
                                                 history.push('/dashboard/calendar')
@@ -210,7 +221,7 @@ export default function ManageCalendar() {
                                                 </div>
                                                 <div className="input-group mb-2 mr-sm-2">
                                                     <Button 
-                                                        type="button"
+                                                        type="submit"
                                                         label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Creating Event</span>) : "Create Event"}
                                                         className="btn btn-sm btn-info ml-2"
                                                         />

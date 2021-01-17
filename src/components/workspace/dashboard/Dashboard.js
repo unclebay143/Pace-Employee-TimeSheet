@@ -44,7 +44,7 @@ const Dashboard = () =>{
     const { welcome, isLoggedIn } = useSelector(state => state.authenticationState)
     const history = useHistory()
     const [redirect, setRedirect] = useState(false)
-    console.log(currentUserFromLocalStorage)
+    // console.log(currentUserFromLocalStorage)
     useEffect(() => {
         if(localStorage.getItem('token') === null){
             setRedirect(true)
