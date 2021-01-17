@@ -47,3 +47,11 @@ export const FETCH_CALENDAR_EVENT_API = 'https://pacetimesheet.herokuapp.com/api
 export const NEW_CALENDAR_EVENT_API = 'https://pacetimesheet.herokuapp.com/api/calendar/companyName/new/';
 export const EDIT_CALENDAR_EVENT_API = 'https://pacetimesheet.herokuapp.com/api/calendar/companyName/edit/';
 export const DELETE_CALENDAR_EVENT_API = 'https://pacetimesheet.herokuapp.com/api/calendar/companyName/delete/';
+
+// TIMER
+export const TIMER_INITIALIZER_API = 'https://pacetimesheet.herokuapp.com/api/timeSheet/companyName/newDay/';
+export const START_TIMER_API = 'https://pacetimesheet.herokuapp.com/api/timeSheet/companyName/startTime/';
+export const STOP_TIMER_API = 'https://pacetimesheet.herokuapp.com/api/timeSheet/companyName/stopTime/';
+export const PERSONAL_TIME_SHEET_API = 'https://pacetimesheet.herokuapp.com/api/timeSheet/companyName/';
+export const COMPANY_TIME_SHEET_API = 'https://pacetimesheet.herokuapp.com/api/timeSheet/companyName/company/:id';
+export const DEPARTMENT_TIME_SHEET_API = 'https://pacetimesheet.herokuapp.com/api/timeSheetcompanyName/department/:id';

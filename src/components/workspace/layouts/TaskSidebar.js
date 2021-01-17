@@ -19,15 +19,21 @@ const TaskSidebar =() => {
 
         <section className="task-sidebar card py-3">
             {
-              currentUserRoleID === 5 ? "" : 
+              currentUserRoleID === 5 ? (
+                <>
+
+                    <Button
+                      type="button"
+                      label=" Task Menu "
+                      className="btn pace-btn-primary mx-3 btn-sm p-1"  
+                    />
+
+                </>
+              ) : 
               (
-                <NavLink exact to="/dashboard/task/draft-task" className="mx-auto">
-                  <Button
-                    type="submit"
-                    label=" Draft Task "
-                    icon="fa fa-pen" 
-                    className="btn pace-btn-primary mx-3 btn-sm p-1"  
-                  />
+                <NavLink exact to="/dashboard/task/draft-task" className="btn pace-btn-primary mx-3 btn-sm p-1">
+                  <i className="fa fa-pen"></i>
+                   &nbsp; Draft Task
                 </NavLink> 
               )
             }
@@ -35,7 +41,7 @@ const TaskSidebar =() => {
           <ul className="sidebar-menu list-unstyled">
             <li className="">
               <NavLink exact to="/dashboard/task/all-tasks" className="sidebar-link text-muted" activeClassName="active">
-                <i className="fa fa-download mr-3 text-gray"/><span> Task Inbox</span>
+                <i className="fa fa-download mr-3 text-gray"/><span> Tasks Inbox</span>
               </NavLink>
             </li>
             {
@@ -66,8 +72,8 @@ const TaskSidebar =() => {
                     </NavLink>
                   </li>
                   <li className="sidebar-list-item">
-                    <NavLink exact to="/dashboard/task/" className="sidebar-link text-muted" activeClassName="active">
-                      <i className="fa fa-inbox mr-3 text-gray"/><span>Drafted</span>
+                    <NavLink exact to="/dashboard/task/completed-tasks" className="sidebar-link text-muted" activeClassName="active">
+                      <i className="fa fa-check mr-3 text-gray"/><span>Completed</span>
                     </NavLink>
                   </li>
                 </>

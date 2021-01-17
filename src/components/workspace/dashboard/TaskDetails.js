@@ -13,19 +13,22 @@ import Button from '../../layouts/Button';
 import unclebay from '../../pages/pages-images/ayodele_samuel_adebayo.jpg';
 import attachment from '../../pages/pages-images/v.jpg';
 import { FETCH_TASK_DETAILS_API_URL } from '../../../services/root-endpoints';
-import { authHeader } from '../../../services/auth-header';
+import { authHeader, currentUserFromLocalStorage } from '../../../services/auth-header';
 import axios from 'axios';
 import { formatDate } from '../../../_helper/dateFormatter';
 import Loader from '../../loader/Loader';
 import { currentUserRoleID } from "../../../services/auth-header";
+import { taskStatusUpdated } from '../../../toaster';
 
 
 const TaskDetails = () => {
   const params = useParams();
   const dispatch = useDispatch();
   const [taskDetails, setTaskDetails] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const { employees } = useSelector(state => state.employees)
   const [assignedUser, setAssignedUser] = useState({});
+  const [taskStatusName, setTaskStatusName] = useState('');
 
   useEffect(() => {
     // Fetch company employees
@@ -37,30 +40,67 @@ const TaskDetails = () => {
       const fetchTaskDetails = async() =>{
         const response = await axios.get(FETCH_TASK_DETAILS_API_URL + params.id, { headers: authHeader })
         setTaskDetails(response.data.data[0])
+        setIsLoading(false)
+        if(currentUserRoleID !== 5 ){
           const findAssignedEmployee = employees.filter((employee)=>employee.staffID === response.data.data[0].assignedID)
           setAssignedUser(findAssignedEmployee[0])
-            
-        }
+          setIsLoading(false)
+        }            
+      }
       // Function call
       fetchTaskDetails()
   },[params.id, employees]);
+
+  useEffect(() => {
+    switch (taskDetails.taskStatus) {
+      case 1:
+        setTaskStatusName(' Accept')
+        break;
+      case 2:
+        setTaskStatusName(' Submit')
+        break;
+      case 3:
+        setTaskStatusName(' Completed')
+        break;
+      case 4:
+        setTaskStatusName(' Overdue')
+        break;
+      default:
+        setTaskStatusName('Error');
+        break;
+    }
+  }, [taskDetails.taskStatus])
+
+  const handleTaskStatus = () =>{
+    dispatch(updateTaskStatus(updateTaskDetails))
+    .then((response)=>{
+      taskStatusUpdated()
+      window.location.reload()
+
+      console.log(response)
+    })
+
+  }
   
   const updateTaskDetails = {
     assignedID: taskDetails.assignedID,
     staffID: taskDetails.staffID,
     taskID: taskDetails.taskID,
     // check if the status is already upto 5
-    taskStatus: taskDetails.taskStatus === 5 ? taskDetails.taskStatus = 5 : taskDetails + 1,
+    taskStatus: taskDetails.taskStatus <= 2 ? taskDetails.taskStatus + 1 : taskDetails.taskStatus
   }
 
 
-  if(assignedUser === undefined){ // If the assignedUser details is not fetched keep loading
+  // if(assignedUser === undefined){ // If the assignedUser details is not fetched keep loading
+    if(isLoading){ // If the assignedUser details is not fetched keep loading
     return(
         <>
           <Loader />
         </>
       )
   }
+
+
 
     return (
       <>
@@ -90,21 +130,21 @@ const TaskDetails = () => {
                                 <>
                                   <Button 
                                     type="submit"
-                                    label="  Accept"
+                                    label={taskStatusName}
                                     icon="fa fa-check"
                                     className="btn btn-theme btn-sm"
-                                    onClick={(()=>dispatch(updateTaskStatus(updateTaskDetails)))}
+                                    onClick={(()=>handleTaskStatus(updateTaskDetails))}
                                     />
-                                  <Button 
+                                  {/* <Button 
                                     type="submit"
                                     label=" Request"
                                     className="btn btn-sm mx-2 special"
-                                    />                                     
+                                    />                                      */}
                                   <Button 
                                     type="submit"
                                     label=" Delete"
                                     icon="fa fa-trash-alt"
-                                    className="btn btn-sm special pace-bg-accent"
+                                    className="btn btn-sm special pace-bg-accent mx-2"
                                     onClick={(()=>dispatch(deleteAssignedTask(taskDetails.staffID)))}
                                     // onClick={(()=>dispatch(deleteTask(taskDetails.taskID)))}
                                   />          
@@ -137,7 +177,8 @@ const TaskDetails = () => {
                                     <img src={unclebay} alt="sender profile" className="sender-image mr-2"/>
                                     <strong>Admin</strong>
                                     <span className=""> </span> to
-                                    <strong> {assignedUser.email} </strong>
+                                    <strong> {currentUserFromLocalStorage.email} </strong>
+
                                   </>
                                 )
                                 :
@@ -163,7 +204,7 @@ const TaskDetails = () => {
                       <div className="view-mail">
                        <p> {taskDetails.taskDescription} </p>
                       </div>
-                      <div className="attachment-mail ">
+                      <div className="attachment-mail d-none">
                         <p>
                           <span><i className="fa fa-paperclip" /> 2 attachments — </span>
                           <NavLink exact to="/dashboard/task/">
@@ -209,14 +250,24 @@ const TaskDetails = () => {
                       </div>
                       {/* <div className="form-group d-flex justify-content-start"> */}
                         {/* <div className="compose-btn float-left my-4">
-                          <Button 
-                            type="submit"
-                            label=" Accept"
-                            icon="fa fa-check"
-                            className="btn btn-theme btn-sm"
-                            onClick={(()=>dispatch(updateTaskStatus(updateTaskDetails)))}
-                          />                                   
-                          <Button 
+                          {
+                            taskDetails.taskStatus === 2 ? (
+                              <>
+
+                                <Button 
+                                  type="button"
+                                  icon="fa fa-check"
+                                  label="Completed"
+                                  className="btn btn-theme btn-sm"
+                                  onClick={(()=>dispatch(updateTaskStatus(updateTaskDetails)))}
+                                />                                   
+
+                              </>
+                            )
+                            :
+                            ""
+                          } */}
+                          {/* <Button 
                             type="submit"
                             label=" Request"
                             className="btn btn-sm special mx-2"
@@ -228,8 +279,8 @@ const TaskDetails = () => {
                             className="btn btn-sm special pace-bg-accent"
                             onClick={(()=>(deleteAssignedTask(taskDetails.staffID)))}
                             onClick={(()=>(deleteTask(taskDetails.staffID)))}
-                          />
-                        </div> */}
+                          /> */}
+                        {/* </div> */}
                       {/* </div>   */}
                     </div>
                   </div>

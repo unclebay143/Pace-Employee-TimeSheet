@@ -38,7 +38,7 @@ const PendingTasks = () => {
       setIsLoading(false)
     })
     .catch((error)=>{
-      somethingWentWrongLogger()
+      // somethingWentWrongLogger()
       setIsLoading(false)
     })
   }, [])
