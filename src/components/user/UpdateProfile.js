@@ -10,7 +10,7 @@ import Button from '../layouts/Button';
 import { TextInput } from '../layouts/FormInput';
 
 //  Actions
-import { updateUserProfile } from '../../actions/user/userAction';
+import { syncCurrentUser, updateUserProfile } from '../../actions/user/userAction';
 
 // Services helper
 import Loader from '../loader/Loader';
@@ -61,9 +61,6 @@ const UpdateProfile = () =>{
                 // userName : typeof userName !== 'string' ? '' : userName,
             })
 
-            console.log(firstName)
-            console.log(userName)
-            console.log(typeof phoneNumber)
             setIsLoading(false)
         }
     }, [params.id, currentUser])
@@ -118,7 +115,7 @@ const UpdateProfile = () =>{
                                     onSubmit={(values, action)=>{
                                         dispatch(updateUserProfile(values, staffID, action))
                                         .then((response)=>{
-                                            console.log(response)
+                                            dispatch(syncCurrentUser(staffID))
                                             history.push(`/dashboard/profile/${params.id}`)
                                         })
                                         .catch((error)=>{

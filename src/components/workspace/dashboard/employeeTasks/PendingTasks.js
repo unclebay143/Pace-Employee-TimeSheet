@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import Table from '../../layouts/Table';
@@ -59,7 +59,6 @@ const PendingTasks = () => {
 }
 
 const taskHeader = [
-
   {
     dataField: 'taskName',
     text: 'Title',

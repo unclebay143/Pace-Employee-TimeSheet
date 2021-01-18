@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import Table from '../../layouts/Table';
@@ -8,10 +8,9 @@ import { getTaskByStatus } from '../../../../actions/task/usersTasksByStatus';
 import { useDispatch, useSelector } from 'react-redux';
 
 const AcceptedTasks = () => {
-
+ const dispatch = useDispatch();
   const { usersTasksByStatus } = useSelector(state => state.usersTasksByStatus)
   const history = useHistory();
-  const dispatch = useDispatch()
   
   useEffect(() => {
     dispatch(getTaskByStatus(2));
@@ -49,7 +48,7 @@ const AcceptedTasks = () => {
         enableSearch = { true }
         pagination = { paginationFactory() }
         // controlHeader = { navigate }
-        rowEvents = { taskDetails }
+        // rowEvents = { taskDetails }
         noDataIndication={'No available task'}
         filter={ filterFactory() }
         rowStyle={ rowStyle }

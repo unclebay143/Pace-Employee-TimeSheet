@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCalendarEvent } from '../../../actions/company/calendar/calendarAction';
 import Loader from '../../loader/Loader';
+import { currentUserRoleID } from '../../../services/auth-header';
                     
 
 export default function Calendar() {
@@ -46,12 +47,18 @@ export default function Calendar() {
             </style>
             <div className="py-3">
                 <section>
-                    <Link to="/dashboard/manageCalendar">
-                        <Button
-                            label="Manage Event"
-                            className="btn btn-sm pace-btn-accent mb-2"
-                        />
-                    </Link>
+
+                    {
+                        currentUserRoleID === 5 ? "" : 
+                        (
+                            <Link to="/dashboard/manageCalendar">
+                                <Button
+                                    label="Manage Event"
+                                    className="btn btn-sm pace-btn-accent mb-2"
+                                />
+                            </Link>
+                        )
+                    }
                 </section>
                 <BigCalendar
                     localizer={localizer}

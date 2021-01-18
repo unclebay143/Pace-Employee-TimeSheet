@@ -14,6 +14,7 @@ import Sample from './employeeTasks/Sample';
 import Button from '../../layouts/Button';
 import SampleCompose from './employeeTasks/SampleCompose';
 import TaskInboxSample from './employeeTasks/TaskInboxSample';
+import PendingTasks from './employeeTasks/PendingTasks';
 
 class Task extends Component {
   render() {
@@ -36,6 +37,7 @@ class Task extends Component {
                 <Route exact path="/dashboard/task/draft-task" component={DraftTask } />
                 <Route exact path="/dashboard/task/all-tasks" component={AllTasks} />
                 <Route exact path="/dashboard/task/accepted-tasks" component={AcceptedTasks} />
+                <Route exact path="/dashboard/task/pending-tasks" component={PendingTasks} />
                 <Route exact path="/dashboard/task/assigned-tasks" component={AssignedTasks} />
                 <Route exact path="/dashboard/task/pending-tasks" component={PendingTasks} />
                 <Route exact path="/dashboard/task/draft-taskk" component={SampleCompose} />
