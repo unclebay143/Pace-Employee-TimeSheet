@@ -5,9 +5,6 @@ import { Formik, Form, ErrorMessage } from 'formik';
 import { Link, useHistory, withRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify'; 
 
-// Toast
-import { userIsAuthenticatedLogger} from '../../toaster';
-
 // Layouts
 import Button from '../layouts/Button';
 import loginImage from './pages-images/login-img.png';
@@ -17,9 +14,6 @@ import { HomeButton } from '../layouts/HomeButton';
 
 // Actions
 import { login } from '../../actions/auth/authAction';
-import { syncCurrentUser } from '../../actions/user/userAction';
-import { getTodos } from '../../actions/todo/todoAction';
-import { getTasks } from '../../actions/task/taskAction';
 
 /* Development fake user credentials */
 
@@ -29,7 +23,7 @@ import { getTasks } from '../../actions/task/taskAction';
 //     lastName: 'Dummy',
 //     staffID: 123,
 //     companyID: 1928,
-//     roleID: 5
+//     roleID: 1
 // }
 
 // const token = 'wkknohsiosdoiwoihh.wohoifhfiohiohfiuhui.iuwiuhiuhfuhiuwhg'
@@ -42,43 +36,19 @@ const Login = () =>{
    
     const currentUserFromLocalStorage = JSON.parse(localStorage.getItem('currentUser'));
     const authenticationState = useSelector(state => state.authenticationState)
-
-    const history = useHistory();
     const dispatch = useDispatch()
-
+    const history = useHistory()
+    
     // Function to redirect user to the dashboard when there is a user in the local storage
     useEffect(() => {
         document.title = 'Login | Pace'
-        // Function that redirects user to the dashboard
-        const handleRedirect = () =>{
-
-            // Fetch user todo list
-            dispatch(getTodos())
-                
-            // Fetch user tasks
-            dispatch(getTasks())
-            
-           
-            
-
-            setTimeout(() => {
-                history.push('./dashboard');
-            }, 2000);
+        if(currentUserFromLocalStorage){
+            if(authenticationState.isLoggedIn){
+                history.push('./dashboard')
+            }
         }
-        const redirector = (cb) =>{
-            userIsAuthenticatedLogger()
-            cb()
-        }
-        
-        // Conditonal Statement to check if a user is logged in from the redux state and local storage
-        if(authenticationState.isLoggedIn || currentUserFromLocalStorage){
-            // Synchronize the current user 
-            syncCurrentUser(currentUserFromLocalStorage.staffID)
-            redirector(handleRedirect)
-        }
-    })
-
-
+    },[currentUserFromLocalStorage, authenticationState.isLoggedIn, history])
+    
     return(
         <div className="container">
             <main className="container d-lg-flex justify-content-center align-items-center mt-5">
@@ -157,7 +127,7 @@ const Login = () =>{
                                                 type="submit"
                                                 className="btn btn-primary"
                                                 disabled={isSubmitting}
-                                                label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Loading...</span>) : "Login"}
+                                                label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Loading</span>) : "Login"}
                                                 />
                                             <p>Create your workspace register <Link to="/signup">Here</Link></p>
                                             <span><Link to="/forgot">Forgot Passwords</Link></span>

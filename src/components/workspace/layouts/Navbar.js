@@ -2,7 +2,7 @@
 // React
 import { React, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 // Component
@@ -13,32 +13,45 @@ import { logout } from '../../../actions/auth/authAction'
 
 // Toast
 import { ToastContainer } from 'react-toastify';
+import { accessToken, currentUserFromLocalStorage, currentUserStaffID } from '../../../services/auth-header';
+import { syncCurrentUser } from '../../../actions/user/userAction';
 
 
 const Navbar = () =>{
     const history = useHistory();
     const dispatch = useDispatch();
-    const { currentUser } = useSelector(state => state.authenticationState)
+    const { currentUser, isLoggedIn } = useSelector(state => state.authenticationState)
     const [fullName, setFullName] = useState('') // the fullName is empty before the data are fetch, to prevent seeing undefined
     const [staffID, setStaffID] = useState('')
     const [roleID, setRoleID] = useState('')
-    useEffect(() => {
-        
-        // const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        
 
+    useEffect(() => {
         if(currentUser){
             const { firstName, lastName, staffID, roleID } = currentUser || '';
-            setFullName(` ${ firstName } ${ lastName } `)
+            setFullName(` ${ firstName === undefined ? '' : firstName } ${ lastName === undefined ? '' : lastName} `)
             setStaffID(staffID)
             setRoleID(roleID)
-
-        }else if( currentUser === null || currentUser === undefined ){
-            history.push('/');
+            
         }
-
     },[currentUser])
     
+    useEffect(() => {
+        dispatch(syncCurrentUser(staffID))    
+    }, [dispatch]);
+
+    useEffect(() => {
+        // console.log('here')
+        // // Check if there is a user in the local storage, don't use redux state , it get cleared before synchronizing
+        // if(currentUserFromLocalStorage.length > 0){
+        //     console.log('here2')
+        //     // sync the current user with the server, redux, and localstorage
+        //     console.log('local', currentUserFromLocalStorage)
+        // }else{
+        //     // alert('me')
+        // }
+    }, [dispatch])
+        
+
     return(
         <>
             <ToastContainer />
@@ -135,7 +148,7 @@ const Navbar = () =>{
                                         <a href="/" className="dropdown-item">Settings</a>
                                     )
                                 }
-                                <div className="dropdown-divider"></div><span className="dropdown-item" style={{cursor: 'pointer'}} onClick={(()=>logout())}>Logout</span>
+                                <div className="dropdown-divider"></div><span className="dropdown-item" style={{cursor: 'pointer'}} onClick={(()=>dispatch(logout()))}>Logout</span>
                             </div>
                         </li>
                     </ul>

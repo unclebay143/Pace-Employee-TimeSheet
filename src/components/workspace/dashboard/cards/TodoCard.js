@@ -18,7 +18,6 @@ const CardTemplate = ({title, dueDate}) =>{
 const TodoCard = () =>{
   
     const { todos } = useSelector((state)=>state.todos);
-
     const { title, dueDate } = todos[0];
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     

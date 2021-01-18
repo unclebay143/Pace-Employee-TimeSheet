@@ -1,93 +1,57 @@
 //  This file contains all the root endpoint for Api in this application
 
-// Contact us 
-export const CONTACT_PACETEAM_API = 'https://pacetimesheet.herokuapp.com/api/contactUs/contact';
 
+// Contact us 
+export const CONTACT_PACETEAM_API = 'https://pacetimesheet.herokuapp.com/api/contact-us/contact';
 
 // Handles Authentication, /signUp, /login
-const AUTH_API_URL = 'https://pacetimesheet.herokuapp.com/api/users/';
-
+export const AUTH_API_URL = 'https://pacetimesheet.herokuapp.com/api/users/';
 
 // Update user personal profile (/:staffID)
-const USER_PROFILE_URL = 'https://pacetimesheet.herokuapp.com/api/users/companyName/userProfile/';
-
+export const USER_PROFILE_URL = 'https://pacetimesheet.herokuapp.com/api/users/companyName/userProfile/';
+export const UPDATE_USER_PASSWORD = 'https://pacetimesheet.herokuapp.com/api/users/companyName/userProfile/changePassword/';
 
 /* TODO API */ 
-const TODO_API_URL = 'http://fakerestapi.azurewebsites.net/api/v1/Activities';
-// export const FETCH_TODO = 'https://pacetimesheet.herokuapp.com/api/todo/todolist/'
-export const ADD_NEW_TODO_API = 'https://pacetimesheet.herokuapp.com/api/todo/companyName/todolist/'
-// const TODO_API_URL = 'https://pacetimesheet.herokuapp.com/api/todo/companyName/todolist/'
-
-/* >>>>>>>>>>> MANAGE TASKS API <<<<<<<<<<<<< */
-
-// ASSIGN TASK API
-const ASSIGN_TASK_API_URL = 'https://pacetimesheet.herokuapp.com/api/tasks/companyName/newTask/';
-
-// const TASK_API_URL = 'https://api.fake.rest/6c02d615-a40c-47ce-89c1-a4cf5a547ba0/task'
-const TASK_API_URL = 'https://pacetimesheet.herokuapp.com/api/tasks/companyName/';
-
-// ACCEPTED TASK API
-const ACCEPTED_TASK_API_URL = 'http://fakerestapi.azurewebsites.net/api/v1/Activities';
+export const TODO_API_URL = 'https://pacetimesheet.herokuapp.com/api/todo/companyName/todolist/'
 
 
-// ASSIGNED TASK API
-const ASSIGNED_TASK_API_URL = 'https://pacetimesheet.herokuapp.com/api/tasks/companyName/assignedTasks/';
+// TASK API
+export const ASSIGN_TASK_API_URL = 'https://pacetimesheet.herokuapp.com/api/tasks/companyName/newTask/';
+export const TASK_API_URL = 'https://pacetimesheet.herokuapp.com/api/tasks/companyName/';
+export const ACCEPTED_TASK_API_URL = 'http://fakerestapi.azurewebsites.net/api/v1/Activities';
+export const ASSIGNED_TASK_API_URL = 'https://pacetimesheet.herokuapp.com/api/tasks/companyName/assignedTasks/';
+export const FETCH_COMPANY_TASK_SHEET_URL = 'https://pacetimesheet.herokuapp.com/api/taskSheet/companyName/departments/';
+export const UPDATE_TASK_STATUS_API_URL = 'https://pacetimesheet.herokuapp.com/api/tasks/companyName/editTaskStatus/';
+export const DELETE_ASSIGNED_TASK_API_URL = 'https://pacetimesheet.herokuapp.com/api/tasks/companyName/deleteTask/';
+export const FETCH_TASK_DETAILS_API_URL = 'https://pacetimesheet.herokuapp.com/api/tasks/companyName/select/';
+export const FETCH_TASKS_BY_STATUS_API_URL = 'https://pacetimesheet.herokuapp.com/api/tasks/companyName/allTasks/'
 
 
 
+// DEPARTMENT API
+export const ADD_DEPARTMENT_API = 'https://pacetimesheet.herokuapp.com/api/users/companyName/companyProfile/addDepartment/';
+export const FETCH_DEPARTMENT_API = 'https://pacetimesheet.herokuapp.com/api/users/companyName/companyProfile/department/';
 
+// EMPLOYEE API
+export const ADD_NEW_EMPLOYEE_API = 'https://pacetimesheet.herokuapp.com/api/users/signUp/companyName/addUser/';
+export const FETCH_EMPLOYEES_LIST_API = 'https://pacetimesheet.herokuapp.com/api/users/companyName/employee/'
 
-/* >>>>>>>>>>> MANAGE DEPARTMENT API <<<<<<<<<<<<< */
-
-
-// (POST/ADD NEW DEPARTMENT)
-const ADD_DEPARTMENT_API = 'https://pacetimesheet.herokuapp.com/api/users/companyName/companyProfile/addDepartment/';
-
-
-
-// GET ALL DEPARTMENT
-const FETCH_DEPARTMENT_API = 'https://pacetimesheet.herokuapp.com/api/users/companyName/companyProfile/department/';
-
-
-
-/* >>>>>>>>>>> MANAGE EMPLOYEE API <<<<<<<<<<<<< */
-
-
-// ADD EMPLOYEE
-const ADD_NEW_EMPLOYEE_API = 'https://pacetimesheet.herokuapp.com/api/users/signUp/companyName/addUser/';
-
-
-// GET ALL COMPANY EMPLOYEES
-const FETCH_EMPLOYEES_LIST_API = 'https://pacetimesheet.herokuapp.com/api/users/companyName/employee/'
-
-
-
-
-/* >>>>>>>>>>>>>>> COMPANY API <<<<<<<<<<<<<<<<<< */
-
-
-// GET COMPANY PROFILE
+// COMPANY API
 export const FETCH_COMPANY_PROFILE_API = 'https://pacetimesheet.herokuapp.com/api/users/companyName/companyProfile/';
-
-// UPDATE COMPANY PROFILE
 export const UPDATE_COMPANY_PROFILE_API = 'https://pacetimesheet.herokuapp.com/api/users/companyName/companyProfile/updateProfile/';
+export const UPDATE_EMPLOYEE_BILLING_AND_TIME_API = 'https://pacetimesheet.herokuapp.com/api/users/companyName/employee/timeAndBilling/'
 
-export {
-    AUTH_API_URL,
-    USER_PROFILE_URL,
+// CALENDAR
+// export const ADD_NEW_CALENDAR_EVENT = 'https://pacetimesheet.herokuapp.com/api/companyName/calendar/new/';
+export const FETCH_CALENDAR_EVENT_API = 'https://pacetimesheet.herokuapp.com/api/calendar/companyName/';
+export const NEW_CALENDAR_EVENT_API = 'https://pacetimesheet.herokuapp.com/api/calendar/companyName/new/';
+export const EDIT_CALENDAR_EVENT_API = 'https://pacetimesheet.herokuapp.com/api/calendar/companyName/edit/';
+export const DELETE_CALENDAR_EVENT_API = 'https://pacetimesheet.herokuapp.com/api/calendar/companyName/delete/';
 
-
-    ADD_DEPARTMENT_API,
-    FETCH_DEPARTMENT_API,
-
-
-    ADD_NEW_EMPLOYEE_API,
-    FETCH_EMPLOYEES_LIST_API,
-
-    // TODO_API_URL,
-
-    ASSIGN_TASK_API_URL,
-    TASK_API_URL,
-    ACCEPTED_TASK_API_URL,
-    ASSIGNED_TASK_API_URL
-}
+// TIMER
+export const TIMER_INITIALIZER_API = 'https://pacetimesheet.herokuapp.com/api/timeSheet/companyName/newDay/';
+export const START_TIMER_API = 'https://pacetimesheet.herokuapp.com/api/timeSheet/companyName/startTime/';
+export const STOP_TIMER_API = 'https://pacetimesheet.herokuapp.com/api/timeSheet/companyName/stopTime/';
+export const PERSONAL_TIME_SHEET_API = 'https://pacetimesheet.herokuapp.com/api/timeSheet/companyName/';
+export const COMPANY_TIME_SHEET_API = 'https://pacetimesheet.herokuapp.com/api/timeSheet/companyName/company/:id';
+export const DEPARTMENT_TIME_SHEET_API = 'https://pacetimesheet.herokuapp.com/api/timeSheetcompanyName/department/:id';

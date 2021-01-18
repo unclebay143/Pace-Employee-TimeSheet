@@ -43,12 +43,12 @@ const register = (companyName, email, password, action) => (dispatch) =>{
 
       // Store the response token to the localstorage
       localStorage.setItem('token', JSON.stringify(response.data.data.accessToken));
-      localStorage.setItem('currentUser', JSON.stringify(response.data.data2[0]));
+      localStorage.setItem('currentUser', JSON.stringify(response.data.data.response[0]));
       
       // Store the data(user's) to the store
       dispatch({
         type: LOGIN_SUCCESS,
-        payload: response.data.data2[0]
+        payload: response.data.data.response[0]
       })
     })
     .catch((error)=>{ // CATCH LOGIN FAILURE
@@ -107,15 +107,16 @@ const login = ( email, password, action ) => ( dispatch ) =>{
       password,
     })
     .then((response)=>{
-
+      console.log(response)
+      // console.log(response.data.data.accessToken)
       // don't forget to destructure later
       localStorage.setItem('token', JSON.stringify(response.data.data.accessToken));
-      localStorage.setItem('currentUser', JSON.stringify(response.data.data2[0]));
+      localStorage.setItem('currentUser', JSON.stringify(response.data.data.response[0]));
       
       // Store the data(user's) to the store
       dispatch({
         type: LOGIN_SUCCESS,
-        payload: response.data.data2[0]
+        payload: response.data.data.response[0]
       })
     })
     .catch((error)=>{
@@ -130,15 +131,16 @@ const login = ( email, password, action ) => ( dispatch ) =>{
 };
 
 
-const logout = () => {
-
-  // Clear the application localStorage
-  localStorage.clear()
-
-  // Reload the tab to clear the redux state
-  setTimeout(()=>{
-    window.location.reload();
-  }, 1000)
+const logout = () => (dispatch) =>{
+  setTimeout(() => {
+    // Clear the application localStorage
+    
+    dispatch({
+      type: LOGOUT
+    })
+    localStorage.clear()
+  
+  }, 1000);
 };
 
 const AuthService = {

@@ -10,7 +10,7 @@ import Button from '../layouts/Button';
 import { TextInput } from '../layouts/FormInput';
 
 //  Actions
-import { updateUserProfile } from '../../actions/user/userAction';
+import { syncCurrentUser, updateUserProfile } from '../../actions/user/userAction';
 
 // Services helper
 import Loader from '../loader/Loader';
@@ -43,22 +43,24 @@ const UpdateProfile = () =>{
             const {
                 firstName,
                 lastName,
+                userName,
                 phoneNumber,
                 email,
                 address,
-                userName,
                 
             } = currentUser
         
             // Set the destructure user information into the profile state (ES6 syntax)
             setProfile({
-                firstName,
-                lastName,
-                phoneNumber,
-                email,
-                address,
+                firstName : typeof firstName !== 'string' ? '' : firstName,
+                lastName : typeof lastName !== 'string' ? '' : lastName,
                 userName,
+                phoneNumber: typeof phoneNumber === null || undefined ? '' : phoneNumber,
+                email,
+                address : typeof address !== 'string' ? '' : address,
+                // userName : typeof userName !== 'string' ? '' : userName,
             })
+
             setIsLoading(false)
         }
     }, [params.id, currentUser])
@@ -113,7 +115,7 @@ const UpdateProfile = () =>{
                                     onSubmit={(values, action)=>{
                                         dispatch(updateUserProfile(values, staffID, action))
                                         .then((response)=>{
-                                            console.log(response)
+                                            dispatch(syncCurrentUser(staffID))
                                             history.push(`/dashboard/profile/${params.id}`)
                                         })
                                         .catch((error)=>{
@@ -264,7 +266,7 @@ const UpdateProfile = () =>{
                                             <div className="d-flex justify-content-between">
                                                 <Button 
                                                     type="submit" 
-                                                    label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Updating...</span>) : "Update"}
+                                                    label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Updating</span>) : "Update"}
                                                     className="btn pace-btn-primary" 
                                                 />
                                                 <Button 

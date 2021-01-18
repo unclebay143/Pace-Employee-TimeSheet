@@ -11,6 +11,7 @@ const somethingWentWrongLogger = () =>  toast.warning('Something went wrong, Ple
 //  Login Toast
 const invalidDetailsLogger = () => toast.warning('Invalid Login details');
 const userIsAuthenticatedLogger = () => toast.info('Logging in');
+const welcomeBackLogger = () => toast.info('Welcome Back');
 
 
 // Registration Toast
@@ -24,19 +25,29 @@ const emailAlreadyExist = () => toast.warning('Email Already Exist');
 
 
 // Logout Toast
-const logOutSuccessLogger = () => toast.warning('Logout Successful')
+const logOutSuccessLogger = () => toast.warning('Logout Successful');
 
 // Users Setting Toasts
 const profileUpdateCompletedLogger = () => toast.info('Profile Update Successfully');
-const profileUpdateFailLogger = () => toast.warning('Profile Update Failed')
+const profileUpdateFailLogger = () => toast.warning('Update Failed, Please try again');
 
 // Todo
-const invalidTodoTitle  =  () => toast.warning('Todo title is required')
+const invalidTodoTitle  =  () => toast.warning('Todo title is required');
 
 
 // Tasks
-export const taskNotSent = () => toast.warning('Task Not Sent Try again')
-export const taskSent = () => toast.info('Task Sent Successfully')
+export const taskNotSent = () => toast.warning('Task Not Sent Try again');
+export const taskSent = () => toast.info('Task Sent Successfully');
+export const taskStatusUpdated = () => toast.info('Task Status Updated')
+
+
+// Calendar
+export const calendarEventNotSavedLogger = () => toast.warning('Event Not Set!!! Please Try again');
+export const eventAddedSuccessfullyLogger = () => toast.info('Event added Successfully');
+export const eventDeletedSuccessfullyLogger = () =>  toast.info('Event Deleted Successfully');
+export const eventNotDeletedLogger = () => toast.warning('Event Not Deleted Please Try again');
+export const eventUpdatedSuccessfullyLogger = () => toast.info('Event updated Successfully');
+export const eventnNotUpdatedLogger= () => toast.info('Event not updated!! Please try again');
 
 
 
@@ -55,4 +66,5 @@ export{
     profileUpdateCompletedLogger,
     profileUpdateFailLogger,
     emailAlreadyExist,
+    welcomeBackLogger,
 }

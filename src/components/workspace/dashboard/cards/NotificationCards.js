@@ -1,4 +1,7 @@
+// React
 import { React } from 'react';
+
+// Card Components
 import TodoCard from './TodoCard';
 import EventCard from './EventCard';
 import EscheduleCard from './EscheduleCard';

@@ -7,8 +7,9 @@ import Swal from 'sweetalert2';
 import useSound from 'use-sound';
 
 // Actions
-import { TIMER_ON, TIMER_OFF, SET_WORKED_MILLISECOND } from '../../../../actions/types';
+import { TIMER_OFF, SET_WORKED_MILLISECOND } from '../../../../actions/types';
 import notify from './notify.wav'
+import { initializeNewDayTimer, startTimer, stopTimer } from "../../../../actions/timer/timerAction";
 
 const timerReminder = withReactContent(Swal)
 
@@ -40,8 +41,7 @@ const TimerContainer=()=>{
                 playSound()
             }
         }
-
-        const reminderTracker = setTimeout(reminder, 3200000);
+        const reminderTracker = setTimeout(reminder, 300000);
         
         // setTimeout(() => {
         //     reminder()
@@ -57,6 +57,7 @@ const TimerContainer=()=>{
 
     
     const onStop = (stopMillsecond, resume, reset)=>{
+        dispatch(stopTimer())
         const convertedStopHour = Math.floor(stopMillsecond / 3600000)
         timerReminder.fire({
             showCloseButton: true,
@@ -81,7 +82,7 @@ const TimerContainer=()=>{
     }
     const onStart = (start, getTime) =>{
         start()
-        dispatch({ type: TIMER_ON })
+        dispatch(startTimer())
         setInterval(() => {
             const currentMilliSecond = getTime();
             localStorage.setItem('currentMilliSecond', JSON.stringify(currentMilliSecond))
@@ -114,6 +115,7 @@ const TimerContainer=()=>{
                 <div id="searchForm" className="ml-auto d-non d-lg-block">
                     <div className="position-relative mb-0">
                         <div id="right-i">
+                            {/* <button onClick={()=>dispatch(initializeNewDayTimer())}>initialize timer</button> */}
                             <Timer
                                 initialTime={ isTimerSessionExist ? Number(isTimerSessionExist) : 0 }
                                 startImmediately={ isTimerSessionExist ? true : false}
