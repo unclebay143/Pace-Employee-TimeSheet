@@ -13,7 +13,7 @@ import { formatDate } from '../../../../_helper/dateFormatter';
 
 const handleFormatDate = (selectedDepartmentTaskSheet) =>{
   const formatedTaskSheet = selectedDepartmentTaskSheet.map((taskRecord)=> {
-    taskRecord.endDate = formatDate(taskRecord.endDate) 
+      taskRecord.endDate = formatDate(taskRecord.endDate) 
     // taskRecord.dateCreated = formatDate(taskRecord.dateCreated) 
     return taskRecord
   })

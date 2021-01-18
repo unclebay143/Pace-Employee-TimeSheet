@@ -73,10 +73,9 @@ const todoReducer = (state=initialState, action) =>{
                 todos: [ 
                     // Add new todo from payload (to the top of the existing todos)
                     {
-                        todoID: toDoID,
-                        listName,
-                        dueDate: dueDate,
-                        completed: false
+                        title: listName,
+                        dueDate,
+                        status: "false"
                     },
                     // Return everything in todos
                     ...state.todos
@@ -86,25 +85,26 @@ const todoReducer = (state=initialState, action) =>{
         case UPDATE_TODO:
             return {
                 ...state,
-                todos: state.todos.map( todo => todo.id === payload.id ? ( todo = payload ) : todo
+                todos: state.todos.map( todo => todo.todoID === payload.todoID ? ( todo = payload ) : todo
                 )
             }
 
         case DELETE_TODO:
             return {
                 ...state,
-                todos: state.todos.filter((todo)=> todo.id !== payload )
+                todos: state.todos.filter((todo)=> todo.todoID !== payload )
             }
         
         case TOGGLE_TODO_COMPLETE:
             return Object.assign({}, state, {
                 todos: state.todos.map((todo)=>{
-                    if(todo.id !== payload){
+                    if(todo.todoID !== payload){
                         return todo
                     }
 
+                    console.log(todo);
                     return Object.assign({}, todo, {
-                        completed: !todo.completed
+                        status: "POOOO"
                     });
                 })
             })

@@ -127,7 +127,7 @@ const UpdateProfile = () =>{
                                     { (({ values, touched, errors, handleSubmit, isSubmitting, resetForm })=>{
                                         return <Form onSubmit={handleSubmit}>
                                             <div className="mb-5 text-gray">
-                                                {/* <pre>{JSON.stringify(values, null, 2)}</pre>  */}
+                                                <pre>{JSON.stringify(values, null, 2)}</pre> 
                                                 <h5>EDIT PROFILE</h5>
                                             </div>
                                             <hr />
@@ -143,6 +143,20 @@ const UpdateProfile = () =>{
                                                         id="firstName"
                                                         placeholder="Enter Firstname"
                                                         type="text" 
+                                                        className={`form-control ${ touched.firstName && errors.firstName ? "is-invalid" : ""}`} 
+                                                        />
+                                                    <ErrorMessage
+                                                        component="div"
+                                                        name="firstName"
+                                                        className="invalid-feedback p-0"
+                                                        />
+                                                </div>
+                                                <div className="col-sm-12 col-md-9 text-secondary" >
+                                                    <TextInput
+                                                        name="firstName"
+                                                        id="firstName"
+                                                        placeholder="Enter Firstname"
+                                                        type="file" 
                                                         className={`form-control ${ touched.firstName && errors.firstName ? "is-invalid" : ""}`} 
                                                         />
                                                     <ErrorMessage

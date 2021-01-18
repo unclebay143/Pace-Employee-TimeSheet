@@ -39,10 +39,11 @@ const TodoRows = () => {
     return (
         <>
         {
-            todos.map(({todoID, title, completed, dueDate}, index)=>{
+            [...todos].reverse().map(({todoID, staffID, title, status, dueDate}, index)=>{
+            // todos.map(({todoID, staffID, title, status, dueDate}, index)=>{
                 return(
                     <li className="list-group-item" key={index}>
-                        <div className={`todo-indicator ${ completed ? 'bg-primary' : 'bg-warning' }`} />
+                        <div className={`todo-indicator ${ status === 'false'  ? 'bg-warning' : 'bg-primary' }`} />
                             <div className="widget-content p-0">
                                 <div className="widget-content-wrapper">
                                 <div className="widget-content-left mr-2">
@@ -55,21 +56,21 @@ const TodoRows = () => {
                                     <div className="widget-heading">
                                         { title }
                                         {/* <div className={`badge ${completed ? 'badge-success': 'badge-primary'} ml-2`}>
-                                            { completed ? 'Completed' : 'Pending' }
+                                            { completed ? 'Pending' : 'Completed' }
                                         </div> */}
                                     </div>
                                     <div className="widget-subheading">
                                         <i>Due Date { formatDate(dueDate) }</i>
                                         {/* <div className="badge badge-pill badge-info ml-2"></div> */}
-                                        <div className={` badge badge-pill ml-2 ${completed ? 'badge-success': 'badge-danger'}`}>
-                                            { completed ? 'Completed' : 'Pending' }
+                                        <div className={` badge badge-pill ml-2 ${status === 'false' ? 'badge-danger' : 'badge-success'}`}>
+                                            { status === 'false' ? 'Pending' : 'Completed' }
                                         </div>
                                     </div>
                                 </div>
                                 <div className="widget-content-right">
                                     <Button 
-                                        className={` border-0 btn-transition btn todo-btn  { ${ completed ? "pending-icon" : "completed-icon"}`}
-                                        icon={`${completed ? "fa fa-sync-alt" : "fa fa-check"}`}
+                                        className={` border-0 btn-transition btn todo-btn  { ${ status === 'false' ? "completed-icon" : "pending-icon" }`}
+                                        icon={`${status === 'false' ? "fa fa-check" : "fa fa-sync-alt"}`}
                                         onClick={(()=>dispatch(toggleTodoCompletion(todoID)))}
                                     />
                                     <Button 

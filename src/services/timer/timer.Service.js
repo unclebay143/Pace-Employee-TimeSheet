@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { authHeader, currentUserStaffID } from '../auth-header';
-import { TIMER_INITIALIZER_API, START_TIMER_API, STOP_TIMER_API, PERSONAL_TIME_SHEET_API } from '../root-endpoints';
+import { authHeader, currentUserCompanyID, currentUserStaffID } from '../auth-header';
+import { TIMER_INITIALIZER_API, START_TIMER_API, STOP_TIMER_API, PERSONAL_TIME_SHEET_API, COMPANY_TIME_SHEET_API } from '../root-endpoints';
 
 const initializeTimerRecord = () =>{
     console.log('timer service');
@@ -20,11 +20,17 @@ const getPersonalTimeSheet = () =>{
     return axios.get(PERSONAL_TIME_SHEET_API + currentUserStaffID, { headers: authHeader })
 }
 
+const getCompanyTimeSheet = () => {
+    return axios.get(COMPANY_TIME_SHEET_API + currentUserCompanyID, {headers: authHeader})
+}
+
 const TimerService = {
+    initializeTimerRecord,
     startTimer,
     stopTimer,
     getPersonalTimeSheet,
-    initializeTimerRecord
+    getCompanyTimeSheet,
+
 }
 
 

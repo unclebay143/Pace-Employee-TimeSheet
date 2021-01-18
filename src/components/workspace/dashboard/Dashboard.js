@@ -80,7 +80,7 @@ const Dashboard = () =>{
                                 <Switch>
 
                                     <Route path="/dashboard/calendar" component={Calendar} />
-                                    {/* <Route path="/dashboard/timer-rough" component={TimerRough} /> */}
+                                    <Route path="/dashboard/timer-rough" component={TimerRough} />
                                     <Route path="/dashboard/e-schedule" component={Eschedule} />
                                     <Route path="/dashboard/manageCalendar" component={ManageCalendar} />
 

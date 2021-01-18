@@ -16,6 +16,7 @@ const timerReminder = withReactContent(Swal)
 
 const TimerContainer=()=>{
     const { smooveTime } = useSelector(state => state.authenticationState)
+    // const { remindUser } = useSelector(state => state.timerSta)
     const [ isTimerOff, setisTimerOff ] = useState(true)
     const [ shouldRemindUser ] = useState(isTimerOff)
     const [ timerStatus, setTimerStatus ] = useState()
@@ -23,10 +24,10 @@ const TimerContainer=()=>{
     const [ playSound ] = useSound(
         notify, { volume: 0.25 }
     )
-
+console.log('shouldRemindUser', shouldRemindUser);
     useEffect(() => {
         const reminder = () => {
-            if(shouldRemindUser){
+            if(!shouldRemindUser){
                 timerReminder.fire({
                     showCloseButton: true,
                     showCancelButton: true,
@@ -69,12 +70,22 @@ const TimerContainer=()=>{
     }
 
     const handleStartTimer = () =>{
-        dispatch({type: TIMER_ON})
-        setisTimerOff(false)
-        startTimerFunc.current.start()
-        setInterval(() => {
-            handleSync()
-        },1000);
+        dispatch(startTimer())
+        .then((response)=>{
+            if(!response.data === undefined){
+                dispatch({type: TIMER_ON})
+                setisTimerOff(false)
+                startTimerFunc.current.start()
+                setInterval(() => {
+                    handleSync()
+                },1000);
+            }else{
+                console.log(new Error('Error not understand')); // unknown error, rethrow it
+            }
+        })
+        .catch((error)=>{
+            console.log('error from startTimer', error)
+        })
     }
     
     const handleStopTimer = () =>{
