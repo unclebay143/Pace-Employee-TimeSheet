@@ -14,7 +14,6 @@ import Sample from './employeeTasks/Sample';
 import Button from '../../layouts/Button';
 import SampleCompose from './employeeTasks/SampleCompose';
 import TaskInboxSample from './employeeTasks/TaskInboxSample';
-import PendingTasks from './employeeTasks/PendingTasks';
 
 class Task extends Component {
   render() {

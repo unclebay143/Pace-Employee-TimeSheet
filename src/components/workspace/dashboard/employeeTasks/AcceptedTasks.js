@@ -6,10 +6,11 @@ import paginationFactory from 'react-bootstrap-table2-paginator';
 import filterFactory, { selectFilter } from 'react-bootstrap-table2-filter';
 import { getTaskByStatus } from '../../../../actions/task/usersTasksByStatus';
 import { useDispatch, useSelector } from 'react-redux';
+import Loader from '../../../loader/Loader';
 
 const AcceptedTasks = () => {
  const dispatch = useDispatch();
-  const { usersTasksByStatus } = useSelector(state => state.usersTasksByStatus)
+  const { usersTasksByStatus, isFetching } = useSelector(state => state.usersTasksByStatus)
   const history = useHistory();
   
   useEffect(() => {
@@ -35,6 +36,16 @@ const AcceptedTasks = () => {
       history.push(`/dashboard/task/view-task/`+ row.taskID)
     }
   };
+
+  // If the task list is been fetched from the server or not mounted on the ui, show the loader 
+  if(isFetching){
+    return(
+        <>
+            <Loader />
+        </>
+    )
+  }
+
   return (
     <div >
       
@@ -48,7 +59,7 @@ const AcceptedTasks = () => {
         enableSearch = { true }
         pagination = { paginationFactory() }
         // controlHeader = { navigate }
-        // rowEvents = { taskDetails }
+        rowEvents = { taskDetails }
         noDataIndication={'No available task'}
         filter={ filterFactory() }
         rowStyle={ rowStyle }
