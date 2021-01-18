@@ -7,18 +7,18 @@ import filterFactory, { selectFilter } from 'react-bootstrap-table2-filter';
 import { getTaskByStatus } from '../../../../actions/task/usersTasksByStatus';
 import { useDispatch, useSelector } from 'react-redux';
 
-const AcceptedTasks = () => {
+const PendingTasks = () => {
 
   const { usersTasksByStatus } = useSelector(state => state.usersTasksByStatus)
   const history = useHistory();
   const dispatch = useDispatch()
   
   useEffect(() => {
-    dispatch(getTaskByStatus(2));
+    dispatch(getTaskByStatus(1));
   }, [])
 
   console.log(getTaskByStatus, 'GETaccept')
-    console.log(usersTasksByStatus, 'accept')
+    console.log( usersTasksByStatus, 'accept')
 
   // adds checkbox to each row
   const selectRow = {
@@ -41,7 +41,7 @@ const AcceptedTasks = () => {
       
       <Table
         keyField='id'
-        title="Accepted Task"
+        title="Pending Tasks"
         data={ usersTasksByStatus }
         columns={taskHeader}
         bordered= { false }
@@ -89,4 +89,4 @@ const taskHeader = [
   },
 ];
 
-export default AcceptedTasks;
+export default PendingTasks;

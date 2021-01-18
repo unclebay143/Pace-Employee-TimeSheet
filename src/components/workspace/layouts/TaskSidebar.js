@@ -24,9 +24,9 @@ const TaskSidebar =() => {
                 <NavLink exact to="/dashboard/task/draft-task" className="mx-auto">
                   <Button
                     type="submit"
-                    label=" Draft Task"
-                    icon="fa fa-pen"
-                    className="btn pace-btn-primary mx-3"  
+                    label=" Draft Task "
+                    icon="fa fa-pen" 
+                    className="btn pace-btn-primary mx-3 btn-sm p-1"  
                   />
                 </NavLink> 
               )
@@ -35,14 +35,19 @@ const TaskSidebar =() => {
           <ul className="sidebar-menu list-unstyled">
             <li className="">
               <NavLink exact to="/dashboard/task/all-tasks" className="sidebar-link text-muted" activeClassName="active">
-                <i className="fa fa-download mr-3 text-gray"/><span>Inbox</span>
+                <i className="fa fa-download mr-3 text-gray"/><span> Task Inbox</span>
               </NavLink>
             </li>
-            <li className="">
-              <NavLink exact to="/dashboard/task/assigned-tasks" className="sidebar-link text-muted" activeClassName="active">
-                <i className="fa fa-location-arrow mr-3 text-gray"/><span>Assigned</span>
-              </NavLink>
-            </li>
+            {
+              // NO DISPLAY IN EMPLOYEE SIDEBAR
+               currentUserRoleID === 5 ? "" : (
+                <li className="">
+                  <NavLink exact to="/dashboard/task/assigned-tasks" className="sidebar-link text-muted" activeClassName="active">
+                    <i className="fa fa-location-arrow mr-3 text-gray"/><span>Assigned</span>
+                  </NavLink>
+                </li>
+               )
+            }
             <li className="">
               <NavLink exact to="/dashboard/task/accepted-tasks" className="sidebar-link text-muted" activeClassName="active">
                 <i className="fa fa-tasks mr-3 text-gray"/><span>Accepted</span>
@@ -56,7 +61,7 @@ const TaskSidebar =() => {
                 // EMPLOYEE SIDEBAR
                 <>
                   <li className="sidebar-list-item">
-                    <NavLink exact to="/dashboard/task/" className="sidebar-link text-muted" activeClassName="active">
+                    <NavLink exact to="/dashboard/task/pending-tasks" className="sidebar-link text-muted" activeClassName="active">
                       <i className="fa fa-reply-all mr-3 text-gray"/><span>Pending</span>
                     </NavLink>
                   </li>
@@ -71,7 +76,7 @@ const TaskSidebar =() => {
                 <>
                     
                     <li className="sidebar-list-item">
-                      <NavLink exact to="/dashboard/task" className="sidebar-link text-muted" activeClassName="active">
+                      <NavLink exact to="/dashboard/task/pending-tasks" className="sidebar-link text-muted" activeClassName="active">
                         <i className="fa fa-reply-all mr-3 text-gray"/><span>Pending</span>
                       </NavLink>
                     </li>

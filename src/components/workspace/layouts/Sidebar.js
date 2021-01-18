@@ -86,6 +86,7 @@ const Sidebar = () => {
                                    <li className="sidebar-list-item"><a href="." data-toggle="collapse" data-target="#report" aria-expanded="false" aria-controls="pages" className="sidebar-link text-muted" activeclassname="active"><i className="o-wireframe-1 mr-3 text-gray"></i><span>Report</span></a>
                                         <div id="report" className="collapse">
                                             <ul className="sidebar-menu list-unstyled border-left border-primary border-thick">
+                                                <li className="sidebar-list-item"><NavLink to="/dashboard/task-report" className="sidebar-link text-muted pl-lg-5">Task</NavLink></li>
                                                 <li className="sidebar-list-item"><NavLink to="/dashboard/timer-report" className="sidebar-link text-muted pl-lg-5">Timer</NavLink></li>
                                                 <li className="sidebar-list-item"><NavLink to="/dashboard/billing-report" className="sidebar-link text-muted pl-lg-5">Billing</NavLink></li>
                                             </ul>

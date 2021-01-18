@@ -1,8 +1,8 @@
 // React
 import { React, useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { Route, Switch } from 'react-router-dom/cjs/react-router-dom.min';
-import { useHistory } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 
 // Layouts
 import Navbar from '../layouts/Navbar';
@@ -33,33 +33,34 @@ import { syncCurrentUser } from '../../../actions/user/userAction';
 import TourContainer from '../../tour/config/TourContainer';
 import ChangePassword from '../../user/ChangePassword';
 import Calendar from '../../company/calendar/Calendar';
+import ManageCalendar from '../../company/calendar/ManageCalendar';
+import { welcomeBackLogger } from '../../../toaster';
+import { currentUserFromLocalStorage } from '../../../services/auth-header';
+import TaskReport from './reports/TaskReport';
 
 
 
 const Dashboard = () =>{
-    
+    const { welcome, isLoggedIn } = useSelector(state => state.authenticationState)
     const history = useHistory()
-    const dispatch = useDispatch()
+    const [redirect, setRedirect] = useState(false)
+    console.log(currentUserFromLocalStorage)
     useEffect(() => {
-        // const x = () =>{
-            //     // window.location.reload()
-            // }
-            // const b = window.confirm('welcome')
-            // if(b === true){
-                //     x()
-                // }else{
-                    //     console.log('what')
-                    // }
-        const currentUser  = JSON.parse(localStorage.getItem('currentUser'));
-        if( currentUser === null || currentUser === undefined ){
-            history.push('./login');
-        }else{
-            dispatch(syncCurrentUser( currentUser.staffID ))
-            // setTimeout(() => {
-            // }, 2000);
+        if(localStorage.getItem('token') === null){
+            setRedirect(true)
         }
-    }, [])
-
+    }, [isLoggedIn])
+        
+    useEffect(() => {
+        if(welcome){
+            welcomeBackLogger()
+        }
+    },[welcome]);
+    
+    if(redirect){
+        //  history.push('/login')
+        return <Redirect to="/login" push={true} />
+    }
 
     return(
         <>
@@ -76,6 +77,7 @@ const Dashboard = () =>{
                                 <Switch>
 
                                     <Route path="/dashboard/calendar" component={Calendar} />
+                                    <Route path="/dashboard/manageCalendar" component={ManageCalendar} />
 
                                     <Route path="/dashboard/todos" component={Todo} />
                                     <Route path="/dashboard/task" component={Task} />
@@ -96,6 +98,7 @@ const Dashboard = () =>{
                                     <Route exact path="/dashboard/employee/profile/update/:id" component={UpdateEmployeeProfile} />
 
                                     <Route exact path="/dashboard/billing-report" component={BillingReport} />
+                                    <Route exact path="/dashboard/task-report" component={TaskReport} />
                                     <Route exact path="/dashboard/timer-report" component={TimerReport} />
                                     {/* <Route exact path="/dashboard/task" component={EmployeeTasks} /> */}
                                     <Route exact path="/dashboard" component={Index} />

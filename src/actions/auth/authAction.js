@@ -8,7 +8,7 @@ import AuthService from "../../services/auth.service";
 import { logOutSuccessLogger } from "../../toaster";
 
 // Action Types
-import { END_TOUR } from "../types";
+import { END_TOUR, LOGOUT } from "../types";
 
 
 export const register = ({ companyName, email, password }, action) =>{
@@ -25,6 +25,6 @@ export const endTour = () => dispatch =>{
 
 export const logout = () => {
     logOutSuccessLogger()
-    AuthService.logout()
+    return AuthService.logout()
 };
 

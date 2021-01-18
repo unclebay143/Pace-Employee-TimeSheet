@@ -1,16 +1,15 @@
 // React
-import axios from 'axios';
 import { ErrorMessage, Form, Formik,Field } from 'formik';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import Button from '../../layouts/Button';
 import { TextInput } from '../../layouts/FormInput';
 import { useDispatch, useSelector } from 'react-redux';
-import { USER_PROFILE_URL } from '../../../services/root-endpoints';
-import { authHeader } from '../../../services/auth-header';
 import { Link } from 'react-router-dom';
-import { getCompanyEmployees } from '../../../actions/employee/employeeAction';
+import { getCompanyEmployees, updateEmployeeBillingAndWorkHour } from '../../../actions/employee/employeeAction';
 import { getDepartment } from '../../../actions/company/department/departmentAction';
+import Loader from '../../loader/Loader';
+import { profileUpdateCompletedLogger, profileUpdateFailLogger } from '../../../toaster';
 
 
 const employeeDetailsDropDown = {
@@ -37,8 +36,10 @@ const employeeDetailsDropDown = {
 const availableRole = employeeDetailsDropDown.employeeRole.map(({roleName, roleID}, index)=><option value={roleID} key={index}>{roleName}</option>);
 
 const UpdateEmployeeProfile = () =>{
-    
     const params = useParams()
+    const history = useHistory()
+    // const [staffID, setStaffID] = useState('');
+
     const { employees, isFetching } = useSelector(state => state.employees);
     const { departments } = useSelector(state => state.departments)
     const dispatch = useDispatch();
@@ -54,57 +55,55 @@ const UpdateEmployeeProfile = () =>{
     
     const companyDepartmentDropDown = departments.map(({departmentName, departmentID}, index)=><option value={departmentID} key={index}>{departmentName}</option>)
     useEffect(() => {
+        // Fetch company employess
         dispatch(getCompanyEmployees())
+
         // Fetch company department
         dispatch(getDepartment())
-
-    }, [])
-console.log(employeeProfile)
-useEffect(() => {
-    const getEmployeeProfile = employees.filter((employee)=>employee.staffID === parseInt(params.id))
-    console.log(employees);
-    if(getEmployeeProfile.length > 0){
-            setEmployeeProfile(getEmployeeProfile[0])
-            const {
-                firstName,
-                lastName,
-                phoneNumber,
-                email,
-                address,
-                userName,
-                billRateCharge,
-                expectedWorkHours,
-                staffRole,
-                roleID,
-                departmentID
-            } = getEmployeeProfile[0]
-        
-            // Set the destructure user information into the profile state (ES6 syntax)
-            setEmployeeProfile({
-                firstName,
-                lastName,
-                phoneNumber,
-                email,
-                address,
-                userName,
-                billRateCharge,
-                expectedWorkHours,
-                phoneNumber,
-                staffRole,
-                roleID,
-                departmentID
-            })
-        }else{
+    }, [dispatch])
+    useEffect(() => {
+        const getEmployeeProfile = employees.filter((employee)=>employee.staffID === parseInt(params.id))
+        if(getEmployeeProfile.length > 0){
+                setEmployeeProfile(getEmployeeProfile[0])
+                const {
+                    // firstName,
+                    // lastName,
+                    // phoneNumber,
+                    // email,
+                    // address,
+                    // userName,
+                    billRateCharge,
+                    expectedWorkHours,
+                    // staffRole,
+                    // roleID,
+                    // departmentID
+                } = getEmployeeProfile[0]
             
+                // Set the destructure user information into the profile state (ES6 syntax)
+                setEmployeeProfile({
+                    // firstName,
+                    // lastName,
+                    // phoneNumber,
+                    // email,
+                    // address,
+                    // userName,
+                    billRateCharge,
+                    expectedWorkHours,
+                    // staffRole,
+                    // roleID,
+                    // departmentID
+                })
+            }else{
+                
+            }
+        }, [employees, params.id])
+        if(employeeProfile === undefined){
+            return(
+                <>
+                    <Loader  />
+                </>
+            )
         }
-    }, [employees, params.id])
-    // if(employeeProfile === undefined){
-    //     return(
-    //         <>
-    //             {/* <Loader /> */}
-    //         </>
-    //     )
-    // }
     return ( 
         <>
             <div className="container">
@@ -144,20 +143,22 @@ useEffect(() => {
                                     enableReinitialize
                                     // validationSchema={UpdateEmployeeProfileSchema}
                                     onSubmit={(values, action)=>{
-                                        // dispatch(updateUserProfile(values, staffID, action));
+                                        dispatch(updateEmployeeBillingAndWorkHour(values, action, params.id))
+                                        // .then((response)=> history.push('/dashboard/employee/profile/'))
+                                        .then((response)=> history.goBack())
                                     }
                                     }
                                 >
                                     { (({ values, touched, errors, handleSubmit, isSubmitting, resetForm })=>{
                                         return <Form onSubmit={handleSubmit}>
                                             <div className="mb-5 text-gray">
-                                                <pre>{JSON.stringify(values, null, 2)}</pre>
-                                                <h5>EDIT EMPLOYEE PROFILE</h5>
+                                                {/* <pre>{JSON.stringify(values, null, 2)}</pre> */}
+                                                <h5>Update {employeeProfile.firstName} {employeeProfile.lastName} Billable</h5>
                                             </div>
                                             <hr />
 
                                             {/* FIRST NAME */}
-                                            <div className="row">
+                                            {/* <div className="row">
                                                 <div className="col-sm-6 col-md-3">
                                                     <h6 className="mb-0">First Name</h6>
                                                 </div>
@@ -168,6 +169,8 @@ useEffect(() => {
                                                         placeholder="Enter Firstname"
                                                         type="text" 
                                                         className={`form-control ${ touched.firstName && errors.firstName ? "is-invalid" : ""}`} 
+                                                        readOnly
+
                                                         />
                                                     <ErrorMessage
                                                         component="div"
@@ -176,10 +179,10 @@ useEffect(() => {
                                                         />
                                                 </div>
                                             </div>
-                                            <hr />
+                                            <hr /> */}
 
                                             {/* LAST NAME */}
-                                            <div className="row">
+                                            {/* <div className="row">
                                                 <div className="col-sm-6 col-md-3">
                                                     <h6 className="mb-0">Last Name</h6>
                                                 </div>
@@ -190,6 +193,8 @@ useEffect(() => {
                                                         type="text" 
                                                         className={`form-control ${touched.lastName && errors.lastName ? "is-invalid" : ""}`} 
                                                         id="lastName"
+                                                        readOnly
+
                                                     />
                                                     <ErrorMessage
                                                         component="div"
@@ -198,10 +203,10 @@ useEffect(() => {
                                                     />
                                                 </div>
                                             </div>
-                                            <hr />
+                                            <hr /> */}
 
                                             {/* USERNAME */}
-                                            <div className="row">
+                                            {/* <div className="row">
                                                 <div className="col-sm-6 col-md-3">
                                                     <h6 className="mb-0">Username</h6>
                                                 </div>
@@ -212,6 +217,8 @@ useEffect(() => {
                                                         type="text" 
                                                         className={`form-control ${touched.userName && errors.userName ? "is-invalid" : ""}`} 
                                                         id="userName"
+                                                        readOnly
+
                                                     />
                                                     <ErrorMessage
                                                         component="div"
@@ -220,7 +227,7 @@ useEffect(() => {
                                                     />
                                                 </div>
                                             </div>
-                                            <hr />
+                                            <hr /> */}
                                             
                                             {/* EXPECTED WORK HOUR */}
                                             <div className="row">
@@ -267,7 +274,7 @@ useEffect(() => {
                                             <hr />
 
                                             {/* PHONE NUMBER */}
-                                            <div className="row">
+                                            {/* <div className="row">
                                                 <div className="col-sm-6 col-md-3">
                                                     <h6 className="mb-0">Phone Number</h6>
                                                 </div>
@@ -278,6 +285,8 @@ useEffect(() => {
                                                         type="tel" 
                                                         className={`form-control ${touched.phone && errors.phone ? "is-invalid" : ""}`} 
                                                         id="phone"
+                                                        readOnly
+
                                                     />
                                                     <ErrorMessage
                                                         component="div"
@@ -286,10 +295,10 @@ useEffect(() => {
                                                     />
                                                 </div>
                                             </div>
-                                            <hr />
+                                            <hr /> */}
 
                                             {/* EMAIL ADDRESS */}
-                                            <div className="row">
+                                            {/* <div className="row">
                                                 <div className="col-sm-6 col-md-3">
                                                     <h6 className="mb-0">Email Address</h6>
                                                 </div>
@@ -300,6 +309,8 @@ useEffect(() => {
                                                         type="text" 
                                                         className={`form-control ${touched.email && errors.email ? "is-invalid" : ""}`} 
                                                         id="email"
+                                                        readOnly
+
                                                     />
                                                     <ErrorMessage
                                                         component="div"
@@ -308,10 +319,10 @@ useEffect(() => {
                                                     />
                                                 </div>
                                             </div>
-                                            <hr />
+                                            <hr /> */}
 
                                             {/* CREATE PASSWORD */}
-                                            <div className="row">
+                                            {/* <div className="row">
                                                 <div className="col-sm-6 col-md-3">
                                                     <h6 className="mb-0">New Password</h6>
                                                 </div>
@@ -322,18 +333,20 @@ useEffect(() => {
                                                         type="password" 
                                                         className={`form-control ${ touched.password && errors.password ? "is-invalid" : ""}`} 
                                                         id="password"
-                                                    />
+                                                        readOnly
+                                                        autoComplete="on"
+                                                        />
                                                     <ErrorMessage
                                                         component="div"
                                                         name="password"
                                                         className="invalid-feedback p-0"
-                                                    />
+                                                        />
                                                 </div>
                                             </div>
-                                            <hr />
+                                            <hr /> */}
 
                                             {/* CONFIRM PASSWORD */}
-                                            <div className="row">
+                                            {/* <div className="row">
                                                 <div className="col-sm-6 col-md-3">
                                                     <h6 className="mb-0">Confirm Password</h6>
                                                 </div>
@@ -344,6 +357,8 @@ useEffect(() => {
                                                         type="password" 
                                                         className={`form-control ${ touched.password2 && errors.password2 ? "is-invalid" : ""}`} 
                                                         id="password2"
+                                                        readOnly
+                                                        autoComplete="on"
                                                     />
                                                     <ErrorMessage
                                                         component="div"
@@ -352,10 +367,10 @@ useEffect(() => {
                                                     />
                                                 </div>
                                             </div>
-                                            <hr />
+                                            <hr /> */}
 
                                             {/* ADDRESS */}
-                                            <div className="row">
+                                            {/* <div className="row">
                                                 <div className="col-sm-6 col-md-3">
                                                     <h6 className="mb-0">Address</h6>
                                                 </div>
@@ -366,6 +381,8 @@ useEffect(() => {
                                                         type="text" 
                                                         placeholder="143 work and connect"
                                                         className={`form-control ${touched.address && errors.address ? "is-invalid" : ""}`}
+                                                        readOnly
+
                                                     />
                                                     <ErrorMessage
                                                         component="div"
@@ -374,15 +391,17 @@ useEffect(() => {
                                                     />
                                                 </div>
                                             </div>
-                                            <hr />
+                                            <hr /> */}
 
                                             {/* Role */}
-                                            <div className="row">
+                                            {/* <div className="row">
                                                 <div className="col-sm-6 col-md-3">
                                                     <h6 className="mb-0">Role</h6>
                                                 </div>
                                                 <div className="col-sm-12 col-md-9 text-secondary" >
-                                                    <Field component="select" name="roleID" className="form-control">
+                                                    <Field component="select" name="roleID" className="form-control"
+                                                        readOnly
+                                                    >
                                                         <option selected>Choose...</option>
                                                         {availableRole}
                                                     </Field>
@@ -393,12 +412,12 @@ useEffect(() => {
                                                     />
                                                 </div>
                                             </div>
-                                            <hr />
+                                            <hr /> */}
 
 
 
                                             {/* EMPLOYEE POSITION */}
-                                            <div className="row">
+                                            {/* <div className="row">
                                                 <div className="col-sm-6 col-md-3">
                                                     <h6 className="mb-0">Position</h6>
                                                 </div>
@@ -409,6 +428,8 @@ useEffect(() => {
                                                         type="text" 
                                                         className={`form-control ${touched.staffRole && errors.staffRole ? "is-invalid" : ""}`} 
                                                         id="staffRole"
+                                                        readOnly
+
                                                     />
                                                     <ErrorMessage
                                                         component="div"
@@ -417,15 +438,17 @@ useEffect(() => {
                                                     />
                                                 </div>
                                             </div>
-                                            <hr />
+                                            <hr /> */}
                                            
                                             {/* DEPARTMENT */}
-                                            <div className="row">
+                                            {/* <div className="row">
                                                 <div className="col-sm-6 col-md-3">
                                                     <h6 className="mb-0">Department</h6>
                                                 </div>
                                                 <div className="col-sm-12 col-md-9 text-secondary" >
-                                                    <Field component="select" name="departmentID" className="form-control">
+                                                    <Field component="select" name="departmentID" className="form-control"
+                                                        readOnly
+                                                    >
                                                         <option selected>Choose...</option>
                                                         {companyDepartmentDropDown}
                                                     </Field>
@@ -436,12 +459,12 @@ useEffect(() => {
                                                     />
                                                 </div>
                                             </div>
-                                            <hr />
+                                            <hr /> */}
                                             
                                             <div className="d-flex justify-content-between">
                                                 <Button 
                                                     type="submit" 
-                                                    label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Updating...</span>) : "Update"}
+                                                    label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Updating</span>) : "Update"}
                                                     className="btn pace-btn-primary" 
                                                 />
                                                 <Button 

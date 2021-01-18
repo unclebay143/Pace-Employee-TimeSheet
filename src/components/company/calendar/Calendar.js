@@ -1,18 +1,38 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Calendar as BigCalendar, momentLocalizer} from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import moment from 'moment';
 import Button from '../../layouts/Button';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCalendarEvent } from '../../../actions/company/calendar/calendarAction';
+import Loader from '../../loader/Loader';
+                    
 
-const myEventsList = [
-    {
-        title: 'Conference Meeting',
-        start: '01/01/2021',
-        end: '01/01/2021',
-    }
-]
 export default function Calendar() {
-    const localizer = momentLocalizer(moment)
+    const localizer = momentLocalizer(moment);
+    const { events, isFetching } = useSelector(state => state.calendar);
+    const [ eventsState, setEventsState ] = useState([]);
+    const [ isFetchingState, setIsFetchingState ] = useState(isFetching);
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(getCalendarEvent())
+        // console.log('snsnsn')
+        // setEventStates(events)
+    }, []);
+    
+    useEffect(() => {
+        if(events){
+            setEventsState(events)
+            setIsFetchingState(false)
+        }
+    }, [events]);
+ 
+    if(isFetchingState){
+        return(
+            <Loader />
+        )
+    }
     return (
         <>
             <style>
@@ -20,43 +40,25 @@ export default function Calendar() {
                     `
                     .rbc-calendar {
                         min-height: 500px ;
-                      }
+                        }
                     `
                 }
             </style>
             <div className="py-3">
-                <div className="container">
-                    <section className="row">
-                        <div className="col-6">
-                            <Button 
-                                label="New Event"
-                                className="btn btn-sm btn-info"
-                            />
-                        </div>
-                    </section>
-                    <div col="col-9">
-                        <section>
-                            <ul>
-                                <li>Come Home</li>
-                                <li>Start Date {Date.now()}</li>
-                                <li>End Date {Date.now()}</li>
-                            </ul>
-                        </section>
-                    </div>
-                </div>
-
-                {/* <section>
-                    <Button
-                        label="Manage Event"
-                        className="btn btn-sm pace-btn-accent mb-2"
-                    />
-                </section> */}
-                {/* <BigCalendar
+                <section>
+                    <Link to="/dashboard/manageCalendar">
+                        <Button
+                            label="Manage Event"
+                            className="btn btn-sm pace-btn-accent mb-2"
+                        />
+                    </Link>
+                </section>
+                <BigCalendar
                     localizer={localizer}
-                    events={myEventsList}
+                    events={eventsState}
                     startAccessor="start"
                     endAccessor="end"
-                /> */}
+                />
 
             </div>
         </>

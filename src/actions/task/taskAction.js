@@ -3,10 +3,11 @@ import {
   FETCH_TASKS_PENDING,
   FETCH_TASKS_SUCCESS,
   FETCH_TASKS_ERROR,
+  UPDATE_TASK_STATUS,
   ASSIGN_TASK,
   TASKS_ERROR,
   DELETE_TASK,
-  UPDATE_TASK,
+  EDIT_TASK,
   TOGGLE_TODO_COMPLETE,
   TOGGLE_TASK_COMPLETE
 } from '../types';
@@ -29,30 +30,13 @@ const getTasks = () => ( dispatch ) =>{
 // Add new Task 
 const assignTask  = (newTask) => (dispatch) =>{
   return TaskService.assignTask(newTask)
-  // .then((response) =>{
-  //     dispatch({
-  //         type: ASSIGN_TASK,
-  //         payload: response.data
-  //     })
-  // })
-  // .catch((error)=>{
-  //     console.log(error)
-  // })
 }
 
-// // Add new Task 
-// const addTask  = (newTask ) => (dispatch) =>{
-//   return TaskService.addTask(newTask )
-//   .then((response) =>{
-//       dispatch({
-//           type: ADD_TASK,
-//           payload: response.data
-//       })
-//   })
-//   .catch((error)=>{
-//       console.log(error)
-//   })
-// }
+// Update task status
+const updateTaskStatus = (taskStatus) => ( dispatch ) => {
+  return TaskService.updateTaskStatus(taskStatus);
+}
+
 
 // Delete Task 
 const deleteTask  = (id) => (dispatch) =>{
@@ -61,8 +45,8 @@ const deleteTask  = (id) => (dispatch) =>{
 }
 
 // Edit Task 
-const updateTask  = (id) => (dispatch) =>{
-  dispatch({ type: UPDATE_TASK, payload: id })
+const editTask  = (id) => (dispatch) =>{
+  dispatch({ type:EDIT_TASK, payload: id })
 }
 
 // Toggle todo completion
@@ -77,7 +61,8 @@ const toggleTaskCompletion = (id) =>{
 export {
   assignTask,
   getTasks,
-  updateTask,
+  editTask,
+  updateTaskStatus,
   deleteTask,
   toggleTaskCompletion
 }
