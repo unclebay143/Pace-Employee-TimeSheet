@@ -18,7 +18,7 @@ export const TODO_API_URL = 'https://pacetimesheet.herokuapp.com/api/todo/compan
 // TASK API
 export const ASSIGN_TASK_API_URL = 'https://pacetimesheet.herokuapp.com/api/tasks/companyName/newTask/';
 export const TASK_API_URL = 'https://pacetimesheet.herokuapp.com/api/tasks/companyName/';
-export const ACCEPTED_TASK_API_URL = 'http://fakerestapi.azurewebsites.net/api/v1/Activities';
+export const USERS_TASKS_BY_STATUS_API_URL = 'https://pacetimesheet.herokuapp.com/api/tasks/companyName/status/';
 export const ASSIGNED_TASK_API_URL = 'https://pacetimesheet.herokuapp.com/api/tasks/companyName/assignedTasks/';
 export const FETCH_COMPANY_TASK_SHEET_URL = 'https://pacetimesheet.herokuapp.com/api/taskSheet/companyName/departments/';
 export const UPDATE_TASK_STATUS_API_URL = 'https://pacetimesheet.herokuapp.com/api/tasks/companyName/editTaskStatus/';

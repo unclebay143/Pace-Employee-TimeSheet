@@ -4,43 +4,21 @@ import { useHistory } from 'react-router-dom';
 import Table from '../../layouts/Table';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import filterFactory, { selectFilter } from 'react-bootstrap-table2-filter';
-import { useDispatch } from 'react-redux';
-import { FETCH_TASKS_BY_STATUS_API_URL } from '../../../../services/root-endpoints';
-import { authHeader, currentUserCompanyID } from '../../../../services/auth-header';
-import axios from 'axios';
-import { somethingWentWrongLogger } from '../../../../toaster';
-import { formatDate } from '../../../../_helper/dateFormatter';
+import { getTaskByStatus } from '../../../../actions/task/usersTasksByStatus';
+import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../../../loader/Loader';
 
-// Set the departments component state
-const handleFormatDate = (selectedDepartmentTaskSheet) =>{
-  const formatedTaskSheet = selectedDepartmentTaskSheet.map((taskRecord)=> {
-    taskRecord.endDate = formatDate(taskRecord.endDate) 
-    taskRecord.dateCreated = formatDate(taskRecord.dateCreated) 
-    return taskRecord
-  })
-  return formatedTaskSheet
-}
-
 const AcceptedTasks = () => {
-
-  const [acceptedTasks, setAcceptedTasks] = useState([])
-  const [isLoading, setIsLoading] = useState(true)
+ const dispatch = useDispatch();
+  const { usersTasksByStatus, isFetching } = useSelector(state => state.usersTasksByStatus)
   const history = useHistory();
   
   useEffect(() => {
-    // Get all accepted tasks from the server
-    axios.get(FETCH_TASKS_BY_STATUS_API_URL + "2/" + currentUserCompanyID, { headers: authHeader } )
-    .then((response)=>{
-      // Set the response to the component state
-      setAcceptedTasks(handleFormatDate(response.data.data))
-      setIsLoading(false)
-    })
-    .catch((error)=>{
-      // somethingWentWrongLogger()
-      setIsLoading(false)
-    })
+    dispatch(getTaskByStatus(2));
   }, [])
+
+  console.log(getTaskByStatus, 'GETaccept')
+    console.log(usersTasksByStatus, 'accept')
 
   // adds checkbox to each row
   const selectRow = {
@@ -52,37 +30,36 @@ const AcceptedTasks = () => {
     cursor: 'pointer'
   }
   // routes to full task details page on double click
-  // const taskDetails =  {
-  //   onClick: (e, row, rowIndex) => 
-  //   { 
-  //       console.log(row)
-  //       history.push(`/dashboard/task/view-task/`+ row.taskID)
-  //   }
-  // };
+  const taskDetails =  {
+    onClick: (e, row, rowIndex) => 
+    { 
+      history.push(`/dashboard/task/view-task/`+ row.taskID)
+    }
+  };
 
-  if (isLoading){
+  // If the task list is been fetched from the server or not mounted on the ui, show the loader 
+  if(isFetching){
     return(
-      <>
-
-          <Loader />
-
-      </>
+        <>
+            <Loader />
+        </>
     )
   }
+
   return (
     <div >
       
       <Table
         keyField='id'
         title="Accepted Task"
-        data={acceptedTasks }
+        data={ usersTasksByStatus }
         columns={taskHeader}
         bordered= { false }
         selectRow = { selectRow }
         enableSearch = { true }
         pagination = { paginationFactory() }
         // controlHeader = { navigate }
-        // rowEvents = { taskDetails }
+        rowEvents = { taskDetails }
         noDataIndication={'No available task'}
         filter={ filterFactory() }
         rowStyle={ rowStyle }
@@ -92,17 +69,10 @@ const AcceptedTasks = () => {
 }
 
 const taskHeader = [
-     
+
   {
     dataField: 'taskName',
     text: 'Title',
-    headerAttrs: {
-      hidden:true
-    }
-  },
-  {
-    dataField: 'dateCreated',
-    text: 'Assigned Date',
     headerAttrs: {
       hidden:true
     }
@@ -115,15 +85,17 @@ const taskHeader = [
     }
   },
   {
-    dataField: 'completed',
-    text: 'Status',
+    dataField: 'documentsAttached',
+    text: 'Attachment',
+    formatter: (cell, row) => {
+      if(!cell){
+      return(
+        <i class="fa fa-paperclip" />
+      )}
+    },
     headerAttrs: {
       hidden:true
-    },
-    // formatter: cell => selectOptionsArr.filter(opt => opt.value === cell)[0].label || '',
-    //   filter: selectFilter({
-    //     options: selectOptionsArr
-    //   })
+    }
   },
 ];
 
