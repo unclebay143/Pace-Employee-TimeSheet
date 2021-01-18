@@ -16,6 +16,7 @@ import attachment from '../../pages/pages-images/v.jpg';
 const TaskDetails = () => {
   const {assignedTasks, isFetching } = useSelector(state => state.assignedTasks);
   const { tasks } = useSelector(state => state.tasks);
+  const { usersTasksByStatus } = useSelector(state => state.usersTasksByStatus)
   const params = useParams();
   const dispatch = useDispatch();
   const [taskDetails, setTaskDetails] = useState([{}]);
@@ -23,14 +24,20 @@ const TaskDetails = () => {
   console.log(assignedTasks);
   console.log(tasks, 'ttt');
 
-useEffect(() => {
-  const getTaskDetails = assignedTasks.filter((task)=>task.taskID === parseInt(params.id));
-    setTaskDetails(getTaskDetails[0])
-    console.log(getTaskDetails[0], 'gtd')
-  }, []);
+// useEffect(() => {
+//   const getTaskDetails = assignedTasks.filter((task)=>task.taskID === parseInt(params.id));
+//     setTaskDetails(getTaskDetails[0])
+//     console.log(getTaskDetails[0], 'gtd')
+//   }, []);
+
+// useEffect(() => {
+//   const getTaskDetails = tasks.filter((task)=>task.taskID === parseInt(params.id));
+//     setTaskDetails(getTaskDetails[0])
+//     console.log(getTaskDetails[0], 'taskgtds')
+//   }, []);
 
 useEffect(() => {
-  const getTaskDetails = tasks.filter((task)=>task.taskID === parseInt(params.id));
+  const getTaskDetails = usersTasksByStatus.filter((task)=>task.taskID === parseInt(params.id));
     setTaskDetails(getTaskDetails[0])
     console.log(getTaskDetails[0], 'taskgtds')
   }, []);
@@ -39,7 +46,9 @@ useEffect(() => {
     assignedID: taskDetails.assignedID,
     staffID: taskDetails.staffID,
     taskID: taskDetails.taskID,
-    taskStatus: taskDetails.taskStatus + 1,
+    // taskStatus: taskDetails.taskStatus + 1,
+    taskStatus: taskDetails.taskStatus <= 2 ? taskDetails.taskStatus + 1 : taskDetails.taskStatus 
+    // taskStatus: taskDetails.taskStatus === 4 ? taskDetails.taskStatus : taskDetails.taskStatus + 1
   }
 
 
