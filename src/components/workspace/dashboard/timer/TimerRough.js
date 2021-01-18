@@ -7,9 +7,10 @@ import Swal from 'sweetalert2';
 import useSound from 'use-sound';
 
 // Actions
-import { TIMER_OFF, SET_WORKED_MILLISECOND } from '../../../../actions/types';
+import { TIMER_OFF, SET_WORKED_MILLISECOND, TIMER_ON } from '../../../../actions/types';
 import notify from './notify.wav'
 import { initializeNewDayTimer, startTimer, stopTimer } from "../../../../actions/timer/timerAction";
+import { logout } from "../../../../actions/auth/authAction";
 
 const timerReminder = withReactContent(Swal)
 
@@ -112,10 +113,10 @@ const TimerRough=()=>{
     //             //     setisTimerOff(false)
     //             //     setTimerSessionExist(isTimerSessionExist)
     //             //     dispatch({ type: SET_WORKED_MILLISECOND, payload: currentMilliSecond})
-                    
+    
     //             // }, 1000);
     //         // }else{
-    //         //     onStart(start, getTime)
+        //         //     onStart(start, getTime)
     //         // }
     //     }
     //     // handleStart()
@@ -124,36 +125,82 @@ const TimerRough=()=>{
     // console.log(isTimerSessionExist !== '')
 
     const startTimerFunc = useRef()
-    const isThereTimerSession = JSON.parse(localStorage.getItem('currentMilliSecond')) || 0;
-    const [timerCounterStatus, setTimerCounterStatus] = useState(isThereTimerSession);
+    const defaultValue = 0;
+    const timerStore = 'currentMilliSecond';
+    const [timerSessionFromLocalStorage, setTimerSessionFromLocalStorage] = useState(()=>JSON.parse(localStorage.getItem(timerStore)) || defaultValue);
+    const [timerCounterStatus, setTimerCounterStatus] = useState(timerSessionFromLocalStorage); // set the timer in local storage or 0
+    
+    const handleSync = () =>{
+        localStorage.setItem(timerStore, startTimerFunc.current.getTime())
+        dispatch({ type: SET_WORKED_MILLISECOND, payload: startTimerFunc.current.getTime()  })
 
- 
+    }
+
     const handleStartTimer = () =>{
+        dispatch({type: TIMER_ON})
         setisTimerOff(false)
+        startTimerFunc.current.start()
         setInterval(() => {
-            localStorage.setItem('currentMilliSecond', startTimerFunc.current.getTime())
+            handleSync()
         },1000);
-        // startTimerFunc.current.start()
-    //    console.log(startTimerFunc.current.getTime())
     }
-    // if(isThereTimerSession){
-    //     handleStartTimer()
-    // }
-
+    
     const handleStopTimer = () =>{
-        setisTimerOff(true)
-        startTimerFunc.current.stop()
-    }
+        const stopMillisecond = startTimerFunc.current.getTime()
+        const convertedStopHour = Math.floor(stopMillisecond / 3600000)
+        startTimerFunc.current.pause()
 
+
+        timerReminder.fire({
+            showCloseButton: true,
+            showCancelButton: true,
+            cancelButtonColor: '#FF6584',
+            confirmButtonText: 'Yes, thanks',
+            cancelButtonText: 'Resume',
+            icon: 'warning',
+            title: 'Stop Timer?',
+            text: `you worked ${(convertedStopHour <= 1 ? (`${convertedStopHour} hour`) : (`${convertedStopHour} hours`))} are you through?.`,
+            footer: '<a href="">Why am I seeing this?</a>'
+        }).then((inputValue)=>{
+            if(inputValue.isConfirmed === true){
+                timerReminder.fire({
+                    title: 'Worked Hour Recorded',
+                    showCancelButton: true,
+                    showCancelButton: true,
+                    confirmButtonText: `Logout`,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    cancelButtonText: `Continue`,
+                    icon: 'success',
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                        dispatch(logout())
+                    }else{
+                        startTimerFunc.current.stop()
+                        setisTimerOff(true)
+                        localStorage.removeItem(timerStore)
+                        window.location.reload()
+                    }
+                  })
+                // dispatch({type: TIMER_OFF, hour: convertedStopHour})
+                // reset()
+            }else{
+                // console.log('resumeeeeeeee');
+                // resume()
+                startTimerFunc.current.resume()
+
+            }
+        })
+       
+    }
+    
     useEffect(() => {
-        if(isThereTimerSession){
-            setTimerCounterStatus(isThereTimerSession)
-        }else{
-            setTimerCounterStatus(0)
+        if(timerSessionFromLocalStorage){
+            handleStartTimer()
+            setTimerCounterStatus(timerSessionFromLocalStorage)
         }
-    }, [isThereTimerSession])
-    console.log(isThereTimerSession);
-    console.log(timerCounterStatus);
+    }, [setTimerCounterStatus, handleStartTimer, timerSessionFromLocalStorage])
+
     return(
         <>
             <li className="nav-item" h='4' data-tut='reactour__timer'>
@@ -184,19 +231,10 @@ const TimerRough=()=>{
                                                 
                                                 (
                                                     
-                                                    <button onClick={()=>
-                                                        // {
-
-                                                        handleStartTimer()
-                                                        // onStart(start, getTime)
-                                                        // handleStart(start, getTime)
-                                                    // }
-                                                        
-                                                    }
-                                                    id="start-time">
-                                                    
+                                                    <button 
+                                                        onClick={()=> handleStartTimer()}
+                                                        id="start-time">
                                                         Start Time
-                                                    
                                                     </button>
 
                                                 )

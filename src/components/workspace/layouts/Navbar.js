@@ -15,6 +15,7 @@ import { logout } from '../../../actions/auth/authAction'
 import { ToastContainer } from 'react-toastify';
 import { accessToken, currentUserFromLocalStorage, currentUserStaffID } from '../../../services/auth-header';
 import { syncCurrentUser } from '../../../actions/user/userAction';
+import TimerRough from '../dashboard/timer/TimerRough';
 
 
 const Navbar = () =>{
@@ -75,6 +76,7 @@ const Navbar = () =>{
                     </Link>
                     <ul className="ml-auto d-flex align-items-center list-unstyled mb-0">
                         <TimerContainer />
+                        {/* <TimerRough /> */}
                         <li className="nav-item dropdown mr-3 ml-4">
                             <a id="notifications" href="." data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" className="nav-link dropdown-toggle text-gray-400 px-1">
                                 <i className="fa fa-bell pace-primary-color"></i>

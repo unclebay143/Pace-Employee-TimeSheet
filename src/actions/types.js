@@ -44,6 +44,7 @@ export const GET_TIMER_REPORT = 'GET_TIMER_REPORT';
 export const TIMER_ON = 'TIMER_ON';
 export const TIMER_OFF = 'TIMER_OFF';
 export const SET_WORKED_MILLISECOND = 'SET_WORKED_MILLISECOND';
+export const SMOOVE_TIMER = 'SMOOVE_TIMER';
 
 // Task
 export const FETCH_TASKS_PENDING = 'FETCH_TASKS_PENDING';
