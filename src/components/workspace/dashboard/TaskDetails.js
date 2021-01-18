@@ -187,7 +187,7 @@ const TaskDetails = () => {
                                     <img src={unclebay} alt="sender profile" className="sender-image mr-2"/>
                                     <strong>Me</strong>
                                     <span className=""> </span> to
-                                    <strong> {assignedUser.email} </strong>
+                                    {/* <strong> {assignedUser.email} </strong> */}
                                   </>
                                 )
                               }
