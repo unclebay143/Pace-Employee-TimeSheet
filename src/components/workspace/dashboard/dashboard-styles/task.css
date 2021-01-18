@@ -1,3 +1,8 @@
+.task-sidebar .fa{
+    font-size: 14px;
+}
+
+
 input[type=datetime-local] {
     width: 28% !important;
     padding: 5px;
@@ -87,7 +92,9 @@ ul.attachment-wrapper li{
     font-size: 13px;
     color: #797979;   
     background: #EFEFEF;
-    padding: 5px;
+    color: #EFEFEF;
+    background-color: #335eea;
+    padding: 6px;
 }
 
 .compose-btn-wrapper{

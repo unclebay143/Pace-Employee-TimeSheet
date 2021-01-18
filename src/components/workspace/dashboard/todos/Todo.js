@@ -7,13 +7,13 @@ import TodoRows from './TodoRows';
 import TodoForm from './TodoForm';
 
 // Actions
-import { openTodoForm } from '../../../../actions/todo/todoAction';
+import { getTodos, openTodoForm } from '../../../../actions/todo/todoAction';
 import { netWorkError } from '../../../../toaster';
 
 const Todo = () => {
     const { error } = useSelector(state => state.todos);
     const dispatch = useDispatch();
-
+        // dispatch(getTodos())
     // useEffect(() => {
         // console.log('MOUNTED')
         if(error){

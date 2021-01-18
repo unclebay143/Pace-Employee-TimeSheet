@@ -1,6 +1,6 @@
 // React
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addNewEmployee } from '../../../actions/employee/employeeAction';
 import Button from '../../layouts/Button';
@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
 import { AddEmployeeSchema } from '../../Validation/Schema';
 import { emailAlreadyExist } from '../../../toaster';
 import Loader from '../../loader/Loader';
+import { getDepartment } from '../../../actions/company/department/departmentAction';
 
 const employeeDetailsDropDown = {
     employeeRole: [
@@ -50,10 +51,14 @@ const employeeAddedSuccessfully = () =>{
 
 const AddEmployee = () =>{
     const dispatch = useDispatch();
-
     // Department has department inside its state, destructuring departments array
     const { departments } = useSelector(state => state.departments)
-    
+
+    useEffect(() => {
+        // Fetch company department
+        console.log('here')
+        dispatch(getDepartment())
+    }, [dispatch])
     // Generate the dropdown of company departments
     const companyDepartmentDropDown = departments.map(({departmentName, departmentID}, index)=><option value={departmentID} key={index}>{departmentName}</option>)
     if(!departments || departments === undefined){
@@ -87,10 +92,11 @@ const AddEmployee = () =>{
                                         }
                                     }
 
-                                    // validationSchema={AddEmployeeSchema}
+                                    validationSchema={AddEmployeeSchema}
                                     onSubmit={(values, action)=>{
                                         dispatch(addNewEmployee(values))
                                         .then((response)=>{
+                                            console.log('adddd', response)
                                             action.setSubmitting(true)
                                             employeeAddedSuccessfully()
                                             action.setSubmitting(false)
@@ -131,7 +137,7 @@ const AddEmployee = () =>{
                                                 </div>
                                             </div>
                                             <hr />
-
+                                        
                                              {/* EMPLOYEE POSITION */}
                                              <div className="row">
                                                 <div className="col-sm-6 col-md-3">
@@ -140,7 +146,7 @@ const AddEmployee = () =>{
                                                 <div className="col-sm-12 col-md-9 text-secondary" >
                                                     <TextInput
                                                         name="staffRole"
-                                                        placeholder="Enter Role"
+                                                        placeholder="Enter Position"
                                                         type="text" 
                                                         className={`form-control ${touched.staffRole && errors.staffRole ? "is-invalid" : ""}`} 
                                                         id="staffRole"

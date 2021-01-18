@@ -1,9 +1,8 @@
 // React
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import { getCompanyEmployees } from '../../../actions/employee/employeeAction';
 import Button from '../../layouts/Button';
 import Loader from '../../loader/Loader';
@@ -33,15 +32,20 @@ const ProfileRow = (props) => {
 const EmployeeProfile = () =>{
     const params = useParams()
     const { employees, isFetching } = useSelector(state => state.employees)
-    const [ employeeProfile, setEmployeeProfile ] = useState([])
+    const [ employeeProfile, setEmployeeProfile ] = useState([{}])
     const dispatch = useDispatch()
-
     
+    useEffect(() => {
+        // fetch the company's employees from the server
+        dispatch(getCompanyEmployees())
+    },[dispatch])
+
+
     useEffect(() => {
         const getEmployeeProfile = employees.filter((employee)=>employee.staffID === parseInt(params.id))
         setEmployeeProfile(getEmployeeProfile[0])
-    }, [employees])
-    
+    }, [employees, params.id, setEmployeeProfile])
+
     if(employeeProfile === undefined){
         return(
             <>
@@ -49,6 +53,8 @@ const EmployeeProfile = () =>{
             </>
         )
     }
+
+    const fullName = employeeProfile.firstName + ' ' + employeeProfile.lastName
     return (
         <>
             <div className="container">
@@ -83,15 +89,15 @@ const EmployeeProfile = () =>{
                                         {/* <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width={150} /> */}
                                         <img src={unclebay} alt="Admin" className="rounded-circle" width={150} />
                                         <div className="mt-3">
-                                            <h4 className="text-capitalize">{employeeProfile.firstName} {employeeProfile.LastName}</h4>
+                                            <h4 className="text-capitalize">{employeeProfile.firstName === undefined ? '' : employeeProfile.firstName} {employeeProfile.lastName === undefined ? '' : employeeProfile.lastName}</h4>
                                             {/* <h4>{employeeProfile.id} </h4> */}
                                             {/* <h4>{params.id} </h4> */}
                                             <p className="text-secondary mb-1">Frontend Engineer</p>
                                             {/* <p className="text-muted font-size-sm">{employeeProfile.address.street}</p> */}
                                             <Link to={`/dashboard/employee/profile/update/${params.id}`}>
-                                                <Button className="btn btn-primary mr-2" label="Edit"/>
+                                                <Button className="btn btn-primary m-2 mr-2" label="Update  "/>
                                             </Link>
-                                            <Button className="btn btn-danger" label="Disable" />
+                                            <Button className="btn btn-danger m-2" label="Disable" />
                                         </div>
                                     </div>
                                 </div>
@@ -101,14 +107,15 @@ const EmployeeProfile = () =>{
                         <div className="col-md-8">
                             <div className="card mb-3">
                                 <div className="card-body">
-                                    <ProfileRow title="Full Name" label={ ` ${employeeProfile.firstName} ${employeeProfile.LastName}` } />
+                                    {/* <ProfileRow title="Full Name" label={ ` ${employeeProfile.firstName} ${employeeProfile.LastName}` } /> */}
+                                    <ProfileRow title="Full Name" label={ ` ${fullName === undefined ? ' smam ' : fullName}` } />
                                     <ProfileRow title="Email" label={employeeProfile.email} />
                                     <ProfileRow title="Department" label="Web development" />
                                     <ProfileRow title="Role" label="Frontend Engineer" />
-                                    <ProfileRow title="Salary" label={`# ${employeeProfile.billRateCharge}`} />
+                                    <ProfileRow title="Salary" label={ `# ${employeeProfile.billRateCharge === null ? '' : employeeProfile.billRateCharge}` } />
                                     <ProfileRow title="Phone" label={employeeProfile.phone} />
                                     {/* <ProfileRow title="Address" label={employeeProfile.address.city} /> */}
-                                    <ProfileRow title="Worked Hours" label={employeeProfile.workedHour} />
+                                    <ProfileRow title="Work Hours" label={employeeProfile.expectedWorkHours} />
                                 </div>
                             </div>
                         </div>

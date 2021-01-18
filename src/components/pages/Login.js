@@ -5,17 +5,15 @@ import { Formik, Form, ErrorMessage } from 'formik';
 import { Link, useHistory, withRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify'; 
 
-// Toast
-import { userIsAuthenticatedLogger} from '../../toaster';
-
 // Layouts
 import Button from '../layouts/Button';
 import loginImage from './pages-images/login-img.png';
 import { TextInput } from '../layouts/FormInput';
 import { loginSchema } from '../Validation/Schema';
 import { HomeButton } from '../layouts/HomeButton';
+
+// Actions
 import { login } from '../../actions/auth/authAction';
-import { syncCurrentUser } from '../../actions/user/userAction';
 
 /* Development fake user credentials */
 
@@ -25,8 +23,9 @@ import { syncCurrentUser } from '../../actions/user/userAction';
 //     lastName: 'Dummy',
 //     staffID: 123,
 //     companyID: 1928,
-//     roleID: 5
+//     roleID: 1
 // }
+
 // const token = 'wkknohsiosdoiwoihh.wohoifhfiohiohfiuhui.iuwiuhiuhfuhiuwhg'
 // localStorage.setItem('token', JSON.stringify(token))
 // localStorage.setItem('currentUser', JSON.stringify(data) )
@@ -34,30 +33,22 @@ import { syncCurrentUser } from '../../actions/user/userAction';
 
 
 const Login = () =>{
-
-    
+   
     const currentUserFromLocalStorage = JSON.parse(localStorage.getItem('currentUser'));
     const authenticationState = useSelector(state => state.authenticationState)
-
-    const history = useHistory();
     const dispatch = useDispatch()
-
+    const history = useHistory()
+    
     // Function to redirect user to the dashboard when there is a user in the local storage
     useEffect(() => {
         document.title = 'Login | Pace'
-    })
-    const redirector = () =>{
-        history.push('./dashboard');
-    }
-
-    // Conditonal Statement to check if a user is logged in
-    if(authenticationState.isLoggedIn){
-        userIsAuthenticatedLogger()
-        syncCurrentUser(currentUserFromLocalStorage.staffID)
-        const redirectUserToDashboard = setTimeout(redirector, 2000)
-        return(()=>clearTimeout(redirectUserToDashboard))
-    }
-
+        if(currentUserFromLocalStorage){
+            if(authenticationState.isLoggedIn){
+                history.push('./dashboard')
+            }
+        }
+    },[currentUserFromLocalStorage, authenticationState.isLoggedIn, history])
+    
     return(
         <div className="container">
             <main className="container d-lg-flex justify-content-center align-items-center mt-5">
@@ -80,8 +71,6 @@ const Login = () =>{
                             <h4 className="mb-5">Welcome back!</h4>
                         </div>
                         {/* message can be placed here */}
-                        
-                        
                         <div className="mt-5" name="form">
                             <div className="form-group mt-b">
                                 <Formik
@@ -138,7 +127,7 @@ const Login = () =>{
                                                 type="submit"
                                                 className="btn btn-primary"
                                                 disabled={isSubmitting}
-                                                label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Loading...</span>) : "Login"}
+                                                label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Loading</span>) : "Login"}
                                                 />
                                             <p>Create your workspace register <Link to="/signup">Here</Link></p>
                                             <span><Link to="/forgot">Forgot Passwords</Link></span>

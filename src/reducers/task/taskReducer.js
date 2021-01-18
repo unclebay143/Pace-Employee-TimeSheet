@@ -1,12 +1,17 @@
-import { FETCH_TASKS_PENDING, FETCH_TASKS_SUCCESS, DELETE_TASK, UPDATE_TASK, TOGGLE_TASK_COMPLETE } from '../../actions/types';
+import { ASSIGN_TASK, FETCH_TASKS_PENDING, FETCH_TASKS_SUCCESS, UPDATE_TASK_STATUS, DELETE_TASK, EDIT_TASK, TOGGLE_TASK_COMPLETE } from '../../actions/types';
 
 const initialState = {
   isFetching: false,
-  tasks: []
+  tasks: [],
 }
 
 const taskReducer = (state=initialState, action) => {
     switch(action.type){
+        case ASSIGN_TASK:
+            return {
+                ...state,
+                tasks: [action.payload, ...state.tasks]
+            }
 
         case FETCH_TASKS_PENDING:
             return {
@@ -21,13 +26,19 @@ const taskReducer = (state=initialState, action) => {
                 tasks: action.payload
             }
 
+        case UPDATE_TASK_STATUS:
+            return {
+                ...state, 
+                tasks: [action.payload, ...state.tasks]
+            }
+
         case DELETE_TASK:
             return {
                 ...state, 
                 tasks: state.tasks.filter((task)=>task.id !== action.payload)
             }
         
-        case UPDATE_TASK:
+        case EDIT_TASK:
             return {
                 ...state,
                 tasks: state.tasks.map( task =>  task.id === action.payload.id ? ( task = action.payload ) : task )

@@ -7,7 +7,8 @@ import {HashLink as ScrollLink} from 'react-router-hash-link';
 function Navbar() {
   return (
     <React.Fragment>
-      <nav className="navbar navbar-expand-lg navbar-light home-nav">
+      <div className="container">
+      <nav className="navbar navbar-expand-lg text-right navbar-light home-nav">
         <a href="../index.html" className="navbar-brand" id="logo">Pace</a>
         <Button 
           className="navbar-toggler" 
@@ -47,6 +48,7 @@ function Navbar() {
           <Link to="/signup" label="samuel" type="submit" className="navbar-btn btn btn-sm pace-btn pace-btn-outline-primary ml-auto">Get Started</Link>
         </div>
       </nav>
+      </div>
     </React.Fragment>
   )
 };

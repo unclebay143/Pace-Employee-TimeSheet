@@ -1,8 +1,8 @@
 // React
 import { React, useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { Route, Switch } from 'react-router-dom/cjs/react-router-dom.min';
-import { useHistory } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 
 // Layouts
 import Navbar from '../layouts/Navbar';
@@ -27,50 +27,42 @@ import CompanyProfile from '../../company/Settings/CompanyProfile';
 import Settings from '../../company/Settings/Settings';
 
 // Actions
-import { getTodos } from '../../../actions/todo/todoAction';
-import { getTasks } from '../../../actions/task/taskAction';
 import { syncCurrentUser } from '../../../actions/user/userAction';
-import { getDepartment } from '../../../actions/company/department/departmentAction';
-import { getCompanyEmployees } from '../../../actions/employee/employeeAction';
 
 // Tour
 import TourContainer from '../../tour/config/TourContainer';
+import ChangePassword from '../../user/ChangePassword';
+import Eschedule from '../../../components/workspace/dashboard/eShedule/Eshedule';
+import Calendar from '../../company/calendar/Calendar';
+import ManageCalendar from '../../company/calendar/ManageCalendar';
+import { welcomeBackLogger } from '../../../toaster';
+import { currentUserFromLocalStorage } from '../../../services/auth-header';
+import TaskReport from './reports/TaskReport';
+import PersonalTimeSheet from './timer/PersonalTimeSheet';
 
 
 
 const Dashboard = () =>{
-
+    const { welcome, isLoggedIn } = useSelector(state => state.authenticationState)
     const history = useHistory()
-    const dispatch = useDispatch()
-
+    const [redirect, setRedirect] = useState(false)
+    // console.log(currentUserFromLocalStorage)
     useEffect(() => {
-        const currentUser  = JSON.parse(localStorage.getItem('currentUser'));
-        if( currentUser === null || currentUser === undefined ){
-            history.push('./login');
+        if(localStorage.getItem('token') === null){
+            setRedirect(true)
         }
+    }, [isLoggedIn])
         
-        if ( currentUser ){
-            dispatch(syncCurrentUser( currentUser.staffID ))
-        }
-
-    },[])
-
     useEffect(() => {
-        // Fetch user todo list
-        dispatch(getTodos())
-
-        // Fetch user tasks
-        dispatch(getTasks())
-
-        // Fetch company department
-        dispatch(getDepartment())
-
-        // Fetc Company Employess
-        dispatch(getCompanyEmployees())
-
-
-    }, [dispatch, history])
-
+        if(welcome){
+            welcomeBackLogger()
+        }
+    },[welcome]);
+    
+    if(redirect){
+        //  history.push('/login')
+        return <Redirect to="/login" push={true} />
+    }
 
     return(
         <>
@@ -85,11 +77,17 @@ const Dashboard = () =>{
                             <div className="container-fluid dashboard-body-wrapper">
                 {/* >>>>> BODIES COMPONENTS SECTION <<<<< */}
                                 <Switch>
+
+                                    <Route path="/dashboard/calendar" component={Calendar} />
+                                    <Route path="/dashboard/e-schedule" component={Eschedule} />
+                                    <Route path="/dashboard/manageCalendar" component={ManageCalendar} />
+
                                     <Route path="/dashboard/todos" component={Todo} />
                                     <Route path="/dashboard/task" component={Task} />
 
                                     {/* users paths */}
                                     <Route exact path="/dashboard/profile/:id" component={Profile} />
+                                    <Route exact path="/dashboard/profile/changepassword/:id" component={ChangePassword} />
                                     <Route exact path="/dashboard/profile/update/:id" component={UpdateProfile} />
 
                                     {/* company paths */}
@@ -102,7 +100,11 @@ const Dashboard = () =>{
                                     <Route exact path="/dashboard/employee/profile/:id" component={EmployeeProfile} />
                                     <Route exact path="/dashboard/employee/profile/update/:id" component={UpdateEmployeeProfile} />
 
+                                    {/* Personal timesheet */}
+                                    <Route exact path="/dashboard/timesheet" component={PersonalTimeSheet} />
+
                                     <Route exact path="/dashboard/billing-report" component={BillingReport} />
+                                    <Route exact path="/dashboard/task-report" component={TaskReport} />
                                     <Route exact path="/dashboard/timer-report" component={TimerReport} />
                                     {/* <Route exact path="/dashboard/task" component={EmployeeTasks} /> */}
                                     <Route exact path="/dashboard" component={Index} />
