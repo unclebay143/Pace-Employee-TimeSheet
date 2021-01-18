@@ -139,6 +139,10 @@ const taskHeader = [
               return ( 
                 <i> completed </i>
                 )
+          case 4:
+              return ( 
+                <i> overdue </i>
+                )
           default: 
               break;
       }
