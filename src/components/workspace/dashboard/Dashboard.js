@@ -39,6 +39,7 @@ import { welcomeBackLogger } from '../../../toaster';
 import { currentUserFromLocalStorage } from '../../../services/auth-header';
 import TaskReport from './reports/TaskReport';
 import PersonalTimeSheet from './timer/PersonalTimeSheet';
+import TimerRough from './timer/TimerRough';
 
 
 
@@ -79,6 +80,7 @@ const Dashboard = () =>{
                                 <Switch>
 
                                     <Route path="/dashboard/calendar" component={Calendar} />
+                                    <Route path="/dashboard/timer-rough" component={TimerRough} />
                                     <Route path="/dashboard/e-schedule" component={Eschedule} />
                                     <Route path="/dashboard/manageCalendar" component={ManageCalendar} />
 

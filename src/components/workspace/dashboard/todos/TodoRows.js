@@ -1,5 +1,5 @@
 // React
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 // Layouts
@@ -17,11 +17,11 @@ const formatDate = ( date )=>{
     return dueDate;
 }
 
-
 const TodoRows = () => {
-
+    
     // Destructure todos from the todoReducer from store
     const { todos, pending } = useSelector((state)=>state.todos)
+    const [todosState, setTodosState] = useState([])
     const dispatch = useDispatch()
 
     // Invoke fetchTodos function to fetch todos from server
@@ -39,7 +39,7 @@ const TodoRows = () => {
     return (
         <>
         {
-            todos.map(({toDoID, title, completed, dueDate}, index)=>{
+            todos.map(({todoID, title, completed, dueDate}, index)=>{
                 return(
                     <li className="list-group-item" key={index}>
                         <div className={`todo-indicator ${ completed ? 'bg-primary' : 'bg-warning' }`} />
@@ -47,8 +47,8 @@ const TodoRows = () => {
                                 <div className="widget-content-wrapper">
                                 <div className="widget-content-left mr-2">
                                     <div className="custom-checkbox custom-control">
-                                        <input className="custom-control-input" id={toDoID} type="checkbox" />
-                                        <label className="custom-control-label" htmlFor={toDoID}>&nbsp;</label>
+                                        <input className="custom-control-input" id={todoID} type="checkbox" />
+                                        <label className="custom-control-label" htmlFor={todoID}>&nbsp;</label>
                                     </div>
                                 </div>
                                 <div className="widget-content-left">
@@ -70,12 +70,12 @@ const TodoRows = () => {
                                     <Button 
                                         className={` border-0 btn-transition btn todo-btn  { ${ completed ? "pending-icon" : "completed-icon"}`}
                                         icon={`${completed ? "fa fa-sync-alt" : "fa fa-check"}`}
-                                        onClick={(()=>dispatch(toggleTodoCompletion(toDoID)))}
+                                        onClick={(()=>dispatch(toggleTodoCompletion(todoID)))}
                                     />
                                     <Button 
                                         className="border-0 btn-transition btn todo-btn text-red"
                                         icon="fa fa-trash-alt"
-                                        onClick={(()=>dispatch(deleteTodo(toDoID)))}
+                                        onClick={(()=>dispatch(deleteTodo(todoID)))}
                                     />
                                 </div>
                             </div>
