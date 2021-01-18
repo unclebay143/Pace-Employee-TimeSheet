@@ -126,7 +126,7 @@ const TaskDetails = () => {
                         <div className="col-md-4">
                           <div className="compose-btn-wrapper">
                             {
-                              currentUserRoleID === 5 ? (
+                              currentUserRoleID === 5 || assignedUser === undefined ? (
                                 <>
                                   <Button 
                                     type="submit"
@@ -172,7 +172,7 @@ const TaskDetails = () => {
                           <div className="row">
                             <div className="col-md-8">
                               {
-                                currentUserRoleID === 5 ? (
+                                currentUserRoleID === 5 || assignedUser === undefined ? (
                                   <>
                                     <img src={unclebay} alt="sender profile" className="sender-image mr-2"/>
                                     <strong>Admin</strong>
@@ -187,7 +187,7 @@ const TaskDetails = () => {
                                     <img src={unclebay} alt="sender profile" className="sender-image mr-2"/>
                                     <strong>Me</strong>
                                     <span className=""> </span> to
-                                    {/* <strong> {assignedUser.email} </strong> */}
+                                    <strong> {assignedUser.email} </strong>
                                   </>
                                 )
                               }
