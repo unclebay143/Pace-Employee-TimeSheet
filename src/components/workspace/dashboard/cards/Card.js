@@ -1,6 +1,7 @@
 import { React } from 'react';
+import { Link } from 'react-router-dom';
 const Card = (props) => {
-    const { title, count, type, url, style, cardColor, icon } = props
+    const { title, count, url, style, cardColor, icon } = props
     // const cardColor = ["pace-bg-accent", "bg-green", "bg-red", "bg-blue"]
     return(
         <>
@@ -12,7 +13,9 @@ const Card = (props) => {
                             <h6 className="mb-0">{title}</h6><span className="text-gray">{count}</span>
                         </div>
                     </div>
-                    <div className={`icon text-white ${cardColor}`}><i className={`fas ${icon}`}></i></div>
+                    <Link to={url}>
+                        <div className={`icon text-white ${cardColor}`}><i className={`fas ${icon}`}></i></div>
+                    </Link>
                 </div>
             </div>
         </>
