@@ -6,7 +6,7 @@ import paginationFactory from 'react-bootstrap-table2-paginator';
 import filterFactory, { selectFilter } from 'react-bootstrap-table2-filter';
 import { useDispatch } from 'react-redux';
 import { FETCH_TASKS_BY_STATUS_API_URL } from '../../../../services/root-endpoints';
-import { authHeader, currentUserCompanyID } from '../../../../services/auth-header';
+import { authHeader, currentUserCompanyID, currentUserStaffID } from '../../../../services/auth-header';
 import axios from 'axios';
 import { somethingWentWrongLogger } from '../../../../toaster';
 import { formatDate } from '../../../../_helper/dateFormatter';
@@ -30,16 +30,22 @@ const AcceptedTasks = () => {
   
   useEffect(() => {
     // Get all accepted tasks from the server
-    axios.get(FETCH_TASKS_BY_STATUS_API_URL + "2/" + currentUserCompanyID, { headers: authHeader } )
-    .then((response)=>{
-      // Set the response to the component state
-      setAcceptedTasks(handleFormatDate(response.data.data))
-      setIsLoading(false)
-    })
-    .catch((error)=>{
-      // somethingWentWrongLogger()
-      setIsLoading(false)
-    })
+    // if(currentUserStaffID === 1){
+// alert('boss')
+        axios.get(FETCH_TASKS_BY_STATUS_API_URL + "2/" + currentUserCompanyID, { headers: authHeader } )
+        .then((response)=>{
+        // Set the response to the component state
+        setAcceptedTasks(handleFormatDate(response.data.data))
+        setIsLoading(false)
+      })
+      .catch((error)=>{
+        // somethingWentWrongLogger()
+        setIsLoading(false)
+      })
+    // }
+    if(currentUserStaffID === 5){
+      // alert('staff')
+    }
   }, [])
 
   // adds checkbox to each row
