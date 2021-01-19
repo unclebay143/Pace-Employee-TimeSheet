@@ -14,12 +14,12 @@ const initializeNewDayTimer = () => (dispatch) =>{
 
 const startTimer = () => (dispatch) =>{
     return TimerService.startTimer()
-    .then((response) => {
-        // console.log('timer action', response);
-    })
-    .catch((err) =>{
-        // console.log('timer err ', err)
-    })
+    // .then((response) => {
+    //     console.log('timer action', response);
+    // })
+    // .catch((err) =>{
+    //     console.log('timer err ', err)
+    // })
 }
 
 

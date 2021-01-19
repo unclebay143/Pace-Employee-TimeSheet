@@ -1,0 +1,39 @@
+import EscheduleRow from './EscheduleRow'
+
+const Eschedule = () => {
+    return(
+        <>
+
+        <div class="container m-5 p-2 rounded mx-auto bg-light shadow">
+            {/* Create eschedule section */}
+            <div className="row m-1 p-3">
+                <div className="col col-11 mx-auto">
+                <div className="row bg-white rounded shadow-sm p-2 add-eschedule-wrapper align-items-center justify-content-center">
+                    <div className="col">
+                    <input className="form-control form-control-lg border-0 add-eschedule-input bg-transparent rounded" type="text" placeholder="Add new .." />
+                    </div>
+                    <div className="col-4 m-0 px-2 d-flex align-items-center">
+                        <input type="datetime-local" id="testdate" name="testdate" className="form-control" defaultValue />
+                    </div>
+                    <div className="col-auto px-0 mx-0 mr-2">
+                    <button type="button" className="btn btn-primary">Add</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div className="p-2 mx-4 border-black-25 border-bottom" />
+            {/* eschedule list section */}
+            <div className="row mx-1 px-5 pb-3 w-80">
+                <div className="col mx-auto">
+                    <EscheduleRow />                
+                </div>
+            </div>
+            </div>
+
+
+        </>
+    )
+}
+
+
+export default Eschedule;

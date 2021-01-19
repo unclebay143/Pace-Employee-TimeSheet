@@ -32,7 +32,7 @@ import { syncCurrentUser } from '../../../actions/user/userAction';
 // Tour
 import TourContainer from '../../tour/config/TourContainer';
 import ChangePassword from '../../user/ChangePassword';
-import Eschedule from '../../../components/workspace/dashboard/eShedule/Eshedule';
+import Eschedule from './eSchedule/Eschedule';
 import Calendar from '../../company/calendar/Calendar';
 import ManageCalendar from '../../company/calendar/ManageCalendar';
 import { welcomeBackLogger } from '../../../toaster';

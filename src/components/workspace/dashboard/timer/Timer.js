@@ -72,16 +72,17 @@ console.log('shouldRemindUser', shouldRemindUser);
     const handleStartTimer = () =>{
         dispatch(startTimer())
         .then((response)=>{
-            if(!response.data === undefined){
-                dispatch({type: TIMER_ON})
-                setisTimerOff(false)
-                startTimerFunc.current.start()
-                setInterval(() => {
-                    handleSync()
-                },1000);
-            }else{
-                console.log(new Error('Error not understand')); // unknown error, rethrow it
-            }
+            // if(response){
+            console.log(response , 'from timer body')
+            dispatch({type: TIMER_ON})
+            setisTimerOff(false)
+            startTimerFunc.current.start()
+            setInterval(() => {
+                handleSync()
+            },1000);
+            // }else{
+            //     console.log(new Error('Error not understand')); // unknown error, rethrow it
+            // }
         })
         .catch((error)=>{
             console.log('error from startTimer', error)
