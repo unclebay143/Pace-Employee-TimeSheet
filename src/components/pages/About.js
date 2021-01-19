@@ -84,7 +84,7 @@ and understand how to boost you and your employees productivity.
             <section className="mt-5">
               <h3 className="mb-3">How it started</h3>
               <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis quisquam sit debitis harum esse necessitatibus iusto obcaecati unde eligendi perspiciatis et nostrum maxime, earum fugit sequi inventore! Odit, cupiditate velit!
+                Pace timesheet is a project the T-circuit embarked on at TIIDELab Circuit 2, this product is an outcome of their 6 months web development and soft skills, the project was first built with html, css and vanilla javascript in the first 4 months of the cohort and later developed with React Js and Node js.
               </p>
             </section>
           </article>

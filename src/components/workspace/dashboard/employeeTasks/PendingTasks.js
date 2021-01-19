@@ -7,6 +7,16 @@ import filterFactory, { selectFilter } from 'react-bootstrap-table2-filter';
 import { getTaskByStatus } from '../../../../actions/task/usersTasksByStatus';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../../../loader/Loader';
+import { formatDate } from '../../../../_helper/dateFormatter';
+
+const handleFormatDate = (selectedDepartmentTaskSheet) =>{
+  const formatedTaskSheet = selectedDepartmentTaskSheet.map((taskRecord)=> {
+    taskRecord.endDate = formatDate(taskRecord.endDate) 
+    // taskRecord.dateCreated = formatDate(taskRecord.dateCreated) 
+    return taskRecord
+  })
+  return formatedTaskSheet
+}
 
 const PendingTasks = () => {
 
@@ -53,7 +63,7 @@ const PendingTasks = () => {
       <Table
         keyField='id'
         title="Pending Tasks"
-        data={ usersTasksByStatus }
+        data={ handleFormatDate(usersTasksByStatus) }
         columns={taskHeader}
         bordered= { false }
         selectRow = { selectRow }

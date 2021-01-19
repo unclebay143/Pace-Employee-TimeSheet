@@ -45,7 +45,7 @@ const Profile = () =>{
     const [companyProfile, setCompanyProfile] = useState({});
   
     useEffect(() => {
-        const fetchCompanyProfile = async () =>{
+        const fetchCompanyProfile = () =>{
             axios.get(FETCH_COMPANY_PROFILE_API + currentUserCompanyID, { headers: authHeader })
             .then((response)=>setCompanyProfile(response.data.data[0]))
             .catch((error)=>console.log(error))
@@ -98,7 +98,8 @@ const Profile = () =>{
                                     <ProfileRow title="Company Type" label={companyProfile.companyType} />
                                     <ProfileRow title="Company Adjective" label={companyProfile.companyAdjective} />
                                     <ProfileRow title="Created Date" label={formatDate(companyProfile.dateCreated)} />
-                                    <Link to={`/dashboard/company/profile/update/${companyProfile.companyID}`}>
+                                    {/* <Link to={`/dashboard/company/profile/update/${companyProfile.companyID}`}> */}
+                                    <Link to={`/dashboard/company/profile/update/${currentUserCompanyID}`}>
                                         <Button className="btn btn-primary mr-2" label="Edit"/>
                                     </Link>
                                 </div>
