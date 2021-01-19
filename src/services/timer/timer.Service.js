@@ -9,7 +9,7 @@ const initializeTimerRecord = () =>{
 
 const startTimer = () =>{
     // return axios.put(START_TIMER_API + currentUserStaffID, { headers: authHeader });
-    return axios.put(START_TIMER_API + currentUserStaffID, { headers: authHeader });
+    return axios.get(START_TIMER_API + currentUserStaffID, { headers: authHeader });
 }
 
 const stopTimer = () =>{
