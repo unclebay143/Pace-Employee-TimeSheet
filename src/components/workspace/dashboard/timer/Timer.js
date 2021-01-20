@@ -1,5 +1,5 @@
 // React 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import Timer from 'react-compound-timer';
 import withReactContent from 'sweetalert2-react-content';
@@ -7,26 +7,27 @@ import Swal from 'sweetalert2';
 import useSound from 'use-sound';
 
 // Actions
-import { TIMER_OFF, SET_WORKED_MILLISECOND } from '../../../../actions/types';
+import { TIMER_OFF, SET_WORKED_MILLISECOND, TIMER_ON, SMOOVE_TIMER } from '../../../../actions/types';
 import notify from './notify.wav'
 import { initializeNewDayTimer, startTimer, stopTimer } from "../../../../actions/timer/timerAction";
+import { logout } from "../../../../actions/auth/authAction";
 
 const timerReminder = withReactContent(Swal)
 
 const TimerContainer=()=>{
-    const { timerIsOff } = useSelector(state => state.timerStatus)
-    const [ isTimerOff, setisTimerOff ] = useState(timerIsOff)
+    const { smooveTime } = useSelector(state => state.authenticationState)
+    // const { remindUser } = useSelector(state => state.timerSta)
+    const [ isTimerOff, setisTimerOff ] = useState(true)
     const [ shouldRemindUser ] = useState(isTimerOff)
-    const [ isTimerSessionExist, setTimerSessionExist ] = useState(null)
+    const [ timerStatus, setTimerStatus ] = useState()
     const dispatch = useDispatch()
     const [ playSound ] = useSound(
         notify, { volume: 0.25 }
     )
-
-
+console.log('shouldRemindUser', shouldRemindUser);
     useEffect(() => {
         const reminder = () => {
-            if(shouldRemindUser){
+            if(!shouldRemindUser){
                 timerReminder.fire({
                     showCloseButton: true,
                     showCancelButton: true,
@@ -37,77 +38,111 @@ const TimerContainer=()=>{
                     title: 'Reminder!',
                     text: 'Did you forget to start your time?.',
                     footer: '<a href="">Why am I seeing this?</a>',
+                }).then((inputValue)=>{
+                    if(inputValue.isConfirmed === true){
+                       return null
+                    }else{
+                        dispatch({type: SMOOVE_TIMER})
+                    }
                 })
                 playSound()
             }
         }
-        const reminderTracker = setTimeout(reminder, 300000);
+        const reminderTracker = setTimeout(reminder, smooveTime);
         
-        // setTimeout(() => {
-        //     reminder()
-        // }, 3000000)
-
         return(()=>{
             clearTimeout(reminderTracker)
         })
 
-    }, [shouldRemindUser, playSound])
+    }, [shouldRemindUser, playSound, smooveTime])
     
     
+    const startTimerFunc = useRef()
+    const defaultValue = 0;
+    const timerStore = 'currentMilliSecond';
+    const [timerSessionFromLocalStorage, setTimerSessionFromLocalStorage] = useState(()=>JSON.parse(localStorage.getItem(timerStore)) || defaultValue);
+    const [timerCounterStatus, setTimerCounterStatus] = useState(timerSessionFromLocalStorage); // set the timer in local storage or 0
+    
+    const handleSync = () =>{
+        localStorage.setItem(timerStore, startTimerFunc.current.getTime())
+        dispatch({ type: SET_WORKED_MILLISECOND, payload: startTimerFunc.current.getTime()  })
 
+    }
+
+    const handleStartTimer = () =>{
+        dispatch(startTimer())
+        .then((response)=>{
+            // if(response){
+            console.log(response , 'from timer body')
+            dispatch({type: TIMER_ON})
+            setisTimerOff(false)
+            startTimerFunc.current.start()
+            setInterval(() => {
+                handleSync()
+            },1000);
+            // }else{
+            //     console.log(new Error('Error not understand')); // unknown error, rethrow it
+            // }
+        })
+        .catch((error)=>{
+            console.log('error from startTimer', error)
+        })
+    }
     
-    const onStop = (stopMillsecond, resume, reset)=>{
-        dispatch(stopTimer())
-        const convertedStopHour = Math.floor(stopMillsecond / 3600000)
+    const handleStopTimer = () =>{
+        const stopMillisecond = startTimerFunc.current.getTime()
+        const convertedStopHour = Math.floor(stopMillisecond / 3600000)
+        startTimerFunc.current.pause()
+
+
         timerReminder.fire({
             showCloseButton: true,
             showCancelButton: true,
             cancelButtonColor: '#FF6584',
             confirmButtonText: 'Yes, thanks',
             cancelButtonText: 'Resume',
-            icon: 'warning',
+            icon: 'question',
             title: 'Stop Timer?',
             text: `you worked ${(convertedStopHour <= 1 ? (`${convertedStopHour} hour`) : (`${convertedStopHour} hours`))} are you through?.`,
             footer: '<a href="">Why am I seeing this?</a>'
         }).then((inputValue)=>{
             if(inputValue.isConfirmed === true){
-                setisTimerOff(true)
-                dispatch({type: TIMER_OFF, hour: convertedStopHour})
-                reset()
+                timerReminder.fire({
+                    title: 'Worked Hour Recorded',
+                    showCancelButton: true,
+                    showCancelButton: true,
+                    cancelButtonColor: '#3085d6',
+                    cancelButtonText: `Continue`,
+                    confirmButtonText: `Logout`,
+                    confirmButtonColor: '#d33',
+                    icon: 'success',
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                        dispatch(logout())
+                    }else{
+                        dispatch({type: TIMER_OFF, hour: convertedStopHour})
+                        startTimerFunc.current.stop()
+                        setisTimerOff(true)
+                        localStorage.removeItem(timerStore)
+                        window.location.reload()
+                    }
+                  })
             }else{
-                console.log('resumeeeeeeee');
-                resume()
+                startTimerFunc.current.resume()
             }
         })
+       
     }
-    const onStart = (start, getTime) =>{
-        start()
-        dispatch(startTimer())
-        setInterval(() => {
-            const currentMilliSecond = getTime();
-            localStorage.setItem('currentMilliSecond', JSON.stringify(currentMilliSecond))
-            setisTimerOff(false)
-            dispatch({ type: SET_WORKED_MILLISECOND, payload: currentMilliSecond})
-            
-        }, 1000);
-    }
+    
+    useEffect(() => {
+        if(timerSessionFromLocalStorage){
+            handleStartTimer()
+            setTimerCounterStatus(timerSessionFromLocalStorage)
+        }
+    }, [setTimerCounterStatus, handleStartTimer, timerSessionFromLocalStorage])
 
-    // useEffect(() => {
-        // const isTimerSessionExist = localStorage.getItem('currentMilliSecond')
-        // if(isTimerSessionExist){
-        //     console.log('session', Number(isTimerSessionExist) )
-        //     dispatch({ type: TIMER_ON })
-        //     setInterval(() => {
-        //         const currentMilliSecond = Number(isTimerSessionExist);
-        //         localStorage.setItem('currentMilliSecond', JSON.stringify(currentMilliSecond))
-        //         setisTimerOff(false)
-        //         setTimerSessionExist(isTimerSessionExist)
-        //         dispatch({ type: SET_WORKED_MILLISECOND, payload: currentMilliSecond})
-                
-        //     }, 1000);
-        // }
-    // })
 
+    
     
     return(
         <>
@@ -115,32 +150,26 @@ const TimerContainer=()=>{
                 <div id="searchForm" className="ml-auto d-non d-lg-block">
                     <div className="position-relative mb-0">
                         <div id="right-i">
-                            {/* <button onClick={()=>dispatch(initializeNewDayTimer())}>initialize timer</button> */}
                             <Timer
-                                initialTime={ isTimerSessionExist ? Number(isTimerSessionExist) : 0 }
-                                startImmediately={ isTimerSessionExist ? true : false}
-                                >
-                                {({ resume, start, stop, getTime, reset }) => (
+                                initialTime={ timerCounterStatus }
+                                startImmediately={ false }
+                            >
+                                {(control) => {
+                                    startTimerFunc.current = control;
+                                    return(
                                     <>
                                         <div id="right-i">
-                                            {/* {console.log(Hours())} */}
                                             {
 
                                                 isTimerOff ?
                                                 
                                                 (
                                                     
-                                                    <button onClick={()=>{
-
-                                                        
-                                                        onStart(start, getTime)
-                                                    }
-                                                        
-                                                    }
-                                                    id="start-time">
-                                                    
+                                                    <button 
+                                                        onClick={()=> handleStartTimer()}
+                                                        id="start-time"
+                                                    >
                                                         Start Time
-                                                    
                                                     </button>
 
                                                 )
@@ -148,18 +177,11 @@ const TimerContainer=()=>{
                                                 (
 
                                                     <button 
-                                                        onClick={()=>{
-                                                            const stopTime = getTime();
-                                                            onStop(stopTime, resume, reset)
-                                                            stop()
-                                                            // reset()
-                                                        }} 
+                                                        onClick={()=>handleStopTimer()}
                                                         id="start-time"
                                                         className="bg-red"
                                                     >
-
                                                         Stop Time
-                                                    
                                                     </button>
 
                                                 )
@@ -180,7 +202,7 @@ const TimerContainer=()=>{
                                             </div>
                                         </div>
                                     </>
-                                )}
+                                )}}
                             </Timer>
                         </div>
                     </div>
@@ -189,8 +211,5 @@ const TimerContainer=()=>{
         </>
     )
 }
-
-
-
 
 export default TimerContainer;

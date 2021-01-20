@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 
 //Layout
 import Button from '../layouts/Button';
-import unclebay from '../pages/pages-images/ayodele_samuel_adebayo.jpg';
+import avatar from '../pages/pages-images/profileAvatar.svg';
 
 // Toaster
 import Loader from '../loader/Loader';
@@ -117,7 +117,7 @@ const Profile = () =>{
                                 <div className="card-body">
                                     <div className="d-flex flex-column align-items-center text-center">
                                         {/* <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width={150} /> */}
-                                        <img src={unclebay} alt="Admin" className="rounded-circle" width={150} />
+                                        <img src={avatar} alt="Admin" className="rounded-circle" width={150} />
                                         <div className="mt-3">
                                             <h4 className="text-capitalize">{userProfile.firstName} {userProfile.lastName}</h4>
                                             <h4>{userProfile.id} </h4>

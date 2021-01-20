@@ -13,24 +13,25 @@ import { formatDate } from '../../../../_helper/dateFormatter';
 import Loader from '../../../loader/Loader';
 import { getTasks } from '../../../../actions/task/taskAction';
 
+// Set the departments component state
 const handleFormatDate = (selectedDepartmentTaskSheet) =>{
   const formatedTaskSheet = selectedDepartmentTaskSheet.map((taskRecord)=> {
     taskRecord.endDate = formatDate(taskRecord.endDate) 
-    // taskRecord.dateCreated = formatDate(taskRecord.dateCreated) 
+    taskRecord.dateCreated = formatDate(taskRecord.dateCreated) 
     return taskRecord
   })
   return formatedTaskSheet
 }
 
-const PendingTasks = () => {
+const CompletedTasks = () => {
   const { tasks } = useSelector(state => state.tasks)
-  const [pendingTasks, setPendingTasks] = useState([])
+  const [completedTasks, setCompletedTasks] = useState([])
   const [taskState, setTaskState] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const dispatch = useDispatch()
   const history = useHistory();
 
-console.log(pendingTasks);
+console.log(completedTasks);
   
   useEffect(() => {
     // get all tasks
@@ -41,15 +42,15 @@ console.log(pendingTasks);
   useEffect(() => {
     if(currentUserRoleID === 5){ // check if the user is an employee, then run this
       setTaskState(tasks) // set the TaskState to tasks for the component to know about the update
-      const getPendingTasks = taskState.filter((task)=>task.taskStatus === 1) // filter out the tasks with status 2
-      setPendingTasks(handleFormatDate(getPendingTasks))
+      const getCompletedTasks = taskState.filter((task)=>task.taskStatus === 3) // filter out the tasks with status 2
+      setCompletedTasks(handleFormatDate(getCompletedTasks))
       setIsLoading(false)
     }else{ // else run this block
       // Get all accepted tasks from the server
-      axios.get(FETCH_TASKS_BY_STATUS_API_URL + "1/" + currentUserCompanyID, { headers: authHeader } )
+      axios.get(FETCH_TASKS_BY_STATUS_API_URL + "3/" + currentUserCompanyID, { headers: authHeader } )
       .then((response)=>{
         // Set the response to the component state
-        setPendingTasks(handleFormatDate(response.data.data))
+        setCompletedTasks(handleFormatDate(response.data.data))
         setIsLoading(false)
       })
       .catch((error)=>{
@@ -58,9 +59,6 @@ console.log(pendingTasks);
       })
     }
   }, [tasks, taskState])
-
-  console.log(getTaskByStatus, 'GETaccept')
-    console.log( usersTasksByStatus, 'accept')
 
   // adds checkbox to each row
   const selectRow = {
@@ -72,36 +70,34 @@ console.log(pendingTasks);
     cursor: 'pointer'
   }
   // routes to full task details page on double click
-  const taskDetails =  {
-    onClick: (e, row, rowIndex) => 
-    { 
-      history.push(`/dashboard/task/view-task/`+ row.taskID)
-    }
-  };
-
-  // If the task list is been fetched from the server or not mounted on the ui, show the loader 
-  if(isFetching){
-    return(
-        <>
-            <Loader />
-        </>
+  // const taskDetails =  {
+  //   onClick: (e, row, rowIndex) => 
+  //   { 
+  //       console.log(row)
+  //       history.push(`/dashboard/task/view-task/`+ row.taskID)
+  //   }
+  // };
+  if(isLoading){
+    return (
+      <>
+        <Loader />        
+      </>
     )
   }
-
   return (
     <div >
       
       <Table
         keyField='id'
-        title="Pending Tasks"
-        data={ handleFormatDate(usersTasksByStatus) }
+        title="Completed Tasks"
+        data={completedTasks }
         columns={taskHeader}
         bordered= { false }
         selectRow = { selectRow }
         enableSearch = { true }
         pagination = { paginationFactory() }
         // controlHeader = { navigate }
-        rowEvents = { taskDetails }
+        // rowEvents = { taskDetails }
         noDataIndication={'No available task'}
         filter={ filterFactory() }
         rowStyle={ rowStyle }
@@ -111,9 +107,17 @@ console.log(pendingTasks);
 }
 
 const taskHeader = [
+     
   {
     dataField: 'taskName',
     text: 'Title',
+    headerAttrs: {
+      hidden:true
+    }
+  },
+  {
+    dataField: 'dateCreated',
+    text: 'Assigned Date',
     headerAttrs: {
       hidden:true
     }
@@ -126,18 +130,16 @@ const taskHeader = [
     }
   },
   {
-    dataField: 'documentsAttached',
-    text: 'Attachment',
-    formatter: (cell, row) => {
-      if(!cell){
-      return(
-        <i class="fa fa-paperclip" />
-      )}
-    },
+    dataField: 'completed',
+    text: 'Status',
     headerAttrs: {
       hidden:true
-    }
+    },
+    // formatter: cell => selectOptionsArr.filter(opt => opt.value === cell)[0].label || '',
+    //   filter: selectFilter({
+    //     options: selectOptionsArr
+    //   })
   },
 ];
 
-export default PendingTasks;
+export default CompletedTasks;

@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import { authHeader, currentUserCompanyID } from '../../../services/auth-header';
 import { FETCH_COMPANY_PROFILE_API } from '../../../services/root-endpoints';
 import CompanyService from '../../../services/company/company-service';
+import swal from 'sweetalert';
 
 const UpdateCompanyProfile = () =>{
     const params = useParams();
@@ -45,7 +46,7 @@ const UpdateCompanyProfile = () =>{
                                 </Link>
                             </li>
                             <li className="breadcrumb-item" aria-current="page">
-                                <Link to={`/dashboard/company/profile/${2}`} className="text-grey">
+                                <Link to={`/dashboard/company/profile/${params.id}`} className="text-grey">
                                         Company Profile
                                 </Link>
                             </li>
@@ -73,7 +74,21 @@ const UpdateCompanyProfile = () =>{
                                     // validationSchema={UpdateCompanyProfileSchema}
                                     onSubmit={(values, action)=>{
                                         CompanyService.updateCompanyProfile(values, action)
-                                        .then(()=>alert('kkk'))
+                                        .then((response)=>{
+                                            swal({
+                                                title: 'Record Updated',
+                                                icon: 'success'
+                                            })
+                                            action.setSubmitting(false)
+                                        })
+                                        .catch((error)=>{
+                                            swal({
+                                                title: 'Error, try again',
+                                                icon: 'warning'
+                                            })
+                                            action.setSubmitting(false)
+                                        })
+
                                     }
                                     }
                                 >
@@ -198,7 +213,7 @@ const UpdateCompanyProfile = () =>{
                                             <div className="d-flex justify-content-between">
                                                 <Button 
                                                     type="submit" 
-                                                    label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Updating...</span>) : "Update"}
+                                                    label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Updating</span>) : "Update"}
                                                     className="btn pace-btn-primary" 
                                                 />
                                                 <Button 

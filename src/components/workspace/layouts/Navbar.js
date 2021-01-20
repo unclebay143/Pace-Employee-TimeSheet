@@ -13,8 +13,12 @@ import { logout } from '../../../actions/auth/authAction'
 
 // Toast
 import { ToastContainer } from 'react-toastify';
-import { accessToken, currentUserFromLocalStorage, currentUserStaffID } from '../../../services/auth-header';
+import { accessToken, currentUserFromLocalStorage, currentUserRoleID, currentUserStaffID } from '../../../services/auth-header';
 import { syncCurrentUser } from '../../../actions/user/userAction';
+import TimerRough from '../dashboard/timer/TimerRough';
+
+import avatar from '../../../components/pages/pages-images/profileAvatar.svg'
+import femaleAvatar from '../../../components/pages/pages-images/femaleAvatar.svg'
 
 
 const Navbar = () =>{
@@ -75,6 +79,7 @@ const Navbar = () =>{
                     </Link>
                     <ul className="ml-auto d-flex align-items-center list-unstyled mb-0">
                         <TimerContainer />
+                        {/* <TimerRough /> */}
                         <li className="nav-item dropdown mr-3 ml-4">
                             <a id="notifications" href="." data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" className="nav-link dropdown-toggle text-gray-400 px-1">
                                 <i className="fa fa-bell pace-primary-color"></i>
@@ -132,7 +137,19 @@ const Navbar = () =>{
                         <li className="nav-item dropdown ml-auto" h='7' data-tut='reactour__profileImage'>
                             <a id="userInfo" href="." data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" className="nav-link dropdown-toggle">
                                 {/* <img src={user_Image} alt={user_first_name} style={{maxWidth:"2.5rem"}} className="img-fluid rounded-circle shadow" /> */}
-                                <img src='https://github.com/unclebay143.png' alt='unclebay' style={{maxWidth:"2.5rem"}} className="img-fluid rounded-circle shadow" />
+                                {
+                                    currentUserRoleID === 5 ? (
+                                        <>
+                                            <img src={femaleAvatar} alt='unclebay' style={{maxWidth:"2.5rem"}} className="img-fluid rounded-circle shadow" />
+                                        </>
+                                    )
+                                    :
+                                    (
+                                        <>
+                                            <img src={avatar} alt='unclebay' style={{maxWidth:"2.5rem"}} className="img-fluid rounded-circle shadow" />
+                                        </>
+                                    )
+                                }
                             </a>
                             <div aria-labelledby="userInfo" className="dropdown-menu">
                                 <a href="/" className="dropdown-item">

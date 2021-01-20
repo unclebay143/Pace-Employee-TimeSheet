@@ -4,18 +4,49 @@ import { useHistory } from 'react-router-dom';
 import Table from '../../layouts/Table';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import filterFactory, { selectFilter } from 'react-bootstrap-table2-filter';
-import { getTaskByStatus } from '../../../../actions/task/usersTasksByStatus';
 import { useDispatch, useSelector } from 'react-redux';
+import { FETCH_TASKS_BY_STATUS_API_URL } from '../../../../services/root-endpoints';
+import { authHeader, currentUserCompanyID, currentUserRoleID, currentUserStaffID } from '../../../../services/auth-header';
+import axios from 'axios';
+import { somethingWentWrongLogger } from '../../../../toaster';
+import { formatDate } from '../../../../_helper/dateFormatter';
 import Loader from '../../../loader/Loader';
+import { getTasks } from '../../../../actions/task/taskAction';
 
 const AcceptedTasks = () => {
- const dispatch = useDispatch();
-  const { usersTasksByStatus, isFetching } = useSelector(state => state.usersTasksByStatus)
+  const { tasks } = useSelector(state => state.tasks)
+  const [taskState, setTaskState] = useState([])
+  const dispatch = useDispatch()
+  const [acceptedTasks, setAcceptedTasks] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
   const history = useHistory();
   
   useEffect(() => {
-    dispatch(getTaskByStatus(2));
-  }, [])
+    // get all tasks
+    dispatch(getTasks())
+  }, [dispatch])
+
+
+  useEffect(() => {
+
+      if(currentUserRoleID === 5){ // check if the user is an employee, then run this
+        setTaskState(tasks) // set the TaskState to tasks for the component to know about the update
+        const getAcceptedTasks = taskState.filter((task)=>task.taskStatus === 2) // filter out the tasks with status 2
+        setAcceptedTasks(handleFormatDate(getAcceptedTasks))
+        setIsLoading(false)
+      }else{ // else run this block
+        axios.get(FETCH_TASKS_BY_STATUS_API_URL + "2/" + currentUserCompanyID, { headers: authHeader } )
+        .then((response)=>{
+          // Set the response to the component state
+          setAcceptedTasks(handleFormatDate(response.data.data))
+          setIsLoading(false)
+        })
+        .catch((error)=>{
+          // somethingWentWrongLogger()
+          setIsLoading(false)
+        })
+      }
+  }, [tasks, taskState])
 
   console.log(getTaskByStatus, 'GETaccept')
     console.log(usersTasksByStatus, 'accept')

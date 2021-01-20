@@ -14,7 +14,6 @@ import { getCompanyEmployees } from '../../../actions/employee/employeeAction';
 
 
 export default  function EmployeeList(){
-  // set usestate for isFetching too
   const { employees, isFetching } = useSelector(state => state.employees)
   const [ employeesList, setEmployeesList ] = useState([])
   const [ isFetchingState, setIsFetchingState ] = useState(isFetching)

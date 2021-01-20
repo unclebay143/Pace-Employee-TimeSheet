@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Table from '../../layouts/Table';
 import paginationFactory from 'react-bootstrap-table2-paginator';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCompanyTimerReport } from '../../../../actions/timer/timerAction';
 
 
 const Header = [
@@ -65,7 +66,13 @@ const Header = [
 
 
 const TimerReport = () => {
-    const usersDetails = useSelector(state => state.timerReport)  
+    const usersDetails = useSelector(state => state.timerReport);
+    const dispatch = useDispatch();
+    
+    useEffect(() => {
+      dispatch(fetchCompanyTimerReport())
+    }, [])
+    
     return (
         <div className="container-fluid py-5">
           <Table

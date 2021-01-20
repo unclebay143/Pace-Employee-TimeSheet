@@ -148,6 +148,115 @@ const Pricing = () => {
             </div>
         </div> */}
         {/* </div> */}
+       <div className="container py-3 mb-5">
+           <h3 className='text-center mb-4'><span className="pace-accent-color">Frequestly Asked</span> <span className="pace-primary-color">Questions</span></h3>
+            <div className="row">
+                <div className="col-12 mx-auto">
+                    <div className="accordion" id="paceFaq">
+                        <div className="card">
+                            <div className="card-header p-2" id="headingOne">
+                                <h5 className="mb-0">
+                                    <button className="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        Q: How does this work?
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapseOne" className="collapse show" aria-labelledby="headingOne" data-parent="#paceFaq">
+                                <div className="card-body">
+                                    <b>Answer:</b> Register your a workspace for your company or Team, invite or employ your staffs, assign tasks to them and monitor their tasks progress and time.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div className="card">
+                        <div className="card-header p-2" id="headingTwo">
+                            <h5 className="mb-0">
+                            <button className="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Q: How do I start?
+                            </button>
+                            </h5>
+                        </div>
+                        <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo" data-parent="#paceFaq">
+                            <div className="card-body">
+                                Very easy! you have a chance to try pacetimesheet for free. No credit card, contract, or signature is required. But you will be restricted to some features on the free option.
+                            </div>
+                        </div>
+                        </div>
+                        <div className="card">
+                        <div className="card-header p-2" id="headingThree">
+                            <h5 className="mb-0">
+                            <button className="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                Q. What forms of payment did you accept?
+                            </button>
+                            </h5>
+                        </div>
+                        <div id="collapseThree" className="collapse" aria-labelledby="headingThree" data-parent="#paceFaq">
+                            <div className="card-body">
+                                we accept all major payment credit cards - Visa, MasterCard, Paypal. so you can choose the one that better works for you. Also, for every charge you will get full PDF invoice on your mail.
+                            </div>
+                        </div>
+                        </div>
+                        <div className="card">
+                                <div className="card-header p-2" id="headingSeven">
+                                    <h5 className="mb-0">
+                                        <button className="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                                            Q. How secure is your platform?
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapseSeven" className="collapse" aria-labelledby="headingSeven" data-parent="#paceFaq">
+                                    <div className="card-body">
+                                        Pace timesheet software is built with security in mind, we are using one of the world best technologies for our frontend and backend services, your ideas are
+                                    </div>
+                                </div>
+                            </div>
+                        <div className="card">
+                            <div className="card-header p-2" id="headingFour">
+                                <h5 className="mb-0">
+                                    <button className="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                                        Q: How many team or department can I have in my workspace?
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapseFour" className="collapse show" aria-labelledby="headingFour" data-parent="#paceFaq">
+                                <div className="card-body">
+                                    <b>Answer:</b> The package subscription determmines the number of features you will have access to, we recommend trying our premium package.
+                                </div>
+                            </div>
+                        </div>
+                        <div className="card">
+                            <div className="card-header p-2" id="headingFive">
+                                <h5 className="mb-0">
+                                    <button className="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+                                        Q: Can I cancle my subscription?
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapseFive" className="collapse show" aria-labelledby="headingFive" data-parent="#paceFaq">
+                                <div className="card-body">
+                                    <b>Answer:</b> Yes, you can cancel your subscription on your dashboard, this can only be done by the admin of the workspace.
+                                </div>
+                            </div>
+                        </div>
+                        <div className="card">
+                            <div className="card-header p-2" id="headingSix">
+                                <h5 className="mb-0">
+                                    <button className="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
+                                        Q: Do I need to use any third party with Pace timesheet?
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapseSix" className="collapse show" aria-labelledby="headingSix" data-parent="#paceFaq">
+                                <div className="card-body">
+                                    <b>Answer:</b> we have almost everything your team needs to be more productive, self management is also one key we keep in mind.
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </>
     )
 }

@@ -2,7 +2,6 @@ import React from 'react';
 import { useSelector }  from 'react-redux';
 const HourTimerScreen = () =>{
     const { workedMilliSecond, timerIsOff } = useSelector(state => state.timerStatus)
-    console.log(workedMilliSecond);
     const getWorkedHour = Math.round(workedMilliSecond / 3600000)
     return (
         <>

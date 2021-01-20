@@ -1,25 +1,25 @@
 import TimerService from "../../services/timer/timer.Service";
 
 const initializeNewDayTimer = () => (dispatch) =>{
-    console.log('from initial act');
+    // console.log('from initial act');
     return TimerService.initializeTimerRecord()
     .then((response) => {
-        console.log('from initial action', response);
+        // console.log('from initial action', response);
     })
     .catch((err) =>{
-        console.log('timer initial err ', err)
+        // console.log('timer initial err ', err)
     })
 }
 
 
 const startTimer = () => (dispatch) =>{
     return TimerService.startTimer()
-    .then((response) => {
-        console.log('timer action', response);
-    })
-    .catch((err) =>{
-        console.log('timer err ', err)
-    })
+    // .then((response) => {
+    //     console.log('timer action', response);
+    // })
+    // .catch((err) =>{
+    //     console.log('timer err ', err)
+    // })
 }
 
 
@@ -45,9 +45,22 @@ const fetchPersonalTimeSheet = () => (dispatch) =>{
 
 }
 
+
+const fetchCompanyTimerReport = () => (dispatch) =>{
+    return TimerService.getCompanyTimeSheet()
+    .then((response)=>{
+        console.log(response)
+    })
+    .catch((error)=>{
+        console.log(error)
+    })
+}
+
+
 export {
+    initializeNewDayTimer,
     startTimer,
     stopTimer,
     fetchPersonalTimeSheet,
-    initializeNewDayTimer,
+    fetchCompanyTimerReport
 }
