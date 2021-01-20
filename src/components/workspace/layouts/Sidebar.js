@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { logout } from '../../../actions/auth/authAction';
+import { currentUserCompanyID } from '../../../services/auth-header';
 import { logOutSuccessLogger } from '../../../toaster';
 
 const Sidebar = () => {
@@ -105,9 +106,9 @@ const Sidebar = () => {
                                     <li className="sidebar-list-item"><a href="." data-toggle="collapse" data-target="#settings" aria-expanded="false" aria-controls="pages" className="sidebar-link text-muted" activeclassname="active"><i className="o-wireframe-1 mr-3 text-gray"></i><span>settings</span></a>
                                         <div id="settings" className="collapse">
                                             <ul className="sidebar-menu list-unstyled border-left border-primary border-thick">
-                                                <li className="sidebar-list-item"><NavLink to="/dashboard/company/profile/1" className="sidebar-link text-muted pl-lg-5">Company Profile</NavLink></li>
+                                                <li className="sidebar-list-item"><NavLink to={`/dashboard/company/profile/${currentUserCompanyID}`} className="sidebar-link text-muted pl-lg-5">Company Profile</NavLink></li>
                                                 <li className="sidebar-list-item"><NavLink to="/dashboard/company/settings/departments" className="sidebar-link text-muted pl-lg-5">Manage Team</NavLink></li>
-                                                <li className="sidebar-list-item"><NavLink to="/dashboard/company/profile/update/1" className="sidebar-link text-muted pl-lg-5">Update Profile</NavLink></li>
+                                                <li className="sidebar-list-item"><NavLink to={`/dashboard/company/profile/update/${currentUserCompanyID}`} className="sidebar-link text-muted pl-lg-5">Update Profile</NavLink></li>
                                             </ul>
                                         </div>
                                     </li>

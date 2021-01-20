@@ -7,12 +7,12 @@ import { DELETE_ESCHEDULE_EVENT_API, EDIT_ESCHEDULE_EVENT_API, FETCH_ESCHEDULE_E
 
 
 const fetcheScheduleEvent = async() =>{
-    return await axios.get(FETCH_ESCHEDULE_EVENT_API + currentUserCompanyID, { headers: authHeader })
+    return await axios.get(FETCH_ESCHEDULE_EVENT_API + 123, { headers: authHeader })
 }
 
 
 const postNeweScheduleEvent = (newEvent) =>{
-    return axios.post(NEW_ESCHEDULE_EVENT_API + currentUserStaffID, newEvent, { headers: authHeader })
+    return axios.post(NEW_ESCHEDULE_EVENT_API, newEvent, { headers: authHeader })
 }
 
 const deleteeScheduleEvent = (eventID) =>{

@@ -65,7 +65,7 @@ const Cards = () =>{
             fetchOverDueTasks()
         }
 
-    }, [taskState])
+    }, [tasks, taskState])
     return(
         <>
             <section className="py-5" h='2' data-tut='reactour__taskCards'>

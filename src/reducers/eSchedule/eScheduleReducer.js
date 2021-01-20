@@ -1,4 +1,4 @@
-import { ADD_NEW_ESCHEDULE_EVENT, DELETE_EVENT_SUCCESSFUL, FETCH_ESCHEDULE_EVENT_SUCCESSFUL } from '../../../actions/types';
+import { ADD_NEW_ESCHEDULE_EVENT, DELETE_EVENT_SUCCESSFUL, FETCH_ESCHEDULE_EVENT_SUCCESSFUL } from '../../actions/types';
 
 const initialState = {
     isFetching: true,

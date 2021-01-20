@@ -36,6 +36,9 @@ const fetchUserProfile = (staffID) => dispatch =>{
 }
 
 const updateUserProfile = (newProfile, staffID) =>{
+  // let data = new FormData();
+  // data.append("Image", newProfile.Image);
+  // console.log(data)
   return axios.put(`https://pacetimesheet.herokuapp.com/api/users/companyName/userProfile/updateProfile/${staffID}`, newProfile, { headers: authHeader })
 
 }

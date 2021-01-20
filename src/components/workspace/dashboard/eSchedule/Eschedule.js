@@ -1,11 +1,12 @@
 import { ErrorMessage, Form, Formik } from 'formik';
 import { useDispatch } from 'react-redux';
-import { addNeweScheduleEvent } from '../../../../actions/eschedule/eScheduleAction';
+import { addNeweScheduleEvent, geteScheduleEvent } from '../../../../actions/eschedule/eScheduleAction';
 import { TextInput } from '../../../layouts/FormInput';
 import EscheduleRow from './EscheduleRow'
 
 const Eschedule = () => {
     const dispatch = useDispatch()
+    dispatch(geteScheduleEvent())
     return(
         <>
 

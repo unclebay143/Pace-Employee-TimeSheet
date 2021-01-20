@@ -1,16 +1,18 @@
 import EscheduleService from "../../services/eschedule/eschedule-service";
+import { eventAddedSuccessfullyLogger } from "../../toaster";
+import { ADD_NEW_ESCHEDULE_EVENT, FETCH_ESCHEDULE_EVENT_SUCCESSFUL } from "../types";
 
-// const geteScheduleEvent = () => ( dispatch ) =>{
-//     return EscheduleService.fetcheScheduleEvent()
-//     .then((response) => {
-//         // console.log(response.data)
-//         // console.log(response.data.data)
-//         dispatch({
-//             type: FETCH_ESCHEDULE_EVENT_SUCCESSFUL,
-//             payload: response.data.data
-//         })
-//     })
-// }
+const geteScheduleEvent = () => ( dispatch ) =>{
+    return EscheduleService.fetcheScheduleEvent()
+    .then((response) => {
+        // console.log(response.data)
+        // console.log(response.data.data)
+        dispatch({
+            type: FETCH_ESCHEDULE_EVENT_SUCCESSFUL,
+            payload: response.data.data
+        })
+    })
+}
 
 const addNeweScheduleEvent = (newEvent, action) => ( dispatch ) =>{
     return EscheduleService.postNeweScheduleEvent(newEvent)
@@ -51,7 +53,7 @@ const addNeweScheduleEvent = (newEvent, action) => ( dispatch ) =>{
 
 
 export {
-    // geteScheduleEvent,
+    geteScheduleEvent,
     addNeweScheduleEvent,
     // deleteeScheduleEvent,
     // editeScheduleEvent,
