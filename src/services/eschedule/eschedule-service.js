@@ -1,7 +1,9 @@
 import axios from 'axios';
-import { EDIT_ESCHEDULE_EVENT } from '../../../actions/types';
-import { authHeader, currentUserCompanyID, currentUserStaffID } from '../../auth-header';
-import { FETCH_ESCHEDULE_EVENT_API, NEW_ESCHEDULE_EVENT_API, DELETE_ESCHEDULE_EVENT_API, EDIT_ESCHEDULE_EVENT_API } from '../../root-endpoints';
+// import { EDIT_ESCHEDULE_EVENT } from '../../../actions/types';
+// import { authHeader, currentUserCompanyID, currentUserStaffID } from '../../auth-header';
+// import { FETCH_ESCHEDULE_EVENT_API, NEW_ESCHEDULE_EVENT_API, DELETE_ESCHEDULE_EVENT_API, EDIT_ESCHEDULE_EVENT_API } from '../../root-endpoints';
+import { authHeader, currentUserCompanyID, currentUserStaffID } from '../auth-header';
+import { DELETE_ESCHEDULE_EVENT_API, EDIT_ESCHEDULE_EVENT_API, FETCH_ESCHEDULE_EVENT_API, NEW_ESCHEDULE_EVENT_API } from '../root-endpoints';
 
 
 const fetcheScheduleEvent = async() =>{
@@ -10,7 +12,7 @@ const fetcheScheduleEvent = async() =>{
 
 
 const postNeweScheduleEvent = (newEvent) =>{
-    return axios.post(NEW_ESCHEDULE_EVENT_API, newEvent, { headers: authHeader })
+    return axios.post(NEW_ESCHEDULE_EVENT_API + currentUserStaffID, newEvent, { headers: authHeader })
 }
 
 const deleteeScheduleEvent = (eventID) =>{
@@ -22,11 +24,11 @@ const updateeScheduleEvent = (updatedEvent) =>{
 }
 
 
-const CalendarService = {
+const EscheduleService = {
     fetcheScheduleEvent,
     postNeweScheduleEvent,
     deleteeScheduleEvent,
     updateeScheduleEvent,
 }
 
-export default CalendarService;
+export default EscheduleService;

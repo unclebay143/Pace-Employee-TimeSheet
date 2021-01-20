@@ -151,7 +151,7 @@ const UpdateProfile = () =>{
                                                         className="invalid-feedback p-0"
                                                         />
                                                 </div>
-                                                <div className="col-sm-12 col-md-9 text-secondary" >
+                                                {/* <div className="col-sm-12 col-md-9 text-secondary" >
                                                     <TextInput
                                                         name="firstName"
                                                         id="firstName"
@@ -164,7 +164,7 @@ const UpdateProfile = () =>{
                                                         name="firstName"
                                                         className="invalid-feedback p-0"
                                                         />
-                                                </div>
+                                                </div> */}
                                             </div>
                                             <hr />
 

@@ -1,4 +1,4 @@
-import { ADD_NEW_CALENDAR_EVENT, DELETE_EVENT_SUCCESSFUL, FETCH_CALENDAR_EVENT_SUCCESSFUL } from '../../../actions/types';
+import { ADD_NEW_ESCHEDULE_EVENT, DELETE_EVENT_SUCCESSFUL, FETCH_ESCHEDULE_EVENT_SUCCESSFUL } from '../../../actions/types';
 
 const initialState = {
     isFetching: true,
@@ -7,16 +7,16 @@ const initialState = {
 }
 
 
-const calendarReducer = (state=initialState, action) => {
+const escheduleReducer = (state=initialState, action) => {
     switch (action.type) {
-        case FETCH_CALENDAR_EVENT_SUCCESSFUL:
+        case FETCH_ESCHEDULE_EVENT_SUCCESSFUL:
             return {
                 ...state,
                 isFetching: false,
                 events: action.payload
             }
 
-        case ADD_NEW_C_EVENT:
+        case ADD_NEW_ESCHEDULE_EVENT:
             return {
                 ...state,
                 isFetching: false,
@@ -42,4 +42,4 @@ const calendarReducer = (state=initialState, action) => {
 }
 
 
-export default calendarReducer;
+export default escheduleReducer;
