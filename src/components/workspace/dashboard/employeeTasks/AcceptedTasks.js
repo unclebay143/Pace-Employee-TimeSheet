@@ -13,6 +13,16 @@ import { formatDate } from '../../../../_helper/dateFormatter';
 import Loader from '../../../loader/Loader';
 import { getTasks } from '../../../../actions/task/taskAction';
 
+// Set the departments component state
+const handleFormatDate = (selectedDepartmentTaskSheet) =>{
+  const formatedTaskSheet = selectedDepartmentTaskSheet.map((taskRecord)=> {
+    taskRecord.endDate = formatDate(taskRecord.endDate) 
+    taskRecord.dateCreated = formatDate(taskRecord.dateCreated) 
+    return taskRecord // return the formated task
+  })
+  return formatedTaskSheet
+}
+
 const AcceptedTasks = () => {
   const { tasks } = useSelector(state => state.tasks)
   const [taskState, setTaskState] = useState([])
@@ -48,8 +58,6 @@ const AcceptedTasks = () => {
       }
   }, [tasks, taskState])
 
-  console.log(getTaskByStatus, 'GETaccept')
-    console.log(usersTasksByStatus, 'accept')
 
   // adds checkbox to each row
   const selectRow = {
