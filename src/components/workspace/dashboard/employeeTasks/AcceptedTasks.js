@@ -18,7 +18,7 @@ const handleFormatDate = (selectedDepartmentTaskSheet) =>{
   const formatedTaskSheet = selectedDepartmentTaskSheet.map((taskRecord)=> {
     taskRecord.endDate = formatDate(taskRecord.endDate) 
     taskRecord.dateCreated = formatDate(taskRecord.dateCreated) 
-    return taskRecord
+    return taskRecord // return the formated task
   })
   return formatedTaskSheet
 }
