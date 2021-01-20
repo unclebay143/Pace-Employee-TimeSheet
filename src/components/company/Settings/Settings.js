@@ -101,14 +101,12 @@ const Settings = () =>{
                                         icon: 'question',
                                         allowOutsideClick: false,
                                         html:
-                                        'You\'re about to be redirected to <b> Basic Payment!</b>, ' +
-                                        `<a href=${redirectLink}></a> ` +
-                                        '',
+                                        'You\'re about to be redirected to <b> Basic Payment!</b>, ',
                                         showCloseButton: true,
                                         showCancelButton: true,
                                         focusConfirm: false,
                                         confirmButtonText:
-                                        `<a href=${redirectLink}></a> <i class="text-white fa fa-thumbs-up"></i></a> Continue!`,
+                                        `<a href=${redirectLink} target="_blank" class="text-white"> <i class="text-white fa fa-thumbs-up"></i> Continue! </a>`,
                                         cancelButtonText:
                                         'Cancel Payment',
                                     }).then((result)=>{
@@ -183,22 +181,21 @@ const Settings = () =>{
                                         title: '<strong>Payment <u>Initialized</u></strong>',
                                         icon: 'question',
                                         html:
-                                        'You\'re about to be redirected for <b> Premium Payment!</b>, ' +
-                                        `<a href=${redirectLink}></a> ` +
-                                        '',
+                                        'You\'re about to be redirected for <b> Premium Payment!</b>, ',
                                         showCloseButton: true,
                                         showCancelButton: true,
                                         allowOutsideClick: false,
                                         focusConfirm: false,
                                         confirmButtonText:
-                                        `<a href=${redirectLink}></a> <i class="text-white fa fa-thumbs-up"></i></a> Continue!`,
+                                        `<a href=${redirectLink} target="_blank" class="text-white"><i class="text-white fa fa-thumbs-up"></i> Continue!</a> `,
                                         cancelButtonText:
                                         'Cancel Payment',
                                     }).then((result)=>{
                                         if(result.dismiss === Swal.DismissReason.cancel){
-                                            setBasicLoading(false)
+                                            console.log('ejejejeejejej');
+                                            setPremiumLoading(false)
                                         }else{
-                                            setBasicLoading(false)
+                                            setPremiumLoading(false)
                                         }
                                     })
                                 })
