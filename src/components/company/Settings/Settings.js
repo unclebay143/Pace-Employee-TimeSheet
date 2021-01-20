@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import swal from 'sweetalert';
 import Swal from 'sweetalert2';
 import { initializeBasicPayment, initializePremiumPayment, initiatePayment } from '../../../actions/company/payment/planPurchaseAction'
+import { somethingWentWrongLogger } from '../../../toaster';
 
 const Settings = () =>{
     const dispatch = useDispatch()
     const history = useHistory()
+    const [basicLoading, setBasicLoading] = useState(false)
+    const [premiumLoading, setPremiumLoading] = useState(false)
     const basicPlan = 122;
     const premiumPlan = 133;
     return(
@@ -88,36 +91,52 @@ const Settings = () =>{
                             className="btn btn-secondary btn-block animate-up-1" 
                             tabIndex={0}
                             onClick={(()=>{
+                                setBasicLoading(true)
                                 dispatch(initializeBasicPayment(basicPlan))
                                 .then((response) => {
-                                    console.log(response)
                                     const parsedResponse = JSON.parse(response.data);
                                     const redirectLink = parsedResponse.data.link
-                                    console.log(parsedResponse)
-                                    console.log(redirectLink)
-                                //    window.location.href(redirectLink)
-                                Swal.fire({
-                                    title: '<strong>Payment <u>Initialized</u></strong>',
-                                    icon: 'question',
-                                    html:
-                                      'Do you wish to continue to <b> this Payment ?</b>, ' +
-                                      `<a href=${redirectLink}>links</a> ` +
-                                      '',
-                                    showCloseButton: true,
-                                    showCancelButton: true,
-                                    focusConfirm: false,
-                                    confirmButtonText:
-                                      '<i class="fa fa-thumbs-up"></i> Great!',
-                                    confirmButtonAriaLabel: 'Thumbs up, great!',
-                                    cancelButtonText:
-                                      '<i class="fa fa-thumbs-down"></i>',
-                                    cancelButtonAriaLabel: 'Thumbs down'
-                                  })
+                                    Swal.fire({
+                                        title: '<strong>Payment <u>Initialized</u></strong>',
+                                        icon: 'question',
+                                        allowOutsideClick: false,
+                                        html:
+                                        'You\'re about to be redirected to <b> Basic Payment!</b>, ' +
+                                        `<a href=${redirectLink}></a> ` +
+                                        '',
+                                        showCloseButton: true,
+                                        showCancelButton: true,
+                                        focusConfirm: false,
+                                        confirmButtonText:
+                                        `<a href=${redirectLink}></a> <i class="text-white fa fa-thumbs-up"></i></a> Continue!`,
+                                        cancelButtonText:
+                                        'Cancel Payment',
+                                    }).then((result)=>{
+                                        if(result.dismiss === Swal.DismissReason.cancel){
+                                            setBasicLoading(false)
+                                        }else{
+                                            setBasicLoading(false)
+                                        }
+                                    })
+                                })
+                                .catch((error)=>{
+                                    somethingWentWrongLogger()
                                 })
                             })}
 
-                        >Start
-                            Basic</button>
+                        >
+                            {
+                                basicLoading ? (
+                                    <>
+                                        Please wait <i className="fa fa-spinner fa-spin"></i>
+                                    </>
+                                )  
+                                : 
+                                (
+                                    'Start Basic ' 
+                                )
+                            }
+                        </button>
                         </div>
                         {/* End Content */}
                     </div>
@@ -154,9 +173,52 @@ const Settings = () =>{
                             type="button" 
                             className="btn btn-primary btn-block animate-up-1" 
                             tabIndex={0}
-                            onClick={(()=>dispatch(initializePremiumPayment(premiumPlan)))}
+                            onClick={(()=>{
+                                setPremiumLoading(true)
+                                dispatch(initializePremiumPayment(premiumPlan))
+                                .then((response) => {
+                                    const parsedResponse = JSON.parse(response.data);
+                                    const redirectLink = parsedResponse.data.link
+                                    Swal.fire({
+                                        title: '<strong>Payment <u>Initialized</u></strong>',
+                                        icon: 'question',
+                                        html:
+                                        'You\'re about to be redirected for <b> Premium Payment!</b>, ' +
+                                        `<a href=${redirectLink}></a> ` +
+                                        '',
+                                        showCloseButton: true,
+                                        showCancelButton: true,
+                                        allowOutsideClick: false,
+                                        focusConfirm: false,
+                                        confirmButtonText:
+                                        `<a href=${redirectLink}></a> <i class="text-white fa fa-thumbs-up"></i></a> Continue!`,
+                                        cancelButtonText:
+                                        'Cancel Payment',
+                                    }).then((result)=>{
+                                        if(result.dismiss === Swal.DismissReason.cancel){
+                                            setBasicLoading(false)
+                                        }else{
+                                            setBasicLoading(false)
+                                        }
+                                    })
+                                })
+                                .catch((error)=>{
+                                    somethingWentWrongLogger()
+                                    setPremiumLoading(false)
+                                })
+                            })}
                         >
-                            Upgrade Premium
+                            {
+                                premiumLoading ? (
+                                    <>
+                                        Please wait <i className="fa fa-spinner fa-spin"></i>
+                                    </>
+                                )  
+                                : 
+                                (
+                                    'Upgrade Premium' 
+                                )
+                            }
                         </button>
                         </div>
                         {/* End Content */}
