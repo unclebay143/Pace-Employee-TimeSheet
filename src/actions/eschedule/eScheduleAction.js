@@ -1,28 +1,32 @@
 import EscheduleService from "../../services/eschedule/eschedule-service";
 import { eventAddedSuccessfullyLogger } from "../../toaster";
-import { ADD_NEW_ESCHEDULE_EVENT, FETCH_ESCHEDULE_EVENT_SUCCESSFUL } from "../types";
+import { ADD_NEW_ESCHEDULE_EVENT, FETCH_ESCHEDULE_ERROR, FETCH_ESCHEDULE_EVENT_SUCCESSFUL } from "../types";
 
 const geteScheduleEvent = () => ( dispatch ) =>{
     return EscheduleService.fetcheScheduleEvent()
     .then((response) => {
-        // console.log(response.data)
-        // console.log(response.data.data)
         dispatch({
             type: FETCH_ESCHEDULE_EVENT_SUCCESSFUL,
             payload: response.data.data
         })
     })
+    .catch((error)=>{
+        dispatch({
+            type: FETCH_ESCHEDULE_ERROR,
+            payload: error
+        })
+    })
 }
 
 const addNeweScheduleEvent = (newEvent, action) => ( dispatch ) =>{
+    dispatch({
+        type: ADD_NEW_ESCHEDULE_EVENT,
+        payload: newEvent
+    })
     return EscheduleService.postNeweScheduleEvent(newEvent)
     .then((response)=>{
         eventAddedSuccessfullyLogger()
         action.setSubmitting(false)
-        dispatch({
-            type: ADD_NEW_ESCHEDULE_EVENT,
-            payload: response.data.data
-        })
     })
     .catch((error)=>{
         // eScheduleEventNotSavedLogger()

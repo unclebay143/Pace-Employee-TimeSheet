@@ -95,7 +95,7 @@ const Dashboard = () =>{
                                     {/* company paths */}
                                     <Route exact path="/dashboard/company/profile/:id" component={CompanyProfile} />
                                     <Route exact path="/dashboard/company/profile/update/:id" component={UpdateCompanyProfile} />
-                                    <Route exact path="/dashboard/company/settings" component={Settings} />
+                                    <Route exact path="/dashboard/upgrade" component={Settings} />
                                     <Route path="/dashboard/company/settings/departments" component={ManageDepartment} />
                                     <Route exact path="/dashboard/employ" component={AddEmployee} />
                                     <Route exact path="/dashboard/employee-list" component={EmployeeList} />

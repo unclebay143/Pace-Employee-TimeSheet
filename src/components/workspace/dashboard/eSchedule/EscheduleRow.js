@@ -1,4 +1,14 @@
+// React
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { geteScheduleEvent } from '../../../../actions/eschedule/eScheduleAction';
+
+// Helper
 import { formatDate } from "../../../../_helper/dateFormatter";
+
+// Loader
+import Loader from '../../../loader/Loader';
+
 
 const eschedule = [
     {
@@ -8,8 +18,38 @@ const eschedule = [
 ]
 
 const EscheduleRow = () =>{
+
+    const dispatch = useDispatch()
+    const {events, isFetching} = useSelector(state => state.eschedule)
+    const [eventState, setEventState] = useState([])
+    const [isLoading, setIsLoading] = useState(isFetching);
+
+    useEffect(() => {
+        dispatch(geteScheduleEvent())
+        setIsLoading(false)
+    }, [dispatch])
+
+
+    useEffect(() => {
+        if(eschedule){
+            setEventState(events)
+        }
+    }, [dispatch, events])
+
+
+    console.log(eventState);
+    console.log(eschedule);
+
+    if(isLoading){
+        return(
+            <>
+                <Loader />
+            </>
+        )
+    }
+
     return(
-        eschedule.map(({eventName, eventDateandTime})=>{
+        [...eventState].reverse().map(({eventName, eventDateAndTime})=>{
             return(
                 
                 <>
@@ -41,7 +81,7 @@ const EscheduleRow = () =>{
                     <div className="row eschedule-created-info">
                         <div className="col-auto d-flex align-items-center pr-2">
                         <i className="fa fa-info-circle my-2 px-2 text-black-50 btn" data-toggle="tooltip" data-placement="bottom" title data-original-title="Created date" />
-                        <label className="date-label my-2 text-black-50">{formatDate(eventDateandTime)}</label>
+                        <label className="date-label my-2 text-black-50">{formatDate(eventDateAndTime)}</label>
                         </div>
                     </div>
                     </div>

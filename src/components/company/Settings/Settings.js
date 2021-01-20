@@ -1,8 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import Button from '../../layouts/Button';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import swal from 'sweetalert';
+import Swal from 'sweetalert2';
+import { initializeBasicPayment, initializePremiumPayment, initiatePayment } from '../../../actions/company/payment/planPurchaseAction'
 
 const Settings = () =>{
+    const dispatch = useDispatch()
+    const history = useHistory()
+    const basicPlan = 122;
+    const premiumPlan = 133;
     return(
         <>
 
@@ -31,8 +38,9 @@ const Settings = () =>{
                             <span className="display-4 text-dark font-weight-bold">
                             <span className="align-top font-medium">#</span>0
                             </span>
-                            <span className="d-block text-light font-small">/ month</span>
+                            <span className="d-block text-dark font-small">/ month</span>
                         </span>
+
                         </header>
                         {/* End Header */}
                         {/* Content */}
@@ -43,8 +51,9 @@ const Settings = () =>{
                             <li className="list-group-item">Workspace for 3 staff</li>
                             <li className="list-group-item">Limited Todo and eSchedule</li>
                         </ul>
-                        <button type="button" className="btn btn-primary btn-block animate-up-1" tabIndex={0}>Start
-                            Free</button>
+                        <button type="button" className="btn btn-primary btn-block animate-up-1" tabIndex={0} disabled>
+                            Current Plan
+                        </button>
                         </div>
                         {/* End Content */}
                     </div>
@@ -62,7 +71,7 @@ const Settings = () =>{
                             <span className="display-4 text-dark font-weight-bold">
                             <span className="align-top font-medium">#</span>12, 000
                             </span>
-                            <span className="d-block text-light font-small">/ month</span>
+                            <span className="d-block text-dark font-small">/ month</span>
                         </span>
                         </header>
                         {/* End Header */}
@@ -74,7 +83,40 @@ const Settings = () =>{
                             <li className="list-group-item">Unlimited Todo</li>
                             <li className="list-group-item">Task Report</li>
                         </ul>
-                        <button type="button" className="btn btn-secondary btn-block animate-up-1" tabIndex={0}>Start
+                        <button 
+                            type="button" 
+                            className="btn btn-secondary btn-block animate-up-1" 
+                            tabIndex={0}
+                            onClick={(()=>{
+                                dispatch(initializeBasicPayment(basicPlan))
+                                .then((response) => {
+                                    console.log(response)
+                                    const parsedResponse = JSON.parse(response.data);
+                                    const redirectLink = parsedResponse.data.link
+                                    console.log(parsedResponse)
+                                    console.log(redirectLink)
+                                //    window.location.href(redirectLink)
+                                Swal.fire({
+                                    title: '<strong>Payment <u>Initialized</u></strong>',
+                                    icon: 'question',
+                                    html:
+                                      'Do you wish to continue to <b> this Payment ?</b>, ' +
+                                      `<a href=${redirectLink}>links</a> ` +
+                                      '',
+                                    showCloseButton: true,
+                                    showCancelButton: true,
+                                    focusConfirm: false,
+                                    confirmButtonText:
+                                      '<i class="fa fa-thumbs-up"></i> Great!',
+                                    confirmButtonAriaLabel: 'Thumbs up, great!',
+                                    cancelButtonText:
+                                      '<i class="fa fa-thumbs-down"></i>',
+                                    cancelButtonAriaLabel: 'Thumbs down'
+                                  })
+                                })
+                            })}
+
+                        >Start
                             Basic</button>
                         </div>
                         {/* End Content */}
@@ -96,7 +138,7 @@ const Settings = () =>{
                             <span className="display-4 text-dark font-weight-bold">
                             <span className="align-top font-medium">#</span>32, 000
                             </span>
-                            <span className="d-block text-light font-small">/ month</span>
+                            <span className="d-block text-dark font-small">/ month</span>
                         </span>
                         </header>
                         {/* End Header */}
@@ -108,7 +150,13 @@ const Settings = () =>{
                             <li className="list-group-item">Unlimited Reports Access </li>
                             <li className="list-group-item">Unlimited Self Management Tools</li>
                         </ul>
-                        <button type="button" className="btn btn-primary btn-block animate-up-1" tabIndex={0}>Upgrade Premium
+                        <button 
+                            type="button" 
+                            className="btn btn-primary btn-block animate-up-1" 
+                            tabIndex={0}
+                            onClick={(()=>dispatch(initializePremiumPayment(premiumPlan)))}
+                        >
+                            Upgrade Premium
                         </button>
                         </div>
                         {/* End Content */}

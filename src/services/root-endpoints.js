@@ -59,10 +59,11 @@ export const DEPARTMENT_TIME_SHEET_API = 'https://pacetimesheet.herokuapp.com/ap
 
 // ESCHEDULE
 // export const ADD_NEW_ESCHEDULE_EVENT = 'https://pacetimesheet.herokuapp.com/api/companyName/E-schedule/new/';
-export const FETCH_ESCHEDULE_EVENT_API = 'https://pacetimesheet.herokuapp.com/api/E-schedule/monday/';
-export const NEW_ESCHEDULE_EVENT_API = 'https://pacetimesheet.herokuapp.com/api/E-schedule/monday/newE-schedule/';
+export const FETCH_ESCHEDULE_EVENT_API = 'https://pacetimesheet.herokuapp.com/api/E-schedule/';
+// export const NEW_ESCHEDULE_EVENT_API = 'https://pacetimesheet.herokuapp.com/api/E-schedule/monday/newE-schedule/';
 // export const NEW_ESCHEDULE_EVENT_API = 'https://pacetimesheet.herokuapp.com/api/E-schedule/companyName/newE-schedule/';
 export const EDIT_ESCHEDULE_EVENT_API = 'https://pacetimesheet.herokuapp.com/api/E-schedule/companyName/E-schedule/';
 export const DELETE_ESCHEDULE_EVENT_API = 'https://pacetimesheet.herokuapp.com/api/E-schedule/companyName/delete/';
 
-
+// PAYMENT API
+export const PAYMENT_API = 'https://pacetimesheet.herokuapp.com/api/payment/payment/';
