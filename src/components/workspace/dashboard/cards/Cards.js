@@ -1,23 +1,53 @@
 import axios from 'axios';
 import { React, useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { getTasks } from '../../../../actions/task/taskAction';
 import { authHeader, currentUserCompanyID, currentUserRoleID, currentUserStaffID } from '../../../../services/auth-header';
 import { FETCH_TASKS_BY_STATUS_API_URL } from '../../../../services/root-endpoints';
 import Card from './Card';
 
 const Cards = () =>{
+    const { tasks } = useSelector(state => state.tasks)
+    const [taskState, setTaskState] = useState([])
     const [pendingTasksCounter, setPendingTasksCounter] = useState("0");
     const [completedTasksCounter, setCompletedTasksCounter] = useState("0");
     const [overDureTasksCounter, setOverDueTasksCounter] = useState("0");
-    const state = useSelector(state => state.pending)
+    const dispatch = useDispatch()
+
+
+    useEffect(() => {
+        // Get tasks
+        dispatch(getTasks())
+
+    }, [dispatch])
+
+
     useEffect(() => {
 
-        if(currentUserRoleID !== 5){
+        if(currentUserRoleID === 5){ // If the user is an employee run this block
+
+            setTaskState(tasks) // set the TaskState to tasks for the component to know about the update
+
+            // get pending tasks from the tasks redux
+            const getPendingTasks = taskState.filter((task)=> task.taskStatus === 1)
+            setPendingTasksCounter(getPendingTasks.length)
+
+            // get completed tasks from the tasks redux
+            const getCompletedTasks = taskState.filter((task)=> task.taskStatus === 3)
+            setCompletedTasksCounter(getCompletedTasks.length)
+
+            // get overdue tasks from the tasks redux
+            const getOverDueTasks = taskState.filter((task)=> task.taskStatus === 4)
+            setOverDueTasksCounter(getOverDueTasks.length)
+
+        }else{
             // Function that fetch the over pending tasks and set the length
             const fetchPendingTasks = async()=>{
                 const response = await axios.get(FETCH_TASKS_BY_STATUS_API_URL + '1/' + currentUserCompanyID, { headers: authHeader }) 
-                setPendingTasksCounter(response.data.data.length)
+                if(response){
+                    setPendingTasksCounter(response.data.data.length)
+                }
             }
     
             // Function that fetch the over completed tasks and set the length
@@ -36,7 +66,7 @@ const Cards = () =>{
             fetchOverDueTasks()
         }
 
-    }, [])
+    }, [tasks, taskState])
     return(
         <>
             <section className="py-5" h='2' data-tut='reactour__taskCards'>

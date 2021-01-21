@@ -108,10 +108,11 @@ const login = ( email, password, action ) => ( dispatch ) =>{
     })
     .then((response)=>{
       console.log(response)
-      // console.log(response.data.data.accessToken)
+      console.log(response)
       // don't forget to destructure later
       localStorage.setItem('token', JSON.stringify(response.data.data.accessToken));
       localStorage.setItem('currentUser', JSON.stringify(response.data.data.response[0]));
+      localStorage.setItem('company', JSON.stringify(response.data.data1));
       
       // Store the data(user's) to the store
       dispatch({

@@ -67,12 +67,14 @@ const Header = [
 
 const PersonalTimeSheet = () => {
     const usersDetails = useSelector(state => state.timerReport)
-    const [timeSheet, seTimeSheet] = useState([])
+    const [timeSheet, seTimeSheet] = useState ([])
     const dispatch = useDispatch()
 
 
     useEffect(() => {
         dispatch(fetchPersonalTimeSheet())
+        .then((response)=>console.log(response))
+        .catch((error)=>console.log(error))
     }, [])
     
     return (

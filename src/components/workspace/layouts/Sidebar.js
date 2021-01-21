@@ -106,6 +106,7 @@ const Sidebar = () => {
                                     <li className="sidebar-list-item"><a href="." data-toggle="collapse" data-target="#settings" aria-expanded="false" aria-controls="pages" className="sidebar-link text-muted" activeclassname="active"><i className="o-wireframe-1 mr-3 text-gray"></i><span>settings</span></a>
                                         <div id="settings" className="collapse">
                                             <ul className="sidebar-menu list-unstyled border-left border-primary border-thick">
+                                                <li className="sidebar-list-item"><NavLink to={`/dashboard/upgrade`} className="sidebar-link text-muted pl-lg-5">Payment</NavLink></li>
                                                 <li className="sidebar-list-item"><NavLink to={`/dashboard/company/profile/${currentUserCompanyID}`} className="sidebar-link text-muted pl-lg-5">Company Profile</NavLink></li>
                                                 <li className="sidebar-list-item"><NavLink to="/dashboard/company/settings/departments" className="sidebar-link text-muted pl-lg-5">Manage Team</NavLink></li>
                                                 <li className="sidebar-list-item"><NavLink to={`/dashboard/company/profile/update/${currentUserCompanyID}`} className="sidebar-link text-muted pl-lg-5">Update Profile</NavLink></li>

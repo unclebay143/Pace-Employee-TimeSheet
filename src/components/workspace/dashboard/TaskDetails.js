@@ -1,24 +1,34 @@
+// React
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { useParams } from 'react-router';
 import { NavLink } from 'react-router-dom';
-import { updateTaskStatus } from '../../../actions/task/taskAction';
-import { deleteAssignedTask } from '../../../actions/task/assignedTaskAction';
 import { useDispatch, useSelector } from 'react-redux';
+
+// Actions
+import { deleteTask, updateTaskStatus } from '../../../actions/task/taskAction';
 import { getCompanyEmployees } from '../../../actions/employee/employeeAction';
 
-// import { connect } from 'react-redux';
-
+// Layouts
 import Button from '../../layouts/Button';
-
-import unclebay from '../../pages/pages-images/ayodele_samuel_adebayo.jpg';
 import attachment from '../../pages/pages-images/v.jpg';
-import { FETCH_TASK_DETAILS_API_URL } from '../../../services/root-endpoints';
-import { authHeader, currentUserFromLocalStorage } from '../../../services/auth-header';
-import axios from 'axios';
-import { formatDate } from '../../../_helper/dateFormatter';
+
+// Components
 import Loader from '../../loader/Loader';
-import { currentUserRoleID } from "../../../services/auth-header";
+
+// Toaster
 import { taskStatusUpdated } from '../../../toaster';
+
+// Images
+import Avatar from '../../pages/pages-images/profileAvatar.svg';
+
+// Endpoint
+import { FETCH_TASK_DETAILS_API_URL } from '../../../services/root-endpoints';
+import { authHeader, currentUserFromLocalStorage, currentUserRoleID } from '../../../services/auth-header';
+
+// Helper
+import { formatDate } from '../../../_helper/dateFormatter';
+
 
 
 const TaskDetails = () => {
@@ -145,7 +155,8 @@ const TaskDetails = () => {
                                     label=" Delete"
                                     icon="fa fa-trash-alt"
                                     className="btn btn-sm special pace-bg-accent mx-2"
-                                    onClick={(()=>dispatch(deleteAssignedTask(taskDetails.staffID)))}
+                                    // onClick={(()=>dispatch(deleteAssignedTask(taskDetails.staffID)))}
+                                    // onClick={(()=>dispatch(deleteTask(taskDetails.staffID)))}
                                     // onClick={(()=>dispatch(deleteTask(taskDetails.taskID)))}
                                   />          
                                 </>
@@ -158,7 +169,8 @@ const TaskDetails = () => {
                                     label=" Delete"
                                     icon="fa fa-trash-alt"
                                     className="btn btn-sm special pace-bg-accent"
-                                    onClick={(()=>dispatch(deleteAssignedTask(taskDetails.staffID)))}
+                                    // onClick={(()=>dispatch(deleteAssignedTask(taskDetails.staffID)))}
+                                    onClick={(()=>dispatch(deleteTask(taskDetails.taskID)))}
                                     // onClick={(()=>dispatch(deleteTask(taskDetails.taskID)))}
                                   />          
                                 </>
@@ -174,17 +186,17 @@ const TaskDetails = () => {
                               {
                                 currentUserRoleID === 5 || assignedUser === undefined ? (
                                   <>
-                                    <img src={unclebay} alt="sender profile" className="sender-image mr-2"/>
+                                    <img src={Avatar} alt="sender profile" className="sender-image mr-2"/>
                                     <strong>Admin</strong>
                                     <span className=""> </span> to
-                                    <strong> {currentUserFromLocalStorage.email} </strong>
+                                    <strong> {currentUserFromLocalStorage.email}  (me)</strong>
 
                                   </>
                                 )
                                 :
                                 (
                                   <>
-                                    <img src={unclebay} alt="sender profile" className="sender-image mr-2"/>
+                                    <img src={Avatar} alt="sender profile" className="sender-image mr-2"/>
                                     <strong>Me</strong>
                                     <span className=""> </span> to
                                     <strong> {assignedUser.email} </strong>

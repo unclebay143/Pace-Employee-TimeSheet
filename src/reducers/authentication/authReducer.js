@@ -8,7 +8,8 @@ import {
   LOGOUT,
   SYNC_CURRENT_USER,
   END_TOUR,
-  UPDATE_USER_PROFILE
+  UPDATE_USER_PROFILE,
+  SMOOVE_TIMER
 } from "../../actions/types";
 
 
@@ -18,6 +19,7 @@ const initialState = {
   isFirstTimer: false,
   error: null,
   welcome: false,
+  smooveTime: 5000
 };
 
 const authReducer = (state = initialState, action) =>{
@@ -41,6 +43,12 @@ const authReducer = (state = initialState, action) =>{
         ...state,
         isLoggedIn: false,
       };
+    
+    case SMOOVE_TIMER:
+    return {
+        ...state,
+        smooveTime: 4000
+    }
 
     case LOGIN_SUCCESS:
       return {
@@ -72,14 +80,15 @@ const authReducer = (state = initialState, action) =>{
         currentUser: null,
       };
     
-      case UPDATE_USER_PROFILE:
-        return {
-          ...state,
-          currentUser: {
-            ...state.currentUser,
-            payload
-          }
+    case UPDATE_USER_PROFILE:
+      return {
+        ...state,
+        currentUser: {
+          ...state.currentUser,
+          payload
         }
+      }
+    
 
     default:
       return state;

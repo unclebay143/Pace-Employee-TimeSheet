@@ -4,10 +4,14 @@ import { useHistory } from 'react-router-dom';
 import Table from '../../layouts/Table';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import filterFactory, { selectFilter } from 'react-bootstrap-table2-filter';
-import { getTaskByStatus } from '../../../../actions/task/usersTasksByStatus';
 import { useDispatch, useSelector } from 'react-redux';
-import Loader from '../../../loader/Loader';
+import { FETCH_TASKS_BY_STATUS_API_URL } from '../../../../services/root-endpoints';
+import { authHeader, currentUserCompanyID, currentUserRoleID } from '../../../../services/auth-header';
+import axios from 'axios';
+import { somethingWentWrongLogger } from '../../../../toaster';
 import { formatDate } from '../../../../_helper/dateFormatter';
+import Loader from '../../../loader/Loader';
+import { getTasks } from '../../../../actions/task/taskAction';
 
 const handleFormatDate = (selectedDepartmentTaskSheet) =>{
   const formatedTaskSheet = selectedDepartmentTaskSheet.map((taskRecord)=> {
@@ -19,14 +23,41 @@ const handleFormatDate = (selectedDepartmentTaskSheet) =>{
 }
 
 const PendingTasks = () => {
-
-  const { usersTasksByStatus, isFetching } = useSelector(state => state.usersTasksByStatus)
-  const history = useHistory();
+  const { tasks } = useSelector(state => state.tasks)
+  const [pendingTasks, setPendingTasks] = useState([])
+  const [taskState, setTaskState] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
   const dispatch = useDispatch()
+  const history = useHistory();
+
+console.log(pendingTasks);
   
   useEffect(() => {
-    dispatch(getTaskByStatus(1));
-  }, [])
+    // get all tasks
+    dispatch(getTasks())
+  }, [dispatch])
+
+  
+  useEffect(() => {
+    if(currentUserRoleID === 5){ // check if the user is an employee, then run this
+      setTaskState(tasks) // set the TaskState to tasks for the component to know about the update
+      const getPendingTasks = taskState.filter((task)=>task.taskStatus === 1) // filter out the tasks with status 2
+      setPendingTasks(handleFormatDate(getPendingTasks))
+      setIsLoading(false)
+    }else{ // else run this block
+      // Get all accepted tasks from the server
+      axios.get(FETCH_TASKS_BY_STATUS_API_URL + "1/" + currentUserCompanyID, { headers: authHeader } )
+      .then((response)=>{
+        // Set the response to the component state
+        setPendingTasks(handleFormatDate(response.data.data))
+        setIsLoading(false)
+      })
+      .catch((error)=>{
+        // somethingWentWrongLogger()
+        setIsLoading(false)
+      })
+    }
+  }, [tasks, taskState])
 
   console.log(getTaskByStatus, 'GETaccept')
     console.log( usersTasksByStatus, 'accept')

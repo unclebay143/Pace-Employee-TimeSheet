@@ -32,13 +32,14 @@ import { syncCurrentUser } from '../../../actions/user/userAction';
 // Tour
 import TourContainer from '../../tour/config/TourContainer';
 import ChangePassword from '../../user/ChangePassword';
-import Eschedule from '../../../components/workspace/dashboard/eShedule/Eshedule';
+import Eschedule from './eSchedule/Eschedule';
 import Calendar from '../../company/calendar/Calendar';
 import ManageCalendar from '../../company/calendar/ManageCalendar';
 import { welcomeBackLogger } from '../../../toaster';
 import { currentUserFromLocalStorage } from '../../../services/auth-header';
 import TaskReport from './reports/TaskReport';
 import PersonalTimeSheet from './timer/PersonalTimeSheet';
+import TimerRough from './timer/TimerRough';
 
 
 
@@ -79,6 +80,7 @@ const Dashboard = () =>{
                                 <Switch>
 
                                     <Route path="/dashboard/calendar" component={Calendar} />
+                                    <Route path="/dashboard/timer-rough" component={TimerRough} />
                                     <Route path="/dashboard/e-schedule" component={Eschedule} />
                                     <Route path="/dashboard/manageCalendar" component={ManageCalendar} />
 
@@ -93,7 +95,7 @@ const Dashboard = () =>{
                                     {/* company paths */}
                                     <Route exact path="/dashboard/company/profile/:id" component={CompanyProfile} />
                                     <Route exact path="/dashboard/company/profile/update/:id" component={UpdateCompanyProfile} />
-                                    <Route exact path="/dashboard/company/settings" component={Settings} />
+                                    <Route exact path="/dashboard/upgrade" component={Settings} />
                                     <Route path="/dashboard/company/settings/departments" component={ManageDepartment} />
                                     <Route exact path="/dashboard/employ" component={AddEmployee} />
                                     <Route exact path="/dashboard/employee-list" component={EmployeeList} />

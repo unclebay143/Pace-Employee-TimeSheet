@@ -16,8 +16,8 @@ const fetchTasks = () =>{
     return axios.get( TASK_API_URL + currentUserStaffID, { headers: authHeader } )
 }
 
-const deleteTask = (id) =>{
-     return axios.delete(TASK_API_URL + `${id}`)
+const deleteTaskFromServer = (id) =>{
+     return axios.delete(DELETE_ASSIGNED_TASK_API_URL + id, { headers: authHeader })
 }
 
 const updateTaskStatus = (taskStatus) =>{
@@ -48,7 +48,7 @@ const TaskService = {
     fetchUsersTasksByStatus,
     fetchAssignedTasks,
     editTask,
-    deleteTask,
+    deleteTaskFromServer,
     updateTaskStatus,
     deleteAssignedTask,
 }
