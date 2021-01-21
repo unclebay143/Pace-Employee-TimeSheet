@@ -6,7 +6,8 @@ import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import { getCompanyEmployees } from '../../../actions/employee/employeeAction';
 import Button from '../../layouts/Button';
 import Loader from '../../loader/Loader';
-import unclebay from '../../pages/pages-images/ayodele_samuel_adebayo.jpg';
+// import unclebay from '../../pages/pages-images/ayodele_samuel_adebayo.jpg';
+import femaleAvatar from '../../pages/pages-images/femaleAvatar.svg';
 
 
 
@@ -87,7 +88,7 @@ const EmployeeProfile = () =>{
                                 <div className="card-body">
                                     <div className="d-flex flex-column align-items-center text-center">
                                         {/* <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width={150} /> */}
-                                        <img src={unclebay} alt="Admin" className="rounded-circle" width={150} />
+                                        <img src={femaleAvatar} alt="Admin" className="rounded-circle" width={150} />
                                         <div className="mt-3">
                                             <h4 className="text-capitalize">{employeeProfile.firstName === undefined ? '' : employeeProfile.firstName} {employeeProfile.lastName === undefined ? '' : employeeProfile.lastName}</h4>
                                             {/* <h4>{employeeProfile.id} </h4> */}
