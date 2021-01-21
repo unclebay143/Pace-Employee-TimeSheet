@@ -257,6 +257,26 @@ const Pricing = () => {
                 </div>
             </div>
 
+        
+        
+            <div className="container mb-5 mt-5 justify-content-center d-flex">
+                {/* <iframe src='https://www.youtube.com/embed/E7wJTI-1dvQ'
+                <iframe src='https://youtube/embed/9CyuDpkEzKM'
+                <iframe src='https://youtube/embed/9CyuDpkEzKM'
+                    frameborder='0'
+                    allow='autoplay; encrypted-media'
+                    allowfullscreen
+                    title='video'
+                /> */}
+                <iframe 
+                    width="1049" 
+                    height="480" 
+                    src="https://www.youtube.com/embed/9CyuDpkEzKM" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+
+                </iframe>
+            </div>
         </>
     )
 }

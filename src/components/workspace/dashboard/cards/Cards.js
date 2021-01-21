@@ -41,12 +41,13 @@ const Cards = () =>{
             const getOverDueTasks = taskState.filter((task)=> task.taskStatus === 4)
             setOverDueTasksCounter(getOverDueTasks.length)
 
-
         }else{
             // Function that fetch the over pending tasks and set the length
             const fetchPendingTasks = async()=>{
                 const response = await axios.get(FETCH_TASKS_BY_STATUS_API_URL + '1/' + currentUserCompanyID, { headers: authHeader }) 
-                setPendingTasksCounter(response.data.data.length)
+                if(response){
+                    setPendingTasksCounter(response.data.data.length)
+                }
             }
     
             // Function that fetch the over completed tasks and set the length
