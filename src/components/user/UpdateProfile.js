@@ -10,7 +10,7 @@ import Button from '../layouts/Button';
 import { TextInput } from '../layouts/FormInput';
 
 //  Actions
-import { updateUserProfile } from '../../actions/user/userAction';
+import { syncCurrentUser, updateUserProfile } from '../../actions/user/userAction';
 
 // Services helper
 import Loader from '../loader/Loader';
@@ -32,6 +32,7 @@ const UpdateProfile = () =>{
         email: '',
         address: '',
         userName: '',
+        Image: null
     });
 
     useEffect(() => {
@@ -47,8 +48,11 @@ const UpdateProfile = () =>{
                 phoneNumber,
                 email,
                 address,
+                Image
                 
             } = currentUser
+
+            // alert(JSON.stringify(currentUser))
         
             // Set the destructure user information into the profile state (ES6 syntax)
             setProfile({
@@ -61,12 +65,11 @@ const UpdateProfile = () =>{
                 // userName : typeof userName !== 'string' ? '' : userName,
             })
 
-            console.log(firstName)
-            console.log(userName)
-            console.log(typeof phoneNumber)
             setIsLoading(false)
         }
     }, [params.id, currentUser])
+
+    
     
     if(isLoading){
         return(
@@ -111,14 +114,17 @@ const UpdateProfile = () =>{
                     <div className="col-md-12">
                         <div className="card mb-3">
                             <div className="card-body">
+                                {/* <img src={profile.Image} alt="test ing"></img> */}
                                 <Formik
                                     initialValues = {profile}
                                     enableReinitialize
                                     // validationSchema={UpdateProfileSchema}
+                                      
                                     onSubmit={(values, action)=>{
+                                        console.log(values)
                                         dispatch(updateUserProfile(values, staffID, action))
                                         .then((response)=>{
-                                            console.log(response)
+                                            dispatch(syncCurrentUser(staffID))
                                             history.push(`/dashboard/profile/${params.id}`)
                                         })
                                         .catch((error)=>{
@@ -127,13 +133,16 @@ const UpdateProfile = () =>{
                                     }
                                     }
                                 >
-                                    { (({ values, touched, errors, handleSubmit, isSubmitting, resetForm })=>{
+                                    { (({ values, touched, errors, handleSubmit, isSubmitting, resetForm, setFieldValue })=>{
                                         return <Form onSubmit={handleSubmit}>
                                             <div className="mb-5 text-gray">
                                                 {/* <pre>{JSON.stringify(values, null, 2)}</pre>  */}
                                                 <h5>EDIT PROFILE</h5>
                                             </div>
                                             <hr />
+
+                            
+
 
                                             {/* FIRST NAME */}
                                             <div className="row">
@@ -154,6 +163,7 @@ const UpdateProfile = () =>{
                                                         className="invalid-feedback p-0"
                                                         />
                                                 </div>
+
                                             </div>
                                             <hr />
 
@@ -178,6 +188,7 @@ const UpdateProfile = () =>{
                                                 </div>
                                             </div>
                                             <hr />
+
 
                                             {/* USERNAME */}
                                             <div className="row">
@@ -245,6 +256,7 @@ const UpdateProfile = () =>{
                                             </div>
                                             <hr />
 
+
                                             {/* ADDRESS */}
                                             <div className="row">
                                                 <div className="col-sm-6 col-md-3">
@@ -266,6 +278,31 @@ const UpdateProfile = () =>{
                                                 </div>
                                             </div>
                                             <hr />
+                                            
+                                            {/* image */}
+                                            <div className="row">
+                                                <div className="col-sm-6 col-md-3">
+                                                    <h6 className="mb-0">Upload Image</h6>
+                                                </div>
+                                                <div className="col-sm-12 col-md-9 text-secondary" >
+                                                    <TextInput
+                                                        name="file"
+                                                        id="file"
+                                                        type="file"
+                                                        onChange={(event) =>{
+                                                            setFieldValue("Image", event.currentTarget.files[0]);
+                                                        }}
+                                                        className={`form-contro ${ touched.Image && errors.Image ? "is-invalid" : ""}`} 
+                                                        />
+                                                    <ErrorMessage
+                                                        component="div"
+                                                        name="Image"
+                                                        className="invalid-feedback p-0"
+                                                        />
+                                                </div>
+                                            </div>
+                                            <hr />
+                                            
                                             <div className="d-flex justify-content-between">
                                                 <Button 
                                                     type="submit" 

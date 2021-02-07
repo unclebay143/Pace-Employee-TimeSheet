@@ -3,7 +3,7 @@ import { TIMER_ON, TIMER_OFF, SET_WORKED_MILLISECOND } from '../../actions/types
 const initialState = {
     timerIsOff: true,
     remindUser: true,
-    workedMilliSecond: 0
+    workedMilliSecond: 0,
 }
 
 
@@ -15,7 +15,6 @@ const timerReducer = (state=initialState, action)=>{
                 ...state,
                  timerIsOff: false,
                  remindUser: false,
-                 workedMilliSecond: 0
                 };
         case TIMER_OFF:
             // return state.timerIsOff = !state.timerIsOff, state.hour = action.payload;
@@ -30,8 +29,8 @@ const timerReducer = (state=initialState, action)=>{
                 ...state,
                 workedMilliSecond: action.payload
             }
-    default:
-        return state;
+        default:
+            return state;
     }
 }
 

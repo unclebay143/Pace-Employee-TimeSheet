@@ -14,16 +14,17 @@ export const UPDATE_USER_PASSWORD = 'https://pacetimesheet.herokuapp.com/api/use
 /* TODO API */ 
 export const TODO_API_URL = 'https://pacetimesheet.herokuapp.com/api/todo/companyName/todolist/'
 
+
 // TASK API
 export const ASSIGN_TASK_API_URL = 'https://pacetimesheet.herokuapp.com/api/tasks/companyName/newTask/';
 export const TASK_API_URL = 'https://pacetimesheet.herokuapp.com/api/tasks/companyName/';
 export const ACCEPTED_TASK_API_URL = 'http://fakerestapi.azurewebsites.net/api/v1/Activities';
 export const ASSIGNED_TASK_API_URL = 'https://pacetimesheet.herokuapp.com/api/tasks/companyName/assignedTasks/';
+export const FETCH_COMPANY_TASK_SHEET_URL = 'https://pacetimesheet.herokuapp.com/api/taskSheet/companyName/departments/';
 export const UPDATE_TASK_STATUS_API_URL = 'https://pacetimesheet.herokuapp.com/api/tasks/companyName/editTaskStatus/';
 export const DELETE_ASSIGNED_TASK_API_URL = 'https://pacetimesheet.herokuapp.com/api/tasks/companyName/deleteTask/';
-
-
-
+export const FETCH_TASK_DETAILS_API_URL = 'https://pacetimesheet.herokuapp.com/api/tasks/companyName/select/';
+export const FETCH_TASKS_BY_STATUS_API_URL = 'https://pacetimesheet.herokuapp.com/api/tasks/companyName/allTasks/'
 
 
 
@@ -46,3 +47,23 @@ export const FETCH_CALENDAR_EVENT_API = 'https://pacetimesheet.herokuapp.com/api
 export const NEW_CALENDAR_EVENT_API = 'https://pacetimesheet.herokuapp.com/api/calendar/companyName/new/';
 export const EDIT_CALENDAR_EVENT_API = 'https://pacetimesheet.herokuapp.com/api/calendar/companyName/edit/';
 export const DELETE_CALENDAR_EVENT_API = 'https://pacetimesheet.herokuapp.com/api/calendar/companyName/delete/';
+
+//  
+export const TIMER_INITIALIZER_API = 'https://pacetimesheet.herokuapp.com/api/timeSheet/companyName/newDay/';
+export const START_TIMER_API = 'https://pacetimesheet.herokuapp.com/api/timeSheet/companyName/startTime/';
+// export const START_TIMER_API = 'https://pacetimesheet.herokuapp.com/api/timeSheet/companyName/start-time/';
+export const STOP_TIMER_API = 'https://pacetimesheet.herokuapp.com/api/timeSheet/companyName/stopTime/';
+export const PERSONAL_TIME_SHEET_API = 'https://pacetimesheet.herokuapp.com/api/timeSheet/companyName/';
+export const COMPANY_TIME_SHEET_API = 'https://pacetimesheet.herokuapp.com/api/timeSheet/companyName/company/';
+export const DEPARTMENT_TIME_SHEET_API = 'https://pacetimesheet.herokuapp.com/api/timeSheetcompanyName/department/:id';
+
+// ESCHEDULE
+// export const ADD_NEW_ESCHEDULE_EVENT = 'https://pacetimesheet.herokuapp.com/api/companyName/E-schedule/new/';
+export const FETCH_ESCHEDULE_EVENT_API = 'https://pacetimesheet.herokuapp.com/api/E-schedule/';
+// export const NEW_ESCHEDULE_EVENT_API = 'https://pacetimesheet.herokuapp.com/api/E-schedule/monday/newE-schedule/';
+// export const NEW_ESCHEDULE_EVENT_API = 'https://pacetimesheet.herokuapp.com/api/E-schedule/companyName/newE-schedule/';
+export const EDIT_ESCHEDULE_EVENT_API = 'https://pacetimesheet.herokuapp.com/api/E-schedule/companyName/E-schedule/';
+export const DELETE_ESCHEDULE_EVENT_API = 'https://pacetimesheet.herokuapp.com/api/E-schedule/companyName/delete/';
+
+// PAYMENT API
+export const PAYMENT_API = 'https://pacetimesheet.herokuapp.com/api/payment/payment/';

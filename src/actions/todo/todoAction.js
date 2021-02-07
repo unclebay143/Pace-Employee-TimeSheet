@@ -17,12 +17,14 @@ const getTodos = () => ( dispatch ) =>{
     dispatch({type: FETCH_TODOS_PENDING})
     return TodoService.fetchTodos()
     .then((response) => {
-        console.log(response)
-        console.closeTodoForm(response)
-        dispatch({ type: FETCH_TODOS_SUCCESS, payload: response.data })
+        console.log('todoooooo', response)
+        dispatch({ type: FETCH_TODOS_SUCCESS, payload: response.data.data })
         return response.data;          
     })
-    .catch((error)=>dispatch({ type: FETCH_TODOS_ERROR, payload: error }))
+    .catch((error)=>{
+        dispatch({ type: FETCH_TODOS_ERROR, payload: error })
+        console.log(error);
+    })
 }
 
 // Open Todo Form
@@ -42,13 +44,14 @@ const closeTodoForm = () =>{
 
 // Add new Todo
 const addTodo = (newTodo) => (dispatch) =>{
-    dispatch({ type: ADD_TODO, payload: newTodo })
+    console.log('todoooooo', newTodo)
+    // dispatch({ type: ADD_TODO, payload: newTodo })
     return TodoService.addTodo(newTodo)
     .then((response) =>{
-        // dispatch({
-        //     type: ADD_TODO,
-        //     payload: response.data
-        // })
+        dispatch({
+            type: ADD_TODO,
+            payload: response.data.data
+        })
     })
     .catch((error)=>{
         console.log(error)

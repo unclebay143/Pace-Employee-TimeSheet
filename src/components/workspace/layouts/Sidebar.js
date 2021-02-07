@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { logout } from '../../../actions/auth/authAction';
+import { currentUserCompanyID } from '../../../services/auth-header';
 import { logOutSuccessLogger } from '../../../toaster';
 
 const Sidebar = () => {
@@ -78,9 +79,10 @@ const Sidebar = () => {
                                 )
                            }
                             <li className="sidebar-list-item"><NavLink exact to="/dashboard/task/all-tasks" className="sidebar-link text-muted" activeclassname="active"><i className="fas fa-tasks mr-3 text-gray"></i><span>Task</span></NavLink></li>
-                            <li className="sidebar-list-item"><NavLink exact to="/dashboard/forms" className="sidebar-link text-muted" activeclassname="active"><i className="o-timing-1 mr-3 text-gray"></i><span>e-schedule</span></NavLink></li>
+                            <li className="sidebar-list-item"><NavLink exact to="/dashboard/e-schedule" className="sidebar-link text-muted" activeclassname="active"><i className="o-timing-1 mr-3 text-gray"></i><span>e-schedule</span></NavLink></li>
                             <li className="sidebar-list-item"><NavLink exact to="/dashboard/todos" className="sidebar-link text-muted" activeclassname="active"><i className="o-paper-stack-1 mr-3 text-gray"></i><span>Todo</span></NavLink></li>
                             <li className="sidebar-list-item"><NavLink exact to="/dashboard/calendar" className="sidebar-link text-muted" activeclassname="active"><i className="o-table-content-1 mr-3 text-gray"></i><span>Calendar</span></NavLink></li>
+                            <li className="sidebar-list-item"><NavLink exact to="/dashboard/timesheet" className="sidebar-link text-muted" activeclassname="active"><i className="o-table-content-1 mr-3 text-gray"></i><span>Time Sheet</span></NavLink></li>
                            {
                                currentUserRoleID === 5 ? '' : (
                                    <li className="sidebar-list-item"><a href="." data-toggle="collapse" data-target="#report" aria-expanded="false" aria-controls="pages" className="sidebar-link text-muted" activeclassname="active"><i className="o-wireframe-1 mr-3 text-gray"></i><span>Report</span></a>
@@ -104,9 +106,10 @@ const Sidebar = () => {
                                     <li className="sidebar-list-item"><a href="." data-toggle="collapse" data-target="#settings" aria-expanded="false" aria-controls="pages" className="sidebar-link text-muted" activeclassname="active"><i className="o-wireframe-1 mr-3 text-gray"></i><span>settings</span></a>
                                         <div id="settings" className="collapse">
                                             <ul className="sidebar-menu list-unstyled border-left border-primary border-thick">
-                                                <li className="sidebar-list-item"><NavLink to="/dashboard/company/profile/1" className="sidebar-link text-muted pl-lg-5">Company Profile</NavLink></li>
+                                                <li className="sidebar-list-item"><NavLink to={`/dashboard/upgrade`} className="sidebar-link text-muted pl-lg-5">Payment</NavLink></li>
+                                                <li className="sidebar-list-item"><NavLink to={`/dashboard/company/profile/${currentUserCompanyID}`} className="sidebar-link text-muted pl-lg-5">Company Profile</NavLink></li>
                                                 <li className="sidebar-list-item"><NavLink to="/dashboard/company/settings/departments" className="sidebar-link text-muted pl-lg-5">Manage Team</NavLink></li>
-                                                <li className="sidebar-list-item"><NavLink to="/dashboard/company/profile/update/1" className="sidebar-link text-muted pl-lg-5">Update Profile</NavLink></li>
+                                                <li className="sidebar-list-item"><NavLink to={`/dashboard/company/profile/update/${currentUserCompanyID}`} className="sidebar-link text-muted pl-lg-5">Update Profile</NavLink></li>
                                             </ul>
                                         </div>
                                     </li>

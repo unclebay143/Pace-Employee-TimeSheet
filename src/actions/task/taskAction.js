@@ -41,7 +41,7 @@ const updateTaskStatus = (taskStatus) => ( dispatch ) => {
 // Delete Task 
 const deleteTask  = (id) => (dispatch) =>{
   dispatch({ type: DELETE_TASK, payload: id }) // Update the UI even when error occurs, since server will retain the undeleted item
-  return TaskService.deleteTask(id)
+  return TaskService.deleteTaskFromServer(id)
 }
 
 // Edit Task 

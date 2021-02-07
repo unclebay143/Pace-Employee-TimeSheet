@@ -29,7 +29,7 @@ const TodoForm = () =>{
                 <Formik
                     initialValues = {
                         {
-                            title: '',
+                            listName: '',
                             dueDate: Date.now(),
                         }
                     }
@@ -37,7 +37,7 @@ const TodoForm = () =>{
                         setTimeout(() => {
                             dispatch(addTodo(values))
                             action.resetForm({
-                                title: '',
+                                listName: '',
                                 dueDate: Date.now()
                             })
                         }, 2000);
@@ -60,16 +60,16 @@ const TodoForm = () =>{
                             <i className="fa fa-times form-popdown-btn" onClick={(()=>dispatch(closeTodoForm()))}></i>
                         </label>
                         <section className="todo-form-wrapper">
-                            <label htmlFor="title"><b>Title</b></label>
+                            <label htmlFor="listName"><b>Title</b></label>
                             <TextInput 
                                 type="text"
                                 placeholder="Enter Todo" 
-                                name="title"
-                                className={` form-control ${ touched.title && errors.title ? "is-invalid" : " " }`}
+                                name="listName"
+                                className={` form-control ${ touched.listName && errors.listName ? "is-invalid" : " " }`}
                             />
                             <ErrorMessage
                                 component="span"
-                                name="title"
+                                name="listName"
                                 className="invalid-feedback mb-2"
                             />
 

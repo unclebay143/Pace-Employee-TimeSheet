@@ -74,17 +74,14 @@ const AboutContent = () => {
             <section>
               <h3 className="mb-3">Our Vision</h3>
               <p>
-              The most key component of time trackers are increasing in productivity,
-issues identifying and eliminating. Pace timesheet give you that opportunity.
-with Time Tracking, Report Sheet and  productivity management features, it is very easy
-to track how much each task takes from start to finish, which websites was used during the work
-and understand how to boost you and your employees productivity.
+              As the world is now experiencing a global pandemic, the need for remote work has become glaring in nations all over the world. Even with the need and convenience that comes with working from ones home, Nigerian employers are not employing remote workers as they worry about having to pay remote workers for unproductive hours. The same applies to workers who are manually signing their time sheet. The headache of collation and trust is a lot for the Employers to worry about.
+              {/* Also, Nigerian Employers who have found out timesheet in time past have been bothered by the technicalities behind the use of such. It was from this need that brought about the idea to build a web application that gives employers an a avenue to track the time and productivity of their employees and also do it seamlessly. */}
               </p>
             </section>
-            <section className="mt-5">
+            <section className="mt-4">
               <h3 className="mb-3">How it started</h3>
               <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis quisquam sit debitis harum esse necessitatibus iusto obcaecati unde eligendi perspiciatis et nostrum maxime, earum fugit sequi inventore! Odit, cupiditate velit!
+                Pace timesheet is a project the T-circuit embarked on at TIIDELab Cohort 2, this product is an outcome of their 6 months web development and soft skills, the project was first built with html, css and vanilla javascript in the first 4 months of the cohort and later developed with React Js and Node js.
               </p>
             </section>
           </article>

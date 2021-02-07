@@ -8,21 +8,33 @@ import { getAssignedTasks } from '../../../../actions/task/assignedTaskAction';
 import { useDispatch, useSelector } from 'react-redux';
 // Loader
 import Loader from '../../../loader/Loader';
+import { formatDate } from '../../../../_helper/dateFormatter';
+
+
+const handleFormatDate = (selectedDepartmentTaskSheet) =>{
+  const formatedTaskSheet = selectedDepartmentTaskSheet.map((taskRecord)=> {
+      taskRecord.endDate = formatDate(taskRecord.endDate) 
+    // taskRecord.dateCreated = formatDate(taskRecord.dateCreated) 
+    return taskRecord
+  })
+  return formatedTaskSheet
+}
 
 const AssignedTasks = () => {
   const {assignedTasks, isFetching } = useSelector(state => state.assignedTasks)
+  const [assignedTaskState, setAssignedTaskState] = useState([])
   const dispatch = useDispatch();
   const history = useHistory();
-
-  // const [taskState, setTaskState] = useState();
-  // useEffect(() => {
-  //   setTaskState(assignedTasks)
-  // }, [])
+// console.log(assignedTasks)
 
   useEffect(() => {
     dispatch(getAssignedTasks())
-    console.log(assignedTasks.taskStatus)
+    // console.log(assignedTasks.taskStatus)
   }, [assignedTasks.taskStatus, dispatch])
+
+  useEffect(() => {
+    setAssignedTaskState(handleFormatDate(assignedTasks))
+  }, [assignedTasks])
 
   
 
@@ -53,7 +65,7 @@ const AssignedTasks = () => {
       <Table
         keyField='id'
         title = "Assigned Tasks"
-        data={assignedTasks }
+        data={assignedTaskState}
         columns={taskHeader}
         bordered= { false }
         // selectRow = {selectRow}

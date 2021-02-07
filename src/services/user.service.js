@@ -6,7 +6,7 @@ import { UPDATE_USER_PASSWORD } from "./root-endpoints";
 
 // This function keeps the user logged in by fetching the current user details and dispatching it into the store
 const fetchUserProfile = (staffID) => dispatch =>{
-  console.log('SERVICE', staffID);
+  // console.log('SERVICE', staffID);
 
   dispatch({
     type: SYNC_CURRENT_USER,
@@ -14,7 +14,7 @@ const fetchUserProfile = (staffID) => dispatch =>{
   })
   return axios.get(`https://pacetimesheet.herokuapp.com/api/users/companyName/userProfile/${staffID === '' ? currentUserStaffID : staffID}`, { headers: authHeader })
   .then((response)=>{
-    console.log(response)
+    // console.log(response)
     // Extract updated user profile from the server response
     const currentUserProfile = response.data.data[0];
 
@@ -36,6 +36,9 @@ const fetchUserProfile = (staffID) => dispatch =>{
 }
 
 const updateUserProfile = (newProfile, staffID) =>{
+  // let data = new FormData();
+  // data.append("Image", newProfile.Image);
+  // console.log(data)
   return axios.put(`https://pacetimesheet.herokuapp.com/api/users/companyName/userProfile/updateProfile/${staffID}`, newProfile, { headers: authHeader })
 
 }

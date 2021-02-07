@@ -247,7 +247,7 @@ const AddEmployee = () =>{
                                                 <Button 
                                                     type="submit" 
                                                     className="btn pace-btn-primary" 
-                                                    label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Please wait...</span>) : "Employee"}
+                                                    label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Please wait...</span>) : "Employ"}
                                                 />
                                                 <Button 
                                                     type="button" 

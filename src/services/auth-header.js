@@ -2,6 +2,7 @@
 
 // Header for authentication
 let accessToken = JSON.parse(localStorage.getItem('token'));
+let currentUserCompany = JSON.parse(localStorage.getItem('company'));
 
 // let accessToken = localStorage.getItem('token')
 let getCurrentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -18,6 +19,18 @@ const currentUserCompanyID = getCurrentUser === null ? null : currentUserFromLoc
 
 // Current user staffID 
 const currentUserStaffID = getCurrentUser === null ? null : currentUserFromLocalStorage.staffID;
+
+// CurrentUserStaffID
+const currentUserRoleID = getCurrentUser === null ? null : currentUserFromLocalStorage.roleID;
+
+// currentUserEmail
+const currentUserEmail = getCurrentUser === null ? null : currentUserFromLocalStorage.email;
+
+
+console.log(currentUserEmail)
+// CurrentUser Company Name
+const currentUserCompanyName = currentUserCompany === null ? null : currentUserCompany[0].companyName;
+
 
 // Authorization token
 const authHeader = {
@@ -37,5 +50,8 @@ export {
   accessToken,
   currentUserFromLocalStorage,
   currentUserCompanyID,
-  currentUserStaffID
+  currentUserStaffID,
+  currentUserRoleID,
+  currentUserCompanyName,
+  currentUserEmail,
 }

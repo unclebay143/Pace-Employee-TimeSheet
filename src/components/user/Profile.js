@@ -5,11 +5,12 @@ import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 
 //Layout
 import Button from '../layouts/Button';
-import unclebay from '../pages/pages-images/ayodele_samuel_adebayo.jpg';
+import avatar from '../pages/pages-images/profileAvatar.svg';
 
 // Toaster
 import Loader from '../loader/Loader';
 import { useDispatch, useSelector } from 'react-redux';
+import { currentUserFromLocalStorage } from '../../services/auth-header';
 
 
 const ProfileRow = (props) => {
@@ -69,19 +70,19 @@ const Profile = () =>{
                 })
             }   
             
-        }, [currentUser, params.id, dispatch])
+        }, [currentUser, params.id])
 
-    if(userProfile.firstName === undefined){
-        return(
-            <>
-             {/* <div className="d-flex justify-content-center align-items-center mt-2" style={{height:'100vh', background: '#cccccc'}}>
-                   <i className="fa fa-spinner fa-pulse fa-3x fa-fw" style={{fontSize: "23px"}}></i> 
-                   <span>Loading... Please wait</span> 
-             </div> */}
-                <Loader />
-            </>
-        )
-    }
+    // if(userProfile.firstName === undefined){
+    //     return(
+    //         <>
+    //          {/* <div className="d-flex justify-content-center align-items-center mt-2" style={{height:'100vh', background: '#cccccc'}}>
+    //                <i className="fa fa-spinner fa-pulse fa-3x fa-fw" style={{fontSize: "23px"}}></i> 
+    //                <span>Loading... Please wait</span> 
+    //          </div> */}
+    //             <Loader />
+    //         </>
+    //     )
+    // }
     return (
         <>
             <div className="container">
@@ -116,7 +117,7 @@ const Profile = () =>{
                                 <div className="card-body">
                                     <div className="d-flex flex-column align-items-center text-center">
                                         {/* <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width={150} /> */}
-                                        <img src={unclebay} alt="Admin" className="rounded-circle" width={150} />
+                                        <img src={avatar} alt="Admin" className="rounded-circle" width={150} />
                                         <div className="mt-3">
                                             <h4 className="text-capitalize">{userProfile.firstName} {userProfile.lastName}</h4>
                                             <h4>{userProfile.id} </h4>
@@ -137,12 +138,13 @@ const Profile = () =>{
                         <div className="col-md-8">
                             <div className="card mb-3">
                                 <div className="card-body">
-                                    <ProfileRow title="Full Name" label={ ` ${userProfile.firstName} ${userProfile.lastName}` } />
+                                    <ProfileRow title="Full Name" label={ ` ${userProfile.firstName === undefined ? '' : userProfile.firstName} ${userProfile.lastName === undefined ? '' : userProfile.lastName}` } />
                                     <ProfileRow title="Email" label={userProfile.email} />
                                     <ProfileRow title="Department" label="Web development" />
-                                    <ProfileRow title="Role" label={ userProfile.staffRole } />
+                                    <ProfileRow title="Role" label={ userProfile.staffRole === undefined ? currentUserFromLocalStorage.staffRole : userProfile.staffRole} />
                                     <ProfileRow title="Salary" label={`# ${userProfile.billRateCharge === undefined || null ? '' : userProfile.billRateCharge}`} />
                                     <ProfileRow title="Phone" label={userProfile.phoneNumber} />
+                                    <ProfileRow title="Work Hours" label={ userProfile.expectedWorkHours === undefined ? currentUserFromLocalStorage.expectedWorkHours : userProfile.expectedWorkHours} />
                                     <ProfileRow title="Address" label={userProfile.address} />
                                 </div>
                             </div>
