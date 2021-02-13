@@ -102,7 +102,7 @@ export default function TaskReport() {
         return (
           <>
               <tr>
-                <Link to={`/dashboard/task/view-task/`}>
+                <Link to={`/dashboard/task/all-tasks`}>
                   View
                 </Link>
               </tr>

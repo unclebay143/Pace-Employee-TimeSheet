@@ -60,6 +60,7 @@ const AcceptedTasks = () => {
       }
   }, [tasks, taskState])
 
+
   // adds checkbox to each row
   const selectRow = {
     mode: 'checkbox',
@@ -70,37 +71,36 @@ const AcceptedTasks = () => {
     cursor: 'pointer'
   }
   // routes to full task details page on double click
-  // const taskDetails =  {
-  //   onClick: (e, row, rowIndex) => 
-  //   { 
-  //       console.log(row)
-  //       history.push(`/dashboard/task/view-task/`+ row.taskID)
-  //   }
-  // };
+  const taskDetails =  {
+    onClick: (e, row, rowIndex) => 
+    { 
+      history.push(`/dashboard/task/view-task/`+ row.taskID)
+    }
+  };
 
-  if (isLoading){
+  // If the task list is been fetched from the server or not mounted on the ui, show the loader 
+  if(isFetching){
     return(
-      <>
-
-          <Loader />
-
-      </>
+        <>
+            <Loader />
+        </>
     )
   }
+
   return (
     <div >
       
       <Table
         keyField='id'
         title="Accepted Task"
-        data={acceptedTasks }
+        data={ usersTasksByStatus }
         columns={taskHeader}
         bordered= { false }
         selectRow = { selectRow }
         enableSearch = { true }
         pagination = { paginationFactory() }
         // controlHeader = { navigate }
-        // rowEvents = { taskDetails }
+        rowEvents = { taskDetails }
         noDataIndication={'No available task'}
         filter={ filterFactory() }
         rowStyle={ rowStyle }
@@ -110,17 +110,10 @@ const AcceptedTasks = () => {
 }
 
 const taskHeader = [
-     
+
   {
     dataField: 'taskName',
     text: 'Title',
-    headerAttrs: {
-      hidden:true
-    }
-  },
-  {
-    dataField: 'dateCreated',
-    text: 'Assigned Date',
     headerAttrs: {
       hidden:true
     }
@@ -133,15 +126,17 @@ const taskHeader = [
     }
   },
   {
-    dataField: 'completed',
-    text: 'Status',
+    dataField: 'documentsAttached',
+    text: 'Attachment',
+    formatter: (cell, row) => {
+      if(!cell){
+      return(
+        <i class="fa fa-paperclip" />
+      )}
+    },
     headerAttrs: {
       hidden:true
-    },
-    // formatter: cell => selectOptionsArr.filter(opt => opt.value === cell)[0].label || '',
-    //   filter: selectFilter({
-    //     options: selectOptionsArr
-    //   })
+    }
   },
 ];
 
