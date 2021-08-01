@@ -59,8 +59,8 @@ console.log(pendingTasks);
     }
   }, [tasks, taskState])
 
-  console.log(getTaskByStatus, 'GETaccept')
-    console.log( usersTasksByStatus, 'accept')
+  // console.log(getTaskByStatus, 'GETaccept')
+  //   console.log( usersTasksByStatus, 'accept')
 
   // adds checkbox to each row
   const selectRow = {
@@ -80,7 +80,7 @@ console.log(pendingTasks);
   };
 
   // If the task list is been fetched from the server or not mounted on the ui, show the loader 
-  if(isFetching){
+  if(isLoading){
     return(
         <>
             <Loader />
@@ -94,7 +94,7 @@ console.log(pendingTasks);
       <Table
         keyField='id'
         title="Pending Tasks"
-        data={ handleFormatDate(usersTasksByStatus) }
+        data={ handleFormatDate(taskState) }
         columns={taskHeader}
         bordered= { false }
         selectRow = { selectRow }

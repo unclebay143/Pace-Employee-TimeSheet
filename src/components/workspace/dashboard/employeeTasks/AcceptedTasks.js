@@ -79,7 +79,7 @@ const AcceptedTasks = () => {
   };
 
   // If the task list is been fetched from the server or not mounted on the ui, show the loader 
-  if(isFetching){
+  if(isLoading){
     return(
         <>
             <Loader />
@@ -93,7 +93,7 @@ const AcceptedTasks = () => {
       <Table
         keyField='id'
         title="Accepted Task"
-        data={ usersTasksByStatus }
+        data={ acceptedTasks }
         columns={taskHeader}
         bordered= { false }
         selectRow = { selectRow }

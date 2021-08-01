@@ -22,7 +22,7 @@ const Pricing = () => {
                         <FontAwesomeIcon icon={faSitemap} />&nbsp;Premium...
                         </h2>
                         <h5 className="mb-4 text-center">#32, 000 / month</h5>
-                        <Link to="/pricing">
+                        <Link to="/signup">
                             <Button label="Get Started" className="btn pace-btn pace-btn-accent pricing-btn" />
                         </Link>
                         <h4 className="mt-3 text-center">What's included</h4>
@@ -39,7 +39,7 @@ const Pricing = () => {
                         <FontAwesomeIcon icon={faSnowflake} />&nbsp;Basic...
                         </h2>
                         <h5 className="mb-4 text-center">#12, 000 / month</h5>
-                        <Link to="/pricing">
+                        <Link to="/signup">
                             <Button label="Get Started" className="btn pace-btn pace-btn-accent pricing-btn" />
                         </Link>
                         <h4 className="mt-3 text-center">What's included</h4>
@@ -56,7 +56,7 @@ const Pricing = () => {
                         <FontAwesomeIcon icon={faBookReader} />&nbsp;Free....
                         </h2>
                         <h5 className="mb-4  text-white text-center">#0 / month</h5>
-                        <Link to="/pricing">
+                        <Link to="/signup">
                             <Button label="Get Started" className="btn pace-btn pace-btn-primary pricing-btn" />
                         </Link>
                         <h4 className="mt-3 text-center">What's included</h4>

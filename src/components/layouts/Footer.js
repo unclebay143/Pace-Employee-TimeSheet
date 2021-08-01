@@ -87,7 +87,7 @@ const Footer = () => {
                 </p>
                 <p>
                   {/* <i className="fas fa-home mr-2" /> */}
-                  TIIDELab, Wuse, Abuja
+                  Minna, Niger
                 </p>
               </div>
             </div>
